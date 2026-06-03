@@ -13,7 +13,7 @@ jobs:
       - name: Build slides
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: src/slides.md --html --output public/presentation.html
+          args: src/slides.md --html --theme src/marp-theme.css --output public/presentation.html
         env:
           MARP_USER: root
 

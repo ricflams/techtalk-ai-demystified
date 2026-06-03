@@ -29,7 +29,6 @@ Embeddings, revisited
 
 
 
----
 # Next slide
 
 Goals
@@ -37,7 +36,6 @@ Goals
 	Explain how the full context is all that can be reasoned about
 	Explain how the full context is being processed every time
 
----
 # Next slide
 
 
@@ -105,7 +103,6 @@ The big picture
 
 abd
 
----
 # Hello
 
 A detour: An embedding
@@ -513,6 +510,8 @@ What's an "agent"?
 [Deep Learning 1-7, 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 [LLM Visualization](https://bbycroft.net/llm)
 [Transformer explained](https://poloclub.github.io/transformer-explainer/)
+https://jalammar.github.io/illustrated-transformer/ This is the gold-standard blog post for understanding the mechanics
+
 
 https://projector.tensorflow.org/
 

@@ -1,17 +1,7 @@
 /* @theme demystified */
 
-/* ─── Layout helpers (shared with .crossnote/style.less for MPE) ─── */
-.cols { display: flex; width: 100%; align-items: center; gap: 0; }
-.cols > * { flex: 1 1 0; min-width: 0; margin: 0; }
-.cols > .col-2 { flex: 2 1 0; }
-.cols > .col-3 { flex: 3 1 0; }
-.cols img { width: 100%; max-width: none; height: auto; display: block; border-radius: 0; }
-img.full { max-width: 100%; max-height: 100%; width: auto; height: auto; min-height: 0; display: block; margin: 0 auto; border-radius: 0; }
-img.half { max-width: 50%; max-height: 100%; width: auto; height: auto; min-height: 0; display: block; margin: 0 auto; }
-
-/* Mixed image + non-image cols get a gap (~1.5 M-widths) and rounded images */
-.cols:has(> img):has(> *:not(img)) { gap: 1.5em; }
-.cols:has(> img):has(> *:not(img)) img { border-radius: 10px; }
+/* ─── Layout helpers ─── */
+@import "./layout.css";
 
 /* Inline logo / icon for use next to text (overrides .cols img). Order matters: must come after .cols img. */
 img.logo, .cols img.logo {
@@ -80,7 +70,9 @@ h3 {
 }
 
 p {
-  margin: 0.4em 0;
+  margin: 0.4em auto;
+  width: fit-content;
+  text-align: left;
 }
 
 strong {
@@ -95,8 +87,10 @@ em {
 
 /* ─── Lists ──────────────────────────────────────────────── */
 ul, ol {
-  margin: 0.3em 0;
+  margin: 0.3em auto;
   padding-left: 1.4em;
+  width: fit-content;
+  text-align: left;
 }
 
 ul + ul, ol + ol { margin-top: 1.2em; }
@@ -302,13 +296,6 @@ section:has(h2):not(:has(h1)) h2 {
   color: transparent;
 }
 
-/* Lists and body text on Chapter slides: left-aligned, normal color */
-section:has(h2):not(:has(h1)) p,
-section:has(h2):not(:has(h1)) ul,
-section:has(h2):not(:has(h1)) ol {
-  text-align: left;
-  width: 100%;
-}
 
 /* ── Section — slides containing h3 but no h2/h1 ────────────── */
 section:has(h3):not(:has(h2)):not(:has(h1)) {

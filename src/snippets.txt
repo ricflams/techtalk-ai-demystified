@@ -17,3 +17,20 @@ I en elevator der viser "I fart".
 
 
 Please tell me: what is an LLM?
+
+An LLM is a **really well-read autocomplete**.
+
+1. It trained on **massive amounts of text** and learned patterns in language
+2. It generates responses by predicting the **next word**, over and over
+
+No magic — just very sophisticated pattern matching at enormous scale.
+
+             gemini      claude       chatgpt
+sysprompt :  2500        2500         3000
+input/turn:  150+1500    100 + 5000   100 + 6000
+output/turn: 800         800          1200
+mcp:         400         550          400
+big doc:     45000       12000        50000
+thinking:    8000        6000         15000
+long output: 5000        4000         8000
+A 45,000-token payload equates to roughly 33,000 words (or ~90–100 pages of highly technical, dense text). This is a realistic baseline for a modern project snapshot or a complex OpenAPI/Swagger specification file injected at Turn Zero to ground the agent in an unfamiliar codebase.

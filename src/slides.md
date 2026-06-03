@@ -4,6 +4,7 @@ html: true
 transition: reveal
 theme: demystified
 paginate: true
+headingDivider: 3
 ---
 <style>
 h4, h4 ~ * { display: none; }
@@ -22,9 +23,8 @@ So you become more confident with the terms, know why AI-models are different, a
 
 I hope you'll latch onto something and refer back to the slides and me if you've got questions.
 
----
 ## 10,000,001 AI videos... +1
-<div class="cols">
+<div class="cols tight">
 <img src="images/intro/youtube-intro-1.png">
 <img src="images/intro/youtube-intro-2.png">
 <img src="images/intro/youtube-intro-3.png">
@@ -38,16 +38,13 @@ Why is one more presentation about LLMs useful?
 
 I guess for the same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
 
----
 ## All the parts
 <img class="full" src="images/overview/full.png" />
 
 The **human** use an **AI Agent** to communicate with an **AI Service**, that turn your message into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the agent also has **memory**.
 
----
 # The AI Service
 
----
 ## AI Data center
 
 <img src="images/intro/datacenter.jpg">
@@ -55,10 +52,9 @@ The **human** use an **AI Agent** to communicate with an **AI Service**, that tu
 ####
 The commercial **AI Services** run in massive data centers.
 
----
 ### Frontier AI Foundation Models (FM)
 
-<div class="cols">
+<div class="cols tight">
 <div>
 
 <img class="logo" src="images/intro/logo-claude.svg"> **Claude** by Anthropic
@@ -85,32 +81,26 @@ The commercial **AI Services** run in massive data centers.
 </div>
 </div>
 
----
 ### Let's ask the LLM
 <img class="full" src="images/ai-service/what-is-an-llm-in-claude.png">
 
----
 ### Let's ask the LLM
 <img class="full" src="images/ai-service/what-is-an-llm-in-ai-service.png">
 
----
 ## Tokens
 <img class="full" src="images/overview/tokens.png">
 
----
 ### A token is
 
 * Practically, for you: it's **a word**
-<!-- -->
+<br>
 * More precisely: it is the **chunks** the AI break your text into
-<!-- -->
+<br>
 * What you ultimately **pay for** - it's the **unit of work** for the LLM
 
----
 ### "hello" is token 24912 (in gpt-4o)
 <img class="full" src="images/token/tokenize-detokenize-hello.png">
 
----
 ### ChatGPT 3.5's token vocabulary
 <img class="full" src="images/token/vocabulary-full.png">
 
@@ -118,7 +108,6 @@ The commercial **AI Services** run in massive data centers.
 * [ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
 
 
----
 ### "hello" is token 24912
 <img class="full" src="images/token/hello.png">
 
@@ -129,12 +118,10 @@ Tokenizers:
 * [OpenAI's tokenizer](https://platform.openai.com/tokenizer)
 
 
----
 ### "hello world"
 <img class="full" src="images/token/hello-world.png">
 
 
----
 ### "hello" in the vocabulary
 <img class="full" src="images/token/vocabulary-hello.png">
 
@@ -142,28 +129,24 @@ Tokenizers:
 Notice that "hello" in the gpt-4o tokenizer is #24912 and in the ChatGPT vocabulary it's 15339. Vocabularies change from model to model. The concrete numbers doesn't matter outside of the AI service so you shouldn't rely on them.
 
 
----
 ### "h e l l o   w o r l d"
 <img class="full" src="images/token/h-e-l-l-o-w-o-r-l-d.png">
 
 ####
 This shows one advantage of the tokenization: simply fewer tokens than if everything was spelled out.
 
----
 ### "hello world from me"
 <img class="full" src="images/token/hello-world-from-richard.png">
 
 ####
 The first four words are common and have each their own token, but "Flamsholt" isn't worthy of getting its own token so it's made up of 3 parts.
 
----
 ### Token for "Flam"
 <img class="full" src="images/token/vocabulary-flam.png">
 
 ####
 Look' there's "Flam", in dubious company of inflammatory tokens.
 
----
 ### Tokenizing identifies "traits"
 <img class="full" src="images/token/wonderful-tokenization.png">
 
@@ -171,7 +154,6 @@ Look' there's "Flam", in dubious company of inflammatory tokens.
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
----
 ### A danish elevator in motion
 <img class="full" src="images/token/elevator-i-fart.jpg">
 
@@ -179,7 +161,6 @@ Another advantage of tokenization is that it allow identifying common linguistic
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
----
 ### I fart poetry
 <img class="full" src="images/token/i-fart-marked.png">
 
@@ -187,27 +168,24 @@ Another advantage of tokenization is that it allow identifying common linguistic
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
----
 ### The English advantage
 <img class="full" src="images/token/five-sentences.png">
 
 ####
 Examples in English, Danish, Korean, Classical Chinese, and C#.
 
----
 ### Revisit the example
 <img class="full" src="images/token/what-is-an-llm-tokens.png">
 
 
----
 ### Tokens, summarized
 
 * A **token** is the **chunk of text** the AI service can reason about
 * Models typically have a **vocabulary** of 200,000 tokens
 * For English, 1 token is roughly 1 word
-
+<br>
 And last, but not least:
-
+<br>
 * AI services **charges per token**, since tokens are the unit the LLM works on
 * A ballpark figure: you pay **$1 for 100,000 tokens**
 * 100,000 tokens amounts to _"Harry Potter and the Philosopher's Stone"_
@@ -216,16 +194,13 @@ And last, but not least:
 For English, one token generally corresponds to about 4 characters. For a text the number of tokens will typically be 30% higher than the number of words, ie 1000 words means 1300 tokens - broadly speaking.
 
 
----
 ## Embeddings
 <img class="full" src="images/overview/embedding.png">
 
----
 ### One more basic part: embeddings
 <img class="full" src="images/embedding/what-is-an-llm-embeddings.png">
 
 
----
 ### ⚠️ Warning ⚠️ 
 
 This will sound confusing
@@ -237,7 +212,6 @@ Computers don't understand the word "cat." They understand numbers. So we need a
 
 <img class="half" src="images/embedding/confused.png">
 
----
 ### An "embedding" is a thing, not an action
 <img class="full" src="images/embedding/bicycle-tree.jpg" />
 
@@ -247,47 +221,51 @@ In everyday English, "embedding" sounds like something you do: the act of placin
 In AI, it means the concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
 
 
----
 ### The Big Five test (OCEAN)
 <img class="full" src="images/embedding/analogy_bigfive.svg" />
 
 
----
 ### Specialty Coffee Association (SCA)
 <img class="full" src="images/embedding/analogy_coffee.svg" />
 
 
----
 ### Spotify's music characterization
 <img class="full" src="images/embedding/analogy_spotify.svg" />
 
 
----
 ### Could we measure ... "everything"?
 <img class="full" src="images/embedding/20d-blank.svg" />
 
 
----
 ### Measuring "everything"
 <img class="full" src="images/embedding/20d-with-tokens.svg" />
 
 
----
 ### That's an embedding
 
-<img class="full" src="images/embedding/20d-with-tokens.svg" />
+<div class="cols">
+<div>
+	<img src="images/embedding/20d-kitten.png" />
+</div>
+<div class="col-5">
 
 Every **column** here is an embedding:
 
-An embedding is **list of numbers** (a *vector*) that _somehow_ characterise **everything imaginable!** I say somehow because we don't know what each part of the dimensions does - it's just math that works our.
+An embedding is **list of numbers** (aka a *vector* or *tensor*) that _somehow_ characterise **everything imaginable!**
 
-For example: Any **word** you know. Any **sentence** there exist. Any **feeling** you can have. The concept of **keeping an audience in suspense, eager for the next slide**, too.
+_"Somehow"_ because we don't know what features or traits the dimensions corresponds to. The numbers only make sense to the LLM in its output space.
+
+For example: Any **word** you know. Any **sentence** there exist. Any **feeling** you can have. Any **concept**, including e.g. **a curious yet mildly confused audience**.
+</div>
+</div>
+
+<img class="full" src="images/embedding/20d-with-tokens.svg" />
+
 
 ####
 
 Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
 
----
 ### More of "everything imaginable"
 
 <div class="cols">
@@ -308,17 +286,21 @@ Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
 * The concept of sarcasm _(yeah, right)_
 * What "London-ness" feels like
 * A function's behavior in a codebase
-* A legal precedent and what it stands for
+* A legal precedent in criminal law
 * The notion of "almost, but not quite"
 * What 3 a.m. feels like
 
 </div>
 </div>
 
----
-### The embeddings in ChatGPT
-12288 dimensions
+### Conceptually, embeddings for any word
+<img class="full" src="images/embedding/vocabulary-a-z.png" />
 
+####
+Conceptually, every word has an embedding that captures its meaning. This is not entirely correct because we are of course always dealing with tokens, not words - so the vocabulary of an LLM has embeddings for every token instead of words.
+
+### Example: Token-embeddings in ChatGPT 3
+<img class="full" src="images/embedding/vocabulary-gpt-3.png" />
 
 ---
 <img class="full" src="images/embedding/2d-90deg.png" />
@@ -340,7 +322,6 @@ Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
 <img class="full" src="images/embedding/superposition-explosion.png" />
 
 
----
 ### The values of an embedding
 <img class="full" src="images/embedding/embedding_matrix.svg" />
 
@@ -360,22 +341,19 @@ There's a research field called mechanistic interpretability that tries to decom
 <img class="full" src="images/embedding/what-is-an-llm-embeddings-matrix.png" />
 
 
----
 ## LLM
 <img class="full" src="images/overview/llm.png">
 
 
----
 ### The LLM is
 
-a humongous calculator that can do just one thing: predict the next word.
+a humongous calculator that can do just one thing: predict the next word likely to follow a sequence of words.
 
 _or more precisely_
 
 **Run math on embeddings and produce probabilities for the next token**
 
 
----
 ### Our example
 <img class="full" src="images/llm/what-is-an-llm-example.png">
 
@@ -388,7 +366,6 @@ Why only `An`? Why not the full answer? Yeah, hold your horses just a bit longer
 That's the second thing to note: the LLM itself actually just produce this set of probabilities. The mechanism that actually *picks that next token* is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `An` in this case.
 
 
----
 ### Attention is all you need
 <img class="full" src="images/llm/attention-is-all-you-need.png">
 
@@ -399,93 +376,214 @@ Today, the paper sits at over 200,000 citations, making it an absolute statistic
 
 It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
 
----
 ### The Transformer
 <img class="full" src="images/llm/attention-transformer.png">
 
 ####
 
----
 ### Let's walk through a fresh example
 <img class="full" src="images/llm/what-we-want.png">
 
 ####
 
----
 ### The objective: find the next token
 <img class="full" src="images/llm/find-the-next-token.png">
 
 ####
+The very observant reader may spot something unexpected. I claimed that each token's embedding was a fixed vector. But why do the two instances of "you" then not have the same embedding-values?
 
----
+That's because the transformer initially instill some positional information (1, 2, 3, ...) into each individual embedding, typically using *RoPE* (Rotary Position Embeddings) which "rotates" the vector in 2D spaces in each layer.
+
+Surprisingly, changing the vector values does not remove any of the embedding's "meaning" in the high-dimensional space. It retains its core conceptual meaning, only nudged a little bit.
+
+
 ### Likely next tokens after "you"
+
+"That which does not kill you only makes you _can_" - hmmm
+
 <img class="full" src="images/llm/next-token-after-you.svg">
 
 ####
 
----
 ### Embeddings pay attention to each other
 <img class="full" src="images/llm/attention-head.png">
 
 ####
 
----
 ### Neural network let training kick in
 <img class="full" src="images/llm/multiplexer-perceptron.png">
 
 ####
 
----
 ### Focus on the strong signals
 <img class="full" src="images/llm/relu.png">
 
 ####
 
----
 ### Now do this again...
 <img class="full" src="images/llm/attention-head-2.png">
 
 ####
 
----
 ### In search for next token for "you"
 <img class="full" src="images/llm/attention-space-seek.png">
 
 ####
 
----
 ### In fact, let's do it 96 times
 <img class="full" src="images/llm/attention-96-layers.png">
 
 ####
 
----
-### 
+### 170 billion weights
+<img class="full" src="images/llm/170-billion-weights.png">
+
+### Final absorbed status
 <img class="full" src="images/llm/final-embedding-all-absorbed.png">
 
 ####
 
----
 ### Find next token by similarity
+
+Also known as "cosine similarity"
+
 <img class="full" src="images/llm/next-token-prediction.svg">
 
 ####
 
 The cosine similarity of 0.97 is computed in isolation — it's purely a geometric measurement between two vectors, with no knowledge of the other 127,999 tokens. The 91% is a different kind of number entirely: it's the result of a competition. Softmax takes all 128,000 similarity scores simultaneously, exponentiates each one, and divides by their sum. Every token competes against every other token at once. "Stronger" claimed 91% of the total probability mass — not because 0.97 is intrinsically high, but because it pulled far enough ahead of the field. A high cosine similarity is the evidence. The probability is the verdict.
 
----
 ### The final output token
 <img class="full" src="images/llm/final-output-token.png">
 
 ####
 
----
-### Input tokens vs output tokens
-<img class="full" src="images/llm/final-output-token.png">
+### Back to our example
+<img class="full" src="images/llm/what-is-an-llm-example.png">
+
+### Repeat until the LLM says stop
+<img class="full" src="images/llm/next-token-until-stop.png">
 
 ####
+### 58 transformer-roundtrips for 58 tokens
+<img class="full" src="images/llm/next-token-until-stop.png">
+<img class="full" src="images/llm/final-output-full-tokenized.png">
 
----
+
+### Tokens are generated one by one
+
+Yes, it's actually true: the LLM really is a "very well-read _autocomplete_"
+
+<img class="full" src="images/llm/tokenized-output.png">
+
+####
+This is what really boggles my mind. Each token is generated completely independently, only by choosing the most likely next word to come after what has already been seen now. There is no planning.
+
+There's no plan to "bold" a word by emitting `** something **`. Instead at one point an ` **` is emitted and later on another `**` is emitted.
+
+There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
+
+
+## Cost
+
+### Harry Potter ~ 100,000 tokens
+
+<div class="cols fit">
+<div><img src="images/cost/harry-potter-front.png" /></div>
+<div><img src="images/cost/harry-potter-page-1.jpg" /></div>
+</div>
+
+####
+Because the AI has access to the full text of book 1 in its active memory, but its underlying weights are deeply biased toward the real book 2, the resulting "original" stories are incredibly bizarre hybrids. The AI will invent a plot where Harry returns to Hogwarts, but it will subconsciously map the beats of Chamber of Secrets anyway—often renaming the Basilisk to something else but keeping the exact structural cadence of the original sequel.
+
+### 100,000 tokens in, one token out
+<img class="full" src="images/cost/harry-potter-transformer.png"> 
+
+### It's one token, how much could it need?
+<img class="full" src="images/cost/dr-evil-one-million-flops.jpg"> 
+
+### 1,200,000,000,000 multiplications
+<img class="full" src="images/cost/dr-evil-teraflops.jpg"> 
+
+**FLOPS** means Floating-Point Operations, i.e. multiplication
+
+### Enter the NVidia B200 GPU
+
+Not your gaming grandma's graphics card
+
+<img class="full" src="images/cost/nvidia-jensen-b200.png"> 
+
+### 4,500,000,000,000,000 FLOPS/sec
+
+### xcvx
+<div class="cols">
+<img src="images/cost/nvidia-b200-focus.png"> 
+<div class="col-4">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
+
+4,500,000,000,000,000 FLOPS/sec is B200 capacity
+<br>
+The output of one 4 x B200 cluster serving a Claude Opus tier model depends on the length of the context:
+<br>
+* 4,000 token context: 50 users at 60 tokens/sec
+* 100,000 token context: 10 users at 40 tokens/sec
+* 1,000,000 token context: 1 user at 15 token/sec
+</div>
+</div>
+
+### Cost per output token
+<div class="cols">
+<img src="images/cost/cost-per-token.png"> 
+<div class="col-2">
+
+Price of 4x B200 cluster: $500,000
+
+* Ballpark cost, all-included: ~$27/MToken
+* Claude Opus is priced at **$25/MToken** (June 2026)
+&nbsp;
+
+<img src="images/cost/claude-pricing.png"> 
+</div>
+</div>
+
+### The 4x B200 cluster
+<img class="full" src="images/cost/b200-cluster.jpeg"> 
+
+### Clusters goes into trays
+<img class="full" src="images/cost/b200-clusters.jpg"> 
+
+### Trays goes into racks
+<img class="full" src="images/cost/b200-rack.jpg"> 
+
+### Racks goes into aisles
+<img class="full" src="images/cost/b200-rack-aisle.jpeg"> 
+
+### Now you have a datacenter
+<img class="full" src="images/intro/datacenter.jpg"> 
+
+### NVidia stock price
+<img class="full" src="images/cost/nvidia-stock-5y.png"> 
+
+### 🇳🇱 All chips produced by ASML, btw 🇳🇱
+<img class="full" src="images/cost/asml.jpg">
+
+####
+[The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
+
+## One last thing:<br>why Graphics Cards?
+
+### GPU: masters of parallel computations
+<img class="full" src="images/cost/red-dead-redemption.webp">
+
+# Training
+
+
+## The embeddings, where do they come from?
+
+### Training corpus
+<img class="full" src="images/training/training-corpus.png">
+
 ### Nerd movie night: Karpathy builds a GPT
 
 Only 600 lines of Python code: 300 for `train.py`, 300 for `model.py`
@@ -499,15 +597,9 @@ Only 600 lines of Python code: 300 for `train.py`, 300 for `model.py`
 [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
 
----
-### 170 billion weights
-<img class="full" src="images/llm/170-billion-weights.png">
-
----
 ## The AI Service
 <img class="full" src="images/overview/ai-service.png">
 
----
 ### What can it do?
 
 _Surprisingly, only a few things:_
@@ -525,7 +617,6 @@ Ask the caller to use tools or MCP servers
 Plus a few things on its own; caching, safeguards
 
 
----
 ### But but but - what about...?
 
 * all those agents.md files you hear about?
@@ -536,12 +627,10 @@ Plus a few things on its own; caching, safeguards
 
 
 
----
 ### Overview
 <img class="full" src="images/ai-service/top-level.png">
 
 
----
 ### The full monty
 
 
@@ -551,36 +640,44 @@ Your diagram is the undisputed Common Core of the modern LLM runtime. For standa
 Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the immutable data flow, boundary gates, and structural contracts of modern AI. Leaving the vendor-specific bells and whistles off the page isn't an omission—it's good engineering discipline.
 
 
----
 ### Token spree
 
+<style scoped>
+section { padding: 0; display: flex; flex-direction: column; }
+h3 { display: none; }
+iframe.game { flex: 1; width: 100%; border: none; }
+.github-fallback { display: none; }
+</style>
 
-hotdog-zoom-in analogy
+<iframe class="game"
+  src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/"
+  allowfullscreen>
+</iframe>
 
----
+<div class="github-fallback">
+
+[![Token spending game preview](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png)](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)
+
+*[▶ Open interactive version](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)*
+
+</div>
+
 # The AI Agent
 
 What is an AI Agent?
 
----
 ## Choosing of AI Service and LLM-model
 
----
 ## Choosing an AI Agent
 
----
 # How to drive your AI Agent
 
----
 ## Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
 
----
 ## Level 1: give it specific general instructions
 
----
 ## Level 2: give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
 
----
 ## Level 3a: Skills
 
 Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
@@ -589,36 +686,27 @@ For everything else — answering questions, explaining concepts, responding to 
 The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
 The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
 Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
----
 ## Level 3b: Tools
 
----
 ## Level 3c: MCP
 
 my mcp poc example
 
----
 ## Level 4: Go crazy with subagents, agent-specific commands, openclaw, etc
 
----
 ## Level 5: Go beyond the Agent: speak directly AI API, setup RAG vector database, control temperature and sys prompt, etc
 
----
 # How to brake the AI Agent
 ....
 
----
 # Fact or Fiction?
 
 "Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."
 
----
 # Embeddings, revisited
 
----
 # How I use AI now
 
----
 # Summary
 
 

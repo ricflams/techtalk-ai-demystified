@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seven Habits of Highly Effective Token Burners</title>
+<title>Seven Habits of Highly Effective Token Rollers</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -16,9 +16,10 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .layout { display: flex; gap: 16px; align-items: stretch; flex: 1; min-height: 0; }
 
 /* --- Sidebar --- */
-.sidebar { display: flex; flex-direction: column; gap: 7px; width: 192px; flex-shrink: 0; overflow-y: auto; }
+.sidebar { display: flex; flex-direction: column; gap: 10px; width: 192px; flex-shrink: 0; overflow-y: auto; }
+#sprees, #mitigations { display: flex; flex-direction: column; gap: 7px; }
 .card {
-  border: 5px solid #d0cbc0; border-radius: 7px; padding: 7px 10px;
+  border: 5px solid #d0cbc0; border-radius: 7px; padding: 4px 10px;
   cursor: pointer; transition: border-color 0.15s, background 0.15s;
   background: #fff; user-select: none;
 }
@@ -68,19 +69,57 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   background: #fff; border: 2px solid #e0dbd0; border-radius: 7px; padding: 8px 12px;
   min-width: 0;
 }
-.settings-section:first-child { flex: 2; }
+.settings-section:first-child { flex: 1; }
 .settings-section:last-child  { flex: 3; }
 .settings-grid { display: grid; gap: 6px 10px; }
-.settings-grid-base  { grid-template-columns: repeat(2, 1fr); }
-.settings-grid-spree { grid-template-columns: repeat(3, 1fr); }
 .setting-field { display: flex; flex-direction: column; gap: 2px; }
-.setting-label { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 9px; font-weight: 600; color: #7a7060; }
+.setting-label { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 11px; font-weight: 600; color: #7a7060; }
 .setting-input {
   font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600;
   color: #1a1810; background: #f7f5f0; border: 1.5px solid #d8d3c8;
   border-radius: 4px; padding: 3px 6px; width: 100%;
 }
 .setting-input:focus { outline: none; border-color: #a09080; background: #fff; }
+
+/* --- Slider settings --- */
+.settings-text { flex: 0 0 auto; }
+.settings-grid-text { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
+.settings-sliders { flex: 1; min-width: 0; }
+.slider-panel { display: flex; gap: 3em; align-items: flex-start; }
+.slider-col { flex: 1; min-width: 0; }
+.slider-btns { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.slider-btn {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border: 1.5px solid #d0cbc0; border-radius: 4px;
+  background: #fff; color: #3a3028; cursor: pointer;
+}
+.slider-btn:hover { border-color: #a09080; background: #f7f5f0; }
+.slider-field { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.slider-field .setting-label { flex: 0 0 118px; white-space: nowrap; }
+.setting-slider-wrap { display: flex; align-items: center; gap: 5px; flex: 1; min-width: 0; }
+.setting-min, .setting-max {
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
+  font-size: 9px; font-weight: 600; color: #b0a898; width: 4em; flex-shrink: 0;
+}
+.setting-min { text-align: right; }
+.setting-max { text-align: left; }
+.setting-value {
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
+  font-size: 12px; font-weight: 600; color: #1a1810; width: 5.5em; text-align: right; flex-shrink: 0;
+}
+.setting-slider {
+  flex: 1; height: 4px; appearance: none; -webkit-appearance: none; min-width: 0;
+  background: #e0dbd0; border-radius: 2px; cursor: pointer; outline: none;
+}
+.setting-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%;
+  background: #1a1810; cursor: pointer;
+}
+.setting-slider::-moz-range-thumb {
+  width: 13px; height: 13px; border-radius: 50%; border: none;
+  background: #1a1810; cursor: pointer;
+}
 
 /* --- Mitigations --- */
 .sidebar-section-label {
@@ -95,7 +134,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 </head>
 <body>
 
-<h1>Seven Habits of Highly Effective Token Burners</h1>
+<h1>Seven Habits of Highly Effective Token Rollers</h1>
 
 <div class="layout">
   <div class="sidebar">
@@ -120,16 +159,25 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   </label>
   <span class="turns-control">
     <button class="turns-btn" id="turnsDown">−</button>
-    <span id="turnsLabel">Turns: 40</span>
+    <span id="turnsLabel">Turns: 10</span>
     <button class="turns-btn" id="turnsUp">+</button>
   </span>
 </div>
 <div class="settings-panel">
-  <div class="settings-section">
-    <div class="settings-grid settings-grid-base" id="settingsGridBase"></div>
+  <div class="settings-section settings-text">
+    <div class="settings-grid settings-grid-text" id="settingsGridText"></div>
   </div>
-  <div class="settings-section">
-    <div class="settings-grid settings-grid-spree" id="settingsGridSpree"></div>
+  <div class="settings-section settings-sliders">
+    <div class="slider-panel">
+      <div id="slidersCol1" class="slider-col"></div>
+      <div id="slidersCol2" class="slider-col"></div>
+      <div class="slider-btns">
+        <button class="slider-btn" id="resetBtn">Reset</button>
+        <button class="slider-btn" id="minBtn">Min</button>
+        <button class="slider-btn" id="maxBtn">Max</button>
+        <button class="slider-btn" id="remixBtn">Mix</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -137,37 +185,37 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 // ─────────────────────────────────────────────
 // CONSTANTS
 // ─────────────────────────────────────────────
-const MCP_TOK_PER_SERVICE = 400;
+const MCP_TOK_PER_SERVICE = 500;
 const TURN_STEPS = [1, 2, 3, 5, 10, 20, 30, 40, 50, 70, 100];
-let   turnStepIdx = TURN_STEPS.indexOf(5);
+let   turnStepIdx = TURN_STEPS.indexOf(10);
 let   TURNS       = TURN_STEPS[turnStepIdx];
 
 // ─────────────────────────────────────────────
 // PARAMETERS (all editable via settings panel)
 // ─────────────────────────────────────────────
 const PARAMS = {
-  quota:        { label: 'Session quota',      value: 1000000 },
-  systemTok:    { label: 'System prompt',      value: 3000 },
-  inputTok:     { label: 'Input per turn',     value: 100 },
+  // text inputs (user/pricing choices)
+  quota:        { label: 'Session quota',      value: 1500000 },
   outFactor:    { label: 'Cost factor',        value: 5 },
-  outputTok:    { label: 'Output per turn',    value: 800 },
-  // spending spree
   modelMult:    { label: 'Model multiplier',   value: 3 },
-  mcpCount:     { label: `MCP services (${MCP_TOK_PER_SERVICE} tokens each)`, value: 6 },
-  ideTok:       { label: 'IDE context tokens', value: 5000 },
-  outputTokLong:{ label: 'Long output tokens', value: 5000 },
-  thinkTok:     { label: 'Thinking tokens',    value: 5000 },
-  bustEvery:    { label: 'Bust every N turns', value: 4 },
-  docTok:       { label: 'Doc size',           value: 15000 },
-  // mitigations
-  compactClearEvery: { label: 'Compact/clear every N turns', value: 10 },
+  // sliders (AI-derived values)
+  systemTok:    { label: 'System prompt',      value: 5000,  min: 3000,  max: 7000,   step: 250  },
+  inputTok:     { label: 'User input / turn',  value: 100,   min: 50,    max: 200,    step: 25   },
+  outputTok:    { label: 'AI output / turn',   value: 800,   min: 400,   max: 1200,   step: 100  },
+  mcpCount:     { label: 'MCP schema',         value: 2000,  min: 0,    max: 5000,   step: 500  },
+  ideTok:       { label: 'IDE context / turn', value: 5000,  min: 2000,  max: 15000,  step: 500  },
+  outputTokLong:{ label: 'Long output / turn', value: 5000,  min: 3000,  max: 15000,  step: 500  },
+  thinkTok:     { label: 'Thinking / turn',    value: 5000,  min: 1000,  max: 12000,  step: 1000 },
+  bustEvery:    { label: 'Bust every N turns', value: 4,     min: 1,     max: 20,     step: 1    },
+  docTok:       { label: 'Doc size',           value: 15000, min: 5000,  max: 50000,  step: 5000 },
+  compactClearEvery: { label: 'Compact/clear every N turns', value: 10, min: 1, max: 40, step: 1 },
 };
 
 // ─────────────────────────────────────────────
 // SPREES
 // ─────────────────────────────────────────────
 const sprees = [
-  { id:'s6', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP services`, effectFn: () => `${PARAMS.mcpCount.value} × ${MCP_TOK_PER_SERVICE} tok schema`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_SERVICE}) },
+  { id:'s6', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${Math.round(PARAMS.mcpCount.value / MCP_TOK_PER_SERVICE)} MCP services`, effectFn: () => `${PARAMS.mcpCount.value.toLocaleString()} tok schema`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value}) },
   { id:'s5', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
   { id:'s7', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
   { id:'s4', color:'#1a8a40', teaser:'Th...', num:'spree #4', secret:'Think harder',      effectFn: () => `+${PARAMS.thinkTok.value.toLocaleString()} hidden tokens`, apply: p => ({...p, thinkTok: PARAMS.thinkTok.value}) },
@@ -177,7 +225,7 @@ const sprees = [
 ];
 
 const mitigations = [
-  { id:'m1', color:'#0868a8', secret:'Use KV-cache',    effectFn: () => '90% cache discount',                          apply: p => ({...p, kvCache: true}),                                         defaultActive: false },
+  { id:'m1', color:'#0868a8', secret:'Use KV-cache',    effectFn: () => '90% cache discount',                          apply: p => ({...p, kvCache: true}),                                         defaultActive: true },
   { id:'m2', color:'#1a4090', secret:'Compact context', effectFn: () => `every ${PARAMS.compactClearEvery.value} turns → 10%`, apply: p => ({...p, compactEvery: PARAMS.compactClearEvery.value}), defaultActive: false },
   { id:'m3', color:'#3a1880', secret:'Clear context',   effectFn: () => `every ${PARAMS.compactClearEvery.value} turns`,        apply: p => ({...p, clearEvery:   PARAMS.compactClearEvery.value}), defaultActive: false },
 ];
@@ -213,8 +261,9 @@ function fmtK(v) {
 // STATE
 // ─────────────────────────────────────────────
 let mode = 'pertokens';
-let _breakdown = 'slot';
-let _breakdownPref = 'slot';
+const DEFAULT_BREAKDOWN = 'slot';
+let _breakdown     = DEFAULT_BREAKDOWN;
+let _breakdownPref = DEFAULT_BREAKDOWN;
 const state  = {};
 const mstate = {};
 sprees.forEach(s => { state[s.id]  = { active: false }; });
@@ -284,25 +333,99 @@ function toggleMitig(id) {
 // ─────────────────────────────────────────────
 // BUILD SETTINGS PANEL
 // ─────────────────────────────────────────────
-function buildParamGrid(gridId, keys) {
-  const grid = document.getElementById(gridId);
+const TEXT_KEYS   = ['quota','modelMult','outFactor','bustEvery','compactClearEvery'];
+const SLIDER_KEYS_COL1 = ['systemTok','mcpCount','docTok'];
+const SLIDER_KEYS_COL2 = ['inputTok','outputTok','ideTok','thinkTok','outputTokLong'];
+const SLIDER_KEYS = [...SLIDER_KEYS_COL1, ...SLIDER_KEYS_COL2];
+
+function fmtVal(key, v) {
+  return v.toLocaleString();
+}
+
+function syncAll() {
+  sprees.forEach(s => updateCard(s.id));
+  mitigations.forEach(m => { document.getElementById('effect-' + m.id).textContent = m.effectFn(); });
+}
+
+// Text inputs (quota, outFactor, modelMult)
+const textGrid = document.getElementById('settingsGridText');
+TEXT_KEYS.forEach(key => {
+  const param = PARAMS[key];
+  const field = document.createElement('div');
+  field.className = 'setting-field';
+  field.innerHTML = `<label class="setting-label">${param.label}</label>
+    <input class="setting-input" type="number" id="param-${key}" value="${param.value}">`;
+  textGrid.appendChild(field);
+  field.querySelector('input').addEventListener('change', e => {
+    param.value = parseFloat(e.target.value) || 0;
+    syncAll();
+    redraw();
+  });
+});
+
+// Sliders (all AI-derived params)
+function buildSliderCol(containerId, keys) {
+  const col = document.getElementById(containerId);
   keys.forEach(key => {
-    const param = PARAMS[key];
-    const field = document.createElement('div');
-    field.className = 'setting-field';
-    field.innerHTML = `<label class="setting-label">${param.label}</label>
-      <input class="setting-input" type="number" id="param-${key}" value="${param.value}">`;
-    grid.appendChild(field);
-    field.querySelector('input').addEventListener('change', e => {
-      param.value = parseFloat(e.target.value) || 0;
-      sprees.forEach(s => updateCard(s.id));
-      mitigations.forEach(m => { document.getElementById('effect-' + m.id).textContent = m.effectFn(); });
+  const param = PARAMS[key];
+  const field = document.createElement('div');
+  field.className = 'slider-field';
+  field.innerHTML = `
+    <label class="setting-label">${param.label}</label>
+    <div class="setting-slider-wrap">
+      <span class="setting-min">${param.min.toLocaleString()}</span>
+      <input type="range" class="setting-slider" id="param-${key}"
+             min="${param.min}" max="${param.max}" step="${param.step}" value="${param.value}">
+      <span class="setting-max">${param.max.toLocaleString()}</span>
+      <span class="setting-value" id="val-${key}">${fmtVal(key, param.value)}</span>
+    </div>`;
+    col.appendChild(field);
+    field.querySelector('input').addEventListener('input', e => {
+      param.value = parseFloat(e.target.value);
+      document.getElementById('val-' + key).textContent = fmtVal(key, param.value);
+      syncAll();
       redraw();
     });
   });
 }
-buildParamGrid('settingsGridBase',  ['quota','systemTok','inputTok','outFactor','outputTok']);
-buildParamGrid('settingsGridSpree', ['modelMult','mcpCount','ideTok','outputTokLong','thinkTok','bustEvery','docTok','compactClearEvery']);
+buildSliderCol('slidersCol1', SLIDER_KEYS_COL1);
+buildSliderCol('slidersCol2', SLIDER_KEYS_COL2);
+
+// Reset button
+document.getElementById('resetBtn').addEventListener('click', () => {
+  const defaults = { systemTok:5000, inputTok:100, outputTok:800, mcpCount:2000, ideTok:5000, outputTokLong:5000, thinkTok:5000, docTok:15000 };
+  SLIDER_KEYS.forEach(key => {
+    PARAMS[key].value = defaults[key];
+    document.getElementById('param-' + key).value = defaults[key];
+    document.getElementById('val-' + key).textContent = fmtVal(key, defaults[key]);
+  });
+  syncAll();
+  redraw(true);
+});
+
+function applyToSliders(valueFn) {
+  SLIDER_KEYS.forEach(key => {
+    const p = PARAMS[key];
+    const v = valueFn(p);
+    p.value = v;
+    document.getElementById('param-' + key).value = v;
+    document.getElementById('val-' + key).textContent = fmtVal(key, v);
+  });
+  syncAll();
+  redraw(true);
+}
+
+document.getElementById('minBtn').addEventListener('click', () => applyToSliders(p => p.min));
+document.getElementById('maxBtn').addEventListener('click', () => applyToSliders(p => p.max));
+
+// Mix button
+document.getElementById('remixBtn').addEventListener('click', () => {
+  applyToSliders(p => {
+    const steps = Math.floor((p.max - p.min) / p.step);
+    return p.min + Math.round(Math.random() * steps) * p.step;
+  });
+  redraw(true);
+});
 
 // ─────────────────────────────────────────────
 // SIMULATION
@@ -697,12 +820,18 @@ function redraw(animate = false) {
     const turns = simulate(getFullParams());
     let tokMax = 0;
     turns.forEach(turn => { const t = turn.reduce((s, b) => s + b.tokens, 0); tokMax = Math.max(tokMax, t); });
-    _curves    = [turns];
-    _active    = [];
-    _quotaHits = [];
+    const newCurves = [turns];
+    const toYMax    = niceMax(tokMax * 1.05);
     chart.data.datasets[0].hidden = true;
-    chart.options.scales.y.max    = niceMax(tokMax * 1.05);
-    chart.update('none');
+    if (animate && _curves.length > 0) {
+      animateTo(_curves, chart.options.scales.y.max, _active, newCurves, [], toYMax, []);
+    } else {
+      _curves    = newCurves;
+      _active    = [];
+      _quotaHits = [];
+      chart.options.scales.y.max = toYMax;
+      chart.update('none');
+    }
     setTimeout(sizeChart, 20);
     return;
   }
@@ -734,12 +863,10 @@ function redraw(animate = false) {
 // BREAKDOWN CONSTRAINT
 // ─────────────────────────────────────────────
 function applyBreakdownConstraint() {
-  const forced = mode === 'total' && TURNS > 5;
-  _breakdown = forced ? 'type' : _breakdownPref;
+  _breakdown = _breakdownPref;
   const cb = document.getElementById('combinedCheck');
   cb.checked = _breakdown === 'type';
-  cb.disabled = forced;
-  document.getElementById('breakdownToggle').classList.toggle('forced', forced);
+  document.getElementById('breakdownToggle').classList.remove('forced');
 }
 
 // ─────────────────────────────────────────────

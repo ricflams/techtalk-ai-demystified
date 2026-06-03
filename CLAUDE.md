@@ -11,10 +11,12 @@ A [Marp](https://marp.app/) presentation on LLM fundamentals ("AI Demystified"),
 There is no package.json or Makefile. The slide deck is compiled with the Marp CLI:
 
 ```bash
-marp src/slides.md --output public/index.html
+marp src/slides.md --html --output public/presentation.html
+cp -r src/images public/images
+python3 scripts/make_readable.py public/presentation.html public/index.html
 ```
 
-In CI, this runs inside the `marpteam/marp-cli:latest` Docker container. Pushing to `main` triggers `.github/workflows/marp.yaml`, which builds and deploys to GitHub Pages automatically.
+In CI, this runs inside the `marpteam/marp-cli:latest` Docker container. Pushing to `main` triggers `.github/workflows/marp.yaml`, which builds both outputs and deploys to GitHub Pages automatically.
 
 For local preview, the [VS Code Marp extension](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode) renders slides in the editor — `.vscode/settings.json` already points it at the custom theme.
 
@@ -24,8 +26,11 @@ For local preview, the [VS Code Marp extension](https://marketplace.visualstudio
 |---|---|
 | `src/slides.md` | All slide content (single source of truth) |
 | `src/marp-theme.css` | Custom dark theme (GitHub Copilot palette: `#0d1117` background, `#58a6ff`/`#bc8cff` accents) |
+| `src/layout.css` | Shared layout helpers (imported by both `marp-theme.css` and `.crossnote/style.less`) |
+| `scripts/make_readable.py` | Post-processes Marp HTML into a continuous-scroll readable page |
 | `.github/workflows/marp.yaml` | Build + GitHub Pages deploy |
-| `public/index.html` | Build artifact (generated, not committed) |
+| `public/presentation.html` | Interactive slideshow — build artifact (generated, not committed) |
+| `public/index.html` | Continuous-scroll readable version — build artifact (generated, not committed) |
 
 ### Marp slide structure
 

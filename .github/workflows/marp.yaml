@@ -18,7 +18,7 @@ jobs:
           MARP_USER: root
 
       - name: Copy images
-        run: cp -r src/images public/images
+        run: sudo cp -r src/images public/images
 
       - name: Generate readable version
         run: python3 scripts/make_readable.py public/presentation.html public/index.html

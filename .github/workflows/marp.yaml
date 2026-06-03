@@ -17,14 +17,17 @@ jobs:
         env:
           MARP_USER: root
 
+      - name: Fix public/ ownership
+        run: sudo chown -R runner public/
+
       - name: Copy images
-        run: sudo cp -r src/images public/images
+        run: cp -r src/images public/images
 
       - name: Generate readable version
         run: python3 scripts/make_readable.py public/presentation.html public/index.html
 
       - name: Copy game
-        run: sudo cp -r tokenspree public/tokenspree
+        run: cp -r tokenspree public/tokenspree
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

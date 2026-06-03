@@ -10,7 +10,9 @@
 .cols > .col-5 { flex: 5 1 0; }
 .cols > .col-6 { flex: 6 1 0; }
 .cols img { width: 100%; max-width: none; height: auto; display: block; border-radius: 0; }
-img.full { max-width: 100%; max-height: 100%; width: auto; height: auto; min-height: 0; display: block; margin: 0 auto; border-radius: 0; }
+/* p wrapping img.full: expand to fill remaining slide space so max-height: 100% on the img resolves correctly */
+p:has(> img.full) { flex: 1 1 0; min-height: 0; width: 100%; margin: 0.2em 0; display: flex; justify-content: center; align-items: center; }
+img.full { max-width: 100%; max-height: 100%; width: auto; height: auto; min-height: 0; display: block; margin: 0 auto; border-radius: 0; object-fit: contain; }
 img.half { max-width: 50%; max-height: 100%; width: auto; height: auto; min-height: 0; display: block; margin: 0 auto; }
 .box { display: block; width: fit-content; margin: 0.5em auto; padding: 0 2em; text-align: left; }
 

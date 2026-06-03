@@ -1,7 +1,6 @@
 ---
 marp: true
 html: true
-transition: reveal
 theme: demystified
 paginate: true
 headingDivider: 3

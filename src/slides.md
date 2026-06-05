@@ -228,33 +228,35 @@ In AI, it means the concrete vector of numbers that _somehow_ represent the char
 <img class="full" src="images/embedding/analogy_coffee.svg" />
 
 
-### Spotify's music characterization
+### Spotify's 80-dimensional characteristics
 <img class="full" src="images/embedding/analogy_spotify.svg" />
 
 
-### Could we measure ... "everything"?
+### The meaning of ... "anything"?
 <img class="full" src="images/embedding/20d-blank.svg" />
 
 
-### Measuring "everything"
+### Yes, the meaning of "anything"
 <img class="full" src="images/embedding/20d-with-tokens.svg" />
 
 
-### That's an embedding
+### Embedding: a meaning's characteristics
 
 <div class="cols">
 <div>
 	<img src="images/embedding/20d-kitten.png" />
 </div>
-<div class="col-5">
+<div class="col-6">
 
-Every **column** here is an embedding:
+An embedding is **list of numbers** (aka a *vector* or *tensor*) that _somehow_ characterises _something_, which can be **anything imaginable!**
 
-An embedding is **list of numbers** (aka a *vector* or *tensor*) that _somehow_ characterise **everything imaginable!**
+_"Somehow"_, because we don't know what "features/traits/aspects" the dimensions corresponds to. We can't say where the "heavy" dimension is and the numbers themselves also only make sense to the LLM.
 
-_"Somehow"_ because we don't know what features or traits the dimensions corresponds to. The numbers only make sense to the LLM in its output space.
+The **dimension** is simply how many characteristics we have decided to describe it with. The example describes "kitten" by 20 characteristics, i.e. the embedding of "kitten" has 20 dimensions.
 
-For example: Any **word** you know. Any **sentence** there exist. Any **feeling** you can have. Any **concept**, including e.g. **a curious yet mildly confused audience**.
+Embeddings can be: Any **word** you know. Any **sentence** there exist. Any **feeling** you can have.
+
+Any **concept**, including e.g. **a curious yet mildly confused audience**.
 </div>
 </div>
 
@@ -265,7 +267,7 @@ For example: Any **word** you know. Any **sentence** there exist. Any **feeling*
 
 Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
 
-### More of "everything imaginable"
+### More of "anything imaginable"
 
 <div class="cols">
 <div>
@@ -292,36 +294,22 @@ Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
 </div>
 </div>
 
-### Conceptually, embeddings for any word
+### There could be embeddings for all words
 <img class="full" src="images/embedding/vocabulary-a-z.png" />
 
 ####
 Conceptually, every word has an embedding that captures its meaning. This is not entirely correct because we are of course always dealing with tokens, not words - so the vocabulary of an LLM has embeddings for every token instead of words.
 
-### Example: Token-embeddings in ChatGPT 3
+### In reality, an embedding for every token
 <img class="full" src="images/embedding/vocabulary-gpt-3.png" />
 
----
-<img class="full" src="images/embedding/2d-90deg.png" />
+ChatGPT 3 has 50,257 tokens, each described by 12,288 dimensions
 
+## The embeddings, where do they come from?
 
----
-<img class="full" src="images/embedding/2d-88deg.png" />
+We'll get to that later
 
-
----
-<img class="full" src="images/embedding/2d-60deg.png" />
-
-
----
-<img class="full" src="images/embedding/2d-3d.png" />
-
-
----
-<img class="full" src="images/embedding/superposition-explosion.png" />
-
-
-### The values of an embedding
+### "Please tell me: what is an LLM?"
 <img class="full" src="images/embedding/embedding_matrix.svg" />
 
 ####
@@ -336,24 +324,14 @@ There's a research field called mechanistic interpretability that tries to decom
 * [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
 
 
----
+### The LLM is all about embeddings
 <img class="full" src="images/embedding/what-is-an-llm-embeddings-matrix.png" />
 
 
 ## LLM
 <img class="full" src="images/overview/llm.png">
 
-
-### The LLM is
-
-a humongous calculator that can do just one thing: predict the next word likely to follow a sequence of words.
-
-_or more precisely_
-
-**Run math on embeddings and produce probabilities for the next token**
-
-
-### Our example
+### Recap our example
 <img class="full" src="images/llm/what-is-an-llm-example.png">
 
 ####
@@ -365,25 +343,25 @@ Why only `An`? Why not the full answer? Yeah, hold your horses just a bit longer
 That's the second thing to note: the LLM itself actually just produce this set of probabilities. The mechanism that actually *picks that next token* is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `An` in this case.
 
 
-### Attention is all you need
-<img class="full" src="images/llm/attention-is-all-you-need.png">
+### The LLM
+
+Can grasp these embeddings to calculate _"what most likely comes next?"_ by running them through a giant **neural network** composed of billions of calculations.
+
+It's all about **math**.
+
+But surprisingly: on a *large scale*, you can **do math on language**.
 
 ####
-The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the most consequential piece of computer science research published in the 21st century.
+[Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
 
-Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.
+---
+<img class="full" src="images/llm/no-math.jpg">
 
-It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
+### A neural network
+<img class="full" src="images/llm/neural-network.webp">
 
-### The Transformer
-<img class="full" src="images/llm/attention-transformer.png">
-
-####
-
-### Let's walk through a fresh example
-<img class="full" src="images/llm/what-we-want.png">
-
-####
+### "The capitol of France is ..."
+<img class="full" src="images/llm/neural-network-paris.webp">
 
 ### The objective: find the next token
 <img class="full" src="images/llm/find-the-next-token.png">
@@ -395,21 +373,44 @@ That's because the transformer initially instill some positional information (1,
 
 Surprisingly, changing the vector values does not remove any of the embedding's "meaning" in the high-dimensional space. It retains its core conceptual meaning, only nudged a little bit.
 
-
 ### Likely next tokens after "you"
 
 "That which does not kill you only makes you _can_" - hmmm
 
 <img class="full" src="images/llm/next-token-after-you.svg">
 
-####
 
-### Embeddings pay attention to each other
+### Enter: The Transformer, in 2017
+<img class="full" src="images/llm/the-transformer.png">
+
+### "Attention is all you need"
+<div class="cols">
+<img class="full" src="images/llm/attention-is-all-you-need.png">
+<img class="full" src="images/llm/attention-transformer.png">
+</div>
+
+####
+The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the most consequential piece of computer science research published in the 21st century.
+
+Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.
+
+It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
+
+
+[Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+
+### The Transformer can figure this out:
+<img class="full" src="images/llm/what-we-want.png">
+
+### Let's begin - here's the input again
+<img class="full" src="images/llm/find-the-next-token.png">
+
+### First, all embeddings "pay attention"
 <img class="full" src="images/llm/attention-head.png">
 
 ####
 
-### Neural network let training kick in
+### A neural network let training kick in
 <img class="full" src="images/llm/multiplexer-perceptron.png">
 
 ####
@@ -424,7 +425,7 @@ Surprisingly, changing the vector values does not remove any of the embedding's 
 
 ####
 
-### In search for next token for "you"
+### Search for next token after "you"
 <img class="full" src="images/llm/attention-space-seek.png">
 
 ####
@@ -434,7 +435,7 @@ Surprisingly, changing the vector values does not remove any of the embedding's 
 
 ####
 
-### 170 billion weights
+### 175 billion small "weights"
 <img class="full" src="images/llm/170-billion-weights.png">
 
 ### Final absorbed status
@@ -452,12 +453,12 @@ Also known as "cosine similarity"
 
 The cosine similarity of 0.97 is computed in isolation — it's purely a geometric measurement between two vectors, with no knowledge of the other 127,999 tokens. The 91% is a different kind of number entirely: it's the result of a competition. Softmax takes all 128,000 similarity scores simultaneously, exponentiates each one, and divides by their sum. Every token competes against every other token at once. "Stronger" claimed 91% of the total probability mass — not because 0.97 is intrinsically high, but because it pulled far enough ahead of the field. A high cosine similarity is the evidence. The probability is the verdict.
 
-### The final output token
+### Choose the final output token
 <img class="full" src="images/llm/final-output-token.png">
 
 ####
 
-### Back to our example
+### Our example has now produced "An"
 <img class="full" src="images/llm/what-is-an-llm-example.png">
 
 ### Repeat until the LLM says stop
@@ -508,7 +509,7 @@ Because the AI has access to the full text of book 1 in its active memory, but i
 
 ### Enter the NVidia B200 GPU
 
-Not your gaming grandma's graphics card
+Not your Gaming Grandma's GeForce graphics card
 
 <img class="full" src="images/cost/nvidia-jensen-b200.png"> 
 
@@ -561,6 +562,14 @@ Price of 4x B200 cluster: $500,000
 ### Now you have a datacenter
 <img class="full" src="images/intro/datacenter.jpg"> 
 
+### Why Graphics Cards (GPU)?
+
+### Transformer's superpower: all at once
+<img class="full" src="images/llm/transformer-vs-sequential.png">
+
+### GPU: master of parallel computations
+<img class="full" src="images/cost/red-dead-redemption.webp">
+
 ### NVidia stock price
 <img class="full" src="images/cost/nvidia-stock-5y.png"> 
 
@@ -570,18 +579,162 @@ Price of 4x B200 cluster: $500,000
 ####
 [The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
 
-## One last thing:<br>why Graphics Cards?
+## Training
 
-### GPU: masters of parallel computations
-<img class="full" src="images/cost/red-dead-redemption.webp">
+### What makes ChatGPT act as it does?
 
-# Training
+TODO: examples
 
+### How models are trained
+<img class="full" src="images/training/training.png">
 
-## The embeddings, where do they come from?
+####
 
-### Training corpus
+* Base training - the "auto-complete" _facts_
+* Alignment learning - the _values_
+* Fine-tuning / RAG - the _specialization_
+
+Pretraining is where the model learns language itself. Fed vast amounts of text, it learns to predict the next token — nothing more. The result is a powerful but raw capability: it knows how language works, how facts relate, how arguments are structured. It has no personality, no values, no sense of what a "good" response looks like.
+
+Supervised Fine-Tuning (SFT) and Reinforcement Learning is where the model learns what good means to its creators. Humans or AI (RLHF or RLAIF) evaluators compare outputs and rank them. The model is iteratively shaped toward preferred behavior — this is where values, tone, refusal behaviors, and personality get baked in.
+
+### Read all sentences in the world
 <img class="full" src="images/training/training-corpus.png">
+
+####
+Putting the **Large** in the *"Large Language Model (LLM)"*
+
+### Training: how the embeddings are born
+
+<div class="cols">
+<div class="col-2">
+	<img class="full" src="images/training/training-example.png">
+</div>
+<div>
+
+**Backpropagation**:
+
+1. Run tokens through the transformer (as before)
+2. Reward weights leading to the expected token
+3. Will adjusts "all" weights
+4. Trains sub-strings, too
+5. Train on a gazillion texts
+
+</div>
+</div>
+
+### Backpropagation ...ok, let's move on...
+<img class="full" src="images/training/backpropagation.png">
+
+### Pre-trained models are quite similar
+<img class="full" src="images/training/pre-training.png">
+
+### Post-training shapes the model
+<div class="cols">
+<img class="col-3 full" src="images/training/post-training.png">
+<div class="col-2">
+
+**Different personalities:**
+
+ChatGPT – Structured explainer
+
+Gemini – Diligent researcher
+
+Claude – Honest advisor
+
+Grok – Radical truth-seeker
+
+Meta AI – Pragma over polish
+
+Mistral – Efficient European
+
+DeepSeek –  Censored thinker
+
+</div>
+</div>
+
+### Post-training: strenghten preferred answers
+<img class="full" src="images/training/reinforcement-learning.png">
+
+### Reinforcement Learning by Feedback
+
+**RLHF** - Reinforcement Learning from *Human Feedback* (declining)
+**RLAIF** - Reinforcement Learning from *AI Feedback* (growing)
+<br>
+
+<img class="full" src="images/training/reinforcement-training-trend.png">
+
+####
+
+Frontier labs almost universally outsource the bulk of RLHF annotation rather than hiring raters directly. The main intermediaries:
+
+* Scale AI / Outlier — the dominant player, operating as an end-to-end data engine. Outlier handles LLM annotation, Remotasks handles visual/multimodal work. Scale is OpenAI's preferred fine-tuning partner and has also worked with Meta, Google DeepMind, and others. Taskmonk AI
+* Surge AI — Anthropic's primary RLHF provider, with ~50,000 expert contractors. Also used by OpenAI and Meta. Taskmonk AI
+* Invisible — shifted from executive VA services to RLHF work for labs including Microsoft, Cohere, and Mistral. Routes model outputs through trained raters who score completions and rank outputs. Sacra
+
+Outlier alone runs a network of 700,000+ contractors globally. The work is heavily gig-economy in structure.
+
+Pay ranges from $15/hr for generalist annotators up to $500+/hr for domain experts like medical fellows and legal professionals. Invisible charges labs $30–45/hr for annotation work while paying raters $15–20/hr.
+
+Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.
+
+### Example: Claude's Constitution
+<img class="full" src="images/training/claudes-constitution.png">
+
+####
+[Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
+[OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
+
+### Describes Claude’s values and behavior
+<img class="full" src="images/training/claudes-constitution-example.png">
+
+### "New model is 4x ..."
+<img class="full" src="images/training/system-cards-opus48.png">
+
+####
+[Model system cards](https://www.anthropic.com/system-cards) - System cards document the capabilities, safety evaluations, and responsible deployment decisions for Claude models.
+
+### ChatGPT - rules over principles
+<img class="full" src="images/training/openai-spec.png">
+
+### ChatGPT spec example
+<img class="full" src="images/training/openai-spec-example.png">
+
+### Gemini et al - no public training guidelines
+<img class="full" src="images/training/gemini-ai-principles.png">
+
+### So, are models different? Yes.
+<img class="full" src="images/training/model-behavior.png">
+
+* Anthropic wants Claude to *reason from principles* — no rulebook needed
+* OpenAI wants ChatGPT to *follow their spec* — rules written down explicitly
+* Google wants Gemini to *behave correctly* — but via unpublished rules
+* Meta wants Llama *powerful and open* — open weights, few restrictions
+* Mistral wants Vibe *capable, open, and European* —  compliant, not principled
+* DeepSeek wants its models *helpful and harmless* — as defined by the state
+* xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
+
+### Model variations
+<img class="full" src="images/training/claude-family.png">
+
+####
+For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
+
+### Training cost
+
+* From scratch, a new AI model:
+  * Estimated training **cost is $200M to $1B**
+  * Estimated training **time is 6 months**
+<br>
+* From existing model, eg Claude Opus 4.7 to 4.8:
+  * Estimated training cost is max 10% of full training
+  * Estimated training time is maybe a month
+
+### Gemini - 
+
+
+
+
 
 ### Nerd movie night: Karpathy builds a GPT
 
@@ -603,20 +756,21 @@ Only 600 lines of Python code: 300 for `train.py`, 300 for `model.py`
 
 _Surprisingly, only a few things:_
 
-1. Reason about the chat to produce a response
-2. Think harder
-3. Understand documents, images, ... and more
+1. Read the chat and produce a response
+2. Understand documents and images (+video/audio?)
+3. Think harder
 4. Call tools
+<br>
+5. A few other things; caching, safeguarding
+6. And quite notably: *it has no memory*
 
+
+### But but but - what about...?
 
 Call internal tools; run python, produce images
 Call external tools via MCP servers
 Ask the caller to use tools or MCP servers
 
-Plus a few things on its own; caching, safeguards
-
-
-### But but but - what about...?
 
 * all those agents.md files you hear about?
 * skills
@@ -707,5 +861,26 @@ my mcp poc example
 # How I use AI now
 
 # Summary
+
+
+
+---
+<img class="full" src="images/embedding/2d-90deg.png" />
+
+
+---
+<img class="full" src="images/embedding/2d-88deg.png" />
+
+
+---
+<img class="full" src="images/embedding/2d-60deg.png" />
+
+
+---
+<img class="full" src="images/embedding/2d-3d.png" />
+
+
+---
+<img class="full" src="images/embedding/superposition-explosion.png" />
 
 

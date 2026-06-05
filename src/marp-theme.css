@@ -70,8 +70,7 @@ h3 {
 }
 
 p {
-  margin: 0.4em auto;
-  width: fit-content;
+  margin: 0.4em 0;
   text-align: left;
 }
 
@@ -218,7 +217,6 @@ section::after {
 section:has(h1) {
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 section:has(h1)::after { display: none; }
@@ -246,6 +244,7 @@ section:has(h1) h1 {
   max-width: 100%;
   margin: 0 0 0.4em;
   padding-bottom: 0.1em;
+  text-align: center;
 }
 
 section:has(h1) h2 {
@@ -264,7 +263,6 @@ section:has(h1) p {
 section:has(h2):not(:has(h1)) {
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 section:has(h2):not(:has(h1))::after { display: none; }
@@ -289,6 +287,7 @@ section:has(h2):not(:has(h1)) h2 {
   max-width: 100%;
   margin-bottom: 0.4em;
   padding-bottom: 0.1em;
+  text-align: center;
   background: linear-gradient(135deg, #58a6ff 0%, #bc8cff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -300,6 +299,7 @@ section:has(h2):not(:has(h1)) h2 {
 /* ── Section — slides containing h3 but no h2/h1 ────────────── */
 section:has(h3):not(:has(h2)):not(:has(h1)) {
   justify-content: center;
+  align-items: center;
 }
 
 section:has(h3):not(:has(h2)):not(:has(h1))::after { display: none; }
@@ -320,7 +320,7 @@ section:has(h3):not(:has(h2)):not(:has(h1))::before {
 }
 
 section:has(h3):not(:has(h2)):not(:has(h1)) h3 {
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: 700;
   max-width: 100%;
   margin-bottom: 0.4em;

@@ -522,3 +522,23 @@ Let's recap
 En embedding: a vector for "any thing"
 The LLM: can take one lone string f tokens and produce the next one
 
+1. Read the chat and produce a response
+   dannebrog eksempel
+2. Understand documents and images (+video/audio?)
+3. Think harder
+4. Call tools
+<br>
+5. A bit more - caching, safeguarding
+
+####
+Call internal tools; run python, produce images
+Call external tools via MCP servers
+Ask the caller to use tools or MCP servers
+
+
+
+
+
+
+Ultracode
+https://www.youtube.com/watch?v=IgIlIWqeT-I

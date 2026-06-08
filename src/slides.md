@@ -22,6 +22,8 @@ So you become more confident with the terms, know why AI-models are different, a
 
 I hope you'll latch onto something and refer back to the slides and me if you've got questions.
 
+You may be thinking "hang on, that can't be right" or "I don't get it!" - just check back on the slides, follow the links, or better yet - ask me.
+
 ## 10,000,001 AI videos... +1
 <div class="cols tight">
 <img src="images/intro/youtube-intro-1.png">
@@ -248,15 +250,11 @@ In AI, it means the concrete vector of numbers that _somehow_ represent the char
 </div>
 <div class="col-6">
 
-An embedding is **list of numbers** (aka a *vector* or *tensor*) that _somehow_ characterises _something_, which can be **anything imaginable!**
+An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterises _something_.
 
-_"Somehow"_, because we don't know what "features/traits/aspects" the dimensions corresponds to. We can't say where the "heavy" dimension is and the numbers themselves also only make sense to the LLM.
+The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. If "kitten" is described by 20 characteristics then the embedding of "kitten" has 20 dimensions. Each number is called the **weight** of that dimension.
 
-The **dimension** is simply how many characteristics we have decided to describe it with. The example describes "kitten" by 20 characteristics, i.e. the embedding of "kitten" has 20 dimensions.
-
-Embeddings can be: Any **word** you know. Any **sentence** there exist. Any **feeling** you can have.
-
-Any **concept**, including e.g. **a curious yet mildly confused audience**.
+Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling* you can have. Any *concept*, including e.g. *a curious yet mildly confused audience*.
 </div>
 </div>
 
@@ -266,6 +264,9 @@ Any **concept**, including e.g. **a curious yet mildly confused audience**.
 ####
 
 Also called _tensor_ in python, or _hidden state_ when speaking about the LLM.
+
+_"Somehow"_, because we don't know what "features/traits/aspects" the dimensions corresponds to. We can't say where the "heavy" dimension is and the numbers themselves also only make sense to the LLM.
+
 
 ### More of "anything imaginable"
 
@@ -345,11 +346,11 @@ That's the second thing to note: the LLM itself actually just produce this set o
 
 ### The LLM
 
-Can grasp these embeddings to calculate _"what most likely comes next?"_ by running them through a giant **neural network** composed of billions of calculations.
+Will run those embeddings through a giant **neural network** of billions of calculations to calculate _"what token most likely comes next?"_. That's called **inference**.
 
-It's all about **math**.
+The LLM is therefore all about **math**.
 
-But surprisingly: on a *large scale*, you can **do math on language**.
+But surprisingly: on a *very large scale*, you can **do math on language**.
 
 ####
 [Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
@@ -472,7 +473,7 @@ The cosine similarity of 0.97 is computed in isolation — it's purely a geometr
 
 ### Tokens are generated one by one
 
-Yes, it's actually true: the LLM really is a "very well-read _autocomplete_"
+That's why output tokens are typically *5 x more expensive* than input tokens.
 
 <img class="full" src="images/llm/tokenized-output.png">
 
@@ -598,13 +599,23 @@ Pretraining is where the model learns language itself. Fed vast amounts of text,
 
 Supervised Fine-Tuning (SFT) and Reinforcement Learning is where the model learns what good means to its creators. Humans or AI (RLHF or RLAIF) evaluators compare outputs and rank them. The model is iteratively shaped toward preferred behavior — this is where values, tone, refusal behaviors, and personality get baked in.
 
-### Read all sentences in the world
+### Estimated training effort
+
+* From scratch for a new model
+  * it costs **$200M-$1000M**
+  * it takes **4-8 months**
+<br>
+* From an existing model
+  * it costs 1-10% of full training
+  * it takes weeks or months
+
+### Pre-training on "all sentences in the world"
 <img class="full" src="images/training/training-corpus.png">
 
 ####
 Putting the **Large** in the *"Large Language Model (LLM)"*
 
-### Training: how the embeddings are born
+### Pre-training shapes network and embeddings
 
 <div class="cols">
 <div class="col-2">
@@ -614,22 +625,25 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
 
 **Backpropagation**:
 
-1. Run tokens through the transformer (as before)
-2. Reward weights leading to the expected token
-3. Will adjusts "all" weights
-4. Trains sub-strings, too
+1. Run tokens through the network like at generate
+2. Boost the target token
+3. Adjust both the network and the embeddings
+4. Causal masking trains all sub-strings, too
 5. Train on a gazillion texts
 
 </div>
 </div>
 
-### Backpropagation ...ok, let's move on...
+### Backpropagation is ...ok, let's move on...
 <img class="full" src="images/training/backpropagation.png">
+
+### Pre-training produces network+embeddings
+<img class="full" src="images/training/pre-trained-model.png">
 
 ### Pre-trained models are quite similar
 <img class="full" src="images/training/pre-training.png">
 
-### Post-training shapes the model
+### Post-training is what shapes the model
 <div class="cols">
 <img class="col-3 full" src="images/training/post-training.png">
 <div class="col-2">
@@ -644,7 +658,7 @@ Claude – Honest advisor
 
 Grok – Radical truth-seeker
 
-Meta AI – Pragma over polish
+Meta AI – Powerful engineer
 
 Mistral – Efficient European
 
@@ -653,7 +667,7 @@ DeepSeek –  Censored thinker
 </div>
 </div>
 
-### Post-training: strenghten preferred answers
+### Post-training: reinforce the desired outcomes
 <img class="full" src="images/training/reinforcement-learning.png">
 
 ### Reinforcement Learning by Feedback
@@ -685,10 +699,10 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
 [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
-### Describes Claude’s values and behavior
+### Describes Claude’s core driving principles
 <img class="full" src="images/training/claudes-constitution-example.png">
 
-### "New model is 4x ..."
+### "New model is 36% more ..."
 <img class="full" src="images/training/system-cards-opus48.png">
 
 ####
@@ -720,36 +734,25 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
 
-### Training cost
+### Most Important Takeaways
 
-* From scratch, a new AI model:
-  * Estimated training **cost is $200M to $1B**
-  * Estimated training **time is 6 months**
-<br>
-* From existing model, eg Claude Opus 4.7 to 4.8:
-  * Estimated training cost is max 10% of full training
-  * Estimated training time is maybe a month
+* The LLMs knowledge itself is fixated after training
+* The LLM can only reason about what's in the context
 
-### Gemini - 
-
-
-
-
-
-### Nerd movie night: Karpathy builds a GPT
-
-Only 600 lines of Python code: 300 for `train.py`, 300 for `model.py`
-
-<img class="full" src="images/llm/karpathy-nanogpt.png">
+---
+<img class="full" src="images/llm/nerdflix.png">
 
 ####
 2 hours of Andrej Karpathy building a small GPT model, fully.
 
+Only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
+
 [Let's build GPT from scratch (2 hours)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
+[Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
 
-## The AI Service
+## The full AI Service
 <img class="full" src="images/overview/ai-service.png">
 
 ### What can it do?
@@ -757,28 +760,139 @@ Only 600 lines of Python code: 300 for `train.py`, 300 for `model.py`
 _Surprisingly, only a few things:_
 
 1. Read the chat and produce a response
-2. Understand documents and images (+video/audio?)
 3. Think harder
-4. Call tools
+2. Understand documents and images (+video/audio?)
+4. Use tools
 <br>
-5. A few other things; caching, safeguarding
-6. And quite notably: *it has no memory*
+5. A bit more - caching, safeguarding
 
-
-### But but but - what about...?
-
+####
 Call internal tools; run python, produce images
 Call external tools via MCP servers
 Ask the caller to use tools or MCP servers
 
+##6. And quite notably: *it has no memory*
 
-* all those agents.md files you hear about?
-* skills
-* setting the language
-* modes - plan, autopilot, and so on?
-* conversation tone?
+### But, but, but - what about...?
 
 
+* all those *agents.md* files you hear about?
+* skills, gems, projects, workflows?
+* your preferences of language and tone?
+* modes, like planning, yolo, autopilot?
+
+### All the parts
+<img class="full" src="images/ai-service/service-blank.png">
+
+### Our old friend, the LLM
+<img class="full" src="images/ai-service/service-llm.png">
+
+####
+The purpose, recapped: You give it a string of tokens, aka the *context*, and it will produce a response based on the model's baked-in training by running that context through the Transformer. Pure math and trained knowledge.
+
+That is *all* it can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only - let's repeat: run the context through the Transformer to produce a response.
+
+### 1: Read the chat and produce a response
+<img class="full" src="images/ai-service/service-chat.png">
+
+### First let's focus on the messages
+<img class="full" src="images/ai-service/chat-service-messages.png">
+
+### Prompt #1 and the response
+<img class="full" src="images/ai-service/chat-turn-1.png">
+
+### Prompt #2 - what now?
+<img class="full" src="images/ai-service/chat-turn-2-question.png">
+
+### Prompt #2: what do we send to the AI?
+<img class="full" src="images/ai-service/chat-turn-2-choice.png">
+
+### Prompt #2 re-sends the full chat
+<img class="full" src="images/ai-service/chat-turn-2.png">
+
+### Prompt #3 re-sends the full chat
+<img class="full" src="images/ai-service/chat-turn-3.png">
+
+### Every prompt re-sends the full chat
+<img class="full" src="images/ai-service/chat-turn-goodnight.png">
+
+### The LLM always works on the full context
+
+The LLM always reasons about *the full context*.
+It does not, it cannot, know and reason about *anything else* than what is in the context.
+You want it to know about X (beyond its training)? Then X must be *in the context*.
+No links, no docs, no agents: the context is *ALL* the LLM knows about you and this chat.
+<br>
+
+####
+If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.
+
+<img class="full" src="images/ai-service/chat-through-transformer.png">
+
+### "I'm gonna stop you right there..."
+
+When you hear people say this, it's ... just not true:
+&nbsp;
+_"I ran the AI on the source code ..."_
+Questionable, because the AI will not fit "all the source code" in the context
+&nbsp;
+_"It has access to our marketing space in Confluence so it knows all about..."_
+No. It can fetch from Confluence, yes, but the context doesn't hold all docs
+&nbsp;
+_"Maybe it remembered from earlier that..."_
+Maybe. But only if that "thing from earlier" has somehow been put into the context
+&nbsp;
+_"It seem to become better at ..."_
+Maybe. But only those improvements has somehow been put into the context
+
+### The chat after 3 prompts
+<img class="full" src="images/ai-service/tokens-turn-3.png">
+
+### The chat after 10 prompts
+<img class="full" src="images/ai-service/tokens-turn-10.png">
+
+### The chat after 50 prompts
+<img class="full" src="images/ai-service/tokens-turn-50.png">
+
+### The tokens spent after 50 prompts
+<img class="full" src="images/ai-service/tokens-turn-50-total.png">
+
+
+### Top 8 take-aways
+
+* The LLMs knowledge itself is fixated after training
+* The context is *ALL* the LLM knows about; if it's not in the context then the LLM does not know about it.
+* Every time you send a prompt, the entire chat is re-processed
+* &nbsp;
+* &nbsp;
+* &nbsp;
+* &nbsp;
+* &nbsp;
+* &nbsp;
+
+
+### 2: Think harder
+<img class="full" src="images/ai-service/service-thinking.png">
+
+### thinking
+
+thinking or effort does not mean the llm "thinks harder".
+
+autoregressive loop wrapped around that engine — generate a token, append it to the context, run the forward pass again, repeat. That loop is the chain-of-thought mechanism
+
+
+
+### 3: Understand documents and images (+video/audio?)
+<img class="full" src="images/ai-service/service-files.png">
+
+### 4: Use tools
+<img class="full" src="images/ai-service/service-tools.png">
+
+### 5: A bit more - caching, safeguarding
+<img class="full" src="images/ai-service/service-misc.png">
+
+### 6: The full picture
+<img class="full" src="images/ai-service/service-full.png">
 
 ### Overview
 <img class="full" src="images/ai-service/top-level.png">

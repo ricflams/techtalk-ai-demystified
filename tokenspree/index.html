@@ -88,7 +88,10 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 
 /* --- Slider settings --- */
 .settings-text { flex: 0 0 auto; }
-.settings-grid-text { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
+.settings-grid-text { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, auto); grid-auto-flow: column; }
+.autocompact-field { flex-direction:row !important; align-items:center; gap:4px; flex-wrap:nowrap; }
+.autocompact-field .setting-input { width:52px; flex-shrink:0; }
+.autocompact-field .setting-label { white-space:nowrap; cursor:pointer; }
 .settings-sliders { flex: 1; min-width: 0; }
 .slider-panel { display: flex; gap: 3em; align-items: flex-start; }
 .slider-col { flex: 1; min-width: 0; }
@@ -175,6 +178,20 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
         <input type="checkbox" id="discardThinkCheck" checked style="cursor:pointer; flex-shrink:0;">
         <label class="setting-label" for="discardThinkCheck" style="cursor:pointer; white-space:nowrap;">Discard thinking (chat)</label>
       </div>
+      <div class="setting-field autocompact-field" style="order:7;">
+        <input type="checkbox" id="autoCompactCheck" checked style="cursor:pointer; flex-shrink:0;">
+        <label class="setting-label" for="autoCompactCheck">Auto-compact at</label>
+        <input class="setting-input" type="number" id="autoCompactPct" value="80" min="10" max="99">
+        <span class="setting-label">%</span>
+      </div>
+      <div class="setting-field" style="order:8;">
+        <label class="setting-label">Max context length</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;">
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="200000" checked> 200K</label>
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="1000000"> 1M</label>
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="2000000"> 2M</label>
+        </div>
+      </div>
     </div>
   </div>
   <div class="settings-section settings-sliders">
@@ -195,7 +212,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 // ─────────────────────────────────────────────
 // CONSTANTS
 // ─────────────────────────────────────────────
-const MCP_TOK_PER_SERVICE = 500;
+const MCP_TOK_PER_TOOL = 400;
 const TURN_STEPS = [1, 2, 3, 5, 10, 20, 30, 40, 50, 70, 100];
 let   turnStepIdx = TURN_STEPS.indexOf(10);
 let   TURNS       = TURN_STEPS[turnStepIdx];
@@ -212,7 +229,7 @@ const PARAMS = {
   systemTok:    { label: 'System prompt',      value: 5000,  min: 0,     max: 7000,   step: 250  },
   inputTok:     { label: 'Input from user',  value: 100,   min: 50,    max: 300,    step: 25   },
   outputTok:    { label: 'Output from AI',     value: 800,   min: 300,   max: 1200,   step: 100  },
-  mcpCount:     { label: 'MCP services',       value: 2000,  min: 0,    max: 5000,   step: 500  },
+  mcpCount:     { label: 'MCP tools',           value: 5,     min: 0,    max: 10,     step: 1    },
   ideTok:       { label: 'Input from IDE',     value: 5000,  min: 2000,  max: 15000,  step: 500  },
   outputTokLong:{ label: 'Output extra long',  value: 5000,  min: 3000,  max: 15000,  step: 500  },
   thinkTok:     { label: 'Output from thinking', value: 5000, min: 1000, max: 12000,  step: 1000 },
@@ -225,7 +242,7 @@ const PARAMS = {
 // SPREES
 // ─────────────────────────────────────────────
 const sprees = [
-  { id:'s6', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${Math.round(PARAMS.mcpCount.value / MCP_TOK_PER_SERVICE)} MCP services`, effectFn: () => `${PARAMS.mcpCount.value.toLocaleString()} tok schema`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value}) },
+  { id:'s6', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP tools`, effectFn: () => `${PARAMS.mcpCount.value} tools × ${MCP_TOK_PER_TOOL} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_TOOL}) },
   { id:'s5', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
   { id:'s7', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
   { id:'s4', color:'#1a8a40', teaser:'Th...', num:'spree #4', secret:'Think harder',      effectFn: () => `+${PARAMS.thinkTok.value.toLocaleString()} hidden tokens`, apply: p => ({...p, thinkTok: PARAMS.thinkTok.value}) },
@@ -251,10 +268,13 @@ function getBase() {
     systemTok:    PARAMS.systemTok.value,
     bustCache:    false,
     inputTok:     PARAMS.inputTok.value,
-    kvCache:      false,    // set to true by KV-cache mitigation
-    discardThink: document.getElementById('discardThinkCheck')?.checked ?? true,
-    compactEvery: 0,        // 0 = disabled
-    clearEvery:   0,        // 0 = disabled
+    kvCache:       false,   // set to true by KV-cache mitigation
+    discardThink:  document.getElementById('discardThinkCheck')?.checked ?? true,
+    autoCompact:   document.getElementById('autoCompactCheck')?.checked ?? true,
+    autoCompactPct: parseFloat(document.getElementById('autoCompactPct')?.value) || 80,
+    maxContextLen:  parseFloat(document.querySelector('input[name="maxContextLen"]:checked')?.value) || 200000,
+    compactEvery:  0,       // 0 = disabled
+    clearEvery:    0,       // 0 = disabled
   };
 }
 
@@ -404,7 +424,7 @@ buildSliderCol('slidersCol2', SLIDER_KEYS_COL2);
 
 // Reset button
 document.getElementById('resetBtn').addEventListener('click', () => {
-  const defaults = { systemTok:5000, inputTok:100, outputTok:800, mcpCount:2000, ideTok:5000, outputTokLong:5000, thinkTok:5000, docTok:15000 };
+  const defaults = { systemTok:5000, inputTok:100, outputTok:800, mcpCount:5, ideTok:5000, outputTokLong:5000, thinkTok:5000, docTok:15000 };
   SLIDER_KEYS.forEach(key => {
     PARAMS[key].value = defaults[key];
     document.getElementById('param-' + key).value = defaults[key];
@@ -460,7 +480,10 @@ function simulate(p) {
   for (let t = 1; t <= TURNS; t++) {
     if (p.bustCache && t % PARAMS.bustEvery.value === 0) cacheCost = 1;
 
-    if (p.compactEvery > 0 && t % p.compactEvery === 0) {
+    const contextSize = p.systemTok + p.mcpTok + docTok + compactTok
+                      + history.reduce((s, b) => s + b.tokens, 0);
+    const autoTriggered = p.autoCompact && contextSize > p.maxContextLen * (p.autoCompactPct / 100);
+    if ((p.compactEvery > 0 && t % p.compactEvery === 0) || autoTriggered) {
       const compactible = docTok + compactTok + history.reduce((s, b) => s + b.tokens, 0);
       compactTok        = Math.round(compactible * 0.1);
       compactProducedAt = t;
@@ -578,7 +601,7 @@ let _renderMode = 'pertokens';
 let _hitmap = [];
 
 const TYPE_LABEL = {
-  sys:'System prompt', mcp:'MCP services', doc:'Document',
+  sys:'System prompt', mcp:'MCP tools', doc:'Document',
   compact:'Compacted context', user:'User input', think:'Thinking', assist:'Assistant output',
 };
 
@@ -591,7 +614,7 @@ function tipContent(hit) {
   lines.push(hit.producedAt != null && !isCurrentTurn ? `${label} (from turn ${hit.producedAt})` : label);
   if (hit.tokens > 0) lines.push(`${hit.tokens.toLocaleString()} tokens`);
   if (_renderMode !== 'pertokens' && hit.cost > 0) {
-    lines.push(`Cost: ${fmtK(hit.cost)}`);
+    lines.push(`Cost: ${Math.round(hit.cost).toLocaleString()}`);
     if (hit.factor != null) {
       const rateParts = [];
       const isOutputRate = isCurrentTurn && (hit.type === 'think' || hit.type === 'assist');
@@ -943,6 +966,9 @@ document.querySelectorAll('.mode-btn').forEach(btn => {
 // BREAKDOWN TOGGLE
 // ─────────────────────────────────────────────
 document.getElementById('discardThinkCheck').addEventListener('change', () => redraw(true));
+document.getElementById('autoCompactCheck').addEventListener('change', () => redraw(true));
+document.getElementById('autoCompactPct').addEventListener('change', () => redraw(true));
+document.querySelectorAll('input[name="maxContextLen"]').forEach(r => r.addEventListener('change', () => redraw(true)));
 
 document.getElementById('combinedCheck').addEventListener('change', e => {
   _breakdownPref = e.target.checked ? 'type' : 'slot';

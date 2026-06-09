@@ -41,13 +41,15 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 
 /* --- Mode toggle --- */
 .mode-toggle { display: flex; gap: 6px; margin-top: 6px; flex-shrink: 0; align-items: center; }
-.turns-control { display: flex; align-items: center; gap: 5px; margin-left: auto;
+.turns-control { display: flex; align-items: center; gap: 8px; margin-left: auto;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 12px; font-weight: 600; color: #3a3028; }
-.turns-btn { font-size: 15px; font-weight: 700; width: 22px; height: 22px;
-  border: 1.5px solid #d0cbc0; border-radius: 5px; background: #fff; color: #3a3028;
-  cursor: pointer; line-height: 1; padding: 0; }
-.turns-btn:hover { border-color: #a0988a; }
+#turnsSlider { width: 280px; height: 4px; appearance: none; -webkit-appearance: none;
+  background: #e0dbd0; border-radius: 2px; cursor: pointer; outline: none; }
+#turnsSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px;
+  border-radius: 50%; background: #1a1810; cursor: pointer; }
+#turnsSlider::-moz-range-thumb { width: 13px; height: 13px; border-radius: 50%; border: none;
+  background: #1a1810; cursor: pointer; }
 .mode-btn {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 12px; font-weight: 600; padding: 4px 14px;
@@ -168,9 +170,8 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
     <input type="checkbox" id="combinedCheck"> Combined
   </label>
   <span class="turns-control">
-    <button class="turns-btn" id="turnsDown">−</button>
     <span id="turnsLabel">Turns: 10</span>
-    <button class="turns-btn" id="turnsUp">+</button>
+    <input type="range" id="turnsSlider" min="0" max="25" step="1" value="5">
   </span>
 </div>
 <div class="settings-panel">
@@ -215,7 +216,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 // CONSTANTS
 // ─────────────────────────────────────────────
 const MCP_TOK_PER_TOOL = 400;
-const TURN_STEPS = [1, 2, 3, 5, 10, 20, 30, 40, 50, 70, 100];
+const TURN_STEPS = [1, 2, 3, 4, 5, 10, 15, ...Array.from({length: 19}, (_, i) => (i + 2) * 10)];  // 1-5, 10, 15, 20-200
 let   turnStepIdx = TURN_STEPS.indexOf(10);
 let   TURNS       = TURN_STEPS[turnStepIdx];
 
@@ -616,7 +617,7 @@ function tipContent(hit) {
   lines.push(hit.producedAt != null && !isCurrentTurn ? `${label} (from turn ${hit.producedAt})` : label);
   if (hit.tokens > 0) lines.push(`${hit.tokens.toLocaleString()} tokens`);
   if (_renderMode !== 'pertokens' && hit.cost > 0) {
-    lines.push(`Cost: ${Math.round(hit.cost).toLocaleString()}`);
+    lines.push(`${_renderMode === 'total' ? 'Total cost' : 'Cost'}: ${Math.round(hit.cost).toLocaleString()}`);
     if (hit.factor != null) {
       const rateParts = [];
       const isOutputRate = isCurrentTurn && (hit.type === 'think' || hit.type === 'assist');
@@ -823,7 +824,7 @@ const chart = new Chart(document.getElementById('mainChart'), {
     scales: {
       x: { type:'linear', min:0.5, max:TURNS+0.5,
            afterBuildTicks(axis) {
-             const step = TURNS <= 10 ? 1 : 5;
+             const step = TURNS <= 5 ? 1 : TURNS <= 50 ? 10 : TURNS <= 100 ? 20 : 50;
              axis.ticks = [];
              for (let i = 1; i <= TURNS; i++) {
                if (i === 1 || i % step === 0) axis.ticks.push({ value: i });
@@ -985,15 +986,14 @@ document.getElementById('combinedCheck').addEventListener('change', e => {
 function applyTurns() {
   TURNS = TURN_STEPS[turnStepIdx];
   document.getElementById('turnsLabel').textContent = 'Turns: ' + TURNS;
+  document.getElementById('turnsSlider').value = turnStepIdx;
   chart.options.scales.x.max = TURNS + 0.5;
   applyBreakdownConstraint();
   redraw();
 }
-document.getElementById('turnsDown').addEventListener('click', () => {
-  if (turnStepIdx > 0) { turnStepIdx--; applyTurns(); }
-});
-document.getElementById('turnsUp').addEventListener('click', () => {
-  if (turnStepIdx < TURN_STEPS.length - 1) { turnStepIdx++; applyTurns(); }
+document.getElementById('turnsSlider').addEventListener('input', e => {
+  turnStepIdx = parseInt(e.target.value);
+  applyTurns();
 });
 
 // ─────────────────────────────────────────────

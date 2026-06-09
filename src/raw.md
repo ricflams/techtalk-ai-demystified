@@ -542,3 +542,5 @@ Ask the caller to use tools or MCP servers
 
 Ultracode
 https://www.youtube.com/watch?v=IgIlIWqeT-I
+
+https://github.com/seifghazi/claude-code-proxy

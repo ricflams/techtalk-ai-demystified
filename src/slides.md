@@ -796,25 +796,25 @@ That is *all* it can do. It can't browse the web, multiply two large numbers, re
 <img class="full" src="images/ai-service/service-chat.png">
 
 ### First let's focus on the messages
-<img class="full" src="images/ai-service/chat-service-messages.png">
+<img class="full" src="images/ai-service/messages/request-messages.png">
 
 ### Prompt #1 and the response
-<img class="full" src="images/ai-service/chat-turn-1.png">
+<img class="full" src="images/ai-service/messages/chat-turn-1.png">
 
 ### Prompt #2 - what now?
-<img class="full" src="images/ai-service/chat-turn-2-question.png">
+<img class="full" src="images/ai-service/messages/chat-turn-2-question.png">
 
 ### Prompt #2: what do we send to the AI?
-<img class="full" src="images/ai-service/chat-turn-2-choice.png">
+<img class="full" src="images/ai-service/messages/chat-turn-2-choice.png">
 
 ### Prompt #2 re-sends the full chat
-<img class="full" src="images/ai-service/chat-turn-2.png">
+<img class="full" src="images/ai-service/messages/chat-turn-2.png">
 
 ### Prompt #3 re-sends the full chat
-<img class="full" src="images/ai-service/chat-turn-3.png">
+<img class="full" src="images/ai-service/messages/chat-turn-3.png">
 
 ### Every prompt re-sends the full chat
-<img class="full" src="images/ai-service/chat-turn-goodnight.png">
+<img class="full" src="images/ai-service/messages/chat-turn-goodnight.png">
 
 ### The LLM always works on the full context
 
@@ -824,10 +824,10 @@ You want it to know about X (beyond its training)? Then X must be *in the contex
 No links, no docs, no agents: the context is *ALL* the LLM knows about you and this chat.
 <br>
 
+<img class="full" src="images/ai-service/messages/chat-through-transformer.png">
+
 ####
 If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.
-
-<img class="full" src="images/ai-service/chat-through-transformer.png">
 
 ### "I'm gonna stop you right there..."
 
@@ -846,16 +846,30 @@ _"It seem to become better at ..."_
 Maybe. But only those improvements has somehow been put into the context
 
 ### The chat after 3 prompts
-<img class="full" src="images/ai-service/tokens-turn-3.png">
+<img class="full" src="images/ai-service/messages/tokens-turn-3.png">
 
 ### The chat after 10 prompts
-<img class="full" src="images/ai-service/tokens-turn-10.png">
+<img class="full" src="images/ai-service/messages/tokens-turn-10.png">
 
 ### The chat after 50 prompts
-<img class="full" src="images/ai-service/tokens-turn-50.png">
+<img class="full" src="images/ai-service/messages/tokens-turn-50.png">
 
 ### The tokens spent after 50 prompts
-<img class="full" src="images/ai-service/tokens-turn-50-total.png">
+<img class="full" src="images/ai-service/messages/tokens-turn-50-total.png">
+
+### The system prompt
+<img class="full" src="images/ai-service/request-system.png">
+
+### The system prompt
+<img class="full" src="images/ai-service/request-system-focused.png">
+
+* The **system prompt** is *just a single piece of text* for the LLM to also chew on
+* In a way, you could just as well have *written this text yourself* in the first message
+* Everything the LLM should know should go in here - as you can see
+
+### All the things that goes into it
+
+### 
 
 
 ### Top 8 take-aways
@@ -946,6 +960,8 @@ What is an AI Agent?
 ## Level 2: give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
 
 ## Level 3a: Skills
+
+https://www.youtube.com/@mattpocockuk/videos
 
 Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
 There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.

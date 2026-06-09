@@ -24,6 +24,8 @@ I hope you'll latch onto something and refer back to the slides and me if you've
 
 You may be thinking "hang on, that can't be right" or "I don't get it!" - just check back on the slides, follow the links, or better yet - ask me.
 
+I'll simplify somethings and some things may not be done exactly like so, but it holds up in principle.
+
 ## 10,000,001 AI videos... +1
 <div class="cols tight">
 <img src="images/intro/youtube-intro-1.png">

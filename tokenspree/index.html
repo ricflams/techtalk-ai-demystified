@@ -162,6 +162,8 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   <button class="mode-btn" data-mode="percost">Per-turn cost</button>
   <button class="mode-btn" data-mode="total">Total cost</button>
   <span class="toggle-sep">·</span>
+  <button class="mode-btn" id="copyLinkBtn">Share link</button>
+  <span class="toggle-sep">·</span>
   <label id="breakdownToggle">
     <input type="checkbox" id="combinedCheck"> Combined
   </label>
@@ -242,13 +244,13 @@ const PARAMS = {
 // SPREES
 // ─────────────────────────────────────────────
 const sprees = [
-  { id:'s6', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP tools`, effectFn: () => `${PARAMS.mcpCount.value} tools × ${MCP_TOK_PER_TOOL} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_TOOL}) },
-  { id:'s5', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
-  { id:'s7', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
+  { id:'s1', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP tools`, effectFn: () => `${PARAMS.mcpCount.value} tools × ${MCP_TOK_PER_TOOL} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_TOOL}) },
+  { id:'s2', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
+  { id:'s3', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
   { id:'s4', color:'#1a8a40', teaser:'Th...', num:'spree #4', secret:'Think harder',      effectFn: () => `+${PARAMS.thinkTok.value.toLocaleString()} hidden tokens`, apply: p => ({...p, thinkTok: PARAMS.thinkTok.value}) },
-  { id:'s1', color:'#2563b8', teaser:'Lo...', num:'spree #5', secret:'Long outputs',      effectFn: () => `Plans, essays, code`,                               apply: p => ({...p, outputTok: PARAMS.outputTokLong.value}) },
-  { id:'s3', color:'#a07800', teaser:'Bu...', num:'spree #6', secret:'Bust the cache',    effectFn: () => `>5 min or model swap`,                              apply: p => ({...p, bustCache: true}) },
-  { id:'s2', color:'#c04a10', teaser:'Ex...', num:'spree #6', secret:'Expensive model',   effectFn: () => `${PARAMS.modelMult.value}× weight per token`,   apply: p => ({...p, modelMult: PARAMS.modelMult.value}) },
+  { id:'s5', color:'#2563b8', teaser:'Lo...', num:'spree #5', secret:'Long outputs',      effectFn: () => `Plans, essays, code`,                               apply: p => ({...p, outputTok: PARAMS.outputTokLong.value}) },
+  { id:'s6', color:'#a07800', teaser:'Bu...', num:'spree #6', secret:'Bust the cache',    effectFn: () => `>5 min or model swap`,                              apply: p => ({...p, bustCache: true}) },
+  { id:'s7', color:'#c04a10', teaser:'Ex...', num:'spree #7', secret:'Expensive model',   effectFn: () => `${PARAMS.modelMult.value}× weight per token`,   apply: p => ({...p, modelMult: PARAMS.modelMult.value}) },
 ];
 
 const mitigations = [
@@ -893,6 +895,7 @@ function animateTo(fromCurves, fromYMax, fromActive, toCurves, toActive, toYMax,
 // REDRAW
 // ─────────────────────────────────────────────
 function redraw(animate = false) {
+  updateUrl();
   if (!animate && _animId !== null) { cancelAnimationFrame(_animId); _animId = null; }
   _renderMode = mode;
   document.getElementById('breakdownToggle').style.visibility = 'visible';
@@ -994,8 +997,177 @@ document.getElementById('turnsUp').addEventListener('click', () => {
 });
 
 // ─────────────────────────────────────────────
+// URL SHARING
+// ─────────────────────────────────────────────
+const PARAM_URL = {
+  systemTok:         'sys',
+  inputTok:          'in',
+  outputTok:         'out',
+  mcpCount:          'mcp',
+  ideTok:            'ide',
+  outputTokLong:     'long',
+  thinkTok:          'think',
+  bustEvery:         'bust',
+  docTok:            'doc',
+  compactClearEvery: 'cmp',
+  quota:             'sq',
+  outFactor:         'ofac',
+  modelMult:         'mult',
+};
+const URL_PARAM = Object.fromEntries(Object.entries(PARAM_URL).map(([k,v]) => [v,k]));
+
+const CTX_ENCODE = { 200000: '200k', 1000000: '1m', 2000000: '2m' };
+const CTX_DECODE = Object.fromEntries(Object.entries(CTX_ENCODE).map(([k,v]) => [v, +k]));
+const MODE_ENCODE = { pertokens: 'tok', percost: 'cst', total: 'ttl' };
+const MODE_DECODE = Object.fromEntries(Object.entries(MODE_ENCODE).map(([k,v]) => [v,k]));
+
+const URL_DEFAULTS = {
+  sys:5000, in:100, out:600, mcp:10, ide:7000, long:8000, think:8000,
+  bust:4, doc:20000, cmp:10, sq:1500000, ofac:5, mult:3,
+  dth:1, acp:80, ctx:'200k', t:10, m:'tok', cmb:0,
+};
+
+function applyUrlParams() {
+  const p = new URLSearchParams(location.search);
+  if (!p.toString()) return;
+
+  // Sliders + text inputs
+  for (const [urlKey, paramKey] of Object.entries(URL_PARAM)) {
+    if (!p.has(urlKey)) continue;
+    const v = parseFloat(p.get(urlKey));
+    if (isNaN(v)) continue;
+    PARAMS[paramKey].value = v;
+    const el = document.getElementById('param-' + paramKey);
+    if (el) {
+      el.value = v;
+      const valEl = document.getElementById('val-' + paramKey);
+      if (valEl) valEl.textContent = fmtVal(paramKey, v);
+    }
+  }
+
+  // Discard thinking
+  if (p.has('dth')) {
+    const el = document.getElementById('discardThinkCheck');
+    if (el) el.checked = p.get('dth') !== '0';
+  }
+
+  // Auto-compact %
+  if (p.has('acp')) {
+    const v = parseFloat(p.get('acp'));
+    if (!isNaN(v)) { const el = document.getElementById('autoCompactPct'); if (el) el.value = v; }
+  }
+
+  // Context window radio
+  if (p.has('ctx')) {
+    const val = CTX_DECODE[p.get('ctx')];
+    if (val) {
+      const radio = document.querySelector(`input[name="maxContextLen"][value="${val}"]`);
+      if (radio) radio.checked = true;
+    }
+  }
+
+  // Turns
+  if (p.has('t')) {
+    const idx = TURN_STEPS.indexOf(parseInt(p.get('t')));
+    if (idx >= 0) {
+      turnStepIdx = idx;
+      TURNS = TURN_STEPS[idx];
+      document.getElementById('turnsLabel').textContent = 'Turns: ' + TURNS;
+      chart.options.scales.x.max = TURNS + 0.5;
+    }
+  }
+
+  // Mode
+  if (p.has('m')) {
+    const m = MODE_DECODE[p.get('m')];
+    if (m) {
+      mode = m;
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+    }
+  }
+
+  // Combined
+  if (p.has('cmb')) {
+    const el = document.getElementById('combinedCheck');
+    if (el) {
+      el.checked = p.get('cmb') === '1';
+      _breakdownPref = el.checked ? 'type' : 'slot';
+    }
+  }
+
+  // Active sprees
+  if (p.has('sp')) {
+    const ids = p.get('sp').split('').map(n => 's' + n);
+    sprees.forEach(s => { state[s.id].active = ids.includes(s.id); updateCard(s.id); });
+  }
+
+  // Active mitigations
+  if (p.has('mt')) {
+    const raw = p.get('mt');
+    const ids = raw ? raw.split('').map(n => 'm' + n).filter(id => id !== 'm0') : [];
+    mitigations.forEach(m => {
+      mstate[m.id].active = ids.includes(m.id);
+      document.getElementById('card-' + m.id).classList.toggle('active', mstate[m.id].active);
+    });
+  }
+}
+
+let _urlTimer = null;
+function updateUrl() {
+  if (typeof history === 'undefined') return;
+  if (_urlTimer) clearTimeout(_urlTimer);
+  _urlTimer = setTimeout(() => {
+    const p = new URLSearchParams();
+
+    for (const [paramKey, urlKey] of Object.entries(PARAM_URL)) {
+      const v = PARAMS[paramKey].value;
+      if (v !== URL_DEFAULTS[urlKey]) p.set(urlKey, v);
+    }
+
+    const dth = document.getElementById('discardThinkCheck')?.checked ? 1 : 0;
+    if (dth !== URL_DEFAULTS.dth) p.set('dth', dth);
+
+    const acp = parseFloat(document.getElementById('autoCompactPct')?.value) || 80;
+    if (acp !== URL_DEFAULTS.acp) p.set('acp', acp);
+
+    const ctxVal = parseFloat(document.querySelector('input[name="maxContextLen"]:checked')?.value) || 200000;
+    const ctxStr = CTX_ENCODE[ctxVal] || '200k';
+    if (ctxStr !== URL_DEFAULTS.ctx) p.set('ctx', ctxStr);
+
+    if (TURNS !== URL_DEFAULTS.t) p.set('t', TURNS);
+
+    const mStr = MODE_ENCODE[mode] || 'tok';
+    if (mStr !== URL_DEFAULTS.m) p.set('m', mStr);
+
+    const cmb = document.getElementById('combinedCheck')?.checked ? 1 : 0;
+    if (cmb !== URL_DEFAULTS.cmb) p.set('cmb', cmb);
+
+    const activeSp = sprees.filter(s => state[s.id].active).map(s => s.id.slice(1));
+    if (activeSp.length) p.set('sp', activeSp.join(''));
+
+    const activeMt = mitigations.filter(m => mstate[m.id].active).map(m => m.id.slice(1));
+    const defaultMt = mitigations.filter(m => m.defaultActive).map(m => m.id.slice(1));
+    if (activeMt.join('') !== defaultMt.join(''))
+      p.set('mt', activeMt.length ? activeMt.join('') : '0');
+
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }, 300);
+}
+
+document.getElementById('copyLinkBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(location.href).then(() => {
+    const btn = document.getElementById('copyLinkBtn');
+    const prev = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = prev; }, 1500);
+  });
+});
+
+// ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+applyUrlParams();
 applyBreakdownConstraint();
 redraw();
 setTimeout(sizeChart, 100);

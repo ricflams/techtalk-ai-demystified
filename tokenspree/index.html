@@ -104,7 +104,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 }
 .slider-btn:hover { border-color: #a09080; background: #f7f5f0; }
 .slider-field { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
-.slider-field .setting-label { flex: 0 0 118px; white-space: nowrap; }
+.slider-field .setting-label { flex: 0 0 152px; white-space: nowrap; }
 .setting-slider-wrap { display: flex; align-items: center; gap: 5px; flex: 1; min-width: 0; }
 .setting-min, .setting-max {
   font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
@@ -185,7 +185,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
         <span class="setting-label">%</span>
       </div>
       <div class="setting-field" style="order:8;">
-        <label class="setting-label">Max context length</label>
+        <label class="setting-label">Context window</label>
         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;">
           <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="200000" checked> 200K</label>
           <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="1000000"> 1M</label>
@@ -226,15 +226,15 @@ const PARAMS = {
   outFactor:    { label: 'Cost factor',        value: 5 },
   modelMult:    { label: 'Model multiplier',   value: 3 },
   // sliders (AI-derived values)
-  systemTok:    { label: 'System prompt',      value: 5000,  min: 0,     max: 7000,   step: 250  },
-  inputTok:     { label: 'Input from user',  value: 100,   min: 50,    max: 300,    step: 25   },
-  outputTok:    { label: 'Output from AI',     value: 800,   min: 300,   max: 1200,   step: 100  },
-  mcpCount:     { label: 'MCP tools',           value: 5,     min: 0,    max: 10,     step: 1    },
-  ideTok:       { label: 'Input from IDE',     value: 5000,  min: 2000,  max: 15000,  step: 500  },
-  outputTokLong:{ label: 'Output extra long',  value: 5000,  min: 3000,  max: 15000,  step: 500  },
-  thinkTok:     { label: 'Output from thinking', value: 5000, min: 1000, max: 12000,  step: 1000 },
+  systemTok:    { label: 'System prompt',        value: 5000,  min: 0,     max: 10000,  step: 250  },
+  inputTok:     { label: 'Input from user',      value: 100,   min: 0,     max: 200,    step: 25   },
+  outputTok:    { label: 'Output from assistant',value: 600,   min: 0,     max: 1200,   step: 100  },
+  mcpCount:     { label: 'MCP tools',             value: 10,    min: 5,     max: 15,     step: 1    },
+  ideTok:       { label: 'Input from IDE',       value: 7000,  min: 1000,  max: 13000,  step: 500  },
+  outputTokLong:{ label: 'Extra long output',    value: 8000,  min: 1000,  max: 15000,  step: 500  },
+  thinkTok:     { label: 'Output from thinking', value: 8000,  min: 2000,  max: 14000,  step: 1000 },
   bustEvery:    { label: 'Bust every N turns', value: 4,     min: 1,     max: 20,     step: 1    },
-  docTok:       { label: 'Doc size',           value: 15000, min: 5000,  max: 50000,  step: 5000 },
+  docTok:       { label: 'Doc size',           value: 20000, min: 5000,  max: 35000,  step: 5000 },
   compactClearEvery: { label: 'Compact/clear every N turns', value: 10, min: 1, max: 40, step: 1 },
 };
 
@@ -424,7 +424,7 @@ buildSliderCol('slidersCol2', SLIDER_KEYS_COL2);
 
 // Reset button
 document.getElementById('resetBtn').addEventListener('click', () => {
-  const defaults = { systemTok:5000, inputTok:100, outputTok:800, mcpCount:5, ideTok:5000, outputTokLong:5000, thinkTok:5000, docTok:15000 };
+  const defaults = { systemTok:5000, inputTok:100, outputTok:600, mcpCount:10, ideTok:7000, outputTokLong:8000, thinkTok:8000, docTok:20000 };
   SLIDER_KEYS.forEach(key => {
     PARAMS[key].value = defaults[key];
     document.getElementById('param-' + key).value = defaults[key];
@@ -453,7 +453,7 @@ document.getElementById('maxBtn').addEventListener('click', () => applyToSliders
 document.getElementById('remixBtn').addEventListener('click', () => {
   applyToSliders(p => {
     const steps = Math.floor((p.max - p.min) / p.step);
-    return p.min + Math.round(Math.random() * steps) * p.step;
+    return (p.min + p.step) + Math.round(Math.random() * (steps - 1)) * p.step;
   });
   redraw(true);
 });

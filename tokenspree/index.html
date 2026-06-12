@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seven Habits of Highly Effective Token Rollers</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<div id="tip"></div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f7f5f0; color: #1a1810; padding: 10px 14px 6px; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+#tip { display:none; position:fixed; pointer-events:none; z-index:200;
+  background:#1e1a14; color:#f0ede8; border-radius:8px; padding:9px 13px;
+  font-family:'Inter',system-ui,sans-serif; font-size:13px; line-height:1.7;
+  box-shadow:0 4px 18px rgba(0,0,0,0.45); max-width:260px; }
+
+h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; text-align: center; }
+
+.layout { display: flex; gap: 16px; align-items: stretch; flex: 1; min-height: 0; }
+
+/* --- Sidebar --- */
+.sidebar { display: flex; flex-direction: column; gap: 10px; width: 192px; flex-shrink: 0; overflow-y: auto; }
+#sprees, #mitigations { display: flex; flex-direction: column; gap: 7px; }
+.card {
+  border: 5px solid #d0cbc0; border-radius: 7px; padding: 4px 10px;
+  cursor: pointer; transition: border-color 0.15s, background 0.15s;
+  background: #fff; user-select: none;
+}
+.card:hover:not(.active) { border-color: #b0a898; }
+.card.active { border: 5px solid var(--cc); background: var(--bg); }
+.label-row { display: flex; align-items: baseline; }
+.teaser { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 800; line-height: 1.2; white-space: nowrap; color: #1a1810; }
+.effect { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600; color: #1a1810; margin-top: 3px; line-height: 1.35; white-space: nowrap; }
+
+/* --- Right column --- */
+.right { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+.chart-wrap { position: relative; width: 100%; flex: 1; min-height: 0; }
+.chart-wrap canvas { display: block; }
+
+/* --- Mode toggle --- */
+.mode-toggle { display: flex; gap: 6px; margin-top: 6px; flex-shrink: 0; align-items: center; }
+.turns-control { display: flex; align-items: center; gap: 8px; margin-left: auto;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px; font-weight: 600; color: #3a3028; }
+#turnsSlider { width: 280px; height: 4px; appearance: none; -webkit-appearance: none;
+  background: #e0dbd0; border-radius: 2px; cursor: pointer; outline: none; }
+#turnsSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px;
+  border-radius: 50%; background: #1a1810; cursor: pointer; }
+#turnsSlider::-moz-range-thumb { width: 13px; height: 13px; border-radius: 50%; border: none;
+  background: #1a1810; cursor: pointer; }
+.mode-btn {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px; font-weight: 600; padding: 4px 14px;
+  border: 1.5px solid #d0cbc0; border-radius: 5px;
+  background: #fff; color: #3a3028; cursor: pointer;
+}
+.mode-btn.active { background: #1a1810; color: #fff; border-color: #1a1810; }
+.toggle-sep { color: #c0bab0; font-size: 14px; margin: 0 2px; user-select: none; }
+#breakdownToggle {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px; font-weight: 600; color: #3a3028; cursor: pointer; user-select: none;
+}
+#breakdownToggle input { cursor: pointer; }
+#breakdownToggle.forced { opacity: 0.35; cursor: default; }
+#breakdownToggle.forced input { cursor: default; }
+
+/* --- Settings panel --- */
+.settings-panel {
+  margin-top: 6px; flex-shrink: 0;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.settings-section {
+  background: #fff; border: 2px solid #e0dbd0; border-radius: 7px; padding: 8px 12px;
+  min-width: 0;
+}
+.settings-section:first-child { flex: 1; }
+.settings-section:last-child  { flex: 3; }
+.settings-grid { display: grid; gap: 6px 10px; }
+.setting-field { display: flex; flex-direction: column; gap: 2px; }
+.setting-label { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 11px; font-weight: 600; color: #7a7060; }
+.setting-input {
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600;
+  color: #1a1810; background: #f7f5f0; border: 1.5px solid #d8d3c8;
+  border-radius: 4px; padding: 3px 6px; width: 100%;
+}
+.setting-input:focus { outline: none; border-color: #a09080; background: #fff; }
+
+/* --- Slider settings --- */
+.settings-text { flex: 0 0 auto; }
+.settings-grid-text { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, auto); grid-auto-flow: column; }
+.autocompact-field { flex-direction:row !important; align-items:center; gap:4px; flex-wrap:nowrap; }
+.autocompact-field .setting-input { width:52px; flex-shrink:0; }
+.autocompact-field .setting-label { white-space:nowrap; cursor:pointer; }
+.settings-sliders { flex: 1; min-width: 0; }
+.slider-panel { display: flex; gap: 3em; align-items: flex-start; }
+.slider-col { flex: 1; min-width: 0; }
+.slider-btns { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.slider-btn {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border: 1.5px solid #d0cbc0; border-radius: 4px;
+  background: #fff; color: #3a3028; cursor: pointer;
+}
+.slider-btn:hover { border-color: #a09080; background: #f7f5f0; }
+.slider-field { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.slider-field .setting-label { flex: 0 0 152px; white-space: nowrap; }
+.setting-slider-wrap { display: flex; align-items: center; gap: 5px; flex: 1; min-width: 0; }
+.setting-min, .setting-max {
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
+  font-size: 9px; font-weight: 600; color: #b0a898; width: 4em; flex-shrink: 0;
+}
+.setting-min { text-align: right; }
+.setting-max { text-align: left; }
+.setting-value {
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
+  font-size: 12px; font-weight: 600; color: #1a1810; width: 5.5em; text-align: right; flex-shrink: 0;
+}
+.setting-slider {
+  flex: 1; height: 4px; appearance: none; -webkit-appearance: none; min-width: 0;
+  background: #e0dbd0; border-radius: 2px; cursor: pointer; outline: none;
+}
+.setting-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%;
+  background: #1a1810; cursor: pointer;
+}
+.setting-slider::-moz-range-thumb {
+  width: 13px; height: 13px; border-radius: 50%; border: none;
+  background: #1a1810; cursor: pointer;
+}
+
+/* --- Mitigations --- */
+.sidebar-section-label {
+  font-family: 'Inter', system-ui, sans-serif; font-size: 16px; font-weight: 400;
+  color: #1a1810; padding: 4px 2px 0; user-select: none;
+}
+.card.mitig { border-color: #b8c8d8; }
+.card.mitig.active { border: 5px solid var(--cc); background: var(--bg); }
+.card.mitig:hover:not(.active) { border-color: #7090b0; }
+
+</style>
+</head>
+<body>
+
+<h1>Seven Habits of Highly Effective Token Rollers</h1>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-section-label">Token sprees</div>
+    <div id="sprees"></div>
+    <div class="sidebar-section-label">Mitigations</div>
+    <div id="mitigations"></div>
+  </div>
+  <div class="right">
+    <div class="chart-wrap" id="chartWrap">
+      <canvas id="mainChart"></canvas>
+    </div>
+  </div>
+</div>
+<div class="mode-toggle">
+  <button class="mode-btn active" data-mode="pertokens">Per-turn tokens</button>
+  <button class="mode-btn" data-mode="percost">Per-turn cost</button>
+  <button class="mode-btn" data-mode="total">Total cost</button>
+  <span class="toggle-sep">·</span>
+  <button class="mode-btn" id="copyLinkBtn">Share link</button>
+  <span class="toggle-sep">·</span>
+  <label id="breakdownToggle">
+    <input type="checkbox" id="combinedCheck"> Combined
+  </label>
+  <span class="turns-control">
+    <span id="turnsLabel">Turns: 10</span>
+    <input type="range" id="turnsSlider" min="0" max="25" step="1" value="5">
+  </span>
+</div>
+<div class="settings-panel">
+  <div class="settings-section settings-text">
+    <div class="settings-grid settings-grid-text" id="settingsGridText">
+      <div class="setting-field" style="order:6; flex-direction:row; align-items:center; gap:5px;">
+        <input type="checkbox" id="discardThinkCheck" checked style="cursor:pointer; flex-shrink:0;">
+        <label class="setting-label" for="discardThinkCheck" style="cursor:pointer; white-space:nowrap;">Discard thinking (chat)</label>
+      </div>
+      <div class="setting-field autocompact-field" style="order:7;">
+        <input type="checkbox" id="autoCompactCheck" checked style="cursor:pointer; flex-shrink:0;">
+        <label class="setting-label" for="autoCompactCheck">Auto-compact at</label>
+        <input class="setting-input" type="number" id="autoCompactPct" value="80" min="10" max="99">
+        <span class="setting-label">%</span>
+      </div>
+      <div class="setting-field" style="order:8;">
+        <label class="setting-label">Context window</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;">
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="200000" checked> 200K</label>
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="1000000"> 1M</label>
+          <label class="setting-label" style="cursor:pointer; font-weight:400;"><input type="radio" name="maxContextLen" value="2000000"> 2M</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="settings-section settings-sliders">
+    <div class="slider-panel">
+      <div id="slidersCol1" class="slider-col"></div>
+      <div id="slidersCol2" class="slider-col"></div>
+      <div class="slider-btns">
+        <button class="slider-btn" id="resetBtn">Reset</button>
+        <button class="slider-btn" id="minBtn">Min</button>
+        <button class="slider-btn" id="maxBtn">Max</button>
+        <button class="slider-btn" id="remixBtn">Mix</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// CONSTANTS
+// ─────────────────────────────────────────────
+const MCP_TOK_PER_TOOL = 400;
+const TURN_STEPS = [1, 2, 3, 4, 5, 10, 15, ...Array.from({length: 19}, (_, i) => (i + 2) * 10)];  // 1-5, 10, 15, 20-200
+let   turnStepIdx = TURN_STEPS.indexOf(10);
+let   TURNS       = TURN_STEPS[turnStepIdx];
+
+// ─────────────────────────────────────────────
+// PARAMETERS (all editable via settings panel)
+// ─────────────────────────────────────────────
+const PARAMS = {
+  // text inputs (user/pricing choices)
+  quota:        { label: 'Session quota',      value: 1500000 },
+  outFactor:    { label: 'Cost factor',        value: 5 },
+  modelMult:    { label: 'Model multiplier',   value: 3 },
+  // sliders (AI-derived values)
+  systemTok:    { label: 'System prompt',        value: 5000,  min: 0,     max: 10000,  step: 250  },
+  inputTok:     { label: 'Input from user',      value: 100,   min: 0,     max: 200,    step: 25   },
+  outputTok:    { label: 'Output from assistant',value: 600,   min: 0,     max: 1200,   step: 100  },
+  mcpCount:     { label: 'MCP tools',             value: 10,    min: 5,     max: 15,     step: 1    },
+  ideTok:       { label: 'Input from IDE',       value: 7000,  min: 1000,  max: 13000,  step: 500  },
+  outputTokLong:{ label: 'Extra long output',    value: 8000,  min: 1000,  max: 15000,  step: 500  },
+  thinkTok:     { label: 'Output from thinking', value: 8000,  min: 2000,  max: 14000,  step: 1000 },
+  bustEvery:    { label: 'Bust every N turns', value: 4,     min: 1,     max: 20,     step: 1    },
+  docTok:       { label: 'Doc size',           value: 20000, min: 5000,  max: 35000,  step: 5000 },
+  compactClearEvery: { label: 'Compact/clear every N turns', value: 10, min: 1, max: 40, step: 1 },
+};
+
+// ─────────────────────────────────────────────
+// SPREES
+// ─────────────────────────────────────────────
+const sprees = [
+  { id:'s1', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP tools`, effectFn: () => `${PARAMS.mcpCount.value} tools × ${MCP_TOK_PER_TOOL} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_TOOL}) },
+  { id:'s2', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
+  { id:'s3', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
+  { id:'s4', color:'#1a8a40', teaser:'Th...', num:'spree #4', secret:'Think harder',      effectFn: () => `+${PARAMS.thinkTok.value.toLocaleString()} hidden tokens`, apply: p => ({...p, thinkTok: PARAMS.thinkTok.value}) },
+  { id:'s5', color:'#2563b8', teaser:'Lo...', num:'spree #5', secret:'Long outputs',      effectFn: () => `Plans, essays, code`,                               apply: p => ({...p, outputTok: PARAMS.outputTokLong.value}) },
+  { id:'s6', color:'#a07800', teaser:'Bu...', num:'spree #6', secret:'Bust the cache',    effectFn: () => `>5 min or model swap`,                              apply: p => ({...p, bustCache: true}) },
+  { id:'s7', color:'#c04a10', teaser:'Ex...', num:'spree #7', secret:'Expensive model',   effectFn: () => `${PARAMS.modelMult.value}× weight per token`,   apply: p => ({...p, modelMult: PARAMS.modelMult.value}) },
+];
+
+const mitigations = [
+  { id:'m1', color:'#0868a8', secret:'Use KV-cache',    effectFn: () => '90% cache discount',                          apply: p => ({...p, kvCache: true}),                                         defaultActive: true },
+  { id:'m2', color:'#1a4090', secret:'Compact context', effectFn: () => `every ${PARAMS.compactClearEvery.value} turns → 10%`, apply: p => ({...p, compactEvery: PARAMS.compactClearEvery.value}), defaultActive: false },
+  { id:'m3', color:'#3a1880', secret:'Clear context',   effectFn: () => `every ${PARAMS.compactClearEvery.value} turns`,        apply: p => ({...p, clearEvery:   PARAMS.compactClearEvery.value}), defaultActive: false },
+];
+
+function getBase() {
+  return {
+    outputTok:    PARAMS.outputTok.value,
+    outFactor:    PARAMS.outFactor.value,
+    modelMult:    1,
+    thinkTok:     0,
+    docTok:       0,
+    mcpTok:       0,
+    systemTok:    PARAMS.systemTok.value,
+    bustCache:    false,
+    inputTok:     PARAMS.inputTok.value,
+    kvCache:       false,   // set to true by KV-cache mitigation
+    discardThink:  document.getElementById('discardThinkCheck')?.checked ?? true,
+    autoCompact:   document.getElementById('autoCompactCheck')?.checked ?? true,
+    autoCompactPct: parseFloat(document.getElementById('autoCompactPct')?.value) || 80,
+    maxContextLen:  parseFloat(document.querySelector('input[name="maxContextLen"]:checked')?.value) || 200000,
+    compactEvery:  0,       // 0 = disabled
+    clearEvery:    0,       // 0 = disabled
+  };
+}
+
+function hexAlpha(hex, a) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+function fmtK(v) {
+  const a = Math.abs(v);
+  if (a >= 1e6) return (v/1e6).toFixed(1) + 'M';
+  return Math.round(v/1000) + ' K';
+}
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let mode = 'pertokens';
+const DEFAULT_BREAKDOWN = 'slot';
+let _breakdown     = DEFAULT_BREAKDOWN;
+let _breakdownPref = DEFAULT_BREAKDOWN;
+const state  = {};
+const mstate = {};
+sprees.forEach(s => { state[s.id]  = { active: false }; });
+mitigations.forEach(m => { mstate[m.id] = { active: m.defaultActive }; });
+
+// ─────────────────────────────────────────────
+// BUILD SIDEBAR
+// ─────────────────────────────────────────────
+const spreesEl = document.getElementById('sprees');
+sprees.forEach(s => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.id = 'card-' + s.id;
+  card.style.setProperty('--cc', s.color);
+  card.style.setProperty('--bg', hexAlpha(s.color, 0.08));
+  card.innerHTML = `
+    <div class="label-row">
+      <span class="teaser" id="teaser-${s.id}">${typeof s.secret === 'function' ? s.secret() : s.secret}</span>
+    </div>
+    <div class="effect" id="effect-${s.id}">${s.effectFn()}</div>`;
+  card.addEventListener('click', () => toggleSpree(s.id));
+  spreesEl.appendChild(card);
+});
+
+function updateCard(id) {
+  const s = sprees.find(x => x.id === id);
+  document.getElementById('card-' + id).classList.toggle('active', state[id].active);
+  if (typeof s.secret === 'function') document.getElementById('teaser-' + id).textContent = s.secret();
+  document.getElementById('effect-' + id).textContent = s.effectFn();
+}
+
+function toggleSpree(id) {
+  state[id].active = !state[id].active;
+  updateCard(id);
+  redraw(true);
+}
+
+const mitigationsEl = document.getElementById('mitigations');
+mitigations.forEach(m => {
+  const card = document.createElement('div');
+  card.className = 'card mitig' + (mstate[m.id].active ? ' active' : '');
+  card.id = 'card-' + m.id;
+  card.style.setProperty('--cc', m.color);
+  card.style.setProperty('--bg', hexAlpha(m.color, 0.08));
+  card.innerHTML = `
+    <div class="label-row">
+      <span class="teaser" id="teaser-${m.id}">${m.secret}</span>
+    </div>
+    <div class="effect" id="effect-${m.id}">${m.effectFn()}</div>`;
+  card.addEventListener('click', () => toggleMitig(m.id));
+  mitigationsEl.appendChild(card);
+});
+
+function toggleMitig(id) {
+  mstate[id].active = !mstate[id].active;
+  if (mstate[id].active && (id === 'm2' || id === 'm3')) {
+    const other = id === 'm2' ? 'm3' : 'm2';
+    mstate[other].active = false;
+    document.getElementById('card-' + other).classList.remove('active');
+  }
+  const m = mitigations.find(x => x.id === id);
+  document.getElementById('card-' + id).classList.toggle('active', mstate[id].active);
+  document.getElementById('effect-' + id).textContent = m.effectFn();
+  redraw(true);
+}
+
+// ─────────────────────────────────────────────
+// BUILD SETTINGS PANEL
+// ─────────────────────────────────────────────
+const TEXT_KEYS   = ['quota','modelMult','outFactor','bustEvery','compactClearEvery'];
+const SLIDER_KEYS_COL1 = ['systemTok','mcpCount','docTok'];
+const SLIDER_KEYS_COL2 = ['inputTok','ideTok','outputTok','thinkTok','outputTokLong'];
+const SLIDER_KEYS = [...SLIDER_KEYS_COL1, ...SLIDER_KEYS_COL2];
+
+function fmtVal(key, v) {
+  return v.toLocaleString();
+}
+
+function syncAll() {
+  sprees.forEach(s => updateCard(s.id));
+  mitigations.forEach(m => { document.getElementById('effect-' + m.id).textContent = m.effectFn(); });
+}
+
+// Text inputs (quota, outFactor, modelMult)
+const textGrid = document.getElementById('settingsGridText');
+TEXT_KEYS.forEach(key => {
+  const param = PARAMS[key];
+  const field = document.createElement('div');
+  field.className = 'setting-field';
+  field.innerHTML = `<label class="setting-label">${param.label}</label>
+    <input class="setting-input" type="number" id="param-${key}" value="${param.value}">`;
+  textGrid.appendChild(field);
+  field.querySelector('input').addEventListener('change', e => {
+    param.value = parseFloat(e.target.value) || 0;
+    syncAll();
+    redraw();
+  });
+});
+
+// Sliders (all AI-derived params)
+function buildSliderCol(containerId, keys) {
+  const col = document.getElementById(containerId);
+  keys.forEach(key => {
+  const param = PARAMS[key];
+  const field = document.createElement('div');
+  field.className = 'slider-field';
+  field.innerHTML = `
+    <label class="setting-label">${param.label}</label>
+    <div class="setting-slider-wrap">
+      <span class="setting-min">${param.min.toLocaleString()}</span>
+      <input type="range" class="setting-slider" id="param-${key}"
+             min="${param.min}" max="${param.max}" step="${param.step}" value="${param.value}">
+      <span class="setting-max">${param.max.toLocaleString()}</span>
+      <span class="setting-value" id="val-${key}">${fmtVal(key, param.value)}</span>
+    </div>`;
+    col.appendChild(field);
+    field.querySelector('input').addEventListener('input', e => {
+      param.value = parseFloat(e.target.value);
+      document.getElementById('val-' + key).textContent = fmtVal(key, param.value);
+      syncAll();
+      redraw();
+    });
+  });
+}
+buildSliderCol('slidersCol1', SLIDER_KEYS_COL1);
+buildSliderCol('slidersCol2', SLIDER_KEYS_COL2);
+
+// Reset button
+document.getElementById('resetBtn').addEventListener('click', () => {
+  const defaults = { systemTok:5000, inputTok:100, outputTok:600, mcpCount:10, ideTok:7000, outputTokLong:8000, thinkTok:8000, docTok:20000 };
+  SLIDER_KEYS.forEach(key => {
+    PARAMS[key].value = defaults[key];
+    document.getElementById('param-' + key).value = defaults[key];
+    document.getElementById('val-' + key).textContent = fmtVal(key, defaults[key]);
+  });
+  syncAll();
+  redraw(true);
+});
+
+function applyToSliders(valueFn) {
+  SLIDER_KEYS.forEach(key => {
+    const p = PARAMS[key];
+    const v = valueFn(p);
+    p.value = v;
+    document.getElementById('param-' + key).value = v;
+    document.getElementById('val-' + key).textContent = fmtVal(key, v);
+  });
+  syncAll();
+  redraw(true);
+}
+
+document.getElementById('minBtn').addEventListener('click', () => applyToSliders(p => p.min));
+document.getElementById('maxBtn').addEventListener('click', () => applyToSliders(p => p.max));
+
+// Mix button
+document.getElementById('remixBtn').addEventListener('click', () => {
+  applyToSliders(p => {
+    const steps = Math.floor((p.max - p.min) / p.step);
+    return (p.min + p.step) + Math.round(Math.random() * (steps - 1)) * p.step;
+  });
+  redraw(true);
+});
+
+// ─────────────────────────────────────────────
+// SIMULATION
+// Returns array of per-turn block arrays: turns[t] = [{type, tokens, factor}, ...]
+// Each turn: context blocks billed at cacheCost, then new user/think/assist at full cost.
+// Context always starts with [sys, mcp, doc?, compact?]; each turn appends (user,think,assist).
+// doc and compact blocks are always emitted (tokens=0 when absent) so array lengths stay uniform.
+// ─────────────────────────────────────────────
+function turnCost(blocks) { return blocks.reduce((s, b) => s + b.tokens * b.factor, 0); }
+
+function simulate(p) {
+  let docTok          = p.docTok > 0 ? p.docTok : 0;
+  let compactTok      = 0;
+  let compactProducedAt = 1;
+  let history         = [];   // {type,tokens,producedAt} triplets of past turns
+  let cacheCost       = 1;
+  const mm = p.modelMult;
+  const of = p.outFactor;
+  const turns = [];
+
+  for (let t = 1; t <= TURNS; t++) {
+    if (p.bustCache && t % PARAMS.bustEvery.value === 0) cacheCost = 1;
+
+    const contextSize = p.systemTok + p.mcpTok + docTok + compactTok
+                      + history.reduce((s, b) => s + b.tokens, 0);
+    const autoTriggered = p.autoCompact && contextSize > p.maxContextLen * (p.autoCompactPct / 100);
+    if ((p.compactEvery > 0 && t % p.compactEvery === 0) || autoTriggered) {
+      const compactible = docTok + compactTok + history.reduce((s, b) => s + b.tokens, 0);
+      compactTok        = Math.round(compactible * 0.1);
+      compactProducedAt = t;
+      docTok            = 0;
+      history           = [];
+    }
+    if (p.clearEvery > 0 && t % p.clearEvery === 0) {
+      docTok     = 0;
+      compactTok = 0;
+      history    = [];
+    }
+
+    const cf = cacheCost;
+    const blocks = [
+      { type:'sys',     tokens: p.systemTok, factor: cf * mm, producedAt: 1 },
+      { type:'mcp',     tokens: p.mcpTok,    factor: cf * mm, producedAt: 1 },
+      { type:'doc',     tokens: docTok,       factor: cf * mm, producedAt: 1 },
+      { type:'compact', tokens: compactTok,   factor: cf * mm, producedAt: compactProducedAt },
+      ...history.map(b => ({ ...b, factor: cf * mm })),
+      { type:'user',   tokens: p.inputTok,  factor: 1  * mm, producedAt: t },
+      { type:'think',  tokens: p.thinkTok,  factor: of * mm, producedAt: t },
+      { type:'assist', tokens: p.outputTok, factor: of * mm, producedAt: t },
+    ];
+    turns.push(blocks);
+
+    history.push(
+      { type:'user',   tokens: p.inputTok,                              producedAt: t },
+      { type:'think',  tokens: p.discardThink ? 0 : p.thinkTok,  producedAt: t },
+      { type:'assist', tokens: p.outputTok,                       producedAt: t },
+    );
+
+    if (p.kvCache) cacheCost = 0.1;
+  }
+  return turns;
+}
+
+function computeQuotaHits(p) {
+  const hits = [];
+  let docTok     = p.docTok > 0 ? p.docTok : 0;
+  let compactTok = 0;
+  let histTok    = 0;
+  let cacheCost  = 1;
+  let sessionCost = 0;
+  const mm = p.modelMult, of = p.outFactor;
+
+  for (let t = 1; t <= TURNS * 4 && hits.length < 20; t++) {
+    if (p.bustCache && t % PARAMS.bustEvery.value === 0) cacheCost = 1;
+
+    if (p.compactEvery > 0 && t % p.compactEvery === 0) {
+      compactTok = Math.round((docTok + compactTok + histTok) * 0.1);
+      docTok = 0; histTok = 0;
+    }
+    if (p.clearEvery > 0 && t % p.clearEvery === 0) {
+      docTok = 0; compactTok = 0; histTok = 0;
+    }
+
+    const cf = cacheCost;
+    sessionCost += (p.systemTok + p.mcpTok + docTok + compactTok + histTok) * cf * mm
+                 + p.inputTok * mm
+                 + (p.thinkTok + p.outputTok) * of * mm;
+    histTok += p.inputTok + p.thinkTok + p.outputTok;
+    if (p.kvCache) cacheCost = 0.1;
+
+    if (sessionCost >= PARAMS.quota.value) { hits.push(t); sessionCost = 0; }
+    if (t > TURNS && hits.length && hits[hits.length - 1] <= TURNS) break;
+  }
+  return hits;
+}
+
+function getFullParams() {
+  let p = getBase();
+  mitigations.forEach(m => { if (mstate[m.id].active) p = m.apply(p); });
+  sprees.forEach(s => { if (state[s.id].active) p = s.apply(p); });
+  return p;
+}
+
+function buildCurves() {
+  const CONTEXT_IDS = new Set(['s6', 's5', 's3', 's2']);
+
+  // Base = getBase() + mitigations + context-sizing sprees.
+  let pCtx = getBase();
+  mitigations.forEach(m => { if (mstate[m.id].active) pCtx = m.apply(pCtx); });
+  sprees.forEach(s => {
+    if (CONTEXT_IDS.has(s.id) && state[s.id].active) pCtx = s.apply(pCtx);
+  });
+
+  // Stack behavioural sprees on top (everything except context-sizing sprees).
+  const curves = [simulate(pCtx)];
+  let p = pCtx;
+  sprees.forEach(s => {
+    if (CONTEXT_IDS.has(s.id)) return;
+    if (state[s.id].active) { p = s.apply(p); curves.push(simulate(p)); }
+  });
+
+  // Coloured bands only for behavioural sprees.
+  const bandsActive = sprees.filter(s => !CONTEXT_IDS.has(s.id) && state[s.id].active);
+
+  const quotaHits = computeQuotaHits(getFullParams());
+  return { curves, active: bandsActive, quotaHits };
+}
+
+
+function niceMax(v) {
+  if (v <= 0) return 10000;
+  const mag = Math.pow(10, Math.floor(Math.log10(v)) - 1);
+  for (const s of [1,2,2.5,5,10,20,25,50,100]) { const c = Math.ceil(v/(mag*s))*(mag*s); if (c >= v) return c; }
+  return Math.ceil(v/mag)*mag;
+}
+
+// ─────────────────────────────────────────────
+// CHART
+// ─────────────────────────────────────────────
+let _curves = [], _active = [], _quotaHits = [];
+let _renderMode = 'pertokens';
+let _hitmap = [];
+
+const TYPE_LABEL = {
+  sys:'System prompt', mcp:'MCP tools', doc:'Document',
+  compact:'Compacted context', user:'User input', think:'Thinking', assist:'Assistant output',
+};
+
+function tipContent(hit) {
+  const p = getFullParams();
+  const mm = p.modelMult, of = p.outFactor;
+  const lines = [`<b>Turn ${hit.turnNum}</b>`];
+  const label = TYPE_LABEL[hit.type] || hit.type;
+  const isCurrentTurn = hit.producedAt === hit.turnNum;
+  lines.push(hit.producedAt != null && !isCurrentTurn ? `${label} (from turn ${hit.producedAt})` : label);
+  if (hit.tokens > 0) lines.push(`${hit.tokens.toLocaleString()} tokens`);
+  if (_renderMode !== 'pertokens' && hit.cost > 0) {
+    lines.push(`${_renderMode === 'total' ? 'Total cost' : 'Cost'}: ${Math.round(hit.cost).toLocaleString()}`);
+    if (hit.factor != null) {
+      const rateParts = [];
+      const isOutputRate = isCurrentTurn && (hit.type === 'think' || hit.type === 'assist');
+      if (isOutputRate) {
+        if (of !== 1) rateParts.push(`output ×${of}`);
+      } else {
+        const cf = mm > 0 ? hit.factor / mm : hit.factor;
+        if (cf < 0.9) rateParts.push(`KV cache ×${+cf.toFixed(2)}`);
+      }
+      if (mm !== 1) rateParts.push(`model ×${mm}`);
+      if (rateParts.length) lines.push(rateParts.join(', '));
+    }
+  } else if (_renderMode === 'pertokens' && hit.factor != null) {
+    const cf = mm > 0 ? hit.factor / mm : hit.factor;
+    if (cf < 0.9) lines.push(`KV cache ×${+cf.toFixed(2)}`);
+  }
+  return lines.join('<br>');
+}
+
+const bandPlugin = {
+  id: 'bandPlugin',
+  beforeDatasetsDraw(ch) {
+    _hitmap = [];
+    const curves = _curves, active = _active;
+    if (!curves.length) return;
+    const xs = ch.scales.x, ys = ch.scales.y, ctx = ch.ctx;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(xs.left, ys.top, xs.right - xs.left, ys.bottom - ys.top);
+    ctx.clip();
+    const py  = v => ys.getPixelForValue(v);
+    const barW = (xs.getPixelForValue(1.5) - xs.getPixelForValue(0.5)) * 0.96;
+    const barX = t => xs.getPixelForValue(t) - barW / 2;
+    const C = {
+      sys:'rgba(188,22,22,0.92)', mcp:'rgba(26,122,138,0.90)',
+      compact:'rgba(30,72,192,0.88)', doc:'rgba(144,40,120,0.90)',
+      user:'rgba(220,172,0,0.92)', think:'rgba(26,138,64,0.90)', assist:'rgba(205,78,15,0.90)',
+    };
+    const CONV = new Set(['user','think','assist']);
+
+    // Block arrays always: [sys, mcp, doc, compact, ...history×(u,th,a), user, think, assist]
+    // PREAMBLE = 4, CURRENT = 3; histSlots = (blocks.length - 7) / 3
+    const PREAMBLE = 4, CURRENT = 3;
+
+    for (let i = 0; i < TURNS; i++) {
+      const bx = barX(i + 1);
+      let y = 0;
+      const seg = (h, color, meta = {}) => {
+        if (h <= 0) return;
+        ctx.fillStyle = color;
+        const top = py(y + h), bot = py(y);
+        ctx.fillRect(bx, top, barW, bot - top);
+        _hitmap.push({ x1: bx, x2: bx + barW, y1: top, y2: bot, turnNum: i + 1, tokens: 0, cost: 0, ...meta });
+        y += h;
+      };
+      if (_renderMode === 'pertokens') {
+        const blocks = curves[0][i];
+        const histSlots = (blocks.length - (PREAMBLE + CURRENT)) / 3;
+        // Preamble
+        for (let j = 0; j < PREAMBLE; j++) {
+          const b = blocks[j];
+          seg(b.tokens, C[b.type], { type: b.type, tokens: b.tokens, factor: b.factor, producedAt: b.producedAt });
+        }
+        // History and current
+        const curr = PREAMBLE + histSlots * 3;
+        if (_breakdown === 'slot') {
+          for (let k = 0; k < histSlots; k++) {
+            const base = PREAMBLE + k * 3;
+            seg(blocks[base].tokens,   C.user,   { type:'user',   tokens:blocks[base].tokens,   factor:blocks[base].factor,   producedAt:blocks[base].producedAt   });
+            seg(blocks[base+1].tokens, C.think,  { type:'think',  tokens:blocks[base+1].tokens, factor:blocks[base+1].factor, producedAt:blocks[base+1].producedAt });
+            seg(blocks[base+2].tokens, C.assist, { type:'assist', tokens:blocks[base+2].tokens, factor:blocks[base+2].factor, producedAt:blocks[base+2].producedAt });
+          }
+          seg(blocks[curr].tokens,   C.user,   { type:'user',   tokens:blocks[curr].tokens,   factor:blocks[curr].factor,   producedAt:blocks[curr].producedAt   });
+          seg(blocks[curr+1].tokens, C.think,  { type:'think',  tokens:blocks[curr+1].tokens, factor:blocks[curr+1].factor, producedAt:blocks[curr+1].producedAt });
+          seg(blocks[curr+2].tokens, C.assist, { type:'assist', tokens:blocks[curr+2].tokens, factor:blocks[curr+2].factor, producedAt:blocks[curr+2].producedAt });
+        } else {
+          // Aggregate ALL turns (history + current) by type
+          let tu = blocks[curr].tokens, tth = blocks[curr+1].tokens, ta = blocks[curr+2].tokens;
+          for (let k = 0; k < histSlots; k++) {
+            const base = PREAMBLE + k * 3;
+            tu  += blocks[base].tokens;
+            tth += blocks[base+1].tokens;
+            ta  += blocks[base+2].tokens;
+          }
+          seg(tu,  C.user,   { type:'user',   tokens:tu  });
+          seg(tth, C.think,  { type:'think',  tokens:tth });
+          seg(ta,  C.assist, { type:'assist', tokens:ta  });
+        }
+
+      } else if (_breakdown === 'slot') {
+        const srcCurve = curves[curves.length - 1];
+
+        if (_renderMode === 'total') {
+          for (let k = 0; k <= i; k++) {
+            const costs = {}, toks = {}, prodAt = {};
+            for (const b of srcCurve[k]) {
+              costs[b.type] = (costs[b.type] || 0) + b.tokens * b.factor;
+              toks[b.type]  = (toks[b.type]  || 0) + b.tokens;
+              if (!prodAt[b.type]) prodAt[b.type] = b.producedAt;
+            }
+            seg(costs.sys     || 0, C.sys,     { type:'sys',     tokens:toks.sys     ||0, cost:costs.sys     ||0, producedAt:prodAt.sys     });
+            seg(costs.mcp     || 0, C.mcp,     { type:'mcp',     tokens:toks.mcp     ||0, cost:costs.mcp     ||0, producedAt:prodAt.mcp     });
+            seg(costs.compact || 0, C.compact, { type:'compact', tokens:toks.compact ||0, cost:costs.compact ||0, producedAt:prodAt.compact });
+            seg(costs.doc     || 0, C.doc,     { type:'doc',     tokens:toks.doc     ||0, cost:costs.doc     ||0, producedAt:prodAt.doc     });
+            seg(costs.user    || 0, C.user,    { type:'user',    tokens:toks.user    ||0, cost:costs.user    ||0, producedAt:prodAt.user    });
+            seg(costs.think   || 0, C.think,   { type:'think',   tokens:toks.think   ||0, cost:costs.think   ||0, producedAt:prodAt.think   });
+            seg(costs.assist  || 0, C.assist,  { type:'assist',  tokens:toks.assist  ||0, cost:costs.assist  ||0, producedAt:prodAt.assist  });
+          }
+        } else {
+          // percost by slot
+          const blocks = srcCurve[i];
+          const histSlots = (blocks.length - (PREAMBLE + CURRENT)) / 3;
+          for (let j = 0; j < PREAMBLE; j++) {
+            const b = blocks[j];
+            seg(b.tokens * b.factor, C[b.type], { type:b.type, tokens:b.tokens, factor:b.factor, cost:b.tokens*b.factor, producedAt:b.producedAt });
+          }
+          for (let k = 0; k < histSlots; k++) {
+            const base = PREAMBLE + k * 3;
+            seg(blocks[base].tokens   * blocks[base].factor,   C.user,   { type:'user',   tokens:blocks[base].tokens,   factor:blocks[base].factor,   cost:blocks[base].tokens  *blocks[base].factor,   producedAt:blocks[base].producedAt   });
+            seg(blocks[base+1].tokens * blocks[base+1].factor, C.think,  { type:'think',  tokens:blocks[base+1].tokens, factor:blocks[base+1].factor, cost:blocks[base+1].tokens*blocks[base+1].factor, producedAt:blocks[base+1].producedAt });
+            seg(blocks[base+2].tokens * blocks[base+2].factor, C.assist, { type:'assist', tokens:blocks[base+2].tokens, factor:blocks[base+2].factor, cost:blocks[base+2].tokens*blocks[base+2].factor, producedAt:blocks[base+2].producedAt });
+          }
+          const curr = PREAMBLE + histSlots * 3;
+          seg(blocks[curr].tokens   * blocks[curr].factor,   C.user,   { type:'user',   tokens:blocks[curr].tokens,   factor:blocks[curr].factor,   cost:blocks[curr].tokens  *blocks[curr].factor,   producedAt:blocks[curr].producedAt   });
+          seg(blocks[curr+1].tokens * blocks[curr+1].factor, C.think,  { type:'think',  tokens:blocks[curr+1].tokens, factor:blocks[curr+1].factor, cost:blocks[curr+1].tokens*blocks[curr+1].factor, producedAt:blocks[curr+1].producedAt });
+          seg(blocks[curr+2].tokens * blocks[curr+2].factor, C.assist, { type:'assist', tokens:blocks[curr+2].tokens, factor:blocks[curr+2].factor, cost:blocks[curr+2].tokens*blocks[curr+2].factor, producedAt:blocks[curr+2].producedAt });
+        }
+
+      } else {
+        // by type
+        if (_renderMode === 'total') {
+          const costs = {};
+          for (let k = 0; k <= i; k++)
+            for (const b of curves[curves.length-1][k]) costs[b.type] = (costs[b.type] || 0) + b.tokens * b.factor;
+          ['sys','mcp','compact','doc','user','think','assist'].forEach(t => seg(costs[t] || 0, C[t], { type:t, cost:costs[t]||0 }));
+        } else {
+          const costs = {};
+          for (const b of curves[curves.length-1][i]) costs[b.type] = (costs[b.type]||0) + b.tokens * b.factor;
+          ['sys','mcp','compact','doc','user','think','assist'].forEach(t => seg(costs[t] || 0, C[t], { type:t, cost:costs[t]||0 }));
+        }
+      }
+    }
+
+    ctx.restore();
+  },
+  afterDraw(ch) {
+    const xs = ch.scales.x, ys = ch.scales.y, ctx = ch.ctx;
+    ctx.save();
+    // quota line — both cost views, full width, only when within y range
+    if (_renderMode !== 'pertokens') {
+      const qy = ys.getPixelForValue(PARAMS.quota.value);
+      if (qy >= ys.top && qy <= ys.bottom) {
+        ctx.beginPath(); ctx.moveTo(xs.left, qy); ctx.lineTo(xs.right, qy);
+        ctx.strokeStyle = '#e03020'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 3]); ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+    // red quota-hit ticks — top flush with x-axis line
+    _quotaHits.filter(t => t <= TURNS).forEach((turn, idx) => {
+      const x = xs.getPixelForValue(turn);
+      ctx.beginPath(); ctx.moveTo(x, ys.bottom); ctx.lineTo(x, ys.bottom + 20);
+      ctx.strokeStyle = '#e03020'; ctx.lineWidth = 5; ctx.setLineDash([]); ctx.stroke();
+      ctx.fillStyle = '#e03020';
+      ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(turn, x, ys.bottom + 44);
+      if (idx === 0) {
+        ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+        const numLeft = x - ctx.measureText(String(turn)).width / 2;
+        ctx.font = '14px Inter, system-ui, sans-serif';
+        const gap = ctx.measureText(' ').width;
+        ctx.textAlign = 'right';
+        ctx.fillText('quota reached at turn', numLeft - gap, ys.bottom + 44);
+      }
+    });
+    // green spend tick — top of last bar, label centred above
+    if (_curves.length) {
+      const lastCurve = _curves[_curves.length - 1];
+      const finalCost = _renderMode === 'total'
+        ? lastCurve.reduce((s, t) => s + turnCost(t), 0)
+        : turnCost(lastCurve[TURNS - 1]);
+      const x = xs.getPixelForValue(TURNS + 0.5);
+      ctx.fillStyle = '#1a8a40';
+      ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(fmtK(finalCost), x, ys.top + 22);
+    }
+    ctx.restore();
+  }
+};
+
+Chart.register(bandPlugin);
+
+const chart = new Chart(document.getElementById('mainChart'), {
+  type: 'line',
+  data: { datasets: [
+    { label:'quota', data: [], hidden: true, fill:false, tension:0, pointRadius:0 }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend:{display:false}, tooltip:{enabled:false}, bandPlugin:{} },
+    animation: { duration: 0 },
+    layout: { padding: { bottom: 44 } },
+    scales: {
+      x: { type:'linear', min:0.5, max:TURNS+0.5,
+           afterBuildTicks(axis) {
+             const step = TURNS <= 5 ? 1 : TURNS <= 50 ? 10 : TURNS <= 100 ? 20 : 50;
+             axis.ticks = [];
+             for (let i = 1; i <= TURNS; i++) {
+               if (i === 1 || i % step === 0) axis.ticks.push({ value: i });
+             }
+           },
+           ticks:{ color:'#3a3028', font:{weight:'600',size:11}, callback: v => _quotaHits.includes(v) ? '' : v },
+           grid:{ color:'#eeece8' } },
+      y: { ticks:{ color:'#3a3028', font:{weight:'600',size:11}, callback: v => fmtK(v) }, grid:{ color:'#eeece8' }, min:0 }
+    }
+  }
+});
+
+function sizeChart() {
+  chart.resize();
+}
+
+
+// ─────────────────────────────────────────────
+// ANIMATION
+// ─────────────────────────────────────────────
+let _animId = null;
+const ANIM_MS = 450;
+
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+function lerpPt(a, b, t) {
+  if (a.length !== b.length) return b;
+  return a.map((ba, i) => ({
+    type:   ba.type,
+    tokens: ba.tokens + (b[i].tokens - ba.tokens) * t,
+    factor: ba.factor + (b[i].factor - ba.factor) * t,
+  }));
+}
+
+function padCurves(arr, n) {
+  return arr.length >= n ? arr : [...arr, ...Array(n - arr.length).fill(arr[arr.length - 1])];
+}
+
+function animateTo(fromCurves, fromYMax, fromActive, toCurves, toActive, toYMax, toQuotaHits) {
+  if (_animId !== null) { cancelAnimationFrame(_animId); _animId = null; }
+  const n         = Math.max(fromCurves.length, toCurves.length);
+  const padFrom   = padCurves(fromCurves, n);
+  const padTo     = padCurves(toCurves,   n);
+  const midActive = fromActive.length >= toActive.length ? fromActive : toActive;
+  const start     = performance.now();
+
+  function frame(now) {
+    const raw = Math.min((now - start) / ANIM_MS, 1);
+    const t   = easeOut(raw);
+    _curves = padFrom.map((fc, ci) => fc.map((fp, ti) => lerpPt(fp, padTo[ci][ti], t)));
+    _active = midActive;
+    chart.options.scales.y.max = fromYMax + (toYMax - fromYMax) * t;
+    chart.update('none');
+    if (raw < 1) {
+      _animId = requestAnimationFrame(frame);
+    } else {
+      _curves    = toCurves;
+      _active    = toActive;
+      _quotaHits = toQuotaHits;
+      chart.options.scales.y.max = toYMax;
+      chart.update('none');
+      _animId = null;
+    }
+  }
+  _animId = requestAnimationFrame(frame);
+}
+
+// ─────────────────────────────────────────────
+// REDRAW
+// ─────────────────────────────────────────────
+function redraw(animate = false) {
+  updateUrl();
+  if (!animate && _animId !== null) { cancelAnimationFrame(_animId); _animId = null; }
+  _renderMode = mode;
+  document.getElementById('breakdownToggle').style.visibility = 'visible';
+
+  if (mode === 'pertokens') {
+    const turns = simulate(getFullParams());
+    let tokMax = 0;
+    turns.forEach(turn => { const t = turn.reduce((s, b) => s + b.tokens, 0); tokMax = Math.max(tokMax, t); });
+    const newCurves = [turns];
+    const toYMax    = niceMax(tokMax * 1.05);
+    chart.data.datasets[0].hidden = true;
+    if (animate && _curves.length > 0) {
+      animateTo(_curves, chart.options.scales.y.max, _active, newCurves, [], toYMax, []);
+    } else {
+      _curves    = newCurves;
+      _active    = [];
+      _quotaHits = [];
+      chart.options.scales.y.max = toYMax;
+      chart.update('none');
+    }
+    setTimeout(sizeChart, 20);
+    return;
+  }
+
+  const { curves, active, quotaHits } = buildCurves();
+  const lastCurve = curves[curves.length - 1];
+  let yMaxVal = 0;
+  if (mode === 'total') {
+    let cum = 0;
+    lastCurve.forEach(turn => { cum += turnCost(turn); yMaxVal = Math.max(yMaxVal, cum); });
+  } else {
+    lastCurve.forEach(turn => { yMaxVal = Math.max(yMaxVal, turnCost(turn)); });
+  }
+  const toYMax      = niceMax(yMaxVal * 1.05);
+  const toQuotaHits = mode === 'total' ? quotaHits : [];
+  if (animate && _curves.length > 0) {
+    animateTo(_curves, chart.options.scales.y.max, _active, curves, active, toYMax, toQuotaHits);
+  } else {
+    _curves    = curves;
+    _active    = active;
+    _quotaHits = toQuotaHits;
+    chart.options.scales.y.max = toYMax;
+    chart.update('none');
+  }
+  setTimeout(sizeChart, 20);
+}
+
+// ─────────────────────────────────────────────
+// BREAKDOWN CONSTRAINT
+// ─────────────────────────────────────────────
+function applyBreakdownConstraint() {
+  _breakdown = _breakdownPref;
+  const cb = document.getElementById('combinedCheck');
+  cb.checked = _breakdown === 'type';
+  document.getElementById('breakdownToggle').classList.remove('forced');
+}
+
+// ─────────────────────────────────────────────
+// MODE TOGGLE
+// ─────────────────────────────────────────────
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    mode = btn.dataset.mode;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+    applyBreakdownConstraint();
+    redraw();
+  });
+});
+
+// ─────────────────────────────────────────────
+// BREAKDOWN TOGGLE
+// ─────────────────────────────────────────────
+document.getElementById('discardThinkCheck').addEventListener('change', () => redraw(true));
+document.getElementById('autoCompactCheck').addEventListener('change', () => redraw(true));
+document.getElementById('autoCompactPct').addEventListener('change', () => redraw(true));
+document.querySelectorAll('input[name="maxContextLen"]').forEach(r => r.addEventListener('change', () => redraw(true)));
+
+document.getElementById('combinedCheck').addEventListener('change', e => {
+  _breakdownPref = e.target.checked ? 'type' : 'slot';
+  _breakdown = _breakdownPref;
+  redraw();
+});
+
+// ─────────────────────────────────────────────
+// TURNS CONTROL
+// ─────────────────────────────────────────────
+function applyTurns() {
+  TURNS = TURN_STEPS[turnStepIdx];
+  document.getElementById('turnsLabel').textContent = 'Turns: ' + TURNS;
+  document.getElementById('turnsSlider').value = turnStepIdx;
+  chart.options.scales.x.max = TURNS + 0.5;
+  applyBreakdownConstraint();
+  redraw();
+}
+document.getElementById('turnsSlider').addEventListener('input', e => {
+  turnStepIdx = parseInt(e.target.value);
+  applyTurns();
+});
+
+// ─────────────────────────────────────────────
+// URL SHARING
+// ─────────────────────────────────────────────
+const PARAM_URL = {
+  systemTok:         'sys',
+  inputTok:          'in',
+  outputTok:         'out',
+  mcpCount:          'mcp',
+  ideTok:            'ide',
+  outputTokLong:     'long',
+  thinkTok:          'think',
+  bustEvery:         'bust',
+  docTok:            'doc',
+  compactClearEvery: 'cmp',
+  quota:             'sq',
+  outFactor:         'ofac',
+  modelMult:         'mult',
+};
+const URL_PARAM = Object.fromEntries(Object.entries(PARAM_URL).map(([k,v]) => [v,k]));
+
+const CTX_ENCODE = { 200000: '200k', 1000000: '1m', 2000000: '2m' };
+const CTX_DECODE = Object.fromEntries(Object.entries(CTX_ENCODE).map(([k,v]) => [v, +k]));
+const MODE_ENCODE = { pertokens: 'tok', percost: 'cst', total: 'ttl' };
+const MODE_DECODE = Object.fromEntries(Object.entries(MODE_ENCODE).map(([k,v]) => [v,k]));
+
+const URL_DEFAULTS = {
+  sys:5000, in:100, out:600, mcp:10, ide:7000, long:8000, think:8000,
+  bust:4, doc:20000, cmp:10, sq:1500000, ofac:5, mult:3,
+  dth:1, acp:80, ctx:'200k', t:10, m:'tok', cmb:0,
+};
+
+function applyUrlParams() {
+  const p = new URLSearchParams(location.search);
+  if (!p.toString()) return;
+
+  // Sliders + text inputs
+  for (const [urlKey, paramKey] of Object.entries(URL_PARAM)) {
+    if (!p.has(urlKey)) continue;
+    const v = parseFloat(p.get(urlKey));
+    if (isNaN(v)) continue;
+    PARAMS[paramKey].value = v;
+    const el = document.getElementById('param-' + paramKey);
+    if (el) {
+      el.value = v;
+      const valEl = document.getElementById('val-' + paramKey);
+      if (valEl) valEl.textContent = fmtVal(paramKey, v);
+    }
+  }
+
+  // Discard thinking
+  if (p.has('dth')) {
+    const el = document.getElementById('discardThinkCheck');
+    if (el) el.checked = p.get('dth') !== '0';
+  }
+
+  // Auto-compact %
+  if (p.has('acp')) {
+    const v = parseFloat(p.get('acp'));
+    if (!isNaN(v)) { const el = document.getElementById('autoCompactPct'); if (el) el.value = v; }
+  }
+
+  // Context window radio
+  if (p.has('ctx')) {
+    const val = CTX_DECODE[p.get('ctx')];
+    if (val) {
+      const radio = document.querySelector(`input[name="maxContextLen"][value="${val}"]`);
+      if (radio) radio.checked = true;
+    }
+  }
+
+  // Turns
+  if (p.has('t')) {
+    const idx = TURN_STEPS.indexOf(parseInt(p.get('t')));
+    if (idx >= 0) {
+      turnStepIdx = idx;
+      TURNS = TURN_STEPS[idx];
+      document.getElementById('turnsLabel').textContent = 'Turns: ' + TURNS;
+      chart.options.scales.x.max = TURNS + 0.5;
+    }
+  }
+
+  // Mode
+  if (p.has('m')) {
+    const m = MODE_DECODE[p.get('m')];
+    if (m) {
+      mode = m;
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+    }
+  }
+
+  // Combined
+  if (p.has('cmb')) {
+    const el = document.getElementById('combinedCheck');
+    if (el) {
+      el.checked = p.get('cmb') === '1';
+      _breakdownPref = el.checked ? 'type' : 'slot';
+    }
+  }
+
+  // Active sprees
+  if (p.has('sp')) {
+    const ids = p.get('sp').split('').map(n => 's' + n);
+    sprees.forEach(s => { state[s.id].active = ids.includes(s.id); updateCard(s.id); });
+  }
+
+  // Active mitigations
+  if (p.has('mt')) {
+    const raw = p.get('mt');
+    const ids = raw ? raw.split('').map(n => 'm' + n).filter(id => id !== 'm0') : [];
+    mitigations.forEach(m => {
+      mstate[m.id].active = ids.includes(m.id);
+      document.getElementById('card-' + m.id).classList.toggle('active', mstate[m.id].active);
+    });
+  }
+}
+
+let _urlTimer = null;
+function updateUrl() {
+  if (typeof history === 'undefined') return;
+  if (_urlTimer) clearTimeout(_urlTimer);
+  _urlTimer = setTimeout(() => {
+    const p = new URLSearchParams();
+
+    for (const [paramKey, urlKey] of Object.entries(PARAM_URL)) {
+      const v = PARAMS[paramKey].value;
+      if (v !== URL_DEFAULTS[urlKey]) p.set(urlKey, v);
+    }
+
+    const dth = document.getElementById('discardThinkCheck')?.checked ? 1 : 0;
+    if (dth !== URL_DEFAULTS.dth) p.set('dth', dth);
+
+    const acp = parseFloat(document.getElementById('autoCompactPct')?.value) || 80;
+    if (acp !== URL_DEFAULTS.acp) p.set('acp', acp);
+
+    const ctxVal = parseFloat(document.querySelector('input[name="maxContextLen"]:checked')?.value) || 200000;
+    const ctxStr = CTX_ENCODE[ctxVal] || '200k';
+    if (ctxStr !== URL_DEFAULTS.ctx) p.set('ctx', ctxStr);
+
+    if (TURNS !== URL_DEFAULTS.t) p.set('t', TURNS);
+
+    const mStr = MODE_ENCODE[mode] || 'tok';
+    if (mStr !== URL_DEFAULTS.m) p.set('m', mStr);
+
+    const cmb = document.getElementById('combinedCheck')?.checked ? 1 : 0;
+    if (cmb !== URL_DEFAULTS.cmb) p.set('cmb', cmb);
+
+    const activeSp = sprees.filter(s => state[s.id].active).map(s => s.id.slice(1));
+    if (activeSp.length) p.set('sp', activeSp.join(''));
+
+    const activeMt = mitigations.filter(m => mstate[m.id].active).map(m => m.id.slice(1));
+    const defaultMt = mitigations.filter(m => m.defaultActive).map(m => m.id.slice(1));
+    if (activeMt.join('') !== defaultMt.join(''))
+      p.set('mt', activeMt.length ? activeMt.join('') : '0');
+
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }, 300);
+}
+
+document.getElementById('copyLinkBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(location.href).then(() => {
+    const btn = document.getElementById('copyLinkBtn');
+    const prev = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = prev; }, 1500);
+  });
+});
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+applyUrlParams();
+applyBreakdownConstraint();
+redraw();
+setTimeout(sizeChart, 100);
+window.addEventListener('resize', () => setTimeout(() => { sizeChart(); chart.update('none'); }, 150));
+
+// ─────────────────────────────────────────────
+// HOVER TOOLTIP
+// ─────────────────────────────────────────────
+const _tipEl = document.getElementById('tip');
+document.getElementById('mainChart').addEventListener('mousemove', e => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const hit = _hitmap.find(h => mx >= h.x1 && mx <= h.x2 && my >= h.y1 && my <= h.y2);
+  if (!hit) { _tipEl.style.display = 'none'; return; }
+  _tipEl.innerHTML = tipContent(hit);
+  _tipEl.style.display = 'block';
+  const tw = _tipEl.offsetWidth, th = _tipEl.offsetHeight;
+  let tx = e.clientX + 14, ty = e.clientY - 10;
+  if (tx + tw > window.innerWidth - 8) tx = e.clientX - tw - 14;
+  if (ty + th > window.innerHeight - 8) ty = window.innerHeight - th - 8;
+  if (ty < 8) ty = 8;
+  _tipEl.style.left = tx + 'px';
+  _tipEl.style.top  = ty + 'px';
+});
+document.getElementById('mainChart').addEventListener('mouseleave', () => { _tipEl.style.display = 'none'; });
+
+// After clicking non-input elements, return focus to parent so Marp arrow-key
+// navigation keeps working. Inputs retain focus so the user can type values.
+document.addEventListener('mousedown', e => {
+  if (e.target.tagName !== 'INPUT') {
+    try { window.parent.focus(); } catch (_) {}
+  }
+});
+</script>
+</body>
+</html>

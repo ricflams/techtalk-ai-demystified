@@ -1,0 +1,78 @@
+English words often produce individualized tokens
+
+I andre sprog splittes ordene typisk mere op
+
+한국어의토큰화는복잡합니다
+
+物出新參照致重繪
+
+// Everything becomes tokens everywhere
+for (var i = 0; i < N; i++)
+	sum += func(_data[i]);
+
+I fart in the elevator.
+I en elevator der viser "I fart".	
+
+
+
+
+Please tell me: what is an LLM?
+
+An LLM is a **really well-read autocomplete**.
+
+1. It trained on **massive amounts of text** and learned patterns in language
+2. It generates responses by predicting the **next word**, over and over
+
+No magic — just very sophisticated pattern matching at enormous scale.
+
+             gemini      claude       chatgpt
+sysprompt :  2500        2500         3000
+input/turn:  150+1500    100 + 5000   100 + 6000
+output/turn: 800         800          1200
+mcp:         400         550          400
+big doc:     45000       12000        50000
+thinking:    8000        6000         15000
+long output: 5000        4000         8000
+A 45,000-token payload equates to roughly 33,000 words (or ~90–100 pages of highly technical, dense text). This is a realistic baseline for a modern project snapshot or a complex OpenAPI/Swagger specification file injected at Turn Zero to ground the agent in an unfamiliar codebase.
+
+
+- CHAPTER ONE - \n The Boy Who Lived \n Mr and Mrs Dursley, of number four, ...
+
+I'm going to have a lot of fun with Dudley this summer...
+
+
+
+
+Please tell me: what is an LLM?
+
+An LLM is a really well-read autocomplete.
+
+It trained on massive amounts of text and learned patterns in language
+It generates responses by predicting the next word, over and over
+That's it — no magic, just very sophisticated pattern matching at enormous scale.
+
+Explain briefly how the context grows in a chat like this
+
+Each message you send gets appended to a running transcript — the model sees the entire conversation history on every turn, not just your latest message. That window keeps growing until it hits a hard size limit.
+
+So when I send this third message, the full conversation is re-sent?
+
+Yes, every single turn the full conversation history is re-sent to the model from scratch.
+
+
+
+
+
+
+
+
+
+
+
+All that come in must end up as text
+
+Show json:
+  system
+  messages
+
+  User: 

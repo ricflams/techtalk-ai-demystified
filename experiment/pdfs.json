@@ -1,0 +1,202 @@
+[
+  {
+    "id": "attention",
+    "name": "Attention Is All You Need",
+    "url": "https://arxiv.org/pdf/1706.03762",
+    "filename": "attention.pdf",
+    "description": "Transformer architecture paper, ~15 pages, math equations, attention diagrams",
+    "type": "academic-math",
+    "questions": [
+      "What are the three distinct ways multi-head attention is used within the full Transformer model?",
+      "What are the exact dimensions of the base model: d_model, d_ff, and number of attention heads h?",
+      "What BLEU score did the big Transformer achieve on WMT 2014 English-to-German translation?",
+      "Write out the formula for scaled dot-product attention exactly as it appears in the paper.",
+      "How many encoder layers and how many decoder layers does the base model have?",
+      "What is the total number of parameters in the big model?",
+      "How long did training take for the base model, and on how many GPUs?",
+      "What value is used for warmup_steps in the learning rate schedule?",
+      "What BLEU score did the big Transformer achieve on WMT 2014 English-to-French translation?",
+      "What beam size and length penalty alpha are used during inference/decoding?"
+    ]
+  },
+  {
+    "id": "resnet",
+    "name": "Deep Residual Learning for Image Recognition",
+    "url": "https://arxiv.org/pdf/1512.03385",
+    "filename": "resnet.pdf",
+    "description": "ResNet paper, ~12 pages, many figures and result tables",
+    "type": "academic-figures",
+    "questions": [
+      "What is the central problem or phenomenon that motivates residual learning in this paper?",
+      "How many layers does the deepest ResNet evaluated in the paper have?",
+      "What top-5 error rate did ResNet achieve on ILSVRC 2015 image classification?",
+      "Write out the residual learning formulation as a mathematical equation from the paper.",
+      "What is the difference between identity shortcut connections (option A) and projection shortcuts (option B)?",
+      "What optimizer, initial learning rate, and momentum were used for ImageNet training?",
+      "What top-1 validation error does the 34-layer ResNet achieve compared to the plain 34-layer network?",
+      "What other datasets besides ImageNet were ResNets evaluated on in this paper?",
+      "What is the bottleneck building block and why is it used for deeper networks?",
+      "What mini-batch size was used for ImageNet training?"
+    ]
+  },
+  {
+    "id": "gpt3",
+    "name": "Language Models are Few-Shot Learners (GPT-3)",
+    "url": "https://arxiv.org/pdf/2005.14165",
+    "filename": "gpt3.pdf",
+    "description": "GPT-3 paper, ~75 pages, many tables, large and complex",
+    "type": "academic-large",
+    "questions": [
+      "How many parameters does the largest GPT-3 model have?",
+      "What are the exact architecture dimensions (n_layers, n_heads, d_model) for GPT-3 175B?",
+      "What is the difference between zero-shot, one-shot, and few-shot as defined in this paper?",
+      "What was the largest training dataset used and how was it filtered/processed?",
+      "What few-shot accuracy does GPT-3 achieve on TriviaQA?",
+      "What does the paper say about GPT-3's ability to write convincing fake news articles?",
+      "How many total petaflop/s-days of compute were used to train GPT-3 175B?",
+      "List all eight model sizes (by parameter count) evaluated in the paper.",
+      "What score does GPT-3 achieve on the Winogrande benchmark in few-shot setting?",
+      "What three broad categories of limitations do the authors explicitly acknowledge?"
+    ]
+  },
+  {
+    "id": "irs1040",
+    "name": "IRS Form 1040 (US Individual Income Tax Return)",
+    "url": "https://www.irs.gov/pub/irs-pdf/f1040.pdf",
+    "filename": "irs1040.pdf",
+    "description": "IRS tax form, 2 pages, structured form with fields and layout - tests forms/layout extraction",
+    "type": "form-layout",
+    "questions": [
+      "What tax year does this version of Form 1040 cover?",
+      "What are the four filing status options listed on the form?",
+      "What line number is used to enter wages, salaries, and tips?",
+      "Where (which schedule and line) do you attach additional income sources?",
+      "What line contains the Adjusted Gross Income (AGI)?",
+      "What checkbox or line is related to the standard deduction for dependents?",
+      "What line is used to claim the Child Tax Credit or Credit for Other Dependents?",
+      "What is the label for line 37 (or the last numbered line on page 2)?",
+      "How many separate signature blocks appear at the bottom of the form?",
+      "What information does the 'Third Party Designee' section ask for?"
+    ]
+  },
+  {
+    "id": "nist_cloud",
+    "name": "NIST SP 800-145: The NIST Definition of Cloud Computing",
+    "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+    "filename": "nist_cloud.pdf",
+    "description": "NIST SP 800-145, ~7 pages, pure dense text, the canonical cloud computing definition",
+    "type": "legal-text",
+    "questions": [
+      "What is the complete NIST definition of cloud computing as stated in the document?",
+      "What are the five essential characteristics of cloud computing?",
+      "What are the three cloud service models defined in the document?",
+      "What are the four cloud deployment models?",
+      "How does the document define 'on-demand self-service'?",
+      "How does the document define 'resource pooling'?",
+      "What is the definition of Software as a Service (SaaS) given?",
+      "What is the definition of Infrastructure as a Service (IaaS) given?",
+      "What is a 'community cloud' and who manages it?",
+      "Who are the authors listed and what organization published this document?"
+    ]
+  },
+  {
+    "id": "nist_csf",
+    "name": "NIST Cybersecurity Framework 1.1",
+    "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf",
+    "filename": "nist_csf.pdf",
+    "description": "NIST CSF, ~55 pages, structured with tables and categories, government report",
+    "type": "structured-report",
+    "questions": [
+      "What are the five Core Functions of the NIST Cybersecurity Framework?",
+      "What are the four Implementation Tiers, and what characterizes Tier 1 (Partial)?",
+      "How does the Framework define 'cybersecurity risk'?",
+      "What is a Framework Profile and what are a Current Profile and Target Profile?",
+      "What sector was the Framework originally mandated to address by Executive Order 13636?",
+      "How many Categories and Subcategories are in the Identify (ID) Function?",
+      "How does the Framework relate to or reference NIST Special Publication 800-53?",
+      "What does Tier 4 (Adaptive) require that Tier 3 (Repeatable) does not?",
+      "What does the Framework say about supply chain risk management?",
+      "What are the seven steps of the Framework implementation described in Section 3.2?"
+    ]
+  },
+  {
+    "id": "bert",
+    "name": "BERT: Pre-training of Deep Bidirectional Transformers",
+    "url": "https://arxiv.org/pdf/1810.04805",
+    "filename": "bert.pdf",
+    "description": "BERT paper, ~16 pages, tables, architecture diagrams",
+    "type": "academic-math",
+    "questions": [
+      "What does the BERT acronym stand for?",
+      "What are the two pre-training tasks used by BERT?",
+      "What are the architecture dimensions of BERT-Base (number of layers, attention heads, hidden size)?",
+      "What accuracy does BERT-Large achieve on the MNLI-matched benchmark?",
+      "How does BERT's input representation handle sentence pairs using special tokens?",
+      "What is the [CLS] token used for in fine-tuning tasks?",
+      "What percentage of input tokens are masked during the Masked Language Model pre-training?",
+      "How does BERT compare to OpenAI GPT on the GLUE benchmark score?",
+      "What fine-tuning learning rates does the paper recommend trying?",
+      "What does the ablation study reveal about the importance of bidirectionality vs. left-to-right training?"
+    ]
+  },
+  {
+    "id": "word2vec",
+    "name": "Efficient Estimation of Word Representations in Vector Space (Word2Vec)",
+    "url": "https://arxiv.org/pdf/1301.3666",
+    "filename": "word2vec.pdf",
+    "description": "Word2Vec paper, ~12 pages, small, mostly text with a few tables",
+    "type": "academic-text",
+    "questions": [
+      "What are the two new model architectures proposed in this paper?",
+      "What is the training objective of the Skip-gram model?",
+      "What task is used to measure the quality of word vectors, and how is it structured?",
+      "How does the training time complexity of the proposed models compare to previous neural network language models?",
+      "What is 'negative sampling' as described in the paper?",
+      "What accuracy does the best model achieve on the syntactic question-answer pairs?",
+      "What training corpus is used, and approximately how many words does it contain?",
+      "What does 'subsampling of frequent words' do and why does it help?",
+      "What is the famous vector arithmetic example given in the paper (the analogy example)?",
+      "What vector dimensionality and context window size yield the best results on the analogy task?"
+    ]
+  },
+  {
+    "id": "clip",
+    "name": "Learning Transferable Visual Models From Natural Language Supervision (CLIP)",
+    "url": "https://arxiv.org/pdf/2103.00020",
+    "filename": "clip.pdf",
+    "description": "CLIP paper, ~48 pages, heavily image-intensive with many example images and charts",
+    "type": "academic-images",
+    "questions": [
+      "What does CLIP stand for?",
+      "What is the contrastive training objective used by CLIP?",
+      "What zero-shot ImageNet accuracy does CLIP achieve, and how does it compare to a supervised ResNet-50?",
+      "How many image-text pairs were used to train CLIP, and what is the dataset called?",
+      "What is 'prompt engineering' as used in this paper, and give one example of a prompt template?",
+      "How many datasets are included in the zero-shot transfer evaluation?",
+      "How does CLIP perform on OCR tasks like handwriting recognition (MNIST) in zero-shot?",
+      "What are the key limitations or failure modes the authors describe?",
+      "How does zero-shot CLIP compare to a few-shot linear probe on average across datasets?",
+      "What are the two largest CLIP model architectures described in the paper?"
+    ]
+  },
+  {
+    "id": "gans",
+    "name": "Generative Adversarial Nets (Goodfellow et al.)",
+    "url": "https://arxiv.org/pdf/1406.2661",
+    "filename": "gans.pdf",
+    "description": "Original GAN paper, ~9 pages, small, theoretical with some figures",
+    "type": "academic-math",
+    "questions": [
+      "What are the two neural networks in a GAN and what are their respective objectives?",
+      "Write out the minimax objective function V(D, G) as it appears in the paper.",
+      "What does the paper prove about the form of the optimal discriminator D*(x)?",
+      "What datasets are the generative models trained and evaluated on?",
+      "Describe the training procedure from Algorithm 1: how many steps for D vs. G per iteration?",
+      "What does the paper say about GANs not requiring Markov chains?",
+      "What is the 'non-saturating' heuristic training objective described in Section 3?",
+      "How are the generated samples evaluated, and what log-likelihood values are reported?",
+      "What disadvantages of GANs do the authors acknowledge?",
+      "What extensions and future work do the authors suggest?"
+    ]
+  }
+]

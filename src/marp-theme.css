@@ -19,7 +19,7 @@ img.logo, .cols img.logo {
 /* ─── Slide base ─────────────────────────────────────────── */
 section {
   background: #0d1117;
-  color: #c9d1d9;
+  color: #d8dfe6;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 28px;
   line-height: 1.;
@@ -213,27 +213,42 @@ section::after {
    No <!-- _class: ... --> directives needed.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Act — slides containing h1 ─────────────────────────────── */
-section:has(h1) {
+/* ── Shared: center all heading slides (heading + content form one centred group) ── */
+section:has(h1, h2, h3) {
   justify-content: center;
-  align-items: center;
 }
 
-section:has(h1)::after { display: none; }
+/* ── Shared: hide page number on all heading slides ── */
+section:has(h1, h2, h3)::after { display: none; }
 
-section:has(h1)::before {
+/* ── Shared orb base (replaces gradient top bar on heading slides) ── */
+section:has(h1, h2, h3)::before {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
   background: radial-gradient(circle, rgba(88, 166, 255, 0.18) 0%, rgba(188, 140, 255, 0.12) 45%, transparent 70%);
   border-radius: 50%;
   filter: blur(20px);
   pointer-events: none;
   inset: unset;
+}
+
+/* h2/h3: right-side 280px orb */
+section:has(h2)::before,
+section:has(h3)::before {
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  height: 280px;
+}
+
+/* ── Act — slides containing h1 ─────────────────────────────── */
+section:has(h1)::before {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
   z-index: 0;
 }
 
@@ -252,37 +267,24 @@ section:has(h1) h2 {
   color: #8b949e;
   font-weight: 400;
   margin: 0 0 0.4em;
+  text-align: center;
 }
 
 section:has(h1) p {
   color: #8b949e;
   font-size: 0.9em;
+  text-align: center;
 }
 
-/* ── Chapter — slides containing h2 but no h1 ───────────────── */
-section:has(h2):not(:has(h1)) {
-  justify-content: center;
-  align-items: center;
+/* Lists on heading slides left-align to match paragraphs */
+section:has(h1, h2, h3) ul,
+section:has(h1, h2, h3) ol {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-section:has(h2):not(:has(h1))::after { display: none; }
-
-section:has(h2):not(:has(h1))::before {
-  content: '';
-  position: absolute;
-  right: 4rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(88, 166, 255, 0.18) 0%, rgba(188, 140, 255, 0.12) 45%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(20px);
-  pointer-events: none;
-  inset: unset;
-}
-
-section:has(h2):not(:has(h1)) h2 {
+/* ── Chapter — slides containing h2 ─────────────────────────── */
+section:has(h2) h2 {
   font-size: 2.8em;
   max-width: 100%;
   margin-bottom: 0.4em;
@@ -295,34 +297,12 @@ section:has(h2):not(:has(h1)) h2 {
   color: transparent;
 }
 
-
-/* ── Section — slides containing h3 but no h2/h1 ────────────── */
-section:has(h3):not(:has(h2)):not(:has(h1)) {
-  justify-content: center;
-  align-items: center;
-}
-
-section:has(h3):not(:has(h2)):not(:has(h1))::after { display: none; }
-
-section:has(h3):not(:has(h2)):not(:has(h1))::before {
-  content: '';
-  position: absolute;
-  right: 4rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(88, 166, 255, 0.18) 0%, rgba(188, 140, 255, 0.12) 45%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(20px);
-  pointer-events: none;
-  inset: unset;
-}
-
-section:has(h3):not(:has(h2)):not(:has(h1)) h3 {
+/* ── Section — slides containing h3 ─────────────────────────── */
+section:has(h3) h3 {
   font-size: 1.8em;
   font-weight: 700;
   max-width: 100%;
+  margin-top: 0;
   margin-bottom: 0.4em;
   padding-bottom: 0.1em;
   text-align: center;
@@ -335,17 +315,14 @@ section:has(h3):not(:has(h2)):not(:has(h1)) h3 {
   color: transparent;
 }
 
-section:has(h3):not(:has(h2)):not(:has(h1)) p {
-  color: #8b949e;
-}
+section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) p { color: #8b949e; }
 
 /* h3 + full-size image: tighten top space so the image gets more room */
-section:has(h3):not(:has(h2)):not(:has(h1)):has(img.full) {
-  justify-content: flex-start;
+section:has(h3):has(img.full) {
   padding-top: 1.2rem;
 }
 
-section:has(h3):not(:has(h2)):not(:has(h1)):has(img.full) h3 {
+section:has(h3):has(img.full) h3 {
   margin-top: 0;
   margin-bottom: 0.3em;
 }

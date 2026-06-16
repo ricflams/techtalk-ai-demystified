@@ -45,17 +45,24 @@ I'm going to have a lot of fun with Dudley this summer...
 
 Please tell me: what is an LLM?
 
-An LLM is a really well-read autocomplete.
 
-It trained on massive amounts of text and learned patterns in language
-It generates responses by predicting the next word, over and over
-That's it — no magic, just very sophisticated pattern matching at enormous scale.
+An LLM, or *AI model*, is an autocomplete shaped by human values.
+
+1. It trained on **vast amounts of text** and learned the patterns of language
+2. It **continues the story** by predicting the **next word**, over and over
+3. Its **values and personality** were baked in through further training
+
+No magic — just pattern matching at enormous scale, with values baked in.
+
 
 Explain briefly how the context grows in a chat like this
 
+
 Each message you send gets appended to a running transcript — the model sees the entire conversation history on every turn, not just your latest message. That window keeps growing until it hits a hard size limit.
 
+
 So when I send this third message, the full conversation is re-sent?
+
 
 Yes, every single turn the full conversation history is re-sent to the model from scratch.
 
@@ -76,3 +83,26 @@ Show json:
   messages
 
   User: 
+
+
+
+
+\begin{aligned}  
+\textbf{[1. Embedding \& Positioning]} \quad & \mathbf{X}_0 = \text{Embed}(\mathbf{T}) + \mathbf{P}  && \mathbf{X}_0 \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textbf{[2. Transformer Blocks Core]} \quad & \text{For layers } i = 1 \dots N: \\  
+\\  
+\textit{A. Linear Projections:} \quad & \mathbf{Q} = \mathbf{X}_{i-1}\mathbf{W}^Q, \quad \mathbf{K} = \mathbf{X}_{i-1}\mathbf{W}^K, \quad \mathbf{V} = \mathbf{X}_{i-1}\mathbf{W}^V  && \mathbf{Q}, \mathbf{K}, \mathbf{V} \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textit{B. Causal Attention Engine:} \quad & \mathbf{O}_h = \text{softmax}\left(\frac{\mathbf{Q}_h \mathbf{K}_h^T}{\sqrt{d_k}} + \mathbf{M}\right)\mathbf{V}_h  && \mathbf{O}_h \in \mathbb{R}^{L \times d_v} \\  
+\\  
+\textit{C. Multi-Head Merger:} \quad & \text{MHA}(\mathbf{X}_{i-1}) = \Big[\mathbf{O}_1 ; \mathbf{O}_2 ; \dots ; \mathbf{O}_H\Big]\mathbf{W}^O  && \text{MHA}(\mathbf{X}_{i-1}) \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textit{D. Attention Residual Net:} \quad & \mathbf{X}_{\text{mid}} = \text{LayerNorm}\Big(\mathbf{X}_{i-1} + \text{MHA}(\mathbf{X}_{i-1})\Big)  && \mathbf{X}_{\text{mid}} \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textit{E. Feed-Forward Expansion:} \quad & \text{FFN}(\mathbf{X}_{\text{mid}}) = \sigma\Big(\mathbf{X}_{\text{mid}}\mathbf{W}_1 + \mathbf{b}_1\Big)\mathbf{W}_2 + \mathbf{b}_2  && \text{FFN}(\mathbf{X}_{\text{mid}}) \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textit{F. Decoder Block Output:} \quad & \mathbf{X}_i = \text{LayerNorm}\Big(\mathbf{X}_{\text{mid}} + \text{FFN}(\mathbf{X}_{\text{mid}})\Big)  && \mathbf{X}_i \in \mathbb{R}^{L \times d_{\text{model}}} \\  
+\\  
+\textbf{[3. Language Modeling Head]} \quad & \mathbf{P}_{\text{vocab}} = \text{softmax}\Big(\mathbf{X}_N \mathbf{W}_{\text{lm\_head}}\Big)  && \mathbf{P}_{\text{vocab}} \in \mathbb{R}^{L \times V_{\text{vocab\_size}}}  
+\end{aligned}

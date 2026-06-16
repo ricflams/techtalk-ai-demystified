@@ -1,0 +1,8 @@
+name = "siteimprove-mcp"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "OAUTH_KV"
+id = "c998596807ad49f99fe5cc9b8ee23909"

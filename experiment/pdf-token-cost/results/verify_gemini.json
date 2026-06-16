@@ -1,0 +1,311 @@
+{
+  "attention": {
+    "token_verification": {
+      "predicted": 3880,
+      "actual": 3877,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What future research directions beyond text do the authors suggest in the conclusion?",
+        "pdf": {
+          "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+        },
+        "markdown": {
+          "answer": "In the conclusion, the authors suggest the following future research directions beyond text:\n\n*   **Extend the Transformer to problems involving input",
+          "tokens": 11594
+        }
+      },
+      "q2": {
+        "question": "In the English constituency parsing experiments, what was the WSJ training set size used for fine-tuning?",
+        "pdf": {
+          "answer": "For the English constituency parsing experiments, the Transformer was trained on the Wall Street Journal (WSJ) portion of the Penn Treebank, which consisted of **about 40K training sentences**.",
+          "tokens": 3892
+        },
+        "markdown": {
+          "answer": "In the English constituency parsing experiments, the Transformer was trained on the Wall Street Journal (WSJ",
+          "tokens": 11601
+        }
+      }
+    }
+  },
+  "resnet": {
+    "token_verification": {
+      "predicted": 3106,
+      "actual": 3103,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What detection method was used when applying ResNets to PASCAL VOC and MS COCO, and what mAP did it achieve?",
+        "pdf": {
+          "answer": "For object detection on PASCAL VOC and MS COCO, the ResNet paper adopted the **Faster",
+          "tokens": 3125
+        },
+        "markdown": {
+          "answer": "When applying ResNets to PASCAL VOC and MS COCO, the detection method used was",
+          "tokens": 20266
+        }
+      },
+      "q2": {
+        "question": "The 1202-layer network got a worse result than the 110-layer network \u2014 what explanation do the authors give?",
+        "pdf": {
+          "answer": "In the paper, the authors explain the reason for the 1202-layer network",
+          "tokens": 3127
+        },
+        "markdown": {
+          "answer": "The authors explain that the 1202-layer network performed worse than the 110-layer network due to **overfitting**.\n\nThey state: \"We argue that this is because of overfitting. The 1202-layer network may be unnecessarily large (19.4M) for this small dataset.\"",
+          "tokens": 20268
+        }
+      }
+    }
+  },
+  "gpt3": {
+    "token_verification": {
+      "predicted": 19360,
+      "actual": 19357,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What does the data contamination analysis in Appendix C find for the TriviaQA benchmark?",
+        "pdf": {
+          "answer": "The data contamination analysis in Appendix C finds the following for the TriviaQA benchmark (specifically, the development set",
+          "tokens": 19367
+        },
+        "markdown": {
+          "answer": "The data contamination analysis in Appendix C for the TriviaQA benchmark found the following:\n\n*   **N-gram overlap:** An N-gram length of 10 words was used to check for overlap.\n*   **Dirty examples:** 1390 out of 7993 examples were marked as \"dirty\" (potentially contaminated).\n*   **Clean percentage:** This means 83% of the TriviaQA examples were considered \"clean\" (not contaminated).\n*   **Impact on performance:** The relative difference in performance between evaluating on only the clean examples versus all examples was **0%**. This suggests that contamination had a negligible impact on GPT-3's performance on TriviaQA.",
+          "tokens": 77496
+        }
+      },
+      "q2": {
+        "question": "What few-shot BLEU score does GPT-3 175B achieve on the French-to-English WMT14 translation task?",
+        "pdf": {
+          "answer": "According to Table 3.4, \"Performance on cloze and completion tasks,\" GPT-3 Few-Shot achieves a BLEU score of **39.2** on the Fr\u2192En (French to English) WMT'14 translation task.",
+          "tokens": 19382
+        },
+        "markdown": {
+          "answer": "According to Table 3.4, GPT-3 175B achieves a few-shot BLEU score of **39.2** on the French-to-English WMT14 translation task.",
+          "tokens": 77511
+        }
+      }
+    }
+  },
+  "irs1040": {
+    "token_verification": {
+      "predicted": 526,
+      "actual": 523,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What exactly does the 'Third Party Designee' section at the bottom of the form ask for?",
+        "pdf": {
+          "answer": "The \"Third Party Designee\" section on Form 1040 asks if you want to allow",
+          "tokens": 537
+        },
+        "markdown": {
+          "answer": "The \"Third Party Designee\" section on Form 1040 allows you to grant",
+          "tokens": 9722
+        }
+      },
+      "q2": {
+        "question": "What is the form number and tax year printed at the very bottom footer of the form?",
+        "pdf": {
+          "answer": "The form number is **Form 1040** and the tax year is **2025**.",
+          "tokens": 535
+        },
+        "markdown": {
+          "answer": "The form number is **1040** and the tax year is **2025**.",
+          "tokens": 9720
+        }
+      }
+    }
+  },
+  "nist_cloud": {
+    "token_verification": {
+      "predicted": 1816,
+      "actual": 1813,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What are the full names of both authors listed on the document?",
+        "pdf": {
+          "answer": "The full names of both authors listed on the document are:\n\n*   **Peter Mell**\n*   **Timothy Grance**",
+          "tokens": 1820
+        },
+        "markdown": {
+          "answer": "The full names of the authors listed on the document are:\n\n*   **Peter Mell**\n*   **Timothy Grance**",
+          "tokens": 2280
+        }
+      },
+      "q2": {
+        "question": "What does the document say in its final note about the definition being a 'working definition'?",
+        "pdf": {
+          "answer": "The document does **not** contain a final note stating that its definition is a \"working definition.\"\n\n",
+          "tokens": 1825
+        },
+        "markdown": {
+          "answer": "I have reviewed the document and it does not contain any final note or statement describing the definition as a 'working definition'. The document presents \"The NIST Definition of Cloud Computing\" as a direct and established definition, composed of essential characteristics, service models, and deployment models.",
+          "tokens": 2285
+        }
+      }
+    }
+  },
+  "nist_csf": {
+    "token_verification": {
+      "predicted": 14200,
+      "actual": 14197,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "How does Appendix A describe the relationship between the Framework and the Baldrige Cybersecurity Excellence Builder?",
+        "pdf": {
+          "answer": "Based on Appendix A of the \"Framework for Improving Critical Infrastructure Cybersecurity Version 1.1\", there is **no mention** of the Baldrige Cybersecurity Excellence Builder.\n\nAppendix A primarily presents the Framework Core (Functions, Categories, Subcategories, and Informative References) and lists various standards, guidelines, and practices as Informative References (e.g., CIS CSC, COBIT, ISA 62443, ISO/IEC 27001, NIST SP 800-53). The Baldrige Cybersecurity Excellence Builder is not included in this appendix.",
+          "tokens": 14209
+        },
+        "markdown": {
+          "answer": "Appendix A of the document describes the Framework Core, which includes Functions, Categories, Subcategories, and Informative References.\n\n**It does not mention or describe any relationship with the Baldrige Cybersecurity Excellence Builder.**\n\nAppendix A lists various other Informative References that illustrate methods to achieve the outcomes associated with each Subcategory, such as:\n\n*   CIS Critical Security Controls for Effective Cyber",
+          "tokens": 41279
+        }
+      },
+      "q2": {
+        "question": "How is 'Risk' defined in the Glossary at the end of the document?",
+        "pdf": {
+          "answer": "Based on the Glossary (Appendix B) at the end of the document, **Risk** is defined as:\n\n\"A measure of the extent to which an entity is threatened by a potential circumstance or event, and typically a function of: (i) the adverse impacts that would arise if the circumstance or event occurs; and (ii) the likelihood of occurrence.\"",
+          "tokens": 14207
+        },
+        "markdown": {
+          "answer": "In the Glossary (Appendix B, Table 3) at the end of the document, 'Risk' is defined as:\n\n\"A measure of the extent to which an entity is threatened by a potential circumstance or event, and typically a function of: (i) the adverse impacts that would arise if the circumstance or event occurs; and (ii) the likelihood of occurrence.\"",
+          "tokens": 41277
+        }
+      }
+    }
+  },
+  "bert": {
+    "token_verification": {
+      "predicted": 4138,
+      "actual": 4135,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What does Table 6 in the ablation study show about the number of training steps needed for BERT?",
+        "pdf": {
+          "answer": "Table 6 in the ablation study is titled \"Ablation over BERT model size.\"\n\nIt shows",
+          "tokens": 4149
+        },
+        "markdown": {
+          "answer": "Table 6, titled \"Ablation over BERT model size,\" **does not show the number",
+          "tokens": 18359
+        }
+      },
+      "q2": {
+        "question": "In the conclusion, what does the paper identify as the most important contribution?",
+        "pdf": {
+          "answer": "In the conclusion, the paper identifies its most important contribution as **further generalizing the findings of transfer learning with language models to deep bidirectional architectures**, which allows the same pre-trained model to successfully tackle a broad set of NLP tasks.",
+          "tokens": 4144
+        },
+        "markdown": {
+          "answer": "In the conclusion, the paper identifies its most important contribution as:\n\n\"**further generalizing these findings to deep bidirectional architectures, allowing the same pre-trained model to successfully tackle a broad set of NLP tasks.**\"",
+          "tokens": 18354
+        }
+      }
+    }
+  },
+  "word2vec": {
+    "token_verification": {
+      "predicted": 1816,
+      "actual": 1813,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What accuracy does the best model achieve on the semantic word relationship test questions specifically?",
+        "pdf": {
+          "answer": "The provided document states that the word vectors are initialized with pre-trained 50-",
+          "tokens": 1823
+        },
+        "markdown": {
+          "answer": "The document describes using pre-trained 50-dimensional word vectors from the unsupervised model of Huang et",
+          "tokens": 5676
+        }
+      },
+      "q2": {
+        "question": "What does the conclusion identify as the main advantage of the proposed models over RNN language models?",
+        "pdf": {
+          "answer": "The conclusion section of the paper (Section 7) **does not identify any advantage of the proposed models over RNN language models**.\n\nThe conclusion focuses on the advantages of their novel model for joint standard and zero-shot classification, specifically highlighting:\n1.  Using semantic word vector representations (learned unsupervised) to transfer knowledge between categories.\n2.  Their Bayesian framework that differentiates outliers to combine zero-shot and seen classification within one framework.",
+          "tokens": 1825
+        },
+        "markdown": {
+          "answer": "The conclusion of the document **does not** identify any advantage of the proposed models over RNN language models. The conclusion focuses on the key ideas of their model for joint standard and zero-shot classification and its performance, but it does not mention or compare it to RNN language models.",
+          "tokens": 5678
+        }
+      }
+    }
+  },
+  "clip": {
+    "token_verification": {
+      "predicted": 12394,
+      "actual": 12391,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What specific concern about facial recognition or surveillance does the Broader Impacts section raise?",
+        "pdf": {
+          "answer": "The Broader Impacts section (Section 7) of the paper raises several concerns regarding facial recognition and",
+          "tokens": 12401
+        },
+        "markdown": {
+          "answer": "The \"Broader Impacts\" section, particularly subsection 7.2 \"Surveillance,\" raises",
+          "tokens": 74955
+        }
+      },
+      "q2": {
+        "question": "In Appendix D, what does the analysis of natural distribution shift robustness show about CLIP vs ImageNet models?",
+        "pdf": {
+          "answer": "Appendix D of the paper discusses an ablation study comparing CLIP's performance when trained on a filtered",
+          "tokens": 12406
+        },
+        "markdown": {
+          "answer": "My apologies, there seems to be a slight misunderstanding in the question regarding the appendix.\n\nAppendix D",
+          "tokens": 74960
+        }
+      }
+    }
+  },
+  "gans": {
+    "token_verification": {
+      "predicted": 2332,
+      "actual": 2329,
+      "match": true
+    },
+    "end_questions": {
+      "q1": {
+        "question": "What Parzen window log-likelihood value is reported for MNIST, and how does it compare to prior work?",
+        "pdf": {
+          "answer": "According to Table 1, \"Parzen window-based log-likelihood estimates,\" on page 6 of the paper:\n\n*   The Parzen window log-likelihood value reported for **Adversarial nets** on **MNIST** is **225 \u00b1 2**.\n\nComparing this to prior work listed in the same table for MNIST:\n*   **DBN [3]:** 138 \u00b1 2\n*   **Stacked CAE [3]:** 121 \u00b1 1.6\n*   **Deep GSN [6]:** 214 \u00b1 1.1\n\nThe adversarial nets achieve the highest log-likelihood (225 \u00b1 2",
+          "tokens": 2345
+        },
+        "markdown": {
+          "answer": "For MNIST, the Parzen window log-likelihood value reported for **Adversarial nets is",
+          "tokens": 8415
+        }
+      },
+      "q2": {
+        "question": "In the Advantages and disadvantages section, what specific disadvantage of GANs is mentioned regarding Pg(x)?",
+        "pdf": {
+          "answer": "In the \"Advantages and disadvantages\" section (Section 6), a specific disadvantage of GANs mentioned regarding `pg(x)` is:\n\n\"**...that there is no explicit representation of `pg(x)`**\"",
+          "tokens": 2343
+        },
+        "markdown": {
+          "answer": "In the \"Advantages and disadvantages\" section, a specific disadvantage of GANs mentioned regarding $p_g(\\mathbf{x})$ is that **there is no explicit representation of $p_g(\\mathbf{x})$**.",
+          "tokens": 8413
+        }
+      }
+    }
+  }
+}

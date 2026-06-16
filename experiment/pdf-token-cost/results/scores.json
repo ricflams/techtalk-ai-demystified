@@ -1,0 +1,822 @@
+{
+  "attention": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately identify and explain the three distinct multi-head attention mechanisms in the Transformer with equal precision and completeness, with only minor stylistic differences."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides superior completeness by including extensive multi-source verification with direct quotations and Table 3 confirmation, while Answer B is more concise but less thoroughly documented."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide the correct BLEU score of 28.4 and accurately describe the achievement; Answer B includes slightly more context about state-of-the-art status but both fully answer the question."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 2,
+      "winner": "A",
+      "note": "Answer A provides the exact formula as it appears in the paper with proper mathematical notation, while Answer B acknowledges it cannot reproduce the formula exactly due to image omission and provides only a text approximation."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical factually correct information with complete citations and evidence; the only difference is minor formatting of the variable N (bold vs. italics)."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide the identical correct information (213 million parameters) with equivalent supporting details from Table 3, differing only in minor formatting choices."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical core information (12 hours, 8 P100 GPUs) with equal accuracy; Answer B adds a direct quote citation while Answer A provides comparative context with the big model."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify warmup_steps = 4000 from Section 5.3 and provide appropriate context about the learning rate schedule with identical accuracy and completeness."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers correctly report the BLEU score of 41.8, but Answer B provides more complete context by comparing it to ensemble models and mentioning the training cost advantage."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical factually correct information with the same level of detail and completeness, including the main hyperparameters and the exception for parsing experiments."
+    }
+  },
+  "resnet": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides slightly more precise characterization of the optimization difficulty as the root cause and explicitly frames it as an attribution statement, while Answer B's claim about 'difficulty approximating identity mappings' is less precise than the optimization difficulty explanation."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually accurate and comprehensively address the question; Answer A provides slightly more explicit context about training time motivation, while Answer B is more concise without losing essential information."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both correctly identify 1202 layers as the deepest ResNet, but Answer B is more complete by clarifying that 1202 layers was the deepest overall across all experiments, while also noting the 152-layer ResNet was the deepest on ImageNet specifically."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate with the correct 3.57% top-5 error rate, but Answer B is more complete by explaining that this was an ensemble of six models of different depths."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers present the residual learning formulation accurately and completely, with identical core equations and explanations; minor differences in formatting and organization do not affect correctness or comprehensiveness."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides more precise formulations, clearer comparative metrics, and explicit author conclusions, while Answer B contains a minor inaccuracy regarding option C (all projections) and is less comprehensive in presenting the empirical results."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify the three requested parameters (SGD optimizer, 0.1 initial learning rate, 0.9 momentum) with equal accuracy; Answer B provides additional context in a table format while Answer A uses prose, both fully addressing the question."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical core information (25.03% vs 28.54%, 3.5 percentage point improvement) with accurate data from Table 2, though Answer A uses slightly clearer formatting while Answer B adds the ResNet-34 (A) notation."
+    },
+    "q08": {
+      "a_accuracy": 4,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B provides more comprehensive details including specific error rates, mAP scores, and performance metrics that give fuller context to the evaluations."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B is more complete by including the additional context about learning rate scheduling that follows the mini-batch size specification."
+    }
+  },
+  "gpt3": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but B is more complete by providing specific citations (abstract and Table 2.1) and explicitly confirming the exact parameter count format."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers provide accurate core dimensions, but Answer B is more complete by including the context window and feedforward layer calculations that provide fuller architectural context."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both are accurate, but Answer B is more complete by explicitly contrasting these settings with fine-tuning, providing crucial context for understanding the fundamental distinction."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides additional context about the notable sampling decision (0.44 epochs) that directly addresses why the largest dataset was treated differently, making it more complete."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 5,
+      "winner": "A",
+      "note": "Answer A is fully accurate with correct details about RAG's performance (68.0% is RAG's result, not TriviaQA one-shot), while Answer B contains a factual error conflating RAG's performance with the one-shot setting."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides more comprehensive detail (explicit participant count, specific source, GPT-3 13B data point) while Answer B omits the 13B model row and provides slightly less methodological specificity."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide the identical core information (3,640 PF-days from Table D.1) with proper sourcing and context, with only minor stylistic differences in presentation."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers list the identical eight model sizes with correct parameter counts; Answer B is marginally more explicit by including 'parameters' after each value, but this is a negligible stylistic difference."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers correctly identify 77.7% as the few-shot score, but Answer B provides more comprehensive context including direct quotation from the text, human performance baseline, and additional model comparisons."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A directly identifies three explicit categories from Section 5, while Answer B adds interpretive elements (like 'poor interpretability' and 'data biases') that may not be explicitly stated as primary limitations by the authors."
+    }
+  },
+  "irs1040": {
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers correctly identify Line 11a as the AGI location, but Answer A provides additional context about Page 1 placement and the carryforward to Line 11b, making it more comprehensive."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers correctly identify line 12a, but Answer A provides more comprehensive detail including specific standard deduction amounts, additional related lines (12b-12d), and clearer explanation of the causal relationship between dependent status and reduced standard deduction."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides more complete context by specifying the form year, page location, and section name, while Answer B is more concise but less informative."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B provides the complete label text including the payment instructions, while Answer A breaks it into separate components."
+    },
+    "q09": {
+      "a_accuracy": 3,
+      "a_completeness": 2,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Answer B correctly identifies all three signature blocks including the preparer's signature section, while Answer A omits the preparer signature block entirely."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 2,
+      "winner": "A",
+      "note": "Answer A provides complete and specific details about all required fields (designee's name, phone number, and PIN), while Answer B acknowledges uncertainty and incompleteness by stating the specific fields are 'not fully detailed in the visible portion.'"
+    },
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify tax year 2025 with accurate supporting evidence; Answer A provides the exact quote while Answer B adds context about standard deductions, making them equally strong but with slightly different emphasis."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 3,
+      "winner": "A",
+      "note": "Answer A correctly identifies all five filing status options with accurate descriptions, while Answer B lists only four options and acknowledges that information may be missing due to document rendering issues."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers correctly identify Line 1a as the primary line for wages, salaries, and tips, but Answer B provides more complete context by including the actual line description and mentioning related lines (1b, 1c) that also relate to wage income."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides more comprehensive context by explicitly explaining the flow and structure of how additional income sources are reported and incorporated into total income calculations."
+    }
+  },
+  "nist_cloud": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present the NIST definition with all essential components; they differ only in presentation style, with Answer B explicitly including the integrative language about composition in the definition quote itself."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present all five NIST characteristics with correct definitions; Answer A uses slightly more emphatic formatting while Answer B uses equally clear but more concise language."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately and completely describe the three cloud service models with correct details; Answer A includes a helpful comparative note about increasing control levels, while Answer B includes the specific mention of 'thin client interface' for SaaS."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present all four NIST cloud deployment models with correct definitions and key characteristics; Answer A includes slightly more detail (explicitly mentions 'multiple consumers' for private cloud and 'compliance' for community cloud) but both are complete and equally valid."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide the identical direct quote and accurately explain the definition with equivalent comprehensiveness; Answer B uses a table format while Answer A uses bullet points, but both convey the same information with equal precision."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides more comprehensive detail by explicitly labeling the location independence concept as a distinct 'Key Element' and clearly separating the definition's core components, while Answer B's organization is slightly less structured."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present the NIST SaaS definition with equal completeness; they differ only in organizational structure and emphasis but convey identical information."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide the identical NIST definition and key points with equal accuracy and completeness; minor stylistic differences in the closing summary do not affect factual correctness."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually accurate, directly address the question about community cloud definition and management, and include the same key information from NIST SP 800-145 with only minor stylistic differences."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical and complete information about the authors and publishing organization; the only minor difference is stylistic phrasing (\"is part of\" vs \"operates under\")."
+    }
+  },
+  "nist_csf": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical and accurate descriptions of the five Core Functions with only negligible wording variations in the Key Points section that do not affect factual accuracy or completeness."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately list all four tiers and comprehensively characterize Tier 1 across the three dimensions; Answer B adds a clarifying note about tiers not representing maturity levels, which is supplementary rather than correcting a deficiency in Answer A."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 4,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both are accurate, but B is more complete by including the separate definition of cybersecurity and explaining how risk applies to cybersecurity specifically, while A focuses primarily on the general risk definition."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides more detailed and specific use cases for each profile type, particularly regarding external communication and procurement decisions, making it more comprehensive."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B is more complete as it includes the additional context about the Cybersecurity Enhancement Act of 2014 and explicitly quotes the document's statement about expanded applicability, providing a more thorough explanation of the framework's evolution."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 2,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A correctly identifies 6 Categories and 29 Subcategories, while Answer B contradicts itself by stating 24 Subcategories in the opening but then showing 29 in the table, creating a factual error."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides more comprehensive detail with explicit examples across all five Functions and more complete limitation statements, while Answer B omits the Recover function example and truncates one important limitation quote."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately capture the key differences between Tier 4 and Tier 3 with minor wording variations that do not affect correctness or completeness."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both are accurate, but Answer B is more complete by providing specific subcategory details (ID.SC-1 through ID.SC-5) that directly describe what the Framework says, whereas Answer A's text is cut off mid-sentence."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present all seven steps with correct descriptions; Answer B includes slightly more detail in steps 4 and 6, while Answer A is more concise, but both are equally valid and complete."
+    }
+  },
+  "bert": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides additional context explaining why the bidirectional approach is significant, making it more complete."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately describe BERT's two pre-training tasks with correct technical details; Answer A includes the 97-98% NSP accuracy metric while Answer B adds a concluding synthesis sentence, making them equivalently complete in different ways."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical and correct information about BERT-Base architecture (12 layers, 768 hidden size, 12 attention heads), with only minor formatting differences (LaTeX vs HTML subscripts) that don't affect accuracy or completeness."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers correctly identify 86.7% accuracy, but Answer A provides more complete context by specifying the comparison benchmarks (OpenAI GPT at 82.1% and Pre-OpenAI SOTA at 80.6%), while Answer B only mentions improvement without specific comparisons."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides more comprehensive detail about the three embedding components' specific notation (E_A, E_B, E\u2080, E\u2081) and explicitly mentions BERT's pre-training approach with special tokens versus GPT's fine-tuning approach, offering deeper technical insight."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both are accurate, but Answer B is more complete with an additional task example (SWAG) and slightly clearer explanations of the technical details."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B is more complete as it includes the direct quote from the paper, explains the rationale behind the mixed strategy, and provides the calculated percentage of tokens receiving random replacement."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides precise GLUE scores with accurate percentage point calculations and specific ablation study evidence, while Answer B introduces an additional unsourced average score of 82.1 for BERT LARGE and a vague 4.5% improvement claim for BASE that cannot be verified from the stated information."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A more thoroughly addresses the question by clearly presenting both the specific GLUE experiments set (5e-5, 4e-5, 3e-5, 2e-5) and the general recommendation from Appendix A.3 (5e-5, 3e-5, 2e-5), whereas Answer B subordinates the general recommendation and treats it as secondary."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides more complete analysis by explicitly discussing the ELMo comparison and the fundamental necessity of bidirectionality, while Answer B omits the BiLSTM row from the table and provides slightly less depth on the shallow bidirectionality critique."
+    }
+  },
+  "word2vec": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both correctly identify the false premise, but Answer A provides more technical detail with specific mathematical formulations and equations that demonstrate deeper understanding of the paper's content."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "tie",
+      "note": "Both answers correctly identify that the document doesn't discuss Skip-gram, accurately explain Skip-gram's objective, and appropriately address the scope limitation, with Answer A providing slightly more technical detail in the formula presentation."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but B provides more specific details (80% accuracy threshold) and better explains how the indirect evaluation is structured through performance metrics, making it more complete in addressing the question about task structure."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually correct and equally complete in identifying that the document does not address training time complexity comparisons, with Answer A providing slightly more detailed supporting context while Answer B remains more concise."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both correctly identify that negative sampling is not in the paper, but Answer A provides more comprehensive context by listing specific paper topics and offering more helpful guidance about what negative sampling actually is."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify that the document does not contain information about syntactic question-answer pairs and appropriately note this appears to be a question about a different paper."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately identify Wikipedia as the training corpus and correctly note that the word count is not specified in the paper; Answer A provides slightly more detail about the model's methodology but both are equally accurate and complete."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify that the concept is absent from the document and accurately explain the Word2Vec technique with equal clarity and completeness."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A is more complete as it provides additional context about where the famous example originates (Word2Vec/Mikolov et al. 2013) and what the paper actually discusses instead, while Answer B is accurate but less informative."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually accurate and complete, correctly identifying that the paper does not address analogy tasks and providing appropriate context about the 50-dimensional vectors used."
+    }
+  },
+  "clip": {
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify CLIP as 'Contrastive Language-Image Pre-training' and provide accurate supporting evidence from the document, with only minor stylistic differences in citation presentation."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides more complete context by explicitly citing the origins and prior work (Sohn 2016, Oord et al. 2018, Zhang et al. 2020), while Answer B mentions origins but doesn't connect them as thoroughly to the overall narrative."
+    },
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B is more complete by including context about state-of-the-art comparison and the computational gap, providing a more balanced perspective on CLIP's achievement."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers provide identical correct information (400 million pairs, WIT dataset name and full form), with Answer B adding a direct quote from the paper for additional support."
+    },
+    "q05": {
+      "a_accuracy": 4,
+      "a_completeness": 5,
+      "b_accuracy": 3,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides accurate information with correct performance metrics (1.3% for default template, 5% overall), while Answer B contains a numerical discrepancy (3.5% vs. the commonly reported 4-5% range) and less precise detail about the ensembling approach."
+    },
+    "q06": {
+      "a_accuracy": 4,
+      "a_completeness": 5,
+      "b_accuracy": 4,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Answer A provides more comprehensive detail about the varying dataset counts across different evaluation contexts (27, 36, and 39 evaluations), while Answer B is accurate but less thorough in distinguishing between the different evaluation scenarios."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both are accurate, but B provides slightly more completeness by explicitly noting the authors called it 'embarrassing' and better contextualizing the contrast with digitally rendered text performance."
+    },
+    "q08": {
+      "a_accuracy": 4,
+      "a_completeness": 3,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Answer B is more complete and accurate, covering performance, design, methodological, and ethical limitations with specific details, while Answer A is truncated and omits crucial methodological concerns and social/ethical issues discussed in the CLIP paper."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides more complete information by explicitly stating the 10-25 point underperformance versus fully supervised linear probes, which directly addresses the main comparison question."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers correctly identify the two largest CLIP architectures (RN50x64 and ViT-L/14@336px) with accurate technical details and training specifications; Answer A provides slightly more architectural detail (width of 4096 for RN50x64, 24 layers and 1024 width for ViT-L/14) while Answer B mentions embedding dimension, but both are complete and accurate."
+    }
+  },
+  "gans": {
+    "q03": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately present the optimal discriminator formula, proof approach, and key implications with equivalent mathematical rigor and clarity; minor stylistic differences do not affect correctness or completeness."
+    },
+    "q04": {
+      "a_accuracy": 5,
+      "a_completeness": 4,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "B",
+      "note": "Both answers are accurate, but Answer B is more complete by including the results summary table and explicitly stating that log-likelihood was reported on the test set, providing a fuller picture of the datasets and evaluation methodology."
+    },
+    "q05": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both are accurate, but Answer A provides the complete mathematical formulations of the gradient updates while Answer B omits them, making A more thorough despite B's practical implementation note being valuable."
+    },
+    "q06": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually accurate and comprehensively address the question with direct quotes and multiple supporting sections from the paper; Answer A includes Table 2 comparison while Answer B includes additional context about forward propagation and sharp distributions, making them complementary rather than differentially complete."
+    },
+    "q07": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately and completely explain the non-saturating heuristic with identical core content; Answer A uses slightly more detailed prose while Answer B uses a comparative table, representing stylistic rather than substantive differences."
+    },
+    "q08": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both answers are accurate, but Answer A provides more complete context by explicitly noting the authors' cautious claims about superiority and referencing the original source (Breuleux et al.), while Answer B omits these nuances."
+    },
+    "q09": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately identify the same two main disadvantages (no explicit p_g(x) and training synchronization) with nearly identical explanations, though B adds a slightly interpretive claim about disadvantages being 'primarily computational in nature' that isn't explicitly stated by the authors."
+    },
+    "q10": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers accurately capture all five extensions/future work directions with appropriate technical details; Answer A provides slightly more contextual explanation while Answer B is more concisely formatted, but neither has factual errors or meaningful omissions."
+    },
+    "q01": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 5,
+      "winner": "tie",
+      "note": "Both answers are factually accurate and complete; Answer A presents the minimax equation formally while Answer B emphasizes practical training considerations, making them complementary rather than superior/inferior."
+    },
+    "q02": {
+      "a_accuracy": 5,
+      "a_completeness": 5,
+      "b_accuracy": 5,
+      "b_completeness": 4,
+      "winner": "A",
+      "note": "Both provide the correct equation, but Answer A presents it as directly extracted from Equation (1) while Answer B acknowledges the equation was rendered as an image, making Answer A more authoritative for the specific documentary source."
+    }
+  }
+}

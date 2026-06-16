@@ -1,0 +1,72 @@
+{
+  "attention": {
+    "raw_pdf": 3880,
+    "pymupdf4llm": 11589,
+    "pdftotext": 11695,
+    "name": "Attention Is All You Need",
+    "type": "academic-math"
+  },
+  "resnet": {
+    "raw_pdf": 3106,
+    "pymupdf4llm": 20247,
+    "pdftotext": 20726,
+    "name": "Deep Residual Learning for Image Recognition",
+    "type": "academic-figures"
+  },
+  "gpt3": {
+    "raw_pdf": 19360,
+    "pymupdf4llm": 77489,
+    "pdftotext": 70889,
+    "name": "Language Models are Few-Shot Learners (GPT-3)",
+    "type": "academic-large"
+  },
+  "irs1040": {
+    "raw_pdf": 526,
+    "pymupdf4llm": 9711,
+    "pdftotext": 4256,
+    "name": "IRS Form 1040 (US Individual Income Tax Return)",
+    "type": "form-layout"
+  },
+  "nist_cloud": {
+    "raw_pdf": 1816,
+    "pymupdf4llm": 2276,
+    "pdftotext": 2297,
+    "name": "NIST SP 800-145: The NIST Definition of Cloud Computing",
+    "type": "legal-text"
+  },
+  "nist_csf": {
+    "raw_pdf": 14200,
+    "pymupdf4llm": 41270,
+    "pdftotext": 40208,
+    "name": "NIST Cybersecurity Framework 1.1",
+    "type": "structured-report"
+  },
+  "bert": {
+    "raw_pdf": 4138,
+    "pymupdf4llm": 18348,
+    "pdftotext": 19756,
+    "name": "BERT: Pre-training of Deep Bidirectional Transformers",
+    "type": "academic-math"
+  },
+  "word2vec": {
+    "raw_pdf": 1816,
+    "pymupdf4llm": 5669,
+    "pdftotext": 5609,
+    "name": "Efficient Estimation of Word Representations in Vector Space (Word2Vec)",
+    "type": "academic-text"
+  },
+  "clip": {
+    "raw_pdf": 12394,
+    "pymupdf4llm": 74948,
+    "pdftotext": 79989,
+    "name": "Learning Transferable Visual Models From Natural Language Supervision (CLIP)",
+    "type": "academic-images"
+  },
+  "gans": {
+    "raw_pdf": 2332,
+    "pymupdf4llm": 8402,
+    "pdftotext": 8008,
+    "name": "Generative Adversarial Nets (Goodfellow et al.)",
+    "type": "academic-math"
+  }
+}

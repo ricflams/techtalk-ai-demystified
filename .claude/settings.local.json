@@ -44,7 +44,9 @@
       "Bash(gh search *)",
       "WebFetch(domain:developers.cloudflare.com)",
       "WebFetch(domain:github.com)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(git check-ignore *)",
+      "Bash(git *)"
     ]
   }
 }

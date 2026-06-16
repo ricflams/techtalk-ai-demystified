@@ -61,7 +61,7 @@ Intro
 	Years ago, Java bytecode and .NET MSIL. Lead to Eqatec profiler, leading .NET code profiler in the World. Another story for another tech talk.
 	Some things just grabs me. A feel a hunger to know about it. A hunger I wish I had for SQL databases and Amazon permissions.
 	AI grabbed me. Over the past half year I've indulged in digging deep into it and in doing so I've identified some few core principles than people often don't know and where knowing them would make you so much more proficient in dealing with just about any kind of current AI-service.
-	This talk started out by me finding it so interesting and also overwhelming that I thought "hey, I should tell othera about this". And then it sort of went crawy because even though I narrowed the topic there's still SO much to say. I could speak the entire day. So though you think I'm throwing a lot at you, it's really the condensed version. And it's the parts that will produce some "aha" moments, allowing you to reason about how you're using AI from first-principles. clarify the few simple core ideas.
+	This talk started out by me finding it so interesting and also overwhelming that I thought "hey, I should tell others about this". And then it sort of went crawy because even though I narrowed the topic there's still SO much to say. I could speak the entire day. So though you think I'm throwing a lot at you, it's really the condensed version. And it's the parts that will produce some "aha" moments, allowing you to reason about how you're using AI from first-principles. clarify the few simple core ideas.
 Misconceptions every day
 	Every day I hear misconceptions. I've sufferede from some severe misconceptions myself. Even Nate said the "convert pdfs to markdown" myth.
 	I don't claim to know everything. Not all the math, definitely not the various agent-workflows. But I now know quite well how the core functionality works, and it's been eye opening.
@@ -324,11 +324,13 @@ Managing the context
 		Note: the client keeps your conversation in the UI, but behind the scenes it sends a condensed version instead
 	fork /btw subagents task-management memory-files
 	caveman https://github.com/JuliusBrussee/caveman
+	token-reduction tools; https://www.reddit.com/r/ClaudeAI/comments/1u3wntn/tested_5_token_reduction_tools_for_coding_agents/
 
 A few technical detours:
 	RAG:
 		Codemunch and this one:
 		https://www.reddit.com/r/ClaudeAI/s/fJGfIZyoOc		
+		https://dev.to/young_gao/rag-is-not-dead-advanced-retrieval-patterns-that-actually-work-in-2026-2gbo
 	Skills:
 		Just a text description and way to pull in more instructions
 
@@ -338,6 +340,7 @@ Bad advice
 
 Good Advice:
 	Being specific and concrete saves context and gives better more precise result
+		The more precise you are, the less the AI has to assume - and can drift
 		Example of refering to specific file
 		Repeating instructions make them stick better
 		Be concrete, precise. Repeat stated facts for reemphasis.
@@ -544,3 +547,7 @@ Ultracode
 https://www.youtube.com/watch?v=IgIlIWqeT-I
 
 https://github.com/seifghazi/claude-code-proxy
+
+https://www.reddit.com/r/ClaudeAI/comments/1u51357/fable_5s_thoughts_on_being_suspended/
+
+https://gurusup.com/blog/moe-vs-multi-agent-systems

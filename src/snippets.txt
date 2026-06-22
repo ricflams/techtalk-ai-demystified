@@ -11,8 +11,18 @@ for (var i = 0; i < N; i++)
 	sum += func(_data[i]);
 
 I fart in the elevator.
-I en elevator der viser "I fart".	
 
+I en elevator der viser "I fart".
+
+
+
+wonderful tokenization
+
+dejlig tokenisering
+
+schöne Tokenisierung
+
+tokenisation magnifique
 
 
 
@@ -41,6 +51,10 @@ A 45,000-token payload equates to roughly 33,000 words (or ~90–100 pages of hi
 I'm going to have a lot of fun with Dudley this summer...
 
 
+Your component re-renders because you create a new object reference each render. Inline object props fail shallow comparison every time. Wrap it in useMemo.
+物出新參照，致重繪。useMemo Wrap之。
+
+
 
 
 Please tell me: what is an LLM?
@@ -67,7 +81,7 @@ So when I send this third message, the full conversation is re-sent?
 Yes, every single turn the full conversation history is re-sent to the model from scratch.
 
 
-
+Is this an accurate depiction of the flow of modern AI services? Give me a brief assessment.
 
 
 

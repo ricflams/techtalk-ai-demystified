@@ -11,7 +11,7 @@ h4, h4 ~ * { display: none; }
 
 # AI Demystified
 
-Richard Flamsholt · 2026
+Richard Flamsholt · July 2026
 
 ####
 
@@ -21,83 +21,178 @@ tokenspree
 etc
 
 
-# Intro
+# Prologue
 
-## Why
-Everybody's using AI
+Over time, some tech things just trigger my brain like dopamine.
 
-You sort of know how it works and can do.
+TODO: photos of my books
 
-And yet - there's a lot of AI mysticism at play, right?
+Years ago when HTML and XML came out I was like, man, I just want to know all about it.
+Or Java and then .NET, with bytecode and virtual bytecode-machines.
 
-You hear this very often:
+For the past yea I've felt that way about AI.
+Like a kid in a candy store.
 
-* Just feed the entire codebase the AI and let it figure it out
-* Point it to Confluence
-* Install an MCP server - or a skill, or write an agent.md file
-* "Don't say place" - or "Do say please"
-* It's very useful to convert your PDFs to markdown before handing it to the AI
-* I think it somehow knows to ...
-* I think it doesn't know...
+### A eye opening insights
+TODO: image
+It's given me many eye-opening insights and a better grasp of AI that I wish for others to have too. There's rather a lot of mysticisim surrounding the bits of AI. Nearly daily at work I hear some misconception or myth.
 
-I'm here with the grand goal of demystifying the AI.
+That's the initiating? for this talk.
 
-Now, originally I planned to giving an overview of the entire landscape of available AI tools. But it's vast and constantly moving so instead I decided to hone in on the much simpler parts: just the core steady inner parts. Which of course turned out to be filled with big rabbit holes.
-
-So, I am not going to talk about workflow of the week, or openclaw, or that latest new command.
-
-Instead my GOAL is that you will all become more confident with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI. Not the math, don't worry. I'll focus on facts that are useful for grasping the principles - which very often are surprising too.
-
-After this talk you'll know much better what exactly these are: tokens, embeddings, LLM, context, AI-models, modes, thinking, agent-files, skills, tools, MCP-servers - and more.
-Everything is still going to revolve around tokens and llm for the freseable future. And the constraints they bring with them also isn;t gong away. 
-Anthropic just released Fable. If you look back at this talk in a year then you'll think, oh yeah, Fable, old hat now - but the underlying principles are still valid and useful to know about> Well, prove me wrong in a year. Even with progress in computing and cloud etc it's still useful to know about .... how a computer works? Fable has quantitatively become better at reasoning, it's way of juggling tools have improved, but the underlying principles and costs remain.
-On that note, one caveat. I'll simplify some parts. Some AI services may do some part a bit differently. But it's been thoroughly vetted to hold up in principle and overall in practice.
-
-Who's the intended audience? Ambitiuosly, everybody. Tech and non-tech.
-
-There's a lot to take in. You may be thinking "hang on, that can't be right" or "I don't get it!". Feel free to ask questions during the talk. And afterwards, go checkout the slides which are on github and has links to related materials. And not least: ask me or other colleagues if you've got questions. I can elaborate on everything I'm presenting here today.
-
-I feel like a kid in a candy store. Like when I first learned about Java and C# and bytecode.
-
-I've learned a lot. But much more than what I could tell [big puzzle].
-Prepping for this talk has helped me refine my understanding: sharpening and checking up on the fcts, ant not least extract those subconscious mental models I'd formed and figure out how to convey them in a way that can feels relevant and useful to you so you actually understand the significance, leading you to become better at wielding AI. Nothing would be easier than just walking through a jungle of facts like some misguided tour-guide - I'm trying to flesh it out in a story our caveman brainss can latch onto - hmmm.
-
-This has been a super-challenging tech-talk to make. Because you all know about the subject, some know some parts better than me likely, and "everybody" is interested. There's just a ton to talk about, and I shouldn't tell you anything wrong, and and and.
+### And the topic is?
+TODO: image
+The topic is: All the foundational parts of AI. Not the math, don't worry. And not everything surrounding it, like the latest Claude slash-command. No, it's the steady? mechanisms and building blocks mental models that I amd at demystifying. Everything is still going to revolve around tokens and LLMs for the freseable future and their cost and limitations will still be around in a year - "he said, over-confidently".
 
 Maybe a bit like hearing about how a car works when all you want to do is take a camping-trip to Italy. But this can help you understand why the engine overheats in that slow queue up the mountain.
 
+### My goal is for everybody to level-up
+TODO: image
+"Is this for me?", you ask. Yes, it's for everybody, because everybody uses AI
+
+My grand GOAL is "demystifying the AI". I hope that you will all become more familiar with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI.
+
+TODO: Image of checklist/bingo: tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+
+## The presentation
+TODO: image
+How do I cram "all of AI" into one presentation? In particular on a topic you all know about and "everybody" is interested in. It would be so easy to just throw tecnical descriptions at you and expect it to stick. What made creating this presentation really challenging, but also really rewarding for me personally, has been figuring out all the details and how best to present them as a journey through the AI landscape that highlight the most relevant and useful bits. While keeping it appropriately deep and not tell you anything wrong. I've simplifed some aspects and some AI services likely does x and y a bit differently, but it's as correct as I could possibly make it.
+
+### Ask questions - now and later
+You may be thinking "hang on, that can't be right" or "I don't get it!". Feel free to ask questions during the talk. And afterwards, go checkout the slides which are on github and has links to related materials. And not least: ask me or other colleagues if you've got questions. I'd be happy to elaborate on everything I'm presenting here today.
 
 ### 10,000,000 AI videos... +1
-<div class="cols tight">
-<img src="images/intro/youtube-intro-1.png">
-<img src="images/intro/youtube-intro-2.png">
-<img src="images/intro/youtube-intro-3.png">
-<img src="images/intro/youtube-intro-4.png">
-</div>
+<img class="full" src="images/intro/youtube.png">
 
 #### Why this presentation?
-
 What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos?
-Why is one more presentation about LLMs useful?
+Why not just post 10 links to the most popular videos about LLMs?
 
 I guess for the same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
 
-What you're in for:
+There's a lot to go through. Let's go.
 
-The tech part: A walkthrough of the AI-car and its parts
-The driver part: advice on driving that AI-car
+## The three chapters
+TODO: image, maybe beans, espresso and coffee-making?
 
-Strap in.
+First part: set the stage
 
+Second part: understand all the tech.
 
-# The full picture
+Third part: now that you understand all the tech, how do you best wield it?
 
-## Full overview
+# I. Setting The Stage
+
+## What is "the AI"?
+
+### What is "the AI" you speak to?
+<img class="full" src="images/definitions/hello/user-ai.png" />
+
+### You always speak via an assistant
+<img class="full" src="images/definitions/hello/user-assistant-ai.png" />
+
+####
+The assistant knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
+
+### Finally at "the AI"
+<img class="full" src="images/definitions/hello/all.png" />
+
+####
+The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service is that scaffolding.
+
+### The assistant steer the AI on your behalf
+<img class="full" src="images/definitions/the-parts.png" />
+
+####
+The assistant can also clinically be called an "AI client" and is also often called an "AI agent", or slightly more correct an "AI user agent". Just like how Outlook is an "Email User Agent.
+
+"LLM" and "AI model" are in practice synonymous.
+
+## Where does it live?
+
+### AI Service and LLM are always roomies
+<img class="full" src="images/definitions/arrangements/user-and-ai.png" />
+
+### Browser and terminal
+
+<div class="cols">
+<img class="full" src="images/definitions/arrangements/browser.png" />
+<div>
+
+- *Browse* to chatgpt.com, claude.com, ...
+- Chats and settings are *on the website*
+- You can *do a lot*: chat, make images, documents, use online tools, etc
+
+</div>
+</div>
+<br>
+<div class="cols">
+<img class="full" src="images/definitions/arrangements/cli.png" />
+<div>
+
+- *Install* claude, gemini, opencode, ...
+- Chats, settings, files - *all on your pc*
+- Better *control of the AI*
+- *Text*, yes, but actually pretty nice
+</div>
+</div>
+
+### AI Websites and terminals tools (CLI)
+<img class="full" src="images/definitions/arrangements/web-vs-cli.png" />
+
+### Other options: in service and self-hosted
+
+<div class="cols">
+<img class="full" src="images/definitions/arrangements/app.png" />
+<div>
+
+- Use AI *indirectly* via some application
+- Little to no control over the behavior
+- Chat-knowledge still comes in handy; e.g. you can often ask "list your tools"
+
+</div>
+</div>
+<br>
+<div class="cols">
+<img class="full" src="images/definitions/arrangements/local.png" />
+<div>
+
+- Run open-weight *full LLM* on your pc
+- Gives you *full control*, eg for *training*
+- Need a pretty *powerful GPU, RAM*
+- Is frankly often *over-hyped*
+</div>
+</div>
+
+### my own progression
+Started prompting
+Then producing code which I copy-pasted
+Started having the AI work on files in vscode
+Now I use terminal for anything related to code and files, web for just asking questions.
+
+---
 <img class="full" src="images/overview/full.png" />
 
-You, the **human**, use an **AI Client** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the agent also has **memory**.
+You, the **human**, use an **AI Client** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the client can **remember**.
+
+
+## What is eg shared for Claude?
+
+enuinely shared
+
+Authentication / identity. You log into Claude Code with the same Claude credentials. Your Pro or Max plan covers Claude Code, and you log in with the same Claude credentials you use in the terminal. Claude
+Usage quota. This is the big one. Both Pro and Max plans offer usage limits that are shared across Claude and Claude Code, meaning all activity in both tools counts against the same usage limits. It's one rolling-window + weekly pool; burning tokens in the CLI directly reduces what's left in chat. As of recently that same bucket also absorbs Cowork and Claude Design. Extra consumption now feeds a shared pool, so credits count interchangeably for design, chat, and code. ClaudePasquale Pillitteri
+Subscription entitlements (plan tier, model access, billing) — follows from the account.
+
 
 ### The clients and the AI services
+
+
+https://kilo.ai/open-source-models
+
+
+
+What's a client
+What's an agent
 
 ### Biased for Claude
 
@@ -122,33 +217,24 @@ Let's take a peek into the brain of that little fellow. It takes its name after 
 ####
 The commercial **AI Services** run in massive data centers.
 
-### Frontier AI Foundation Models (FM)
+### AI Services and models
 
-<div class="cols tight">
-<div>
+<div class="cols">
+<img class="col-1" src="images/definitions/ai-service-house.png">
+<div class="col-2">
 
-<img class="logo" src="images/intro/logo-claude.svg"> **Claude** by Anthropic
-
-<img class="logo" src="images/intro/logo-openai.svg"> **ChatGPT** by OpenAI
-
-<img class="logo" src="images/intro/logo-gemini.svg"> **Gemini** by Google
-
-<img class="logo" src="images/intro/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
-
-<img class="logo" src="images/intro/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
-
-</div>
-<div>
-
-<img class="logo" src="images/intro/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
-
-<img class="logo" src="images/intro/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
+<img class="logo" src="images/intro/logos/logo-openai.svg"> **ChatGPT** by OpenAI
+<img class="logo" src="images/intro/logos/logo-gemini.svg"> **Gemini** by Google
+<img class="logo" src="images/intro/logos/logo-claude.svg"> **Claude** by Anthropic
+<img class="logo" src="images/intro/logos/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
+<img class="logo" src="images/intro/logos/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
+<img class="logo" src="images/intro/logos/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
+<img class="logo" src="images/intro/logos/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
 
 <br/>
 
-<img class="logo" src="images/intro/logo-copilot.png"> Copilot by Microsoft is *not a model*
-
-<img class="logo" src="images/intro/logo-perplexity.svg"> Perplexity AI is *not a model*
+<img class="logo" src="images/intro/logos/logo-copilot.png"> Copilot by Microsoft is *not a model*
+<img class="logo" src="images/intro/logos/logo-perplexity.svg"> Perplexity AI is *not a model*
 
 </div>
 </div>
@@ -318,18 +404,24 @@ Another advantage of tokenization is that it allow identifying common linguistic
 
 
 ### A danish elevator "in motion"
-<img class="full" src="images/token/elevator-i-fart.jpg">
+<img class="full" src="images/token/elevator-sign.jpg">
 
 ####
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
 ### I fart poetry
-<img class="full" src="images/token/i-fart-marked.png">
+<img class="full" src="images/token/elevator-i-fart.png">
 
 ####
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
+
+### TOD: Present
+<img class="full" src="images/token/present.png">
+
+####
+Examples in English, Danish, Korean, Classical Chinese, and C#.
 
 ### The English advantage
 <img class="full" src="images/token/five-sentences.png">
@@ -350,8 +442,8 @@ Examples in English, Danish, Korean, Classical Chinese, and C#.
 And last, but not least:
 <br>
 * AI services **charges per token**, since tokens are the unit the LLM works on
-* A ballpark figure: you pay **$1 for 100,000 output tokens**
-* 100,000 tokens amounts to _"Harry Potter and the Philosopher's Stone"_
+TODO:* A ballpark figure: you pay **$1 for 100,000 output tokens** in a mid-tier model
+TODO:* 100,000 tokens amounts to _"Harry Potter and the Philosopher's Stone"_
 
 ####
 For English, one token generally corresponds to about 4 characters. For a text the number of tokens will typically be 30% higher than the number of words, ie 1000 words means 1300 tokens - broadly speaking.
@@ -661,6 +753,9 @@ There's no plan to "bold" a word by emitting `** something **`. Instead at one p
 
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
 
+### "Just a fancy autocomplete" is ...true
+<img class="full" src="images/core/calculator-once-upon.png" />
+
 ### It's one token, what could it cost?
 
 <img class="full" src="images/cost/one-banana.jpg">
@@ -716,9 +811,9 @@ The output of one 4 x B200 cluster serving a Claude Opus tier model depends on t
 <img src="images/cost/cost-per-token.png"> 
 <div class="col-2">
 
-Price of 4x B200 cluster: $500,000
+One 4 x B200 cluster costs $500,000
 
-* Ballpark cost, all-included: *$27/MToken* out
+* Ballpark running cost, all-included: *$27/MToken* out
 * Claude Opus is priced at $25/MToken (June 2026)
 &nbsp;
 
@@ -726,7 +821,7 @@ Price of 4x B200 cluster: $500,000
 </div>
 </div>
 
-### The 4x B200 cluster
+### The 4 x B200 cluster
 <img class="full" src="images/cost/b200-cluster.jpeg"> 
 
 ### Clusters goes into trays
@@ -1172,6 +1267,10 @@ It doesn's do anythihg, it doesn't kickstart anything. It's just text being inse
 		There’s no privileged channel; system prompt and user messages are all just tokens by the time the model sees them
 
 
+https://github.com/asgeirtj/system_prompts_leaks
+
+
+
 ### Example 1..N
 
 ### The Chat Template
@@ -1209,7 +1308,7 @@ Hmm. So *what is thinking* really?
 TODO: zoomed in
 
 - Thinking is an autoregressive loop wrapped around the LLM: generate a "thought"-mode output, append it to the context, run the forward pass again, repeat.
-- The name is **Chain of Thought**, aka, **CoT**.
+- The name is **Chain of Thought**, aka **CoT**.
 
 ####
 
@@ -1298,6 +1397,9 @@ Lazy Schema Loading
 
 MCP example: github mcv vs git cli
 
+MCP is not: A2A
+My JavaOne 2002 JAXP
+
 ### MCP
 <img class="full" src="images/ai-service/mcp/sticks-1-add-server.png">
 
@@ -1312,6 +1414,9 @@ MCP example: github mcv vs git cli
 
 ### MCP
 <img class="full" src="images/ai-service/mcp/sticks-5-tool-use.png">
+
+####
+You should read this as a principled overview: the AI is talking to an MCP server which is turn call the API. The actions it is allowed to make are the actions that you are allowed to make. The MCP serveri acts on your behalf, so to speak. So it can only do what you are allowed to do. For example, for Siteimprove you can create an API-key associated with your username, and when the MCP server authenticates using that API-key then it acts as you with precisely the same kind of access you have.
 
 ### MCP
 <img class="full" src="images/ai-service/mcp/sticks-6-response.png">
@@ -1334,8 +1439,8 @@ MCP example: github mcv vs git cli
 <img class="full" src="images/ai-service/service-full.png">
 
 
-### The full monty
-
+### "Now I have the full picture"
+<img class="full" src="images/ai-service/service-full.png">
 
 ####
 Your diagram is the undisputed Common Core of the modern LLM runtime. For standard open-weight architectures (like Meta's Llama series or Mistral) and classic chat endpoints, this blueprint captures the system flawlessly.
@@ -1387,6 +1492,21 @@ https://gurusup.com/blog/moe-vs-multi-agent-systems
 
 ## How to level up
 
+Rather opinionated
+
+Treat it as a tool in your professional toolbox.
+You're a carpenter - buy a good hammer that's yours.
+Pay the $20/month for a subscription. Make it yours.
+See it as an investment.
+
+Level low: copy-paste.
+Level work on your local files
+Use the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
+
+### Start steering the client. Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
+
+Practice prompting. Checkout some techniques.
+
 ### Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
 
 ### Level 1: give it specific general instructions
@@ -1423,7 +1543,14 @@ my mcp poc example
 Small nudging words
 Planning
 Like a partner
-wh
+
+## Workflows
+
+LLM-sentence-loop
+thinking-loop
+next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
+review loops
+try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
 
 ## Myths
 

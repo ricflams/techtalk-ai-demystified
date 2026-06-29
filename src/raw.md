@@ -551,3 +551,6 @@ https://github.com/seifghazi/claude-code-proxy
 https://www.reddit.com/r/ClaudeAI/comments/1u51357/fable_5s_thoughts_on_being_suspended/
 
 https://gurusup.com/blog/moe-vs-multi-agent-systems
+
+Hofstadter
+https://www.youtube.com/watch?v=n8m7lFQ3njk

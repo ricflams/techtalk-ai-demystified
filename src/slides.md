@@ -10,77 +10,104 @@ h4, h4 ~ * { display: none; }
 </style>
 
 # AI Demystified
-
 Richard Flamsholt · July 2026
 
+---
+![bg](images/intro/bread.jpg)
+
 ####
+You can bake lovely crunchy bread without knowing squat about what "yeast" actually does. You add it, then set the clock to let the dough rise for 1 hour as the recipe says. The bread probably comes out fine.
 
-Links to the most interesting bits.
+But. If you know that yeast is a living organism that use enzymes to feed on sugar in the flour then the whole thing becomes demystifed. Still complex, sure, but you can now begin to understand how the choice of flour, additives, and temperature over time affect the dough and how to make deliberate choices to "steer" the dough better. For e.g. a "cold ferment" you let the yeast work normally for an hour and then place the dough in the fridge to put the yeast to sleep and let the enzymes continue to work on building flavor and gluten.
 
-tokenspree
-etc
+A lot of advanced baking processes can seem arbitrary or magical ("add diastatic malt powder to ...") but armed with a fundamental understanding of the way yeast and enzymes works you're much better equipped to understand them - and steer them your own way, too.
 
+This presentation is about the yeast and enzymes of AI. And whatever else is involved in the *basic* baking process.
 
-# Prologue
+---
+![bg](images/intro/one-hour.jpg)
 
-Over time, some tech things just trigger my brain like dopamine.
+####
+Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move fast.
 
-TODO: photos of my books
+---
+![bg](images/intro/dopamine.png)
 
-Years ago when HTML and XML came out I was like, man, I just want to know all about it.
-Or Java and then .NET, with bytecode and virtual bytecode-machines.
+####
+Over time, some landmark tech has particularly triggered my brain.
 
-For the past yea I've felt that way about AI.
-Like a kid in a candy store.
+Back when HTML and XML came out I was like, man, I just want to know all about it.
 
-### A eye opening insights
-TODO: image
-It's given me many eye-opening insights and a better grasp of AI that I wish for others to have too. There's rather a lot of mysticisim surrounding the bits of AI. Nearly daily at work I hear some misconception or myth.
+Same with Java and .NET, with their intriguing bytecode and VM-engines.
 
-That's the initiating? for this talk.
+For the past year I've felt that way about AI.
 
-### And the topic is?
-TODO: image
-The topic is: All the foundational parts of AI. Not the math, don't worry. And not everything surrounding it, like the latest Claude slash-command. No, it's the steady? mechanisms and building blocks mental models that I amd at demystifying. Everything is still going to revolve around tokens and LLMs for the freseable future and their cost and limitations will still be around in a year - "he said, over-confidently".
+---
+![bg](images/intro/lightbulb.jpeg)
 
-Maybe a bit like hearing about how a car works when all you want to do is take a camping-trip to Italy. But this can help you understand why the engine overheats in that slow queue up the mountain.
+####
+Many lightbulb-moments have given me a better fundamental understanding of AI and how to best use it. The behavior, cost, limitations. It has *demystified* the AI and I wish for other to have that insight too.
 
-### My goal is for everybody to level-up
-TODO: image
-"Is this for me?", you ask. Yes, it's for everybody, because everybody uses AI
+That's my primary motivation for this presentation.
 
-My grand GOAL is "demystifying the AI". I hope that you will all become more familiar with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI.
+---
+![bg](images/intro/journey/overview.png)
 
-TODO: Image of checklist/bingo: tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+####
+The secondary motication is that the crafting a presentation of a topic is a really good way of learning about it.
 
-## The presentation
-TODO: image
-How do I cram "all of AI" into one presentation? In particular on a topic you all know about and "everybody" is interested in. It would be so easy to just throw tecnical descriptions at you and expect it to stick. What made creating this presentation really challenging, but also really rewarding for me personally, has been figuring out all the details and how best to present them as a journey through the AI landscape that highlight the most relevant and useful bits. While keeping it appropriately deep and not tell you anything wrong. I've simplifed some aspects and some AI services likely does x and y a bit differently, but it's as correct as I could possibly make it.
+And frankly, it's been the most challenging presentation I've ever made.
 
-### Ask questions - now and later
-You may be thinking "hang on, that can't be right" or "I don't get it!". Feel free to ask questions during the talk. And afterwards, go checkout the slides which are on github and has links to related materials. And not least: ask me or other colleagues if you've got questions. I'd be happy to elaborate on everything I'm presenting here today.
+Everybody is interested in AI. My goal is for everybody to become familiar with the terms and the fundamental principles of AI works so you're all better equipped to work with AI.
 
-### 10,000,000 AI videos... +1
+I must make sure that what I say is correct. There's so much to say that I can't possible cover "all AI". How do I tell the story of useful bits that will click for you and that covers "everything" - in just one hour? The simplest would be to just throw a bunch of facts at you but I know that won't stick.
+
+The approach I've taken is to focus on the basics and try to best to make it relatable. Just the core part of the AI service that you interact with when chatting. The Large Language Model and AI-service on top of it. In bread terms, the yeast and enzymes and the basic baking process. Just keep it simple, I figured.
+
+---
+![bg](images/intro/journey/rabbit-holes.png)
+
+####
+"Simple", yeah right: every aspect was a potential rabbit hole worthy of an entire presentation itself. So I've had to simplify some aspects but rest assured that what I'll tell you is as correct and general as possible.
+
+---
+<img class="full" src="images/overview/full.png" />
+
+You, the **human**, use an **AI Client** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the client can **remember**.
+
+####
+This is "just the basics" that the presentation will cover.
+
+It will focus on Large Language Model AI, ie generative text AI chatbots like ChatGPT, Claude, etc. Not AI for producing images using stable diffusion, not AI for self-driving cars or folding proteins.
+
+[Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
+
+### 10,000,000 videos + 1
 <img class="full" src="images/intro/youtube.png">
 
-#### Why this presentation?
-What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos?
-Why not just post 10 links to the most popular videos about LLMs?
+####
+Finally, what can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about LLMs?
 
 I guess for the same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
 
-There's a lot to go through. Let's go.
+---
+![bg](images/intro/questions.jpg)
 
-## The three chapters
-TODO: image, maybe beans, espresso and coffee-making?
+#### Ask questions - now and later
+Along the way you may be thinking "hang on, that can't be right" or "I don't get it!". Feel free to raise your hand and ask questions. I'll also invite questions during the talk.
 
-First part: set the stage
+Afterwards go checkout the slides which are on github and has links to related materials. And not least: ask me or other colleagues if you've got questions. I'd be happy to elaborate on everything I'm presenting here today.
 
-Second part: understand all the tech.
+---
+<img class="full" src="images/intro/route.png">
 
-Third part: now that you understand all the tech, how do you best wield it?
+# Map the landscape
 
-# I. Setting The Stage
+---
+<img class="full" src="images/intro/journey/map.png">
+
+####
+Let's start by all being on the same page about some top-level concepts and the parts that we'll dive into. Understanding their roles makes it easer to understand what lies ahead.
 
 ## What is "the AI"?
 
@@ -99,26 +126,63 @@ The assistant knows who you are and what your preferences are, if any. It adds e
 ####
 The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service is that scaffolding.
 
-### The assistant steer the AI on your behalf
+### Names and roles
 <img class="full" src="images/definitions/the-parts.png" />
 
 ####
-The assistant can also clinically be called an "AI client" and is also often called an "AI agent", or slightly more correct an "AI user agent". Just like how Outlook is an "Email User Agent.
+The assistant can also clinically be called an "AI client" and is also often called an "AI agent", or slightly more correct an "AI user agent". Just like how Outlook is an "email user agent".
 
-"LLM" and "AI model" are in practice synonymous.
+"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
 
-## Where does it live?
+## You always use an "assistant"
 
-### AI Service and LLM are always roomies
+xxxx
+
+### You💕assistant, AI+LLM always roomies
 <img class="full" src="images/definitions/arrangements/user-and-ai.png" />
 
-### Browser and terminal
+### gemini.com, in the browser
+<img class="full" src="images/definitions/assistants/gemini.png" />
+
+####
+
+### Rovo, in Atlassian sidebar
+<img class="full" src="images/definitions/assistants/rovo.png" />
+
+####
+
+### Rufus, in Amazon sidebar
+<img class="full" src="images/definitions/assistants/amazon.png" />
+
+####
+
+### Siteimprove PDF remediate, in the app
+<img class="full" src="images/definitions/assistants/siteimprove.png" />
+
+####
+
+### VS Code, sidebar and inline
+<img class="full" src="images/definitions/assistants/vscode.png" />
+
+####
+
+### Google Antigravity, in terminal/CLI
+<img class="full" src="images/definitions/assistants/antigravity.png" />
+
+####
+CLI means Command Line Interface, i.e. in a text-based terminal.
+
+### Claude Desktop, dedicated assistant app
+<img class="full" src="images/definitions/assistants/claude.png" />
+
+
+### Browser vs terminal
 
 <div class="cols">
 <img class="full" src="images/definitions/arrangements/browser.png" />
 <div>
 
-- *Browse* to chatgpt.com, claude.com, ...
+*Browse* to chatgpt.com, claude.com, etc:
 - Chats and settings are *on the website*
 - You can *do a lot*: chat, make images, documents, use online tools, etc
 
@@ -129,23 +193,23 @@ The assistant can also clinically be called an "AI client" and is also often cal
 <img class="full" src="images/definitions/arrangements/cli.png" />
 <div>
 
-- *Install* claude, gemini, opencode, ...
-- Chats, settings, files - *all on your pc*
-- Better *control of the AI*
-- *Text*, yes, but actually pretty nice
+Must *install* claude, gemini, opencode, ...
+- Chats, settings, files are *all on your pc*
+- Better *control* over the AI
+- *Text only*, which can feel like a barrier
 </div>
 </div>
 
-### AI Websites and terminals tools (CLI)
+### AI websites and terminals tools (CLI)
 <img class="full" src="images/definitions/arrangements/web-vs-cli.png" />
 
-### Other options: in service and self-hosted
+### Other options: inside app, or self-hosted
 
 <div class="cols">
 <img class="full" src="images/definitions/arrangements/app.png" />
 <div>
 
-- Use AI *indirectly* via some application
+Use AI *indirectly* through apps you use:
 - Little to no control over the behavior
 - Chat-knowledge still comes in handy; e.g. you can often ask "list your tools"
 
@@ -156,23 +220,15 @@ The assistant can also clinically be called an "AI client" and is also often cal
 <img class="full" src="images/definitions/arrangements/local.png" />
 <div>
 
-- Run open-weight *full LLM* on your pc
+Run open-weight *full LLM* on your pc:
 - Gives you *full control*, eg for *training*
-- Need a pretty *powerful GPU, RAM*
-- Is frankly often *over-hyped*
+- Free to run, but *expensive* to run well
 </div>
 </div>
 
-### my own progression
-Started prompting
-Then producing code which I copy-pasted
-Started having the AI work on files in vscode
-Now I use terminal for anything related to code and files, web for just asking questions.
+### My personal AI-journey
 
----
-<img class="full" src="images/overview/full.png" />
-
-You, the **human**, use an **AI Client** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the client can **remember**.
+<img class="full" src="images/definitions/evolution.png" />
 
 
 ## What is eg shared for Claude?
@@ -244,28 +300,7 @@ The commercial **AI Services** run in massive data centers.
 ## LLM is the generative AI
 <img class="full" src="images/overview/llm-intro.png">
 
-## The Core Idea
-
-### AI model ⩵ LLM
-
-Our focus is on **AI models** that generate text. Not images, audio, etc.
-
-All such modern AI models are built as a **Large Language Model**, aka an **LLM**.
-
-In practice the words are synonymous: **AI Model ⩵ LLM**
-
-<br>
-<img class="half" src="images/core/ai-model.svg" />
-
-####
- I tend to often use the word "LLM" when pointing to a specific box on a diagram or technical details and "the AI model" when talking about its behavior, but it varies.
-
-If we're nitpicking the synonym-claim then yeah, it more correct to say that "an LLM is an AI model" and "all the current AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs".
-
-### "Just a fancy autocomplete" is ...true
-<img class="full" src="images/core/calculator-once-upon.png" />
-<br>
-<img class="half" src="images/core/ai-model-in-out.svg" />
+## "A fancy autocomplete"
 
 ### Not answers; "most probable prediction"
 
@@ -275,27 +310,35 @@ If we're nitpicking the synonym-claim then yeah, it more correct to say that "an
 
 - So you don't "tell the LLM what to do": you build the context so that *what you want to come next* becomes the model's *most likely prediction*.
 <br>
-<img class="half" src="images/core/ai-model-in-out.svg" />
+<img class="half" src="images/llm/core/once-upon-a-time.svg" />
 
-### Not "question→answer", but "context→next"
+### No fact-lookup, tools, web-search
+<img class="full" src="images/llm/core/no-lookups.svg" />
 
-<br>
-<img class="full" src="images/core/example-context-continuation.svg" />
+### Instead, the LLM is really pure math
+<img class="full" src="images/llm/core/pure-math.svg" />
 
-### Predictions from patterns seen, even math
+### The actual math
+<img class="full" src="images/llm/core/all-the-math.svg" />
 
-<br>
-<img class="full" src="images/core/example-patterns.svg" />
+####
+ Lots of matrix operations
+
+### "Context→Next", not "Question→Answer"
+<img class="full" src="images/llm/core/context-continuation.svg" />
+
+
+### Predictions from seen patterns
+<img class="full" src="images/llm/core/coffee.svg" />
+
+### Even math are patterns
+<img class="full" src="images/llm/core/math.svg" />
 
 ### Context determines the "likely next text"
-
-<br>
-<img class="full" src="images/core/example-knock-knock.svg" />
+<img class="full" src="images/llm/core/knock-knock.svg" />
 
 ### Some "reasoning" is maybe "just a pattern"
-
-<br>
-<img class="full" src="images/core/example-expert-advice.svg" />
+<img class="full" src="images/llm/core/expert-advice.svg" />
 
 ### Not easy - human brain
 
@@ -435,15 +478,15 @@ Examples in English, Danish, Korean, Classical Chinese, and C#.
 
 ### Tokens, summarized
 
-* A **token** is the **chunk of text** the AI service can reason about
+* A **token** is the *chunk of text* the AI service can reason about
 * Models typically have a **vocabulary** of 200,000 tokens
-* For English, 1 token is roughly 1 word
+* For English, 1 token is roughly 1 word (3/4 of a word)
 <br>
 And last, but not least:
 <br>
-* AI services **charges per token**, since tokens are the unit the LLM works on
-TODO:* A ballpark figure: you pay **$1 for 100,000 output tokens** in a mid-tier model
-TODO:* 100,000 tokens amounts to _"Harry Potter and the Philosopher's Stone"_
+* AI services *charges per token*, since tokens are the unit the LLM works on
+* Ballpark figure: you pay *$1 for 100,000 output tokens* (API, mid-tier model)
+* 100,000 tokens is _"Harry Potter and the Philosopher's Stone"_
 
 ####
 For English, one token generally corresponds to about 4 characters. For a text the number of tokens will typically be 30% higher than the number of words, ie 1000 words means 1300 tokens - broadly speaking.
@@ -620,6 +663,9 @@ That's the second thing to note: the LLM itself actually just produce this set o
 
 ### A neural network
 <img class="full" src="images/llm/neural-network.webp">
+
+####
+Software that learns primarily by guessing answers and getting corrected. Trained on human language.
 
 ### "The capitol of France is ..."
 <img class="full" src="images/llm/neural-network-paris.webp">
@@ -1044,9 +1090,18 @@ Called a Foundation Model because it can be used for all kinds of things without
 ####
 When you hear somebody say "then we can just fine-tune the model" you should pack a fair amount of skepticism because you can only do that for certain models and it's not as easy as it might seem. TODO: Who would fine-tune a model?
 
+## A brief history
+https://claude.ai/chat/4ff62fbd-8163-415a-a068-d23e10ac1160
 
+2019, The mainstream view was that you needed cleverer architectures, not bigger ones.
 
+Rich Sutton's 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop building in your priors, just scale.
 
+GPT-2 (1.5B params, 2019) had produced surprisingly fluent text. But "fluent text" isn't "general capabilities." The leap to GPT-3 was ~100×
+
+The wager was not "the loss curve will keep going" — Kaplan had already shown that. The wager was: something qualitatively useful will fall out of low enough loss. That part had no theoretical basis. GPT-2 had shown hints — coherent paragraphs, some pattern-following within a prompt — but few-shot learning as a general capability wasn't predicted by any theory.
+
+The paper's title — "Language Models are Few-Shot Learners"
 
 ### Takeaways
 
@@ -1097,6 +1152,13 @@ Only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
 [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
 [Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
+
+[Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
+https://elibrary-dev.nusamandiri.ac.id/assets/fileebook/250153.pdf
+
+The GitHub repo is incredibly thorough: They designed the entire codebase to run flawlessly for free in Google Colab (leveraging free T4 GPUs), meaning you can experiment with the tokenizers, embeddings, and RAG pipelines without paying a dime.  
+
+
 
 # The AI Service
 <img class="full" src="images/overview/service.png">
@@ -1386,6 +1448,13 @@ Each patch → becomes one token
 
 
 ### 4: Use tools
+
+ the canonical published answer is Toolformer (Schick et al. 2023), and it's worth knowing because it's mechanistically clean rather than hand-wavy. They had a base LM propose where API calls might go in ordinary text, actually executed those calls, and then kept an insertion only if having the call+result reduced the model's loss on the subsequent tokens — i.e., only if the call demonstrably helped predict what came next. Then they fine-tuned on the augmented text with the useful calls inlined. The filter is self-supervised: usefulness is defined as "did this make the future more predictable," not human judgment.
+[Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
+[Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
+
+[Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)
+
 <img class="full" src="images/ai-service/service-tools.png">
 an MCP server is a "Standardized Wrapper" for an API.
 https://gemini.google.com/app/65287c836e4e8a94?hl=da
@@ -1560,6 +1629,15 @@ try t see where you are in the loop and see if you can remove yourself out of it
 for most models, including the latest GPT and Gemini iterations, deeper reasoning actually lowers the success rate at detecting nonsense — the "Reasoning Paradox." So the slide-safe version: CoT re-rolls the dice; it doesn't load them with truth.
 https://claude.ai/chat/a3c1720b-17f5-46b4-8f93-93b22926f713
 
+### Quotas
+
+Still a mystery to me
+
+### Is it sentinent?
+
+https://claude.ai/chat/03b64faf-bb61-402a-982f-ab48a6bbff21
+
+
 # Embeddings, revisited
 
 ## Similarity examples
@@ -1568,8 +1646,37 @@ https://claude.ai/chat/a3c1720b-17f5-46b4-8f93-93b22926f713
 # "In summary, in 3 paragraphs..."
 
 ---
+TODO:
+
 https://github.com/seifghazi/claude-code-proxy#option-1-local-development
 http://localhost:5173/
 export ANTHROPIC_BASE_URL=http://localhost:3001
 
 One big generated image of tokens/embeddings going into the LLM, etc etc
+
+Do we run out of training material?
+It's just a mechanical machine - you can't compare it to human thinking
+"we don't know what goes on inside" - we we do, 100%, just not how the weights are created. For now, but ai-generated algorithms could change that.
+
+scaling laws
+interpretability
+
+
+
+
+Instead my GOAL is that you will all become more confident with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI. Not the math, don't worry. I'll focus on facts that are useful for grasping the principles - which very often are surprising too.
+
+A tour of how modern AI actually works - tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+<br> 
+<br>
+ There's no math, and it is not as dry as it sounds: understanding what a token really is changes how you write prompts and why you pay what you pay; embeddings turn out to be the secret behind almost everything interesting AI can do. And when we're done, MCP servers and Claude skills will no longer be magic words — you'll just get why they work the way they do.
+
+
+Links to the most interesting bits.
+
+
+Special links:
+
+tokenspree
+https://github.com/seifghazi/claude-code-proxy
+etc

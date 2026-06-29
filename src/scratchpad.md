@@ -101,11 +101,24 @@ Maybe. But only those improvements has somehow been put into the context
 
 
 ## Why
-Everybody's using AI
+
+You can bake lovely crunchy bread without knowing squat about what "yeast" actually does. You add it, then set the clock to let the dough rise for 1 hour as the recipe says. The bread probably comes out fine.
+
+But. If you know that yeast is a living organism that use enzymes to feed on sugar in the flour then the whole thing becomes demystifed. Still complex, sure, but you can now begin to understand how the choice of flour, additives, and temperature over time affect the dough and how to make deliberate choices to "steer" the dough better. For e.g. a "cold ferment" you let the yeast work normally for an hour and then place the dough in the fridge to put the yeast to sleep and let the enzymes continue to work on building flavor and gluten. A lot of advanced baking processes can seem arbitrary or magical ("add diastatic malt powder to ...") but armed with a fundamental understanding of the way yeast and enzymes works you're much better equipped to understand them - and steer them your own way, too.
+
+This presentation is not just about the yeast and enzymes of AI, but "all of AI": from tokens and LLM to agent-files and MCP-servers. It will be deep, entertaining, useful, and surprising. Be prepared to stay alert, because there's a lot to cover. It's my hope and goal that if you digest it well then you'll rise (haha) to become much more confident in your use of AI.
+
+(If the above feels unusual in tone and cadence then it's likely because it's written exclusively by me, a human, without any AI sparring or guidance, except for research regarding facts about yeast and enzymes)
+
+
+
+We're all using AI. 
 
 You sort of know how it works and can do.
 
 And yet - there's a lot of AI mysticism at play, right?
+
+
 
 You hear this very often:
 
@@ -118,6 +131,19 @@ You hear this very often:
 * I think it doesn't know...
 
 I'm here with the grand goal of demystifying the AI.
+
+nstead my GOAL is that you will all become more confident with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI. Not the math, don't worry. I'll focus on facts that are useful for grasping the principles - which very often are surprising too.
+
+A tour of how modern AI actually works - tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+<br> 
+<br>
+ There's no math, and it is not as dry as it sounds: understanding what a token really is changes how you write prompts and why you pay what you pay; embeddings turn out to be the secret behind almost everything interesting AI can do. And when we're done, MCP servers and Claude skills will no longer be magic words — you'll just get why they work the way they do.
+
+
+Links to the most interesting bits.
+
+
+
 
 Now, originally I planned to giving an overview of the entire landscape of available AI tools. But it's vast and constantly moving so instead I decided to hone in on the much simpler parts: just the core steady inner parts. Which of course turned out to be filled with big rabbit holes.
 
@@ -142,3 +168,136 @@ Prepping for this talk has helped me refine my understanding: sharpening and che
 This has been a super-challenging tech-talk to make. Because you all know about the subject, some know some parts better than me likely, and "everybody" is interested. There's just a ton to talk about, and I shouldn't tell you anything wrong, and and and.
 
 Maybe a bit like hearing about how a car works when all you want to do is take a camping-trip to Italy. But this can help you understand why the engine overheats in that slow queue up the mountain.
+
+
+
+### AI model ⩵ LLM
+
+Our focus is on **AI models** that generate text. Not images, audio, etc.
+
+All such modern AI models are built as a **Large Language Model**, aka an **LLM**.
+
+In practice the words are synonymous: **AI Model ⩵ LLM**
+
+<br>
+<img class="half" src="images/core/ai-model.svg" />
+
+####
+ I tend to often use the word "LLM" when pointing to a specific box on a diagram or technical details and "the AI model" when talking about its behavior, but it varies.
+
+If we're nitpicking the synonym-claim then yeah, it more correct to say that "an LLM is an AI model" and "all the current AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs".
+
+### "Just a fancy autocomplete" is ...true
+<img class="full" src="images/core/calculator-once-upon.png" />
+<br>
+<img class="half" src="images/core/ai-model-in-out.svg" />
+
+
+
+Maybe a bit like hearing about how a car works when all you want to do is take a camping-trip to Italy. But this can help you understand why the engine overheats in that slow queue up the mountain.
+
+
+
+
+
+### The LLM
+<img class="full" src="images/intro/journey/enter-rabbithole.png">
+
+####
+This journey has given me many eye-opening insights and a better grasp of AI that I wish for others to have too. AI and the tooling is surrounded by a lot of mysticisim. Nearly daily at work I hear some misconception or myth and it can be hard to gauge.
+
+### The AI Service
+<img class="full" src="images/intro/journey/full-picture.png">
+
+####
+This journey has given me many eye-opening insights and a better grasp of AI that I wish for others to have too. AI and the tooling is surrounded by a lot of mysticisim. Nearly daily at work I hear some misconception or myth and it can be hard to gauge.
+
+---
+<img class="full" src="images/intro/journey/navigate.png">
+
+####
+This journey has given me many eye-opening insights and a better grasp of AI that I wish for others to have too. AI and the tooling is surrounded by a lot of mysticisim. Nearly daily at work I hear some misconception or myth and it can be hard to gauge.
+
+
+
+
+TODO: image, maybe beans, espresso and coffee-making?
+
+First part: set the stage
+
+Second part: understand all the tech.
+
+Third part: now that you understand all the tech, how do you best wield it?
+
+# AI overview
+
+
+
+
+This would be so much easier if it was about Quantum Computing because then nobody would know if I was bullshitting.
+
+
+It that has actually been But what has been most challenging 
+ In particular it's been challenging
+
+How do I cram "all of AI" into one presentation? In particular on a topic you all know about and "everybody" is interested in?
+
+It would be so much easier to present eg Quantum Computing which very few really knows about anyway.
+
+It would also be so easy to just throw tecnical descriptions at you and expect it to stick. What made creating this presentation challenging, but also rewarding for me personally, has been figuring out all the details and how best to present them as a journey through the AI landscape that highlight the most relevant and useful bits. The bits that has helped making it click for me.
+
+While keeping it appropriately deep and not tell you anything wrong. I've simplifed some aspects and some AI services likely does x and y a bit differently, but it's as correct as I could possibly make it.
+
+---
+### My goal: for everybody to level-up
+
+"Is this for me?", you ask. Yes, it's for everybody, because everybody uses AI
+
+My grand GOAL is "demystifying the AI". I hope that you will all become more familiar with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI.
+
+
+
+####
+Much of what I've learned has been truly eye-opening insights. They've given me a better grasp of AI that I wish for others to have too. Not the latest Claude slash-command, but instead the fundamentals. AI is still going to revolve around tokens and LLMs for the freseable future and their cost and limitations will still be around in a year but the fundamental parts that will still be . "skill of the day". No, the basics. The basic has given me a grounding for a better understanding of the hype of the day.
+The basic behavior is so-so known but still surrounded by a lot of mysticisim. Nearly daily I hear speculations or misunderstandings that ultimately come from folks not knowing something quite basic.
+
+####
+That's the initiating? for this talk.
+
+Prepare for a eye opening insights
+
+
+https://medium.com/codandotv/does-caveman-actually-save-tokens-i-built-a-benchmark-to-find-out-469c8047c75d
+
+---
+
+####
+
+There's a ton of things related to AI. Lots of math, new stuff every week, the latest Claude slash-command. That's not what this presentation is about. This is about the steady? mechanisms and building blocks mental models that I amd at demystifying. Everything is still going to revolve around tokens and LLMs for the freseable future and their cost and limitations will still be around in a year - "he said, over-confidently". So this presentation will only be about those basic building blocks. a chatbot generative text AI
+
+---
+![bg](images/intro/journey/rabbit-holes.png)
+
+####
+However, each of every one of them are rabbit holes in their own right.
+
+
+
+TODO: Image of checklist/bingo: .
+###
+
+It's about Large Language Models (LLMs) which generate text, ie - "chatbots".
+Not eg AlphaGo / AlphaZero — plays Go/chess by playing millions of games against itself, Speech recognition — Whisper, image generation stable DiffusionDenoise toward structure
+####
+ImageNet / CNNs (AlexNet 2012) — the "big bang" moment; convolutional nets suddenly beating humans on image classification
+
+
+## The presentation
+TODO: image
+How do I cram "all of AI" into one presentation? In particular on a topic you all know about and "everybody" is interested in?
+
+It would be so much easier to present eg Quantum Computing which very few really knows about anyway.
+
+It would also be so easy to just throw tecnical descriptions at you and expect it to stick. What made creating this presentation challenging, but also rewarding for me personally, has been figuring out all the details and how best to present them as a journey through the AI landscape that highlight the most relevant and useful bits. The bits that has helped making it click for me.
+
+While keeping it appropriately deep and not tell you anything wrong. I've simplifed some aspects and some AI services likely does x and y a bit differently, but it's as correct as I could possibly make it.

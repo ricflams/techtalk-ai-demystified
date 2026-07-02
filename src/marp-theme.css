@@ -213,9 +213,11 @@ section::after {
    No <!-- _class: ... --> directives needed.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Shared: center all heading slides (heading + content form one centred group) ── */
+/* ── Shared: center all heading slides — each content block centers itself,
+   text inside stays left-aligned ── */
 section:has(h1, h2, h3) {
   justify-content: center;
+  align-items: center;
 }
 
 /* ── Shared: hide page number on all heading slides ── */
@@ -276,12 +278,6 @@ section:has(h1) p {
   text-align: center;
 }
 
-/* Lists on heading slides left-align to match paragraphs */
-section:has(h1, h2, h3) ul,
-section:has(h1, h2, h3) ol {
-  margin-left: 0;
-  margin-right: 0;
-}
 
 /* ── Chapter — slides containing h2 ─────────────────────────── */
 section:has(h2) h2 {

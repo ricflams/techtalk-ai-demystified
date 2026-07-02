@@ -301,3 +301,69 @@ It would be so much easier to present eg Quantum Computing which very few really
 It would also be so easy to just throw tecnical descriptions at you and expect it to stick. What made creating this presentation challenging, but also rewarding for me personally, has been figuring out all the details and how best to present them as a journey through the AI landscape that highlight the most relevant and useful bits. The bits that has helped making it click for me.
 
 While keeping it appropriately deep and not tell you anything wrong. I've simplifed some aspects and some AI services likely does x and y a bit differently, but it's as correct as I could possibly make it.
+
+
+
+## AI Service is a big backend service
+Just like any big SaaS-company's services, it runs on some data center somewhere.
+
+### The AI service, after Richard Attenborough
+
+* The AI Service Lives in a huge airconditioned area that is ripe with cheap, reliable power, often near water.
+* It's very intelligent but speak in a simple language, called JSON
+* Maybe somewhat surprisingly, it really only does one thing: when you speak a sentence to it, it can predict how that sentence should continue.
+* It has aqcuired that impressive skill by intensely studying and absorbing everything written in every language at an unfathomably large scale.
+
+Let's take a peek into the brain of that little fellow. It takes its name after that capability: the Large Language Model, the LLM.
+
+####
+The commercial **AI Services** run in massive data centers.
+
+
+
+
+### Steering the context
+
+ Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.
+ 
+ The model has no other input to go by for dealing with your tasks than the context you give it. So how do 
+
+
+
+"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
+
+
+## What can't it do?
+
+- Quite notably: *it has no memory*.
+- It doesn't know you
+- It can only produce text.
+
+
+
+---
+![bg](images/intro/dopamine.png)
+
+####
+Over time, some landmark tech has particularly triggered my brain.
+
+Back when HTML and XML came out I was like, man, I just want to know all about it.
+
+Same with Java and .NET, with their intriguing bytecode and VM-engines.
+
+For the past year I've felt that way about AI.
+
+---
+![bg](images/intro/lightbulb.jpeg)
+
+####
+Many lightbulb-moments have given me a better fundamental understanding of AI and how to best use it. The context, cost, limitations. It has *demystified* the AI and I wish for other to have that insight too.
+
+That's my primary motivation for this presentation.
+
+
+And frankly, it's likely been the most challenging presentation I've ever put together.
+
+Everybody is interested in AI and would be better of by having these lightbulb moments. But there's so much to say about "all AI". How do I tell the story of useful bits that will click for you and that covers everything useful, in just one hour? The simplest would be to just throw a bunch of facts at you but I know that won't stick. 
+
+The approach I've taken is to focus on the basics and try to best to make it relatable. Just the core part of the AI service that you interact with when chatting. The Large Language Model and AI-service on top of it. In bread terms, the yeast and enzymes and the basic baking process. Just keep it simple, I figured.

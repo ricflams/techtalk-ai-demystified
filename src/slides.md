@@ -49,7 +49,7 @@ Will that knowledge turn you into an expert baker overnight? Maybe not. But it w
 ####
 It's my hope and goal that if you digest it well then you'll rise (haha) to become much more confident in your use of AI so you can 
 
-# "Keep it simple"
+# KISS
 
 ---
 ![bg](images/intro/journey/overview.png)
@@ -1011,8 +1011,14 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
 [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
-### Describes Claude’s core driving principles
-<img class="full" src="images/training/claudes-constitution-example.png">
+### Expresses Claude’s "core principles"
+<img class="full" src="images/training/claudes-constitution-helpfulness.png">
+
+### "Don't foster excessive engagement"
+<img class="full" src="images/training/claudes-constitution-sychophant.png">
+
+####
+As a principle, this goes directly against the main objective of optimizing "pleasing engagement" at social platforms like Facebook.
 
 ### "New model is 36% more ..."
 <img class="full" src="images/training/system-cards-opus48.png">
@@ -1074,6 +1080,8 @@ So if we want to do more with the same set of tools - LLM operating on context -
 * The LLM can only reason about what's in the context
 * It can't browse the web, do large math, read a file, remember anything
 * Yes, the models are different - and the comes from training
+
+There's nothing in the horison that seem to remove LLMs, context limitations and token-cost.
 
 * Only smaller models can run well on your own hardware
 * Fine-tuning is not an easy matter and typically not something you "just do"
@@ -1524,7 +1532,7 @@ iframe.game { flex: 1; width: 100%; border: none; }
 
 </div>
 
-# The AI Clients
+# The AI Agents
 
 ## That's where non-LLM innovation is happening
 
@@ -1543,7 +1551,10 @@ https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding
 Loops, loop of loops, etc.
 
 
-
+### What content goes in
+https://claude.ai/chat/8d0a1c64-57b8-4b51-bb48-2d9b6ff24e6b
+Null and compact are genuinely orthogonal — include-everything vs. lossy-transform.
+and then selection, one of which a powerful variant is the embedding-similarity lookup: grep, rag, etc
 
 ## Two kinds
 
@@ -1566,7 +1577,7 @@ https://gurusup.com/blog/agent-orchestration-patterns
 https://gurusup.com/blog/moe-vs-multi-agent-systems
 
 
-# Reflections
+# Guidance
 
 ## How to level up
 
@@ -1619,11 +1630,14 @@ my mcp poc example
 
 ## Advice
 
+Give examples. 
+
 ### How I use AI now
 
 Small nudging words
 Planning
 Like a partner
+	https://youtu.be/Rtkac4WHC1o?si=RoF-SAnoKd6a20IH
 
 ## Workflows
 
@@ -1633,13 +1647,20 @@ next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
 review loops
 try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
 
-## Myths
+# Myth or fact?
+
+#### The model has no memory between conversations
+#### The system prompt has no special architectural status
+#### Longer context doesn't mean better attention to all of it
 
 "Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."
 
 ### Hallucinations
 for most models, including the latest GPT and Gemini iterations, deeper reasoning actually lowers the success rate at detecting nonsense — the "Reasoning Paradox." So the slide-safe version: CoT re-rolls the dice; it doesn't load them with truth.
 https://claude.ai/chat/a3c1720b-17f5-46b4-8f93-93b22926f713
+
+The model doesn't know it's wrong when it hallucinates
+Developers expect that incorrect output means uncertain output — that the model would hedge or flag uncertainty. The model's confidence is calibrated to its training distribution, not to correctness. It can be completely wrong and completely confident simultaneously because plausibility and truth are different things.
 
 ### Quotas
 

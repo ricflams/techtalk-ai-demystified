@@ -27,7 +27,7 @@ jobs:
         run: python3 scripts/make_readable.py public/presentation.html public/index.html
 
       - name: Copy game
-        run: cp -r tokenspree public/tokenspree
+        run: cp -r demo/tokenspree public/tokenspree
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

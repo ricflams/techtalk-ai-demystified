@@ -30,7 +30,7 @@ To self-host, follow the setup steps.
 ### 1. Install dependencies
 
 ```bash
-cd demos/siteimprove-mcp
+cd demo/siteimprove-mcp
 npm install
 ```
 

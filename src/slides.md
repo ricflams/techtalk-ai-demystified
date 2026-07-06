@@ -645,6 +645,9 @@ That's the second thing to note: the LLM itself actually just produce this set o
 ####
 Software that learns primarily by guessing answers and getting corrected. Trained on human language.
 
+https://tikz.net/neural_networks/
+(good images)
+
 ### "The capitol of France is ..."
 <img class="full" src="images/llm/neural-network-paris.webp">
 
@@ -1019,6 +1022,8 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 
 ####
 As a principle, this goes directly against the main objective of optimizing "pleasing engagement" at social platforms like Facebook.
+
+The jailbreaking community, which is maximally adversarial and has zero loyalty to Anthropic, keeps surfacing behavior consistent with the document. When your most hostile auditors confirm the fingerprint, that’s decent evidence.
 
 ### "New model is 36% more ..."
 <img class="full" src="images/training/system-cards-opus48.png">
@@ -1460,6 +1465,8 @@ MCP example: github mcv vs git cli
 MCP is not: A2A
 My JavaOne 2002 JAXP
 
+When you see "You can add an MCP server for Confluence" you should think "I can tell the Agent that I want to use the Atlassian API".
+
 ### MCP
 <img class="full" src="images/ai-service/mcp/sticks-1-add-server.png">
 
@@ -1565,7 +1572,7 @@ Verification before claiming done
 Goal persistence across many steps
 Memory as a pattern 
 
-"it said it did the thing but then didn't" - that's the agent's fault
+"it said it did the thing but then didn't" - that's the agent's fault; a tool-use request that wasn't being followed
 
 
 ## The challenge
@@ -1615,6 +1622,8 @@ For everything else — answering questions, explaining concepts, responding to 
 The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
 The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
 Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
+
+
 ### Level 3b: Tools
 
 ### Level 3c: MCP
@@ -1632,6 +1641,14 @@ my mcp poc example
 
 Give examples. 
 
+I use LLMs frequently to help build Excel tools and calculators, especially for budget management, both professionally and personally. I’ll often explain what I want it to do, all the parameters, etc. but then will end the prompt with, “Before you start building, let me know what questions or uncertainties you have, or what clarifications you need”.
+I often find that with whatever it responds with that I wasn’t clear enough with my initial explanation and request. A quick clarification on the front end helps save a lot of time from having it rebuild tools over and over due to my poor directions.
+
+Be precise. Don't say "it's green" or "it should not be green", but "it should be red"
+
+Consider your prompts first-level source too, eligible to be committed.
+Deterministic vs pure AI-driven.
+
 ### How I use AI now
 
 Small nudging words
@@ -1647,11 +1664,40 @@ next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
 review loops
 try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
 
-# Myth or fact?
+# FAQ and Myths
 
-#### The model has no memory between conversations
-#### The system prompt has no special architectural status
-#### Longer context doesn't mean better attention to all of it
+### The model has no memory between conversations
+### The system prompt has no special architectural status
+### Longer context doesn't mean better attention to all of it
+### Will we run out of training material?
+### If I opt in to training, what happens? What gets leaked?
+### "It has maybe remembered that...."
+### "Why hasn't it remembered that...."
+### "Why doesn't it know"
+	Because you haven't told it. Or it has forgotten by compaction/deletion.
+### "The AI indexed"
+    AI searched through... no, it practically always takes shortcuts: does sample searches, etc. And even if it did "look through all" it can't fit "all" into the context, so it has to compact/summarize parts of it
+### Nagative framing used to be bad, but is now handled well. But be precise, don's say: (make no mistakes)
+### "Make no mistakes"
+### Saying Please
+### Nudging words
+### It's all changing so fast
+And yes, LLM and context and tokens are pretty fixed.
+Sort of hit the ROI-ceiling for context-lengths which are O(N^2). Needs to work smarter with the context, bringing in the agent to do it and the LLM to know how.
+Despite eg DSpark, Mix of Experts.
+https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference
+
+### "The we can fine-tune the model"
+Usuall the wrong approach for a Foundation Model.
+Can imbibe some knowledge, but generalness is best: "Xxx's disappointing law" of generality wins
+### We don't know what goes on side
+Yes, we do. Exactly. But not how ... it works so well.
+Reasonability?
+### Next up - loops
+Ralph Wiggum
+### How do I see the used context in tool x?
+### Caveman skill
+
 
 "Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."
 
@@ -1713,3 +1759,5 @@ Special links:
 tokenspree
 https://github.com/seifghazi/claude-code-proxy
 etc
+
+https://claude-academy.com/

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Tiny Neural Network (16 weights)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #1a1a2e;
+    --surface: #16213e;
+    --border: #334166;
+    --text: #e0e0e8;
+    --text-dim: #8888a0;
+    --accent-pos: #4fc3f7;
+    --accent-neg: #ff7043;
+    --accent-pos-glow: rgba(79, 195, 247, 0.35);
+    --accent-neg-glow: rgba(255, 112, 66, 0.35);
+    --node-inactive: #252547;
+    --node-active: #2a3a5c;
+    --weekend-color: #6a8caf;
+    --weekend-tint: rgba(106, 140, 175, 0.14);
+    --grocery-color: #b8763f;
+    --grocery-tint: rgba(184, 118, 63, 0.14);
+    --relax-color: #ab47bc;
+    --spending-color: #d4a72c;
+    --spending-tint: rgba(212, 167, 44, 0.14);
+    --zero-color: #555570;
+    --bar-pos-color: #4caf50;
+    --bar-neg-color: #e53935;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 28px;
+  }
+
+  .grocery-toggle {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #ffffff;
+    opacity: 0.45;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease;
+  }
+  .grocery-toggle:hover { opacity: 0.9; }
+  .grocery-toggle input { cursor: pointer; }
+
+  .network-container {
+    position: relative;
+    width: 1080px;
+    height: 540px;
+  }
+
+  svg.connections {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* --- NODES --- */
+  .node {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: 2px solid var(--border);
+    background: var(--node-inactive);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 2;
+  }
+
+  .node .label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    color: #ffffff;
+  }
+
+  .node .value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 2px;
+    transition: color 0.4s ease;
+    color: #ffffff;
+  }
+
+  /* Input day nodes */
+  .day-node {
+    width: 128px;
+    height: 56px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .day-node:hover {
+    border-color: var(--accent-pos);
+    background: #2a2a50;
+  }
+  .day-node.active {
+    border-color: var(--accent-pos);
+    background: #1e3a5f;
+    box-shadow: 0 0 20px var(--accent-pos-glow);
+  }
+  .day-node .label {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .day-node .value {
+    display: none;
+  }
+  .day-node .pip {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-pos);
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .day-node.active .pip { opacity: 1; }
+
+  /* Hidden neurons */
+  .hidden-node {
+    width: 170px;
+    height: 80px;
+    border-radius: 18px;
+  }
+
+  .hidden-node.weekend { border-color: var(--weekend-color); color: var(--weekend-color); cursor: pointer; }
+  .hidden-node.weekend.lit {
+    background: var(--weekend-tint);
+    box-shadow: 0 0 28px rgba(106, 140, 175, 0.3);
+  }
+  .hidden-node.grocery { border-color: var(--grocery-color); color: var(--grocery-color); cursor: pointer; }
+  .hidden-node.grocery.lit {
+    background: var(--grocery-tint);
+    box-shadow: 0 0 28px rgba(184, 118, 63, 0.3);
+  }
+  .hidden-node.weekend.hover-active {
+    background: var(--weekend-tint);
+    box-shadow: 0 0 30px rgba(106, 140, 175, 0.4);
+  }
+  .hidden-node.grocery.hover-active {
+    background: var(--grocery-tint);
+    box-shadow: 0 0 30px rgba(184, 118, 63, 0.4);
+  }
+  .hidden-node.hover-dim {
+    opacity: 0.4;
+  }
+
+  /* Output neurons */
+  .output-node {
+    width: 140px;
+    height: 88px;
+    border-radius: 22px;
+  }
+  .output-node.relaxing { border-color: var(--relax-color); }
+  .output-node.relaxing.lit {
+    background: rgba(171, 71, 188, 0.12);
+    box-shadow: 0 0 32px rgba(171, 71, 188, 0.3);
+  }
+  .output-node.spending { border-color: var(--spending-color); }
+  .output-node.spending.lit {
+    background: var(--spending-tint);
+    box-shadow: 0 0 32px rgba(212, 167, 44, 0.3);
+  }
+  .output-node .value {
+    font-size: 28px;
+  }
+
+  /* --- WEIGHT LABELS on connections --- */
+  /* The weight is the whole point of this demo, so it gets its own fixed-size
+     badge — every one exactly the size of "-0.0" — rather than a text label
+     that grows/shrinks with its content. Border matches the line it sits on. */
+  .weight-label {
+    position: absolute;
+    width: 58px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 1.5px solid var(--border);
+    background: #ffffff;
+    color: var(--bg);
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity 0.4s ease, border-width 0.4s ease;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .weight-label.wl-weekend { border-color: var(--weekend-color); }
+  .weight-label.wl-grocery { border-color: var(--grocery-color); }
+  .weight-label.day-active,
+  .weight-label.hover-active {
+    opacity: 1;
+    border-width: 2px;
+  }
+  .weight-label.hover-dim { opacity: 0.25; }
+
+  /* --- SVG line styles --- */
+  /* --w is set per-line in JS: 1.5px at weight 0, up to 4.5px (3x) at |weight|=1 */
+  .conn {
+    stroke: var(--border);
+    stroke-width: var(--w, 1.5);
+    fill: none;
+    opacity: 0.4;
+    transition: stroke-width 0.4s ease, opacity 0.4s ease;
+  }
+  .conn.conn-weekend { color: var(--weekend-color); stroke: currentColor; }
+  .conn.conn-grocery { color: var(--grocery-color); stroke: currentColor; }
+  .conn.day-active,
+  .conn.hover-active {
+    stroke-width: calc(var(--w, 1.5) + 1.2);
+    opacity: 1;
+  }
+  .conn.hover-dim { opacity: 0.08; }
+
+  /* --- BOTTOM BAR CHART --- */
+  .bars-wrapper {
+    width: 1080px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bar-group-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.65;
+    margin-bottom: 8px;
+  }
+  .week-bar-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 56px;
+    cursor: pointer;
+  }
+  .bar-col .bar-value {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 10px;
+    height: 11px;
+    transition: color 0.3s;
+  }
+  /* Fixed-height track; the bar grows up from its middle (positive)
+     or down from its middle (negative) — no visible baseline is drawn. */
+  .bar-col .bar-track {
+    position: relative;
+    width: 36px;
+    height: 120px;
+  }
+  .bar-col .bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: height 0.4s ease, background-color 0.4s ease;
+    min-height: 2px;
+  }
+  .bar-col .bar.positive {
+    bottom: 50%;
+    border-radius: 4px 4px 0 0;
+    background: var(--bar-pos-color);
+  }
+  .bar-col .bar.negative {
+    top: 50%;
+    border-radius: 0 0 4px 4px;
+    background: var(--bar-neg-color);
+  }
+  .bar-col .bar.zero {
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 1px;
+    border-radius: 2px;
+    background: var(--bar-pos-color);
+  }
+  /* Calculation display */
+  .calc-display {
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #ffffff;
+    height: 44px;
+    line-height: 1.7;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .calc-display .pos { color: #ffffff; }
+  .calc-display .neg { color: #ffffff; }
+  .calc-display .result { color: #ffffff; font-weight: 700; }
+
+</style>
+</head>
+<body>
+
+<label class="grocery-toggle" style="top: 14px;">
+  <input type="checkbox" id="toggle-grocery">
+  <span>Grocery neuron</span>
+</label>
+<label class="grocery-toggle" style="top: 34px;">
+  <input type="checkbox" id="toggle-spending">
+  <span>Spending output</span>
+</label>
+
+<h1 id="title-heading">A Tiny Neural Network</h1>
+
+<div class="network-container" id="network">
+  <svg class="connections" id="svg"></svg>
+</div>
+
+<div class="calc-display" id="calc"></div>
+
+<div class="bars-wrapper">
+  <div class="bar-group" id="bar-group-relaxing">
+    <div class="bar-group-label"></div>
+    <div class="week-bar-container" id="bars-relaxing"></div>
+  </div>
+  <div class="bar-group" id="bar-group-spending">
+    <div class="bar-group-label"></div>
+    <div class="week-bar-container" id="bars-spending"></div>
+  </div>
+</div>
+
+<script>
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const DAY_NAMES = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+const WEEKEND_WEIGHTS = [-0.3, 0, 0, 0.2, 0.5, 1, 0.9];
+const GROCERY_WEIGHTS = [0, 0.1, 0, 1.2, 0, 0.2, 0];
+
+// Two outputs read the same two hidden neurons through their own weight
+// pair — same signals, different predictions depending on what the weights
+// favor. Relaxing leans on weekend-feel; Spending leans on grocery.
+const OUTPUTS = {
+  relaxing: { label: 'Relaxing', weekend: 1.2, grocery: -0.4 },
+  spending: { label: 'Spending', weekend: 0.5, grocery: 1.2 },
+};
+
+// Layout coordinates
+// Weekend and grocery neurons sit at roughly 25%/75% of the canvas height,
+// so they read as two clearly separated groups. The day→hidden-neuron lines
+// (left-hand side) get twice the horizontal run of the original layout, so
+// the 7 weight labels along them have room to spread out instead of
+// clustering together. Outputs mirror the same 25%/75% split.
+const CANVAS_HEIGHT = 540;
+const DAY_ROW_STEP = 74;
+const layout = {
+  days: DAYS.map((_, i) => ({ x: 30, y: 28 + i * DAY_ROW_STEP })),
+  weekend: { x: 542, y: CANVAS_HEIGHT * 0.25 - 40 },
+  grocery: { x: 542, y: CANVAS_HEIGHT * 0.75 - 40 },
+  outputs: {
+    relaxing: { x: 892, y: CANVAS_HEIGHT * 0.25 - 44 },
+    spending: { x: 892, y: CANVAS_HEIGHT * 0.75 - 44 },
+  },
+};
+
+// Line thickness scales with |weight|: 1.5px at 0, 4.5px (3x) at |weight|=1
+function weightWidth(w) {
+  return 1.5 + Math.abs(w) * 3;
+}
+
+const dayNodeSize = { w: 128, h: 56 };
+const hiddenNodeSize = { w: 170, h: 80 };
+const outputNodeSize = { w: 140, h: 88 };
+
+let hoveredDay = null;
+let groceryVisible = false;
+let spendingVisible = false;
+
+// When the grocery neuron is hidden, its contribution is excluded from
+// every calculation too — not just from the drawing.
+function outputForDay(key, i) {
+  const gw = groceryVisible ? GROCERY_WEIGHTS[i] : 0;
+  const cfg = OUTPUTS[key];
+  return WEEKEND_WEIGHTS[i] * cfg.weekend + gw * cfg.grocery;
+}
+
+// --- Build DOM ---
+const container = document.getElementById('network');
+const svg = document.getElementById('svg');
+
+// Create day nodes
+// Each day sits inside a full-height "slot" that also covers the gap above
+// and below it, so consecutive slots tile the column with no dead space.
+// Hover listeners live on the slot, not the box — otherwise the mouse
+// crossing the gap between boxes clears the calculation and immediately
+// re-triggers it, which reads as flicker.
+const dayRowGap = DAY_ROW_STEP - dayNodeSize.h;
+DAYS.forEach((_, i) => {
+  const slot = document.createElement('div');
+  slot.style.position = 'absolute';
+  slot.style.left = layout.days[i].x + 'px';
+  slot.style.top = (layout.days[i].y - dayRowGap / 2) + 'px';
+  slot.style.width = dayNodeSize.w + 'px';
+  slot.style.height = DAY_ROW_STEP + 'px';
+  slot.addEventListener('mouseenter', () => { hoveredDay = i; updateNetwork(i); });
+  slot.addEventListener('mouseleave', () => { hoveredDay = null; clearAll(); });
+  container.appendChild(slot);
+
+  const el = document.createElement('div');
+  el.className = 'node day-node';
+  el.id = `day-${i}`;
+  el.style.left = '0px';
+  el.style.top = (dayRowGap / 2) + 'px';
+  el.innerHTML = `<div class="label">${DAY_NAMES[i]}</div><div class="pip"></div>`;
+  slot.appendChild(el);
+});
+
+// Create hidden nodes
+function makeHidden(id, cls, label, pos) {
+  const el = document.createElement('div');
+  el.className = `node hidden-node ${cls}`;
+  el.id = id;
+  el.style.left = pos.x + 'px';
+  el.style.top = pos.y + 'px';
+  el.innerHTML = `<div class="label">${label}</div><div class="value">—</div>`;
+  container.appendChild(el);
+}
+makeHidden('neuron-weekend', 'weekend', 'Weekend-vibe', layout.weekend);
+makeHidden('neuron-grocery', 'grocery', 'Grocery shopping', layout.grocery);
+
+// Create output nodes
+const outputEls = {};
+Object.entries(OUTPUTS).forEach(([key, cfg]) => {
+  const el = document.createElement('div');
+  el.className = `node output-node ${key}`;
+  el.id = `neuron-output-${key}`;
+  el.style.left = layout.outputs[key].x + 'px';
+  el.style.top = layout.outputs[key].y + 'px';
+  el.innerHTML = `<div class="label">${cfg.label}</div><div class="value">—</div>`;
+  container.appendChild(el);
+  outputEls[key] = el;
+});
+
+// --- SVG connections ---
+function getCenter(pos, size) {
+  return { x: pos.x + size.w / 2, y: pos.y + size.h / 2 };
+}
+function getRightEdge(pos, size) {
+  return { x: pos.x + size.w, y: pos.y + size.h / 2 };
+}
+function getLeftEdge(pos, size) {
+  return { x: pos.x, y: pos.y + size.h / 2 };
+}
+
+// Point at parameter t along the same cubic Bézier curve drawn for the
+// connections below (control points at the horizontal midpoint, each
+// holding the y of its nearest endpoint). Weight labels must sample this —
+// not a straight-line lerp between from/to — or they drift off the curve,
+// badly so for lines with a big vertical swing.
+function bezierPoint(from, to, t) {
+  const midX = (from.x + to.x) / 2;
+  const p0 = from, p1 = { x: midX, y: from.y }, p2 = { x: midX, y: to.y }, p3 = to;
+  const mt = 1 - t;
+  const a = mt * mt * mt, b = 3 * mt * mt * t, c = 3 * mt * t * t, d = t * t * t;
+  return {
+    x: a * p0.x + b * p1.x + c * p2.x + d * p3.x,
+    y: a * p0.y + b * p1.y + c * p2.y + d * p3.y,
+  };
+}
+
+// Day → Weekend connections
+const connDayWeekend = [];
+DAYS.forEach((_, i) => {
+  const from = getRightEdge(layout.days[i], dayNodeSize);
+  const to = getLeftEdge(layout.weekend, hiddenNodeSize);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const midX = (from.x + to.x) / 2;
+  line.setAttribute('d', `M${from.x},${from.y} C${midX},${from.y} ${midX},${to.y} ${to.x},${to.y}`);
+  line.classList.add('conn', 'conn-weekend');
+  line.style.setProperty('--w', weightWidth(WEEKEND_WEIGHTS[i]));
+  line.id = `conn-dw-${i}`;
+  svg.appendChild(line);
+  connDayWeekend.push(line);
+});
+
+// Day → Grocery connections
+const connDayGrocery = [];
+DAYS.forEach((_, i) => {
+  const from = getRightEdge(layout.days[i], dayNodeSize);
+  const to = getLeftEdge(layout.grocery, hiddenNodeSize);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const midX = (from.x + to.x) / 2;
+  line.setAttribute('d', `M${from.x},${from.y} C${midX},${from.y} ${midX},${to.y} ${to.x},${to.y}`);
+  line.classList.add('conn', 'conn-grocery');
+  line.style.setProperty('--w', weightWidth(GROCERY_WEIGHTS[i]));
+  line.id = `conn-dg-${i}`;
+  svg.appendChild(line);
+  connDayGrocery.push(line);
+});
+
+// Hidden → Output connections. Each hidden neuron fans out to both outputs
+// (weekend→relaxing, weekend→spending, grocery→relaxing, grocery→spending),
+// each pair with its own weight.
+const weekendRight = getRightEdge(layout.weekend, hiddenNodeSize);
+const groceryRight = getRightEdge(layout.grocery, hiddenNodeSize);
+
+// Box is a fixed 58x27 — center it on the given point rather than each
+// call site fudging its own offset for a variable-width label.
+function createWeightLabel(id, text, cx, cy, cls) {
+  const el = document.createElement('div');
+  el.className = `weight-label ${cls}`;
+  el.id = id;
+  el.textContent = text;
+  el.style.left = (cx - 29) + 'px';
+  el.style.top = (cy - 13.5) + 'px';
+  container.appendChild(el);
+  return el;
+}
+
+function makeHiddenToOutput(fromPos, outputKey, weight, groupClass, idSuffix) {
+  const to = getLeftEdge(layout.outputs[outputKey], outputNodeSize);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const midX = (fromPos.x + to.x) / 2;
+  line.setAttribute('d', `M${fromPos.x},${fromPos.y} C${midX},${fromPos.y} ${midX},${to.y} ${to.x},${to.y}`);
+  line.classList.add('conn', 'hidden-to-output', groupClass);
+  line.style.setProperty('--w', weightWidth(weight));
+  line.id = `conn-${idSuffix}`;
+  svg.appendChild(line);
+
+  // weekend→spending and grocery→relaxing cross each other (weekend/relaxing
+  // sit up top, grocery/spending sit down low, so those two lines run in
+  // opposite vertical directions through the same x range). At t=0.5 both
+  // curves pass through the exact same point — same x (endpoints share x),
+  // same y (the crossing point) — so their badges land on top of each
+  // other. t=0.3 keeps each label nearer its own hidden neuron, where the
+  // two curves have already diverged.
+  const mid = bezierPoint(fromPos, to, 0.3);
+  const labelCls = groupClass === 'conn-weekend' ? 'wl-weekend' : 'wl-grocery';
+  const label = createWeightLabel(`wl-${idSuffix}`, formatWeight(weight), mid.x, mid.y, labelCls);
+
+  return { line, label };
+}
+
+const hiddenToOutput = {
+  weekend: {
+    relaxing: makeHiddenToOutput(weekendRight, 'relaxing', OUTPUTS.relaxing.weekend, 'conn-weekend', 'wo-relaxing'),
+    spending: makeHiddenToOutput(weekendRight, 'spending', OUTPUTS.spending.weekend, 'conn-weekend', 'wo-spending'),
+  },
+  grocery: {
+    relaxing: makeHiddenToOutput(groceryRight, 'relaxing', OUTPUTS.relaxing.grocery, 'conn-grocery', 'go-relaxing'),
+    spending: makeHiddenToOutput(groceryRight, 'spending', OUTPUTS.spending.grocery, 'conn-grocery', 'go-spending'),
+  },
+};
+
+// Day → Weekend weight labels
+// Weekend and grocery share the same target x (both hidden neurons sit at
+// the same horizontal position), so a distinct t per group is what actually
+// separates the two label clusters horizontally — a small pixel offset
+// alone isn't enough room to keep them from overlapping.
+const wlDayWeekend = [];
+DAYS.forEach((_, i) => {
+  const from = getRightEdge(layout.days[i], dayNodeSize);
+  const to = getLeftEdge(layout.weekend, hiddenNodeSize);
+  const t = 0.15;
+  const { x: cx, y: cy } = bezierPoint(from, to, t);
+  const w = WEEKEND_WEIGHTS[i];
+  const label = createWeightLabel(`wl-dw-${i}`, formatWeight(w), cx, cy, 'wl-weekend');
+  wlDayWeekend.push(label);
+});
+
+// Day → Grocery weight labels
+const wlDayGrocery = [];
+DAYS.forEach((_, i) => {
+  const from = getRightEdge(layout.days[i], dayNodeSize);
+  const to = getLeftEdge(layout.grocery, hiddenNodeSize);
+  // Both curves share the same x(t) (weekend and grocery sit at the same x),
+  // and boxes are now a fixed 58px wide, so t just needs to clear the
+  // weekend box's edge by a fixed margin — close to the day boxes, but not
+  // touching the weekend badges.
+  const t = 0.35;
+  const { x: cx, y: cy } = bezierPoint(from, to, t);
+  const w = GROCERY_WEIGHTS[i];
+  const label = createWeightLabel(`wl-dg-${i}`, formatWeight(w), cx, cy, 'wl-grocery');
+  wlDayGrocery.push(label);
+});
+
+// --- Hover emphasis: highlight one perceptron's paths, dim the other's ---
+const groups = {
+  weekend: {
+    node: document.getElementById('neuron-weekend'),
+    conns: [...connDayWeekend, hiddenToOutput.weekend.relaxing.line, hiddenToOutput.weekend.spending.line],
+    labels: [...wlDayWeekend, hiddenToOutput.weekend.relaxing.label, hiddenToOutput.weekend.spending.label],
+  },
+  grocery: {
+    node: document.getElementById('neuron-grocery'),
+    conns: [...connDayGrocery, hiddenToOutput.grocery.relaxing.line, hiddenToOutput.grocery.spending.line],
+    labels: [...wlDayGrocery, hiddenToOutput.grocery.relaxing.label, hiddenToOutput.grocery.spending.label],
+  },
+};
+
+function setGroupHover(name, on) {
+  const active = groups[name];
+  const other = groups[name === 'weekend' ? 'grocery' : 'weekend'];
+  const method = on ? 'add' : 'remove';
+
+  active.node.classList[method]('hover-active');
+  active.conns.forEach(c => c.classList[method]('hover-active'));
+  active.labels.forEach(l => l.classList[method]('hover-active'));
+
+  other.node.classList[method]('hover-dim');
+  other.conns.forEach(c => c.classList[method]('hover-dim'));
+  other.labels.forEach(l => l.classList[method]('hover-dim'));
+}
+
+groups.weekend.node.addEventListener('mouseenter', () => setGroupHover('weekend', true));
+groups.weekend.node.addEventListener('mouseleave', () => setGroupHover('weekend', false));
+groups.grocery.node.addEventListener('mouseenter', () => setGroupHover('grocery', true));
+groups.grocery.node.addEventListener('mouseleave', () => setGroupHover('grocery', false));
+
+function formatWeight(w) {
+  if (w === 0) return '0.0';
+  return (w > 0 ? '+' : '') + w.toFixed(1);
+}
+
+// --- Bar chart ---
+// One group per visible output. Relaxing's group is always shown; Spending's
+// group only appears alongside its toggle, next to Relaxing's.
+const maxBarHeight = 60;
+const barGroupEls = {
+  relaxing: document.getElementById('bar-group-relaxing'),
+  spending: document.getElementById('bar-group-spending'),
+};
+const barEls = { relaxing: [], spending: [] };
+
+function buildBarGroup(key) {
+  const groupEl = barGroupEls[key];
+  groupEl.querySelector('.bar-group-label').textContent = `Weekly ${OUTPUTS[key].label}`;
+  const rowEl = groupEl.querySelector('.week-bar-container');
+  rowEl.innerHTML = '';
+  barEls[key] = [];
+
+  // Scale is derived from this group's own largest magnitude (positive or
+  // negative), not a fixed assumed range — so whichever day is most extreme
+  // always fills the track exactly, and nothing overflows past its edge.
+  const values = DAYS.map((_, i) => outputForDay(key, i));
+  const maxAbs = Math.max(...values.map(v => Math.abs(v)), 0.001);
+  const pxPerUnit = maxBarHeight / maxAbs;
+
+  DAYS.forEach((_, i) => {
+    const val = values[i];
+
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.dataset.day = i;
+    col.addEventListener('mouseenter', () => { hoveredDay = i; updateNetwork(i); });
+    col.addEventListener('mouseleave', () => { hoveredDay = null; clearAll(); });
+
+    const valEl = document.createElement('div');
+    valEl.className = 'bar-value';
+    valEl.textContent = val.toFixed(2);
+
+    const track = document.createElement('div');
+    track.className = 'bar-track';
+
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const absH = Math.abs(val) * pxPerUnit;
+    bar.style.height = (val === 0 ? 1 : Math.max(2, absH)) + 'px';
+    if (val > 0) bar.classList.add('positive');
+    else if (val < 0) bar.classList.add('negative');
+    else bar.classList.add('zero');
+    track.appendChild(bar);
+
+    col.appendChild(valEl);
+    col.appendChild(track);
+    rowEl.appendChild(col);
+    barEls[key].push(col);
+  });
+}
+
+function buildBars() {
+  // Always build both groups (even while Spending is hidden) so its true
+  // width is reserved from the start — otherwise the empty, unbuilt group
+  // has near-zero width and Relaxing visibly shifts left the first time
+  // Spending gets populated.
+  buildBarGroup('relaxing');
+  buildBarGroup('spending');
+}
+buildBarGroup('relaxing');
+
+// --- Interaction ---
+function clearAll() {
+  // Day nodes
+  DAYS.forEach((_, i) => {
+    document.getElementById(`day-${i}`).classList.remove('active');
+  });
+
+  // Connections + weight labels
+  connDayWeekend.forEach(c => c.classList.remove('day-active'));
+  connDayGrocery.forEach(c => c.classList.remove('day-active'));
+  wlDayWeekend.forEach(l => l.classList.remove('day-active'));
+  wlDayGrocery.forEach(l => l.classList.remove('day-active'));
+  Object.values(hiddenToOutput).forEach(byOutput => {
+    Object.values(byOutput).forEach(({ line, label }) => {
+      line.classList.remove('day-active');
+      label.classList.remove('day-active');
+    });
+  });
+
+  // Hidden nodes
+  document.getElementById('neuron-weekend').classList.remove('lit');
+  document.getElementById('neuron-grocery').classList.remove('lit');
+  document.getElementById('neuron-weekend').querySelector('.value').textContent = '—';
+  document.getElementById('neuron-grocery').querySelector('.value').textContent = '—';
+
+  // Outputs
+  Object.values(outputEls).forEach(el => {
+    el.classList.remove('lit');
+    el.querySelector('.value').textContent = '—';
+  });
+
+  // Bars
+  Object.values(barEls).forEach(cols => cols.forEach(b => b.classList.remove('active')));
+
+  // Calc
+  document.getElementById('calc').innerHTML = '';
+}
+
+// Always spells out both terms — weekend and grocery — even when one is
+// zero, so the full shape of the calculation stays visible at every step.
+function calcLine(label, ww, gw, cfg, val) {
+  const wwStr = ww >= 0 ? `<span class="pos">${ww.toFixed(1)}</span>` : `<span class="neg">${ww.toFixed(1)}</span>`;
+  const eq = `${wwStr} × (${formatWeight(cfg.weekend)})  +  ${gw.toFixed(1)} × (${formatWeight(cfg.grocery)})  =  <span class="result">${val.toFixed(2)}</span>`;
+  return `${label} = ${eq}`;
+}
+
+function updateNetwork(dayIdx) {
+  clearAll();
+
+  const dayNode = document.getElementById(`day-${dayIdx}`);
+  dayNode.classList.add('active');
+
+  const ww = WEEKEND_WEIGHTS[dayIdx];
+  const gw = groceryVisible ? GROCERY_WEIGHTS[dayIdx] : 0;
+
+  // Light up day→weekend connection and weight
+  connDayWeekend[dayIdx].classList.add('day-active');
+  wlDayWeekend[dayIdx].classList.add('day-active');
+
+  // Light up day→grocery connection and weight
+  connDayGrocery[dayIdx].classList.add('day-active');
+  wlDayGrocery[dayIdx].classList.add('day-active');
+
+  // Weekend neuron
+  const weekendNode = document.getElementById('neuron-weekend');
+  const weekendVal = weekendNode.querySelector('.value');
+  weekendVal.textContent = ww.toFixed(1);
+  if (ww !== 0) weekendNode.classList.add('lit');
+
+  // Grocery neuron
+  const groceryNode = document.getElementById('neuron-grocery');
+  const groceryVal = groceryNode.querySelector('.value');
+  groceryVal.textContent = gw.toFixed(1);
+  if (gw !== 0) groceryNode.classList.add('lit');
+
+  // Hidden → Output connections. Each hidden neuron's activation fans out to
+  // both outputs at once, so both of its output lines light together.
+  if (ww !== 0) {
+    hiddenToOutput.weekend.relaxing.line.classList.add('day-active');
+    hiddenToOutput.weekend.relaxing.label.classList.add('day-active');
+    hiddenToOutput.weekend.spending.line.classList.add('day-active');
+    hiddenToOutput.weekend.spending.label.classList.add('day-active');
+  }
+  if (gw !== 0) {
+    hiddenToOutput.grocery.relaxing.line.classList.add('day-active');
+    hiddenToOutput.grocery.relaxing.label.classList.add('day-active');
+    hiddenToOutput.grocery.spending.line.classList.add('day-active');
+    hiddenToOutput.grocery.spending.label.classList.add('day-active');
+  }
+
+  // Output neurons
+  const relaxVal = outputForDay('relaxing', dayIdx);
+  const outputVal = outputEls.relaxing.querySelector('.value');
+  outputVal.textContent = relaxVal.toFixed(2);
+  if (relaxVal !== 0) outputEls.relaxing.classList.add('lit');
+
+  let spendVal = 0;
+  if (spendingVisible) {
+    spendVal = outputForDay('spending', dayIdx);
+    const spendEl = outputEls.spending.querySelector('.value');
+    spendEl.textContent = spendVal.toFixed(2);
+    if (spendVal !== 0) outputEls.spending.classList.add('lit');
+  }
+
+  // Bar highlight
+  barEls.relaxing[dayIdx].classList.add('active');
+  if (spendingVisible) barEls.spending[dayIdx].classList.add('active');
+
+  // Calc display — Spending only appears once its output is shown
+  const calc = document.getElementById('calc');
+  let calcHtml = calcLine('Relaxing', ww, gw, OUTPUTS.relaxing, relaxVal);
+  if (spendingVisible) {
+    calcHtml += '<br>' + calcLine('Spending', ww, gw, OUTPUTS.spending, spendVal);
+  }
+  calc.innerHTML = calcHtml;
+}
+
+// --- Visibility toggles (grocery neuron, spending output) ---
+// Weekend-in(7) + weekend→relaxing(1) = 8, always present. Grocery adds its
+// 7 input weights + grocery→relaxing(1) = 8. Spending adds weekend→spending
+// (1), plus grocery→spending(1) if grocery is also visible. So: 8 with both
+// off (identical to the original single-output demo), 16 with only grocery
+// on (also identical to the original), 9 with only spending on, 18 with both.
+function updateWeightCount() {
+  let count = 8;
+  if (groceryVisible) count += 8;
+  if (spendingVisible) count += groceryVisible ? 2 : 1;
+  const text = `A Tiny Neural Network (${count} weights)`;
+  document.title = text;
+  document.getElementById('title-heading').textContent = text;
+}
+
+// Nothing here ever gets built or laid out conditionally — every element
+// always exists in its final position and is only ever shown/hidden via
+// `visibility`, never `display`. Building/positioning things conditionally
+// is exactly what caused the Relaxing bar group to jump earlier.
+function setVisible(el, visible) {
+  el.style.visibility = visible ? 'visible' : 'hidden';
+}
+
+const groceryToggle = document.getElementById('toggle-grocery');
+function applyGroceryVisibility() {
+  groceryVisible = groceryToggle.checked;
+  setVisible(document.getElementById('neuron-grocery'), groceryVisible);
+  connDayGrocery.forEach(c => setVisible(c, groceryVisible));
+  wlDayGrocery.forEach(l => setVisible(l, groceryVisible));
+  setVisible(hiddenToOutput.grocery.relaxing.line, groceryVisible);
+  setVisible(hiddenToOutput.grocery.relaxing.label, groceryVisible);
+  setVisible(hiddenToOutput.grocery.spending.line, groceryVisible && spendingVisible);
+  setVisible(hiddenToOutput.grocery.spending.label, groceryVisible && spendingVisible);
+
+  updateWeightCount();
+  buildBars();
+  if (hoveredDay !== null) updateNetwork(hoveredDay);
+}
+groceryToggle.addEventListener('change', applyGroceryVisibility);
+
+const spendingToggle = document.getElementById('toggle-spending');
+function applySpendingVisibility() {
+  spendingVisible = spendingToggle.checked;
+  setVisible(outputEls.spending, spendingVisible);
+  setVisible(barGroupEls.spending, spendingVisible);
+  setVisible(hiddenToOutput.weekend.spending.line, spendingVisible);
+  setVisible(hiddenToOutput.weekend.spending.label, spendingVisible);
+  // Grocery→spending should only ever show if both grocery and spending are visible.
+  setVisible(hiddenToOutput.grocery.spending.line, spendingVisible && groceryVisible);
+  setVisible(hiddenToOutput.grocery.spending.label, spendingVisible && groceryVisible);
+
+  updateWeightCount();
+  if (hoveredDay !== null) updateNetwork(hoveredDay);
+}
+spendingToggle.addEventListener('change', applySpendingVisibility);
+
+// Initial state
+applyGroceryVisibility();
+applySpendingVisibility();
+clearAll();
+</script>
+</body>
+</html>

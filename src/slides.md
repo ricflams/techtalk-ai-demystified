@@ -15,12 +15,14 @@ Richard Flamsholt · July 2026
 ---
 ![bg](images/intro/bread/loaf.jpg)
 ####
-You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or does. Add yeast, then set the clock to let the dough rise for one hour as the recipe says. The bread comes out fine. Usually.
+Let's begin far removed from any AI: a nice freshly baked bread.
+
+You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does. "Add yeast, then set the clock to let the dough rise for one hour", as the recipe says. The bread comes out fine. Usually.
 
 ---
 ![bg](images/intro/bread/rise.jpg)
 ####
-But how *does* yeast cause the dough to "rise"? And should it be placed warm? But not too warm?
+But how *does* yeast cause the dough to "rise"? And should it be placed somewhere warm? But not too warm?
 
 ---
 ![bg](images/intro/bread/cold.png)
@@ -30,7 +32,7 @@ Some even say "put the dough in the fridge". It can seem a bit mysterious.
 ---
 ![bg contain](images/intro/bread/science.png)
 ####
-Now, if you know that yeast is a living organism that cause fermentation by using enzymes to feed on sugar in the flour, then the whole thing can become demystifed. Still complex, sure, but you can now understand how the choice of flour, additives, and temperature over time affect the dough. And understand how you can make deliberate choices to "steer" the dough better.
+Now, if you know that yeast is a living organism that cause fermentation by using enzymes to feed on sugar in the flour, then the whole thing can become quite demystifed. Still complex, sure, but you can now understand how the choice of flour, additives, and temperature over time affect the dough. And understand how you can make deliberate choices to "steer" the dough better.
 
 For example a "cold ferment": let the yeast work normally for an hour and then place the dough in the fridge to put the yeast to sleep while the enzymes continue to work on building flavor and gluten. A lot of advanced baking processes can seem arbitrary or magical ("add diastatic malt powder to ...") but armed with a fundamental understanding of the way yeast and enzymes works you're much better equipped to understand them - and steer them your own way, too.
 
@@ -42,12 +44,12 @@ This presentation is about the yeast and enzymes of AI. And frankly, it's about 
 ---
 ![bg contain](images/intro/bread/handshake.jpg)
 ####
-Will that knowledge turn you into an expert baker overnight? Maybe not. But it will help you reason about the foundational behavior and limitations of the AI. Personally I have found that really, really useful.
+Let me say this up front: will that knowledge turn you into an expert baker overnight? Maybe not. But it will help you reason about the underlying mecahnisms, the fundamental behavior and limitations of the AI. Personally I have found that really, really useful.
 
 ---
 ![bg](images/intro/bread/variety.jpg)
 ####
-It's my hope and goal that if you digest it well then you'll rise (haha) to become much more confident in your use of AI so you can 
+It's my hope and goal that this presentation will help you rise (haha) to become much more confident in your use of AI.
 
 # KISS
 
@@ -55,15 +57,15 @@ It's my hope and goal that if you digest it well then you'll rise (haha) to beco
 ![bg](images/intro/journey/overview.png)
 
 ####
-I think this has been the most challenging presentation I've ever put together.
+This may well has been the most challenging presentation I've ever put together.
 
-Everybody is interested in AI. There's so much to say and new tech every week. I decided to not talk about the latest Claude slash-command etc, but focus on the core parts that will still be relevant in a year. Just keeping it simple.
+Because it's not some fringe topic, like for example Quantum Computing, where I can shine or dazzle you and you frankly wouldn't have much use of it anyway. On the contrary: everybody is interested in AI and everybody's using AI and I should most certainly strive to give insights that is truly useful. That, I decided, would be the fundamentals: the LLM and AI-service itself, the core understanding that is still relevant in a year. Just those parts. Just keep it simple, I thought.
 
 ---
 ![bg](images/intro/journey/rabbit-holes.png)
 
 ####
-"Simple", yeah right. Each and every little bit turned out to be a rabbit hole worthy of an entire presentation.
+"Simple", yeah right. Each little bit is a rabbit hole worthy of an entire presentation.
 
 ---
 ![bg](images/intro/journey/route.png)
@@ -71,33 +73,33 @@ Everybody is interested in AI. There's so much to say and new tech every week. I
 ####
 This is the path we'll take:
 
-We'll start with the technical parts. How does the AI work and *what can it do*? We'll venture deep into the LLM. That'll likely be the hardest part - just saying.
+We'll start with the technical parts. How does the AI work? What can it do? In particular explore the LLM deeply because it is the most fundamental part of all. That will be the hardest part - just saying.
 
-With that in place we'll see *how to use* the AI. The context, guidance, and a look at myths or facts. At the end there's a surprise.
+With that in place we'll see *how to use* the AI. How to tame the context. A look at guidance and myths.. At the end there's a surprise.
 
 ### 10,000,000 videos + 1
 <img class="full" src="images/intro/youtube.png">
 
 ####
-You may think: what can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about LLMs?
+Why am I telling you this? What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about LLMs?
 
-I guess for the same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
+In my opinion for same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
 
 ---
 ![bg](images/intro/questions.jpg)
 ####
-If you're thinking "hang on, that can't be right" or "I don't get it!" then feel free to raise your hand and ask questions.
+About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then feel free to raise your hand and ask questions.
 
-Afterwards go checkout the slides. They are on github and has lots of links to related materials.
+Afterwards go revisit the slides at your own pace. They are on github and has lots of links to related materials.
 
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
 ---
 ![bg](images/intro/one-hour.jpg)
 ####
-Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move fast.
+Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
 
-# The AI
+# "The AI"
 ---
 <img class="full" src="images/overview/full.png" />
 
@@ -106,7 +108,9 @@ You, the **human**, use an **AI Agent** to communicate with an **AI Service** th
 ####
 This is what we'll cover.
 
-I've said "the AI" many times. For this presentation I mean Large Language Model AI like ChatGPT and Claude. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
+I've already said "the AI" many times. Let's be clear: in this presentation I am talking about AI that generates text, like Claude, ChatGPT, Gemini, Grok, etc. They all use an LLM, a Large Language Model AI, and their principles and capabilities are very similar, broadly speaking.
+
+So AI here means generative text AI. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
 [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
 
@@ -135,7 +139,7 @@ The agent is also sometimes called "AI client" or "AI harness". To the AI-servic
 
 "LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
 
-### You 💕 the agent, while the AI is impersonal
+### You 💕 agent; the AI is an impersonal service
 <img class="full" src="images/landscape/parts/user-and-ai.png" />
 
 ### The AI service live in a datacenter
@@ -165,24 +169,24 @@ The agent is also sometimes called "AI client" or "AI harness". To the AI-servic
 </div>
 
 ### You're always using an agent
-<img class="full" src="images/landscape/arrangements/web-vs-cli.png" />
+<img class="full" src="images/landscape/agents/web-vs-cli.png" />
 
-### gemini.com, in the browser
+### Could be gemini.com, in the browser
 <img class="full" src="images/landscape/agents/gemini.png" />
 
-### Rovo, in Atlassian sidebar
+### Or could be Rovo, in Atlassian sidebar
 <img class="full" src="images/landscape/agents/rovo.png" />
 
-### Rufus, in Amazon sidebar
+### Or Rufus, in Amazon sidebar
 <img class="full" src="images/landscape/agents/amazon.png" />
 
-### Siteimprove PDF remediate, in the app
+### Siteimprove PDF remediate, in-app
 <img class="full" src="images/landscape/agents/siteimprove.png" />
 
 ### Visual Studio Code, sidebar and inline
 <img class="full" src="images/landscape/agents/vscode.png" />
 
-### Google antigravity, in terminal (CLI)
+### Google antigravity, in the terminal/CLI
 <img class="full" src="images/landscape/agents/antigravity.png" />
 
 ####
@@ -192,10 +196,10 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 <img class="full" src="images/landscape/agents/claude.png" />
 
 
-### Most typical: use AI in browser or terminal
+### Typical: use AI in browser or terminal/app
 
 <div class="cols">
-<img class="full" src="images/landscape/arrangements/browser.png" />
+<img class="full" src="images/landscape/parts/browser.png" />
 <div>
 
 *Browse* to chatgpt.com, claude.com, etc:
@@ -206,7 +210,7 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 </div>
 <br>
 <div class="cols">
-<img class="full" src="images/landscape/arrangements/cli.png" />
+<img class="full" src="images/landscape/parts/cli.png" />
 <div>
 
 *Install* claude, gemini, opencode, etc:
@@ -219,10 +223,10 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 ####
 Claude Cowork is actually a real stand-along app that works on your local pc, just like in the terminal.
 
-### Indirectly inside some app; or self-hosted
+### Not in focus: other apps or self-hosted
 
 <div class="cols">
-<img class="full" src="images/landscape/arrangements/app.png" />
+<img class="full" src="images/landscape/parts/app.png" />
 <div>
 
 Use AI *indirectly* through apps you use:
@@ -233,7 +237,7 @@ Use AI *indirectly* through apps you use:
 </div>
 <br>
 <div class="cols">
-<img class="full" src="images/landscape/arrangements/local.png" />
+<img class="full" src="images/landscape/parts/local.png" />
 <div>
 
 Run *open-weight full LLM* on your pc:
@@ -290,7 +294,7 @@ Signifying nothing.*
 ---
 <img class="full" src="images/intro/journey/enter-rabbithole.png">
 
-## LLM is the generative-text AI
+## LLM is the brain
 <img class="full" src="images/overview/llm-intro.png">
 
 ####
@@ -301,21 +305,21 @@ The LLM is the only part that thinks.
 ####
 Before we dive into the technical details, I'd like to install this notion into your heads.
 
-Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is.
+Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
 
 ### Not "answer"; "most probable continuation"
 
-- You give the model (LLM) a **context**, which is practically just a text.
+- You give the model a **context**, which is practically just a text.
 
-- The model can do *just one thing*: it has seen so much text that it can *assess the probabilities of the next words* in any given context.
+- The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
 
 - That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
 
-- So you don't "tell the model what to do": you build the context so that *what you want to come next* becomes the model's *most likely continuation*.
+- So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
 <br>
 <img class="half" src="images/llm/core/once-upon-a-time.svg" />
 
-### No fact-lookup, tools, web-search
+### No fact-lookup, tools, search, humans, if-then
 <img class="full" src="images/llm/core/no-lookups.svg" />
 
 ### Instead, the LLM is really pure math
@@ -355,6 +359,9 @@ None of this means LLMs are simple to build, or that what they do isn't remarkab
 
 I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
 
+### What that means - advice
+Add in patterns and words that steer the model in the desired direction via pattern-matching. Examples, be explicit about output formats, make it stop guessing.
+
 ## Inside the LLM
 
 ### Example: "Please tell me: what is an LLM?"
@@ -371,9 +378,9 @@ I'm not saying this is "earth shattering revelations" but I can sense that often
 
 ### A token is
 
-* A token is practically **a word**, like "hello"
+* A token is practically **a word**, like "hello", assigned a number
 <br>
-* More precisely: it is the **chunks of text** the LLM works on
+* It is the **chunks of text** the LLM works on
 <br>
 * Therefore what you ultimately **pay for**
 <br>
@@ -455,7 +462,7 @@ Another advantage of tokenization is that it allow identifying common linguistic
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
-### TOD: Present
+### Same text, same token - always
 <img class="full" src="images/token/present.png">
 
 ####
@@ -470,18 +477,23 @@ Examples in English, Danish, Korean, Classical Chinese, and C#.
 ### Revisit the example
 <img class="full" src="images/token/what-is-an-llm-tokens.png">
 
-
 ### Tokens, summarized
 
-* A **token** is the *chunk of text* the AI service can reason about
+<div class="cols">
+<img class="col-1" src="images/token/ride-tokens.png">
+
+<div class="col-3" >
+
+* A **token** is the *chunk of text* the LLM reason about
 * Models typically have a **vocabulary** of 200,000 tokens
 * For English, 1 token is roughly 1 word (3/4 of a word)
 <br>
-And last, but not least:
+Last, but not least:
 <br>
-* AI services *charges per token*, since tokens are the unit the LLM works on
-* Ballpark figure: you pay *$1 for 100,000 output tokens* (API, mid-tier model)
-* 100,000 tokens is _"Harry Potter and the Philosopher's Stone"_
+* Ultimately, the cost of generating text is *per token*
+
+</div>
+</div>
 
 ####
 For English, one token generally corresponds to about 4 characters. For a text the number of tokens will typically be 30% higher than the number of words, ie 1000 words means 1300 tokens - broadly speaking.
@@ -503,7 +515,7 @@ In everyday English "embedding" sounds like something you do: the act of placing
 
 In AI, it means a concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
 
-### An embedding is "characteristica"
+### An embedding is the "characteristica", the "meaning", of something, anything
 
 ### The Big Five test (OCEAN)
 <img class="full" src="images/embedding/analogy_bigfive.svg" />
@@ -604,7 +616,7 @@ So what we have here is a set of numbers that essentially represents the full me
 <img class="full" src="images/llm/overview-embeddings.png" />
 
 
-## The LLM
+## The actual LLM
 <img class="full" src="images/overview/llm.png">
 
 ### The LLM
@@ -615,7 +627,7 @@ It does **inference** by running the embeddings in the **context** through a gia
 <br>
 Because surprisingly: on a *very large scale*, you can **do math on language**.
 <br>
-The LLM is really the only part of the AI that can *"think"*. When you hear *"it decides"* or *"only what is needed"* then yes, the LLM is what produced that decision.
+The LLM is really the only part of the AI that can *"think"*. When you hear *"it decided to"* or *"only when needed"* then the LLM is what produced that decision.
 
 ---
 <img class="full" src="images/llm/no-math.jpg">
@@ -638,6 +650,8 @@ That's the second thing to note: the LLM itself actually just produce this set o
 
 ####
 [Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
+
+### TODO nn
 
 ### A neural network
 <img class="full" src="images/llm/neural-network.webp">
@@ -802,13 +816,13 @@ Because the AI has access to the full text of book 1 in its active memory, but i
 ### 100,000 context tokens in, 1 token out
 <img class="full" src="images/cost/harry-potter-transformer.png"> 
 
-### It's one token, how much math could it need?
+### How much math does one token out need?
 <img class="full" src="images/cost/dr-evil-one-million-flops.jpg"> 
 
 ### Actually: 1,200,000,000,000 multiplications
 <img class="full" src="images/cost/dr-evil-teraflops.jpg"> 
 
-**FLOPS** is short for Floating-Point Operations: a multiplication of two numbers
+**FLOP** is short for Floating-Point Operation: a multiplication of two numbers
 
 ### Enter the NVidia B200 GPU
 
@@ -878,6 +892,8 @@ That's why Mac Mini and Mac Studio are so sought after: their GPU can use the fu
 
 ### NVidia stock price
 <img class="full" src="images/cost/nvidia-stock-5y.png"> 
+
+### Why yuou want an M1
 
 ####
 All chips produced by ASML, btw.
@@ -1664,7 +1680,7 @@ next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
 review loops
 try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
 
-# FAQ and Myths
+# Misc and Myth
 
 ### The model has no memory between conversations
 ### The system prompt has no special architectural status
@@ -1761,3 +1777,8 @@ https://github.com/seifghazi/claude-code-proxy
 etc
 
 https://claude-academy.com/
+
+Concerns, balance: how do I make it do what I want? In a way that doesn't cost a fortune?
+Outcome; Be specific, precise, detailed. Ask it to interview you. Roast yours ideas. Anything to ask me before starting?
+Cost: Have the expensive model draw up a plan, the cheap model implements.
+

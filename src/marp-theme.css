@@ -323,6 +323,20 @@ section:has(h3):has(img.full) h3 {
   margin-bottom: 0.3em;
 }
 
+/* h3 + .cols layout (image/list combos): top-align instead of centering.
+   Unlike img.full, a .cols image doesn't grow to fill the slide, so
+   centering left the heading sitting lower the taller the content got —
+   inconsistent with every other h3 slide. */
+section:has(h3):has(.cols) {
+  justify-content: flex-start;
+  padding-top: 1.2rem;
+}
+
+section:has(h3):has(.cols) h3 {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
 /* ── Notes — h4 is used as hidden speaker notes (see slides.md
    <style> block: `h4, h4 ~ * { display: none; }`), so no Notes
    layout is applied. h4 styling left as a no-op for the future. */

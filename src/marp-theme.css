@@ -313,19 +313,22 @@ section:has(h3) h3 {
 
 section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) p { color: #8b949e; }
 
-/* h3 + full-size image: tighten top space so the image gets more room */
-section:has(h3):has(img.full) {
+/* h3 + full-size image: tighten top space so the image gets more room.
+   Full-bleed images are now the default (see layout.css) for any standalone
+   <img> — a direct child of a <p> that's a direct child of the slide — so
+   this matches that pattern directly instead of a now-gone .full class. */
+section:has(h3):has(> p > img) {
   padding-top: 1.2rem;
 }
 
-section:has(h3):has(img.full) h3 {
+section:has(h3):has(> p > img) h3 {
   margin-top: 0;
   margin-bottom: 0.3em;
 }
 
 /* h3 + .cols layout (image/list combos): top-align instead of centering.
-   Unlike img.full, a .cols image doesn't grow to fill the slide, so
-   centering left the heading sitting lower the taller the content got —
+   Unlike a standalone image, a .cols image doesn't grow to fill the slide,
+   so centering left the heading sitting lower the taller the content got —
    inconsistent with every other h3 slide. */
 section:has(h3):has(.cols) {
   justify-content: flex-start;

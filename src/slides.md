@@ -13,6 +13,24 @@ h4, h4 ~ * { display: none; }
 Richard Flamsholt · July 2026
 
 ---
+![bg](images/intro/dopamine.png)
+
+####
+Over time, some landmark tech has particularly triggered my brain.
+
+Back when HTML and XML came out I was like, man, I just want to know all about it.
+
+Same with Java and .NET, with their intriguing bytecode and VM-engines.
+
+For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as imagined.
+
+---
+![bg](images/intro/lightbulb.jpeg)
+
+####
+Many lightbulb-moments have given me a better fundamental understanding of AI and how to best use it. The context, cost, limitations. It has *demystified* the AI and I wish for other to have that insight too.
+
+---
 ![bg](images/intro/bread/loaf.jpg)
 ####
 Let's begin far removed from any AI: a nice freshly baked bread.
@@ -78,7 +96,7 @@ We'll start with the technical parts. How does the AI work? What can it do? In p
 With that in place we'll see *how to use* the AI. How to tame the context. A look at guidance and myths.. At the end there's a surprise.
 
 ### 10,000,000 videos + 1
-<img class="full" src="images/intro/youtube.png">
+<img src="images/intro/youtube.png">
 
 ####
 Why am I telling you this? What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about LLMs?
@@ -101,7 +119,7 @@ Final words: I've strived to make the presentation deep and useful but also ente
 
 # "The AI"
 ---
-<img class="full" src="images/overview/full.png" />
+<img src="images/overview/full.png" />
 
 You, the **human**, use an **AI Agent** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the client can **remember**.
 
@@ -117,22 +135,22 @@ So AI here means generative text AI. Not AI for generating images using stable d
 ## What is "the AI"?
 
 ### What is "the AI" you speak to?
-<img class="full" src="images/landscape/hello/user-ai.png" />
+<img src="images/landscape/hello/user-ai.png" />
 
 ### You always speak via an agent
-<img class="full" src="images/landscape/hello/user-agent-ai.png" />
+<img src="images/landscape/hello/user-agent-ai.png" />
 
 ####
 The agent knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
 
 ### The AI-service is "the AI"
-<img class="full" src="images/landscape/hello/all.png" />
+<img src="images/landscape/hello/all.png" />
 
 ####
 The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
 
 ### Names and roles
-<img class="full" src="images/landscape/parts/roles.png" />
+<img src="images/landscape/parts/roles.png" />
 
 ####
 The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
@@ -140,7 +158,7 @@ The agent is also sometimes called "AI client" or "AI harness". To the AI-servic
 "LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
 
 ### You 💕 agent; the AI is an impersonal service
-<img class="full" src="images/landscape/parts/user-and-ai.png" />
+<img src="images/landscape/parts/user-and-ai.png" />
 
 ### The AI service live in a datacenter
 
@@ -169,37 +187,37 @@ The agent is also sometimes called "AI client" or "AI harness". To the AI-servic
 </div>
 
 ### You're always using an agent
-<img class="full" src="images/landscape/agents/web-vs-cli.png" />
+<img src="images/landscape/agents/web-vs-cli.png" />
 
 ### Could be gemini.com, in the browser
-<img class="full" src="images/landscape/agents/gemini.png" />
+<img src="images/landscape/agents/gemini.png" />
 
 ### Or could be Rovo, in Atlassian sidebar
-<img class="full" src="images/landscape/agents/rovo.png" />
+<img src="images/landscape/agents/rovo.png" />
 
 ### Or Rufus, in Amazon sidebar
-<img class="full" src="images/landscape/agents/amazon.png" />
+<img src="images/landscape/agents/amazon.png" />
 
 ### Siteimprove PDF remediate, in-app
-<img class="full" src="images/landscape/agents/siteimprove.png" />
+<img src="images/landscape/agents/siteimprove.png" />
 
 ### Visual Studio Code, sidebar and inline
-<img class="full" src="images/landscape/agents/vscode.png" />
+<img src="images/landscape/agents/vscode.png" />
 
 ### Google antigravity, in the terminal/CLI
-<img class="full" src="images/landscape/agents/antigravity.png" />
+<img src="images/landscape/agents/antigravity.png" />
 
 ####
 CLI means Command Line Interface, i.e. in a text-based terminal.
 
 ### Claude Desktop, dedicated app
-<img class="full" src="images/landscape/agents/claude.png" />
+<img src="images/landscape/agents/claude.png" />
 
 
 ### Typical: use AI in browser or terminal/app
 
 <div class="cols">
-<img class="full" src="images/landscape/parts/browser.png" />
+<img src="images/landscape/parts/browser.png" />
 <div>
 
 *Browse* to chatgpt.com, claude.com, etc:
@@ -210,7 +228,7 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 </div>
 <br>
 <div class="cols">
-<img class="full" src="images/landscape/parts/cli.png" />
+<img src="images/landscape/parts/cli.png" />
 <div>
 
 *Install* claude, gemini, opencode, etc:
@@ -226,7 +244,7 @@ Claude Cowork is actually a real stand-along app that works on your local pc, ju
 ### Not in focus: other apps or self-hosted
 
 <div class="cols">
-<img class="full" src="images/landscape/parts/app.png" />
+<img src="images/landscape/parts/app.png" />
 <div>
 
 Use AI *indirectly* through apps you use:
@@ -237,7 +255,7 @@ Use AI *indirectly* through apps you use:
 </div>
 <br>
 <div class="cols">
-<img class="full" src="images/landscape/parts/local.png" />
+<img src="images/landscape/parts/local.png" />
 <div>
 
 Run *open-weight full LLM* on your pc:
@@ -247,7 +265,7 @@ Run *open-weight full LLM* on your pc:
 </div>
 
 ### Every agent is its own little island
-<img class="full" src="images/landscape/skills-example.png" />
+<img src="images/landscape/skills-example.png" />
 
 ####
 Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.
@@ -264,7 +282,7 @@ So now you know why the settings, like Skills, you set online at claude.ai are n
 
 ### My personal AI-journey
 
-<img class="full" src="images/landscape/evolution.png" />
+<img src="images/landscape/evolution.png" />
 
 ####
 
@@ -278,7 +296,7 @@ Since late 2025 I'm now exclusively coding by running the AI in a terminal and h
 
 ### I still use the browser chat
 
-<img class="full" src="images/landscape/ai-tech-talk.png" />
+<img src="images/landscape/ai-tech-talk.png" />
 
 ####
 For anything that doesn't involve files I still just chat in the browser.
@@ -292,10 +310,10 @@ Signifying nothing.*
 # The LLM
 
 ---
-<img class="full" src="images/intro/journey/enter-rabbithole.png">
+<img src="images/intro/journey/enter-rabbithole.png">
 
 ## LLM is the brain
-<img class="full" src="images/overview/llm-intro.png">
+<img src="images/overview/llm-intro.png">
 
 ####
 The LLM is the only part that thinks.
@@ -307,6 +325,8 @@ Before we dive into the technical details, I'd like to install this notion into 
 
 Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
 
+Buf "fancy" is doing a lot of heavy lifting in that sentence, not unlike saying that humans are a "fancy" mix of cells.
+
 ### Not "answer"; "most probable continuation"
 
 - You give the model a **context**, which is practically just a text.
@@ -317,22 +337,22 @@ Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. 
 
 - So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
 <br>
-<img class="half" src="images/llm/core/once-upon-a-time.svg" />
+<img src="images/llm/core/once-upon-a-time.svg" />
 
 ### No fact-lookup, tools, search, humans, if-then
-<img class="full" src="images/llm/core/no-lookups.svg" />
+<img src="images/llm/core/no-lookups.svg" />
 
 ### Instead, the LLM is really pure math
-<img class="full" src="images/llm/core/pure-math.svg" />
+<img src="images/llm/core/pure-math.svg" />
 
 ### The actual math
-<img class="full" src="images/llm/core/all-the-math.svg" />
+<img src="images/llm/core/all-the-math.svg" />
 
 ####
 Lots of matrix operations
 
 ### Think context→next, not question→answer
-<img class="full" src="images/llm/core/context-continuation.svg" />
+<img src="images/llm/core/context-continuation.svg" />
 
 ####
 Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.
@@ -340,16 +360,16 @@ Words go into context with the intent of steering the next prediction toward wha
 The model has no other input to go by for dealing with your tasks than the context you give it.
 
 ### Predictions from seen patterns
-<img class="full" src="images/llm/core/coffee.svg" />
+<img src="images/llm/core/coffee.svg" />
 
 ### Even math is a pattern
-<img class="full" src="images/llm/core/math.svg" />
+<img src="images/llm/core/math.svg" />
 
 ### Context determines the "likely next text"
-<img class="full" src="images/llm/core/knock-knock.svg" />
+<img src="images/llm/core/knock-knock.svg" />
 
 ### Some "reasoning" is maybe "just a pattern"
-<img class="full" src="images/llm/core/expert-advice.svg" />
+<img src="images/llm/core/expert-advice.svg" />
 
 ### Not easy - human brain
 
@@ -365,16 +385,16 @@ Add in patterns and words that steer the model in the desired direction via patt
 ## Inside the LLM
 
 ### Example: "Please tell me: what is an LLM?"
-<img class="full" src="images/example/claude.png">
+<img src="images/example/claude.png">
 
 ### The LLM is all statistics: math on numbers
-<img class="full" src="images/llm/overview-just-the-numbers.png">
+<img src="images/llm/overview-just-the-numbers.png">
 
 ## Tokens
-<img class="full" src="images/overview/tokens.png">
+<img src="images/overview/tokens.png">
 
 ### Tokens goes in, tokens comes out
-<img class="full" src="images/llm/overview-tokens.png">
+<img src="images/llm/overview-tokens.png">
 
 ### A token is
 
@@ -385,7 +405,7 @@ Add in patterns and words that steer the model in the desired direction via patt
 * Therefore what you ultimately **pay for**
 <br>
 
-<img class="full" src="images/llm/overview-tokens.png">
+<img src="images/llm/overview-tokens.png">
 
 ### "hello" has token number 24912
 
@@ -393,17 +413,17 @@ Add in patterns and words that steer the model in the desired direction via patt
 * AI models typically have specific token vocabularies
 <br>
 
-<img class="full" src="images/token/tokenize-detokenize-hello.png">
+<img src="images/token/tokenize-detokenize-hello.png">
 
 ### ChatGPT 3.5's token vocabulary
-<img class="full" src="images/token/vocabulary-full.png">
+<img src="images/token/vocabulary-full.png">
 
 ####
 * [ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
 https://emaggiori.com/chatgpt-vocabulary/
 
 ### "hello"
-<img class="full" src="images/token/hello.png">
+<img src="images/token/hello.png">
 
 ####
 Tokenizers:
@@ -413,69 +433,69 @@ Tokenizers:
 
 
 ### "hello world"
-<img class="full" src="images/token/hello-world.png">
+<img src="images/token/hello-world.png">
 
 
 ### "hello" in the vocabulary
-<img class="full" src="images/token/vocabulary-hello.png">
+<img src="images/token/vocabulary-hello.png">
 
 ####
 Notice that "hello" in the gpt-4o tokenizer is #24912 and in the ChatGPT vocabulary it's 15339. Vocabularies change from model to model. The concrete numbers doesn't matter outside of the AI service so you shouldn't rely on them.
 
 
 ### "h e l l o   w o r l d"
-<img class="full" src="images/token/h-e-l-l-o-w-o-r-l-d.png">
+<img src="images/token/h-e-l-l-o-w-o-r-l-d.png">
 
 ####
 This shows one advantage of the tokenization: simply fewer tokens than if everything was spelled out.
 
 ### "hello world from ..."
-<img class="full" src="images/token/hello-world-from-richard.png">
+<img src="images/token/hello-world-from-richard.png">
 
 ####
 The first four words are common and have each their own token, but "Flamsholt" isn't worthy of getting its own token so it's made up of 3 parts.
 
 ### Token for "Flam" is 97957
-<img class="full" src="images/token/vocabulary-flam.png">
+<img src="images/token/vocabulary-flam.png">
 
 ####
 Look' there's "Flam", in dubious company of inflammatory tokens.
 
 ### Tokenizing help identify word-features
-<img class="full" src="images/token/wonderful-tokenization.png">
+<img src="images/token/wonderful-tokenization.png">
 
 ####
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
 ### A danish elevator "in motion"
-<img class="full" src="images/token/elevator-sign.jpg">
+<img src="images/token/elevator-sign.jpg">
 
 ####
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
 ### I fart poetry
-<img class="full" src="images/token/elevator-i-fart.png">
+<img src="images/token/elevator-i-fart.png">
 
 ####
 Another advantage of tokenization is that it allow identifying common linguistic "traits", such as "ization" which is about "doing/producing something". Works for other languages too.
 
 
 ### Same text, same token - always
-<img class="full" src="images/token/present.png">
+<img src="images/token/present.png">
 
 ####
 Examples in English, Danish, Korean, Classical Chinese, and C#.
 
 ### The English advantage
-<img class="full" src="images/token/five-sentences.png">
+<img src="images/token/five-sentences.png">
 
 ####
 Examples in English, Danish, Korean, Classical Chinese, and C#.
 
 ### Revisit the example
-<img class="full" src="images/token/what-is-an-llm-tokens.png">
+<img src="images/token/what-is-an-llm-tokens.png">
 
 ### Tokens, summarized
 
@@ -500,15 +520,15 @@ For English, one token generally corresponds to about 4 characters. For a text t
 
 
 ## Embeddings
-<img class="full" src="images/overview/embeddings.png">
+<img src="images/overview/embeddings.png">
 
 ####
 Computers don't understand the word "cat." They understand numbers. So we need a way to turn "cat" into numbers in a way that preserves its meaning. That's what an embedding does.
 
-<img class="half" src="images/embedding/confused.png">
+<img src="images/embedding/confused.png">
 
 ### Note: an embedding is a noun, not a verb
-<img class="full" src="images/embedding/bicycle-tree.jpg" />
+<img src="images/embedding/bicycle-tree.jpg" />
 
 ####
 In everyday English "embedding" sounds like something you do: the act of placing something into something else.
@@ -518,23 +538,23 @@ In AI, it means a concrete vector of numbers that _somehow_ represent the charac
 ### An embedding is the "characteristica", the "meaning", of something, anything
 
 ### The Big Five test (OCEAN)
-<img class="full" src="images/embedding/analogy_bigfive.svg" />
+<img src="images/embedding/analogy_bigfive.svg" />
 
 
 ### Specialty Coffee Association (SCA)
-<img class="full" src="images/embedding/analogy_coffee.svg" />
+<img src="images/embedding/analogy_coffee.svg" />
 
 
 ### Spotify's 80-dimensional characteristics
-<img class="full" src="images/embedding/analogy_spotify.svg" />
+<img src="images/embedding/analogy_spotify.svg" />
 
 
 ### The meaning of ... "anything"?
-<img class="full" src="images/embedding/20d-blank.svg" />
+<img src="images/embedding/20d-blank.svg" />
 
 
 ### Yes, the meaning of "anything"
-<img class="full" src="images/embedding/20d-with-tokens.svg" />
+<img src="images/embedding/20d-with-tokens.svg" />
 
 
 ### Embedding: a meaning's characteristics
@@ -581,13 +601,13 @@ Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling
 </div>
 
 ### This would be embeddings for all words
-<img class="full" src="images/embedding/vocabulary-a-z.png" />
+<img src="images/embedding/vocabulary-a-z.png" />
 
 ####
 Conceptually, every word has an embedding that captures its meaning. This is not entirely correct because we are of course always dealing with tokens, not words - so the vocabulary of an LLM has embeddings for every token instead of words.
 
 ### In reality, an embedding for every token
-<img class="full" src="images/embedding/vocabulary-gpt-3.png" />
+<img src="images/embedding/vocabulary-gpt-3.png" />
 
 ChatGPT 3 has *50,257 tokens*, each described by *12,288 dimensions*
 
@@ -605,7 +625,7 @@ The numbers are produced during training. We'll come to that later.
 * [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
 
 ### The example's embeddings
-<img class="full" src="images/embedding/embedding-matrix.png" />
+<img src="images/embedding/embedding-matrix.png" />
 
 ####
 Each of these lists of 12288 numbers represent the core meaning of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.
@@ -613,11 +633,11 @@ Each of these lists of 12288 numbers represent the core meaning of that single t
 So what we have here is a set of numbers that essentially represents the full meaning of the entire context.
 
 ### The LLM is all about math on embeddings
-<img class="full" src="images/llm/overview-embeddings.png" />
+<img src="images/llm/overview-embeddings.png" />
 
 
 ## The actual LLM
-<img class="full" src="images/overview/llm.png">
+<img src="images/overview/llm.png">
 
 ### The LLM
 
@@ -630,7 +650,7 @@ Because surprisingly: on a *very large scale*, you can **do math on language**.
 The LLM is really the only part of the AI that can *"think"*. When you hear *"it decided to"* or *"only when needed"* then the LLM is what produced that decision.
 
 ---
-<img class="full" src="images/llm/no-math.jpg">
+<img src="images/llm/no-math.jpg">
 
 ### Putting the example through the LLM
 
@@ -638,7 +658,7 @@ The **context** is the input given to the LLM - here, 10 tokens
 The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
 <br>
 
-<img class="full" src="images/llm/what-is-an-llm-example.png">
+<img src="images/llm/what-is-an-llm-example.png">
 
 ####
 
@@ -654,7 +674,7 @@ That's the second thing to note: the LLM itself actually just produce this set o
 ### TODO nn
 
 ### A neural network
-<img class="full" src="images/llm/neural-network.webp">
+<img src="images/llm/neural-network.webp">
 
 ####
 Software that learns primarily by guessing answers and getting corrected. Trained on human language.
@@ -663,10 +683,10 @@ https://tikz.net/neural_networks/
 (good images)
 
 ### "The capitol of France is ..."
-<img class="full" src="images/llm/neural-network-paris.webp">
+<img src="images/llm/neural-network-paris.webp">
 
 ### The LLM's objective: what's the next token?
-<img class="full" src="images/llm/find-the-next-token.png">
+<img src="images/llm/find-the-next-token.png">
 
 ####
 The very observant reader may spot something unexpected. I claimed that each token's embedding was a fixed vector. But why do the two instances of "you" then not have the same embedding-values?
@@ -679,16 +699,16 @@ Surprisingly, changing the vector values does not remove any of the embedding's 
 
 "That which does not kill you only makes you _can_" - hmmm, hang on
 
-<img class="full" src="images/llm/next-token-after-you.svg">
+<img src="images/llm/next-token-after-you.svg">
 
 
 ### Enter: The Transformer, in 2017
-<img class="full" src="images/llm/the-transformer.png">
+<img src="images/llm/the-transformer.png">
 
 ### "Attention is all you need"
 <div class="cols">
-<img class="full" src="images/llm/attention-is-all-you-need.png">
-<img class="full" src="images/llm/attention-transformer.png">
+<img src="images/llm/attention-is-all-you-need.png">
+<img src="images/llm/attention-transformer.png">
 </div>
 
 ####
@@ -702,13 +722,13 @@ It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, 
 [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 
 ### The Transformer can figure this out:
-<img class="full" src="images/llm/what-we-want.png">
+<img src="images/llm/what-we-want.png">
 
 ### Let's begin - here's the input again
-<img class="full" src="images/llm/find-the-next-token.png">
+<img src="images/llm/find-the-next-token.png">
 
 ### First, all embeddings "pay attention"
-<img class="full" src="images/llm/attention-head.png">
+<img src="images/llm/attention-head.png">
 
 ####
 Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embedding, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they rub against ("pays attention to") the other tokens in different ways.
@@ -716,37 +736,37 @@ Every embedding gets influenced by every embedding token before it. They "absorb
 For a full 1M context-window this means that up all 1 million embeddings pays attention to every other of the 1 million embeddings before it. That's the order of a million times a million calculations.
 
 ### A neural network let training kick in
-<img class="full" src="images/llm/multiplexer-perceptron.png">
+<img src="images/llm/multiplexer-perceptron.png">
 
 ####
 This is where the model's built-in training shapes the meaning of the embeddings.
 
 ### Focus on the strong signals
-<img class="full" src="images/llm/relu.png">
+<img src="images/llm/relu.png">
 
 ####
 Dial up the contrast, in a way: boost the strong signals and suppress the noise.
 
 ### Now do this again...
-<img class="full" src="images/llm/attention-head-2.png">
+<img src="images/llm/attention-head-2.png">
 
 ####
 
 ### Slowly molding the last embedding for "you"
-<img class="full" src="images/llm/attention-space-seek.png">
+<img src="images/llm/attention-space-seek.png">
 
 ####
 
 ### In fact, let's do it 96 times
-<img class="full" src="images/llm/attention-96-layers.png">
+<img src="images/llm/attention-96-layers.png">
 
 ####
 
 ### 175 billion small "weights" are involved
-<img class="full" src="images/llm/170-billion-weights.png">
+<img src="images/llm/170-billion-weights.png">
 
 ### Final embedding: the desired next "meaning"
-<img class="full" src="images/llm/final-embedding-all-absorbed.png">
+<img src="images/llm/final-embedding-all-absorbed.png">
 
 ####
 
@@ -756,28 +776,28 @@ Also known as "cosine similarity"
 
 Score all tokens in the vocabulary (1-200,000 tokens)
 
-<img class="full" src="images/llm/next-token-prediction.svg">
+<img src="images/llm/next-token-prediction.svg">
 
 ####
 
 The cosine similarity of 0.97 is computed in isolation — it's purely a geometric measurement between two vectors, with no knowledge of the other 127,999 tokens. The 91% is a different kind of number entirely: it's the result of a competition. Softmax takes all 128,000 similarity scores simultaneously, exponentiates each one, and divides by their sum. Every token competes against every other token at once. "Stronger" claimed 91% of the total probability mass — not because 0.97 is intrinsically high, but because it pulled far enough ahead of the field. A high cosine similarity is the evidence. The probability is the verdict.
 
 ### Choose the final output token
-<img class="full" src="images/llm/final-output-token.png">
+<img src="images/llm/final-output-token.png">
 
 ### Let's go back to our example
 
 ### The context will produce token "An"
-<img class="full" src="images/llm/what-is-an-llm-example.png">
+<img src="images/llm/what-is-an-llm-example.png">
 
 ### For a full sentence: repeat until LLM says stop
-<img class="full" src="images/llm/next-token-until-stop.png">
+<img src="images/llm/next-token-until-stop.png">
 
 ####
 ### 58 roundtrips for 58 tokens
-<img class="full" src="images/llm/next-token-until-stop.png">
+<img src="images/llm/next-token-until-stop.png">
 <br>
-<img class="full" src="images/llm/final-output-full-tokenized.png">
+<img src="images/llm/final-output-full-tokenized.png">
 
 
 ### Tokens are really generated one by one
@@ -785,7 +805,7 @@ The cosine similarity of 0.97 is computed in isolation — it's purely a geometr
 That's why output tokens are typically *5 x more expensive* than input tokens.
 <br>
 
-<img class="full" src="images/llm/tokenized-output.png">
+<img src="images/llm/tokenized-output.png">
 
 ####
 This is what really boggles my mind. Each token is generated completely independently, only by choosing the most likely next word to come after what has already been seen now. There is no planning.
@@ -795,13 +815,16 @@ There's no plan to "bold" a word by emitting `** something **`. Instead at one p
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
 
 ### "Just a fancy autocomplete" is ...true
-<img class="full" src="images/llm/calculator-once-upon.png" />
+<img src="images/llm/calculator-once-upon.png" />
+
+J-space
+https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
 
 ## Cost and effort
 
 ### It's one token, what could it cost?
 
-<img class="full" src="images/cost/one-banana.jpg">
+<img src="images/cost/one-banana.jpg">
 
 ### Harry Potter ~ 100,000 tokens
 
@@ -814,13 +837,13 @@ There's no planning of emitting an itemized list. At one point a `1` is emitted 
 Because the AI has access to the full text of book 1 in its active memory, but its underlying weights are deeply biased toward the real book 2, the resulting "original" stories are incredibly bizarre hybrids. The AI will invent a plot where Harry returns to Hogwarts, but it will subconsciously map the beats of Chamber of Secrets anyway—often renaming the Basilisk to something else but keeping the exact structural cadence of the original sequel.
 
 ### 100,000 context tokens in, 1 token out
-<img class="full" src="images/cost/harry-potter-transformer.png"> 
+<img src="images/cost/harry-potter-transformer.png"> 
 
 ### How much math does one token out need?
-<img class="full" src="images/cost/dr-evil-one-million-flops.jpg"> 
+<img src="images/cost/dr-evil-one-million-flops.jpg"> 
 
 ### Actually: 1,200,000,000,000 multiplications
-<img class="full" src="images/cost/dr-evil-teraflops.jpg"> 
+<img src="images/cost/dr-evil-teraflops.jpg"> 
 
 **FLOP** is short for Floating-Point Operation: a multiplication of two numbers
 
@@ -828,7 +851,7 @@ Because the AI has access to the full text of book 1 in its active memory, but i
 
 Not your Gaming Grandma's GeForce graphics card
 
-<img class="full" src="images/cost/nvidia-jensen-b200.png"> 
+<img src="images/cost/nvidia-jensen-b200.png"> 
 
 ### 4,500,000,000,000,000 FLOPS/sec
 
@@ -865,33 +888,33 @@ One 4 x B200 cluster costs $500,000
 </div>
 
 ### The 4 x B200 cluster
-<img class="full" src="images/cost/b200-cluster.jpeg"> 
+<img src="images/cost/b200-cluster.jpeg"> 
 
 ### Clusters comes as trays
-<img class="full" src="images/cost/b200-clusters.jpg"> 
+<img src="images/cost/b200-clusters.jpg"> 
 
 ### Trays goes into racks
-<img class="full" src="images/cost/b200-rack.jpg"> 
+<img src="images/cost/b200-rack.jpg"> 
 
 ### Racks goes into aisles
-<img class="full" src="images/cost/b200-rack-aisle.jpeg"> 
+<img src="images/cost/b200-rack-aisle.jpeg"> 
 
 ### Now you have a datacenter
-<img class="full" src="images/intro/datacenter.jpg"> 
+<img src="images/intro/datacenter.jpg"> 
 
 ### Why Graphics Cards (GPU)?
 
 ### Transformer's superpower: all at once
-<img class="full" src="images/llm/transformer-vs-sequential.png">
+<img src="images/llm/transformer-vs-sequential.png">
 
 ### GPU: master of parallel computations
-<img class="full" src="images/cost/red-dead-redemption.webp">
+<img src="images/cost/red-dead-redemption.webp">
 
 ####
 That's why Mac Mini and Mac Studio are so sought after: their GPU can use the full on-board RAM.
 
 ### NVidia stock price
-<img class="full" src="images/cost/nvidia-stock-5y.png"> 
+<img src="images/cost/nvidia-stock-5y.png"> 
 
 ### Why yuou want an M1
 
@@ -903,13 +926,13 @@ All chips produced by ASML, btw.
 ## Training
 
 ### Are all AI models the same?
-<img class="full" src="images/training/chatgpt-lingo.png">
+<img src="images/training/chatgpt-lingo.png">
 
 ####
 Admittedly I coached ChatGPT into dialing up its "chatgppt-ness" to the max before asking this question. And honestly? It worked.
 
 ### How models are trained
-<img class="full" src="images/training/training.png">
+<img src="images/training/training.png">
 
 ####
 
@@ -922,7 +945,7 @@ Pretraining is where the model learns language itself. Fed vast amounts of text,
 Supervised Fine-Tuning (SFT) and Reinforcement Learning is where the model learns what good means to its creators. Humans or AI (RLHF or RLAIF) evaluators compare outputs and rank them. The model is iteratively shaped toward preferred behavior — this is where values, tone, refusal behaviors, and personality get baked in.
 
 ### Pre-training on "all sentences in the world"
-<img class="full" src="images/training/training-corpus.png">
+<img src="images/training/training-corpus.png">
 
 ####
 Putting the **Large** in the *"Large Language Model (LLM)"*
@@ -931,7 +954,7 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
 
 <div class="cols">
 <div class="col-2">
-	<img class="full" src="images/training/training-example.png">
+	<img src="images/training/training-example.png">
 </div>
 <div>
 
@@ -947,10 +970,10 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
 </div>
 
 ### Backpropagation is ...ok, let's move on...
-<img class="full" src="images/training/backpropagation.png">
+<img src="images/training/backpropagation.png">
 
 ### Pre-training: model = embeddings + weigths
-<img class="full" src="images/training/pre-trained-model.png">
+<img src="images/training/pre-trained-model.png">
 
 ### Pre-training cost
 
@@ -963,7 +986,7 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
   * it takes weeks or months
 
 ### Pre-trained models are quite similar
-<img class="full" src="images/training/pre-training.png">
+<img src="images/training/pre-training.png">
 
 ### Pre-trained answers are "auto-completions"
 
@@ -972,14 +995,14 @@ The pre-trained model has no real values, no persona, doesn't refuse anything.
 It just predicts - statistically, mechanically, like an auto-complete.
 <br>
 
-<img class="full" src="images/training/pre-training-is-like-autocompete.png">
+<img src="images/training/pre-training-is-like-autocompete.png">
 
 ### Post-training is what shapes the model
 <div class="cols">
-<img class="col-3 full" src="images/training/post-training.png">
+<img class="col-3" src="images/training/post-training.png">
 <div class="col-2">
 
-**Different personalities:**
+*Different personalities*
 
 ChatGPT – Structured explainer
 
@@ -999,7 +1022,7 @@ DeepSeek –  Censored thinker
 </div>
 
 ### Post-training: reinforce the desired outcomes
-<img class="full" src="images/training/reinforcement-learning.png">
+<img src="images/training/reinforcement-learning.png">
 
 ### Reinforcement Learning by Feedback
 
@@ -1007,7 +1030,7 @@ DeepSeek –  Censored thinker
 **RLAIF** - Reinforcement Learning from *AI Feedback* (growing)
 <br>
 
-<img class="full" src="images/training/reinforcement-training-trend.png">
+<img src="images/training/reinforcement-training-trend.png">
 
 ####
 
@@ -1024,17 +1047,25 @@ Pay ranges from $15/hr for generalist annotators up to $500+/hr for domain exper
 Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.
 
 ### Example: Claude's Constitution
-<img class="full" src="images/training/claudes-constitution.png">
+<img src="images/training/claudes-constitution.png">
 
 ####
 [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
 [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
 ### Expresses Claude’s "core principles"
-<img class="full" src="images/training/claudes-constitution-helpfulness.png">
+<img src="images/training/claudes-constitution-helpfulness.png">
+
+####
+The model spec is the closest thing to a public constitution. It defines a priority ordering:
+
+Broadly safe (supporting human oversight)
+Broadly ethical (good values, honesty)
+Adherent to Anthropic's principles
+Genuinely helpful
 
 ### "Don't foster excessive engagement"
-<img class="full" src="images/training/claudes-constitution-sychophant.png">
+<img src="images/training/claudes-constitution-sychophant.png">
 
 ####
 As a principle, this goes directly against the main objective of optimizing "pleasing engagement" at social platforms like Facebook.
@@ -1042,23 +1073,23 @@ As a principle, this goes directly against the main objective of optimizing "ple
 The jailbreaking community, which is maximally adversarial and has zero loyalty to Anthropic, keeps surfacing behavior consistent with the document. When your most hostile auditors confirm the fingerprint, that’s decent evidence.
 
 ### "New model is 36% more ..."
-<img class="full" src="images/training/system-cards-opus48.png">
+<img src="images/training/system-cards-opus48.png">
 
 ####
 [Model system cards](https://www.anthropic.com/system-cards) - System cards document the capabilities, safety evaluations, and responsible deployment decisions for Claude models.
 
 ### ChatGPT - rules over principles
-<img class="full" src="images/training/openai-spec.png">
+<img src="images/training/openai-spec.png">
 
 ### ChatGPT spec example
-<img class="full" src="images/training/openai-spec-example.png">
+<img src="images/training/openai-spec-example.png">
 
 ### Gemini et al - no public training guidelines
-<img class="full" src="images/training/gemini-ai-principles.png">
+<img src="images/training/gemini-ai-principles.png">
 
 ### Are models different? Yes
 
-<img class="full" src="images/training/model-behavior.svg">
+<img src="images/training/model-behavior.svg">
 <br>
 
 * Anthropic wants Claude to *reason from principles* — no rulebook needed
@@ -1075,10 +1106,14 @@ Haikku, Sonnet, and Opus are three actually different models.
 Runs on *different hardware*, LLM has *different sizes* (attention heads, etc)
 <br>
 
-<img class="full" src="images/training/claude-family.png">
+<img src="images/training/claude-family.png">
 
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
+
+### Pre-trained models
+
+Still weights.
 
 ### What comes after the LLM?
 
@@ -1120,18 +1155,6 @@ Called a Foundation Model because it can be used for all kinds of things without
 ####
 When you hear somebody say "then we can just fine-tune the model" you should pack a fair amount of skepticism because you can only do that for certain models and it's not as easy as it might seem. TODO: Who would fine-tune a model?
 
-## A brief history
-https://claude.ai/chat/4ff62fbd-8163-415a-a068-d23e10ac1160
-
-2019, The mainstream view was that you needed cleverer architectures, not bigger ones.
-
-Rich Sutton's 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop building in your priors, just scale.
-
-GPT-2 (1.5B params, 2019) had produced surprisingly fluent text. But "fluent text" isn't "general capabilities." The leap to GPT-3 was ~100×
-
-The wager was not "the loss curve will keep going" — Kaplan had already shown that. The wager was: something qualitatively useful will fall out of low enough loss. That part had no theoretical basis. GPT-2 had shown hints — coherent paragraphs, some pattern-following within a prompt — but few-shot learning as a general capability wasn't predicted by any theory.
-
-The paper's title — "Language Models are Few-Shot Learners"
 
 ### Takeaways
 
@@ -1171,7 +1194,7 @@ I know I have some: how does it browse the web, know what today is, add two numb
 * The LLM can only reason about what's in the context
 
 ---
-<img class="full" src="images/llm/nerdflix.png">
+<img src="images/llm/nerdflix.png">
 
 ####
 2 hours of Andrej Karpathy building a small GPT model, fully.
@@ -1191,10 +1214,10 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 # The AI Service
 
 ---
-<img class="full" src="images/intro/journey/full-picture.png">
+<img src="images/intro/journey/full-picture.png">
 
 ---
-<img class="full" src="images/overview/service.png">
+<img src="images/overview/service.png">
 
 ## What can it do?
 
@@ -1214,7 +1237,7 @@ Call external tools via MCP servers
 Ask the caller to use tools or MCP servers
 
 ### The AI Service and how to talk to it
-<img class="full" src="images/ai-service/service-blank.png">
+<img src="images/ai-service/service-blank.png">
 
 <br>
 This is the general engine room in every AI service and how to speak to it.
@@ -1222,7 +1245,7 @@ This is the general engine room in every AI service and how to speak to it.
 ## Chatting
 
 ### Chatting involves just the LLM
-<img class="full" src="images/ai-service/service-llm.png">
+<img src="images/ai-service/service-llm.png">
 
 ####
 Feed it a context and it will produce the next expected output.
@@ -1233,38 +1256,38 @@ The purpose, recapped: You give it a string of tokens, aka the *context*, and it
 That is *all* it can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only - let's repeat: run the context through the Transformer to produce a response.
 
 ### Chatting: bring a context, get a response
-<img class="full" src="images/ai-service/service-chat.png">
+<img src="images/ai-service/service-chat.png">
 
 ####
 A context has many parts. Here we'll focus on just two: the system prompt and the messages.
 
 ### Your prompts/messages are sent in the context
-<img class="full" src="images/ai-service/messages/request-messages.png">
+<img src="images/ai-service/messages/request-messages.png">
 
 ### Messages format
 TODO: sent as User, Assistant - image
 Also image of json
 
 ### The example, continued
-<img class="full" src="images/example/chat.png">
+<img src="images/example/chat.png">
 
 ### User message #1 and the LLM response
-<img class="full" src="images/ai-service/messages/chat-turn-1.png">
+<img src="images/ai-service/messages/chat-turn-1.png">
 
 ### User message #2 - now what?
-<img class="full" src="images/ai-service/messages/chat-turn-2-question.png">
+<img src="images/ai-service/messages/chat-turn-2-question.png">
 
 ### User message #2: what do we send to the AI?
-<img class="full" src="images/ai-service/messages/chat-turn-2-choice.png">
+<img src="images/ai-service/messages/chat-turn-2-choice.png">
 
 ### For user message #2: re-send the full chat
-<img class="full" src="images/ai-service/messages/chat-turn-2.png">
+<img src="images/ai-service/messages/chat-turn-2.png">
 
 ### For user message #3: re-send the full chat
-<img class="full" src="images/ai-service/messages/chat-turn-3.png">
+<img src="images/ai-service/messages/chat-turn-3.png">
 
 ### For every user message: re-send the full chat
-<img class="full" src="images/ai-service/messages/chat-turn-goodnight.png">
+<img src="images/ai-service/messages/chat-turn-goodnight.png">
 
 ### Why? The LLM need the full context
 
@@ -1274,7 +1297,7 @@ You want it to know about X (beyond its training)? Then X must be *in the contex
 No links, no docs, no agents: the context is *ALL* the LLM knows about you and this chat.
 <br>
 
-<img class="full" src="images/ai-service/messages/chat-through-transformer.png">
+<img src="images/ai-service/messages/chat-through-transformer.png">
 
 ####
 If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.
@@ -1290,21 +1313,21 @@ How to interpret a tool result and what to do next
 Whether to flag a potential prompt injection in a tool result
 
 ### The chat after 3 prompts
-<img class="full" src="images/ai-service/messages/tokens-turn-3.png">
+<img src="images/ai-service/messages/tokens-turn-3.png">
 
 ### The chat after 10 prompts
-<img class="full" src="images/ai-service/messages/tokens-turn-10.png">
+<img src="images/ai-service/messages/tokens-turn-10.png">
 
 ### The chat after 50 prompts
-<img class="full" src="images/ai-service/messages/tokens-turn-50.png">
+<img src="images/ai-service/messages/tokens-turn-50.png">
 
 ### Total tokens spent after 50 prompts
-<img class="full" src="images/ai-service/messages/tokens-turn-50-total.png">
+<img src="images/ai-service/messages/tokens-turn-50-total.png">
 
 ### The System prompt
 
 ### There's more than just your messages
-<img class="full" src="images/ai-service/system/request-system.png">
+<img src="images/ai-service/system/request-system.png">
 
 ### System prompt
 TODO: Show system prompt
@@ -1374,15 +1397,21 @@ No, the LLM never "plan" far ahead and always simply produce one token at a time
 
 Hmm. So *what is thinking* really?
 
+Use this as an example!
+
 
 ### Thinking: "ponder", append, and re-process
-<img class="full" src="images/ai-service/service-thinking.png">
+<img src="images/ai-service/service-thinking.png">
 
 ### Let's zoom in
 TODO: zoomed in
 
 - Thinking is an autoregressive loop wrapped around the LLM: generate a "thought"-mode output, append it to the context, run the forward pass again, repeat.
 - The name is **Chain of Thought**, aka **CoT**.
+
+https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
+chain-of-thought is the escape hatch for the layer ceiling. It converts hardware-limited internal reasoning into serialized external reasoning, and that's why it works. It also predicts exactly what we observe: on problems that fit in the silent chain, models answer instantly and correctly; on problems that don't, they either get it wrong (no reflection) or need extended thinking to get it right (reflection converts depth into length).
+Your intuition that some problems would need "layer 150" is not just plausible — it's what the entire scratchpad/reasoning-mode ecosystem exists to work around.
 
 ####
 
@@ -1421,8 +1450,8 @@ const thinkingBudget = prompt.includes("ultrathink") ? 31999 : 0
 
 ## Files
 
-## Documents, images ... video, audio
-<img class="full" src="images/ai-service/service-files.png">
+### Documents, images ... video, audio
+<img src="images/ai-service/service-files.png">
 
 ### Images (video, audio)
 
@@ -1467,7 +1496,7 @@ Each patch → becomes one token
 
 [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)
 
-<img class="full" src="images/ai-service/service-tools.png">
+<img src="images/ai-service/service-tools.png">
 an MCP server is a "Standardized Wrapper" for an API.
 https://gemini.google.com/app/65287c836e4e8a94?hl=da
 
@@ -1484,25 +1513,28 @@ My JavaOne 2002 JAXP
 When you see "You can add an MCP server for Confluence" you should think "I can tell the Agent that I want to use the Atlassian API".
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-1-add-server.png">
+<img src="images/ai-service/mcp/sticks-1-add-server.png">
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-2-explain.png">
+<img src="images/ai-service/mcp/sticks-2-explain.png">
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-3-request.png">
+<img src="images/ai-service/mcp/sticks-3-request.png">
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-4-tool-search.png">
+<img src="images/ai-service/mcp/sticks-4-tool-search.png">
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-5-tool-use.png">
+<img src="images/ai-service/mcp/sticks-5-tool-use.png">
 
 ####
 You should read this as a principled overview: the AI is talking to an MCP server which is turn call the API. The actions it is allowed to make are the actions that you are allowed to make. The MCP serveri acts on your behalf, so to speak. So it can only do what you are allowed to do. For example, for Siteimprove you can create an API-key associated with your username, and when the MCP server authenticates using that API-key then it acts as you with precisely the same kind of access you have.
 
 ### MCP
-<img class="full" src="images/ai-service/mcp/sticks-6-response.png">
+<img src="images/ai-service/mcp/sticks-6-response.png">
+
+### MCP
+<img src="images/ai-service/mcp/mcp-alone.png">
 
 
 ### MCP example - Siteimprove
@@ -1516,14 +1548,14 @@ You should read this as a principled overview: the AI is talking to an MCP serve
 
 
 ### 5: A bit more - caching, safeguarding
-<img class="full" src="images/ai-service/service-misc.png">
+<img src="images/ai-service/service-misc.png">
 
 ### "Now I have the full picture"
-<img class="full" src="images/ai-service/service-full.png">
+<img src="images/ai-service/service-full.png">
 
 
 ### "Now I have the full picture"
-<img class="full" src="images/ai-service/service-full.png">
+<img src="images/ai-service/service-full.png">
 
 ####
 Your diagram is the undisputed Common Core of the modern LLM runtime. For standard open-weight architectures (like Meta's Llama series or Mistral) and classic chat endpoints, this blueprint captures the system flawlessly.
@@ -1532,6 +1564,8 @@ Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the im
 
 
 "Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
+
+## Context
 
 ### Token spree
 
@@ -1554,6 +1588,9 @@ iframe.game { flex: 1; width: 100%; border: none; }
 *[▶ Open interactive version](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)*
 
 </div>
+
+Describe difference between the "circle of context used" and the "bar of token used".
+
 
 # The AI Agents
 
@@ -1590,6 +1627,8 @@ Memory as a pattern
 
 "it said it did the thing but then didn't" - that's the agent's fault; a tool-use request that wasn't being followed
 
+Give the audience the three-layer shape — stated (you said it, it's stored verbatim), synthesized (periodic curated compression of what happened, regenerated wholesale, subject to recency decay), retrieved (opt-in search over raw history, triggered by cue-detection, scored by a real relevance mechanism). That structure is what's actually stable — it's the shape every vendor has converged on for the same token-economic reasons, independent of which embedding model or summarization prompt sits inside each box this quarter
+
 
 ## The challenge
 Fable 5 stays focused across millions of tokens in long-running tasks and improves its outputs using its own notes. When we had the model play the deck-building game Slay the Spire, giving it access to persistent file-based memory improved its performance three times more than for Opus 4.8; Fable also reached the game’s final act three times more often.
@@ -1598,6 +1637,15 @@ Fable 5 stays focused across millions of tokens in long-running tasks and improv
 
 https://gurusup.com/blog/agent-orchestration-patterns
 https://gurusup.com/blog/moe-vs-multi-agent-systems
+
+clear, edit on mistakes
+btw
+branch
+be precise about what you want as output foormat
+ask multiple questions in one go
+search files yourself if you can, ie make the model search it for you
+save the results in short form for later
+
 
 
 # Guidance
@@ -1696,6 +1744,11 @@ try t see where you are in the loop and see if you can remove yourself out of it
 ### Nagative framing used to be bad, but is now handled well. But be precise, don's say: (make no mistakes)
 ### "Make no mistakes"
 ### Saying Please
+"The real reason to be polite: it's good for you (oxytocin vs cortisol), even in simulated conversation."
+https://claude.ai/chat/6e957ec3-8060-476d-867f-c59c42437d79
+One researcher offers a grounded explanation for why politeness might have any effect at all: "please" and "thank you" add conversational structure, making it clearer that what follows is a request — and more structure tends to make for better prompts. Additionally, politeness prompts tone-mirroring, which may or may not affect quality. 
+Multi-turn cost is unaccounted for. All the studies measured single-turn accuracy or quality. Your hypothetical is exactly right — if a terse impolite response omits something the user needed, the follow-up exchange adds tokens that could exceed what a fuller polite response would have cost. Nobody has measured conversation-level cost to resolution.
+
 ### Nudging words
 ### It's all changing so fast
 And yes, LLM and context and tokens are pretty fixed.
@@ -1731,6 +1784,32 @@ Still a mystery to me
 ### Is it sentinent?
 
 https://claude.ai/chat/03b64faf-bb61-402a-982f-ab48a6bbff21
+Also Chomsky
+https://ling.auf.net/lingbuzz/007180/current.pdf
+these models use language in a way that is remarkably human (Mahowald
+& Ivanova et al. 2023).
+thought itself shares many properties of language, namely a compositional,
+language-like structure
+
+
+https://claude.ai/chat/4ff62fbd-8163-415a-a068-d23e10ac1160
+
+It's just a mechanical machine - you can't compare it to human thinking
+"we don't know what goes on inside" - we we do, 100%, just not how the weights are created. For now, but ai-generated algorithms could change that.
+
+scaling laws
+interpretability
+
+
+2019, The mainstream view was that you needed cleverer architectures, not bigger ones.
+
+Rich Sutton's 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop building in your priors, just scale.
+
+GPT-2 (1.5B params, 2019) had produced surprisingly fluent text. But "fluent text" isn't "general capabilities." The leap to GPT-3 was ~100×
+
+The wager was not "the loss curve will keep going" — Kaplan had already shown that. The wager was: something qualitatively useful will fall out of low enough loss. That part had no theoretical basis. GPT-2 had shown hints — coherent paragraphs, some pattern-following within a prompt — but few-shot learning as a general capability wasn't predicted by any theory.
+
+The paper's title — "Language Models are Few-Shot Learners"
 
 
 # Embeddings, revisited
@@ -1750,12 +1829,6 @@ export ANTHROPIC_BASE_URL=http://localhost:3001
 One big generated image of tokens/embeddings going into the LLM, etc etc
 
 Do we run out of training material?
-It's just a mechanical machine - you can't compare it to human thinking
-"we don't know what goes on inside" - we we do, 100%, just not how the weights are created. For now, but ai-generated algorithms could change that.
-
-scaling laws
-interpretability
-
 
 
 
@@ -1782,3 +1855,16 @@ Concerns, balance: how do I make it do what I want? In a way that doesn't cost a
 Outcome; Be specific, precise, detailed. Ask it to interview you. Roast yours ideas. Anything to ask me before starting?
 Cost: Have the expensive model draw up a plan, the cheap model implements.
 
+MoE. Not more layers.
+
+
+I need to rant about local models
+Theo - t3․gg
+https://www.youtube.com/watch?v=wnfxSxP8pGs
+
+----
+misconceptions
+question -> explanation
+a,b plots
+
+Folder AI unlock, simple: https://www.youtube.com/watch?v=FcWi9j0FiYk

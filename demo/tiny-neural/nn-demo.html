@@ -147,7 +147,10 @@
     opacity: 0;
     transition: opacity 0.3s;
   }
-  .day-node.active .pip { opacity: 1; }
+  /* The pip marks the clicked/selected day specifically — it must stay lit
+     even while hovering a different day highlights that other day's
+     .active state, so it's driven by its own class, not .active. */
+  .day-node.selected .pip { opacity: 1; }
 
   /* Hidden neurons */
   .hidden-node {
@@ -415,8 +418,27 @@ const hiddenNodeSize = { w: 170, h: 80 };
 const outputNodeSize = { w: 140, h: 88 };
 
 let hoveredDay = null;
+// Monday by default — some day is always selected, never none.
+let selectedDay = 0;
 let groceryVisible = false;
 let spendingVisible = false;
+
+// Pip is a pure function of selectedDay — call after every click, never
+// bundled into clearAll()/updateNetwork() which run on every hover too.
+function updateSelectedPip() {
+  DAYS.forEach((_, i) => {
+    document.getElementById(`day-${i}`).classList.toggle('selected', i === selectedDay);
+  });
+}
+
+// After a hover ends, fall back to the selected day (if any) instead of
+// clearing — the selection is the "default active input" while nothing is
+// being hovered.
+function onHoverEnd() {
+  hoveredDay = null;
+  if (selectedDay !== null) updateNetwork(selectedDay);
+  else clearAll();
+}
 
 // When the grocery neuron is hidden, its contribution is excluded from
 // every calculation too — not just from the drawing.
@@ -445,7 +467,12 @@ DAYS.forEach((_, i) => {
   slot.style.width = dayNodeSize.w + 'px';
   slot.style.height = DAY_ROW_STEP + 'px';
   slot.addEventListener('mouseenter', () => { hoveredDay = i; updateNetwork(i); });
-  slot.addEventListener('mouseleave', () => { hoveredDay = null; clearAll(); });
+  slot.addEventListener('mouseleave', onHoverEnd);
+  slot.addEventListener('click', () => {
+    selectedDay = i;
+    updateSelectedPip();
+    if (hoveredDay === null) updateNetwork(i);
+  });
   container.appendChild(slot);
 
   const el = document.createElement('div');
@@ -695,7 +722,7 @@ function buildBarGroup(key) {
     col.className = 'bar-col';
     col.dataset.day = i;
     col.addEventListener('mouseenter', () => { hoveredDay = i; updateNetwork(i); });
-    col.addEventListener('mouseleave', () => { hoveredDay = null; clearAll(); });
+    col.addEventListener('mouseleave', onHoverEnd);
 
     const valEl = document.createElement('div');
     valEl.className = 'bar-value';
@@ -768,11 +795,17 @@ function clearAll() {
   document.getElementById('calc').innerHTML = '';
 }
 
-// Always spells out both terms — weekend and grocery — even when one is
-// zero, so the full shape of the calculation stays visible at every step.
+// Spells out the weekend term always, and the grocery term too — but only
+// when the grocery neuron is actually visible. With it off, the model has
+// no grocery input at all, so showing "+ 0.0 × (...)" would misrepresent
+// the formula rather than just reflect a zero-valued day.
 function calcLine(label, ww, gw, cfg, val) {
   const wwStr = ww >= 0 ? `<span class="pos">${ww.toFixed(1)}</span>` : `<span class="neg">${ww.toFixed(1)}</span>`;
-  const eq = `${wwStr} × (${formatWeight(cfg.weekend)})  +  ${gw.toFixed(1)} × (${formatWeight(cfg.grocery)})  =  <span class="result">${val.toFixed(2)}</span>`;
+  let eq = `${wwStr} × ${formatWeight(cfg.weekend)}`;
+  if (groceryVisible) {
+    eq += `  +  ${gw.toFixed(1)} × ${formatWeight(cfg.grocery)}`;
+  }
+  eq += `  =  <span class="result">${val.toFixed(2)}</span>`;
   return `${label} = ${eq}`;
 }
 
@@ -884,6 +917,7 @@ function applyGroceryVisibility() {
   updateWeightCount();
   buildBars();
   if (hoveredDay !== null) updateNetwork(hoveredDay);
+  else if (selectedDay !== null) updateNetwork(selectedDay);
 }
 groceryToggle.addEventListener('change', applyGroceryVisibility);
 
@@ -900,13 +934,14 @@ function applySpendingVisibility() {
 
   updateWeightCount();
   if (hoveredDay !== null) updateNetwork(hoveredDay);
+  else if (selectedDay !== null) updateNetwork(selectedDay);
 }
 spendingToggle.addEventListener('change', applySpendingVisibility);
 
 // Initial state
+updateSelectedPip();
 applyGroceryVisibility();
 applySpendingVisibility();
-clearAll();
 </script>
 </body>
 </html>

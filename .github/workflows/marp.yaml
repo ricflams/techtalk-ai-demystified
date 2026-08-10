@@ -23,6 +23,9 @@ jobs:
       - name: Copy images
         run: cp -r src/images public/images
 
+      - name: Copy layout.css
+        run: cp src/layout.css public/layout.css
+
       - name: Generate readable version
         run: python3 scripts/make_readable.py public/presentation.html public/index.html
 

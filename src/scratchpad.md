@@ -367,3 +367,52 @@ And frankly, it's likely been the most challenging presentation I've ever put to
 Everybody is interested in AI and would be better of by having these lightbulb moments. But there's so much to say about "all AI". How do I tell the story of useful bits that will click for you and that covers everything useful, in just one hour? The simplest would be to just throw a bunch of facts at you but I know that won't stick. 
 
 The approach I've taken is to focus on the basics and try to best to make it relatable. Just the core part of the AI service that you interact with when chatting. The Large Language Model and AI-service on top of it. In bread terms, the yeast and enzymes and the basic baking process. Just keep it simple, I figured.
+
+----
+
+Chats exist as local files but are not included or searched during chats.
+
+Info: date/time, location
+
+The server has zip info on you - all in the agent/client
+
+To Can only reason about the context on top of training
+
+Its expensive to include everything/anyghing. So it's a balance. 
+
+Opus 5 does not seem to be prompt injectable anymore
+
+Tokens and embeddings intro
+
+An embedding is a vector of characteristics
+
+Context window, context length, usage
+
+The slides are available with extra notes and links so I highly recommend you go revisit them.
+
+It doesn’t remember anything about you on the server. It’s all in some files which you can likely inspect. It doesn’t leak your info, training doesn’t make it remember your password etc.
+
+Filled with stuff I find super interesting but don’t worry I’m notbhere to inflict that on you. I’ll broach many subjects very briefly that you’re welcome to ask about later or in the moment.[3:49 PM]Mayve ut knows: everything in the context comes at a cost so  there’s a lot of token-economic reasons to keep it minimal.
+
+Hvilke store fransk etc skruer har jeg[3:49 PM]Frankly it may not be all that useful since ai is just getting better and better at doing what you want. Like ready to bake mix.
+
+Run init
+
+“You are an xxxx expert…”[3:50 PM]Open weight models, efter træningen. if it’s named “-base,” it’s pretrained only. If it’s “-instruct/-chat” or has no suffix and is presented as the main model, assume SFT + RL stage on top of pretraining.
+
+The “one context is all” means you can’t ask the model to reason about something and have it still know anything else.
+
+### The Big Five test (OCEAN)
+<img src="images/embedding/analogy_bigfive.svg" />
+
+
+### There could be embeddings for all words
+<img src="images/embedding/vocabulary-a-z.png" />
+
+### The meaning of ... "anything"?
+<img src="images/embedding/20d-blank.svg" />
+
+### Note: an embedding is a noun, not a verb
+<img src="images/embedding/bicycle-tree.jpg" />
+
+

@@ -10,7 +10,9 @@ h4, h4 ~ * { display: none; }
 </style>
 
 # AI Demystified
-Richard Flamsholt · July 2026
+Richard Flamsholt
+
+August 2026
 
 ---
 ![bg](images/intro/dopamine.png)
@@ -69,7 +71,7 @@ Let me say this up front: will that knowledge turn you into an expert baker over
 ####
 It's my hope and goal that this presentation will help you rise (haha) to become much more confident in your use of AI.
 
-# KISS
+# "Just the basics"
 
 ---
 ![bg](images/intro/journey/overview.png)
@@ -117,7 +119,7 @@ And ask me or other colleagues if you've got questions. I'd be happy to elaborat
 ####
 Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
 
-# "The AI"
+# The AI
 ---
 <img src="images/overview/full.png" />
 
@@ -320,7 +322,7 @@ The LLM is the only part that thinks.
 
 ## "a fancy autocomplete ..."
 
-####
+#### sdfsdf
 Before we dive into the technical details, I'd like to install this notion into your heads.
 
 Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
@@ -336,6 +338,7 @@ Buf "fancy" is doing a lot of heavy lifting in that sentence, not unlike saying 
 - That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
 
 - So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
+
 <br>
 <img src="images/llm/core/once-upon-a-time.svg" />
 
@@ -389,6 +392,8 @@ Add in patterns and words that steer the model in the desired direction via patt
 
 ### The LLM is all statistics: math on numbers
 <img src="images/llm/overview-just-the-numbers.png">
+
+## Tokens and embeddings
 
 ## Tokens
 <img src="images/overview/tokens.png">
@@ -453,7 +458,7 @@ This shows one advantage of the tokenization: simply fewer tokens than if everyt
 <img src="images/token/hello-world-from-richard.png">
 
 ####
-The first four words are common and have each their own token, but "Flamsholt" isn't worthy of getting its own token so it's made up of 3 parts.
+The first four words are common and have each their own token, but much to my disappointment it seems "Flamsholt" isn't worthy of getting its own token so it's made up of 3 parts.
 
 ### Token for "Flam" is 97957
 <img src="images/token/vocabulary-flam.png">
@@ -461,7 +466,7 @@ The first four words are common and have each their own token, but "Flamsholt" i
 ####
 Look' there's "Flam", in dubious company of inflammatory tokens.
 
-### Tokenizing help identify word-features
+### Save space and identifies "word-features"
 <img src="images/token/wonderful-tokenization.png">
 
 ####
@@ -507,10 +512,11 @@ Examples in English, Danish, Korean, Classical Chinese, and C#.
 * A **token** is the *chunk of text* the LLM reason about
 * Models typically have a **vocabulary** of 200,000 tokens
 * For English, 1 token is roughly 1 word (3/4 of a word)
+* Tokens are language agnostics - it's all "just tokens"
 <br>
 Last, but not least:
 <br>
-* Ultimately, the cost of generating text is *per token*
+* Ultimately, cost is measured *in tokens*
 
 </div>
 </div>
@@ -523,23 +529,18 @@ For English, one token generally corresponds to about 4 characters. For a text t
 <img src="images/overview/embeddings.png">
 
 ####
-Computers don't understand the word "cat." They understand numbers. So we need a way to turn "cat" into numbers in a way that preserves its meaning. That's what an embedding does.
-
-<img src="images/embedding/confused.png">
-
-### Note: an embedding is a noun, not a verb
-<img src="images/embedding/bicycle-tree.jpg" />
-
-####
 In everyday English "embedding" sounds like something you do: the act of placing something into something else.
 
 In AI, it means a concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
 
-### An embedding is the "characteristica", the "meaning", of something, anything
+### An embedding embodies the meaning (characteristica, features, traits, ...) of something, anything
 
-### The Big Five test (OCEAN)
-<img src="images/embedding/analogy_bigfive.svg" />
+### Stay with me
 
+<img src="images/embedding/confused.png">
+
+####
+You probably knew about tokens. Embeddings are the "live" counterpart to tokens, and they are incredibly valuable to grasp the meaning of. It may feel abstract and complex so sit tight.
 
 ### Specialty Coffee Association (SCA)
 <img src="images/embedding/analogy_coffee.svg" />
@@ -548,16 +549,14 @@ In AI, it means a concrete vector of numbers that _somehow_ represent the charac
 ### Spotify's 80-dimensional characteristics
 <img src="images/embedding/analogy_spotify.svg" />
 
+####
+Spotify really does characterize music using 80 dimensions.
 
-### The meaning of ... "anything"?
-<img src="images/embedding/20d-blank.svg" />
-
-
-### Yes, the meaning of "anything"
+### Imagine capturing the essense of ... anything
 <img src="images/embedding/20d-with-tokens.svg" />
 
 
-### Embedding: a meaning's characteristics
+### An embedding is a token's characteristics
 
 <div class="cols">
 <div>
@@ -565,9 +564,11 @@ In AI, it means a concrete vector of numbers that _somehow_ represent the charac
 </div>
 <div class="col-6">
 
-An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterises _something_.
+An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterises _something_. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
 
-The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. If "kitten" is described by 20 characteristics then the embedding of "kitten" has 20 dimensions. Each number is called the **weight** of that dimension.
+The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. If we choose 20 characteristics then the embedding of "kitten" has 20 dimensions.
+
+Each number is called the **weight** of that dimension.
 
 Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling* you can have. Any *concept*, including e.g. *a curious yet mildly confused audience*.
 </div>
@@ -600,29 +601,10 @@ Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling
 </div>
 </div>
 
-### This would be embeddings for all words
-<img src="images/embedding/vocabulary-a-z.png" />
-
-####
-Conceptually, every word has an embedding that captures its meaning. This is not entirely correct because we are of course always dealing with tokens, not words - so the vocabulary of an LLM has embeddings for every token instead of words.
-
-### In reality, an embedding for every token
+### Every token has an embedding
 <img src="images/embedding/vocabulary-gpt-3.png" />
 
 ChatGPT 3 has *50,257 tokens*, each described by *12,288 dimensions*
-
-####
-Embeddings are also sometimes called "features", as each value in the vector encodes some learned semantic trait of the token. Like eg "catness" or "largeness".
-
-In practice though we simply don't know what those dimensions mean. They don't map crisply to existing human concepts. Dimension 847 might contribute a little to formality, a little to temporal reference, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
-
-There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. They can extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
-
-The numbers are produced during training. We'll come to that later.
-
-* [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
-* [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
-* [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
 
 ### The example's embeddings
 <img src="images/embedding/embedding-matrix.png" />
@@ -631,6 +613,66 @@ The numbers are produced during training. We'll come to that later.
 Each of these lists of 12288 numbers represent the core meaning of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.
 
 So what we have here is a set of numbers that essentially represents the full meaning of the entire context.
+
+### The embedding for "Please"
+
+TODO: image if Please
+####
+The weights are constructed during the LLM's training. Right now just accept that those 12288 numbers do in fact characterise all aspects of one single token. We'll cover how they've come to be later.
+
+Those 12288 numbers are much more complex than the 20-dimensional kitten-eample before. And frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only makes mathematical sense. Dimension 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
+
+There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. They can extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
+
+* [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
+* [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
+* [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
+
+### We can "do math" on embeddings!
+
+### An embedding == a direction in N-dimensional space
+
+One way to think about an embedding is as a hyper-dimensional "arrow" in a hyper-dimensional space of every conceivable (and inconceivable) concept. Because that is, in fact, what it is. And it leads to some astounding and surprising behaviors.
+
+### Relations have similar directions (embeddings)
+<img src="images/embedding/space/cat.png" />
+
+### Concepts like "plurality" is also a direction
+<img src="images/embedding/space/cat-plural.png" />
+
+### King and queen
+<img src="images/embedding/space/gender-king-queen.png" />
+
+### Uncle and aunt
+<img src="images/embedding/space/gender-uncle-aunt.png" />
+
+### Nephew and niece
+<img src="images/embedding/space/gender-nephew-niece.png" />
+
+### The "gender direction"
+<img src="images/embedding/space/gender-father-mother.png" />
+
+### The direction for "sadness"
+<img src="images/embedding/space/direction-sadness.png" />
+
+### The direction for "whimsical"
+<img src="images/embedding/space/direction-whimsical.png" />
+
+### The direction for "rainbow"
+<img src="images/embedding/space/direction-rainbow.png" />
+
+### The direction for "spatula"
+<img src="images/embedding/space/direction-spatula.png" />
+
+### Germany-Italy
+<img src="images/embedding/space/germany-italy.png" />
+
+### Germany-Japan
+<img src="images/embedding/space/germany-japan.png" />
+
+### The takeaway
+
+If you find the AI capable of finging "just the right word" then this is why.
 
 ### The LLM is all about math on embeddings
 <img src="images/llm/overview-embeddings.png" />
@@ -814,6 +856,8 @@ There's no plan to "bold" a word by emitting `** something **`. Instead at one p
 
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
 
+Not so: j-space.
+
 ### "Just a fancy autocomplete" is ...true
 <img src="images/llm/calculator-once-upon.png" />
 
@@ -962,7 +1006,7 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
 
 1. Run tokens through the network like at generate
 2. Paths to the expected token are rewarded, others are punished
-3. Adjust the network all back to the embeddings
+3. Adjust the full network, back to the embeddings
 4. Causal masking trains all sub-strings, too
 5. Train on a gazillion texts
 
@@ -1087,7 +1131,7 @@ The jailbreaking community, which is maximally adversarial and has zero loyalty 
 ### Gemini et al - no public training guidelines
 <img src="images/training/gemini-ai-principles.png">
 
-### Are models different? Yes
+### Are models different? Yes!
 
 <img src="images/training/model-behavior.svg">
 <br>
@@ -1099,6 +1143,12 @@ The jailbreaking community, which is maximally adversarial and has zero loyalty 
 * Mistral wants Vibe *capable, open, and European* —  compliant, not principled
 * DeepSeek wants its models *helpful and harmless* — as defined by the state
 * xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
+
+### Pre vs post training
+
+After pre-training: most likely next words
+After post-training: most reasonably/desired next words
+
 
 ### Models have variations
 
@@ -1213,8 +1263,8 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 
 # The AI Service
 
----
-<img src="images/intro/journey/full-picture.png">
+<!-- --- -->
+<!-- <img src="images/intro/journey/full-picture.png"> -->
 
 ---
 <img src="images/overview/service.png">
@@ -1222,14 +1272,15 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 ## What can it do?
 
 Its primary purpose is to facilitate your interactions with the LLM.
-Beyond *"chatting"* the functionality is surprisingly lean:
+The functionality is surprisingly lean:
 <br>
-1. It can *"think harder"*, if you ask for it
-2. It can read *documents*: files, images, some even video and audio
-3. It can use *tools*
+1. It can *chat*, ie respond to your message
+2. It can *"think harder"*, if you ask for it
+3. It can read *files*: documents, images, some even video and audio
+4. It can use *tools*, directly or indirectly
 <br>
-4. You can choose model and creativity-level
 5. It has caching and safeguards
+6. You can choose model and creativity-level
 
 ####
 Call internal tools; run python, produce images
@@ -1261,23 +1312,19 @@ That is *all* it can do. It can't browse the web, multiply two large numbers, re
 ####
 A context has many parts. Here we'll focus on just two: the system prompt and the messages.
 
-### Your prompts/messages are sent in the context
+### Your prompts goes into the context
 <img src="images/ai-service/messages/request-messages.png">
 
-### Messages format
-TODO: sent as User, Assistant - image
-Also image of json
-
-### The example, continued
+### The example, now continued
 <img src="images/example/chat.png">
 
-### User message #1 and the LLM response
+### User message #1 and the AI response
 <img src="images/ai-service/messages/chat-turn-1.png">
 
 ### User message #2 - now what?
 <img src="images/ai-service/messages/chat-turn-2-question.png">
 
-### User message #2: what do we send to the AI?
+### User message #2: what is sent to the AI?
 <img src="images/ai-service/messages/chat-turn-2-choice.png">
 
 ### For user message #2: re-send the full chat
@@ -1289,7 +1336,7 @@ Also image of json
 ### For every user message: re-send the full chat
 <img src="images/ai-service/messages/chat-turn-goodnight.png">
 
-### Why? The LLM need the full context
+### Why? The AI need the full context
 
 The LLM always reasons about *the full context*.
 It does not, it cannot, know and reason about *anything else* than what is in the context.
@@ -1321,8 +1368,11 @@ Whether to flag a potential prompt injection in a tool result
 ### The chat after 50 prompts
 <img src="images/ai-service/messages/tokens-turn-50.png">
 
-### Total tokens spent after 50 prompts
+### Total is 1+2+3+...N = O(N²) tokens
 <img src="images/ai-service/messages/tokens-turn-50-total.png">
+
+####
+It gets more and more expensive to keep on dragging the entire conversation along.
 
 ### The System prompt
 
@@ -1330,13 +1380,12 @@ Whether to flag a potential prompt injection in a tool result
 <img src="images/ai-service/system/request-system.png">
 
 ### System prompt
-TODO: Show system prompt
 
-"Uh, _system prompt_, sounds very special and magical".
+Uh, "system prompt", sounds very special and magical
 
 Well, yes and no.
 
-* A **system prompt** is *just text*
+* A **system prompt** is practically also *just plain text*
 * The AI client combine "whatever is useful to tell the LLM" into system prompt(s)
 * You could have *written this text yourself* and just sent it as a message
 
@@ -1347,7 +1396,14 @@ TODO: images of LLM continuations for Doctor, Parent, Teacher - and System
 
 It doesn's do anythihg, it doesn't kickstart anything. It's just text being inserted into the context.
 
+### Anything useful goes into the system prompt
+<img src="images/ai-service/system/parts.png">
+
+### Shoveled into one big pile of text
+<img src="images/ai-service/system/shoveling.png">
+
 ### All the things that goes into it
+
 		Model
 			Haikku, Sonnet, Opus - 3 concrete different models, eg Haikku probably has 1/3 of the attention layers
 		Claude Code system prompt: https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html
@@ -1366,7 +1422,7 @@ It doesn's do anythihg, it doesn't kickstart anything. It's just text being inse
 
 https://github.com/asgeirtj/system_prompts_leaks
 
-
+Silently ignore casual typos; gently flag systemic spelling blind spots as an aside.
 
 ### Example 1..N
 
@@ -1448,7 +1504,7 @@ There used to be The keyword hierarchy was "think" < "think hard" < "think harde
 
 const thinkingBudget = prompt.includes("ultrathink") ? 31999 : 0
 
-## Files
+## Read files
 
 ### Documents, images ... video, audio
 <img src="images/ai-service/service-files.png">
@@ -1488,13 +1544,16 @@ Each tile → divided into patches (~14×14 px each)
 Each patch → becomes one token
 
 
-### 4: Use tools
+## Use Tools
 
  the canonical published answer is Toolformer (Schick et al. 2023), and it's worth knowing because it's mechanistically clean rather than hand-wavy. They had a base LM propose where API calls might go in ordinary text, actually executed those calls, and then kept an insertion only if having the call+result reduced the model's loss on the subsequent tokens — i.e., only if the call demonstrably helped predict what came next. Then they fine-tuned on the augmented text with the useful calls inlined. The filter is self-supervised: usefulness is defined as "did this make the future more predictable," not human judgment.
 [Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
 [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
 
 [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)
+
+### The LLM can ask to use a tool
+
 
 <img src="images/ai-service/service-tools.png">
 an MCP server is a "Standardized Wrapper" for an API.
@@ -1533,6 +1592,8 @@ You should read this as a principled overview: the AI is talking to an MCP serve
 ### MCP
 <img src="images/ai-service/mcp/sticks-6-response.png">
 
+### Actual example
+
 ### MCP
 <img src="images/ai-service/mcp/mcp-alone.png">
 
@@ -1550,11 +1611,7 @@ You should read this as a principled overview: the AI is talking to an MCP serve
 ### 5: A bit more - caching, safeguarding
 <img src="images/ai-service/service-misc.png">
 
-### "Now I have the full picture"
-<img src="images/ai-service/service-full.png">
-
-
-### "Now I have the full picture"
+## "Now I have the full picture"
 <img src="images/ai-service/service-full.png">
 
 ####
@@ -1565,7 +1622,8 @@ Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the im
 
 "Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
 
-## Context
+
+# Agents and context
 
 ### Token spree
 
@@ -1591,8 +1649,6 @@ iframe.game { flex: 1; width: 100%; border: none; }
 
 Describe difference between the "circle of context used" and the "bar of token used".
 
-
-# The AI Agents
 
 ## That's where non-LLM innovation is happening
 
@@ -1646,34 +1702,7 @@ ask multiple questions in one go
 search files yourself if you can, ie make the model search it for you
 save the results in short form for later
 
-
-
-# Guidance
-
-## How to level up
-
-Rather opinionated
-
-Treat it as a tool in your professional toolbox.
-You're a carpenter - buy a good hammer that's yours.
-Pay the $20/month for a subscription. Make it yours.
-See it as an investment.
-
-Level low: copy-paste.
-Level work on your local files
-Use the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
-
-### Start steering the client. Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
-
-Practice prompting. Checkout some techniques.
-
-### Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
-
-### Level 1: give it specific general instructions
-
-### Level 2: give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
-
-### Level 3a: Skills
+### Skills
 
 https://www.youtube.com/@mattpocockuk/videos
 
@@ -1687,48 +1716,11 @@ The practical consequence: if you write a skill for a task type that isn't file 
 The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
 Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
 
-
-### Level 3b: Tools
-
-### Level 3c: MCP
-
-my mcp poc example
-
-### Level 4: Go crazy with subagents, agent-specific commands, openclaw, etc
-
-### Level 5: Go beyond the Agent: speak directly AI API, setup RAG vector database, control temperature and sys prompt, etc
-
-### Level 6: run your own AI
+### Rag
 
 
-## Advice
 
-Give examples. 
-
-I use LLMs frequently to help build Excel tools and calculators, especially for budget management, both professionally and personally. I’ll often explain what I want it to do, all the parameters, etc. but then will end the prompt with, “Before you start building, let me know what questions or uncertainties you have, or what clarifications you need”.
-I often find that with whatever it responds with that I wasn’t clear enough with my initial explanation and request. A quick clarification on the front end helps save a lot of time from having it rebuild tools over and over due to my poor directions.
-
-Be precise. Don't say "it's green" or "it should not be green", but "it should be red"
-
-Consider your prompts first-level source too, eligible to be committed.
-Deterministic vs pure AI-driven.
-
-### How I use AI now
-
-Small nudging words
-Planning
-Like a partner
-	https://youtu.be/Rtkac4WHC1o?si=RoF-SAnoKd6a20IH
-
-## Workflows
-
-LLM-sentence-loop
-thinking-loop
-next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
-review loops
-try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
-
-# Misc and Myth
+# Misc and Myths
 
 ### The model has no memory between conversations
 ### The system prompt has no special architectural status
@@ -1796,6 +1788,75 @@ https://claude.ai/chat/4ff62fbd-8163-415a-a068-d23e10ac1160
 
 It's just a mechanical machine - you can't compare it to human thinking
 "we don't know what goes on inside" - we we do, 100%, just not how the weights are created. For now, but ai-generated algorithms could change that.
+
+# Guidance
+
+## How to level up
+
+Rather opinionated
+
+Treat it as a tool in your professional toolbox.
+You're a carpenter - buy a good hammer that's yours.
+Pay the $20/month for a subscription. Make it yours.
+See it as an investment.
+
+Level low: copy-paste.
+Level work on your local files
+Use the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
+
+### Start steering the client. Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
+
+Practice prompting. Checkout some techniques.
+
+### Level 0: Use the basic controls: modes (plan, agent), thinking, individual chats
+
+### Level 1: give it specific general instructions
+
+### Level 2: give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
+
+
+
+### Level 3b: Tools
+
+### Level 3c: MCP
+
+my mcp poc example
+
+### Level 4: Go crazy with subagents, agent-specific commands, openclaw, etc
+
+### Level 5: Go beyond the Agent: speak directly AI API, setup RAG vector database, control temperature and sys prompt, etc
+
+### Level 6: run your own AI
+
+
+## Advice
+
+Give examples. 
+
+I use LLMs frequently to help build Excel tools and calculators, especially for budget management, both professionally and personally. I’ll often explain what I want it to do, all the parameters, etc. but then will end the prompt with, “Before you start building, let me know what questions or uncertainties you have, or what clarifications you need”.
+I often find that with whatever it responds with that I wasn’t clear enough with my initial explanation and request. A quick clarification on the front end helps save a lot of time from having it rebuild tools over and over due to my poor directions.
+
+Be precise. Don't say "it's green" or "it should not be green", but "it should be red"
+
+Consider your prompts first-level source too, eligible to be committed.
+Deterministic vs pure AI-driven.
+
+### How I use AI now
+
+Small nudging words
+Planning
+Like a partner
+	https://youtu.be/Rtkac4WHC1o?si=RoF-SAnoKd6a20IH
+
+## Workflows
+
+LLM-sentence-loop
+thinking-loop
+next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
+review loops
+try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
+
+----------
 
 scaling laws
 interpretability

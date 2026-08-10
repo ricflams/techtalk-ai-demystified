@@ -18,6 +18,14 @@
    out-specificity .cols img above — .cols images are never <p>-wrapped. */
 p:has(> img):not(:has(> img.logo)) { flex: 1 1 0; min-height: 0; width: 100%; margin: 0.2em 0; display: flex; justify-content: center; align-items: center; }
 p:has(> img):not(:has(> img.logo)) > img { width: 100%; height: 100%; min-height: 0; display: block; margin: 0 auto; border-radius: 0; object-fit: contain; }
+
+/* With `html: true` set, a standalone `<img>` tag on its own line is parsed
+   as a raw HTML block, not inline content — markdown-it never wraps it in a
+   <p>. That's the shape virtually every slide image here actually takes, so
+   it needs the same full-bleed fill treatment as the (in practice unused)
+   <p>-wrapped case above, applied directly to the <img> as a section flex
+   item instead of to a wrapping paragraph. */
+section > img:not(.logo) { flex: 1 1 0; min-height: 0; width: 100%; height: 100%; min-width: 0; margin: 0.2em auto; display: block; border-radius: 0; object-fit: contain; }
 .box { display: block; width: fit-content; margin: 0.5em auto; padding: 0 2em; text-align: left; }
 
 /* Inner divs inside cols: flex column so align-items controls alignment */

@@ -119,7 +119,6 @@ And ask me or other colleagues if you've got questions. I'd be happy to elaborat
 ####
 Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
 
-# The AI
 ---
 <img src="images/overview/full.png" />
 
@@ -134,193 +133,23 @@ So AI here means generative text AI. Not AI for generating images using stable d
 
 [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
 
-## What is "the AI"?
-
-### What is "the AI" you speak to?
-<img src="images/landscape/hello/user-ai.png" />
-
-### You always speak via an agent
-<img src="images/landscape/hello/user-agent-ai.png" />
-
-####
-The agent knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
-
-### The AI-service is "the AI"
-<img src="images/landscape/hello/all.png" />
-
-####
-The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
-
-### Names and roles
-<img src="images/landscape/parts/roles.png" />
-
-####
-The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
-
-"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
-
-### You 💕 agent; the AI is an impersonal service
-<img src="images/landscape/parts/user-and-ai.png" />
-
-### The AI service live in a datacenter
-
-<img src="images/landscape/parts/datacenter.png">
-
-### Big players are called "Frontier Labs"
-
-<div class="cols">
-<img class="col-2" src="images/landscape/parts/ai-service-house.png">
-<div class="col-6">
-
-<img class="logo" src="images/intro/logos/logo-openai.svg"> **ChatGPT** by OpenAI
-<img class="logo" src="images/intro/logos/logo-gemini.svg"> **Gemini** by Google
-<img class="logo" src="images/intro/logos/logo-claude.svg"> **Claude** by Anthropic
-<img class="logo" src="images/intro/logos/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
-<img class="logo" src="images/intro/logos/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
-<img class="logo" src="images/intro/logos/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
-<img class="logo" src="images/intro/logos/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
-
-<br/>
-
-<img class="logo" src="images/intro/logos/logo-perplexity.svg"> **Perplexity** is an *AI Wrapper*, not its own AI Service
-<img class="logo" src="images/intro/logos/logo-copilot.png"> **Copilot** by Microsoft is also an *AI Wrapper*
-
-</div>
-</div>
-
-### You're always using an agent
-<img src="images/landscape/agents/web-vs-cli.png" />
-
-### Could be gemini.com, in the browser
-<img src="images/landscape/agents/gemini.png" />
-
-### Or could be Rovo, in Atlassian sidebar
-<img src="images/landscape/agents/rovo.png" />
-
-### Or Rufus, in Amazon sidebar
-<img src="images/landscape/agents/amazon.png" />
-
-### Siteimprove PDF remediate, in-app
-<img src="images/landscape/agents/siteimprove.png" />
-
-### Visual Studio Code, sidebar and inline
-<img src="images/landscape/agents/vscode.png" />
-
-### Google antigravity, in the terminal/CLI
-<img src="images/landscape/agents/antigravity.png" />
-
-####
-CLI means Command Line Interface, i.e. in a text-based terminal.
-
-### Claude Desktop, dedicated app
-<img src="images/landscape/agents/claude.png" />
-
-
-### Typical: use AI in browser or terminal/app
-
-<div class="cols">
-<img src="images/landscape/parts/browser.png" />
-<div>
-
-*Browse* to chatgpt.com, claude.com, etc:
-- Chats and settings are *on the website*
-- You can *do a lot*: chat, make images, documents, use online tools, etc
-
-</div>
-</div>
-<br>
-<div class="cols">
-<img src="images/landscape/parts/cli.png" />
-<div>
-
-*Install* claude, gemini, opencode, etc:
-- Chats, settings, files are *all on your pc*
-- Better *control* over the AI
-- *Text only*, which can feel like a barrier
-</div>
-</div>
-
-####
-Claude Cowork is actually a real stand-along app that works on your local pc, just like in the terminal.
-
-### Not in focus: other apps or self-hosted
-
-<div class="cols">
-<img src="images/landscape/parts/app.png" />
-<div>
-
-Use AI *indirectly* through apps you use:
-- Very little control
-- Chat-knowledge still comes in handy; you can maybe ask "list your tools"
-
-</div>
-</div>
-<br>
-<div class="cols">
-<img src="images/landscape/parts/local.png" />
-<div>
-
-Run *open-weight full LLM* on your pc:
-- Gives you *full control*, eg for *training*
-- Free to run, but *expensive* to run well
-</div>
-</div>
-
-### Every agent is its own little island
-<img src="images/landscape/skills-example.png" />
-
-####
-Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.
-
-Everything else is something that the agent provide you: your profile, memory files, skills, mcp-connectors, etc. And also the agents behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
-
-That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.
-
-And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.
-
-At least that's how it usually is today. It's likely to change over time since it's honestly a bit annoying, to say the least. It's just not an area that has gotten a lot of attention.
-
-So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
-
-### My personal AI-journey
-
-<img src="images/landscape/evolution.png" />
-
-####
-
-I started chatting just in the browser, of course. And I still do, by the way.
-
-Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it.
-
-Then I started working with the AI inside the code editor for true cooperation. It was a relief and performance-boost to have the AI work directly on my files in my folders.
-
-Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control.
-
-### I still use the browser chat
-
-<img src="images/landscape/ai-tech-talk.png" />
-
-####
-For anything that doesn't involve files I still just chat in the browser.
-
-For this presentation I created a project in claude.ai for all the research. It has over 60 chats and I've prompted about 18,000 words which is about the length of Shakespeare's Macbeth. I'll leave it to the bard to comment on my efforts:
-
-*It is a tale
-Told by an idiot, full of sound and fury,
-Signifying nothing.*
 
 # The LLM
 
 ---
 <img src="images/intro/journey/enter-rabbithole.png">
 
-## LLM is the brain
+### The LLM is the brain
 <img src="images/overview/llm-intro.png">
 
 ####
 The LLM is the only part that thinks.
 
-## "a fancy autocomplete ..."
+## "Once upon a ..."
+
+### "It's just a fancy autocomplete"
+
+<img src="images/llm/core/once-upon-a-time.svg" />
 
 #### sdfsdf
 Before we dive into the technical details, I'd like to install this notion into your heads.
@@ -1261,6 +1090,208 @@ https://elibrary-dev.nusamandiri.ac.id/assets/fileebook/250153.pdf
 
 The GitHub repo is incredibly thorough: They designed the entire codebase to run flawlessly for free in Google Colab (leveraging free T4 GPUs), meaning you can experiment with the tokenizers, embeddings, and RAG pipelines without paying a dime.  
 
+
+
+
+
+
+## What is "the AI"?
+
+# The AI
+
+### What is "the AI" you speak to?
+<img src="images/landscape/hello/user-ai.png" />
+
+### You always speak via an agent
+<img src="images/landscape/hello/user-agent-ai.png" />
+
+####
+The agent knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
+
+### The AI-service is "the AI"
+<img src="images/landscape/hello/all.png" />
+
+####
+The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
+
+### Few parts, many names
+<img src="images/landscape/parts/roles.png" />
+
+####
+The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
+
+"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
+
+
+### You 💕 agent; the AI is an impersonal service
+<img src="images/landscape/parts/user-and-ai.png" />
+
+### The AI service live in a datacenter
+
+<img src="images/landscape/parts/datacenter.png">
+
+### Big players are called "Frontier Labs"
+
+<div class="cols">
+<img class="col-2" src="images/landscape/parts/ai-service-house.png">
+<div class="col-6">
+
+<img class="logo" src="images/intro/logos/logo-openai.svg"> **ChatGPT** by OpenAI
+<img class="logo" src="images/intro/logos/logo-gemini.svg"> **Gemini** by Google
+<img class="logo" src="images/intro/logos/logo-claude.svg"> **Claude** by Anthropic
+<img class="logo" src="images/intro/logos/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
+<img class="logo" src="images/intro/logos/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
+<img class="logo" src="images/intro/logos/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
+<img class="logo" src="images/intro/logos/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
+
+<br/>
+
+<img class="logo" src="images/intro/logos/logo-perplexity.svg"> **Perplexity** is an *AI Wrapper*, not its own AI Service
+<img class="logo" src="images/intro/logos/logo-copilot.png"> **Copilot** by Microsoft is also an *AI Wrapper*
+
+</div>
+</div>
+
+### You're always using an agent
+<img src="images/landscape/agents/web-vs-cli.png" />
+
+### Could be gemini.com, in the browser
+<img src="images/landscape/agents/gemini.png" />
+
+### Or could be Rovo, in Atlassian sidebar
+<img src="images/landscape/agents/rovo.png" />
+
+### Or Rufus, in Amazon sidebar
+<img src="images/landscape/agents/amazon.png" />
+
+### Siteimprove PDF remediate, in-app
+<img src="images/landscape/agents/siteimprove.png" />
+
+### Visual Studio Code, sidebar and inline
+<img src="images/landscape/agents/vscode.png" />
+
+### Google antigravity, in the terminal/CLI
+<img src="images/landscape/agents/antigravity.png" />
+
+####
+CLI means Command Line Interface, i.e. in a text-based terminal.
+
+### Claude Desktop, dedicated app
+<img src="images/landscape/agents/claude.png" />
+
+
+### Typical: use AI in browser or terminal/app
+
+<div class="cols">
+<img src="images/landscape/parts/browser.png" />
+<div>
+
+*Browse* to chatgpt.com, claude.com, etc:
+- Chats and settings are *on the website*
+- You can *do a lot*: chat, make images, documents, use online tools, etc
+
+</div>
+</div>
+<br>
+<div class="cols">
+<img src="images/landscape/parts/cli.png" />
+<div>
+
+*Install* claude, gemini, opencode, etc:
+- Chats, settings, files are *all on your pc*
+- Better *control* over the AI
+- *Text only*, which can feel like a barrier
+</div>
+</div>
+
+####
+Claude Cowork is actually a real stand-along app that works on your local pc, just like in the terminal.
+
+### Not in focus: other apps or self-hosted
+
+<div class="cols">
+<img src="images/landscape/parts/app.png" />
+<div>
+
+Use AI *indirectly* through apps you use:
+- Very little control
+- Chat-knowledge still comes in handy; you can maybe ask "list your tools"
+
+</div>
+</div>
+<br>
+<div class="cols">
+<img src="images/landscape/parts/local.png" />
+<div>
+
+Run *open-weight full LLM* on your pc:
+- Gives you *full control*, eg for *training*
+- Free to run, but *expensive* to run well
+</div>
+</div>
+
+### Every agent is its own little island
+<img src="images/landscape/skills-example.png" />
+
+####
+Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.
+
+Everything else is something that the agent provide you: your profile, memory files, skills, mcp-connectors, etc. And also the agents behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
+
+That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.
+
+And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.
+
+At least that's how it usually is today. It's likely to change over time since it's honestly a bit annoying, to say the least. It's just not an area that has gotten a lot of attention.
+
+So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
+
+### My personal AI-journey
+
+<img src="images/landscape/evolution.png" />
+
+####
+
+I started chatting just in the browser, of course. And I still do, by the way.
+
+Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it.
+
+Then I started working with the AI inside the code editor for true cooperation. It was a relief and performance-boost to have the AI work directly on my files in my folders.
+
+Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control.
+
+### I still use the browser chat
+
+<img src="images/landscape/ai-tech-talk.png" />
+
+####
+For anything that doesn't involve files I still just chat in the browser.
+
+For this presentation I created a project in claude.ai for all the research. It has over 60 chats and I've prompted about 18,000 words which is about the length of Shakespeare's Macbeth. I'll leave it to the bard to comment on my efforts:
+
+*It is a tale
+Told by an idiot, full of sound and fury,
+Signifying nothing.*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # The AI Service
 
 <!-- --- -->
@@ -1397,12 +1428,38 @@ TODO: images of LLM continuations for Doctor, Parent, Teacher - and System
 It doesn's do anythihg, it doesn't kickstart anything. It's just text being inserted into the context.
 
 ### Anything useful goes into the system prompt
-<img src="images/ai-service/system/parts.png">
+<img src="images/ai-service/system/highlight/all.png">
+
+### The client system prompt
+
+<img src="images/ai-service/system/highlight/system-prompt.png">
+
+- Instructions that the agent (chatpgt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
+- It brings information about the agent's name, purpose, behavior, etc.
+<br>
+- Generally, it's not visible in the UI - it's just there
+
+
+####
+
+[How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
+[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
+[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
+
+### Claude prompts are public
+
+
+
+
 
 ### Shoveled into one big pile of text
 <img src="images/ai-service/system/shoveling.png">
 
 ### All the things that goes into it
+
+If you're building an agent, ie interacting with the AI service directly, then you're responsible for adding all this kind of useful info.
+
+How about formatting? xml, headings? Doesn't matter, they all convey a sense of structure. There are no particular magic keywords or "cheat codes" - by design.
 
 		Model
 			Haikku, Sonnet, Opus - 3 concrete different models, eg Haikku probably has 1/3 of the attention layers

@@ -119,6 +119,8 @@ And ask me or other colleagues if you've got questions. I'd be happy to elaborat
 ####
 Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
 
+Venn-diagram: interesting and useful. It would be easy to force-feed you like a foie gras duck, but you wouldn't like it.
+
 ---
 <img src="images/overview/full.png" />
 
@@ -144,75 +146,6 @@ So AI here means generative text AI. Not AI for generating images using stable d
 
 ####
 The LLM is the only part that thinks.
-
-## "Once upon a ..."
-
-### "It's just a fancy autocomplete"
-
-<img src="images/llm/core/once-upon-a-time.svg" />
-
-#### sdfsdf
-Before we dive into the technical details, I'd like to install this notion into your heads.
-
-Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
-
-Buf "fancy" is doing a lot of heavy lifting in that sentence, not unlike saying that humans are a "fancy" mix of cells.
-
-### Not "answer"; "most probable continuation"
-
-- You give the model a **context**, which is practically just a text.
-
-- The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
-
-- That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
-
-- So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
-
-<br>
-<img src="images/llm/core/once-upon-a-time.svg" />
-
-### No fact-lookup, tools, search, humans, if-then
-<img src="images/llm/core/no-lookups.svg" />
-
-### Instead, the LLM is really pure math
-<img src="images/llm/core/pure-math.svg" />
-
-### The actual math
-<img src="images/llm/core/all-the-math.svg" />
-
-####
-Lots of matrix operations
-
-### Think context→next, not question→answer
-<img src="images/llm/core/context-continuation.svg" />
-
-####
-Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.
-
-The model has no other input to go by for dealing with your tasks than the context you give it.
-
-### Predictions from seen patterns
-<img src="images/llm/core/coffee.svg" />
-
-### Even math is a pattern
-<img src="images/llm/core/math.svg" />
-
-### Context determines the "likely next text"
-<img src="images/llm/core/knock-knock.svg" />
-
-### Some "reasoning" is maybe "just a pattern"
-<img src="images/llm/core/expert-advice.svg" />
-
-### Not easy - human brain
-
-That doesn't mean that it's easy to produce such a machine, or that what it does is not a great feat. It only speaks about what it actually does - how it operates, not just "at its core" but at all.
-
-None of this means LLMs are simple to build, or that what they do isn't remarkable. It's a description of what they do — not just "at their core," but at all.
-
-I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
-
-### What that means - advice
-Add in patterns and words that steer the model in the desired direction via pattern-matching. Examples, be explicit about output formats, make it stop guessing.
 
 ## Inside the LLM
 
@@ -430,10 +363,10 @@ Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling
 </div>
 </div>
 
-### Every token has an embedding
+### Every token has an embedding-vector
 <img src="images/embedding/vocabulary-gpt-3.png" />
 
-ChatGPT 3 has *50,257 tokens*, each described by *12,288 dimensions*
+ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding
 
 ### The example's embeddings
 <img src="images/embedding/embedding-matrix.png" />
@@ -443,34 +376,28 @@ Each of these lists of 12288 numbers represent the core meaning of that single t
 
 So what we have here is a set of numbers that essentially represents the full meaning of the entire context.
 
-### The embedding for "Please"
-
-TODO: image if Please
-####
 The weights are constructed during the LLM's training. Right now just accept that those 12288 numbers do in fact characterise all aspects of one single token. We'll cover how they've come to be later.
 
-Those 12288 numbers are much more complex than the 20-dimensional kitten-eample before. And frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only makes mathematical sense. Dimension 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
+### An embedding is a "direction" in a hyper-dimensional space of everything that exists
 
-There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. They can extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
+<img src="images/embedding/space/word-embeddings.png" />
 
-* [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
-* [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
-* [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
+####
+One way to think about an embedding is as a "direction", an "arrow", in a hyper-dimensional space of every conceivable and inconceivable concept. Because that is, in fact, what it is. And it leads to some astounding and surprising behaviors.
 
-### We can "do math" on embeddings!
+####
+Also known as the **latent space**.
 
-### An embedding == a direction in N-dimensional space
+### Similar "meanings" are similar "directions"
+<img src="images/embedding/space/similarity.jpg" />
 
-One way to think about an embedding is as a hyper-dimensional "arrow" in a hyper-dimensional space of every conceivable (and inconceivable) concept. Because that is, in fact, what it is. And it leads to some astounding and surprising behaviors.
+### The big surprise to everybody:<br>We can "do math" on language
 
-### Relations have similar directions (embeddings)
-<img src="images/embedding/space/cat.png" />
+---
+<img src="images/embedding/no-math.jpg">
 
-### Concepts like "plurality" is also a direction
-<img src="images/embedding/space/cat-plural.png" />
-
-### King and queen
-<img src="images/embedding/space/gender-king-queen.png" />
+### Example: Two embeddings, man and woman
+<img src="images/embedding/space/gender-man-woman.png" />
 
 ### Uncle and aunt
 <img src="images/embedding/space/gender-uncle-aunt.png" />
@@ -478,8 +405,14 @@ One way to think about an embedding is as a hyper-dimensional "arrow" in a hyper
 ### Nephew and niece
 <img src="images/embedding/space/gender-nephew-niece.png" />
 
-### The "gender direction"
+### King and queen
+<img src="images/embedding/space/gender-king-queen.png" />
+
+### There's a "gender direction"
 <img src="images/embedding/space/gender-father-mother.png" />
+
+####
+Since an embedding is a direction in this hyper-dimensional space, this kind of "gender-direction" is of course in itself also an embedding. We have identified the embedding of the concept "the feminine version of something".
 
 ### The direction for "sadness"
 <img src="images/embedding/space/direction-sadness.png" />
@@ -499,29 +432,45 @@ One way to think about an embedding is as a hyper-dimensional "arrow" in a hyper
 ### Germany-Japan
 <img src="images/embedding/space/germany-japan.png" />
 
-### The takeaway
+### Takeaway about embeddings
 
-If you find the AI capable of finging "just the right word" then this is why.
+1. *Compare* embeddings to figure out how similar the meanings they represent are
+For instance, find a *synonym* by simply finding the closest embeddings to a word
+<br>
+2. Embeddings are "meanings" and that meaning can be *transformed with math*
+<br>
+3. An embedding is *just some numbers*. Cheap to store in a database and work on.
+<br>
+4. (Covered later) The embeddings relates to *a concrete model* and are created during the training of that specific model; their numbers only make sense to that model 
+
+### An embedding: any meaning, as numbers
+<img src="images/embedding/three-embeddings.svg" />
+
+####
+To hammer it home: An embedding can be anything imaginable, not just a word. There's surely a 12228-dimensional set of numbers that represent *"the hopeful feeling that the audience grasp a complex issue you explain"*.
+
+Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only makes mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
+
+There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. They can extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
+
+* [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
+* [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
+* [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
+
 
 ### The LLM is all about math on embeddings
 <img src="images/llm/overview-embeddings.png" />
 
-
-## The actual LLM
+## The LLM
 <img src="images/overview/llm.png">
 
-### The LLM
+### The LLM, Large Language Model
 
 The LLM is all about **math** and **statistics**.
 <br>
 It does **inference** by running the embeddings in the **context** through a giant **neural network**. After billions of calculations the result is: _"what token likely comes next?"_
 <br>
-Because surprisingly: on a *very large scale*, you can **do math on language**.
-<br>
-The LLM is really the only part of the AI that can *"think"*. When you hear *"it decided to"* or *"only when needed"* then the LLM is what produced that decision.
-
----
-<img src="images/llm/no-math.jpg">
+It relies on what we just covered: on a *very large scale*, we can *do math on language*.
 
 ### Putting the example through the LLM
 
@@ -777,7 +726,7 @@ One 4 x B200 cluster costs $500,000
 
 ### Why Graphics Cards (GPU)?
 
-### Transformer's superpower: all at once
+### Transformer's superpower: all tokens at once
 <img src="images/llm/transformer-vs-sequential.png">
 
 ### GPU: master of parallel computations
@@ -823,7 +772,7 @@ Supervised Fine-Tuning (SFT) and Reinforcement Learning is where the model learn
 ####
 Putting the **Large** in the *"Large Language Model (LLM)"*
 
-### Pre-training shapes network and embeddings
+### Model and embeddings are born via training
 
 <div class="cols">
 <div class="col-2">
@@ -842,10 +791,18 @@ Putting the **Large** in the *"Large Language Model (LLM)"*
 </div>
 </div>
 
+####
+Finally, rather unceremoniously: this is how both the model's weights and the embeddings get their values. By training immensely to find the right balance where all training texts produce the expected next token.
+
+It's amazing and surprising that it works.
+
+####
+TODO: About over-fitting, the math thingy running over the weekend
+
 ### Backpropagation is ...ok, let's move on...
 <img src="images/training/backpropagation.png">
 
-### Pre-training: model = embeddings + weigths
+### A trained model = embeddings + weigths
 <img src="images/training/pre-trained-model.png">
 
 ### Pre-training cost
@@ -990,9 +947,76 @@ Runs on *different hardware*, LLM has *different sizes* (attention heads, etc)
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
 
-### Pre-trained models
+## A useful mental model for the LLM
 
-Still weights.
+## "Once upon a ..."
+
+### "It's just a fancy autocomplete"
+
+<img src="images/llm/core/once-upon-a-time.svg" />
+
+####
+Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
+
+Buf "fancy" is doing a lot of heavy lifting in that sentence. A bit like saying humans are a "fancy mix of cells".
+
+### Not "answer"; "most probable continuation"
+
+- You give the model a **context**, which is practically just a text.
+
+- The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
+
+- That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
+
+- So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
+
+<br>
+<img src="images/llm/core/once-upon-a-time.svg" />
+
+### No fact-lookup, tools, search, humans, if-then
+<img src="images/llm/core/no-lookups.svg" />
+
+### Instead, the LLM is really pure math
+<img src="images/llm/core/pure-math.svg" />
+
+### The actual math
+<img src="images/llm/core/all-the-math.svg" />
+
+####
+Lots of matrix operations
+
+### Think context→next, not question→answer
+<img src="images/llm/core/context-continuation.svg" />
+
+####
+Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.
+
+The model has no other input to go by for dealing with your tasks than the context you give it.
+
+### Predictions from seen patterns
+<img src="images/llm/core/coffee.svg" />
+
+### Even math is a pattern
+<img src="images/llm/core/math.svg" />
+
+### Context determines the "likely next text"
+<img src="images/llm/core/knock-knock.svg" />
+
+### Some "reasoning" is maybe "just a pattern"
+<img src="images/llm/core/expert-advice.svg" />
+
+### Not easy - human brain
+
+That doesn't mean that it's easy to produce such a machine, or that what it does is not a great feat. It only speaks about what it actually does - how it operates, not just "at its core" but at all.
+
+None of this means LLMs are simple to build, or that what they do isn't remarkable. It's a description of what they do — not just "at their core," but at all.
+
+I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
+
+### What that means - advice
+Add in patterns and words that steer the model in the desired direction via pattern-matching. Examples, be explicit about output formats, make it stop guessing.
+
+
 
 ### What comes after the LLM?
 
@@ -1009,6 +1033,12 @@ So if we want to do more with the same set of tools - LLM operating on context -
 1. You give it a string of tokens, aka the *context*
 2. The LLM  will produce a response based on the model's baked-in training by running that context through the Transformer.
 3. Pure math via training and reinforcement learning
+
+
+
+
+
+
 
 ## Takeaways
 
@@ -1094,12 +1124,9 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 
 
 
+# Using the AI
 
-## What is "the AI"?
-
-# The AI
-
-### What is "the AI" you speak to?
+### So, do you speak to the LLM?
 <img src="images/landscape/hello/user-ai.png" />
 
 ### You always speak via an agent
@@ -1107,6 +1134,8 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 
 ####
 The agent knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
+
+TODO: Explain the word "agent"
 
 ### The AI-service is "the AI"
 <img src="images/landscape/hello/all.png" />
@@ -1302,10 +1331,10 @@ Signifying nothing.*
 
 ## What can it do?
 
-Its primary purpose is to facilitate your interactions with the LLM.
+Facilitates your interactions with the LLM.
 The functionality is surprisingly lean:
 <br>
-1. It can *chat*, ie respond to your message
+1. It can *chat*, ie process your message and respond
 2. It can *"think harder"*, if you ask for it
 3. It can read *files*: documents, images, some even video and audio
 4. It can use *tools*, directly or indirectly
@@ -1318,16 +1347,91 @@ Call internal tools; run python, produce images
 Call external tools via MCP servers
 Ask the caller to use tools or MCP servers
 
-### The AI Service and how to talk to it
-<img src="images/ai-service/service-blank.png">
+### How all AI Services looks like, generally
+<img src="images/ai-service/overview/blank.png">
 
+### Remember the LLM loop?
+<img src="images/llm/next-token-until-stop.png">
+
+### The LLM sit in the middle
+<img src="images/ai-service/overview/llm.png">
+
+### Remember
+
+The Transformer works on *embeddings*
+Text becomes tokens and an embedding exists for every token
+But ... what about *files*, like PDFs and images?
 <br>
-This is the general engine room in every AI service and how to speak to it.
+
+<img src="images/ai-service/overview/transformer.png">
+
+## Files
+
+### Files are also turned into embeddings
+<img src="images/ai-service/overview/files.png">
+
+## Images
+
+### Not OCR (well, maybe some)
+<img src="images/ai-service/files/images/ocr.jpg">
+
+### Images are understood in small patches
+<img src="images/ai-service/files/images/eagle.png">
+
+### VLMs (Vision-Language Models)
+
+* Everything *visual* ("claw of a predator bird") is learned from datasets of image+text
+* VLMs also *learn characters* through that training
+* Images are processed in patches (eg 16x16 pixels) to individual **patch embeddings**, which are then mapped into the same embedding-space as text
+* Same approach for *video and audio*, if supported
+* A hybrid approach has gained traction, using *OCR* for pure-text-looking images
+<br>
+* The end result: The model just receive embeddings, bits of "meaning". It doesn't know or care if they come from text, image patches, interpreted images, possibly OCR - it's all just embeddings to the LLM.
+* Text screenshots can easily result in 10x more embeddings than raw text
+
+####
+You simply have a magic algorithm that can convert images into snippets og meaning, ie embeddings.
+
+Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
+
+Using a ViT, a Visual 
+
+The Vision Encoder (the Transformer "eyes") identifies patterns of lines and curves in image patches as "text-like" features.  The model has been trained on millions of images of text (screenshots, menus, handwritten notes) alongside their transcriptions.It "recognizes" a letter $A$ just like it recognizes a "cat"—it's simply a visual feature that triggers a specific concept in its latent space.
+
+An ear, etc.
+
+An image of text is typically 10x larger in context than the text would be.
+
+		Images - not likely OCR, split up into patches, each turned into an embedding, then 
+
+
+### Whatever approach, embeddings comes out
+<img src="images/ai-service/files/images/cat-advanced.png">
+
+### Embeddings - worth a detour
+<img src="images/intro/journey/rabbit-hole-embeddings.png">
+
+####
+Of all the things I'm here to tell you about today (of all the takeaways from this presentation), I suspect that the usefullness and power of embeddings, not least multimodal embeddings, will be a surprise to most of you, how useful it is.
+
+###
+
+Let's recap what an embedding is:
+A set of numbers that captures the "meaning" of anything.
+So the embedding for cat and kitten are pretty similar. You can calculate the embedding of "cat" and of "kitten" and see that they're similar.
+
+But with multimodal embeddings, aka unified embeddings, then you can calculate the embedding of "cat" and /this image/ and see that they're similar! "Is this a cat?" Yes. Of a miau or a videoclip.
+
+And calculating the embedding of something is pretty checp. The effort is in the order of having an LLM produce one token. And then you have it and can store it somewhere and can compare it easily with others.
+
+Just think about it: with multimodal embeddings you now have a way of comparing "anything", be it text against text, text against image, image and audio, etc. "How much does this look like that?" "Which of these 10 things looks most like that one here?". Etc.
+
+### "Unified embeddings" takes a lot of training
+
+####
+https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
 
 ## Chatting
-
-### Chatting involves just the LLM
-<img src="images/ai-service/service-llm.png">
 
 ####
 Feed it a context and it will produce the next expected output.
@@ -1336,6 +1440,10 @@ Feed it a context and it will produce the next expected output.
 The purpose, recapped: You give it a string of tokens, aka the *context*, and it will produce a response based on the model's baked-in training by running that context through the Transformer. Pure math and trained knowledge.
 
 That is *all* it can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only - let's repeat: run the context through the Transformer to produce a response.
+
+Have in mind: - The LLM know *only the context*, nothing else
+
+
 
 ### Chatting: bring a context, get a response
 <img src="images/ai-service/service-chat.png">
@@ -1447,6 +1555,9 @@ It doesn's do anythihg, it doesn't kickstart anything. It's just text being inse
 [system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
 
 ### Claude prompts are public
+
+An "agents" file isn't secrets instructions to kick off roaming live AI-agent.
+Agent is such an overloaded term.
 
 
 
@@ -1568,19 +1679,7 @@ const thinkingBudget = prompt.includes("ultrathink") ? 31999 : 0
 
 ### Images (video, audio)
 
-You simply have a magic algorithm that can convert images into snippets og meaning, ie embeddings.
 
-Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
-
-Using a ViT, a Visual 
-
-The Vision Encoder (the Transformer "eyes") identifies patterns of lines and curves in image patches as "text-like" features.  The model has been trained on millions of images of text (screenshots, menus, handwritten notes) alongside their transcriptions.It "recognizes" a letter $A$ just like it recognizes a "cat"—it's simply a visual feature that triggers a specific concept in its latent space.
-
-An ear, etc.
-
-An image of text is typically 10x larger in context than the text would be.
-
-		Images - not likely OCR, split up into patches, each turned into an embedding, then 
 
 ### Documents
 
@@ -1679,6 +1778,12 @@ Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the im
 
 "Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
 
+
+Lets recap. There’s the model, and theykre different. Then the agent adds the system prompt, which differs from product to product (claude ai vs code) and there’s none if you talk directly to the ai. Then you can feed further bits into it, as workspaces, agent-files, custom instructions - just more text. Then give hints at further info, in two ways: skills deop hints about when to bring in some specific instructions, and tools/mcp does the same but for calls to external servers. Finally, the messages and files you guve it, plus tool outputs. What’s missing? All your chats and local files, for instance - they’re not included unless thereks a really good reason for it, if even possible (show search in chats where it works vs not).
+Richard Flamsholt  [9:06 AM]
+The llm most certainly doesn't know anything about you or learn anything, like your password etc
+
+Chats are stored locally in plain text
 
 # Agents and context
 
@@ -1815,6 +1920,7 @@ Reasonability?
 Ralph Wiggum
 ### How do I see the used context in tool x?
 ### Caveman skill
+### “You are an xxxx expert…”
 
 
 "Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."

@@ -416,3 +416,12 @@ The “one context is all” means you can’t ask the model to reason about som
 <img src="images/embedding/bicycle-tree.jpg" />
 
 
+
+### Concepts like "plurality" is also a direction
+<img src="images/embedding/space/cat-plural.png" />
+
+
+
+<br>
+The LLM is really the only part of the AI that can *"think"*. When somebody says *"the AI agent decided to..."* or *"it only does so-and-so when needed"* then that decision is nearly always made by the LLM somehow.
+

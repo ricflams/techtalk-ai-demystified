@@ -26,8 +26,11 @@ jobs:
       - name: Copy layout.css
         run: cp src/layout.css public/layout.css
 
+      - name: Install readable-version dependencies
+        run: pip install markdown
+
       - name: Generate readable version
-        run: python3 scripts/make_readable.py public/presentation.html public/index.html
+        run: python3 scripts/make_readable.py src/slides.md public/index.html
 
       - name: Copy game
         run: cp -r demo/tokenspree public/tokenspree

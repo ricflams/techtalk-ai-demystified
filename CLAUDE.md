@@ -14,10 +14,13 @@ There is no package.json or Makefile. The slide deck is compiled with the Marp C
 marp src/slides.md --html --theme src/marp-theme.css --output public/presentation.html
 cp -r src/images public/images
 cp src/layout.css public/layout.css
-python3 scripts/make_readable.py public/presentation.html public/index.html
+pip install markdown
+python3 scripts/make_readable.py src/slides.md public/index.html
 ```
 
 Note: `marp-theme.css` pulls in `layout.css` via `@import`, which Marp CLI leaves unresolved in the output HTML (it does not inline `@import`s) — `layout.css` must be copied next to the built HTML so the browser can fetch it at runtime.
+
+`public/index.html` (the readable, non-slideshow version) is generated independently from `src/slides.md` directly — it does **not** post-process `public/presentation.html`. `scripts/make_readable.py` strips the Marp-only bits (YAML frontmatter, the two `<style>` blocks used to hide slide-only content, the `![bg ...]` background-image marker) and renders the rest through the `markdown` pip package with a small self-contained GitHub-wiki-style stylesheet, so it needs its own dependency (`pip install markdown`) and never touches `marp-theme.css`/`layout.css`.
 
 In CI, this runs inside the `marpteam/marp-cli:latest` Docker container. Pushing to `main` triggers `.github/workflows/marp.yaml`, which builds both outputs and deploys to GitHub Pages automatically.
 

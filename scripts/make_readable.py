@@ -1,103 +1,183 @@
 #!/usr/bin/env python3
-"""Transform a Marp presentation HTML into a continuous-scroll readable page.
+"""Render the Marp slide source as a plain, GitHub-wiki-style reading page.
 
-Usage: python make_readable.py input.html output.html
+This bypasses the compiled Marp slideshow entirely and renders src/slides.md
+through a standard Markdown pipeline, stripping only the handful of
+Marp-specific directives that don't make sense outside a slideshow (YAML
+frontmatter, the slideshow-only <style> blocks, the `bg` image marker).
+Everything else -- headings (including the `####` speaker notes, which are
+only ever hidden by the stripped <style> block), raw HTML blocks like
+`.cols`, and images -- renders in natural document order.
+
+Usage: python make_readable.py slides.md output.html
 """
 
 import re
 import sys
 
-OVERRIDE_CSS = """
-/* ── Readable-mode overrides ──────────────────────────────────── */
-html, body {
-  overflow: auto !important;
-  height: auto !important;
+import markdown
+
+PAGE_TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demystified</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+{style}
+</style>
+</head>
+<body>
+<article class="markdown-body">
+{body}
+</article>
+</body>
+</html>
+"""
+
+STYLE = """
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #1f2328;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif;
+  line-height: 1.6;
 }
-#p, .bespoke-marp-parent {
-  position: static !important;
-  overflow: visible !important;
-  height: auto !important;
+.markdown-body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
 }
-.bespoke-marp {
-  position: static !important;
-  height: auto !important;
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 1.6em 0 0.6em;
 }
-section {
-  position: static !important;
-  display: block !important;
-  width: 100% !important;
-  max-width: 1500px !important;
-  height: auto !important;
-  min-height: unset !important;
-  margin: 0 auto 5rem auto !important;
-  transform: none !important;
-  overflow: visible !important;
-  border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+/* Headings mark the start of a new topic (a former slide) even when there's
+   no literal `---` break before them (headingDivider:3 auto-starts a new
+   slide at every h3) -- give them their own separator so a paragraph never
+   runs straight into the next heading. */
+.markdown-body > h1:not(:first-child),
+.markdown-body > h2:not(:first-child),
+.markdown-body > h3:not(:first-child) {
+  border-top: 1px solid #d0d7de;
+  padding-top: 2rem;
+  margin-top: 3rem;
 }
-/* Unhide speaker notes (h4 and everything that follows it in a slide) */
-h4, h4 ~ * {
-  display: revert !important;
+h1 { font-size: 2em; padding-bottom: 0.3em; }
+h2 { font-size: 1.5em; padding-bottom: 0.3em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; color: #57606a; }
+p { margin: 0.8em 0; }
+a { color: #0969da; text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { font-weight: 600; }
+ul, ol { padding-left: 2em; }
+li { margin: 0.25em 0; }
+hr {
+  border: none;
+  border-top: 1px solid #d0d7de;
+  margin: 3rem 0;
 }
-h4 {
-  opacity: 0.55;
-  font-size: 0.8em !important;
-  text-transform: none !important;
-  letter-spacing: normal !important;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 0.8rem !important;
-  margin-top: 1.5rem !important;
-  color: #8b949e !important;
+code {
+  background: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-family: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 0.85em;
 }
-/* Marp's `![bg]` full-slide background images render as a dedicated
-   section containing an absolutely-positioned <figure> that fills its
-   (positioned) ancestor. The generic `section { position: static }`
-   override above breaks that positioning context, collapsing the figure
-   to nothing. Restore it here with higher specificity (attribute
-   selector) so backgrounds render as a normal 16:9 image block inline
-   with the rest of the deck. */
-section[data-marpit-advanced-background] {
-  position: relative !important;
-  height: 0 !important;
-  padding-bottom: 56.25% !important;
-  overflow: hidden !important;
+pre {
+  background: #f6f8fa;
+  padding: 1em;
+  border-radius: 6px;
+  overflow: auto;
 }
-section[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
-  position: absolute !important;
-  inset: 0 !important;
+pre code { background: none; padding: 0; }
+blockquote {
+  border-left: 4px solid #d0d7de;
+  margin: 0.8em 0;
+  padding: 0 1em;
+  color: #57606a;
 }
-section[data-marpit-advanced-background] figure {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
 }
-/* ──────────────────────────────────────────────────────────────── */
+th, td {
+  border: 1px solid #d0d7de;
+  padding: 0.5em 0.9em;
+  text-align: left;
+}
+th { background: #f6f8fa; }
+img:not(.logo) {
+  /* Cap height too (roughly the 4:3-ish ratio the slideshow itself uses),
+     not just width -- otherwise a tall/portrait image forced to the full
+     800px column width towers over everything else on the page. Letting
+     width stay auto (instead of 100%) means a capped image still shrinks
+     to fit its own aspect ratio and centers via the auto margins, rather
+     than stretching to fill the column. */
+  max-width: 100%;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 4px;
+}
+img.logo {
+  max-width: 1.4em;
+  max-height: 1.4em;
+  vertical-align: -0.3em;
+  display: inline;
+  margin: 0 0.3em 0 0;
+  box-shadow: none;
+}
+/* The tokenspree game slide ships its own static fallback (an image + link)
+   specifically for contexts where the live iframe embed doesn't make sense
+   -- this is exactly that context. */
+iframe.game { display: none; }
+.github-fallback { display: block; }
 """
 
 
 def transform(src: str) -> str:
-    # Remove all <script> blocks (bespoke.js navigation + keyboard handlers)
-    html = re.sub(r'<script\b[^>]*>.*?</script>', '', src, flags=re.DOTALL | re.IGNORECASE)
+    # Strip the leading YAML frontmatter block only (the very first
+    # `---`-delimited block). Every other `---` in the file is a real
+    # slide-break thematic break and must survive as an <hr>.
+    text = re.sub(r'\A---\n.*?\n---\n', '', src, count=1, flags=re.DOTALL)
 
-    # Inject override CSS before the first </style>
-    html = html.replace('</style>', OVERRIDE_CSS + '</style>', 1)
+    # Strip Marp-only <style> blocks (the h4-hiding block and the game
+    # slide's scoped block) -- nothing needs hiding in plain-reading mode.
+    text = re.sub(r'<style\b[^>]*>.*?</style>\s*', '', text, flags=re.DOTALL | re.IGNORECASE)
 
-    return html
+    # `![bg]`, `![bg contain]`, etc. -> plain image references.
+    text = re.sub(r'!\[bg[^\]]*\]', '![]', text)
+
+    # `.cols` layouts and the game-slide fallback nest real markdown (lists,
+    # links, bold text) inside raw <div> blocks. python-markdown only
+    # recurses into markdown there when a block is explicitly marked
+    # `markdown="1"` (unlike markdown-it, which does this by default) --
+    # mark every <div> so nested content renders instead of staying literal.
+    text = re.sub(r'<div(?![^>]*\bmarkdown=)', '<div markdown="1"', text)
+
+    body = markdown.markdown(text, extensions=['extra', 'sane_lists', 'toc', 'md_in_html'])
+
+    return PAGE_TEMPLATE.format(style=STYLE, body=body)
 
 
 def main():
     if len(sys.argv) != 3:
-        print(f'Usage: {sys.argv[0]} input.html output.html', file=sys.stderr)
+        print(f'Usage: {sys.argv[0]} slides.md output.html', file=sys.stderr)
         sys.exit(1)
 
     src_path, dst_path = sys.argv[1], sys.argv[2]
 
     with open(src_path, 'r', encoding='utf-8') as f:
-        html = f.read()
+        text = f.read()
 
-    result = transform(html)
+    result = transform(text)
 
     with open(dst_path, 'w', encoding='utf-8') as f:
         f.write(result)

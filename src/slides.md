@@ -998,14 +998,14 @@ The model has no other input to go by for dealing with your tasks than the conte
 ### Predictions from seen patterns
 <img src="images/llm/core/coffee.svg" />
 
-### Even math is a pattern
-<img src="images/llm/core/math.svg" />
-
 ### Context determines the "likely next text"
 <img src="images/llm/core/knock-knock.svg" />
 
 ### Some "reasoning" is maybe "just a pattern"
 <img src="images/llm/core/expert-advice.svg" />
+
+### Even math is a pattern
+<img src="images/llm/core/math.svg" />
 
 ### Not easy - human brain
 
@@ -1824,6 +1824,7 @@ iframe.game { flex: 1; width: 100%; border: none; }
 
 Describe difference between the "circle of context used" and the "bar of token used".
 
+The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
 
 ## That's where non-LLM innovation is happening
 

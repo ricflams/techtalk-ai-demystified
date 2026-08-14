@@ -49,6 +49,30 @@ h4 {
   margin-top: 1.5rem !important;
   color: #8b949e !important;
 }
+/* Marp's `![bg]` full-slide background images render as a dedicated
+   section containing an absolutely-positioned <figure> that fills its
+   (positioned) ancestor. The generic `section { position: static }`
+   override above breaks that positioning context, collapsing the figure
+   to nothing. Restore it here with higher specificity (attribute
+   selector) so backgrounds render as a normal 16:9 image block inline
+   with the rest of the deck. */
+section[data-marpit-advanced-background] {
+  position: relative !important;
+  height: 0 !important;
+  padding-bottom: 56.25% !important;
+  overflow: hidden !important;
+}
+section[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
+  position: absolute !important;
+  inset: 0 !important;
+}
+section[data-marpit-advanced-background] figure {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+}
 /* ──────────────────────────────────────────────────────────────── */
 """
 

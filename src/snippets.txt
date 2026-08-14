@@ -1,3 +1,9 @@
+We all use AI. But it's still a bit mysterious.
+_"How does it know that...?"_ or _"Why doesn't it know that...?"_
+Words like _tokens, context, MCP servers, thinking, and agent files_ get tossed around daily. But do you really know what they are?
+This talk will explain and *demystify AI*. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
+There's a lot to cover and just one hour, so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily.
+
 English words often produce individualized tokens
 
 I andre sprog splittes ordene typisk mere op
@@ -26,15 +32,6 @@ tokenisation magnifique
 
 
 
-Please tell me: what is an LLM?
-
-An LLM is a **really well-read autocomplete**.
-
-1. It trained on **massive amounts of text** and learned patterns in language
-2. It generates responses by predicting the **next word**, over and over
-
-No magic — just very sophisticated pattern matching at enormous scale.
-
              gemini      claude       chatgpt
 sysprompt :  2500        2500         3000
 input/turn:  150+1500    100 + 5000   100 + 6000
@@ -59,7 +56,6 @@ Your component re-renders because you create a new object reference each render.
 
 Please tell me: what is an LLM?
 
-
 An LLM, or *AI model*, is an autocomplete shaped by human values.
 
 1. It trained on **vast amounts of text** and learned the patterns of language
@@ -68,35 +64,15 @@ An LLM, or *AI model*, is an autocomplete shaped by human values.
 
 No magic — just pattern matching at enormous scale, with values baked in.
 
-
 Explain briefly how the context grows in a chat like this
-
 
 Each message you send gets appended to a running transcript — the model sees the entire conversation history on every turn, not just your latest message. That window keeps growing until it hits a hard size limit.
 
-
 So when I send this third message, the full conversation is re-sent?
-
 
 Yes, every single turn the full conversation history is re-sent to the model from scratch.
 
-
 Is this an accurate depiction of the flow of modern AI services? Give me a brief assessment.
-
-
-
-
-
-
-
-
-All that come in must end up as text
-
-Show json:
-  system
-  messages
-
-  User: 
 
 
 
@@ -120,3 +96,12 @@ Show json:
 \\  
 \textbf{[3. Language Modeling Head]} \quad & \mathbf{P}_{\text{vocab}} = \text{softmax}\Big(\mathbf{X}_N \mathbf{W}_{\text{lm\_head}}\Big)  && \mathbf{P}_{\text{vocab}} \in \mathbb{R}^{L \times V_{\text{vocab\_size}}}  
 \end{aligned}
+
+
+
+
+
+
+
+
+

@@ -554,3 +554,66 @@ https://gurusup.com/blog/moe-vs-multi-agent-systems
 
 Hofstadter
 https://www.youtube.com/watch?v=n8m7lFQ3njk
+
+
+
+
+
+
+
+
+
+We all use AI. But it's still a bit mysterious.
+_"How does it know that...?"_ or _"Why doesn't it know that...?"_
+Tokens, context, MCP-servers, thinking, and agent-files - those words get tossed around daily. But do you really know what they are?
+In this talk I'll demystify the AI tools we use every day. You'll see what's actually happening under the hood and why knowing it makes you better at using the tools.
+There's a lot to cover and just one hour, so be ready to pay attention. I'll do my part by focusing on the most useful and interesting parts. Some bits may be less relevant to you, but becoming more familiar with the terms and fundamental principles will overall make you better equipped to work with AI.
+
+
+
+
+
+
+There's a ton of things related to AI. Lots of math, new stuff every week, the latest Claude slash-command. That's not what this presentation is about. This is about the steady? mechanisms and building blocks mental models that I amd at demystifying. Everything is still going to revolve around tokens and LLMs for the freseable future and their cost and limitations will still be around in a year - "he said, over-confidently". So this presentation will only be about those basic building blocks. a chatbot generative text AI
+"Is this for me?", you ask. Yes, it's for everybody, because everybody uses AI
+
+My grand GOAL is "demystifying the AI". I hope that you will all become more familiar with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI.
+
+You sort of know how it works and can do.
+
+And yet - there's a lot of AI mysticism at play, right?
+
+
+
+You hear this very often:
+
+* Just feed the entire codebase the AI and let it figure it out
+* Point it to Confluence
+* Install an MCP server - or a skill, or write an agent.md file
+* "Don't say place" - or "Do say please"
+* It's very useful to convert your PDFs to markdown before handing it to the AI
+* I think it somehow knows to ...
+* I think it doesn't know...
+
+I'm here with the grand goal of demystifying the AI.
+
+nstead my GOAL is that you will all become more confident with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI. Not the math, don't worry. I'll focus on facts that are useful for grasping the principles - which very often are surprising too.
+
+A tour of how modern AI actually works - tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+<br> 
+<br>
+ There's no math, and it is not as dry as it sounds: understanding what a token really is changes how you write prompts and why you pay what you pay; embeddings turn out to be the secret behind almost everything interesting AI can do. And when we're done, MCP servers and Claude skills will no longer be magic words — you'll just get why they work the way they do.
+
+
+
+
+
+
+
+You can bake lovely crunchy bread without knowing squat about what "yeast" actually does. You add it, then set the clock to let the dough rise for 1 hour as the recipe says. The bread probably comes out fine.
+
+But. If you know that yeast is a living organism that use enzymes to feed on sugar in the flour then the whole thing becomes demystifed. Still complex, sure, but you can now begin to understand how the choice of flour, additives, and temperature over time affect the dough and how to make deliberate choices to "steer" the dough better. For e.g. a "cold ferment" you let the yeast work normally for an hour and then place the dough in the fridge to put the yeast to sleep and let the enzymes continue to work on building flavor and gluten. A lot of advanced baking processes can seem arbitrary or magical ("add diastatic malt powder to ...") but armed with a fundamental understanding of the way yeast and enzymes works you're much better equipped to understand them - and steer them your own way, too.
+
+This presentation is not just about the yeast and enzymes of AI, but "all of AI": from tokens and LLM to agent-files and MCP-servers. It will be deep, entertaining, useful, and surprising. Be prepared to stay alert, because there's a lot to cover. It's my hope and goal that if you digest it well then you'll rise (haha) to become much more confident in your use of AI.
+
+(If the above feels unusual in tone and cadence then it's likely because it's written exclusively by me, a human, without any AI sparring or guidance, except for research regarding facts about yeast and enzymes)

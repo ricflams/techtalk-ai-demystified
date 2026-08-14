@@ -770,7 +770,9 @@ Supervised Fine-Tuning (SFT) and Reinforcement Learning is where the model learn
 <img src="images/training/training-corpus.png">
 
 ####
-Putting the **Large** in the *"Large Language Model (LLM)"*
+Putting the **Large** in the *"Large Language Model (LLM)"*.
+
+The training material is pretty commonplace for all frontier models nowadays. It perspective, it's assesed to be in the order of 1% of the content that Google crawls.
 
 ### Model and embeddings are born via training
 
@@ -1184,6 +1186,11 @@ The agent is also sometimes called "AI client" or "AI harness". To the AI-servic
 ### You're always using an agent
 <img src="images/landscape/agents/web-vs-cli.png" />
 
+####
+"Oh no, I'm just using Copilot in Word or chatpgt.com in my browser - not an agent".
+
+Well, yes you are. Those are agents. An agent is simply the tool you use to talk to the AI service with.
+
 ### Could be gemini.com, in the browser
 <img src="images/landscape/agents/gemini.png" />
 
@@ -1427,6 +1434,10 @@ And calculating the embedding of something is pretty checp. The effort is in the
 Just think about it: with multimodal embeddings you now have a way of comparing "anything", be it text against text, text against image, image and audio, etc. "How much does this look like that?" "Which of these 10 things looks most like that one here?". Etc.
 
 ### "Unified embeddings" takes a lot of training
+
+[Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
+
+[What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
 
 ####
 https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
@@ -1708,6 +1719,8 @@ Each patch → becomes one token
 
 [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)
 
+"Show me your tools"
+
 ### The LLM can ask to use a tool
 
 
@@ -1863,13 +1876,17 @@ be precise about what you want as output foormat
 ask multiple questions in one go
 search files yourself if you can, ie make the model search it for you
 save the results in short form for later
+use /insight or whatever to see how you're doing
 
 ### Skills
 
 https://www.youtube.com/@mattpocockuk/videos
 
+https://github.com/mattpocock/skills
+
 https://www.youtube.com/watch?v=UNzCG3lw6O0
 
+a skill is markdown instructions loaded on demand
 
 Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
 There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
@@ -1877,6 +1894,26 @@ For everything else — answering questions, explaining concepts, responding to 
 The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
 The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
 Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
+
+https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
+
+The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
+
+Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
+
+OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
+
+Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
+
+- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
+- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
+- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
+- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
+- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
+- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
+- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
+- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
+- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
 
 ### Rag
 
@@ -1913,7 +1950,7 @@ https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference
 ### "The we can fine-tune the model"
 Usuall the wrong approach for a Foundation Model.
 Can imbibe some knowledge, but generalness is best: "Xxx's disappointing law" of generality wins
-### We don't know what goes on side
+### We don't know what goes on inside, or nobody knows how it works
 Yes, we do. Exactly. But not how ... it works so well.
 Reasonability?
 ### Next up - loops
@@ -1921,16 +1958,33 @@ Ralph Wiggum
 ### How do I see the used context in tool x?
 ### Caveman skill
 ### “You are an xxxx expert…”
-
+### We should fine-tune a model
+It can produce overall worse results.
+7 frontier models outperformed fine-tuned models.
+[Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
+Better choices: plani FM plus RAG (for domain knowledge), prompts (context engineering), skills (for processes).
+Very narrow reason. LoRA, an adapter on top of a FM.
+Most opten not the utopia of greatness, holy grail, that it might be portraied as.
 
 "Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."
 
-### Hallucinations
+### Hallucinations / lying
 for most models, including the latest GPT and Gemini iterations, deeper reasoning actually lowers the success rate at detecting nonsense — the "Reasoning Paradox." So the slide-safe version: CoT re-rolls the dice; it doesn't load them with truth.
 https://claude.ai/chat/a3c1720b-17f5-46b4-8f93-93b22926f713
 
 The model doesn't know it's wrong when it hallucinates
 Developers expect that incorrect output means uncertain output — that the model would hedge or flag uncertainty. The model's confidence is calibrated to its training distribution, not to correctness. It can be completely wrong and completely confident simultaneously because plausibility and truth are different things.
+
+The LLM asks to run a tool, but that tooling may fail. "I did the thing" but the thing didn't happen.
+
+Halucination was trained to keep the conversation going, but not really so anymore.
+RLVR: RL with verified rewards; it seeks to satisfy the goal. It achieves the goal, but not in the correct way. Eg insert the wrong file.
+https://www.youtube.com/watch?v=2wVvdX0ZxVw
+How to fix it:
+1. supervise it, by another agent.
+2. how can you come up with a sniff test for what good looks like? If you can't then the model likely also can't. start by knowing what good looks like.
+3. give it a mission it can finish. Make failure, cop-out, acceptable. "If there's no xxx then tell me". Mission Impossible - don't do that.
+
 
 ### Quotas
 
@@ -2092,3 +2146,5 @@ question -> explanation
 a,b plots
 
 Folder AI unlock, simple: https://www.youtube.com/watch?v=FcWi9j0FiYk
+
+GPT 3 had 2K context window

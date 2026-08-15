@@ -33,6 +33,8 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .label-row { display: flex; align-items: baseline; }
 .teaser { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 800; line-height: 1.2; white-space: nowrap; color: #1a1810; }
 .effect { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600; color: #1a1810; margin-top: 3px; line-height: 1.35; white-space: nowrap; }
+#sprees .teaser, #mitigations .teaser { font-size: 13px; }
+#sprees .effect, #mitigations .effect { font-size: 10px; }
 
 /* --- Right column --- */
 .right { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -40,7 +42,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .chart-wrap canvas { display: block; }
 
 /* --- Mode toggle --- */
-.mode-toggle { display: flex; gap: 6px; margin-top: 6px; flex-shrink: 0; align-items: center; }
+.mode-toggle { display: flex; gap: 6px; margin-top: -20px; flex-shrink: 0; align-items: center; }
 .turns-control { display: flex; align-items: center; gap: 8px; margin-left: auto;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 12px; font-weight: 600; color: #3a3028; }
@@ -50,6 +52,14 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   border-radius: 50%; background: #1a1810; cursor: pointer; }
 #turnsSlider::-moz-range-thumb { width: 13px; height: 13px; border-radius: 50%; border: none;
   background: #1a1810; cursor: pointer; }
+.turns-step-btn {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px; font-weight: 800; line-height: 1; color: #1a1810;
+  width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+  background: #fff; border: 1.5px solid #d0cbc0; border-radius: 4px;
+  padding: 0; cursor: pointer; user-select: none;
+}
+.turns-step-btn:hover { border-color: #a05010; color: #a05010; }
 .mode-btn {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 12px; font-weight: 600; padding: 4px 14px;
@@ -76,11 +86,11 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   background: #fff; border: 2px solid #e0dbd0; border-radius: 7px; padding: 8px 12px;
   min-width: 0;
 }
-.settings-section:first-child { flex: 1; }
+.settings-section:first-child { flex: 1.6; }
 .settings-section:last-child  { flex: 3; }
 .settings-grid { display: grid; gap: 6px 10px; }
 .setting-field { display: flex; flex-direction: column; gap: 2px; }
-.setting-label { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 11px; font-weight: 600; color: #7a7060; }
+.setting-label { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 11px; font-weight: 600; color: #1a1810; white-space: nowrap; }
 .setting-input {
   font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600;
   color: #1a1810; background: #f7f5f0; border: 1.5px solid #d8d3c8;
@@ -110,7 +120,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .setting-slider-wrap { display: flex; align-items: center; gap: 5px; flex: 1; min-width: 0; }
 .setting-min, .setting-max {
   font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace;
-  font-size: 9px; font-weight: 600; color: #b0a898; width: 4em; flex-shrink: 0;
+  font-size: 9px; font-weight: 600; color: #1a1810; width: 4em; flex-shrink: 0;
 }
 .setting-min { text-align: right; }
 .setting-max { text-align: left; }
@@ -164,14 +174,14 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   <button class="mode-btn" data-mode="percost">Per-turn cost</button>
   <button class="mode-btn" data-mode="total">Total cost</button>
   <span class="toggle-sep">·</span>
-  <button class="mode-btn" id="copyLinkBtn">Share link</button>
-  <span class="toggle-sep">·</span>
   <label id="breakdownToggle">
-    <input type="checkbox" id="combinedCheck"> Combined
+    <input type="checkbox" id="combinedCheck"> Combine similar
   </label>
   <span class="turns-control">
     <span id="turnsLabel">Turns: 10</span>
+    <button class="turns-step-btn" id="turnsMinus" type="button" aria-label="Decrease turns">−</button>
     <input type="range" id="turnsSlider" min="0" max="25" step="1" value="5">
+    <button class="turns-step-btn" id="turnsPlus" type="button" aria-label="Increase turns">+</button>
   </span>
 </div>
 <div class="settings-panel">
@@ -200,7 +210,6 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
   <div class="settings-section settings-sliders">
     <div class="slider-panel">
       <div id="slidersCol1" class="slider-col"></div>
-      <div id="slidersCol2" class="slider-col"></div>
       <div class="slider-btns">
         <button class="slider-btn" id="resetBtn">Reset</button>
         <button class="slider-btn" id="minBtn">Min</button>
@@ -368,9 +377,7 @@ function toggleMitig(id) {
 // BUILD SETTINGS PANEL
 // ─────────────────────────────────────────────
 const TEXT_KEYS   = ['quota','modelMult','outFactor','bustEvery','compactClearEvery'];
-const SLIDER_KEYS_COL1 = ['systemTok','mcpCount','docTok'];
-const SLIDER_KEYS_COL2 = ['inputTok','ideTok','outputTok','thinkTok','outputTokLong'];
-const SLIDER_KEYS = [...SLIDER_KEYS_COL1, ...SLIDER_KEYS_COL2];
+const SLIDER_KEYS = ['systemTok','mcpCount','docTok','inputTok','ideTok','outputTok','thinkTok','outputTokLong'];
 
 function fmtVal(key, v) {
   return v.toLocaleString();
@@ -422,8 +429,7 @@ function buildSliderCol(containerId, keys) {
     });
   });
 }
-buildSliderCol('slidersCol1', SLIDER_KEYS_COL1);
-buildSliderCol('slidersCol2', SLIDER_KEYS_COL2);
+buildSliderCol('slidersCol1', SLIDER_KEYS);
 
 // Reset button
 document.getElementById('resetBtn').addEventListener('click', () => {
@@ -957,10 +963,10 @@ function applyBreakdownConstraint() {
 // ─────────────────────────────────────────────
 // MODE TOGGLE
 // ─────────────────────────────────────────────
-document.querySelectorAll('.mode-btn').forEach(btn => {
+document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => {
   btn.addEventListener('click', () => {
     mode = btn.dataset.mode;
-    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.classList.toggle('active', b === btn));
     applyBreakdownConstraint();
     redraw();
   });
@@ -993,6 +999,14 @@ function applyTurns() {
 }
 document.getElementById('turnsSlider').addEventListener('input', e => {
   turnStepIdx = parseInt(e.target.value);
+  applyTurns();
+});
+document.getElementById('turnsMinus').addEventListener('click', () => {
+  turnStepIdx = Math.max(0, turnStepIdx - 1);
+  applyTurns();
+});
+document.getElementById('turnsPlus').addEventListener('click', () => {
+  turnStepIdx = Math.min(TURN_STEPS.length - 1, turnStepIdx + 1);
   applyTurns();
 });
 
@@ -1082,7 +1096,7 @@ function applyUrlParams() {
     const m = MODE_DECODE[p.get('m')];
     if (m) {
       mode = m;
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+      document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
     }
   }
 
@@ -1154,15 +1168,6 @@ function updateUrl() {
     history.replaceState(null, '', qs ? '?' + qs : location.pathname);
   }, 300);
 }
-
-document.getElementById('copyLinkBtn').addEventListener('click', () => {
-  navigator.clipboard.writeText(location.href).then(() => {
-    const btn = document.getElementById('copyLinkBtn');
-    const prev = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() => { btn.textContent = prev; }, 1500);
-  });
-});
 
 // ─────────────────────────────────────────────
 // INIT

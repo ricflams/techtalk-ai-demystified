@@ -1030,17 +1030,16 @@ Signifying nothing.</em></p>
 <div class="cols">
 <p><img src="images/landscape/parts/ai-service.png" /></p>
 <div class="col-2">
-<p>The full functionality of an AI service is quite lean:</p>
+<p>The full functionality is quite lean:</p>
 <ol>
-<li>It can <em>chat</em>, ie process your message and respond</li>
-<li>It can <em>"think harder"</em>, if you ask for it</li>
-<li>It can read <em>files</em>: pdf, images (maybe audio, video)</li>
-<li>It can use <em>tools</em>, directly or indirectly
+<li>It can read <em>files</em> you upload</li>
+<li>It can <em>chat</em> with you</li>
+<li>It can <em>"think harder"</em></li>
+<li>It can use <em>tools</em>
 <br></li>
-<li>It has caching and safeguards</li>
-<li>You can choose model and creativity-level
-<br></li>
-<li>Let's repeat: It knows nothing about you, personally</li>
+<li>It has <em>caching</em> and <em>safeguards</em>
+<br>
+That's it - and remember:<br><em>It knows nothing about you personally</em></li>
 </ol>
 </div>
 </div>
@@ -1121,16 +1120,24 @@ PDFs can be large and contains a lot of pdf-instructions, even binary stuff, so 
 <p>TODO: screenshot of "save 95% cost by text extraction"</p>
 <p>TODO: file size vs generated text, embeddings.</p>
 <p>True, they can be big, size-wise. But what you see here is that the AI Service extracts text and images from it itself, with an eye on the structure even. It does so using plain tools like pdftoppm, pymupdf, ghostscript - page rasterization. 4llm and pdftotext. Do you really think </p>
-<h2 id="chatting">Chatting</h2>
+<p>The experiment</p>
+<p>The takeaway</p>
+<p>https://claude.ai/chat/bea3ee66-f9c1-4930-b0a6-a1fe1592685b</p>
+<p>The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.</p>
+<h3 id="text-files-it-all-just-becomes-context">Text, files - it all just becomes "context</h3>
+<p><img src="images/ai-service/overview/files.png"></p>
 <h4 id="_88"></h4>
-<p>Feed it a context and it will produce the next expected output.</p>
+<p>There are no special backchannels or place for "specially important instructions". Text and images (and audio, video) is all turned into one big pile of embeddings, small bits of meaning.</p>
+<h2 id="chattinghello-there">Chatting<br>"Hello there"</h2>
 <h4 id="_89"></h4>
+<p>Feed it a context and it will produce the next expected output.</p>
+<h4 id="_90"></h4>
 <p>The purpose, recapped: You give it a string of tokens, aka the <em>context</em>, and it will produce a response based on the model's baked-in training by running that context through the Transformer. Pure math and trained knowledge.</p>
 <p>That is <em>all</em> it can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only - let's repeat: run the context through the Transformer to produce a response.</p>
 <p>Have in mind: - The LLM know <em>only the context</em>, nothing else</p>
-<h3 id="chatting-bring-a-context-get-a-response">Chatting: bring a context, get a response</h3>
+<h3 id="chatting-produce-a-response-from-a-context">Chatting: produce a response from a context</h3>
 <p><img src="images/ai-service/service-chat.png"></p>
-<h4 id="_90"></h4>
+<h4 id="_91"></h4>
 <p>A context has many parts. Here we'll focus on just two: the system prompt and the messages.</p>
 <h3 id="your-prompts-goes-into-the-context">Your prompts goes into the context</h3>
 <p><img src="images/ai-service/messages/request-messages.png"></p>
@@ -1148,14 +1155,17 @@ PDFs can be large and contains a lot of pdf-instructions, even binary stuff, so 
 <p><img src="images/ai-service/messages/chat-turn-3.png"></p>
 <h3 id="for-every-user-message-re-send-the-full-chat">For every user message: re-send the full chat</h3>
 <p><img src="images/ai-service/messages/chat-turn-goodnight.png"></p>
-<h3 id="why-the-ai-need-the-full-context">Why? The AI need the full context</h3>
+<h4 id="_92"></h4>
+<p>Let that sink in: every message you send, resends the full conversation.</p>
+<h3 id="why-because-the-llm-need-the-full-context">Why? Because the LLM need the full context</h3>
 <p>The LLM always reasons about <em>the full context</em>.
-It does not, it cannot, know and reason about <em>anything else</em> than what is in the context.
+&nbsp;
+It does not, it <em>cannot</em>, know or reason about <em>anything else</em> than what is in the context.
+&nbsp;
 You want it to know about X (beyond its training)? Then X must be <em>in the context</em>.
-No links, no docs, no agents: the context is <em>ALL</em> the LLM knows about you and this chat.
-<br></p>
-<p><img src="images/ai-service/messages/chat-through-transformer.png"></p>
-<h4 id="_91"></h4>
+&nbsp;
+No links, no files, no settings, no hidden memories, no knowledge from earlier chats:<br>the context is <em>ALL</em> the LLM knows about you and this chat.</p>
+<h4 id="_93"></h4>
 <p>If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.</p>
 <p>So the decisions that require semantic understanding are all the model's:
 Clearly the LLM:</p>
@@ -1171,9 +1181,9 @@ Whether to flag a potential prompt injection in a tool result</p>
 <p><img src="images/ai-service/messages/tokens-turn-10.png"></p>
 <h3 id="the-chat-after-50-prompts">The chat after 50 prompts</h3>
 <p><img src="images/ai-service/messages/tokens-turn-50.png"></p>
-<h3 id="total-is-123n-on2-tokens">Total is 1+2+3+...N = O(N²) tokens</h3>
+<h3 id="total-123n-on2-messages">Total: 1+2+3+...N = O(N²) messages</h3>
 <p><img src="images/ai-service/messages/tokens-turn-50-total.png"></p>
-<h4 id="_92"></h4>
+<h4 id="_94"></h4>
 <p>It gets more and more expensive to keep on dragging the entire conversation along.</p>
 <h3 id="the-system-prompt">The System prompt</h3>
 <h3 id="theres-more-than-just-your-messages">There's more than just your messages</h3>
@@ -1182,9 +1192,9 @@ Whether to flag a potential prompt injection in a tool result</p>
 <p>Uh, "system prompt", sounds very special and magical</p>
 <p>Well, yes and no.</p>
 <ul>
-<li>A <strong>system prompt</strong> is practically also <em>just plain text</em></li>
-<li>The AI client combine "whatever is useful to tell the LLM" into system prompt(s)</li>
-<li>You could have <em>written this text yourself</em> and just sent it as a message</li>
+<li>A <strong>system prompt</strong> is also <em>just plain text</em></li>
+<li>The AI agent combine <em>"whatever is useful to tell the LLM"</em> into system prompts</li>
+<li>You could have <em>written this text yourself</em> and just sent it in a prompt (well, sort of)</li>
 </ul>
 <h3 id="except-the-system-prompt-is-special">Except - the system prompt is special</h3>
 <p>TODO: images of LLM continuations for Doctor, Parent, Teacher - and System</p>
@@ -1200,7 +1210,7 @@ Whether to flag a potential prompt injection in a tool result</p>
 <br></li>
 <li>Generally, it's not visible in the UI - it's just there</li>
 </ul>
-<h4 id="_93"></h4>
+<h4 id="_95"></h4>
 <p><a href="https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html">How Claude Code Builds a System Promp</a>
 <a href="https://platform.claude.com/docs/en/release-notes/system-prompts">Claude System Prompts</a>
 <a href="https://github.com/asgeirtj/system_prompts_leaks">system prompts leaks</a></p>
@@ -1235,39 +1245,62 @@ Agent is such an overloaded term.</p>
 <p>The flat-sequence fact explains a lot. Because system prompt, user input, and tool results are all just tokens in one sequence, the "authority" of a system prompt is a training artifact — RLHF conditioning — not a hard architectural boundary. That's the same fact that makes prompt injection possible.</p>
 <h3 id="the-full-picture-with-tokens-etc">The full picture with tokens etc</h3>
 <p>Hammering in the notion of special tokens to steer the LLM</p>
-<h2 id="think-harder">Think harder</h2>
-<h3 id="the-think-harder-options">The think harder options</h3>
-<p>TODO: screenshots en masse</p>
+<h2 id="think-harder">"Think harder"</h2>
 <h3 id="what-could-think-harder-mean">What could "think harder" mean?</h3>
-<p>Can the model's billions of weights <em>be tweaked on the fly</em> to somehow "think better"?
-No, they're absolutely frozen.</p>
-<p>Do you get <em>more CPU or memory</em> or that <em>"bigger AI"</em> they surely keep in the back room?
-No, the hardware and model is fixed.</p>
-<p>Does the LLM <em>plan better</em> or <em>reconsider</em> when asked to think harder?
-No, the LLM never "plan" far ahead and always simply produce one token at a time.</p>
-<p>Hmm. So <em>what is thinking</em> really?</p>
-<p>Use this as an example!</p>
-<h3 id="thinking-ponder-append-and-re-process">Thinking: "ponder", append, and re-process</h3>
-<p><img src="images/ai-service/service-thinking.png"></p>
-<h3 id="lets-zoom-in">Let's zoom in</h3>
-<p>TODO: zoomed in</p>
 <ul>
-<li>Thinking is an autoregressive loop wrapped around the LLM: generate a "thought"-mode output, append it to the context, run the forward pass again, repeat.</li>
-<li>The name is <strong>Chain of Thought</strong>, aka <strong>CoT</strong>.</li>
+<li>
+<p>Maybe the model's billions of weights can be tweaked to somehow "think better"?<br><em>Hmm, no - the LLM weights are constant numbers, frozen after training.</em></p>
+</li>
+<li>
+<p>So maybe thinking call on some "bigger AI", stashed away in the back room?<br><em>But then how could the biggest models think harder too? No, the hardware and model is fixed.</em></p>
+</li>
+<li>
+<p>Thinking could mean the LLM plan better when asked to think harder?<br><em>There's just one way through the transformer, and it produces one token at a time, so no.</em></p>
+</li>
+<li>
+<p>Ah, now I have the full picture. Is what we do here, refining the output, thinking?<br><em>That's a bingo!</em></p>
+</li>
 </ul>
-<p>https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
-chain-of-thought is the escape hatch for the layer ceiling. It converts hardware-limited internal reasoning into serialized external reasoning, and that's why it works. It also predicts exactly what we observe: on problems that fit in the silent chain, models answer instantly and correctly; on problems that don't, they either get it wrong (no reflection) or need extended thinking to get it right (reflection converts depth into length).
-Your intuition that some problems would need "layer 150" is not just plausible — it's what the entire scratchpad/reasoning-mode ecosystem exists to work around.</p>
-<h4 id="_94"></h4>
-<h3 id="some-screenshot-examples">Some screenshot examples</h3>
-<p>TODO screenshots</p>
-<h3 id="refined-output-is-higher-quality">Refined output is higher quality</h3>
-<p>TODO: The haiku</p>
-<p>Thinking generally produce a better result and the model can catch itself if it's going down the wrong path. It can however also strengthen a misbelief.</p>
-<h3 id="a-penny-for-your-thoughts">A penny for your thoughts</h3>
-<p>TODO: tokenspree thinking, 2 x with/without keepnig the blocks</p>
+<h3 id="think-append-repeat">Think, append, repeat</h3>
 <ul>
-<li>Quite important: you also <strong>pay for those output thinking tokens</strong>, just like they were final output tokens.</li>
+<li>Thinking is simply: inject a special _"begin thinking"-token* (known from training), then keep producing and appending output until the LLM says "thinking completed" or the thinking-budget is exceeded.</li>
+<li>Thinking is called name is <strong>Chain of Thought</strong>, aka <strong>CoT</strong>.</li>
+</ul>
+<p><img src="images/ai-service/overview/thinking.png"></p>
+<h3 id="thinking-blocks-show-the-steps">"Thinking blocks" show the steps</h3>
+<p><img src="images/ai-service/thinking/now-i-understand.png"></p>
+<h4 id="_96"></h4>
+<p>Thinking generally produce a better result and the model can catch itself if it's going down the wrong path. Beware that can possibly also strengthen a misbelief.</p>
+<h3 id="thinking-typically-produce-higher-quality">Thinking typically produce higher quality</h3>
+<p><img src="images/ai-service/thinking/haiku.png"></p>
+<h4 id="_97"></h4>
+<p>Without thinking the LLM didn't even produce a proper Haiku.</p>
+<h3 id="thinking-is-often-enabled-by-default">Thinking is often enabled by default</h3>
+<p><img src="images/ai-service/thinking/claude-code-enable-thinking.png"></p>
+<h4 id="_98"></h4>
+<p>You can enable thinking in all kinds of manners. Nowadays, it's often simply enabled by default.</p>
+<p>The "thinking"-option has many names in the agent's UI but they all work this same way.</p>
+<h3 id="ultrathink-is-a-myth-now">"ultrathink" is a myth now</h3>
+<p><img src="images/ai-service/thinking/ultrathink.png"></p>
+<h4 id="_99"></h4>
+<p>This was how Claude controlled the thinking in early days.</p>
+<p>But not anymore.</p>
+<h3 id="a-penny-for-your-thoughts">A penny for your thoughts</h3>
+<ul>
+<li>
+<p>Thinking-blocks are output tokens (and also input-tokens), so they cost you, too</p>
+</li>
+<li>
+<p>Whether they are kept around for the next round depends:</p>
+<ul>
+<li>Usually stripped in plain chats</li>
+<li>CLI-agents Terminal / agentic loops generally retain them, for
+TODO: tokenspree thinking, 2 x with/without keepnig the blocks</li>
+</ul>
+</li>
+<li>
+<p>Quite important: you also <strong>pay for those output thinking tokens</strong>, just like they were final output tokens.</p>
+</li>
 </ul>
 <p>For reasoning-heavy tasks, thinking tokens can multiply your effective output costs by 3-10x.</p>
 <h3 id="hold-that-thought">Hold that thought</h3>
@@ -1279,7 +1312,9 @@ Your intuition that some problems would need "layer 150" is not just plausible �
 </ul>
 <p>Legend has it thatthis was how Claude controlled the thinking in early days:</p>
 <p>There used to be The keyword hierarchy was "think" &lt; "think hard" &lt; "think harder" &lt; "ultrathink"</p>
-<p>const thinkingBudget = prompt.includes("ultrathink") ? 31999 : 0</p>
+<pre><code class="language-javascript">const thinkingBudget = prompt.includes(&quot;ultrathink&quot;) ? 31999 : 0
+</code></pre>
+<p>Is thinking expsensive?</p>
 <h2 id="read-files">Read files</h2>
 <h3 id="documents-images-video-audio">Documents, images ... video, audio</h3>
 <p><img src="images/ai-service/service-files.png"></p>
@@ -1289,7 +1324,7 @@ Your intuition that some problems would need "layer 150" is not just plausible �
 <h3 id="save-by-not-uploading-pdfs">"Save $$$ by not uploading PDFs"</h3>
 <p>A myth
 My research</p>
-<h4 id="_95"></h4>
+<h4 id="_100"></h4>
 <p>The LLM works on tokens so how can it understand images.
 Ahh, that's because it <em>does not</em> work on tokens: it works on <em>embeddings</em>, which are crystallised "meaning-vectors". So in order to understand images we "just" have to turn the images into embeddings that represent the meaning of the different parts.</p>
 <p>This landscape is constantly changing, but as of now the predominant approach is to divide the image up into small patches, 16x16 pixels, and then map them to embeddings. Together an "ear", "nose", and "whiskers" form a cat, so to speak.</p>
@@ -1323,7 +1358,7 @@ My JavaOne 2002 JAXP</p>
 <p><img src="images/ai-service/mcp/sticks-4-tool-search.png"></p>
 <h3 id="mcp_4">MCP</h3>
 <p><img src="images/ai-service/mcp/sticks-5-tool-use.png"></p>
-<h4 id="_96"></h4>
+<h4 id="_101"></h4>
 <p>You should read this as a principled overview: the AI is talking to an MCP server which is turn call the API. The actions it is allowed to make are the actions that you are allowed to make. The MCP serveri acts on your behalf, so to speak. So it can only do what you are allowed to do. For example, for Siteimprove you can create an API-key associated with your username, and when the MCP server authenticates using that API-key then it acts as you with precisely the same kind of access you have.</p>
 <h3 id="mcp_5">MCP</h3>
 <p><img src="images/ai-service/mcp/sticks-6-response.png"></p>
@@ -1340,7 +1375,7 @@ My JavaOne 2002 JAXP</p>
 <p><img src="images/ai-service/service-misc.png"></p>
 <h2 id="now-i-have-the-full-picture">"Now I have the full picture"</h2>
 <p><img src="images/ai-service/service-full.png"></p>
-<h4 id="_97"></h4>
+<h4 id="_102"></h4>
 <p>Your diagram is the undisputed Common Core of the modern LLM runtime. For standard open-weight architectures (like Meta's Llama series or Mistral) and classic chat endpoints, this blueprint captures the system flawlessly.</p>
 <p>Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the immutable data flow, boundary gates, and structural contracts of modern AI. Leaving the vendor-specific bells and whistles off the page isn't an omission—it's good engineering discipline.</p>
 <p>"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."</p>
@@ -1360,7 +1395,6 @@ The llm most certainly doesn't know anything about you or learn anything, like y
 <p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/">▶ Open interactive version</a></em></p>
 </div>
 <p>Describe difference between the "circle of context used" and the "bar of token used".</p>
-<p>The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.</p>
 <h2 id="thats-where-non-llm-innovation-is-happening">That's where non-LLM innovation is happening</h2>
 <p>TODO: you'll find that everything is about putting things into the context, have the LLM chew on it, deal with the output from the LLM, refine, repeat.</p>
 <p>"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."</p>

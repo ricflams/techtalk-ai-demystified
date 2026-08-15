@@ -1354,17 +1354,16 @@ Signifying nothing.*
 <img src="images/landscape/parts/ai-service.png" />
 <div class="col-2" >
 
-The full functionality of an AI service is quite lean:
+The full functionality is quite lean:
 
-1. It can *chat*, ie process your message and respond
-2. It can *"think harder"*, if you ask for it
-3. It can read *files*: pdf, images (maybe audio, video)
-4. It can use *tools*, directly or indirectly
+1. It can read *files* you upload
+2. It can *chat* with you
+3. It can *"think harder"*
+4. It can use *tools*
 <br>
-5. It has caching and safeguards
-6. You can choose model and creativity-level
+5. It has *caching* and *safeguards*
 <br>
-7. Let's repeat: It knows nothing about you, personally
+That's it - and remember:<br>*It knows nothing about you personally*
 </div>
 </div>
 
@@ -1484,8 +1483,21 @@ TODO: file size vs generated text, embeddings.
 
 True, they can be big, size-wise. But what you see here is that the AI Service extracts text and images from it itself, with an eye on the structure even. It does so using plain tools like pdftoppm, pymupdf, ghostscript - page rasterization. 4llm and pdftotext. Do you really think 
 
+The experiment
 
-## Chatting
+The takeaway
+
+https://claude.ai/chat/bea3ee66-f9c1-4930-b0a6-a1fe1592685b
+
+The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
+
+### Text, files - it all just becomes "context
+<img src="images/ai-service/overview/files.png">
+
+####
+There are no special backchannels or place for "specially important instructions". Text and images (and audio, video) is all turned into one big pile of embeddings, small bits of meaning.
+
+## Chatting<br>"Hello there"
 
 ####
 Feed it a context and it will produce the next expected output.
@@ -1499,7 +1511,7 @@ Have in mind: - The LLM know *only the context*, nothing else
 
 
 
-### Chatting: bring a context, get a response
+### Chatting: produce a response from a context
 <img src="images/ai-service/service-chat.png">
 
 ####
@@ -1529,15 +1541,18 @@ A context has many parts. Here we'll focus on just two: the system prompt and th
 ### For every user message: re-send the full chat
 <img src="images/ai-service/messages/chat-turn-goodnight.png">
 
-### Why? The AI need the full context
+####
+Let that sink in: every message you send, resends the full conversation.
+
+### Why? Because the LLM need the full context
 
 The LLM always reasons about *the full context*.
-It does not, it cannot, know and reason about *anything else* than what is in the context.
+&nbsp;
+It does not, it *cannot*, know or reason about *anything else* than what is in the context.
+&nbsp;
 You want it to know about X (beyond its training)? Then X must be *in the context*.
-No links, no docs, no agents: the context is *ALL* the LLM knows about you and this chat.
-<br>
-
-<img src="images/ai-service/messages/chat-through-transformer.png">
+&nbsp;
+No links, no files, no settings, no hidden memories, no knowledge from earlier chats:<br>the context is *ALL* the LLM knows about you and this chat.
 
 ####
 If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.
@@ -1561,7 +1576,7 @@ Whether to flag a potential prompt injection in a tool result
 ### The chat after 50 prompts
 <img src="images/ai-service/messages/tokens-turn-50.png">
 
-### Total is 1+2+3+...N = O(N²) tokens
+### Total: 1+2+3+...N = O(N²) messages
 <img src="images/ai-service/messages/tokens-turn-50-total.png">
 
 ####
@@ -1578,9 +1593,9 @@ Uh, "system prompt", sounds very special and magical
 
 Well, yes and no.
 
-* A **system prompt** is practically also *just plain text*
-* The AI client combine "whatever is useful to tell the LLM" into system prompt(s)
-* You could have *written this text yourself* and just sent it as a message
+* A **system prompt** is also *just plain text*
+* The AI agent combine *"whatever is useful to tell the LLM"* into system prompts
+* You could have *written this text yourself* and just sent it in a prompt (well, sort of)
 
 ### Except - the system prompt is special
 TODO: images of LLM continuations for Doctor, Parent, Teacher - and System
@@ -1657,54 +1672,58 @@ The flat-sequence fact explains a lot. Because system prompt, user input, and to
 ### The full picture with tokens etc
 Hammering in the notion of special tokens to steer the LLM
 
-## Think harder
-
-### The think harder options
-TODO: screenshots en masse
+## "Think harder"
 
 ### What could "think harder" mean?
 
-Can the model's billions of weights *be tweaked on the fly* to somehow "think better"?
-No, they're absolutely frozen.
+* Maybe the model's billions of weights can be tweaked to somehow "think better"?<br>*Hmm, no - the LLM weights are constant numbers, frozen after training.*
 
-Do you get *more CPU or memory* or that *"bigger AI"* they surely keep in the back room?
-No, the hardware and model is fixed.
+* So maybe thinking call on some "bigger AI", stashed away in the back room?<br>*But then how could the biggest models think harder too? No, the hardware and model is fixed.*
 
-Does the LLM *plan better* or *reconsider* when asked to think harder?
-No, the LLM never "plan" far ahead and always simply produce one token at a time.
+* Thinking could mean the LLM plan better when asked to think harder?<br>*There's just one way through the transformer, and it produces one token at a time, so no.*
 
-Hmm. So *what is thinking* really?
+* Ah, now I have the full picture. Is what we do here, refining the output, thinking?<br>*That's a bingo!*
 
-Use this as an example!
+### Think, append, repeat
+- Thinking is simply: inject a special _"begin thinking"-token* (known from training), then keep producing and appending output until the LLM says "thinking completed" or the thinking-budget is exceeded.
+- Thinking is called name is **Chain of Thought**, aka **CoT**.
 
+<img src="images/ai-service/overview/thinking.png">
 
-### Thinking: "ponder", append, and re-process
-<img src="images/ai-service/service-thinking.png">
-
-### Let's zoom in
-TODO: zoomed in
-
-- Thinking is an autoregressive loop wrapped around the LLM: generate a "thought"-mode output, append it to the context, run the forward pass again, repeat.
-- The name is **Chain of Thought**, aka **CoT**.
-
-https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
-chain-of-thought is the escape hatch for the layer ceiling. It converts hardware-limited internal reasoning into serialized external reasoning, and that's why it works. It also predicts exactly what we observe: on problems that fit in the silent chain, models answer instantly and correctly; on problems that don't, they either get it wrong (no reflection) or need extended thinking to get it right (reflection converts depth into length).
-Your intuition that some problems would need "layer 150" is not just plausible — it's what the entire scratchpad/reasoning-mode ecosystem exists to work around.
+### "Thinking blocks" show the steps
+<img src="images/ai-service/thinking/now-i-understand.png">
 
 ####
+Thinking generally produce a better result and the model can catch itself if it's going down the wrong path. Beware that can possibly also strengthen a misbelief.
 
+### Thinking typically produce higher quality
+<img src="images/ai-service/thinking/haiku.png">
 
-### Some screenshot examples
-TODO screenshots
+####
+Without thinking the LLM didn't even produce a proper Haiku.
 
-### Refined output is higher quality
+### Thinking is often enabled by default
+<img src="images/ai-service/thinking/claude-code-enable-thinking.png">
 
-TODO: The haiku
+####
+You can enable thinking in all kinds of manners. Nowadays, it's often simply enabled by default.
 
-Thinking generally produce a better result and the model can catch itself if it's going down the wrong path. It can however also strengthen a misbelief.
+The "thinking"-option has many names in the agent's UI but they all work this same way.
+
+### "ultrathink" is a myth now
+<img src="images/ai-service/thinking/ultrathink.png">
+
+####
+This was how Claude controlled the thinking in early days.
+
+But not anymore.
 
 ### A penny for your thoughts
+* Thinking-blocks are output tokens (and also input-tokens), so they cost you, too
 
+* Whether they are kept around for the next round depends:
+    * Usually stripped in plain chats
+	* CLI-agents Terminal / agentic loops generally retain them, for
 TODO: tokenspree thinking, 2 x with/without keepnig the blocks
 
 - Quite important: you also **pay for those output thinking tokens**, just like they were final output tokens.
@@ -1724,7 +1743,12 @@ Legend has it thatthis was how Claude controlled the thinking in early days:
 
 There used to be The keyword hierarchy was "think" < "think hard" < "think harder" < "ultrathink"
 
+```javascript
 const thinkingBudget = prompt.includes("ultrathink") ? 31999 : 0
+```
+
+Is thinking expsensive?
+
 
 ## Read files
 
@@ -1866,8 +1890,6 @@ iframe.game { flex: 1; width: 100%; border: none; }
 </div>
 
 Describe difference between the "circle of context used" and the "bar of token used".
-
-The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
 
 ## That's where non-LLM innovation is happening
 

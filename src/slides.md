@@ -136,7 +136,9 @@ So AI here means generative text AI. Not AI for generating images using stable d
 [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
 
 
-# The LLM
+# LLM
+
+**Large Language Model**
 
 ---
 <img src="images/intro/journey/enter-rabbithole.png">
@@ -147,13 +149,11 @@ So AI here means generative text AI. Not AI for generating images using stable d
 ####
 The LLM is the only part that thinks.
 
-## Inside the LLM
-
-### Example: "Please tell me: what is an LLM?"
+### "Please tell me: what is an LLM?"
 <img src="images/example/claude.png">
 
-### The LLM is all statistics: math on numbers
-<img src="images/llm/overview-just-the-numbers.png">
+### The LLM only does math on numbers
+<img src="images/llm/overview-embeddings.png" />
 
 ## Tokens and embeddings
 
@@ -165,22 +165,21 @@ The LLM is the only part that thinks.
 
 ### A token is
 
-* A token is practically **a word**, like "hello", assigned a number
+* A token is practically **a word**, like "hello"
 <br>
-* It is the **chunks of text** the LLM works on
+* It is the **chunk of text** the LLM works on
 <br>
 * Therefore what you ultimately **pay for**
 <br>
 
-<img src="images/llm/overview-tokens.png">
-
-### "hello" has token number 24912
-
-* In the token vocabulary gpt-4o
-* AI models typically have specific token vocabularies
-<br>
+### In gpt-4o, "hello" is token number 24912
 
 <img src="images/token/tokenize-detokenize-hello.png">
+
+
+####
+AI models have specific token vocabularies.
+
 
 ### ChatGPT 3.5's token vocabulary
 <img src="images/token/vocabulary-full.png">
@@ -255,11 +254,28 @@ Another advantage of tokenization is that it allow identifying common linguistic
 ####
 Examples in English, Danish, Korean, Classical Chinese, and C#.
 
-### The English advantage
+### English dominates, by sheer volume
 <img src="images/token/five-sentences.png">
 
 ####
 Examples in English, Danish, Korean, Classical Chinese, and C#.
+
+### TODO: 
+
+Fun category — Danish/English false friends. Here are 10 good ones:
+
+Gift — dansk: gift (married) eller gift (poison); engelsk: en gave
+Barn — dansk: et barn (child); engelsk: en lade
+Sky — dansk: en sky (cloud, eller sovs-sky); engelsk: himlen
+Slut — dansk: slut (the end); engelsk: … noget helt andet
+Kind — dansk: en kind (cheek); engelsk: venlig
+Tag — dansk: et tag (roof); engelsk: et mærke/en etiket
+Dog — dansk: dog (however); engelsk: en hund
+Gal — dansk: gal (crazy); engelsk: slang for en pige
+Bog — dansk: en bog (book); engelsk: en mose
+Stole — dansk: stole (chairs, eller at stole på); engelsk: datid af "steal"
+
+Bonus: and (duck), men (but), og sand — som på dansk både betyder sand og true, så den er en dobbelt false friend.
 
 ### Revisit the example
 <img src="images/token/what-is-an-llm-tokens.png">
@@ -274,12 +290,11 @@ Examples in English, Danish, Korean, Classical Chinese, and C#.
 * A **token** is the *chunk of text* the LLM reason about
 * Models typically have a **vocabulary** of 200,000 tokens
 * For English, 1 token is roughly 1 word (3/4 of a word)
-* Tokens are language agnostics - it's all "just tokens"
+* Tokens are not language specific, just snippets of text
 <br>
 Last, but not least:
 <br>
-* Ultimately, cost is measured *in tokens*
-
+* Ultimately, *cost* is directly related to number of tokens
 </div>
 </div>
 
@@ -290,12 +305,12 @@ For English, one token generally corresponds to about 4 characters. For a text t
 ## Embeddings
 <img src="images/overview/embeddings.png">
 
+### An embedding embodies the meaning (characteristica, features, traits, ...) of something, anything
+
 ####
 In everyday English "embedding" sounds like something you do: the act of placing something into something else.
 
 In AI, it means a concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
-
-### An embedding embodies the meaning (characteristica, features, traits, ...) of something, anything
 
 ### Stay with me
 
@@ -458,30 +473,31 @@ There's a research field called mechanistic interpretability that tries to decom
 * [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
 
 
-### The LLM is all about math on embeddings
+### The LLM does "math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
+
+####
+It relies on what we just covered: on a *very large scale*, we can *do math on language*.
 
 ## The LLM
 <img src="images/overview/llm.png">
 
-### The LLM, Large Language Model
+### All about math
 
 The LLM is all about **math** and **statistics**.
 <br>
-It does **inference** by running the embeddings in the **context** through a giant **neural network**. After billions of calculations the result is: _"what token likely comes next?"_
 <br>
-It relies on what we just covered: on a *very large scale*, we can *do math on language*.
 
 ### Putting the example through the LLM
 
 The **context** is the input given to the LLM - here, 10 tokens
 The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
+It does **inference** by running the embeddings through a giant **neural network**
 <br>
 
 <img src="images/llm/what-is-an-llm-example.png">
 
 ####
-
 Two things to note here:
 
 Why only `An`? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out with which *probablility* any of the tokens is the vocabulary has for being the next token.
@@ -490,8 +506,6 @@ That's the second thing to note: the LLM itself actually just produce this set o
 
 ####
 [Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
-
-### TODO nn
 
 ### A neural network
 <img src="images/llm/neural-network.webp">
@@ -505,7 +519,12 @@ https://tikz.net/neural_networks/
 ### "The capitol of France is ..."
 <img src="images/llm/neural-network-paris.webp">
 
-### The LLM's objective: what's the next token?
+####
+After billions of calculations the neural network can predict _"what token likely comes next after this?"_
+
+TODO: Maybe: The neural network example
+
+### The LLM's objective: find likely next token
 <img src="images/llm/find-the-next-token.png">
 
 ####
@@ -515,9 +534,9 @@ That's because the transformer initially instill some positional information (1,
 
 Surprisingly, changing the vector values does not remove any of the embedding's "meaning" in the high-dimensional space. It retains its core conceptual meaning, only nudged a little bit.
 
-### Probabilities for tokens following "you"
+### Probabilities for words following "you"
 
-"That which does not kill you only makes you _can_" - hmmm, hang on
+"That which does not kill you only makes _you can_" - hm, that's not right
 
 <img src="images/llm/next-token-after-you.svg">
 
@@ -555,7 +574,7 @@ Every embedding gets influenced by every embedding token before it. They "absorb
 
 For a full 1M context-window this means that up all 1 million embeddings pays attention to every other of the 1 million embeddings before it. That's the order of a million times a million calculations.
 
-### A neural network let training kick in
+### A neural network act on it, as trained
 <img src="images/llm/multiplexer-perceptron.png">
 
 ####
@@ -572,12 +591,12 @@ Dial up the contrast, in a way: boost the strong signals and suppress the noise.
 
 ####
 
-### Slowly molding the last embedding for "you"
+### Slowly molding the meaning of that "you"
 <img src="images/llm/attention-space-seek.png">
 
 ####
 
-### In fact, let's do it 96 times
+### Let's do it 96 times (attention layers/heads)
 <img src="images/llm/attention-96-layers.png">
 
 ####
@@ -599,8 +618,7 @@ Score all tokens in the vocabulary (1-200,000 tokens)
 <img src="images/llm/next-token-prediction.svg">
 
 ####
-
-The cosine similarity of 0.97 is computed in isolation — it's purely a geometric measurement between two vectors, with no knowledge of the other 127,999 tokens. The 91% is a different kind of number entirely: it's the result of a competition. Softmax takes all 128,000 similarity scores simultaneously, exponentiates each one, and divides by their sum. Every token competes against every other token at once. "Stronger" claimed 91% of the total probability mass — not because 0.97 is intrinsically high, but because it pulled far enough ahead of the field. A high cosine similarity is the evidence. The probability is the verdict.
+The cosine similarity of 0.97 is computed in isolation — it's purely a geometric measurement between two vectors, with no knowledge of the other 199,999 tokens. The 91% is a different kind of number entirely: it's the result of a competition. Softmax takes all 2000,000 similarity scores simultaneously, exponentiates each one, and divides by their sum. Every token competes against every other token at once. "Stronger" claimed 91% of the total probability mass — not because 0.97 is intrinsically high, but because it pulled far enough ahead of the field. A high cosine similarity is the evidence. The probability is the verdict.
 
 ### Choose the final output token
 <img src="images/llm/final-output-token.png">
@@ -615,8 +633,6 @@ The cosine similarity of 0.97 is computed in isolation — it's purely a geometr
 
 ####
 ### 58 roundtrips for 58 tokens
-<img src="images/llm/next-token-until-stop.png">
-<br>
 <img src="images/llm/final-output-full-tokenized.png">
 
 
@@ -752,6 +768,30 @@ All chips produced by ASML, btw.
 
 ####
 Admittedly I coached ChatGPT into dialing up its "chatgppt-ness" to the max before asking this question. And honestly? It worked.
+
+### Frontier Labs and Models
+
+The big players are called **Frontier Labs** and their models are called **Frontier Models**
+
+<div class="cols">
+<img class="col-2" src="images/landscape/parts/ai-service-house.png">
+<div class="col-6">
+
+<img class="logo" src="images/intro/logos/logo-openai.svg"> **ChatGPT** by OpenAI
+<img class="logo" src="images/intro/logos/logo-gemini.svg"> **Gemini** by Google
+<img class="logo" src="images/intro/logos/logo-claude.svg"> **Claude** by Anthropic
+<img class="logo" src="images/intro/logos/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
+<img class="logo" src="images/intro/logos/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
+<img class="logo" src="images/intro/logos/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
+<img class="logo" src="images/intro/logos/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
+
+<br/>
+
+<img class="logo" src="images/intro/logos/logo-perplexity.svg"> **Perplexity** is an *AI Wrapper*, not its own AI Service
+<img class="logo" src="images/intro/logos/logo-copilot.png"> **Copilot** by Microsoft is also an *AI Wrapper*
+
+</div>
+</div>
 
 ### How models are trained
 <img src="images/training/training.png">
@@ -919,7 +959,9 @@ The jailbreaking community, which is maximally adversarial and has zero loyalty 
 ### Gemini et al - no public training guidelines
 <img src="images/training/gemini-ai-principles.png">
 
-### Are models different? Yes!
+### Are models different?<br>Yes, indeed
+
+### Same facts, different values and behaviors
 
 <img src="images/training/model-behavior.svg">
 <br>
@@ -932,16 +974,11 @@ The jailbreaking community, which is maximally adversarial and has zero loyalty 
 * DeepSeek wants its models *helpful and harmless* — as defined by the state
 * xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
 
-### Pre vs post training
+### Models also have variations
 
-After pre-training: most likely next words
-After post-training: most reasonably/desired next words
+For example: Haikku, Sonnet, and Opus are really three different models.
 
-
-### Models have variations
-
-Haikku, Sonnet, and Opus are three actually different models.
-Runs on *different hardware*, LLM has *different sizes* (attention heads, etc)
+They run on *different hardware*, LLM has *different sizes*, e.g. number of attention layers.
 <br>
 
 <img src="images/training/claude-family.png">
@@ -949,7 +986,7 @@ Runs on *different hardware*, LLM has *different sizes* (attention heads, etc)
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
 
-## A useful mental model for the LLM
+## A mental model for the LLM
 
 ## "Once upon a ..."
 
@@ -1015,10 +1052,17 @@ None of this means LLMs are simple to build, or that what they do isn't remarkab
 
 I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
 
-### What that means - advice
-Add in patterns and words that steer the model in the desired direction via pattern-matching. Examples, be explicit about output formats, make it stop guessing.
+### What that means
 
+- Patterns and nudging words will steer it in the desired direction via pattern-matching
 
+- Adding examples gives much better output
+
+- Be explicit about the output format - make it stop guessing
+
+### LLM summarized
+
+TODO: Drawing of full context-window with "Once upon a time" -> LLM/math (lots of facts, trained behavior) -> most likely continuation
 
 ### What comes after the LLM?
 
@@ -1035,8 +1079,6 @@ So if we want to do more with the same set of tools - LLM operating on context -
 1. You give it a string of tokens, aka the *context*
 2. The LLM  will produce a response based on the model's baked-in training by running that context through the Transformer.
 3. Pure math via training and reinforcement learning
-
-
 
 
 
@@ -1126,16 +1168,20 @@ The GitHub repo is incredibly thorough: They designed the entire codebase to run
 
 
 
-# Using the AI
+# AI Agents
+
+---
+<img src="images/overview/agent.png" />
 
 ### So, do you speak to the LLM?
 <img src="images/landscape/hello/user-ai.png" />
 
-### You always speak via an agent
+### No, you always speak via an agent
 <img src="images/landscape/hello/user-agent-ai.png" />
 
-####
-The agent knows who you are and what your preferences are, if any. It adds extra context to every conversation you have with the AI itself.
+The agent knows who you are. it knows your preferences. It adds extra context to every conversation you have with the AI.
+
+For instance what date and time it is, what your name is, your language preference, anything it knows about you from earlier chats. Also any custom instructions, like skills, that you've added to your agent.
 
 TODO: Explain the word "agent"
 
@@ -1145,51 +1191,26 @@ TODO: Explain the word "agent"
 ####
 The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
 
-### Few parts, many names
+### You 💕 agent; the AI is completely impersonal
+<img src="images/landscape/parts/user-and-ai.png" />
+
+### The parts and their many confusing names
 <img src="images/landscape/parts/roles.png" />
 
 ####
-The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
+TODO: call the chat: context, prompt, instructions, chat, request/response
+
+You may be thinking: "But oh no, I'm just using Copilot in Word or chatpgt.com in my browser - not an agent".
+
+Well, yes you are. Those are both agents. An agent is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's an agent baked into some other app, like Outlook. The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
+
+It's *not* an autonomous self-running James Bond-like entity. Well, except unfortunately those do exist and they're also called "agents", which is mighty confusing.
 
 "LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
 
 
-### You 💕 agent; the AI is an impersonal service
-<img src="images/landscape/parts/user-and-ai.png" />
-
-### The AI service live in a datacenter
-
-<img src="images/landscape/parts/datacenter.png">
-
-### Big players are called "Frontier Labs"
-
-<div class="cols">
-<img class="col-2" src="images/landscape/parts/ai-service-house.png">
-<div class="col-6">
-
-<img class="logo" src="images/intro/logos/logo-openai.svg"> **ChatGPT** by OpenAI
-<img class="logo" src="images/intro/logos/logo-gemini.svg"> **Gemini** by Google
-<img class="logo" src="images/intro/logos/logo-claude.svg"> **Claude** by Anthropic
-<img class="logo" src="images/intro/logos/logo-grok.png"> **Grok** by xAI *(Elon Musk)*
-<img class="logo" src="images/intro/logos/logo-meta.svg"> **Meta AI** by Meta *(Facebook)*
-<img class="logo" src="images/intro/logos/logo-mistral.svg"> **Vibe** by Mistral AI *(French)*
-<img class="logo" src="images/intro/logos/logo-deepseek.svg"> **DeepSeek** by DeepSeek *(Chinese)*
-
-<br/>
-
-<img class="logo" src="images/intro/logos/logo-perplexity.svg"> **Perplexity** is an *AI Wrapper*, not its own AI Service
-<img class="logo" src="images/intro/logos/logo-copilot.png"> **Copilot** by Microsoft is also an *AI Wrapper*
-
-</div>
-</div>
-
-### You're always using an agent
+### Agents comes in many shapes
 <img src="images/landscape/agents/web-vs-cli.png" />
-
-####
-"Oh no, I'm just using Copilot in Word or chatpgt.com in my browser - not an agent".
-
-Well, yes you are. Those are agents. An agent is simply the tool you use to talk to the AI service with.
 
 ### Could be gemini.com, in the browser
 <img src="images/landscape/agents/gemini.png" />
@@ -1215,8 +1236,28 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 ### Claude Desktop, dedicated app
 <img src="images/landscape/agents/claude.png" />
 
+### Every agent is its own little island
+<img src="images/landscape/skills-example.png" />
 
-### Typical: use AI in browser or terminal/app
+####
+Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.
+
+Everything else is something that the agent provide you: your profile, memory files, skills, mcp-connectors, etc. And also the agents behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
+
+That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.
+
+And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.
+
+At least that's how it usually is today. It's likely to change over time since it's honestly a bit annoying, to say the least. It's just not an area that has gotten a lot of attention.
+
+So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
+
+## Where do they live?
+
+### Frontier Models live in a datacenter
+<img src="images/landscape/parts/datacenter.png">
+
+### Typically, the agent is web or terminal/app
 
 <div class="cols">
 <img src="images/landscape/parts/browser.png" />
@@ -1243,7 +1284,7 @@ CLI means Command Line Interface, i.e. in a text-based terminal.
 ####
 Claude Cowork is actually a real stand-along app that works on your local pc, just like in the terminal.
 
-### Not in focus: other apps or self-hosted
+### Alternatively, in apps or fully self-hosted
 
 <div class="cols">
 <img src="images/landscape/parts/app.png" />
@@ -1266,28 +1307,12 @@ Run *open-weight full LLM* on your pc:
 </div>
 </div>
 
-### Every agent is its own little island
-<img src="images/landscape/skills-example.png" />
+## My personal AI-journey
 
-####
-Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.
-
-Everything else is something that the agent provide you: your profile, memory files, skills, mcp-connectors, etc. And also the agents behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
-
-That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.
-
-And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.
-
-At least that's how it usually is today. It's likely to change over time since it's honestly a bit annoying, to say the least. It's just not an area that has gotten a lot of attention.
-
-So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
-
-### My personal AI-journey
-
+### Chat, copy-paste, embedded, now terminal
 <img src="images/landscape/evolution.png" />
 
 ####
-
 I started chatting just in the browser, of course. And I still do, by the way.
 
 Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it.
@@ -1316,18 +1341,6 @@ Signifying nothing.*
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # The AI Service
 
 <!-- --- -->
@@ -1336,37 +1349,43 @@ Signifying nothing.*
 ---
 <img src="images/overview/service.png">
 
-## What can it do?
+### What does the AI service offer?
+<div class="cols">
+<img src="images/landscape/parts/ai-service.png" />
+<div class="col-2" >
 
-Facilitates your interactions with the LLM.
-The functionality is surprisingly lean:
-<br>
+The full functionality of an AI service is quite lean:
+
 1. It can *chat*, ie process your message and respond
 2. It can *"think harder"*, if you ask for it
-3. It can read *files*: documents, images, some even video and audio
+3. It can read *files*: pdf, images (maybe audio, video)
 4. It can use *tools*, directly or indirectly
 <br>
 5. It has caching and safeguards
 6. You can choose model and creativity-level
+<br>
+7. Let's repeat: It knows nothing about you, personally
+</div>
+</div>
 
 ####
 Call internal tools; run python, produce images
 Call external tools via MCP servers
 Ask the caller to use tools or MCP servers
 
-### How all AI Services looks like, generally
+### AI Services generally looks like this
 <img src="images/ai-service/overview/blank.png">
 
 ### Remember the LLM loop?
 <img src="images/llm/next-token-until-stop.png">
 
-### The LLM sit in the middle
+### The LLM is the centerpiece
 <img src="images/ai-service/overview/llm.png">
 
-### Remember
+### It's all about embeddings
 
 The Transformer works on *embeddings*
-Text becomes tokens and an embedding exists for every token
+Text maps to tokens, each with an embedding for their meaning
 But ... what about *files*, like PDFs and images?
 <br>
 
@@ -1377,7 +1396,8 @@ But ... what about *files*, like PDFs and images?
 ### Files are also turned into embeddings
 <img src="images/ai-service/overview/files.png">
 
-## Images
+### Images
+<img src="images/ai-service/overview/images.png">
 
 ### Not OCR (well, maybe some)
 <img src="images/ai-service/files/images/ocr.jpg">
@@ -1415,10 +1435,14 @@ An image of text is typically 10x larger in context than the text would be.
 ### Whatever approach, embeddings comes out
 <img src="images/ai-service/files/images/cat-advanced.png">
 
+### Its really good at it now
+TODO: My examples of trying to fool it
+
 ### Embeddings - worth a detour
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
 
 ####
+TODO:
 Of all the things I'm here to tell you about today (of all the takeaways from this presentation), I suspect that the usefullness and power of embeddings, not least multimodal embeddings, will be a surprise to most of you, how useful it is.
 
 ###
@@ -1441,6 +1465,25 @@ Just think about it: with multimodal embeddings you now have a way of comparing 
 
 ####
 https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
+
+### Documents, PDFs
+<img src="images/ai-service/overview/documents.png">
+
+####
+PDFs are handled really well. The AI services gets beter and better at handling documents, like eg zip-files or Word- or Excel-files. There's likely some variations but generally they 
+
+## Myths about PDF text extraction
+This is such a widespread myth that I'll dedicate an entire section to it.
+
+TODO:
+PDFs can be large and contains a lot of pdf-instructions, even binary stuff, so the belief is that passing it all to the AI Service is a tremendous overhead.
+
+TODO: screenshot of "save 95% cost by text extraction"
+
+TODO: file size vs generated text, embeddings.
+
+True, they can be big, size-wise. But what you see here is that the AI Service extracts text and images from it itself, with an eye on the structure even. It does so using plain tools like pdftoppm, pymupdf, ghostscript - page rasterization. 4llm and pdftotext. Do you really think 
+
 
 ## Chatting
 

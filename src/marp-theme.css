@@ -213,11 +213,27 @@ section::after {
    No <!-- _class: ... --> directives needed.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Shared: center all heading slides — each content block centers itself,
-   text inside stays left-aligned ── */
-section:has(h1, h2, h3) {
+/* ── Shared: center h1/h2 slides — these are always just a title (+
+   optional short subtitle), never real body content ── */
+section:has(h1, h2) {
   justify-content: center;
   align-items: center;
+}
+
+/* ── h3 slides top-align by default: h3 doubles as both a real section
+   title with body content below it (e.g. "A token is" + a bullet list) and
+   a standalone divider — only center when it's genuinely alone on the
+   slide (nothing after it but the hidden h4-notes chain), same test used
+   below for the muted-paragraph-color rule. ── */
+section:has(h3) {
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) {
+  justify-content: center;
+  padding-top: 2.5rem;
 }
 
 /* ── Shared: hide page number on all heading slides ── */

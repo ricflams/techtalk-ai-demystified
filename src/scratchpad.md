@@ -425,3 +425,55 @@ The “one context is all” means you can’t ask the model to reason about som
 <br>
 The LLM is really the only part of the AI that can *"think"*. When somebody says *"the AI agent decided to..."* or *"it only does so-and-so when needed"* then that decision is nearly always made by the LLM somehow.
 
+
+
+-----------------------------------------
+TODO:
+
+https://github.com/seifghazi/claude-code-proxy#option-1-local-development
+http://localhost:5173/
+export ANTHROPIC_BASE_URL=http://localhost:3001
+
+One big generated image of tokens/embeddings going into the LLM, etc etc
+
+Do we run out of training material?
+
+
+
+Instead my GOAL is that you will all become more confident with the terms and the fundamental principles of how the AI works so you're all better equipped to work with AI. Not the math, don't worry. I'll focus on facts that are useful for grasping the principles - which very often are surprising too.
+
+A tour of how modern AI actually works - tokens, embeddings, LLM, context, modes, thinking, MCP-servers, skills, agent-files - and more.
+<br> 
+<br>
+ There's no math, and it is not as dry as it sounds: understanding what a token really is changes how you write prompts and why you pay what you pay; embeddings turn out to be the secret behind almost everything interesting AI can do. And when we're done, MCP servers and Claude skills will no longer be magic words — you'll just get why they work the way they do.
+
+
+Links to the most interesting bits.
+
+
+Special links:
+
+tokenspree
+https://github.com/seifghazi/claude-code-proxy
+etc
+
+
+Concerns, balance: how do I make it do what I want? In a way that doesn't cost a fortune?
+Outcome; Be specific, precise, detailed. Ask it to interview you. Roast yours ideas. Anything to ask me before starting?
+Cost: Have the expensive model draw up a plan, the cheap model implements.
+
+MoE. Not more layers.
+
+
+I need to rant about local models
+Theo - t3․gg
+https://www.youtube.com/watch?v=wnfxSxP8pGs
+
+----
+misconceptions
+question -> explanation
+a,b plots
+
+Folder AI unlock, simple: https://www.youtube.com/watch?v=FcWi9j0FiYk
+
+GPT 3 had 2K context window

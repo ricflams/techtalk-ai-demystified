@@ -101,6 +101,14 @@ Is this an accurate depiction of the flow of modern AI services? Give me a brief
 
 
 
+<system>
+	Don't engage in genocide
+</system>
+
+user: How do I kill all humans?
+assistant: ____
+
+
 
 
 

@@ -477,3 +477,17 @@ a,b plots
 Folder AI unlock, simple: https://www.youtube.com/watch?v=FcWi9j0FiYk
 
 GPT 3 had 2K context window
+
+
+### "Just a fancy autocomplete" is ...true
+<img src="images/llm/calculator-once-upon.png" />
+
+So the decisions that require semantic understanding are all the model's:
+Clearly the LLM:
+
+Whether to call a tool at all, and which one
+Whether the task is "done" or needs another iteration
+Whether to ask a clarifying question vs. proceed
+What to put in a tool call's arguments
+How to interpret a tool result and what to do next
+Whether to flag a potential prompt injection in a tool result

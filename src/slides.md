@@ -119,8 +119,6 @@ And ask me or other colleagues if you've got questions. I'd be happy to elaborat
 ####
 Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
 
-Venn-diagram: interesting and useful. It would be easy to force-feed you like a foie gras duck, but you wouldn't like it.
-
 ---
 <img src="images/overview/full.png" />
 
@@ -313,7 +311,7 @@ In everyday English "embedding" sounds like something you do: the act of placing
 In AI, it means a concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
 
 ### Stay with me
-
+TODO: maybe another or no image
 <img src="images/llm/embeddings/confused.png">
 
 ####
@@ -449,7 +447,7 @@ Since an embedding is a direction in this hyper-dimensional space, this kind of 
 
 ### Takeaway about embeddings
 
-1. *Compare* embeddings to figure out how similar the meanings they represent are
+1. You can *compare embeddings* to figure out how similar the meanings they represent are.
 For instance, find a *synonym* by simply finding the closest embeddings to a word
 <br>
 2. Embeddings are "meanings" and that meaning can be *transformed with math*
@@ -482,17 +480,11 @@ It relies on what we just covered: on a *very large scale*, we can *do math on l
 ## The LLM
 <img src="images/overview/llm.png">
 
-### All about math
-
-The LLM is all about **math** and **statistics**.
-<br>
-<br>
-
 ### Putting the example through the LLM
 
 The **context** is the input given to the LLM - here, 10 tokens
 The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
-It does **inference** by running the embeddings through a giant **neural network**
+The LLM does **inference** by running the embeddings through a giant **neural network**
 <br>
 
 <img src="images/llm/what-is-an-llm-example.png">
@@ -557,7 +549,6 @@ Today, the paper sits at over 200,000 citations, making it an absolute statistic
 
 It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
 
-
 [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 
 ### The Transformer can figure this out:
@@ -607,8 +598,6 @@ Dial up the contrast, in a way: boost the strong signals and suppress the noise.
 ### Final embedding: the desired next "meaning"
 <img src="images/llm/final-embedding-all-absorbed.png">
 
-####
-
 ### Find next token by similarity-comparison
 
 Also known as "cosine similarity"
@@ -631,7 +620,6 @@ The cosine similarity of 0.97 is computed in isolation — it's purely a geometr
 ### For a full sentence: repeat until LLM says stop
 <img src="images/llm/next-token-until-stop.png">
 
-####
 ### 58 roundtrips for 58 tokens
 <img src="images/llm/final-output-full-tokenized.png">
 
@@ -650,10 +638,7 @@ There's no plan to "bold" a word by emitting `** something **`. Instead at one p
 
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
 
-Not so: j-space.
-
-### "Just a fancy autocomplete" is ...true
-<img src="images/llm/calculator-once-upon.png" />
+TODO: Not so: j-space.
 
 J-space
 https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
@@ -753,8 +738,6 @@ That's why Mac Mini and Mac Studio are so sought after: their GPU can use the fu
 
 ### NVidia stock price
 <img src="images/llm/cost/nvidia-stock-5y.png"> 
-
-### Why yuou want an M1
 
 ####
 All chips produced by ASML, btw.
@@ -929,12 +912,12 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 <img src="images/llm/training/claudes-constitution-helpfulness.png">
 
 ####
-The model spec is the closest thing to a public constitution. It defines a priority ordering:
+The model spec is the closest thing to a public constitution. It defines a priority ordering that the model should strive to follow:
 
-Broadly safe (supporting human oversight)
-Broadly ethical (good values, honesty)
-Adherent to Anthropic's principles
-Genuinely helpful
+* Broadly safe (supporting human oversight)
+* Broadly ethical (good values, honesty)
+* Adherent to Anthropic's principles
+* Genuinely helpful
 
 ### "Don't foster excessive engagement"
 <img src="images/llm/training/claudes-constitution-sychophant.png">
@@ -943,6 +926,8 @@ Genuinely helpful
 As a principle, this goes directly against the main objective of optimizing "pleasing engagement" at social platforms like Facebook.
 
 The jailbreaking community, which is maximally adversarial and has zero loyalty to Anthropic, keeps surfacing behavior consistent with the document. When your most hostile auditors confirm the fingerprint, that’s decent evidence.
+
+So "It just wants to please you" doesn't line up with at least Claude's stated objectives.
 
 ### "New model is 36% more ..."
 <img src="images/llm/training/system-cards-opus48.png">
@@ -995,7 +980,7 @@ For example, the Claude family are physically three different models: different 
 <img src="images/llm/core/once-upon-a-time.svg" />
 
 ####
-Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so completely automatically. Ergo, an autocomplete.
+Saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, an autocomplete.
 
 Buf "fancy" is doing a lot of heavy lifting in that sentence. A bit like saying humans are a "fancy mix of cells".
 
@@ -1047,12 +1032,14 @@ The model has no other input to go by for dealing with your tasks than the conte
 ### Not easy - human brain
 
 That doesn't mean that it's easy to produce such a machine, or that what it does is not a great feat. It only speaks about what it actually does - how it operates, not just "at its core" but at all.
-
+####
 None of this means LLMs are simple to build, or that what they do isn't remarkable. It's a description of what they do — not just "at their core," but at all.
 
 I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
 
-### What that means
+TODO: End the LLM story
+
+#### What that means
 
 - Patterns and nudging words will steer it in the desired direction via pattern-matching
 
@@ -1060,11 +1047,11 @@ I'm not saying this is "earth shattering revelations" but I can sense that often
 
 - Be explicit about the output format - make it stop guessing
 
-### LLM summarized
+#### LLM summarized
 
 TODO: Drawing of full context-window with "Once upon a time" -> LLM/math (lots of facts, trained behavior) -> most likely continuation
 
-###
+####
 
 scaling laws
 interpretability
@@ -1080,7 +1067,7 @@ The wager was not "the loss curve will keep going" — Kaplan had already shown 
 
 The paper's title — "Language Models are Few-Shot Learners"
 
-### What comes after the LLM?
+#### What comes after the LLM?
 
 * A successor for LLMs is not around the corner
 * There's work being done with **Mix of Experts** (MoE), divvying up the network
@@ -1090,7 +1077,7 @@ The paper's title — "Language Models are Few-Shot Learners"
 
 So if we want to do more with the same set of tools - LLM operating on context - then the best path is: smarter ways of managing the context and those tokens.
 
-## LLM recap
+#### LLM recap
 
 1. You give it a string of tokens, aka the *context*
 2. The LLM  will produce a response based on the model's baked-in training by running that context through the Transformer.
@@ -1102,9 +1089,7 @@ Despite eg DSpark, Mix of Experts.
 https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference
 
 
-
-
-## Takeaways
+#### Takeaways
 
 * The LLM can only reason about what's in the context
 * It can't browse the web, do large math, read a file, remember anything
@@ -1129,7 +1114,7 @@ Called a Foundation Model because it can be used for all kinds of things without
 When you hear somebody say "then we can just fine-tune the model" you should pack a fair amount of skepticism because you can only do that for certain models and it's not as easy as it might seem. TODO: Who would fine-tune a model?
 
 
-### Takeaways
+#### Takeaways
 
 It's all statistics: All the words influence each other, absorb meaning from each other.
 
@@ -1148,23 +1133,16 @@ the model answers "what does text about counting r's in strawberry usually look 
 
 Anything that requires understanding the content or meaning of what's in the context is the model's decision. Anything that can be evaluated against a fixed rule without understanding content is the client's. The client enforces; the model decides. And the system prompt is the interface between them — it's the client telling the model what decisions it's responsible for making, expressed in natural language because that's the only channel available, which is also why it's not a hard guarantee.
 
+#### Most Important Takeaways
 
-### The context
-
-TODO: recap what the context and context window is
-
-
-
+* The LLMs knowledge itself is fixated after training
+* The LLM can only reason about what's in the context
 
 
 ### Any questions?
 
 I know I have some: how does it browse the web, know what today is, add two numbers, understand a pdf document?
 
-### Most Important Takeaways
-
-* The LLMs knowledge itself is fixated after training
-* The LLM can only reason about what's in the context
 
 ---
 <img src="images/llm/nerdflix.png">
@@ -1209,7 +1187,7 @@ TODO: Explain the word "agent"
 <img src="images/agents/hello/all.png" />
 
 ####
-The LLM (Large Language Model) is the brain of the operation. The LLM is functionally very, very simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
+The LLM (Large Language Model) is the brain of the operation. The LLM is functionally simple - for example, it actually only says one word at a time and can't "do" anything. So it needs some extra surrounding functionality be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. The AI service provides that scaffolding.
 
 ### You 💕 agent; the AI is completely impersonal
 <img src="images/agents/parts/user-and-ai.png" />
@@ -1218,16 +1196,13 @@ The LLM (Large Language Model) is the brain of the operation. The LLM is functio
 <img src="images/agents/parts/roles.png" />
 
 ####
-TODO: call the chat: context, prompt, instructions, chat, request/response
-
 You may be thinking: "But oh no, I'm just using Copilot in Word or chatpgt.com in my browser - not an agent".
 
 Well, yes you are. Those are both agents. An agent is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's an agent baked into some other app, like Outlook. The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
 
 It's *not* an autonomous self-running James Bond-like entity. Well, except unfortunately those do exist and they're also called "agents", which is mighty confusing.
 
-"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, etc) are LLMs.
-
+"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, Grok, etc) are LLMs.
 
 ### Agents comes in many shapes
 <img src="images/agents/agents/web-vs-cli.png" />
@@ -1271,6 +1246,8 @@ And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI ser
 At least that's how it usually is today. It's likely to change over time since it's honestly a bit annoying, to say the least. It's just not an area that has gotten a lot of attention.
 
 So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
+
+TODO: Note that this is slowly changing, more and more convergence.
 
 ## Where do they live?
 
@@ -1355,16 +1332,7 @@ Told by an idiot, full of sound and fury,
 Signifying nothing.*
 
 
-
-
-
-
-
-
 # The AI Service
-
-<!-- --- -->
-<!-- <img src="images/intro/journey/full-picture.png"> -->
 
 ---
 <img src="images/overview/service.png">
@@ -1387,11 +1355,6 @@ That's it - and remember:<br>*It knows nothing about you personally*
 </div>
 </div>
 
-####
-Call internal tools; run python, produce images
-Call external tools via MCP servers
-Ask the caller to use tools or MCP servers
-
 ### AI Services generally looks like this
 <img src="images/service/overview/blank.png">
 
@@ -1402,7 +1365,6 @@ Ask the caller to use tools or MCP servers
 <img src="images/service/overview/llm.png">
 
 ### It's all about embeddings
-
 The Transformer works on *embeddings*
 Text maps to tokens, each with an embedding for their meaning
 But ... what about *files*, like PDFs and images?
@@ -1454,7 +1416,7 @@ An image of text is typically 10x larger in context than the text would be.
 ### Whatever approach, embeddings comes out
 <img src="images/service/files/images/cat-advanced.png">
 
-### Its really good at it now
+### It's really good at it now
 TODO: My examples of trying to fool it
 
 ### Embeddings - worth a detour
@@ -1463,8 +1425,6 @@ TODO: My examples of trying to fool it
 ####
 TODO:
 Of all the things I'm here to tell you about today (of all the takeaways from this presentation), I suspect that the usefullness and power of embeddings, not least multimodal embeddings, will be a surprise to most of you, how useful it is.
-
-###
 
 Let's recap what an embedding is:
 A set of numbers that captures the "meaning" of anything.
@@ -1476,7 +1436,7 @@ And calculating the embedding of something is pretty checp. The effort is in the
 
 Just think about it: with multimodal embeddings you now have a way of comparing "anything", be it text against text, text against image, image and audio, etc. "How much does this look like that?" "Which of these 10 things looks most like that one here?". Etc.
 
-### "Unified embeddings" takes a lot of training
+#### "Unified embeddings" takes a lot of training
 
 [Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
 
@@ -1485,39 +1445,44 @@ Just think about it: with multimodal embeddings you now have a way of comparing 
 ####
 https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
 
-### Documents, PDFs
+### PDFs and other documents
 <img src="images/service/overview/documents.png">
 
 ####
-PDFs are handled really well. The AI services gets beter and better at handling documents, like eg zip-files or Word- or Excel-files. There's likely some variations but generally they 
+PDFs are handled really well. The AI services gets better and better at handling documents, like eg zip-files or Word- or Excel-files.
 
-### Myths about PDF text extraction
-This is such a widespread myth that I'll dedicate an entire section to it.
+Documents doesn't really introduce any new functionality: it is simply subjected to text and image extraction, or rendered in full and then and image recognized.
+
+### Should you convert PDFs to markdown yourself?
+
+Depending on the AI Service, the answer can be:
+
+Yes, no, and maybe.
+
+It depends on the AI service - and also on the PDF, actually.
 
 TODO:
 PDFs can be large and contains a lot of pdf-instructions, even binary stuff, so the belief is that passing it all to the AI Service is a tremendous overhead.
-
 TODO: screenshot of "save 95% cost by text extraction"
-
 TODO: file size vs generated text, embeddings.
-
 True, they can be big, size-wise. But what you see here is that the AI Service extracts text and images from it itself, with an eye on the structure even. It does so using plain tools like pdftoppm, pymupdf, ghostscript - page rasterization. 4llm and pdftotext. Do you really think 
-
 The experiment
-
 The takeaway
-
 https://claude.ai/chat/bea3ee66-f9c1-4930-b0a6-a1fe1592685b
 
+### Big files are often not included
+TODO:
 The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
 
-### Text, files - it all just becomes "context
+### Text, PDFs, images; all becomes embeddings
 <img src="images/service/overview/files.png">
 
 ####
-There are no special backchannels or place for "specially important instructions". Text and images (and audio, video) is all turned into one big pile of embeddings, small bits of meaning.
+By the time the LLM goes to work, everything in the context has been converted into a big pile of embeddings, small bits of meaning.
 
-## Chatting<br>"Hello there"
+There are no special backchannels or place for "specially important instructions".
+
+## Chatting
 
 ####
 Feed it a context and it will produce the next expected output.
@@ -1529,208 +1494,67 @@ That is *all* it can do. It can't browse the web, multiply two large numbers, re
 
 Have in mind: - The LLM know *only the context*, nothing else
 
-
-
-### Chatting: produce a response from a context
-<img src="images/service/service-chat.png">
+### Your prompts goes into the context
+<img src="images/service/overview/chat-messages.png">
 
 ####
-A context has many parts. Here we'll focus on just two: the system prompt and the messages.
+A context has many parts. Here we'll focus on just the messages you send the response you get.
 
-### Your prompts goes into the context
-<img src="images/service/messages/request-messages.png">
+Everything you send - text, documents, images - is shipped as these user-messages. Binary stuff is base-64 encoded.
 
-### The example, now continued
-<img src="images/example/chat.png">
+### Let's continue the example chat
+<img src="images/service/chat/chat.png">
 
-### User message #1 and the AI response
-<img src="images/service/messages/chat-turn-1.png">
+### You write, the AI responds
+<img src="images/service/chat/chat-turn-1.png">
 
-### User message #2 - now what?
-<img src="images/service/messages/chat-turn-2-question.png">
+### You respond again - but now what?
+<img src="images/service/chat/chat-turn-2-question.png">
 
-### User message #2: what is sent to the AI?
-<img src="images/service/messages/chat-turn-2-choice.png">
+### Question: What is sent to the AI?
+<img src="images/service/chat/chat-turn-2-choice.png">
 
-### For user message #2: re-send the full chat
-<img src="images/service/messages/chat-turn-2.png">
+### Option B: the full chat
+<img src="images/service/chat/chat-turn-2.png">
 
-### For user message #3: re-send the full chat
-<img src="images/service/messages/chat-turn-3.png">
+### The full chat is sent to the AI
+<img src="images/service/chat/chat-turn-3.png">
 
-### For every user message: re-send the full chat
-<img src="images/service/messages/chat-turn-goodnight.png">
+### The full chat is always, always sent to the AI
+<img src="images/service/chat/chat-turn-goodnight.png">
 
 ####
 Let that sink in: every message you send, resends the full conversation.
 
 ### Why? Because the LLM need the full context
 
-The LLM always reasons about *the full context*.
+The LLM can only reason about *the context it is given*.
 &nbsp;
-It does not, it *cannot*, know or reason about *anything else* than what is in the context.
+It does not, it *cannot*, know or reason about *anything else* than what is in the context. The LLM is completely *stateless*.
 &nbsp;
-You want it to know about X (beyond its training)? Then X must be *in the context*.
+You want it to know about X, beyond its trained facts? Then X must be *in the context*.
 &nbsp;
-No links, no files, no settings, no hidden memories, no knowledge from earlier chats:<br>the context is *ALL* the LLM knows about you and this chat.
+No links, no outside preferences, no memories, including from earlier chats:<br>the context is *ALL* the LLM can respond to.
 
 ####
 If the answer needs thinking, the thinking happens in the context — so your job is to get the facts into the context. The model brings the reasoning; you bring the facts. It cannot supply what you didn't put there, and it will never tell you that's why it failed.
 
-So the decisions that require semantic understanding are all the model's:
-Clearly the LLM:
+### The context after 3 prompts
+<img src="images/service/chat/tokens-turn-3.png">
 
-Whether to call a tool at all, and which one
-Whether the task is "done" or needs another iteration
-Whether to ask a clarifying question vs. proceed
-What to put in a tool call's arguments
-How to interpret a tool result and what to do next
-Whether to flag a potential prompt injection in a tool result
+### The context after 10 prompts
+<img src="images/service/chat/tokens-turn-10.png">
 
-### The chat after 3 prompts
-<img src="images/service/messages/tokens-turn-3.png">
-
-### The chat after 10 prompts
-<img src="images/service/messages/tokens-turn-10.png">
-
-### The chat after 50 prompts
-<img src="images/service/messages/tokens-turn-50.png">
+### The context after 50 prompts
+<img src="images/service/chat/tokens-turn-50.png">
 
 ### Total: 1+2+3+...N = O(N²) messages
-<img src="images/service/messages/tokens-turn-50-total.png">
+<img src="images/service/chat/tokens-turn-50-total.png">
 
 ####
 It gets more and more expensive to keep on dragging the entire conversation along.
 
-### The System prompt
-
-### There's more than just your messages
-<img src="images/service/system/request-system.png">
-
-### System prompt
-
-Uh, "system prompt", sounds very special and magical
-
-Well, yes and no.
-
-* A **system prompt** is also *just plain text*
-* The AI agent combine *"whatever is useful to tell the LLM"* into system prompts
-* You could have *written this text yourself* and just sent it in a prompt (well, sort of)
-
-### Except - the system prompt is special
-TODO: images of LLM continuations for Doctor, Parent, Teacher - and System
-
-### So it's special, but only through training, not by rules
-
-It doesn's do anythihg, it doesn't kickstart anything. It's just text being inserted into the context.
-
-### Anything useful goes into the system prompt
-<img src="images/service/system/highlight/all.png">
-
-### The client system prompt
-
-<img src="images/service/system/highlight/system-prompt.png">
-
-- Instructions that the agent (chatpgt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
-- It brings information about the agent's name, purpose, behavior, etc.
-<br>
-- Generally, it's not visible in the UI - it's just there
-
-
-####
-
-[How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
-[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
-[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
-
-### Claude prompts are public
-
-An "agents" file isn't secrets instructions to kick off roaming live AI-agent.
-Agent is such an overloaded term.
-
-
-
-
-
-### Shoveled into one big pile of text
-<img src="images/service/system/shoveling.png">
-
-### All the things that goes into it
-
-If you're building an agent, ie interacting with the AI service directly, then you're responsible for adding all this kind of useful info.
-
-How about formatting? xml, headings? Doesn't matter, they all convey a sense of structure. There are no particular magic keywords or "cheat codes" - by design.
-
-		Model
-			Haikku, Sonnet, Opus - 3 concrete different models, eg Haikku probably has 1/3 of the attention layers
-		Claude Code system prompt: https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html
-		Chat personality
-		Language preferences
-			Claude has no "Italian mode" at the architecture level; language behavior is entirely emergent from training data and conditioning
-			"Respond in Italian. Use Italian for all responses regardless of the language the user writes in."
-		claude.md / gemini.md / agents.md etc
-			Eg tell what claude /init does: produce a compact overview of things that are useful to say about this folder
-		personalization, memories, ...
-		[current file, selected text, terminal output, etc]
-		Also, the difference between plan and agent mode
-		How big is it? Show some examples.
-		There’s no privileged channel; system prompt and user messages are all just tokens by the time the model sees them
-
-
-https://github.com/asgeirtj/system_prompts_leaks
-
-Silently ignore casual typos; gently flag systemic spelling blind spots as an aside.
-
-
-
-https://www.youtube.com/@mattpocockuk/videos
-
-https://github.com/mattpocock/skills
-
-https://www.youtube.com/watch?v=UNzCG3lw6O0
-
-a skill is markdown instructions loaded on demand
-
-Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
-There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
-For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
-The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
-The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
-Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
-
-https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
-
-The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
-
-Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
-
-OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
-
-Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
-
-- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
-- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
-- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
-- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
-- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
-- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
-- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
-- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
-- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
-
-
-
-
-### Example 1..N
-
-### The Chat Template
-
-Everything comes in as structured json, but end up appearing as text to the LLM
-
-The flat-sequence fact explains a lot. Because system prompt, user input, and tool results are all just tokens in one sequence, the "authority" of a system prompt is a training artifact — RLHF conditioning — not a hard architectural boundary. That's the same fact that makes prompt injection possible.
-
-### The full picture with tokens etc
-Hammering in the notion of special tokens to steer the LLM
+### TODO: Show user/assistant turns and special tokens
 
 ## "Think harder"
 
@@ -1740,29 +1564,45 @@ Hammering in the notion of special tokens to steer the LLM
 
 * So maybe thinking call on some "bigger AI", stashed away in the back room?<br>*But then how could the biggest models think harder too? No, the hardware and model is fixed.*
 
-* Thinking could mean the LLM plan better when asked to think harder?<br>*There's just one way through the transformer, and it produces one token at a time, so no.*
+* Thinking could mean the LLM plan better when asked to think harder?<br>*No wait, the transformer is pure math, acting the same way for the same input.*
 
 * Ah, now I have the full picture. Is what we do here, refining the output, thinking?<br>*That's a bingo!*
 
-### Think, append, repeat
-- Thinking is simply: inject a special _"begin thinking"-token* (known from training), then keep producing and appending output until the LLM says "thinking completed" or the thinking-budget is exceeded.
-- Thinking is called name is **Chain of Thought**, aka **CoT**.
-
+### Thinking is: think, append, repeat
 <img src="images/service/overview/thinking.png">
 
-### "Thinking blocks" show the steps
+### Chain of Thought
+- Thinking is called **Chain of Thought**, or **CoT**
+- Thinking also goes by other names, like *effort*, but always works the same way:
+    - Inject a special *"hmm, let me think about that"-token*, known from training
+	- Keep producing, appending, and processing **thinking blocks** until the LLM says "thinking completed" or the allotted **thinking budget** is exceeded
+- The blocks are sent to the agent, which may show them to you
+
+### A penny for your thoughts
+* Thinking-blocks are output tokens (and also input-tokens), so they cost you, too.
+&nbsp;
+* For reasoning-heavy tasks, thinking tokens can therefore easily multiply your effective output costs by 10x.
+&nbsp;
+* However, unlike AI responses or tool-results thinking-blocks are (typically) *not included* in the context after this turn, even though the agent's UI may still show them. Only the final response *after the thinking* is kept in the context for the next turns.
+
+<img src="images/service/thinking/claude-code-thinking.png">
+
+
+### "Thinking blocks" can be interesting
 <img src="images/service/thinking/now-i-understand.png">
 
 ####
-Thinking generally produce a better result and the model can catch itself if it's going down the wrong path. Beware that can possibly also strengthen a misbelief.
+Thinking generally produce a better result and the model can catch itself if it's going down the wrong path.
 
-### Thinking typically produce higher quality
+However, it can possibly also strengthen a misbelief.
+
+### Thinking typically improves the response
 <img src="images/service/thinking/haiku.png">
 
 ####
-Without thinking the LLM didn't even produce a proper Haiku.
+Without thinking-steps the LLM failed to produce a proper Haiku.
 
-### Thinking is often enabled by default
+### You control the thinking effort
 <img src="images/service/thinking/claude-code-enable-thinking.png">
 
 ####
@@ -1770,23 +1610,13 @@ You can enable thinking in all kinds of manners. Nowadays, it's often simply ena
 
 "Thinking" goes by many names in the agent's UI, but they all work this same way: a loop around the LLM.
 
-### Old-time "ultrathink" is a myth now
+### Writing "ultrathink" is a myth now
 <img src="images/service/thinking/ultrathink.png">
 
 ####
 This was how Claude controlled the thinking in early days.
 
 But not anymore.
-
-### A penny for your thoughts
-<img src="images/service/thinking/claude-code-thinking.png">
-
-####
-Thinking-blocks are output tokens (and also input-tokens), so they cost you, too.
-
-For reasoning-heavy tasks, thinking tokens can multiply your effective output costs by 3-10x.
-
-However, they're *not included* in the context after this turn, even though you can typically still see them in the agent's chat.
 
 
 ## Tools
@@ -1963,6 +1793,147 @@ You should read this as a principled overview: the AI is talking to an MCP serve
 ####
 The API docs, swagger ui, mcp
 
+## The system prompt
+
+### The context has more than just messages
+<img src="images/service/overview/chat-system.png">
+
+### System prompt
+"System prompt" sure sounds very special and magical.
+
+Well, yes and no.
+
+* A **system prompt** is also *just plain text*
+* The AI agent combine *"whatever is useful to tell the LLM"* into system prompts
+* You could have *written this text yourself* and just sent it in a prompt (well, sort of)
+
+### The system prompt does carry more weight
+<img src="images/service/system/system-prompt-training.png">
+
+####
+Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the model makers will of course make sure that the system instructions are crafted to express the desired behavior.
+
+This bias towards obeying the system-instructions are therefore baked into the LLM. But it is just that: a bias, a preference in case of conflicts. Practically nothing is a hard rule. It's all just instructions that carry more or less weight.
+
+### Anything useful goes into the system prompt
+<img src="images/service/system/highlight/all.png">
+
+####
+Because of this preference, anything that goes into the system prompt carry more weight than if it was just a user message. So placing instructions in one of the ways that makes it into the system instructions (for example in an agent-file) increase the likelihood of the LLM obeying them, compared to simply writing them in the message prompts.
+
+### The system prompt is composed by the agent
+<img src="images/service/system/prompt/maximillian.png">
+
+####
+Note that the system prompt is entirely constructed by the agent. That's why you get entirely different system prompts depending on what agent you use. If you build your own agent then there is no system prompt.
+
+It's a lot, but let's very briefly go through all the bits that agents typically put into the system prompt.
+
+### The agent system prompt
+<img src="images/service/system/highlight/system-prompt.png">
+
+- Instructions that the agent (chatpgt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
+- It brings information about the agent's name, purpose, behavior, etc.
+<br>
+- Generally, it's not visible in the UI - it's just there
+
+
+####
+
+[How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
+[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
+[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
+
+### Claude prompts are public
+
+An "agents" file isn't secrets instructions to kick off roaming live AI-agent.
+Agent is such an overloaded term.
+
+
+
+### Prompt injection
+
+### Shoveled into one big pile of text
+<img src="images/service/system/shoveling.png">
+
+### All the things that goes into it
+
+If you're building an agent, ie interacting with the AI service directly, then you're responsible for adding all this kind of useful info.
+
+How about formatting? xml, headings? Doesn't matter, they all convey a sense of structure. There are no particular magic keywords or "cheat codes" - by design.
+
+		Model
+			Haikku, Sonnet, Opus - 3 concrete different models, eg Haikku probably has 1/3 of the attention layers
+		Claude Code system prompt: https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html
+		Chat personality
+		Language preferences
+			Claude has no "Italian mode" at the architecture level; language behavior is entirely emergent from training data and conditioning
+			"Respond in Italian. Use Italian for all responses regardless of the language the user writes in."
+		claude.md / gemini.md / agents.md etc
+			Eg tell what claude /init does: produce a compact overview of things that are useful to say about this folder
+		personalization, memories, ...
+		[current file, selected text, terminal output, etc]
+		Also, the difference between plan and agent mode
+		How big is it? Show some examples.
+		There’s no privileged channel; system prompt and user messages are all just tokens by the time the model sees them
+
+
+https://github.com/asgeirtj/system_prompts_leaks
+
+Silently ignore casual typos; gently flag systemic spelling blind spots as an aside.
+
+
+
+https://www.youtube.com/@mattpocockuk/videos
+
+https://github.com/mattpocock/skills
+
+https://www.youtube.com/watch?v=UNzCG3lw6O0
+
+a skill is markdown instructions loaded on demand
+
+Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
+There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
+For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
+The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
+The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
+Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
+
+https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
+
+The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
+
+Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
+
+OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
+
+Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
+
+- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
+- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
+- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
+- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
+- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
+- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
+- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
+- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
+- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
+
+
+
+
+### Example 1..N
+
+### The Chat Template
+
+Everything comes in as structured json, but end up appearing as text to the LLM
+
+The flat-sequence fact explains a lot. Because system prompt, user input, and tool results are all just tokens in one sequence, the "authority" of a system prompt is a training artifact — RLHF conditioning — not a hard architectural boundary. That's the same fact that makes prompt injection possible.
+
+### The full picture with tokens etc
+Hammering in the notion of special tokens to steer the LLM
+
+
 ## Final bits
 
 ### Caching
@@ -2131,7 +2102,11 @@ Reasonability?
 https://claude.ai/chat/6e957ec3-8060-476d-867f-c59c42437d79
 One researcher offers a grounded explanation for why politeness might have any effect at all: "please" and "thank you" add conversational structure, making it clearer that what follows is a request — and more structure tends to make for better prompts. Additionally, politeness prompts tone-mirroring, which may or may not affect quality. 
 Multi-turn cost is unaccounted for. All the studies measured single-turn accuracy or quality. Your hypothetical is exactly right — if a terse impolite response omits something the user needed, the follow-up exchange adds tokens that could exceed what a fuller polite response would have cost. Nobody has measured conversation-level cost to resolution.
-### Is it sentinent?
+#### It just wants to please you - maybe
+#### Setting temperature=0 will guarantee the sme output
+#### If I just give it strict enough instructions then they must be followed
+
+#### Is it sentinent?
 https://claude.ai/chat/03b64faf-bb61-402a-982f-ab48a6bbff21
 Also Chomsky
 https://ling.auf.net/lingbuzz/007180/current.pdf

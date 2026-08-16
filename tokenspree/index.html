@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { height: 100%; }
-body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f7f5f0; color: #1a1810; padding: 10px 14px 6px; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f7f5f0; color: #1a1810; padding: 10px 14px 6px; min-height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; }
 #tip { display:none; position:fixed; pointer-events:none; z-index:200;
   background:#1e1a14; color:#f0ede8; border-radius:8px; padding:9px 13px;
   font-family:'Inter',system-ui,sans-serif; font-size:13px; line-height:1.7;
@@ -21,25 +21,28 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .layout { display: flex; gap: 16px; align-items: stretch; flex: 1; min-height: 0; }
 
 /* --- Sidebar --- */
-.sidebar { display: flex; flex-direction: column; gap: 10px; width: 192px; flex-shrink: 0; overflow-y: auto; }
-#sprees, #mitigations { display: flex; flex-direction: column; gap: 7px; }
+.sidebar { display: flex; flex-direction: column; gap: 6px; width: 160px; flex-shrink: 0; overflow-y: auto; }
+#sprees, #mitigations { display: flex; flex-direction: column; gap: 4px; }
 .card {
-  border: 5px solid #d0cbc0; border-radius: 7px; padding: 4px 10px;
+  border: 3px solid #d0cbc0; border-radius: 7px; padding: 3px 8px;
   cursor: pointer; transition: border-color 0.15s, background 0.15s;
   background: #fff; user-select: none;
 }
 .card:hover:not(.active) { border-color: #b0a898; }
-.card.active { border: 5px solid var(--cc); background: var(--bg); }
+.card.active { border: 3px solid var(--cc); background: var(--bg); }
 .label-row { display: flex; align-items: baseline; }
 .teaser { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 800; line-height: 1.2; white-space: nowrap; color: #1a1810; }
 .effect { font-family: 'JetBrains Mono', ui-monospace, Consolas, 'Menlo', monospace; font-size: 12px; font-weight: 600; color: #1a1810; margin-top: 3px; line-height: 1.35; white-space: nowrap; }
-#sprees .teaser, #mitigations .teaser { font-size: 13px; }
-#sprees .effect, #mitigations .effect { font-size: 10px; }
+#sprees .teaser, #mitigations .teaser { font-size: 12px; }
+#sprees .effect, #mitigations .effect { font-size: 9px; }
 
 /* --- Right column --- */
 .right { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
 .chart-wrap { position: relative; width: 100%; flex: 1; min-height: 0; }
 .chart-wrap canvas { display: block; }
+@media (max-height: 900px) {
+  .chart-wrap { max-height: 48vh; }
+}
 
 /* --- Mode toggle --- */
 .mode-toggle { display: flex; gap: 6px; margin-top: -20px; flex-shrink: 0; align-items: center; }
@@ -143,11 +146,11 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 
 /* --- Mitigations --- */
 .sidebar-section-label {
-  font-family: 'Inter', system-ui, sans-serif; font-size: 16px; font-weight: 400;
-  color: #1a1810; padding: 4px 2px 0; user-select: none;
+  font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 400;
+  color: #1a1810; padding: 2px 2px 0; user-select: none;
 }
 .card.mitig { border-color: #b8c8d8; }
-.card.mitig.active { border: 5px solid var(--cc); background: var(--bg); }
+.card.mitig.active { border: 3px solid var(--cc); background: var(--bg); }
 .card.mitig:hover:not(.active) { border-color: #7090b0; }
 
 </style>

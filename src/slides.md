@@ -2126,75 +2126,124 @@ It's quite possible that *only the tool's description* may be included in the co
 
 ### #7/11: Skills
 
-### Hey, isn't skills a big deal? Yes and no.
-TODO:
+### Hey, aren't skills a big deal?
 
+####
+Well, yes and no.
 
+---
+<img src="images/service/system/skills/trinity.png" />
 
+####
+A skill is _some expertise, that is loaded when you need it_.
 
+### What's a skill?
+* **Agent Skills** is an open standard, made by Anthropic and widely supported by agents
+* A skill is *text instructions* with a name
+* After you install a skill, those instructions can be loaded into the context on demand
+* The _on demand_ is done by either you or the LLM:
+	* In a terminal agent you can type `/skill-name`
+	* In a web chat you just ask something like _"use skill xxx to ..."_
+	* The skill has a description and the LLM can ask to load the skill's content when it would seem useful, _just like for tools_
 
+####
+Links:
+[Agent Skills Overview](https://agentskills.io/home)
 
+### What's a skill concretely?
+* It's essentially a little folder - it can e.g. be distributed as *a zip-file*
+* It *must* contain a file `SKILL.md` and *it can contain whatever else* the skill could need, with no upper limit; texts, files, images, whatever
 
+<img src="images/service/system/skills/skill-anatomy.jpg" />
 
+### Example: Matt Pocock's "grilling" skill
+Description:<br><br>"Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
+<br>
+<img src="images/service/system/skills/skill-griling.png" />
 
+####
+The `SKILL.md` file has just two required fields, name and description, and a markdown body.
 
+Links:
+[grilling skill](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
+[Matt Pocock on Github](https://github.com/mattpocock)
+[Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
+[How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
 
+### Using a skill
+<img src="images/service/system/skills/skill-parts.png" />
 
+####
+The name and description is always included in the system prompt.
+(Actually, this seems to be a bug, since skills marked `disable-model-invocation: true` should not be included).
 
-https://www.youtube.com/@mattpocockuk/videos
+The full content is added as a `tool_result` message when the user or LLM ask for it.
 
-https://github.com/mattpocock/skills
+The content is just text, so it will need to refer to other resources to bring them in. Just like you would do in a text prompt for a file: "use NOTES.md to ...".
 
-https://www.youtube.com/watch?v=UNzCG3lw6O0
+That's it, really: a skill is useful expert knowledge, but in practice it's just a piece of text that you can bring in when you need it.
 
-a skill is markdown instructions loaded on demand
+### Hey bro
+<img src="images/service/system/skills/bro/bro-skill-code.png" />
 
-Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
-There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
-For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
-The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
-The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
-Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
+####
+Some skills are really simple. Like this one called `bro`:
 
-https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
+It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."
 
-The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
+Links:
+[bro](https://github.com/backnotprop/bro)
 
-Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
+### Installing the bro skill for terminal agents
+<img src="images/service/system/skills/bro/bro-skill-install.png" />
 
-OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
+####
+Install skills like this using `npx skills add <repo-name>`.
 
-Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
+### Bro in action
+<img src="images/service/system/skills/bro/bro-skill-in-action.png" />
 
-- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
-- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
-- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
-- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
-- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
-- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
-- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
-- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
-- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
+####
+Thanks, bro.
 
+### Installing skills
 
+### Several ways for terminal/CLI agents
+<img src="images/service/system/skills/install/cli.png" />
 
+####
+The skill repo usually tells you what the options are.
 
+### Claude.ai: from Anthropic or your organization
+<img src="images/service/system/skills/install/claude-ai-browse.png" />
 
+####
+On claude.ai you can install skills from Anthropic or from your organization, if you're a member.
 
+### Claude.ai: upload a skill zip-file
+<img src="images/service/system/skills/install/claude-ai-upload.png" />
 
+####
+The old-school, manual way: get the skill as a zip and upload it.
 
+### ChatGPT: In plugins, search for the skill
+<img src="images/service/system/skills/install/chatgpt-browse-mattpocock.png" />
 
+####
+Here are Matt Pocock's skills also.
 
+### ChatGPT: Found the griling-skill
+<img src="images/service/system/skills/install/chatgpt-grilling.png" />
 
+####
+Same one we found before, now for ChatGPT.
 
-
-
-
-
-
-
-
-
+### Skills, recapped
+* It's "just" snippets of text you or the LLM can ask to insert into the context
+&nbsp;
+* Really useful, though, and certainly not magic
+&nbsp;
+* A bit like "smartphone auto-complete": write `/bro` and bro's text is written out
 
 ### #8/11: MCP servers
 
@@ -2574,7 +2623,7 @@ https://claude-academy.com/
 
 ### Level up
 Base level: try using the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
-	https://www.youtube.com/watch?v=MsQACpcuTkU
+	[ou've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
 Level 1: Use the basic controls: modes (plan, agent), thinking, individual chats. Practice prompting. Checkout some techniques.
 Level 2: Make it yours: give it specific general instructions, give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
 Level 2: Start using MCP and skills

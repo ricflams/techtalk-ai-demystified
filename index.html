@@ -1576,44 +1576,107 @@ The <em>agent/server always call the MCP server</em>, never the other way around
 <h4 id="_132"></h4>
 <p>It's quite possible that <em>only the tool's description</em> may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.</p>
 <h3 id="711-skills">#7/11: Skills</h3>
-<h3 id="hey-isnt-skills-a-big-deal-yes-and-no">Hey, isn't skills a big deal? Yes and no.</h3>
-<p>TODO:</p>
-<p>https://www.youtube.com/@mattpocockuk/videos</p>
-<p>https://github.com/mattpocock/skills</p>
-<p>https://www.youtube.com/watch?v=UNzCG3lw6O0</p>
-<p>a skill is markdown instructions loaded on demand</p>
-<p>Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
-There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
-For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
-The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
-The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
-Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.</p>
-<p>https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:</p>
-<p>The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.</p>
-<p>Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io</p>
-<p>OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills</p>
-<p>Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)</p>
+<h3 id="hey-arent-skills-a-big-deal">Hey, aren't skills a big deal?</h3>
+<h4 id="_133"></h4>
+<p>Well, yes and no.</p>
+<hr />
+<p><img src="images/service/system/skills/trinity.png" /></p>
+<h4 id="_134"></h4>
+<p>A skill is <em>some expertise, that is loaded when you need it</em>.</p>
+<h3 id="whats-a-skill">What's a skill?</h3>
 <ul>
-<li><strong>claude.ai</strong> — Customize &gt; Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.</li>
-<li><strong>Claude Code</strong> — <code>/plugin install &lt;name&gt;</code> from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.</li>
-<li><strong>Claude Team/Enterprise</strong> — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.</li>
-<li><strong>ChatGPT</strong> — no user-facing skill install; built-in skills ship server-side (<code>/home/oai/skills</code>), maintained by OpenAI only.</li>
-<li><strong>Codex CLI</strong> — <code>$skill-installer</code> for OpenAI's curated catalog; community skills via <code>npx skills</code> (manual <code>npx skills update</code>).</li>
-<li><strong>Gemini CLI</strong> — <code>gemini extensions install &lt;repo&gt;</code> for bundles with update support; loose SKILL.md folders are copy-in, manual.</li>
-<li><strong>Copilot / VS Code</strong> — skills as files in the repo or profile; "updates" = git pull, no managed channel.</li>
-<li><strong>Cross-harness (any of the above)</strong> — <code>npx skills add &lt;owner/repo&gt;</code> from skills.sh: one copy, symlinked everywhere, but pull-only updates.</li>
-<li><strong>Rule of thumb</strong> — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.</li>
+<li><strong>Agent Skills</strong> is an open standard, made by Anthropic and widely supported by agents</li>
+<li>A skill is <em>text instructions</em> with a name</li>
+<li>After you install a skill, those instructions can be loaded into the context on demand</li>
+<li>The <em>on demand</em> is done by either you or the LLM:<ul>
+<li>In a terminal agent you can type <code>/skill-name</code></li>
+<li>In a web chat you just ask something like <em>"use skill xxx to ..."</em></li>
+<li>The skill has a description and the LLM can ask to load the skill's content when it would seem useful, <em>just like for tools</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="_135"></h4>
+<p>Links:
+<a href="https://agentskills.io/home">Agent Skills Overview</a></p>
+<h3 id="whats-a-skill-concretely">What's a skill concretely?</h3>
+<ul>
+<li>It's essentially a little folder - it can e.g. be distributed as <em>a zip-file</em></li>
+<li>It <em>must</em> contain a file <code>SKILL.md</code> and <em>it can contain whatever else</em> the skill could need, with no upper limit; texts, files, images, whatever</li>
+</ul>
+<p><img src="images/service/system/skills/skill-anatomy.jpg" /></p>
+<h3 id="example-matt-pococks-grilling-skill">Example: Matt Pocock's "grilling" skill</h3>
+<p>Description:<br><br>"Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
+<br>
+<img src="images/service/system/skills/skill-griling.png" /></p>
+<h4 id="_136"></h4>
+<p>The <code>SKILL.md</code> file has just two required fields, name and description, and a markdown body.</p>
+<p>Links:
+<a href="https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling">grilling skill</a>
+<a href="https://github.com/mattpocock">Matt Pocock on Github</a>
+<a href="https://www.youtube.com/@mattpocockuk/videos">Matt Pocock on Youtube</a>
+<a href="https://tosea.ai/blog/matt-pocock-skills-claude-code-guide">How to Use Matt Pocock's Skills for Claude Code: A Complete Guide</a></p>
+<h3 id="using-a-skill">Using a skill</h3>
+<p><img src="images/service/system/skills/skill-parts.png" /></p>
+<h4 id="_137"></h4>
+<p>The name and description is always included in the system prompt.
+(Actually, this seems to be a bug, since skills marked <code>disable-model-invocation: true</code> should not be included).</p>
+<p>The full content is added as a <code>tool_result</code> message when the user or LLM ask for it.</p>
+<p>The content is just text, so it will need to refer to other resources to bring them in. Just like you would do in a text prompt for a file: "use NOTES.md to ...".</p>
+<p>That's it, really: a skill is useful expert knowledge, but in practice it's just a piece of text that you can bring in when you need it.</p>
+<h3 id="hey-bro">Hey bro</h3>
+<p><img src="images/service/system/skills/bro/bro-skill-code.png" /></p>
+<h4 id="_138"></h4>
+<p>Some skills are really simple. Like this one called <code>bro</code>:</p>
+<p>It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."</p>
+<p>Links:
+<a href="https://github.com/backnotprop/bro">bro</a></p>
+<h3 id="installing-the-bro-skill-for-terminal-agents">Installing the bro skill for terminal agents</h3>
+<p><img src="images/service/system/skills/bro/bro-skill-install.png" /></p>
+<h4 id="_139"></h4>
+<p>Install skills like this using <code>npx skills add &lt;repo-name&gt;</code>.</p>
+<h3 id="bro-in-action">Bro in action</h3>
+<p><img src="images/service/system/skills/bro/bro-skill-in-action.png" /></p>
+<h4 id="_140"></h4>
+<p>Thanks, bro.</p>
+<h3 id="installing-skills">Installing skills</h3>
+<h3 id="several-ways-for-terminalcli-agents">Several ways for terminal/CLI agents</h3>
+<p><img src="images/service/system/skills/install/cli.png" /></p>
+<h4 id="_141"></h4>
+<p>The skill repo usually tells you what the options are.</p>
+<h3 id="claudeai-from-anthropic-or-your-organization">Claude.ai: from Anthropic or your organization</h3>
+<p><img src="images/service/system/skills/install/claude-ai-browse.png" /></p>
+<h4 id="_142"></h4>
+<p>On claude.ai you can install skills from Anthropic or from your organization, if you're a member.</p>
+<h3 id="claudeai-upload-a-skill-zip-file">Claude.ai: upload a skill zip-file</h3>
+<p><img src="images/service/system/skills/install/claude-ai-upload.png" /></p>
+<h4 id="_143"></h4>
+<p>The old-school, manual way: get the skill as a zip and upload it.</p>
+<h3 id="chatgpt-in-plugins-search-for-the-skill">ChatGPT: In plugins, search for the skill</h3>
+<p><img src="images/service/system/skills/install/chatgpt-browse-mattpocock.png" /></p>
+<h4 id="_144"></h4>
+<p>Here are Matt Pocock's skills also.</p>
+<h3 id="chatgpt-found-the-griling-skill">ChatGPT: Found the griling-skill</h3>
+<p><img src="images/service/system/skills/install/chatgpt-grilling.png" /></p>
+<h4 id="_145"></h4>
+<p>Same one we found before, now for ChatGPT.</p>
+<h3 id="skills-recapped">Skills, recapped</h3>
+<ul>
+<li>It's "just" snippets of text you or the LLM can ask to insert into the context
+&nbsp;</li>
+<li>Really useful, though, and certainly not magic
+&nbsp;</li>
+<li>A bit like "smartphone auto-complete": write <code>/bro</code> and bro's text is written out</li>
 </ul>
 <h3 id="811-mcp-servers">#8/11: MCP servers</h3>
-<h4 id="_133"></h4>
+<h4 id="_146"></h4>
 <p>We already covered them in detail. But there's one important thing to dig into: what the context include of hints about each tool so the LLM can decide to use it or not.</p>
 <h3 id="full-tool-description-is-long-eg-500-tokens">Full tool description is long, eg 500 tokens</h3>
 <p><img src="images/service/system/mcp/tool-definition.png"></p>
-<h4 id="_134"></h4>
+<h4 id="_147"></h4>
 <p>It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server could eat up 50K or more or the context, about 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.</p>
 <h3 id="modern-lazy-load-only-include-tool-name">Modern lazy-load: only include tool name</h3>
 <p><img src="images/service/system/mcp/tool-definition.png"></p>
-<h4 id="_135"></h4>
+<h4 id="_148"></h4>
 <p>Nowadays the full definition is typically <em>not included in the context</em>: only the tool name. That's referred to as <strong>Lazy Schema Loading</strong>.</p>
 <p>This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.</p>
 <p>That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting match a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages viwth most page views" then it would match practically nothing in the tool name and the LLM would likely not notice that this tool was suitable to call.</p>
@@ -1622,44 +1685,44 @@ Skills aren't self-activating. The description is a hint, not a contract. If you
 <a href="https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names">SEP-986: Specify Format for Tool Names</a></p>
 <h3 id="20-tokens-instead-of-full-500-tokens">20 tokens instead of full 500 tokens</h3>
 <p><img src="images/service/system/mcp/token-length.png"></p>
-<h4 id="_136"></h4>
+<h4 id="_149"></h4>
 <p>So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using thew atlassian ...."</p>
 <h3 id="911-project-instructions">#9/11: Project instructions</h3>
 <h3 id="most-agents-offer-projects">Most agents offer "projects"</h3>
 <p><img src="images/service/system/projects/project-windows-to-linux.png"></p>
-<h4 id="_137"></h4>
+<h4 id="_150"></h4>
 <p>You can write instructions that is included in every chat related to a specific project or work that you're doing.</p>
 <p>They go by many names: Projects, Gems, Custom GPTs, Spaces.</p>
 <h3 id="1011-global-custom-instructions">#10/11: Global custom instructions</h3>
 <h3 id="customize-your-web-agent">Customize your web agent</h3>
 <p><img src="images/service/system/customize/all-agents.png"></p>
-<h4 id="_138"></h4>
+<h4 id="_151"></h4>
 <p>In all agents, you can add custom instructions that are included in every chat.</p>
 <p>it could be your preference for how the AI should talk or act.</p>
 <p>If there's something in general about the agents behavior that you'd like to change then this is the place. For instance, I have added this line to help me improve my spelling:</p>
 <p>"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."</p>
 <h3 id="example-always-provide-a-dinosaur-analogy">Example: "always provide a dinosaur-analogy"</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-instruction.png"></p>
-<h4 id="_139"></h4>
+<h4 id="_152"></h4>
 <p>As a silly example I added custom instructions to Copilot to always end every answer with a brief dinosaur-analogy.</p>
 <h3 id="like-a-swift-velociraptor">"Like a swift Velociraptor ..."</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-chat.png"></p>
-<h4 id="_140"></h4>
+<h4 id="_153"></h4>
 <p>I actually forgot I had added this, but surely remembered when later I returned to Copilot.</p>
 <h3 id="1111-agent-files">#11/11: Agent files</h3>
 <h3 id="agent-file-an-international-file-of-mystery">"Agent file"? An International File of Mystery?</h3>
 <p><img src="images/service/system/agent-files/austin-powers.jpg"></p>
-<h4 id="_141"></h4>
+<h4 id="_154"></h4>
 <p>An "agents" file sounds like some instruction for an autonomous agent of a kind. I think it sounds like instructions for something to <em>happen</em>. Maybe for starting an agent, possibly in the background doing some secret work?</p>
 <h3 id="no-mystery-just-custom-instructions-for-cli-tools">No mystery - just custom instructions for CLI tools</h3>
 <p><img src="images/service/system/agent-files/claude-md-dinosaur.png"></p>
-<h4 id="_142"></h4>
+<h4 id="_155"></h4>
 <p>You're likely almost tired of me repeating "it's just more instructions to put into the system prompt". But agent-files are just that: the exact equivalent of custom (or project) instructions, only for the AI agents you run in the terminal.</p>
 <h3 id="heres-the-claudemd-file-for-this-presentation">Here's the CLAUDE.md file for this presentation</h3>
 <p><img src="images/service/system/agent-files/claude-md-ai-talk.png"></p>
 <h3 id="names-and-locations-are-a-bit-of-a-jungle">Names and locations are a bit of a jungle</h3>
 <p><img src="images/service/system/agent-files/agents-md.png"></p>
-<h4 id="_143"></h4>
+<h4 id="_156"></h4>
 <p>I won't go into details with just how exactly agent-files can be named and organized in your folders, but just highlight a couple of points:</p>
 <p>Links:
 <a href="https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/">AGENTS.md: A Standard for AI Coding Agents</a></p>
@@ -1676,12 +1739,12 @@ Skills aren't self-activating. The description is a hint, not a contract. If you
 <p><img src="images/service/system/agent-files/agents-md.png"></p>
 <hr />
 <p><img src="images/service/system/layer-of-instructions.png"></p>
-<h4 id="_144"></h4>
+<h4 id="_157"></h4>
 <p>We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit mysterious.</p>
 <p>So let's get concrete and see what such an arbitrary system prompt looks like.</p>
 <hr />
 <p><img src="images/service/system/all/full.png"></p>
-<h4 id="_145"></h4>
+<h4 id="_158"></h4>
 <p>This is what one of my older system prompts from Copilot looked like, just as an example.
 Let's check it out.</p>
 <h3 id="some-names-facts-behaviors">Some names, facts, behaviors, ...</h3>
@@ -1700,20 +1763,20 @@ Let's check it out.</p>
 <p><img src="images/service/system/all/end-of-instructions.png"></p>
 <h3 id="at-the-end-of-the-day-its-all-just-text">At the end of the day, it's all just text</h3>
 <p><img src="images/service/system/shoveling.png"></p>
-<h4 id="_146"></h4>
+<h4 id="_159"></h4>
 <p>The reason for showing you these snippets is to hammer in this fact:</p>
 <p>At the end of the day, the "system prompt" is all just text. Words competing for the LLM's attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills).</p>
 <p>Yeah, you'll see some tags and markup, but that <em>markup is not rigorous rules</em>. The markup just convey some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with <code>##</code> headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate <em>the structure</em> it brings, just like human readers would.</p>
 <h3 id="every-token-influence-all-others-its-just-math">Every token influence all others - it's just math</h3>
 <p><img src="images/llm/attention-space-seek.png"></p>
-<h4 id="_147"></h4>
+<h4 id="_160"></h4>
 <p>Remember, the LLM is pure math. No "LLM code" will deliberately demand the text <code>&lt;skills&gt;</code> to appear in order to recognize the list of skills. It may help, but it's not required.</p>
 <h2 id="final-ai-service-parts">Final AI service parts</h2>
 <h3 id="still-a-few-blank-spots">Still a few blank spots</h3>
 <p><img src="images/service/overview/full-except-misc.png"></p>
 <h3 id="the-final-parts">The final parts</h3>
 <p><img src="images/service/overview/misc.png"></p>
-<h4 id="_148"></h4>
+<h4 id="_161"></h4>
 <p>Four parts to mention:</p>
 <ul>
 <li>In addition to the text context, the request also does send along <em>some real hard parameters</em>: the <strong>model</strong>, the <strong>temperature</strong>, the <strong>thinking budget</strong> in tokens, and some other model-specific bits. In particular, the <em>temperature</em> adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In pactice that leads to a weirdly clinical and un-appealing output. Higher temperature simply mean increased likelihood of choosing some of the less probably next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelity in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one session to another.</li>
@@ -1865,7 +1928,7 @@ See it as an investment.</p>
 <p>https://claude-academy.com/</p>
 <h3 id="level-up">Level up</h3>
 <p>Base level: try using the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
-    https://www.youtube.com/watch?v=MsQACpcuTkU
+    <a href="https://www.youtube.com/watch?v=MsQACpcuTkU">ou've Been Using AI the Hard Way (Use This Instead)</a>
 Level 1: Use the basic controls: modes (plan, agent), thinking, individual chats. Practice prompting. Checkout some techniques.
 Level 2: Make it yours: give it specific general instructions, give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
 Level 2: Start using MCP and skills

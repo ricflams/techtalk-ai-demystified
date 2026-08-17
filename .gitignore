@@ -1,2 +1,5 @@
 public/
 .claude/settings.local.json
+node_modules/
+.wrangler/
+__pycache__/

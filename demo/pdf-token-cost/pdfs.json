@@ -6,6 +6,7 @@
     "filename": "attention.pdf",
     "description": "Transformer architecture paper, ~15 pages, math equations, attention diagrams",
     "type": "academic-math",
+    "extraction_risk": "high",
     "questions": [
       "What are the three distinct ways multi-head attention is used within the full Transformer model?",
       "What are the exact dimensions of the base model: d_model, d_ff, and number of attention heads h?",
@@ -26,6 +27,7 @@
     "filename": "resnet.pdf",
     "description": "ResNet paper, ~12 pages, many figures and result tables",
     "type": "academic-figures",
+    "extraction_risk": "high",
     "questions": [
       "What is the central problem or phenomenon that motivates residual learning in this paper?",
       "How many layers does the deepest ResNet evaluated in the paper have?",
@@ -46,6 +48,7 @@
     "filename": "gpt3.pdf",
     "description": "GPT-3 paper, ~75 pages, many tables, large and complex",
     "type": "academic-large",
+    "extraction_risk": "high",
     "questions": [
       "How many parameters does the largest GPT-3 model have?",
       "What are the exact architecture dimensions (n_layers, n_heads, d_model) for GPT-3 175B?",
@@ -66,6 +69,7 @@
     "filename": "irs1040.pdf",
     "description": "IRS tax form, 2 pages, structured form with fields and layout - tests forms/layout extraction",
     "type": "form-layout",
+    "extraction_risk": "high",
     "questions": [
       "What tax year does this version of Form 1040 cover?",
       "What are the four filing status options listed on the form?",
@@ -86,6 +90,7 @@
     "filename": "nist_cloud.pdf",
     "description": "NIST SP 800-145, ~7 pages, pure dense text, the canonical cloud computing definition",
     "type": "legal-text",
+    "extraction_risk": "low",
     "questions": [
       "What is the complete NIST definition of cloud computing as stated in the document?",
       "What are the five essential characteristics of cloud computing?",
@@ -106,6 +111,7 @@
     "filename": "nist_csf.pdf",
     "description": "NIST CSF, ~55 pages, structured with tables and categories, government report",
     "type": "structured-report",
+    "extraction_risk": "high",
     "questions": [
       "What are the five Core Functions of the NIST Cybersecurity Framework?",
       "What are the four Implementation Tiers, and what characterizes Tier 1 (Partial)?",
@@ -126,6 +132,7 @@
     "filename": "bert.pdf",
     "description": "BERT paper, ~16 pages, tables, architecture diagrams",
     "type": "academic-math",
+    "extraction_risk": "high",
     "questions": [
       "What does the BERT acronym stand for?",
       "What are the two pre-training tasks used by BERT?",
@@ -142,10 +149,11 @@
   {
     "id": "word2vec",
     "name": "Efficient Estimation of Word Representations in Vector Space (Word2Vec)",
-    "url": "https://arxiv.org/pdf/1301.3666",
+    "url": "https://arxiv.org/pdf/1301.3781",
     "filename": "word2vec.pdf",
     "description": "Word2Vec paper, ~12 pages, small, mostly text with a few tables",
     "type": "academic-text",
+    "extraction_risk": "low",
     "questions": [
       "What are the two new model architectures proposed in this paper?",
       "What is the training objective of the Skip-gram model?",
@@ -166,6 +174,7 @@
     "filename": "clip.pdf",
     "description": "CLIP paper, ~48 pages, heavily image-intensive with many example images and charts",
     "type": "academic-images",
+    "extraction_risk": "high",
     "questions": [
       "What does CLIP stand for?",
       "What is the contrastive training objective used by CLIP?",
@@ -186,6 +195,7 @@
     "filename": "gans.pdf",
     "description": "Original GAN paper, ~9 pages, small, theoretical with some figures",
     "type": "academic-math",
+    "extraction_risk": "high",
     "questions": [
       "What are the two neural networks in a GAN and what are their respective objectives?",
       "Write out the minimax objective function V(D, G) as it appears in the paper.",

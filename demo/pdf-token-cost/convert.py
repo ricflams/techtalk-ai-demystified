@@ -54,27 +54,39 @@ def convert_pymupdf4llm(pdf: Path, out_dir: Path) -> Path | None:
 
 
 # ── marker ─────────────────────────────────────────────────────────────────────
+# marker-pdf's API changed between v0.x and v1.x. This targets v1.x
+# (marker.converters.pdf.PdfConverter / marker.models.create_model_dict), which is
+# what `pip install marker-pdf` currently installs. The model dict is loaded once
+# and reused across PDFs since that's the slow part (downloads + GPU/CPU load).
+
+_marker_converter = None
+
+
+def _get_marker_converter():
+    global _marker_converter
+    if _marker_converter is None:
+        from marker.converters.pdf import PdfConverter
+        from marker.models import create_model_dict
+        # This machine's GPU is a 4GB T400 shared with the desktop session — marker's
+        # 5-model pipeline OOMs on it. Force CPU; slower, but this only needs to run once.
+        print("    loading marker models on CPU (slow first time, downloads weights)…")
+        _marker_converter = PdfConverter(artifact_dict=create_model_dict(device="cpu"))
+    return _marker_converter
+
 
 def convert_marker(pdf: Path, out_dir: Path) -> Path | None:
     try:
-        from marker.convert import convert_single_pdf
-        from marker.models import load_all_models
+        from marker.output import text_from_rendered
     except ImportError:
         print("    marker not installed (optional: pip install marker-pdf)")
         return None
 
-    dest_dir = out_dir / pdf.stem
-    dest_dir.mkdir(exist_ok=True)
-    dest = dest_dir / (pdf.stem + ".md")
-
-    if dest.exists():
-        return dest  # marker already ran
-
+    dest = out_dir / (pdf.stem + ".md")
     try:
-        print("    loading marker models (slow first time)…")
-        model_lst = load_all_models()
-        full_text, _images, _meta = convert_single_pdf(str(pdf), model_lst)
-        dest.write_text(full_text, encoding="utf-8")
+        converter = _get_marker_converter()
+        rendered = converter(str(pdf))
+        text, _ext, _images = text_from_rendered(rendered)
+        dest.write_text(text, encoding="utf-8")
         return dest
     except Exception as e:
         print(f"    marker failed: {e}")

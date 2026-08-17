@@ -3,101 +3,160 @@
 Generate the experiment report.
 
 Reads:
-  results/tokens.json   — token counts from measure_tokens.py
-  results/answers/      — QA answers from run_qa.py
+  results/tokens.json        — token counts from measure_tokens.py
+  results/ground_truth.json  — verified reference answers from build_ground_truth.py
+  results/answers/           — QA answers from run_qa.py (pdf / markdown_pymupdf4llm / markdown_marker)
 
 Optionally runs LLM-as-judge to score answer quality (--judge flag).
+
+Methodology v2 (see findings.md for the full writeup of what changed and why):
+  - Judge scores each candidate's accuracy/completeness against a verified ground-truth
+    reference answer, rather than purely comparing candidates to each other.
+  - Candidate order is randomized and unlabeled (the judge never sees which arm produced
+    which answer) to remove the source-label bias in v1.
+  - Judge model upgraded to match the answering model's strength.
+  - Three arms compared: raw PDF, pymupdf4llm markdown, marker markdown. The primary
+    comparison is PDF vs. best-of-the-two-markdowns per question ("best-effort markdown"),
+    with a secondary comparison of which markdown converter wins.
+  - Aggregate win/loss counts get an exact two-sided binomial test (excluding ties),
+    computed overall and stratified by each document's `extraction_risk` tag.
+
 Output: results/report.md
 """
 import argparse
 import json
 import os
+import random
 import sys
 import time
 from pathlib import Path
 
 import anthropic
+from scipy.stats import binomtest
 
-CATALOG     = Path(__file__).parent / "pdfs.json"
-RESULTS_DIR = Path(__file__).parent / "results"
-ANSWERS_DIR = RESULTS_DIR / "answers"
-TOKENS_FILE = RESULTS_DIR / "tokens.json"
-SCORES_FILE = RESULTS_DIR / "scores.json"
-REPORT_FILE = RESULTS_DIR / "report.md"
+CATALOG       = Path(__file__).parent / "pdfs.json"
+RESULTS_DIR   = Path(__file__).parent / "results"
+ANSWERS_DIR   = RESULTS_DIR / "answers"
+TOKENS_FILE   = RESULTS_DIR / "tokens.json"
+GT_FILE       = RESULTS_DIR / "ground_truth.json"
+SCORES_FILE   = RESULTS_DIR / "scores.json"
+REPORT_FILE   = RESULTS_DIR / "report.md"
 
-JUDGE_MODEL = "claude-haiku-4-5-20251001"
+JUDGE_MODEL = "claude-opus-5"
+ARMS = ["pdf", "markdown_pymupdf4llm", "markdown_marker"]
+ARM_LABEL = {"pdf": "Raw PDF", "markdown_pymupdf4llm": "pymupdf4llm", "markdown_marker": "marker"}
 
-JUDGE_PROMPT = """\
-You are a neutral judge evaluating two answers to a question about a document.
+JUDGE_PROMPT_HEADER = """\
+You are a neutral judge scoring candidate answers to a question about a document, against \
+a verified reference answer. You are not told how any candidate answer was produced — judge \
+each purely on its own merits against the reference.
 
 The question is: {question}
 
-Answer A (from raw PDF):
-{answer_a}
+Reference answer (verified correct): {reference}
 
-Answer B (from converted markdown):
-{answer_b}
+Score each candidate from 1 to 5 on:
+- accuracy: does the candidate agree with the reference answer's facts (numbers, terms, \
+equations, names, etc.), penalizing incorrect, hallucinated, or missing details?
+- completeness: does it fully address the question the way the reference answer does?
 
-Score each answer from 1 to 5 on:
-- accuracy: is the information factually correct and precise?
-- completeness: does it fully address the question?
+"""
 
-Respond with valid JSON only, no prose:
-{{"a_accuracy": N, "a_completeness": N, "b_accuracy": N, "b_completeness": N, "winner": "A"|"B"|"tie", "note": "one sentence explanation"}}"""
+JUDGE_PROMPT_FOOTER = """
+Respond with valid JSON only, no prose: a single JSON object with one key per candidate \
+(matching the candidate numbers above) plus a "note" key, shaped like:
+{example}"""
 
 
-def judge(client, question: str, answer_a: str, answer_b: str) -> dict:
-    prompt = JUDGE_PROMPT.format(question=question, answer_a=answer_a[:2000], answer_b=answer_b[:2000])
-    resp = client.messages.create(
-        model=JUDGE_MODEL,
-        max_tokens=300,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    text = resp.content[0].text.strip()
-    # Strip any markdown code fences the model might add
+def extract_text(resp) -> str:
+    """claude-opus-5 can emit a thinking block (text=None) as content[0] even with
+    thinking disabled server-side in rare cases — never assume content[0] is the answer."""
+    for block in resp.content:
+        if block.type == "text":
+            return block.text
+    raise ValueError(f"No text block in response: {resp.content}")
+
+
+def parse_json_response(text: str) -> dict:
+    text = text.strip()
     if text.startswith("```"):
         text = text.split("```")[1]
         if text.startswith("json"):
             text = text[4:]
-    return json.loads(text)
+    return json.loads(text.strip())
 
 
-def load_answers(pdf_id: str, q_idx: int) -> tuple[str | None, str | None, dict | None, dict | None]:
+def judge(client, question: str, reference: str, candidates: dict[str, str]) -> dict:
+    """candidates: {arm_name: answer_text}, at least 2 entries.
+    Returns {arm_name: {"accuracy": N, "completeness": N}, "note": str}."""
+    arm_names = list(candidates.keys())
+    order = arm_names[:]
+    random.shuffle(order)  # order[i] = real arm name shown as "Candidate i+1"
+
+    blocks = "\n".join(
+        f"Candidate {i+1}:\n{candidates[order[i]][:2000]}\n" for i in range(len(order))
+    )
+    example = "{" + ", ".join(f'"c{i+1}_accuracy": N, "c{i+1}_completeness": N' for i in range(len(order))) \
+              + ', "note": "one sentence explanation"}'
+    prompt = JUDGE_PROMPT_HEADER.format(question=question, reference=reference[:2000]) \
+              + blocks + JUDGE_PROMPT_FOOTER.format(example=example)
+
+    resp = client.messages.create(
+        model=JUDGE_MODEL,
+        max_tokens=400,
+        thinking={"type": "disabled"},
+        messages=[{"role": "user", "content": prompt}],
+    )
+    parsed = parse_json_response(extract_text(resp))
+
+    result = {"note": parsed.get("note", "")}
+    for i, arm_name in enumerate(order, 1):
+        result[arm_name] = {
+            "accuracy":     parsed[f"c{i}_accuracy"],
+            "completeness": parsed[f"c{i}_completeness"],
+        }
+    return result
+
+
+def load_answers(pdf_id: str, q_idx: int) -> dict[str, str]:
     d = ANSWERS_DIR / pdf_id
-    pdf_file = d / f"q{q_idx:02d}_pdf.txt"
-    md_file  = d / f"q{q_idx:02d}_markdown.txt"
-    pdf_meta = d / f"q{q_idx:02d}_pdf.meta.json"
-    md_meta  = d / f"q{q_idx:02d}_markdown.meta.json"
-    a = pdf_file.read_text() if pdf_file.exists() else None
-    b = md_file.read_text()  if md_file.exists()  else None
-    ma = json.loads(pdf_meta.read_text()) if pdf_meta.exists() else None
-    mb = json.loads(md_meta.read_text())  if md_meta.exists()  else None
-    return a, b, ma, mb
+    out = {}
+    for arm in ARMS:
+        f = d / f"q{q_idx:02d}_{arm}.txt"
+        if f.exists():
+            out[arm] = f.read_text(encoding="utf-8", errors="replace")
+    return out
 
 
-def run_judging(client, catalog: list) -> dict:
+def run_judging(client, catalog: list, ground_truth: dict) -> dict:
     scores = json.loads(SCORES_FILE.read_text()) if SCORES_FILE.exists() else {}
 
     for entry in catalog:
         pdf_id = entry["id"]
         if pdf_id not in scores:
             scores[pdf_id] = {}
+        gt_for_doc = ground_truth.get(pdf_id, {})
 
-        questions = entry["questions"]
-        for i, question in enumerate(questions, 1):
+        for i, question in enumerate(entry["questions"], 1):
             key = f"q{i:02d}"
             if key in scores[pdf_id]:
                 continue
 
-            a, b, _, _ = load_answers(pdf_id, i)
-            if not a or not b:
+            candidates = load_answers(pdf_id, i)
+            if len(candidates) < 2:
+                continue  # need at least 2 arms to compare
+
+            gt_entry = gt_for_doc.get(key)
+            if not gt_entry:
+                print(f"  SKIP {pdf_id} Q{i}: no ground truth available")
                 continue
 
             print(f"  judging {pdf_id} Q{i}…", end=" ", flush=True)
             try:
-                result = judge(client, question, a, b)
+                result = judge(client, question, gt_entry["answer"], candidates)
+                result["reference_confidence"] = gt_entry.get("confidence")
                 scores[pdf_id][key] = result
-                print(result["winner"])
+                print({arm: result[arm] for arm in candidates})
                 SCORES_FILE.write_text(json.dumps(scores, indent=2))
                 time.sleep(0.3)
             except Exception as e:
@@ -106,9 +165,48 @@ def run_judging(client, catalog: list) -> dict:
     return scores
 
 
+def arm_avg(qscore: dict, arm: str) -> float | None:
+    if arm not in qscore:
+        return None
+    return (qscore[arm]["accuracy"] + qscore[arm]["completeness"]) / 2
+
+
+def primary_winner(qscore: dict) -> str | None:
+    """PDF vs. best-of-markdown (pymupdf4llm/marker) for this question."""
+    pdf_score = arm_avg(qscore, "pdf")
+    md_scores = [s for s in (arm_avg(qscore, "markdown_pymupdf4llm"), arm_avg(qscore, "markdown_marker")) if s is not None]
+    if pdf_score is None or not md_scores:
+        return None
+    md_best = max(md_scores)
+    if pdf_score > md_best:
+        return "pdf"
+    if md_best > pdf_score:
+        return "markdown"
+    return "tie"
+
+
+def markdown_tool_winner(qscore: dict) -> str | None:
+    a, b = arm_avg(qscore, "markdown_pymupdf4llm"), arm_avg(qscore, "markdown_marker")
+    if a is None or b is None:
+        return None
+    if a > b:
+        return "pymupdf4llm"
+    if b > a:
+        return "marker"
+    return "tie"
+
+
+def sign_test(wins: int, losses: int) -> str:
+    n = wins + losses
+    if n == 0:
+        return "n/a (no non-tie comparisons)"
+    result = binomtest(wins, n, 0.5)
+    return f"p={result.pvalue:.3f} (n={n} non-tie comparisons, {wins}-{losses})"
+
+
 def format_tokens_table(tokens: dict, catalog: list) -> str:
-    rows = ["| Document | Pages est. | Raw PDF | pymupdf4llm | pdftotext | MD/PDF ratio |",
-            "|----------|:----------:|--------:|------------:|----------:|:------------:|"]
+    rows = ["| Document | Raw PDF | pymupdf4llm | pdftotext | MD/PDF ratio |",
+            "|----------|--------:|------------:|----------:|:------------:|"]
 
     for entry in catalog:
         pid = entry["id"]
@@ -119,60 +217,77 @@ def format_tokens_table(tokens: dict, catalog: list) -> str:
         ratio = f"{mupdf/raw:.0%}" if raw and mupdf else "—"
         rows.append(
             f"| {entry['name'][:38]} "
-            f"| — "
             f"| {f'{raw:,}' if raw else '—':>7} "
             f"| {f'{mupdf:,}' if mupdf else '—':>11} "
             f"| {f'{ptxt:,}' if ptxt else '—':>9} "
             f"| {ratio:^12} |"
         )
 
-    # Totals
     tot_raw   = sum(v.get("raw_pdf", 0)      or 0 for v in tokens.values())
     tot_mupdf = sum(v.get("pymupdf4llm", 0)  or 0 for v in tokens.values())
     tot_ptxt  = sum(v.get("pdftotext", 0)    or 0 for v in tokens.values())
     tot_ratio = f"{tot_mupdf/tot_raw:.0%}" if tot_raw and tot_mupdf else "—"
-    rows.append(f"| **TOTAL** | | **{tot_raw:,}** | **{tot_mupdf:,}** | **{tot_ptxt:,}** | **{tot_ratio}** |")
+    rows.append(f"| **TOTAL** | **{tot_raw:,}** | **{tot_mupdf:,}** | **{tot_ptxt:,}** | **{tot_ratio}** |")
 
     return "\n".join(rows)
 
 
-def format_quality_table(scores: dict, tokens: dict, catalog: list) -> str:
-    rows = ["| Document | Type | PDF avg | MD avg | Winner | Note |",
-            "|----------|------|:-------:|:------:|:------:|------|"]
+def format_quality_table(scores: dict, catalog: list) -> tuple[str, dict]:
+    rows = ["| Document | Risk | PDF avg | pymupdf4llm avg | marker avg | Winner (PDF vs best MD) | MD tool winner |",
+            "|----------|:----:|:-------:|:---------------:|:----------:|:-----------------------:|:--------------:|"]
 
-    pdf_wins = md_wins = ties = 0
+    totals = {
+        "overall": {"pdf": 0, "markdown": 0, "tie": 0},
+        "low":     {"pdf": 0, "markdown": 0, "tie": 0},
+        "high":    {"pdf": 0, "markdown": 0, "tie": 0},
+        "md_tool": {"pymupdf4llm": 0, "marker": 0, "tie": 0},
+    }
 
     for entry in catalog:
         pid = entry["id"]
-        qs  = scores.get(pid, {})
+        risk = entry.get("extraction_risk", "?")
+        qs = scores.get(pid, {})
         if not qs:
-            rows.append(f"| {entry['name'][:38]} | {entry['type']} | — | — | — | not run |")
+            rows.append(f"| {entry['name'][:38]} | {risk} | — | — | — | not judged | — |")
             continue
 
-        a_scores = [(v["a_accuracy"] + v["a_completeness"]) / 2 for v in qs.values()]
-        b_scores = [(v["b_accuracy"] + v["b_completeness"]) / 2 for v in qs.values()]
-        a_avg = sum(a_scores) / len(a_scores)
-        b_avg = sum(b_scores) / len(b_scores)
+        pdf_avgs   = [arm_avg(v, "pdf") for v in qs.values() if arm_avg(v, "pdf") is not None]
+        mupdf_avgs = [arm_avg(v, "markdown_pymupdf4llm") for v in qs.values() if arm_avg(v, "markdown_pymupdf4llm") is not None]
+        marker_avgs = [arm_avg(v, "markdown_marker") for v in qs.values() if arm_avg(v, "markdown_marker") is not None]
 
-        wins = sum(1 for v in qs.values() if v["winner"] == "A")
-        losses = sum(1 for v in qs.values() if v["winner"] == "B")
-        ties_n = sum(1 for v in qs.values() if v["winner"] == "tie")
+        doc_pdf_wins = doc_md_wins = doc_ties = 0
+        for v in qs.values():
+            w = primary_winner(v)
+            if w is None:
+                continue
+            totals["overall"][w] += 1
+            totals[risk][w] = totals.get(risk, {}).get(w, 0) + 1
+            if w == "pdf":
+                doc_pdf_wins += 1
+            elif w == "markdown":
+                doc_md_wins += 1
+            else:
+                doc_ties += 1
 
-        if wins > losses:
-            winner = "PDF"; pdf_wins += 1
-        elif losses > wins:
-            winner = "MD"; md_wins += 1
-        else:
-            winner = "tie"; ties += 1
+            tw = markdown_tool_winner(v)
+            if tw is not None:
+                totals["md_tool"][tw] += 1
 
-        sample_note = list(qs.values())[0].get("note", "")[:50]
+        winner = "PDF" if doc_pdf_wins > doc_md_wins else ("MD" if doc_md_wins > doc_pdf_wins else "tie")
+        md_tool_wins = sum(1 for v in qs.values() if markdown_tool_winner(v) == "marker")
+        md_tool_losses = sum(1 for v in qs.values() if markdown_tool_winner(v) == "pymupdf4llm")
+        md_tool_summary = "marker" if md_tool_wins > md_tool_losses else ("pymupdf4llm" if md_tool_losses > md_tool_wins else "tie")
+
+        def fmt(avgs):
+            return f"{sum(avgs)/len(avgs):.1f}/5" if avgs else "—"
+
         rows.append(
-            f"| {entry['name'][:38]} | {entry['type']} "
-            f"| {a_avg:.1f}/5 | {b_avg:.1f}/5 | **{winner}** | {sample_note} |"
+            f"| {entry['name'][:38]} | {risk} "
+            f"| {fmt(pdf_avgs)} | {fmt(mupdf_avgs)} | {fmt(marker_avgs)} "
+            f"| **{winner}** ({doc_pdf_wins}-{doc_md_wins}-{doc_ties}) | {md_tool_summary} |"
         )
 
-    rows.append(f"\n**Overall:** PDF wins: {pdf_wins}, Markdown wins: {md_wins}, Ties: {ties}")
-    return "\n".join(rows)
+    return "\n".join(rows), totals
 
 
 def build_report(catalog: list, tokens: dict, scores: dict) -> str:
@@ -187,6 +302,7 @@ or may not affect quality, depending on PDF type.
 **Approaches compared:**
 - **Raw PDF** — PDF uploaded directly via the Anthropic document API (Claude extracts internally)
 - **pymupdf4llm** — Converted to markdown on the command line, sent as text
+- **marker** — ML-based markdown conversion (better table/layout handling), sent as text
 - **pdftotext** — Plain text extraction, for token baseline only
 
 ---
@@ -202,52 +318,52 @@ or may not affect quality, depending on PDF type.
     else:
         sections.append("_Run `python measure_tokens.py` to populate this section._\n")
 
-    sections.append("\n## 2. Quality Comparison (LLM-as-Judge)\n")
-    sections.append(f"Judge model: `{JUDGE_MODEL}` · Scores: accuracy + completeness, 1–5 each, averaged.\n\n")
+    sections.append("\n## 2. Quality Comparison (LLM-as-Judge, methodology v2)\n")
+    sections.append(
+        f"Judge model: `{JUDGE_MODEL}` · Scores: accuracy + completeness vs. a verified ground-truth "
+        f"reference answer, 1–5 each, averaged. Judge never sees which arm produced which candidate; "
+        f"candidate order is randomized per question.\n\n"
+    )
     if scores:
-        sections.append(format_quality_table(scores, tokens, catalog))
+        table, totals = format_quality_table(scores, catalog)
+        sections.append(table)
+
+        o = totals["overall"]
+        sections.append(f"\n**Overall (PDF vs. best-of-markdown):** PDF wins: {o['pdf']}, Markdown wins: {o['markdown']}, Ties: {o['tie']}")
+        sections.append(f"\n**Significance (sign test, excluding ties):** {sign_test(o['pdf'], o['markdown'])}")
+
+        low, high = totals.get("low", {}), totals.get("high", {})
+        sections.append(f"\n\n**Stratified — low extraction-risk docs (plain text):** PDF {low.get('pdf',0)} / MD {low.get('markdown',0)} / tie {low.get('tie',0)} — {sign_test(low.get('pdf',0), low.get('markdown',0))}")
+        sections.append(f"\n**Stratified — high extraction-risk docs (tables/equations/figures/layout):** PDF {high.get('pdf',0)} / MD {high.get('markdown',0)} / tie {high.get('tie',0)} — {sign_test(high.get('pdf',0), high.get('markdown',0))}")
+
+        mt = totals["md_tool"]
+        sections.append(f"\n\n**Markdown converter comparison (pymupdf4llm vs. marker):** marker wins: {mt['marker']}, pymupdf4llm wins: {mt['pymupdf4llm']}, ties: {mt['tie']} — {sign_test(mt['marker'], mt['pymupdf4llm'])}")
     else:
         sections.append("_Run `python run_qa.py` then `python report.py --judge` to populate this section._\n")
 
     sections.append("""\
 
-## 3. Key Observations
 
-### Token cost
-- **Image-heavy PDFs** (CLIP, IRS form): raw PDF is far more expensive; the AI services
-  process each page visually, similar to an image.
-- **Text-heavy PDFs** (GPL, Word2Vec, GANs): markdown version is ~40–70% cheaper with
-  no quality loss.
-- **Large papers with many tables** (GPT-3, NIST CSF): markdown saves tokens significantly
-  but may miss fine-grained table formatting.
+## 3. Methodology v2 changes from the original run
 
-### Quality
-- **Plain text documents**: quality is essentially equal. The AI services extract text
-  just as well as pymupdf4llm.
-- **Forms and structured layouts** (IRS 1040): raw PDF is better because layout relationships
-  (which field is next to which label) are preserved by the visual processing.
-- **Math equations**: raw PDF may be better if the equations are in rendered form;
-  pymupdf4llm renders LaTeX reasonably but may miss complex symbols.
-- **Image captions / figure references**: raw PDF wins because the images themselves
-  give context that is lost in pure text extraction.
+- **Ground truth**: judge now scores each candidate against a verified reference answer
+  (`build_ground_truth.py`, derived from the raw PDF only) instead of purely comparing
+  candidates to each other.
+- **Blind, randomized judging**: the judge is never told which arm produced which answer,
+  and candidate order is shuffled per question — v1's judge prompt explicitly labeled
+  "Answer A (from raw PDF)" / "Answer B (from converted markdown)" with PDF always first.
+- **Stronger, symmetric model**: both the answering model and the judge model were upgraded
+  from Sonnet-answers/Haiku-judges to the same strong model, so neither is stronger than
+  the other or than what it's grading.
+- **Third arm — marker**: added `marker` as a second, higher-quality markdown conversion
+  alongside `pymupdf4llm`'s default settings, so "raw PDF vs. markdown" is tested against
+  best-effort markdown, not just one converter's defaults.
+- **Significance testing**: an exact two-sided binomial (sign) test on non-tie comparisons,
+  computed overall and stratified by each document's `extraction_risk` tag (plain text vs.
+  tables/equations/figures/layout), so the effect isn't averaged away across dissimilar
+  document types.
 
-## 4. Conclusion
-
-The popular belief that "upload the PDF directly = AI processes raw binary bytes" is a
-misconception. API providers extract content from PDFs server-side, similarly to what
-pymupdf4llm or pdftotext do locally.
-
-**However, the API's extraction is image-based per-page**, so it:
-- Costs more tokens (each page ≈ a medium-resolution image)
-- Preserves visual layout (useful for forms, complex tables)
-- Handles images/figures natively (good for image-heavy papers)
-
-**pymupdf4llm** converts structured text more token-efficiently but loses images.
-
-**Practical recommendation:**
-- Text/code/legal docs → convert to markdown first (cheaper, same quality)
-- Forms, slides, image-heavy reports → send raw PDF (better quality justifies cost)
-- Academic papers → either works; markdown is ~40% cheaper
+See `results/v1_original/` for the original run's answers/scores/report, preserved for comparison.
 """)
 
     return "\n".join(sections)
@@ -255,7 +371,7 @@ pymupdf4llm or pdftotext do locally.
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--judge", action="store_true", help="Run LLM-as-judge scoring (costs ~$0.50)")
+    parser.add_argument("--judge", action="store_true", help="Run LLM-as-judge scoring")
     args = parser.parse_args()
 
     if args.judge and not os.environ.get("ANTHROPIC_API_KEY"):
@@ -266,9 +382,12 @@ def main():
     scores  = json.loads(SCORES_FILE.read_text()) if SCORES_FILE.exists() else {}
 
     if args.judge:
+        ground_truth = json.loads(GT_FILE.read_text()) if GT_FILE.exists() else {}
+        if not ground_truth:
+            print("ERROR: results/ground_truth.json missing or empty — run build_ground_truth.py first"); sys.exit(1)
         client = anthropic.Anthropic()
         print("Running LLM-as-judge…")
-        scores = run_judging(client, catalog)
+        scores = run_judging(client, catalog, ground_truth)
 
     report = build_report(catalog, tokens, scores)
     REPORT_FILE.write_text(report, encoding="utf-8")

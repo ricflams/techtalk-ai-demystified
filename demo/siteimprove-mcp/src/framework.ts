@@ -105,6 +105,10 @@ export function createOpenApiMcpWorker(config: OpenApiMcpConfig) {
   const AuthHandler = {
     async fetch(request: Request, env: any) {
       const url = new URL(request.url);
+      if (url.pathname === "/show_me_what_you_got") {
+        const { tools } = await getSpec();
+        return new Response(JSON.stringify(tools, null, 2), { headers: { "Content-Type": "application/json;charset=UTF-8" } });
+      }
       if (url.pathname !== "/authorize") return new Response("Not found", { status: 404 });
       const params = Object.fromEntries(url.searchParams);
       if (request.method === "GET") return config.loginPage(params);

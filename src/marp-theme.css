@@ -311,7 +311,7 @@ section:has(h2) h2 {
 
 /* ── Section — slides containing h3 ─────────────────────────── */
 section:has(h3) h3 {
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: 700;
   max-width: 100%;
   margin-top: 0;

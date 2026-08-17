@@ -1373,6 +1373,7 @@ But ... what about *files*, like PDFs and images?
 <img src="images/service/overview/transformer.png">
 
 ## Files
+<img src="images/overview/files.png">
 
 ### Files are also turned into embeddings
 <img src="images/service/overview/files.png">
@@ -1424,6 +1425,9 @@ TODO: My examples of trying to fool it
 
 ####
 TODO:
+
+<img src="images/service/files/multimodal/8U0STgMbth.png">
+
 Of all the things I'm here to tell you about today (of all the takeaways from this presentation), I suspect that the usefullness and power of embeddings, not least multimodal embeddings, will be a surprise to most of you, how useful it is.
 
 Let's recap what an embedding is:
@@ -1483,6 +1487,7 @@ By the time the LLM goes to work, everything in the context has been converted i
 There are no special backchannels or place for "specially important instructions".
 
 ## Chatting
+<img src="images/overview/chatting.png">
 
 ####
 Feed it a context and it will produce the next expected output.
@@ -1498,6 +1503,8 @@ Have in mind: - The LLM know *only the context*, nothing else
 <img src="images/service/overview/chat-messages.png">
 
 ####
+Prompt, instructions, message - many names for the same thing.
+
 A context has many parts. Here we'll focus on just the messages you send the response you get.
 
 Everything you send - text, documents, images - is shipped as these user-messages. Binary stuff is base-64 encoded.
@@ -1557,6 +1564,7 @@ It gets more and more expensive to keep on dragging the entire conversation alon
 ### TODO: Show user/assistant turns and special tokens
 
 ## "Think harder"
+<img src="images/overview/thinking.png">
 
 ### What could "think harder" mean?
 
@@ -1572,18 +1580,37 @@ It gets more and more expensive to keep on dragging the entire conversation alon
 <img src="images/service/overview/thinking.png">
 
 ### Chain of Thought
-- Thinking is called **Chain of Thought**, or **CoT**
-- Thinking also goes by other names, like *effort*, but always works the same way:
-    - Inject a special *"hmm, let me think about that"-token*, known from training
-	- Keep producing, appending, and processing **thinking blocks** until the LLM says "thinking completed" or the allotted **thinking budget** is exceeded
-- The blocks are sent to the agent, which may show them to you
+Thinking is called **Chain of Thought**, or **CoT**
+&nbsp;
+The feature has many names (e.g. *effort*) but *always works this way*:
+&nbsp;
+1. Inject a special *<let me think about that>-token*, known from training
+2. That token makes the LLM *comtemplate*, rather than seek to respond
+3. Keep producing, appending, and processing **thinking blocks**, refining the LLM's understanding of the matter until it says "thinking completed" or the allotted **thinking budget** is exceeded
+4. Blocks are also sent to the agent, which may show them to you
+
+### Writing "ultrathink" is a myth now
+<img src="images/service/thinking/ultrathink.png">
+
+####
+This was how Claude controlled the thinking in early days.
+
+But not anymore.
+
+### You control the thinking effort
+<img src="images/service/thinking/claude-code-enable-thinking.png">
+
+####
+You can enable thinking in all kinds of manners.
+
+Nowadays, it's often simply enabled by default, or even automatically controlled.
 
 ### A penny for your thoughts
-* Thinking-blocks are output tokens (and also input-tokens), so they cost you, too.
+* Thinking-blocks are output tokens, and then input-tokens, so they cost you, too.
 &nbsp;
 * For reasoning-heavy tasks, thinking tokens can therefore easily multiply your effective output costs by 10x.
 &nbsp;
-* However, unlike AI responses or tool-results thinking-blocks are (typically) *not included* in the context after this turn, even though the agent's UI may still show them. Only the final response *after the thinking* is kept in the context for the next turns.
+* However, thinking-blocks are (typically) *not included* in the context after this turn, even though the agent's UI may still show them. Only the final response *after the thinking* is kept in the context for the next turns.
 
 <img src="images/service/thinking/claude-code-thinking.png">
 
@@ -1600,32 +1627,20 @@ However, it can possibly also strengthen a misbelief.
 <img src="images/service/thinking/haiku.png">
 
 ####
-Without thinking-steps the LLM failed to produce a proper Haiku.
-
-### You control the thinking effort
-<img src="images/service/thinking/claude-code-enable-thinking.png">
-
-####
-You can enable thinking in all kinds of manners. Nowadays, it's often simply enabled by default.
-
-"Thinking" goes by many names in the agent's UI, but they all work this same way: a loop around the LLM.
-
-### Writing "ultrathink" is a myth now
-<img src="images/service/thinking/ultrathink.png">
-
-####
-This was how Claude controlled the thinking in early days.
-
-But not anymore.
+Without "Extended thinking", the LLM failed to produce a proper Haiku. A rhyming format such as a Haiku is hard for the LLM to produce just one token at a time.
 
 
 ## Tools
+<img src="images/overview/tools.png" />
 
 ### Remember the math-example?
 <img src="images/llm/core/math.svg" />
 
-### Using tools
+### The LLM can ask to "use tool xxx"
 <img src="images/service/overview/tools.png" />
+
+####
+Meaning: The LLM can choose to produce output that is asking for a tool to be run, and the output from that tool will then be added to the context, practically as if the user had added it themselves.
 
 ### "calculate 123442873893*98790237342"
 <img src="images/service/tools/python-math-example/request.png" />
@@ -1633,39 +1648,54 @@ But not anymore.
 ####
 You, the user, says to the AI: "please calculate 123442873893*98790237342".
 
-The agent always send info about tools that are available. The server can also add tools that it can run. For instance, Anthropic's AI server has a linux environment with Python interpreters.
+The agent always send info about tools that are available. In a break from what we've seen so far, the server can actually *also add some tools* that the LLM can run. For instance, Anthropic's AI server has a Linux environment with Python interpreters and can fetch web-pages without having to delegate that effort back to the agent.
 
-In this situation there's a tool called "code_interpreter" that claim to be able to "Executes Python code and returns the result" if you pass it a string-argument of Python-code.
+In this situation there's a tool called "code_interpreter" with the description "Executes Python code and returns the result", taking a string-argument of Python code. **Python** is a popular programming language that the LLM during training has seen millions of examples of.
 
 ### LLM asks to use tool "code_interpreter"
 <img src="images/service/tools/python-math-example/tool-use.png" />
 
 ####
-Based on training on massive examples, the LLM decides that the best continuation from the user saying "please calculate 123442873893*98790237342" is to call a suitable tool. The "code_interpreter" seems like a suitable tool, so the LLM's output asks for a "tool_use" of that tool, passing along the parameter "print(123442873893 * 98790237342)".
+Based on the training, the LLM decides that the best continuation from the user saying "please calculate 123442873893*98790237342" is to call a suitable tool that can do math. The "code_interpreter" seems like such a suitable tool.
+
+So the LLM's output asks for a "tool_use" of that tool, conjuring up the suitable Python code snippet `print(123442873893 * 98790237342)` from its massive training on Python code.
+
+As an aside: the tool-training is commonly done using a process called *Toolformer*.
+
+####
+How did the LLM learn to use tools?
+
+In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgement but purely mathematically as "did this make the future more predictable?".
+
+[Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
+[Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
+[Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
 
 ### The tools is being run (on agent or server)
 <img src="images/service/tools/python-math-example/tool-result.png" />
 
 ####
-If the tools is server-side then the server runs it. Otherwise it goes all the way back to the client. For instance, running python code or fetching a webpage is typically done by the server, but reading local files can of course only be done by the agent on the user's computer.
+If the tool is server-side then the server runs it. Otherwise it goes all the way back to the client. As mentioned, running Python code or fetching webpages is typically done by the server. Reading or creating local files can of course only be done by the agent on the user's computer.
 
-At any rate, the tool runs and the output is passed back into the LLM as its result.
+At any rate, the tool runs, the output is added to the context, and the new context is passed back into the LLM for another pass.
 
 ### Finally, the AI service can respond
 <img src="images/service/tools/python-math-example/response.png" />
 
 ####
-With that information from the tool, the LLM can finally produce a nice and correct answer.
+With that added context from the tool, the LLM can finally produce a nice and correct answer.
 
-### That is how the LLM go beyond the AI model
+### The anatomy of a tool definition
+<img src="images/service/tools/tools-list.png" />
 
- the canonical published answer is Toolformer (Schick et al. 2023), and it's worth knowing because it's mechanistically clean rather than hand-wavy. They had a base LM propose where API calls might go in ordinary text, actually executed those calls, and then kept an insertion only if having the call+result reduced the model's loss on the subsequent tokens — i.e., only if the call demonstrably helped predict what came next. Then they fine-tuned on the augmented text with the useful calls inlined. The filter is self-supervised: usefulness is defined as "did this make the future more predictable," not human judgment.
-[Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
-[Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
+####
+Every tool speficies the name of the tool, a description of what the tool does, and details on how to call it.
 
-[Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
+The information is quite verbose and detailed so the LLM can make sane decisions on whether calling the tool would be useful or not. Of course, in order for the LLM to see it, the tool-information will need to actually be part of the context - how else would the LLM know about it?
 
-### The agentic loop
+So tools can take up a fair chunk of the context.
+
+### Tools: the so-called "agentic loop"
 <img src="images/service/tools/the-agentic-loop.png" />
 
 ####
@@ -1673,16 +1703,27 @@ With that information from the tool, the LLM can finally produce a nice and corr
 
 ### The LLM is in control - via tools
 
-Practically every _decision_ is actually *conjured up by the LLM* and manifested via tools:
+Tools serve much more than just doing math, file, or web operations.
+&nbsp;
+Practically every *decision* in the interaction you have with the agent and AI service, is actually *conjured up by the LLM*. The agent and service is predominantly simply carrying out the LLM's bidding about practically everything:
+<br>
+
+<div class="cols">
+<div>
 
 * Calling tools
 * Asking the user
 * Planning vs doing
 * Orchestrating agents
+</div>
+<div>
+
 * Parallel vs sequential tool calls
 * What to remember
 * Whether to trust a result
 * When to stop
+</div>
+</div>
 
 ####
 * *Calling tools*: Which tool, with what inputs, and whether to call several in parallel or sequentially. If two tools could both answer a question, the model picks.
@@ -1701,16 +1742,22 @@ Practically every _decision_ is actually *conjured up by the LLM* and manifested
 
 * *When to stop*: In an agentic loop, the model decides when the task is genuinely done vs when it should keep going. end_turn is its call, and getting this wrong in either direction is a real failure mode.
 
-### Why it's called an agent harness
-The LLM is the raw capability; the reasoning, the judgment, the power
-&nbsp;
-The harness wraps around it; it constrains what the LLM can act on, and directs its outputs into a useful workflow
-
 ### Example: starting background workers
 <img src="images/service/tools/background-worker.png" />
 
 ####
-The agent simply has to provide a tool, a mechanism, for running background agents. The agent isn't the one making the decision on when to actually *run* another background agent: it is *the LLM* that makes that decision.
+The agent simply has to provide a named tool, a mechanism, for running background agents.
+
+The agent is not the one making the decision when to actually *run* another background agent: it is *the LLM* that makes that decision.
+
+So in a way it's "easy" to write an agent: just provide well-described, nearly "mechanical" tools, that the LLM can work with: like "ask the user", "delete a file", "start multiple agents", etc.
+
+### The home-field advantage
+Models are trained on their own lab's tools.
+&nbsp;
+When Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalise, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
+&nbsp;
+That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
 
 ### "I did the thing" No, you didn't?
 TODO: make a drawing of this
@@ -1722,80 +1769,173 @@ Remember, the LLM just ask for the tool to be used, e.g. writing to a file. If t
 
 It seems to rarely happen anymore but when it does, then this is why.
 
-### Other implications
-
-* It's "easy" to write an agent: just provide well-described tools that the LLM can work with
-
-Models are trained on their own lab's tool ecosystems. When Claude runs inside Copilot, the tools Copilot hands it (names, schemas, behavioral contracts) don't match what Claude was trained on. It can generalise, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with the lab's own agent.
-
-* That's why the work done by Claude AI *generally* is more smoothly executed when running in Claude Code, as opposed to via e.g. Copilot, Cursor, Perplexity, and OpenCode.
-
-### The LLM can ask to use a tool
-
-A huge part of the context is simply *tools*.
-
-Not only tools for doing things, but also for how to answer and act.
-
-## MCP servers
-
-<img src="images/service/service-tools.png">
-an MCP server is a "Standardized Wrapper" for an API.
-https://gemini.google.com/app/65287c836e4e8a94?hl=da
-
-MCP is from client to some service
-Not Agent to Agent
-
-Lazy Schema Loading
-
-MCP example: github mcv vs git cli
-
-MCP is not: A2A
-My JavaOne 2002 JAXP
-
-When you see "You can add an MCP server for Confluence" you should think "I can tell the Agent that I want to use the Atlassian API".
-
-### MCP
-<img src="images/service/mcp/sticks-1-add-server.png">
-
-### MCP
-<img src="images/service/mcp/sticks-2-explain.png">
-
-### MCP
-<img src="images/service/mcp/sticks-3-request.png">
-
-### MCP
-<img src="images/service/mcp/sticks-4-tool-search.png">
-
-### MCP
-<img src="images/service/mcp/sticks-5-tool-use.png">
+### Ask the AI: "what tools do you have?"
+<img src="images/service/tools/rovo-ask-what-pages-tools.png" />
 
 ####
-You should read this as a principled overview: the AI is talking to an MCP server which is turn call the API. The actions it is allowed to make are the actions that you are allowed to make. The MCP serveri acts on your behalf, so to speak. So it can only do what you are allowed to do. For example, for Siteimprove you can create an API-key associated with your username, and when the MCP server authenticates using that API-key then it acts as you with precisely the same kind of access you have.
+Simply asking what tools are available can be a good way of finding inspiration for how to use that AI.
 
-### MCP
-<img src="images/service/mcp/sticks-6-response.png">
+### Example: Rovo using its Atlassian tools
+<img src="images/service/tools/rovo-ask-how-many-pages.png" />
 
-### Actual example
+### "How many pages are in my own space?"
+<img src="images/service/tools/rovo-ask-how-many-pages.png" />
 
-### MCP
-<img src="images/service/mcp/mcp-alone.png">
-
-
-### MCP example - Siteimprove
+####
+Rovo does a number of tool calls to figure out that I have three pages in my personal Confluence space.
 
 
+## MCP servers
+<img src="images/overview/tools.png" />
+
+####
+Hang on, this looks exactly like the highlighting of "tools"?
+
+Yes, that's right.
+
+### MCP servers simply gives you ... more tools
+<img src="images/service/overview/mcp.png">
+
+####
+MCP is a standardized way of giving the LLM access to tools outside the agent or server.
+
+In principle *it works exactly like tools* that we've just covered.
+
+The only difference is that the list of tools isn't baked into the agent or server, but instead fetched live from the MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
+
+### MCP servers gives uniform access to tools
+<img src="images/service/mcp/uniform-mcp-interface.png">
+
+####
+Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to seet what API services are available in many different ways. There's now just one way; the MCP protocol way: ask for tool-names and call a tool.
+
+[Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
+
+### An MCP server is an API facade
+An MCP server *does not itself bring new functionality into the world*.
+&nbsp;
+It's a middleman, *a standardized protocol*, that enable the AI to discover a service that exists somewhere.
+&nbsp;
+So when you hear somebody say e.g. _"You can add an MCP server for Atlassian"_ you should really think: _"I can tell the AI how to call Atlassian's API ("tools")"_.
+&nbsp;
+The *agent/server always call the MCP server*, never the other way around.
+
+####
+Yes, it's really "just that". A live list of tools.
+
+### Example: Atlassian MCP
+<img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png">
+
+####
+Adding the Atlassian MCP server give me access to some of the same page-tools that Rovo used in the tools examples.
+
+## MCP tool-call in detail
+
+### First, add the MCP server info to the agent
+<img src="images/service/mcp/flow/1-add-server.png">
+
+### You only need to do that once
+<img src="images/service/mcp/flow/2-explain.png">
+
+### The info is present in every request you make
+<img src="images/service/mcp/flow/3-request.png">
+
+####
+The agent, or more likely server, will fetch the list of tools from the MCP servers and cache them.
+
+Then it will add information about each MCP server tool to the context.
+
+It *used* to be that the full information was added to the context, but that simply became too big. So the modern behavior is actually only to add the tool-name which can be maximum 64 characters, and that name is the only guidance the LLM will get.
+
+### Add full info if the LLM want to use a tool
+<img src="images/service/mcp/flow/4-tool-search.png">
+
+### LLM decides, MCP server calls
+<img src="images/service/mcp/flow/5-tool-use.png">
+
+####
+The AI is talking to an MCP server, which is turn call some API. The MCP server acts on your behalf, authenticated with your personal API key that gives it the same access you would have.
+
+### The LLM can now respond
+<img src="images/service/mcp/flow/6-response.png">
+
+### MCP, recapped
+<img src="images/service/mcp/mcp-simplified.png">
+
+####
+An MCP server is a slim facade to some service somewhere
+
+## Example: Siteimprove MCP
+
+### In 1 hour, the demo MCP server was live
+<img src="images/service/mcp/siteimprove/github-source.png">
+
+####
+This was the first time ever I build an MCP server. I Basically told Claude "here's Siteimprove's public API documentation, please build an MCP server for it and suggest where to deploy it". I ended up deploying it on a free account on [Cloudflare](https://www.cloudflare.com/).
+
+The hardest part was actually that the tool-names were limited to 64 characters and Siteimprove's API's endpoints often exceeded that so the names had to be compacted somewhat, like renaming "quality_assurance" to just "qa".
+
+[Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp)
+[Siteimprove MCP demo, live tool list](https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got)
+
+### Siteimprove API, OpenAPI, and MCP
 <div class="cols">
-<img src="images/service/mcp/tool-in-docs.png">
-<img src="images/service/mcp/tool-in-openapi-spec.png">
-<img src="images/service/mcp/tool-in-mcp.png">
+<img src="images/service/mcp/siteimprove/tool-in-docs.png">
+<img src="images/service/mcp/siteimprove/tool-in-openapi-spec.png">
+<img src="images/service/mcp/siteimprove/tool-in-mcp.png">
 </div>
 
 ####
-The API docs, swagger ui, mcp
+The API docs, the OpenAPI spec, and the MCP version of the Siteimprove API's endpoint for [/sites/{site_id}/analytics/content/most_popular_pages](https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages)
+
+The MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.
+
+### How to add the demo MCP server to Claude
+<img src="images/service/mcp/siteimprove/github-readme.png">
+
+### Now available in Claude
+<img src="images/service/mcp/siteimprove/mcp-connector.png">
+
+####
+Here you can see all the tools the Siteimprove demo MCP server
+
+### Need to authenticate on the first usage
+<img src="images/service/mcp/siteimprove/authenticate.png">
+
+### Claude can now call Siteimprove MCP tools
+<img src="images/service/mcp/siteimprove/chat.png">
+
+### The MCP tools the LLM found and used
+<img src="images/service/mcp/siteimprove/chat-tool-use.png">
+
+####
+When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool "Siteimprove__analytics_content_most_popular_pages" would likely be useful.
+
+### All the included Siteimprove MCP tools
+<img src="images/service/mcp/siteimprove/full-tool-list.png">
+
+####
+Yes, it took 10 screenshots to put this massive list together.
+
+In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.
+
+### MCP is massively popular
+<img src="images/service/mcp/massive-mcp-server-list.png">
+
+### Almost portraied like "magic"
+<img src="images/service/mcp/code-munch.png">
+
+### MCP server takeaways
+* An MCP server "just" gives the AI tools for some service, somewhere
+&nbsp;
+* Every added MCP server bring the entire list of tool-names into every chat
+&nbsp;
+* Powerful, but is often spoken about as "magic that can do everything"
+
 
 ## The system prompt
 
-### The context has more than just messages
+### Final piece of the context
 <img src="images/service/overview/chat-system.png">
 
 ### System prompt
@@ -1803,48 +1943,230 @@ The API docs, swagger ui, mcp
 
 Well, yes and no.
 
-* A **system prompt** is also *just plain text*
-* The AI agent combine *"whatever is useful to tell the LLM"* into system prompts
+* A **system prompt** is still *just plain text*
+* The AI agent combine *"whatever is useful to tell the LLM"* into "system prompts"
 * You could have *written this text yourself* and just sent it in a prompt (well, sort of)
 
+### Example system prompt from VS Code
+<img src="images/service/system/prompt/json-system-vscode-nowrap.png">
+
+### It's pretty big
+<img src="images/service/system/prompt/json-system-vscode-wrap.png">
+
 ### The system prompt does carry more weight
-<img src="images/service/system/system-prompt-training.png">
+<img src="images/service/system/prompt/training.png">
 
 ####
 Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the model makers will of course make sure that the system instructions are crafted to express the desired behavior.
 
-This bias towards obeying the system-instructions are therefore baked into the LLM. But it is just that: a bias, a preference in case of conflicts. Practically nothing is a hard rule. It's all just instructions that carry more or less weight.
-
-### Anything useful goes into the system prompt
-<img src="images/service/system/highlight/all.png">
-
-####
-Because of this preference, anything that goes into the system prompt carry more weight than if it was just a user message. So placing instructions in one of the ways that makes it into the system instructions (for example in an agent-file) increase the likelihood of the LLM obeying them, compared to simply writing them in the message prompts.
+This bias towards obeying the system-instructions are therefore baked into the LLM. But it is just that: a bias, a preference to lean towards, in particular in case of conflicting interests. Practically *nothing is a hard rule*: it's all just textual instructions that carry more or less weight.
 
 ### The system prompt is composed by the agent
 <img src="images/service/system/prompt/maximillian.png">
 
 ####
-Note that the system prompt is entirely constructed by the agent. That's why you get entirely different system prompts depending on what agent you use. If you build your own agent then there is no system prompt.
+The system prompt is entirely constructed by the agent. That's why you get quite different system prompts and behavior depending on what agent you use. So if you build your own agent then you can construct your own system prompt entirely.
 
-It's a lot, but let's very briefly go through all the bits that agents typically put into the system prompt.
+### The full context
+<img src="images/service/system/layer-of-instructions.png">
 
-### The agent system prompt
-<img src="images/service/system/highlight/system-prompt.png">
+####
+This figure illustrate two things:
 
+* the relationship between your chat, the system prompt, and the LLM
+* all the bits an agent typically put into the system prompt
+
+The context consists of your prompts and the AI's responses, and the system prompt. As mentioned, the LLM has through training learned to obey system prompt instructions over plain user prompts, so placing instructions in the system prompt (for example in an agent-file) makes them more likely to be followed. For anything that you don't state in the context, the LLM will simply follow trained knowledge and behavior, which becomes better and better over time. Anthropic [blogged in July 2026](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models) that they had removed 80% of the agent system prompt for Claude 5 models because the LLM now works better and many strict rules were unneeded or even counterproductive.
+
+I've grouped the bits that agents put into the system prompt into three parts:
+
+* Red are parts the agents invisibly adds, some of which you can control; your preferred language, for example
+* Green is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-call you can try out"
+* Blue are prompts, concrete text, that you write yourself and ask the agent to include in every chat
+
+You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. It will *not include* earlier chats, browser history, your facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it.
+
+So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about these parts and they really aren't a secret in any way.
+
+It's a lot, but let's very briefly go through the 11 parts. And again, remember: all of this included into every chat.
+
+### #1/11: The agent system prompt
+
+### Agent-specific instructions
 - Instructions that the agent (chatpgt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
+<br>
 - It brings information about the agent's name, purpose, behavior, etc.
 <br>
 - Generally, it's not visible in the UI - it's just there
 
-
 ####
-
 [How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
-[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
-[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
 
 ### Claude prompts are public
+<img src="images/service/system/prompt/claude-prompts.png">
+
+####
+[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
+
+### See all "leaked" agent prompts
+<img src="images/service/system/prompt/leaks-home.png">
+
+####
+[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
+
+### The Microsoft agent prompts
+<img src="images/service/system/prompt/leaks-microsoft.png">
+
+### The "Copilot in Word" agent prompt
+<img src="images/service/system/prompt/leaks-copiot-in-microsoft-word.png">
+
+
+### #2/11: System information
+
+### Date, time, location, OS, etc
+<img src="images/service/system/system-info/today.png">
+
+### #3/11: Automatically stored memories
+<img src="images/service/system/memory/memory-example.png">
+
+####
+The most important facts from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you'd might expect.
+
+In terminal AI Agents, there can be multiple files with such "memories".
+
+### #4/11: The agent's context right now
+
+### Example: Rovo includes the current page
+<img src="images/service/system/agent-context/rovo-context.png">
+
+### Example: Visual Studio
+<img src="images/service/system/agent-context/visual-studio.png">
+
+### #5/11: Your preferences
+
+### Example: ChatGPT "friendly" or "pragmatic"
+<img src="images/service/system/preferences/chatgpp-personality.png">
+
+### Example: Language
+<img src="images/service/system/preferences/language/claude-ai-language.png">
+
+### Respond in Japanese, English, Dansk, ...
+<img src="images/service/system/preferences/language/claude-code-set-language.png">
+
+### Respond in Klingon
+<img src="images/service/system/preferences/language/klingon.png">
+
+### It's all just instructions, even language preference
+<img src="images/service/system/preferences/language/language-in-the-prompt.png">
+
+####
+No hidden commands. All is just text. Coincidentally, this screenshot also show information about the environment, like my working directory at the time etc. That's what the system prompt looks like: just text.
+
+### Example: mode; plan, auto, manual, ...
+<img src="images/service/system/preferences/modes/enter-plan-mode.png">
+
+### You or the LLM decide when to enter and leave mode
+<img src="images/service/system/preferences/modes/before-exit-plan-mode.png">
+
+### "Modes" are really just system prompt instructions
+<img src="images/service/system/preferences/modes/exited-plan-mode.png">
+
+####
+Modes are simply implemented as instructions that tell the LLM to plan or do, for instance.
+
+Nowadays, each mode-change typicaally results in *adding a system prompt message* instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".
+
+### #6/11: Agent tools
+
+### Info about all tools are included
+<img src="images/service/tools/tools-list.png" />
+
+####
+It's quite possible that *only the tool's description* may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.
+
+### #7/11: Skills
+
+### Hey, isn't skills a big deal? Yes and no.
+TODO:
+
+### #8/11: MCP servers
+
+####
+We already covered them in detail. But there's one important thing to dig into: what the context include of hints about each tool so the LLM can decide to use it or not.
+
+### Full tool description is long, eg 500 tokens
+<img src="images/service/system/mcp/tool-definition.png">
+
+####
+It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server could eat up 50K or more or the context, about 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.
+
+### Modern lazy-load: only include tool name
+<img src="images/service/system/mcp/tool-definition.png">
+
+####
+Nowadays the full definition is typically *not included in the context*: only the tool name. That's referred to as **Lazy Schema Loading**.
+
+This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.
+
+That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting match a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages viwth most page views" then it would match practically nothing in the tool name and the LLM would likely not notice that this tool was suitable to call.
+
+By the way: this demo name is problematic as it is 68 characters, so it should be shortened.
+
+Links:
+[SEP-986: Specify Format for Tool Names](https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names)
+
+### 20 tokens instead of full 500 tokens
+<img src="images/service/system/mcp/token-length.png">
+
+####
+So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using thew atlassian ...."
+
+
+### #9/11: Project instructions
+
+### Most agents offer "projects"
+<img src="images/service/system/projects/project-windows-to-linux.png">
+
+####
+You can write instructions that is included in every chat related to a specific project or work that you're doing.
+
+They go by many names: Projects, Gems, Custom GPTs, Spaces.
+
+### #10/11: Global custom instructions
+
+### Customize your web agent
+<img src="images/service/system/customize/all-agents.png">
+
+####
+In all agents, you can add custom instructions that are included in every chat.
+
+it could be your preference for how the AI should talk or act.
+
+If there's something in general about the agents behavior that you'd like to change then this is the place.
+
+### Example: "always provide a dinosaur-analogy"
+<img src="images/service/system/customize/copilot-dinosaur-instruction.png">
+
+####
+As a silly example I added custom instructions to Copilot to always end every answer with a brief dinosaur-analogy.
+
+### "Like a swift Velociraptor ..."
+<img src="images/service/system/customize/copilot-dinosaur-chat.png">
+
+####
+I actually forgot I had added this, but surely remembered when later I returned to Copilot.
+
+### #11/11: Agent files
+
+### "Agent file" - International File of Mystery?
+<img src="images/service/system/agent-files/austin-powers.jpg>
+
+####
+An "agents" file sounds like some instruction for an autonomous agent of a kind. I think it sounds like instructions for something to *happen*. Maybe for starting an agent, possibly in the background doing some secret work?
+
+
+
+thing as a completely autonomous, self-everything agent.
 
 An "agents" file isn't secrets instructions to kick off roaming live AI-agent.
 Agent is such an overloaded term.
@@ -2015,10 +2337,9 @@ TODO: you'll find that everything is about putting things into the context, have
 "Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
 
 
-* all those *agents.md* files you hear about?
-* skills, gems, projects, workflows?
-* your preferences of language and tone?
-* modes, like planning, yolo, autopilot?
+Show tool-belt-image
+
+The agents are just becoming really good at managing the context. They'll fitght tooth and nail to not include large files, for instance. I tried but often in vain.
 
 
 https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding
@@ -2062,6 +2383,10 @@ use /insight or whatever to see how you're doing
 
 # Demystifications
 
+#### I included all of ...
+No you likely didnd't
+TODO: show how a repo or confluence space can't fit into the context
+Either the input was truncated, or eaten in chunks and compacted, or sampled, 
 #### Caveman skill
 #### “You are an xxxx expert…”
 #### We should fine-tune a model
@@ -2105,6 +2430,8 @@ Multi-turn cost is unaccounted for. All the studies measured single-turn accurac
 #### It just wants to please you - maybe
 #### Setting temperature=0 will guarantee the sme output
 #### If I just give it strict enough instructions then they must be followed
+#### Misspelling don't matter
+#### Does formatting matter? Any special commands, tweaks, cheatcodes?
 
 #### Is it sentinent?
 https://claude.ai/chat/03b64faf-bb61-402a-982f-ab48a6bbff21

@@ -1417,9 +1417,6 @@ An image of text is typically 10x larger in context than the text would be.
 ### Whatever approach, embeddings comes out
 <img src="images/service/files/images/cat-advanced.png">
 
-### It's really good at it now
-TODO: My examples of trying to fool it
-
 ### Embeddings - worth a detour
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
 
@@ -1458,11 +1455,21 @@ PDFs are handled really well. The AI services gets better and better at handling
 Documents doesn't really introduce any new functionality: it is simply subjected to text and image extraction, or rendered in full and then and image recognized.
 
 ### Should you convert PDFs to markdown yourself?
+<img src="images/service/files/pdfs/94pct-savings.png">
+
+####
+The sentiment surely is everywhere: of course you should, it's just foolish not to.
+
+Or is it?
+
+### Experiment: 10 PDFs, compare markdown vs raw
+<img src="images/service/files/pdfs/experiment-pdfs.png">
+
+Here's the thing: it depends.
 
 
 
-
-
+###
 
 
 

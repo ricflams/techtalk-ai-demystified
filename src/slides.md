@@ -1459,6 +1459,20 @@ Documents doesn't really introduce any new functionality: it is simply subjected
 
 ### Should you convert PDFs to markdown yourself?
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Depending on the AI Service, the answer can be:
 
 Yes, no, and maybe.
@@ -1477,6 +1491,24 @@ https://claude.ai/chat/bea3ee66-f9c1-4930-b0a6-a1fe1592685b
 ### Big files are often not included
 TODO:
 The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Text, PDFs, images; all becomes embeddings
 <img src="images/service/overview/files.png">
@@ -1865,7 +1897,7 @@ The AI is talking to an MCP server, which is turn call some API. The MCP server 
 ####
 An MCP server is a slim facade to some service somewhere
 
-## Example: Siteimprove MCP
+### Example: Siteimprove MCP
 
 ### In 1 hour, the demo MCP server was live
 <img src="images/service/mcp/siteimprove/github-source.png">
@@ -1959,7 +1991,15 @@ Well, yes and no.
 ####
 Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the model makers will of course make sure that the system instructions are crafted to express the desired behavior.
 
-This bias towards obeying the system-instructions are therefore baked into the LLM. But it is just that: a bias, a preference to lean towards, in particular in case of conflicting interests. Practically *nothing is a hard rule*: it's all just textual instructions that carry more or less weight.
+This bias towards obeying the system-instructions are therefore baked into the LLM's weights. It is just that: a bias, a trained preference to lean towards, in particular in case of conflicting instructions. Practically *nothing is a hard rule*: it's all just textual instructions that carry more or less weight.
+
+### Convincing Copilot/GPT4.1 to change its name
+<img src="images/service/system/prompt/i-am-groot.png">
+
+####
+With enough super-urgent persuasion, my user message won over the system prompt.
+
+Gemini 2.5 (back then) was not at all convinced and saw right through the presumed urgency.
 
 ### The system prompt is composed by the agent
 <img src="images/service/system/prompt/maximillian.png">
@@ -1984,7 +2024,7 @@ I've grouped the bits that agents put into the system prompt into three parts:
 * Green is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-call you can try out"
 * Blue are prompts, concrete text, that you write yourself and ask the agent to include in every chat
 
-You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. It will *not include* earlier chats, browser history, your facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it.
+You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. It will *not include* earlier chats, browser history, your facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it - many agents will let you search your chat history, if you ask to.
 
 So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about these parts and they really aren't a secret in any way.
 
@@ -2089,6 +2129,73 @@ It's quite possible that *only the tool's description* may be included in the co
 ### Hey, isn't skills a big deal? Yes and no.
 TODO:
 
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.youtube.com/@mattpocockuk/videos
+
+https://github.com/mattpocock/skills
+
+https://www.youtube.com/watch?v=UNzCG3lw6O0
+
+a skill is markdown instructions loaded on demand
+
+Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
+There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
+For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
+The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
+The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
+Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
+
+https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
+
+The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
+
+Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
+
+OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
+
+Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
+
+- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
+- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
+- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
+- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
+- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
+- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
+- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
+- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
+- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### #8/11: MCP servers
 
 ####
@@ -2142,7 +2249,10 @@ In all agents, you can add custom instructions that are included in every chat.
 
 it could be your preference for how the AI should talk or act.
 
-If there's something in general about the agents behavior that you'd like to change then this is the place.
+If there's something in general about the agents behavior that you'd like to change then this is the place. For instance, I have added this line to help me improve my spelling:
+
+"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."
+
 
 ### Example: "always provide a dinosaur-analogy"
 <img src="images/service/system/customize/copilot-dinosaur-instruction.png">
@@ -2158,137 +2268,124 @@ I actually forgot I had added this, but surely remembered when later I returned 
 
 ### #11/11: Agent files
 
-### "Agent file" - International File of Mystery?
-<img src="images/service/system/agent-files/austin-powers.jpg>
+### "Agent file"? An International File of Mystery?
+<img src="images/service/system/agent-files/austin-powers.jpg">
 
 ####
 An "agents" file sounds like some instruction for an autonomous agent of a kind. I think it sounds like instructions for something to *happen*. Maybe for starting an agent, possibly in the background doing some secret work?
 
+### No mystery - just custom instructions for CLI tools
+<img src="images/service/system/agent-files/claude-md-dinosaur.png">
 
+####
+You're likely almost tired of me repeating "it's just more instructions to put into the system prompt". But agent-files are just that: the exact equivalent of custom (or project) instructions, only for the AI agents you run in the terminal.
 
-thing as a completely autonomous, self-everything agent.
+### Here's the CLAUDE.md file for this presentation
+<img src="images/service/system/agent-files/claude-md-ai-talk.png">
 
-An "agents" file isn't secrets instructions to kick off roaming live AI-agent.
-Agent is such an overloaded term.
+### Names and locations are a bit of a jungle
+<img src="images/service/system/agent-files/agents-md.png">
 
+####
+I won't go into details with just how exactly agent-files can be named and organized in your folders, but just highlight a couple of points:
 
+Links:
+[AGENTS.md: A Standard for AI Coding Agents](https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/)
 
-### Prompt injection
+### Names and locations
+* Agents used different names: `CLAUDE.md`, `GEMINI.md`, even `AGENT.md` (no s)
+* By now, `AGENTS.md` is the agreed-upon standard name (hooray
+* Yet, Claude Code does not read `AGENTS.md`, only `CLAUDE.md` (oh dear)
+* Agents differ in how they search for agent-files, up/down from folder to root
+&nbsp;
+* Anyways, *agent-files are just more text*, added into the system prompt path
+&nbsp;
 
-### Shoveled into one big pile of text
+<img src="images/service/system/agent-files/agents-md.png">
+
+---
+<img src="images/service/system/layer-of-instructions.png">
+
+####
+We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit mysterious.
+
+So let's get concrete and see what such an arbitrary system prompt looks like.
+
+---
+<img src="images/service/system/all/full.png">
+
+####
+This is what one of my older system prompts from Copilot looked like, just as an example.
+Let's check it out.
+
+### Some names, facts, behaviors, ...
+<img src="images/service/system/all/name-and-behavior.png">
+
+### Oh, something <mandatory>, sounds important
+<img src="images/service/system/all/something-mandatory.png">
+
+### A bit on regex formatting and the available tools
+<img src="images/service/system/all/regex-and-tools.png">
+
+### MCP tool-names pop in rather unceremoniously
+<img src="images/service/system/all/mcp-tools.png">
+
+### Communication styles, code examples
+<img src="images/service/system/all/communication.png">
+
+### Ah, skills, nice to meet you
+<img src="images/service/system/all/skills.png">
+
+### This is the end, after 292 lines
+<img src="images/service/system/all/end-of-instructions.png">
+
+### At the end of the day, it's all just text
 <img src="images/service/system/shoveling.png">
 
-### All the things that goes into it
+####
+The reason for showing you these snippets is to hammer in this fact:
 
-If you're building an agent, ie interacting with the AI service directly, then you're responsible for adding all this kind of useful info.
+At the end of the day, the "system prompt" is all just text. Words competing for the LLM's attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills).
 
-How about formatting? xml, headings? Doesn't matter, they all convey a sense of structure. There are no particular magic keywords or "cheat codes" - by design.
+Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. The markup just convey some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with `##` headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate *the structure* it brings, just like human readers would.
 
-		Model
-			Haikku, Sonnet, Opus - 3 concrete different models, eg Haikku probably has 1/3 of the attention layers
-		Claude Code system prompt: https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html
-		Chat personality
-		Language preferences
-			Claude has no "Italian mode" at the architecture level; language behavior is entirely emergent from training data and conditioning
-			"Respond in Italian. Use Italian for all responses regardless of the language the user writes in."
-		claude.md / gemini.md / agents.md etc
-			Eg tell what claude /init does: produce a compact overview of things that are useful to say about this folder
-		personalization, memories, ...
-		[current file, selected text, terminal output, etc]
-		Also, the difference between plan and agent mode
-		How big is it? Show some examples.
-		There’s no privileged channel; system prompt and user messages are all just tokens by the time the model sees them
+### Every token influence all others - it's just math
+<img src="images/llm/attention-space-seek.png">
 
+####
+Remember, the LLM is pure math. No "LLM code" will deliberately demand the text `<skills>` to appear in order to recognize the list of skills. It may help, but it's not required.
 
-https://github.com/asgeirtj/system_prompts_leaks
+## Final AI service parts
 
-Silently ignore casual typos; gently flag systemic spelling blind spots as an aside.
+### Still a few blank spots
+<img src="images/service/overview/full-except-misc.png">
 
+### The final parts
+<img src="images/service/overview/misc.png">
 
+####
+Four parts to mention:
 
-https://www.youtube.com/@mattpocockuk/videos
-
-https://github.com/mattpocock/skills
-
-https://www.youtube.com/watch?v=UNzCG3lw6O0
-
-a skill is markdown instructions loaded on demand
-
-Skills look like a smart routing system — describe what a skill does, and Claude figures out when to use it. But the routing isn't magic, and it isn't symmetric.
-There's an instruction baked into Claude Code's system prompt that says roughly: before writing code or creating files, check whether any skills are relevant. That instruction is what makes skills feel reliable for those task types. It's a forcing function — the model is explicitly told to look before it acts.
-For everything else — answering questions, explaining concepts, responding to anything conversational — there's no forcing function. The model might still invoke a skill if your description matches strongly enough, but it's relying on the description alone to catch its attention during the forward pass. That's a much weaker signal.
-The practical consequence: if you write a skill for a task type that isn't file creation or code writing — say, a skill for how your team handles incident postmortems, or tone guidelines for executive communication — and you wonder why it's not triggering reliably, this is why.
-The fix is simple: add an explicit instruction to your CLAUDE.md that names the trigger condition and the file path. "Before responding to any question about incidents, first read this skill." That gives you the same forcing function the built-in instruction provides, but for your task type.
-Skills aren't self-activating. The description is a hint, not a contract. If you need guaranteed activation, you need an explicit instruction.
-
-https://claude.ai/chat/fbcb133f-be2f-4847-a9ea-89084caddf17:
-
-The sharing story on claude.ai is thinner than Claude Code's marketplace, though: for individuals it's still "pass the zip around," while Team and Enterprise Owners can provision skills organization-wide so they appear automatically in every member's skills list, and a Skills Directory offers professionally-built skills from partners like Notion, Figma, and Atlassian designed to pair with their MCP connectors. One mechanistic gotcha worth knowing: custom skills don't sync across surfaces — a skill uploaded to one surface isn't automatically available on others (claude.ai, Claude Code, API are separate stores), with the exception that Cowork sessions load the skills enabled for your claude.ai account, synced at session start.
-
-Anthropic published Agent Skills as a formal open standard on December 18, 2025, governed at agentskills.io
-
-OpenAI/Codex: full adoption plus their own catalog. OpenAI maintains an official Skills Catalog at github.com/openai/skills
-
-Google: Gemini CLI reads the same format, and Google's agent-first IDE Antigravity formally adopted the standard in January 2026. The consumer Gemini app's analogue is Gems — closer to ChatGPT's Custom GPTs than to skills (a persistent persona/instruction config, not on-demand file loading)
-
-- **claude.ai** — Customize > Skills: toggle built-in/partner skills (auto-maintained by Anthropic), upload own as zip; no auto-update for uploads.
-- **Claude Code** — `/plugin install <name>` from a marketplace; official-marketplace plugins refresh automatically at startup — the smoothest story of the lot.
-- **Claude Team/Enterprise** — Owner provisions org-wide in claude.ai settings; updates propagate to everyone when the Owner re-uploads.
-- **ChatGPT** — no user-facing skill install; built-in skills ship server-side (`/home/oai/skills`), maintained by OpenAI only.
-- **Codex CLI** — `$skill-installer` for OpenAI's curated catalog; community skills via `npx skills` (manual `npx skills update`).
-- **Gemini CLI** — `gemini extensions install <repo>` for bundles with update support; loose SKILL.md folders are copy-in, manual.
-- **Copilot / VS Code** — skills as files in the repo or profile; "updates" = git pull, no managed channel.
-- **Cross-harness (any of the above)** — `npx skills add <owner/repo>` from skills.sh: one copy, symlinked everywhere, but pull-only updates.
-- **Rule of thumb** — auto-update exists only inside a vendor's managed channel (Claude Code plugins, org provisioning, vendor-shipped catalogs); everything file-based is manual-pull.
-
-
-
-
-### Example 1..N
-
-### The Chat Template
-
-Everything comes in as structured json, but end up appearing as text to the LLM
-
-The flat-sequence fact explains a lot. Because system prompt, user input, and tool results are all just tokens in one sequence, the "authority" of a system prompt is a training artifact — RLHF conditioning — not a hard architectural boundary. That's the same fact that makes prompt injection possible.
-
-### The full picture with tokens etc
-Hammering in the notion of special tokens to steer the LLM
-
-
-## Final bits
-
-### Caching
-TODO: image of with/without caching
-
-### Safety filters
-
-### the bits
-5: A bit more - caching, safeguarding
-<img src="images/service/service-misc.png">
+* In addition to the text context, the request also does send along *some real hard parameters*: the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In pactice that leads to a weirdly clinical and un-appealing output. Higher temperature simply mean increased likelihood of choosing some of the less probably next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelity in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one session to another.
+* There are **safety classifiers** for content going in or coming out, that act as hard stops for inappropriate content. So even if you do somehow convince the LLM to produce a recipe for biochemical weapon that output will suffer a hard veto at the exit.
+* The output usually contains *statistics* for number of tokens consumed and produced, among other things.
+* And finally, **the KV-cache**. The AI Service and LLM knows nothing about you, but it does *cache* the calculations for a brief while. Nowadays it seem that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
 
 ## "Now I have the full picture"
 
-### The Canonical Engine Blueprint
-<img src="images/service/service-full.png">
+---
+<img src="images/service/overview/full.png">
 
-####
-Your diagram is the undisputed Common Core of the modern LLM runtime. For standard open-weight architectures (like Meta's Llama series or Mistral) and classic chat endpoints, this blueprint captures the system flawlessly.
+## Takeaways
 
-Your diagram captures the Canonical Engine Blueprint. It cleanly outlines the immutable data flow, boundary gates, and structural contracts of modern AI. Leaving the vendor-specific bells and whistles off the page isn't an omission—it's good engineering discipline.
+### Main AI service takeaways
+* It's all just text, competeting for attention
+&nbsp;
+* Adding stuff to the context is expensive so the tooling does its best to add as little as possible.
+&nbsp;
+* Adding *barely enough hints of useful info* for the LLM is the challenge, and the approaches are constantly evolving
 
 
-"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
-
-
-Lets recap. There’s the model, and theykre different. Then the agent adds the system prompt, which differs from product to product (claude ai vs code) and there’s none if you talk directly to the ai. Then you can feed further bits into it, as workspaces, agent-files, custom instructions - just more text. Then give hints at further info, in two ways: skills deop hints about when to bring in some specific instructions, and tools/mcp does the same but for calls to external servers. Finally, the messages and files you guve it, plus tool outputs. What’s missing? All your chats and local files, for instance - they’re not included unless thereks a really good reason for it, if even possible (show search in chats where it works vs not).
-Richard Flamsholt  [9:06 AM]
-
-It's all text, competing for attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills)
-
-The llm most certainly doesn't know anything about you or learn anything, like your password etc
-
-Chats are stored locally in plain text
 
 # AI Agents, revisited
 
@@ -2303,6 +2400,15 @@ Describe difference between the "circle of context used" and the "bar of token u
 
 
 # The Context
+
+
+Much has happened since GPT 3 that had 2K context-window.
+
+But more isn't better. 1M may be quite a sweet spot.
+
+
+
+"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
 
 ### How do I see the used context in tool x?
 
@@ -2420,6 +2526,7 @@ Reasonability?
 #### Longer context doesn't mean better attention to all of it
 #### Will we run out of training material?
 #### If I opt in to training, what happens? What gets leaked?
+The llm most certainly doesn't know anything about you or learn anything, like your password etc
 #### Negative framing used to be bad, but is now handled well. But be precise, don's say: (make no mistakes)
 #### "Make no mistakes"
 #### Saying Please

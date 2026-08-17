@@ -491,3 +491,15 @@ Whether to ask a clarifying question vs. proceed
 What to put in a tool call's arguments
 How to interpret a tool result and what to do next
 Whether to flag a potential prompt injection in a tool result
+
+
+
+### Prompt injection
+
+my takeaways:
+It's all text, and all of these are explanable and visible parts (well, sort of, except the agent's shenanigans with its prompt etc)
+And they do one more thing, which is at the crux of it all: they provide just enough of a whiff for the LLM to ask about more help, more tools, etc if it feels it need to. The LLM has the world of knowledge, and that which it hasn't, the agent (and we) are prepared to give to it, by giving it just hints at what we can giev it if it only asks for it.
+Putting things into the context is expensive and it's constantly evolving just how we can add enough snippets of useful info for the LLM to do it's "prediction work" without filling up the context with junk.
+
+
+

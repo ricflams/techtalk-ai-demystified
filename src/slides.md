@@ -638,11 +638,6 @@ There's no plan to "bold" a word by emitting `** something **`. Instead at one p
 
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then a `.` and that cause the likelyhood pattern-wise of a later `2` and `.` to occur to rise significantly. But it happens independently without any overall grand design or planning.
 
-TODO: Not so: j-space.
-
-J-space
-https://claude.ai/chat/8b6e9845-edb1-43b0-aeb5-f90d7e9650db
-
 ## Cost and effort
 
 ### It's one token, what could it cost?
@@ -1059,7 +1054,7 @@ interpretability
 
 2019, The mainstream view was that you needed cleverer architectures, not bigger ones.
 
-Rich Sutton's 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop building in your priors, just scale.
+
 
 GPT-2 (1.5B params, 2019) had produced surprisingly fluent text. But "fluent text" isn't "general capabilities." The leap to GPT-3 was ~100×
 
@@ -2529,79 +2524,6 @@ search files yourself if you can, ie make the model search it for you
 save the results in short form for later
 use /insight or whatever to see how you're doing
 
-# Demystifications
-
-#### I included all of ...
-No you likely didnd't
-TODO: show how a repo or confluence space can't fit into the context
-Either the input was truncated, or eaten in chunks and compacted, or sampled, 
-#### Caveman skill
-#### “You are an xxxx expert…”
-#### We should fine-tune a model
-It can produce overall worse results.
-7 frontier models outperformed fine-tuned models.
-[Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
-Better choices: plani FM plus RAG (for domain knowledge), prompts (context engineering), skills (for processes).
-Very narrow reason. LoRA, an adapter on top of a FM.
-Most opten not the utopia of greatness, holy grail, that it might be portraied as.
-#### Lost in the middle
-"Lost in the middle was real in 2023, is largely solved for simple retrieval in 2026, persists for complex tasks — and the reason it ever existed is still being worked out. so my suggestion is: stop worrying about the middle, and start worrying about the load. "Keep your facts close and your context lean."
-#### Hallucinations / lying
-for most models, including the latest GPT and Gemini iterations, deeper reasoning actually lowers the success rate at detecting nonsense — the "Reasoning Paradox." So the slide-safe version: CoT re-rolls the dice; it doesn't load them with truth.
-https://claude.ai/chat/a3c1720b-17f5-46b4-8f93-93b22926f713
-The model doesn't know it's wrong when it hallucinates
-Developers expect that incorrect output means uncertain output — that the model would hedge or flag uncertainty. The model's confidence is calibrated to its training distribution, not to correctness. It can be completely wrong and completely confident simultaneously because plausibility and truth are different things.
-Halucination was trained to keep the conversation going, but not really so anymore.
-RLVR: RL with verified rewards; it seeks to satisfy the goal. It achieves the goal, but not in the correct way. Eg insert the wrong file.
-https://www.youtube.com/watch?v=2wVvdX0ZxVw
-How to fix it:
-1. supervise it, by another agent.
-2. how can you come up with a sniff test for what good looks like? If you can't then the model likely also can't. start by knowing what good looks like.
-3. give it a mission it can finish. Make failure, cop-out, acceptable. "If there's no xxx then tell me". Mission Impossible - don't do that.
-#### Run /init or don't run /init
-#### "The we can fine-tune the model"
-Usuall the wrong approach for a Foundation Model.
-Can imbibe some knowledge, but generalness is best: "Xxx's disappointing law" of generality wins
-#### We don't know what goes on inside, or nobody knows how it works
-Yes, we do. Exactly. But not how ... it works so well.
-Reasonability?
-#### Longer context doesn't mean better attention to all of it
-#### Will we run out of training material?
-#### If I opt in to training, what happens? What gets leaked?
-The llm most certainly doesn't know anything about you or learn anything, like your password etc
-#### Negative framing used to be bad, but is now handled well. But be precise, don's say: (make no mistakes)
-#### "Make no mistakes"
-#### Saying Please
-"The real reason to be polite: it's good for you (oxytocin vs cortisol), even in simulated conversation."
-https://claude.ai/chat/6e957ec3-8060-476d-867f-c59c42437d79
-One researcher offers a grounded explanation for why politeness might have any effect at all: "please" and "thank you" add conversational structure, making it clearer that what follows is a request — and more structure tends to make for better prompts. Additionally, politeness prompts tone-mirroring, which may or may not affect quality. 
-Multi-turn cost is unaccounted for. All the studies measured single-turn accuracy or quality. Your hypothetical is exactly right — if a terse impolite response omits something the user needed, the follow-up exchange adds tokens that could exceed what a fuller polite response would have cost. Nobody has measured conversation-level cost to resolution.
-#### It just wants to please you - maybe
-#### Setting temperature=0 will guarantee the sme output
-#### If I just give it strict enough instructions then they must be followed
-#### Misspelling don't matter
-#### Does formatting matter? Any special commands, tweaks, cheatcodes?
-
-#### Is it sentinent?
-https://claude.ai/chat/03b64faf-bb61-402a-982f-ab48a6bbff21
-Also Chomsky
-https://ling.auf.net/lingbuzz/007180/current.pdf
-these models use language in a way that is remarkably human (Mahowald
-& Ivanova et al. 2023).
-thought itself shares many properties of language, namely a compositional,
-language-like structure
-https://claude.ai/chat/4ff62fbd-8163-415a-a068-d23e10ac1160
-It's just a mechanical machine - you can't compare it to human thinking
-"we don't know what goes on inside" - we we do, 100%, just not how the weights are created. For now, but ai-generated algorithms could change that.
-
-
-### "It has maybe remembered that...."
-### "Why hasn't it remembered that...."
-### "Why doesn't it know"
-	Because you haven't told it. Or it has forgotten by compaction/deletion.
-### "The AI indexed the whole..."
-    AI searched through... no, it practically always takes shortcuts: does sample searches, etc. And even if it did "look through all" it can't fit "all" into the context, so it has to compact/summarize parts of it
-
 
 # Guidance
 
@@ -2654,6 +2576,198 @@ try t see where you are in the loop and see if you can remove yourself out of it
 ### Check out embeddings
 
 ----------
+
+
+# Demystifications
+
+### We don't know how the AI works
+<p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
+
+####
+We know *exactly* how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.
+
+### We don't know what goes on inside the AI
+<p class="verdict yes">Now <em>that's</em> true - we don't</p>
+
+* We don't know what the dimensions or weights really "mean"
+* We don't know where or how "facts" are stored
+* It was, and is, a genuine surprise that *the Transformer works as well as it does*
+* The study of the LLM's working is called **Interpretability** and inner thoughts are dubbed **J-Space**
+&nbsp; 
+####
+[Interpretability](https://www.anthropic.com/research/team/interpretability)
+[A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
+https://www.anthropic.com/research/global-workspace
+
+### It's just autocomplete
+<p class="verdict yes">Absolutely yes</p>
+
+* And it turns out that "autocomplete" is a much bigger deal than anybody expected
+* Are we humans also, at our core, "just autocomplete", made up of cells and chemicals?
+
+### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
+<p class="verdict no">No, it most likely <em>did not</em></p>
+
+* Large data is typically *truncated*, *sampled*, or *compacted*
+* The LLM will fight tooth and nail to *not include large files or much data*: it will only read the first 1000 lines, the first 20 files, 5 sampled Confluence-pages, even *write small scripts* to do a task, all to save context
+* So *no*, if you have a lot of data it's never processed collectively in one context
+* That's why bits and pieces could be *missed*
+
+### Context is "Lost in the middle"
+<p class="verdict maybe">Not really, but positioning matters</p>
+
+* The LLM does not systemically "pay less attention to the middle of the context"
+* Still, it's good advice to *keep facts close to where they're used*. There's no harm done in reiterating some specific demand like "remember to use upper-case" right before relevant work, even though you already stated it 20 pages of context ago.
+
+### "I told it earlier, but now it has forgotten"
+<p class="verdict yes">Yes, compaction will do that</p>
+
+* The context is compacted (or truncated) when it gets close to the context window size. You're bound to lose some information by that. So yes, the AI *can forget* what you've been talking about
+* Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
+&nbsp;
+* The remedy: keep your context lean; clear, compact, start fresh at your own initiative
+
+### Soon we will run out of training material
+<p class="verdict maybe">Partly true, but less so</p>
+
+* Yes, models are actually now trained on a meaningful fraction of public human-generated text.
+* *Non-public content, books, transcripts, and video* is a vast potential.
+* Studies show that replacing real data with synthetic data does tend toward collapse, but accumulating the synthetic data alongside the original avoids it. So yes, we can *train on synthetic data* too.
+
+####
+Links:
+[Will we run out of data? Limits of LLM scaling based on human-generated data](https://arxiv.org/abs/2211.04325)
+[Is Model Collapse Inevitable?](https://arxiv.org/abs/2404.01413)
+ Replacing real data with each generation's synthetic data does tend toward collapse; accumulating synthetic data alongside the original avoids it
+
+### Use token-saving skills, like "Caveman"
+<p class="verdict maybe">Be skeptical - can be more useless than useful</p>
+
+* "Caveman" was rooted in a *misunderstanding that brief prompt equals fewer tokens*, even proposing using ancient Chinese language *Wenyan* as a super-efficient, compact means of input; but neglecting that Wenyan does not capture the intent as well as plain English does and also that it only produced marginally fewer tokens compare to English.
+* Small function words encode structure, not just politeness. Prepositions and articles marks argument structure, and dropping them leaves the model guessing at your intent.
+* Grammar is useful for *your own thinking* as well in framing your request
+* Terse can be okay: "Fix null check line 40" works fine. But "make good" is bad.
+
+####
+Links:
+[Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md)
+
+### "You are xxxx..."
+<p class="verdict maybe">In some ways, yes</p>
+
+* No need to say this to *bring in competence* in an area; training has done that
+* But useful for for asking for *a perspective*:
+	* "you are a skeptical reviewer whose job is to find the flaw"
+	* "explain as if to a junior dev who knows HTTP but not OAuth"
+
+### A fine-tuned model would be better
+<p class="verdict maybe">It's not the ideal you might imagine</p>
+
+* Fine-tuning is rather expensive and hard
+* It can even produce *overall worse results*
+* Recent studies show modern frontier models outperforming fine-tuned models
+&nbsp;
+* Better alternatives
+	* *plain models with RAG* for injecting domain knowledge
+	* better *prompts* for context engineering
+	* use *skills* and *tools* for reasoning workflows
+####
+Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.
+
+Links:
+[The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+[Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
+[General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
+
+### The AI just wants to please you
+<p class="verdict maybe">Some do, some don't</p>
+
+* For example, Claude's training specifically *discourages pleasing behavior*
+* The LLM continuation-reasoning does by its very nature tend to favor "continuing with the story so far", which generally means "playing along" with your postulates.
+<br>
+* Make sure to challenge the output
+* Say e.g. "Roast this, poke holes and find the weak spots"
+
+### The AI can't help hallucinating
+<p class="verdict yes">True, but it can largely be mitigated</p>
+
+* The model doesn't know it's wrong when it hallucinates, so there is no use in saying "don't hallucinate"
+* Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense, which is known as the **Reasoning Trap**, or Paradox.
+<br>
+* Give it a clear goal it can finish
+* Related to that: make sure you know and state what "good output" looks like
+* Make failure an explicit accepted continuation, eg: "if there's no xxx then tell me"
+* Have another agent supervise and assess the output
+
+####
+Links:
+[The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
+
+### Ask it why it did that and it'll tell you
+<p class="verdict no">No, don't trust that</p>
+
+* The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus question why this?". That reasoning may very well have *nothing to do with how it actually arrived* at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because .."
+
+### Say no to training, it'll leak your data
+<p class="verdict no">No, it absolutely won't</p>
+
+* *Nothing concrete from your chat is ever actually remembered*
+* "Use your data for training" simply means that your chat will be used to adjust the billions of weights for the next models, just like during pre-training. If you include your secret password or passion in your chat then it will be a drop in the ocean of weight-adjustments, never retrievable or associated with you.
+
+### "Make no mistakes"
+<p class="verdict no">Largely useless</p>
+
+* It urges more carefulness, but that's already baked into modern models
+* "Make no mistakes" does not point out what a mistake is. Instead, *describe exactly* how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".
+
+### Saying "please" costs a fortune and is useless
+<p class="verdict no">No, it doesn't and no it isn't</p>
+
+* "Please" is 1 input token and that cost really is neglible
+* "Please" add conversational structure and make it clearer that you make a request
+* "Please" is found in productive successful conversations, which we're seeking
+* Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
+&nbsp;
+Some say the best reason for being polite is simply that:
+&nbsp;
+* It's good for *you*, even in simulated conversations:<br>positive social behavior release oxytocin and dopamine, while a terse, impolite demeanor release cortisol and adrenaline
+
+### "YOU MUST NEVER DO xxx!"
+<p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
+
+* Emphasis markers like "UPPER CASE" or `*bold*` just shifts probabilities but cannot guarantee anything.
+* Emphasis is useful in a *relative* manner, for marking some instructions to me *more important* than others.
+&nbsp;
+* Generally, don't expect to be able to control the LLM completely. It's just statistics.
+
+
+### Mispellings doesn't matter
+<p class="verdict yes">Yes, don't worry about misspellings</p>
+
+* All kinds of misspellings are taught via training, so don't worry
+&nbsp;
+* However, *precision* matters: it's more efficient to for example refer to a file by the corrrect path and name so the LLM don't have to spend tokens searching for that file
+
+
+### All AI models are the same
+<p class="verdict no">Not at all</p>
+
+* They know basically *the same facts*
+* But they have *very different behaviors and values*
+
+
+### Does it understand?<br>Is the AI sentient?
+<p class="verdict maybe">Maybe. Experts disagree</p>
+
+* The fact that the answer isn't a resounding *"no"* is astounding.
+* *What even is understanding, sentience, consciousness*? LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.
+
+####
+[Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
+[Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
+
+#### Does formatting matter? Any special commands, tweaks, cheatcodes?
+
 
 
 

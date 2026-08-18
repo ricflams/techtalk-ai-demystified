@@ -126,6 +126,16 @@ img:not(.logo) {
   margin: 1.5rem auto;
   border-radius: 4px;
 }
+.verdict {
+  display: block;
+  font-weight: 400;
+  font-size: 1.25em;
+  margin: 0.4em 0 1em;
+}
+.verdict em { color: inherit; }
+.verdict.yes { color: #1a7f37; }
+.verdict.no { color: #e0242e; }
+.verdict.maybe { color: #9a6700; }
 img.logo {
   max-width: 1.4em;
   max-height: 1.4em;

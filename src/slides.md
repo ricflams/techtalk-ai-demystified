@@ -1407,98 +1407,57 @@ Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a 
 ### Whatever approach, embeddings comes out
 <img src="images/service/files/images/cat-advanced.png">
 
-### A closer look at multi-modal embeddings
+### A closer look at multimodal embeddings
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
+
+####
+Of all the things in this presentation, I suspect that the usefullness and power of embeddings, not least **multimodal embeddings**, will be a surprise to most of you.
 
 ### Remember, embeddings characterizes "something"
 <img src="images/llm/embeddings/three-embeddings.svg">
 
-### Multi-modal embeddings go beyond text
+### Multimodal embeddings go beyond text
 <img src="images/service/files/multimodal/multimodal-embeddings.svg">
 
 ####
-Some lab trains their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings.
+Some lab trains their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings. That kind of training is very expensive, which is why this is a very recent functionality (from spring, 2026).
 
-An embedding is rather cheap to calculate. The effort is in the order an LLM producing 1 token, which is close to what's actually happening. Once calculated you can store those numbers somewhere in a database for easy and cheap later use, e.g. comparing it to other embeddings to find similarity.
+A single embedding of a thing, however, is cheap to calculate. The effort is in the order an LLM producing one token, which is close to what's actually happening. You calculate it once and then you can store it (it's just numbers) in a database. From then on you can do easy and cheap similarity-matches for the embeddings.
+
+(Of course, they should also store a reference to the thing they are an embedding of.)
+
+The similarity-match is also called **cosine similarity**. And you will want to store the embeddings in a specialized database called a **vector database** that is optimal for that exact similarity-matching.
+
+Links:
+[Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
+[Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
+[What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
 
 ### The unified embedding space
 <img src="images/service/files/multimodal/unified-embedding-space.webp">
 
 ####
-This means that you can compare text, images, video, and audio to see how similar the concepts they are.
+Within the **unified embedding space** you can compare text, images, video, and audio to see how similar the concepts they are.
 
 ### Example: image-similarity
 <img src="images/service/files/multimodal/gemini-2-query.png">
 
-####
-Wih unified embeddings you can compare everything - text, images, video, and audio - to see how similar their meanings are.
-
 ### "Simply" compare the embedding's similarity
-<img src="images/service/files/multimodal/gemini-2-embeddings.png">
+<img src="images/service/files/multimodal/gemini-2-similarities.png">
 
 ####
 
-The powerful "unified embedding space"
-
-This means that you can compare text, images, video, and audio to see how similar the concepts they are.
-
-###
+### A world of ideas for comparing anything
 <img src="images/service/files/multimodal/ideas.png">
 
-###
-<img src="images/service/files/multimodal/ideas.svg">
+### New tech (spring 2026) with limitations
+<img src="images/service/files/multimodal/gemini-2-overview.png">
 
+---
+<img src="images/service/files/multimodal/gemini-2-embeddings.webp">
 
-
-
-
-####
-TODO:
-
-<img src="images/service/files/multimodal/8U0STgMbth.png">
-
-Of all the things I'm here to tell you about today (of all the takeaways from this presentation), I suspect that the usefullness and power of embeddings, not least multimodal embeddings, will be a surprise to most of you, how useful it is.
-
-Let's recap what an embedding is:
-A set of numbers that captures the "meaning" of anything.
-So the embedding for cat and kitten are pretty similar. You can calculate the embedding of "cat" and of "kitten" and see that they're similar.
-
-But with multimodal embeddings, aka unified embeddings, then you can calculate the embedding of "cat" and /this image/ and see that they're similar! "Is this a cat?" Yes. Of a miau or a videoclip.
-
-And calculating the embedding of something is pretty checp. The effort is in the order of having an LLM produce one token. And then you have it and can store it somewhere and can compare it easily with others.
-
-Just think about it: with multimodal embeddings you now have a way of comparing "anything", be it text against text, text against image, image and audio, etc. "How much does this look like that?" "Which of these 10 things looks most like that one here?". Etc.
-
-#### "Unified embeddings" takes a lot of training
-
-[Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
-
-[What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
-
-####
-https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+<img src="images/service/files/multimodal/amazon-nova-2.jpg">
 
 
 ### PDFs and other documents

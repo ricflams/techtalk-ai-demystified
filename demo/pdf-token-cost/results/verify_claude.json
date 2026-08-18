@@ -1,0 +1,62 @@
+{
+  "attention": {
+    "predicted": 34587,
+    "actual": 34587,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "resnet": {
+    "predicted": 37427,
+    "actual": 37427,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "gpt3": {
+    "predicted": 186513,
+    "actual": 186513,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "irs1040": {
+    "predicted": 6694,
+    "actual": 6694,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "nist_cloud": {
+    "predicted": 13210,
+    "actual": 13210,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "nist_csf": {
+    "predicted": 123717,
+    "actual": 123717,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "bert": {
+    "predicted": 43929,
+    "actual": 43929,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "word2vec": {
+    "predicted": 16550,
+    "actual": 28791,
+    "delta_pct": 73.96,
+    "match_5pct": false
+  },
+  "clip": {
+    "predicted": 145407,
+    "actual": 145407,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  },
+  "gans": {
+    "predicted": 22262,
+    "actual": 22262,
+    "delta_pct": 0.0,
+    "match_5pct": true
+  }
+}

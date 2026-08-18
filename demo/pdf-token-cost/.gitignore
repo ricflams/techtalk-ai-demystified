@@ -1,3 +1,7 @@
+# Regenerable inputs — recreate with download.py / convert.py
 pdfs/
 markdown/
-results/answers/
+
+# Raw per-question model output (~2MB across the current run and v1_original).
+# The distilled scores/report ARE committed; matches any answers/ dir, at any depth.
+answers/

@@ -32,8 +32,10 @@ LLM, or to upload the raw PDF and let the API extract it?
 # 1. Install dependencies
 bash setup.sh
 
-# 2. Set your Anthropic API key
+# 2. Set your API keys
 export ANTHROPIC_API_KEY=sk-ant-...
+export OPENAI_API_KEY=sk-...     # only for the OpenAI legs (steps 3 and 7)
+export GEMINI_API_KEY=...        # only for the Gemini legs (steps 3 and 7)
 ```
 
 > **WSL2 note:** Use `python3` instead of `python` unless you've run `sudo apt install python-is-python3`.
@@ -57,16 +59,34 @@ This runs:
 - **pymupdf4llm** — markdown with headings, tables, some formatting preserved
 - **marker** — ML-based, best quality (skipped if not installed; `pip install marker-pdf`)
 
-### Step 3 — Count tokens (free, no inference)
+### Step 3 — Count tokens (free for Anthropic; the others cost a little)
 ```bash
-python3 measure_tokens.py
+python3 measure_tokens.py           # Anthropic count_tokens — free, no inference
+python3 measure_tokens_openai.py    # OpenAI: real call for raw PDF, tiktoken for markdown
+python3 measure_tokens_gemini.py    # Gemini count_tokens
 ```
-Uses the Anthropic `count_tokens` endpoint. Measures token cost for:
-- Raw PDF via document API
-- pymupdf4llm markdown
-- pdftotext plain text
+Measures token cost for raw PDF via the document API, pymupdf4llm markdown, and
+pdftotext plain text. Writes `results/tokens.json`, `tokens_openai.json`, `tokens_gemini.json`.
 
-### Step 4 — Run QA experiment (~$3–5 at Sonnet pricing)
+### Step 4 — Build the ground-truth answer key (~$1–2)
+```bash
+python3 build_ground_truth.py
+
+# Specific PDFs, or a different model
+python3 build_ground_truth.py --pdf attention gans
+python3 build_ground_truth.py --model claude-opus-5
+```
+
+Reads each **raw** PDF (never the markdown conversions, so question/answer phrasing isn't
+biased toward one extraction method) and produces a reference answer + supporting verbatim
+quote + confidence label for all 10 questions per document. Writes `results/ground_truth.json`.
+
+**`report.py --judge` hard-fails without this file** — the judge grades both arms against it
+rather than against each other. Resumable: re-running skips documents already built, so use
+`--force` to regenerate. Spot-check the equations, exact numbers, and any `low` confidence
+flags before trusting it as the reference.
+
+### Step 5 — Run QA experiment (~$3–5 at Sonnet pricing)
 ```bash
 python3 run_qa.py
 
@@ -80,16 +100,32 @@ python3 run_qa.py --model claude-haiku-4-5-20251001    # cheaper, ~$0.30 total
 Each question is asked twice: once with raw PDF, once with markdown. Answers are saved
 to `results/answers/{pdf_id}/q{N}_{approach}.txt`.
 
-### Step 5 — Generate report
+### Step 6 — Generate report
 ```bash
 # Without quality scoring (just token table)
 python3 report.py
 
-# With LLM-as-judge quality scoring (~$0.50 extra)
+# With LLM-as-judge quality scoring against ground_truth.json (~$0.50 extra)
 python3 report.py --judge
 ```
 
-Output: `results/report.md`
+Output: `results/report.md`, `results/scores.json`. The previous methodology's run is kept
+at `results/v1_original/` for comparison.
+
+### Step 7 — Verify the token numbers (optional, ~$1)
+
+Each provider's headline number came from a different kind of measurement, so each needs its
+own cross-check against real billed usage:
+
+```bash
+python3 verify_claude.py    # count_tokens dry-run vs. real messages.create billing
+python3 verify_gemini.py    # count_tokens vs. real usage + end-of-document questions
+python3 verify_openai.py    # tiktoken estimate vs. real call; truncation; figure comprehension
+```
+
+Written to `results/verify_{claude,gemini,openai}.json`. `verify_claude.py` exists because
+Claude's `raw_pdf` figure was the one number produced *only* by the free `count_tokens`
+endpoint and never compared against a real billed call.
 
 ---
 

@@ -1,0 +1,42 @@
+{
+  "attention": {
+    "raw_pdf": 38370,
+    "pymupdf4llm": 16275
+  },
+  "resnet": {
+    "raw_pdf": 42756,
+    "pymupdf4llm": 26146
+  },
+  "gpt3": {
+    "raw_pdf": 208846,
+    "pymupdf4llm": 103814
+  },
+  "irs1040": {
+    "raw_pdf": 7541,
+    "pymupdf4llm": 11823
+  },
+  "nist_cloud": {
+    "raw_pdf": 14356,
+    "pymupdf4llm": 3551
+  },
+  "nist_csf": {
+    "raw_pdf": 136506,
+    "pymupdf4llm": 54534
+  },
+  "bert": {
+    "raw_pdf": 50194,
+    "pymupdf4llm": 26308
+  },
+  "word2vec": {
+    "raw_pdf": 32289,
+    "pymupdf4llm": 14967
+  },
+  "clip": {
+    "raw_pdf": 166711,
+    "pymupdf4llm": 96739
+  },
+  "gans": {
+    "raw_pdf": 24916,
+    "pymupdf4llm": 12155
+  }
+}

@@ -1,0 +1,522 @@
+{
+  "nist_cloud": {
+    "q01": {
+      "answer": "Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models.",
+      "quote": "Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "On-demand self-service, Broad network access, Resource pooling, Rapid elasticity, and Measured service.",
+      "quote": "On-demand self-service. A consumer can unilaterally provision computing capabilities... Broad network access. Capabilities are available over the network... Resource pooling. The provider's computing resources are pooled to serve multiple consumers... Rapid elasticity. Capabilities can be elastically provisioned and released... Measured service. Cloud systems automatically control and optimize resource use",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "Software as a Service (SaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS).",
+      "quote": "Software as a Service (SaaS). The capability provided to the consumer is to use the provider\u2019s applications running on a cloud infrastructure",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "Private cloud, Community cloud, Public cloud, and Hybrid cloud.",
+      "quote": "Private cloud. The cloud infrastructure is provisioned for exclusive use by a single organization ... Community cloud. ... Public cloud. ... Hybrid cloud. The cloud infrastructure is a composition of two or more distinct cloud infrastructures",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "On-demand self-service means a consumer can unilaterally provision computing capabilities, such as server time and network storage, as needed automatically without requiring human interaction with each service provider.",
+      "quote": "On-demand self-service. A consumer can unilaterally provision computing capabilities, such as server time and network storage, as needed automatically without requiring human interaction with each service provider.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "Resource pooling means the provider's computing resources are pooled to serve multiple consumers using a multi-tenant model, with different physical and virtual resources dynamically assigned and reassigned according to consumer demand. There is a sense of location independence in that the customer generally has no control or knowledge over the exact location of the provided resources but may be able to specify location at a higher level of abstraction (e.g., country, state, or datacenter). Examples of resources include storage, processing, memory, and network bandwidth.",
+      "quote": "Resource pooling. The provider\u2019s computing resources are pooled to serve multiple consumers using a multi-tenant model, with different physical and virtual resources dynamically assigned and reassigned according to consumer demand. There is a sense of location independence in that the customer generally has no control or knowledge over the exact location of the provided resources but may be able to specify location at a higher level of abstraction (e.g., country, state, or datacenter). Examples of resources include storage, processing, memory, and network bandwidth.",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "SaaS: The capability provided to the consumer is to use the provider's applications running on a cloud infrastructure. The applications are accessible from various client devices through either a thin client interface, such as a web browser (e.g., web-based email), or a program interface. The consumer does not manage or control the underlying cloud infrastructure including network, servers, operating systems, storage, or even individual application capabilities, with the possible exception of limited user-specific application configuration settings.",
+      "quote": "Software as a Service (SaaS). The capability provided to the consumer is to use the provider\u2019s applications running on a cloud infrastructure. The applications are accessible from various client devices through either a thin client interface, such as a web browser (e.g., web-based email), or a program interface. The consumer does not manage or control the underlying cloud infrastructure including network, servers, operating systems, storage, or even individual application capabilities, with the possible exception of limited user-specific application configuration settings.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "IaaS: The capability provided to the consumer is to provision processing, storage, networks, and other fundamental computing resources where the consumer is able to deploy and run arbitrary software, which can include operating systems and applications. The consumer does not manage or control the underlying cloud infrastructure but has control over operating systems, storage, and deployed applications; and possibly limited control of select networking components (e.g., host firewalls).",
+      "quote": "Infrastructure as a Service (IaaS). The capability provided to the consumer is to provision processing, storage, networks, and other fundamental computing resources where the consumer is able to deploy and run arbitrary software, which can include operating systems and applications. The consumer does not manage or control the underlying cloud infrastructure but has control over operating systems, storage, and deployed applications; and possibly limited control of select networking components (e.g., host firewalls).",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "A community cloud is cloud infrastructure provisioned for exclusive use by a specific community of consumers from organizations that have shared concerns (e.g., mission, security requirements, policy, and compliance considerations). It may be owned, managed, and operated by one or more of the organizations in the community, a third party, or some combination of them, and it may exist on or off premises.",
+      "quote": "Community cloud. The cloud infrastructure is provisioned for exclusive use by a specific community of consumers from organizations that have shared concerns (e.g., mission, security requirements, policy, and compliance considerations). It may be owned, managed, and operated by one or more of the organizations in the community, a third party, or some combination of them, and it may exist on or off premises.",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "The authors are Peter Mell and Timothy Grance; the document was published by the National Institute of Standards and Technology (NIST), Computer Security Division, Information Technology Laboratory, U.S. Department of Commerce, as NIST Special Publication 800-145 (September 2011).",
+      "quote": "The authors Peter Mell and Timothy Grance of the National Institute of Standards and Technology (NIST) would like to thank the many experts in industry and government",
+      "confidence": "high"
+    }
+  },
+  "attention": {
+    "q01": {
+      "answer": "(1) Encoder-decoder attention layers, where queries come from the previous decoder layer and the memory keys and values come from the encoder output; (2) encoder self-attention layers, where keys, values and queries all come from the output of the previous encoder layer; (3) decoder self-attention layers, where each position attends to all positions in the decoder up to and including that position (with masking of illegal/leftward connections by setting them to \u2212\u221e).",
+      "quote": "The Transformer uses multi-head attention in three different ways:\n\u2022 In \"encoder-decoder attention\" layers, the queries come from the previous decoder layer,\nand the memory keys and values come from the output of the encoder.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "d_model = 512, d_ff = 2048, h = 8 heads (with d_k = d_v = 64).",
+      "quote": "base 6 512 2048 8 64 64 0.1 0.1 100K 4.92 25.8 65",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "28.4 BLEU",
+      "quote": "Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V",
+      "quote": "Attention(Q, K, V ) = softmax(QKT\n\u221a\ndk\n)V (1)",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Both the encoder and the decoder are composed of N = 6 identical layers (6 encoder layers and 6 decoder layers).",
+      "quote": "The encoder is composed of a stack of N = 6 identical layers.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "213 million parameters (213 \u00d7 10^6)",
+      "quote": "big 6 1024 4096 16 0.3 300K 4.33 26.4 213",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "The base models were trained for 100,000 steps, about 12 hours (roughly 0.4 seconds per step), on one machine with 8 NVIDIA P100 GPUs.",
+      "quote": "We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "warmup_steps = 4000",
+      "quote": "We used warmup_steps = 4000.",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "41.8 BLEU (as reported in the abstract and Table 2; note Section 6.1 text inconsistently states 41.0).",
+      "quote": "our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "For machine translation: beam size of 4 and length penalty \u03b1 = 0.6. (For English constituency parsing they used a beam size of 21 and \u03b1 = 0.3.)",
+      "quote": "We used beam search with a beam size of 4 and length penalty \u03b1 = 0.6 [38].",
+      "confidence": "high"
+    }
+  },
+  "resnet": {
+    "q01": {
+      "answer": "The degradation problem: as network depth increases, accuracy saturates and then degrades rapidly, and this is not caused by overfitting \u2014 adding more layers to a suitably deep model leads to higher training error (as shown for 20- vs 56-layer plain nets on CIFAR-10). This indicates deeper plain networks are harder to optimize, motivating the residual learning reformulation.",
+      "quote": "When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly. Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "On ImageNet the deepest ResNet is 152 layers; on CIFAR-10 they also explore an even deeper 1202-layer ResNet (with n = 200).",
+      "quote": "On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers\u20148\u00d7 deeper than VGG nets [41] but still having lower complexity.",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "3.57% top-5 error on the ImageNet test set (ensemble result), which won 1st place in the ILSVRC 2015 classification task.",
+      "quote": "An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task.",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "The building block is y = F(x, {Wi}) + x (Eqn. 1), where F(x) := H(x) \u2212 x is the residual mapping and H(x) is the desired underlying mapping, so H(x) = F(x) + x. For a two-layer block, F = W2\u03c3(W1x). When dimensions differ, a linear projection is used: y = F(x, {Wi}) + Ws x (Eqn. 2).",
+      "quote": "y = F(x, {Wi}) + x. (1)",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Option A: shortcuts remain parameter-free identity mappings, and when dimensions increase, extra zero entries are padded (zero-padding), introducing no extra parameters. Option B: projection shortcuts (Eqn. 2, done by 1\u00d71 convolutions) are used only when dimensions increase, while all other shortcuts remain identity \u2014 this adds parameters. (Option C uses projections for all shortcuts.) In experiments B is slightly better than A, but the differences are small so projections are not essential.",
+      "quote": "(A) zero-padding shortcuts are used for increasing dimensions, and all shortcuts are parameter-free (the same as Table 2 and Fig. 4 right); (B) projection shortcuts are used for increasing dimensions, and other shortcuts are identity; and (C) all shortcuts are projections.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "SGD (stochastic gradient descent) with an initial learning rate of 0.1 (divided by 10 when error plateaus), momentum of 0.9, and weight decay of 0.0001; trained for up to 60 \u00d7 10^4 iterations.",
+      "quote": "We use SGD with a mini-batch size of 256. The learning rate starts from 0.1 and is divided by 10 when the error plateaus, and the models are trained for up to 60 \u00d7 104iterations. We use a weight decay of 0.0001 and a momentum of 0.9.",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "With 10-crop testing on the ImageNet validation set, the 34-layer ResNet has 25.03% top-1 error versus 28.54% for the 34-layer plain net \u2014 a reduction of 3.5%. (The 34-layer ResNet also beats the 18-layer ResNet's 27.88% by 2.8%.)",
+      "quote": "ResNet reduces the top-1 error by 3.5% (Table 2), resulting from the successfully reduced training error (Fig. 4 right vs. left).",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "CIFAR-10 (classification, including 110- and 1202-layer nets), PASCAL VOC 2007 and 2012 (object detection), MS COCO (detection and segmentation), and the ImageNet detection (DET) and ImageNet localization (LOC) datasets.",
+      "quote": "Table 7 and 8 show the object detection baseline results on PASCAL VOC 2007 and 2012 [5] and COCO [26].",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "A bottleneck block replaces the 2-layer residual function with a stack of 3 layers: 1\u00d71, 3\u00d73, and 1\u00d71 convolutions, where the 1\u00d71 layers reduce and then restore (increase) dimensions, leaving the 3\u00d73 layer as a bottleneck with smaller input/output dimensions (e.g., 256-d input reduced to 64-d). It is used because of concerns about affordable training time \u2014 it gives similar time complexity to the 2-layer block while enabling much deeper (50/101/152-layer) nets. Parameter-free identity shortcuts are especially important here, since replacing them with projections would double time complexity and model size.",
+      "quote": "Because of concerns on the training time that we can afford, we modify the building block as a bottleneck design4. For each residual function F, we use a stack of 3 layers instead of 2 (Fig. 5). The three layers are 1\u00d71, 3\u00d73, and 1\u00d71 convolutions, where the 1\u00d71 layers are responsible for reducing and then increasing (restoring) dimensions, leaving the 3\u00d73 layer a bottleneck with smaller input/output dimensions.",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "A mini-batch size of 256 was used for ImageNet training. (For CIFAR-10, a mini-batch size of 128 on two GPUs was used.)",
+      "quote": "We use SGD with a mini-batch size of 256.",
+      "confidence": "high"
+    }
+  },
+  "gpt3": {
+    "q01": {
+      "answer": "175 billion parameters (175.0B; listed as 174,600 million in the compute table).",
+      "quote": "Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "GPT-3 175B has n_layers = 96, n_heads = 96, d_model = 12288 (with d_head = 128, batch size 3.2M tokens, learning rate 0.6 \u00d7 10^-4).",
+      "quote": "GPT-3 175B or \u201cGPT-3\u201d 175.0B 96 12288 96 128 3.2M 0.6 \u00d7 10\u22124",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "All three involve no gradient updates/weight changes, differing only in how many in-context demonstrations are given at inference: zero-shot gives no demonstrations, only a natural language instruction describing the task; one-shot gives exactly one demonstration plus a natural language description; few-shot gives as many demonstrations as fit in the model's 2048-token context window (typically K = 10 to 100, e.g. a few dozen).",
+      "quote": "(a) \u201cfew-shot learning\u201d, or in-context learning where we allow as many demonstrations as will fit into the model\u2019s context window (typically 10 to 100), (b) \u201cone-shot learning\u201d, where we allow only one demonstration, and (c) \u201czero-shot\u201d learning, where no demonstrations are allowed and only an instruction in natural language is given to the model.",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "The largest dataset was the filtered Common Crawl (410 billion tokens, 60% of the training mix), drawn from 41 monthly CommonCrawl shards covering 2016\u20132019: 45TB of compressed plaintext before filtering and 570GB after. Processing had three steps: (1) automatic quality filtering by a logistic-regression classifier (Spark tokenizer + HashingTF features) trained to distinguish curated high-quality corpora (WebText, Wikipedia, web books) from raw Common Crawl, keeping documents where np.random.pareto(\u03b1) > 1 \u2212 document_score with \u03b1 = 9; (2) fuzzy deduplication at the document level within and across datasets using Spark's MinHashLSH with 10 hashes (also fuzzily removing WebText from Common Crawl, reducing dataset size ~10%); and (3) adding curated high-quality corpora (WebText2, Books1, Books2, Wikipedia) to the mix. They also attempted to remove 13-gram overlaps with benchmark test/dev sets, though a bug left some overlaps.",
+      "quote": "The CommonCrawl data was downloaded from 41 shards of monthly CommonCrawl covering 2016 to 2019, constituting 45TB of compressed plaintext before filtering and 570GB after filtering, roughly equivalent to 400 billion byte-pair-encoded tokens.",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "71.2% accuracy in the few-shot setting (64.3% zero-shot, 68.0% one-shot).",
+      "quote": "GPT-3 achieves 64.3% accuracy on TriviaQA in the zero-shot setting, 68.0% in the one-shot setting, and 71.2% in the few-shot setting, the last of which is state-of-the-art relative to fine-tuned models operating in the same closed-book setting.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "The paper reports that humans have great difficulty distinguishing GPT-3-generated news articles from human-written ones. For ~200-word articles, mean human accuracy at identifying model-generated text was ~52% for GPT-3 175B (barely above the 50% chance level), versus ~86% for a deliberately bad control model; detection accuracy declines as model size grows. In a follow-up with ~500-word articles, accuracy was ~52% for GPT-3 175B versus ~88% for the control. The best-fooling article had 12% accuracy and the easiest-to-spot had 61%. Indicators of machine generation include factual inaccuracies, repetition, non sequiturs, and unusual phrasings. The authors flag this as a concerning misuse milestone (Section 6.1).",
+      "quote": "mean human accuracy at detecting articles that were produced by the 175B parameter model was barely above chance at \u223c 52% (see Table 3.11).",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "Approximately 3.64E+03 (3,640) petaflop/s-days, i.e., 3.14E+23 total flops \u2014 described in the text as 'several thousand petaflop/s-days'.",
+      "quote": "GPT-3 175B 3.64E+03 3.14E+23 174,600 300 6 3 2 1.0",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "125M (GPT-3 Small), 350M (Medium), 760M (Large), 1.3B (XL), 2.7B, 6.7B, 13.0B, and 175.0B.",
+      "quote": "GPT-3 Small 125M 12 768 12 64 0.5M 6.0 \u00d7 10\u22124 GPT-3 Medium 350M 24 1024 16 64 0.5M 3.0 \u00d7 10\u22124 GPT-3 Large 760M 24 1536 16 96 0.5M 2.5 \u00d7 10\u22124 GPT-3 XL 1.3B 24 2048 24 128 1M 2.0 \u00d7 10\u22124 GPT-3 2.7B 2.7B 32 2560 32 80 1M 1.6 \u00d7 10\u22124 GPT-3 6.7B 6.7B 32 4096 32 128 2M 1.2 \u00d7 10\u22124 GPT-3 13B 13.0B 40 5140 40 128 2M 1.0 \u00d7 10\u22124 GPT-3 175B or \u201cGPT-3\u201d 175.0B 96 12288 96 128 3.2M 0.6 \u00d7 10\u22124",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "77.7% accuracy in the few-shot setting (70.2% zero-shot, 73.2% one-shot), versus a fine-tuned SOTA of 84.6%.",
+      "quote": "GPT-3 achieves 70.2% in the zero-shot setting, 73.2% in the one-shot setting, and 77.7% in the few-shot setting.",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "Section 5 lists several limitations rather than a neat set of exactly three, but they group broadly into: (1) weaknesses in text synthesis and specific NLP tasks (semantic repetition, loss of coherence over long passages, contradictions, non-sequiturs, poor 'common sense physics', and near-chance performance on comparison tasks like WiC and ANLI and some reading comprehension); (2) structural/algorithmic limitations of the approach (autoregressive-only with no bidirectionality or denoising objectives, limits of the pretraining objective which weights all tokens equally, lack of grounding in other domains such as video or physical interaction, and poor pre-training sample efficiency); and (3) practical and interpretive limitations (expensive and inconvenient inference at this scale, uncertainty about whether few-shot learning truly learns tasks de novo versus recognizing training-time tasks, plus lack of interpretability, poor calibration, and retained biases from training data).",
+      "quote": "GPT-3 and our analysis of it have a number of limitations. Below we describe some of these and suggest directions for future work.",
+      "confidence": "medium"
+    }
+  },
+  "irs1040": {
+    "q01": {
+      "answer": "Tax year 2025 (for the year Jan. 1\u2013Dec. 31, 2025, or other tax year beginning in 2025)",
+      "quote": "For the year Jan. 1\u2013Dec. 31, 2025, or other tax year beginning , 2025, ending , 20",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "The form actually lists five filing status options: Single; Married filing jointly (even if only one had income); Married filing separately (MFS); Head of household (HOH); and Qualifying surviving spouse (QSS).",
+      "quote": "Single \nMarried filing jointly (even if only one had income) \nMarried filing separately (MFS). Enter spouse\u2019s SSN above \nand full name here:\nHead of household (HOH)\nQualifying surviving spouse (QSS)",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "Line 1 (specifically line 1a for the total amount from Form(s) W-2, box 1, with tip income on line 1c and the total of lines 1a through 1h on line 1z)",
+      "quote": "1 a Total amount from Form(s) W-2, box 1 (see instructions) . . . . . . . . . . . . . 1a",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "Additional income is reported on Schedule 1, line 10, and entered on Form 1040 line 8.",
+      "quote": "8 Additional income from Schedule 1, line 10 . . . . . . . . . . . . . . . . . 8",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Line 11a on page 1 (subtract line 10 from line 9); the amount is carried to line 11b on page 2.",
+      "quote": "11a Subtract line 10 from line 9. This is your adjusted gross income . . . . . . . . . . 11a",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "Line 12a \u2014 the checkbox 'Someone can claim You as a dependent / Your spouse as a dependent'; the standard deduction margin note states that if you checked a box on line 12a, 12b, 12c, or 12d, see instructions (the deduction is entered on line 12e).",
+      "quote": "12a Someone can claim You as a dependent Your spouse as a dependent",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "Line 19 (Child tax credit or credit for other dependents from Schedule 8812)",
+      "quote": "19 Child tax credit or credit for other dependents from Schedule 8812 . . . . . . . . . . 19",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "Line 37 is 'Subtract line 33 from line 24. This is the amount you owe.' under the 'Amount You Owe' section. The last numbered line on page 2 is line 38, 'Estimated tax penalty (see instructions).'",
+      "quote": "37 Subtract line 33 from line 24. This is the amount you owe. \nFor details on how to pay, go to www.irs.gov/Payments or see instructions . . . . . . . . 37",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "Three signature blocks: the taxpayer's signature, the spouse's signature (if a joint return), and the paid preparer's signature.",
+      "quote": "Your signature Date Your occupation ... Spouse\u2019s signature. If a joint return, both must sign. Date Spouse\u2019s occupation ... Preparer\u2019s name Preparer\u2019s signature Date PTIN",
+      "confidence": "medium"
+    },
+    "q10": {
+      "answer": "It asks whether you want to allow another person to discuss the return with the IRS (Yes/No), and if yes: the designee's name, phone number, and personal identification number (PIN).",
+      "quote": "Do you want to allow another person to discuss this return with the IRS? See instructions. Yes. Complete below. No\nDesignee\u2019s \nname \nPhone \nno. \nPersonal identification \nnumber (PIN)",
+      "confidence": "high"
+    }
+  },
+  "nist_csf": {
+    "q01": {
+      "answer": "Identify, Protect, Detect, Respond, and Recover.",
+      "quote": "The Framework Core consists of five concurrent and continuous Functions\u2014Identify, Protect, Detect, Respond, Recover.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "The four Tiers are Tier 1: Partial, Tier 2: Risk Informed, Tier 3: Repeatable, and Tier 4: Adaptive. Tier 1 (Partial) is characterized by: Risk Management Process \u2013 cybersecurity risk management practices are not formalized and risk is managed in an ad hoc, sometimes reactive manner, with prioritization possibly not informed by organizational risk objectives, threat environment, or business/mission requirements; Integrated Risk Management Program \u2013 limited organizational awareness of cybersecurity risk, risk management implemented on an irregular, case-by-case basis, and possibly no processes to share cybersecurity information internally; External Participation \u2013 the organization does not understand its role in the larger ecosystem, does not collaborate with or receive information from other entities nor share information, and is generally unaware of cyber supply chain risks of products/services it provides and uses.",
+      "quote": "Tier 1: Partial\n Risk Management Process \u2013 Organizational cybersecurity risk management practices are \nnot formalized, and risk is managed in an ad hoc and sometimes reactive manner.",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "The document does not give a standalone definition of 'cybersecurity risk' in its glossary. It defines 'Risk' as 'A measure of the extent to which an entity is threatened by a potential circumstance or event, and typically a function of: (i) the adverse impacts that would arise if the circumstance or event occurs; and (ii) the likelihood of occurrence,' and defines 'Cybersecurity' as 'The process of protecting information by preventing, detecting, and responding to attacks.' It also notes cybersecurity risk affects a company's bottom line, similar to financial and reputational risks.",
+      "quote": "Risk A measure of the extent to which an entity is threatened by a potential \ncircumstance or event, and typically a function of: (i) the adverse \nimpacts that would arise if the circumstance or event occurs; and (ii) \nthe likelihood of occurrence.",
+      "confidence": "medium"
+    },
+    "q04": {
+      "answer": "A Framework Profile is the alignment of the Functions, Categories, and Subcategories with the business requirements, risk tolerance, and resources of the organization \u2014 i.e., the outcomes based on business needs that an organization has selected from the Framework Categories and Subcategories. The Current Profile indicates the cybersecurity outcomes that are currently being achieved (the 'as is' state); the Target Profile indicates the outcomes needed to achieve the desired cybersecurity risk management goals (the 'to be' state). Comparing them reveals gaps to be addressed.",
+      "quote": "The Framework Profile (\u201cProfile\u201d) is the alignment of the Functions, Categories, and \nSubcategories with the business requirements, risk tolerance, and resources of the organization.",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Critical infrastructure \u2014 Executive Order 13636, 'Improving Critical Infrastructure Cybersecurity' (February 2013), under which NIST developed Framework Version 1.0 for critical infrastructure owners and operators.",
+      "quote": "This formalized NIST\u2019s previous work developing Framework Version 1.0 under Executive \nOrder 13636, \u201cImproving Critical Infrastructure Cybersecurity,\u201d issued in February 2013",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "The Identify (ID) Function has 6 Categories (ID.AM Asset Management, ID.BE Business Environment, ID.GV Governance, ID.RA Risk Assessment, ID.RM Risk Management Strategy, ID.SC Supply Chain Risk Management) and 29 Subcategories (ID.AM-1 to -6 = 6; ID.BE-1 to -5 = 5; ID.GV-1 to -4 = 4; ID.RA-1 to -6 = 6; ID.RM-1 to -3 = 3; ID.SC-1 to -5 = 5).",
+      "quote": "ID Identify ID.AM Asset Management\nID.BE Business Environment\nID.GV Governance\nID.RA Risk Assessment\nID.RM Risk Management Strategy\nID.SC Supply Chain Risk Management",
+      "confidence": "medium"
+    },
+    "q07": {
+      "answer": "NIST SP 800-53 Rev. 4 (Security and Privacy Controls for Federal Information Systems and Organizations, April 2013 including updates as of January 22, 2015) is used as one of the Informative References mapped to Framework Core Subcategories in Appendix A. Mappings are only to the control level, and are illustrative/not exhaustive. Additionally, NIST SP 800-39 is cited as an example cybersecurity risk management process in Section 1.2.",
+      "quote": "NIST SP 800-53 Rev. 4 - NIST Special Publication 800-53 Revision 4, Security and Privacy Controls for Federal Information \nSystems and Organizations, April 2013 (including updates as of January 22, 2015). https://doi.org/10.6028/NIST.SP.800-53r4.\nInformative References are only mapped to the control level, though any control enhancement might be found useful in \nachieving a subcategory outcome.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "Tier 4 (Adaptive) adds: adapting cybersecurity practices based on previous and current activities including lessons learned and predictive indicators, with continuous improvement incorporating advanced technologies and timely response to evolving sophisticated threats; senior executives monitoring cybersecurity risk in the same context as financial and other organizational risks, with the organizational budget based on understanding of current and predicted risk environment and risk tolerance, and cybersecurity risk management being part of organizational culture; and externally, the organization actively contributes to the community's broader understanding of risks, shares information internally and externally, uses real-time or near real-time information to consistently act upon cyber supply chain risks, and communicates proactively using formal and informal mechanisms to maintain strong supply chain relationships. Tier 3 only 'may contribute' to community understanding and 'usually acts formally' upon supply chain risks.",
+      "quote": "External Participation - The organization understands its role, dependencies, and \ndependents in the larger ecosystem and contributes to the community\u2019s broader \nunderstanding of risks. It receives, generates, and reviews prioritized information that \ninforms continuous analysis of its risks as the threat and technology landscapes evolve.",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "Version 1.1 greatly expanded cyber supply chain risk management (SCRM). Cyber SCRM is defined as the set of activities necessary to manage cybersecurity risk associated with external parties, addressing both the effect an organization has on external parties and the effect they have on it. Its primary objective is to identify, assess, and mitigate products and services that may contain malicious functionality, are counterfeit, or are vulnerable due to poor manufacturing/development practices. Activities may include determining cybersecurity requirements for suppliers, enacting them through formal agreements (e.g., contracts), communicating how requirements will be verified and validated, verifying requirements are met through assessment methodologies, and governing and managing these activities. The Framework added a Supply Chain Risk Management Category (ID.SC) with Subcategories ID.SC-1 through ID.SC-5, added Cyber SCRM criteria to the Implementation Tiers, and added Section 3.4 Buying Decisions.",
+      "quote": "Cyber SCRM is the set of activities necessary to manage cybersecurity risk associated with \nexternal parties. More specifically, cyber SCRM addresses both the cybersecurity effect an \norganization has on external parties and the cybersecurity effect external parties have on an \norganization.",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "Step 1: Prioritize and Scope; Step 2: Orient; Step 3: Create a Current Profile; Step 4: Conduct a Risk Assessment; Step 5: Create a Target Profile; Step 6: Determine, Analyze, and Prioritize Gaps; Step 7: Implement Action Plan. These steps should be repeated as necessary to continuously improve cybersecurity.",
+      "quote": "Step 1: Prioritize and Scope... Step 2: Orient... Step 3: Create a Current Profile... Step 4: Conduct a Risk Assessment... Step 5: Create a Target Profile... Step 6: Determine, Analyze, and Prioritize Gaps... Step 7: Implement Action Plan.",
+      "confidence": "high"
+    }
+  },
+  "bert": {
+    "q01": {
+      "answer": "BERT stands for Bidirectional Encoder Representations from Transformers.",
+      "quote": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "Task #1: Masked LM (MLM), in which 15% of WordPiece tokens are randomly masked and predicted; and Task #2: Next Sentence Prediction (NSP), a binarized task predicting whether sentence B actually follows sentence A.",
+      "quote": "Instead, we pre-train BERT using two unsupervised tasks, described in this section.",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "BERT-Base has L=12 layers (Transformer blocks), H=768 hidden size, A=12 self-attention heads, and 110M total parameters (feed-forward/filter size 3072).",
+      "quote": "BERTBASE (L=12, H=768, A=12, Total Parameters=110M)",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "BERT-Large achieves 86.7% accuracy on MNLI-matched (GLUE Test), with 85.9% on MNLI-mismatched; on the Dev set it reports 86.6 (Table 6, 24-layer model). The abstract cites 86.7% MultiNLI accuracy, a 4.6% absolute improvement.",
+      "quote": "BERTLARGE 86.7/85.9 72.1 92.7 94.9 60.5 86.5 89.3 70.1 82.1",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Sentence pairs are packed into a single sequence. A special [CLS] classification token is placed first, the two sentences are separated by a special [SEP] token, and a learned segment embedding (A or B) is added to every token to indicate which sentence it belongs to. The final input representation for each token is the sum of token, segment, and position embeddings.",
+      "quote": "Sentence pairs are packed together into a single sequence. We differentiate the sentences in two ways. First, we separate them with a special token ([SEP]). Second, we add a learned embedding to every token indicating whether it belongs to sentence A or sentence B.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "The final hidden state C corresponding to the [CLS] token serves as the aggregate sequence representation, fed into an output classification layer for sentence-level classification tasks (e.g., GLUE entailment/sentiment, SWAG scoring); during pre-training it is also used for next sentence prediction. In SQuAD 2.0 it additionally serves as the no-answer span position.",
+      "quote": "the [CLS] representation is fed into an output layer for classification, such as entailment or sentiment analysis.",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "15% of all WordPiece tokens in each sequence are masked at random. Of the chosen positions, 80% are replaced with [MASK], 10% with a random token, and 10% left unchanged.",
+      "quote": "In all of our experiments, we mask 15% of all WordPiece tokens in each sequence at random.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "On the official GLUE leaderboard, BERT-Large scores 80.5 versus OpenAI GPT's 72.8. In Table 1 (paper's average excluding WNLI), BERT-Base averages 79.6 and BERT-Large 82.1 versus OpenAI GPT's 75.1 \u2014 improvements of 4.5% and 7.0% respectively over prior state of the art.",
+      "quote": "On the official GLUE leaderboard10, BERTLARGE obtains a score of 80.5, compared to OpenAI GPT, which obtains 72.8 as of the date of writing.",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "Adam learning rates of 5e-5, 3e-5, and 2e-5 are recommended (for GLUE the paper selected the best among 5e-5, 4e-5, 3e-5, and 2e-5), with batch size 16 or 32 and 2, 3, or 4 epochs.",
+      "quote": "\u2022 Learning rate (Adam): 5e-5, 3e-5, 2e-5",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "The ablation (Table 5) shows bidirectionality is critical: the left-to-right (LTR & No NSP) model performs worse than the bidirectional MLM model on all tasks, with large drops on MRPC (77.5 vs 86.5) and SQuAD (77.8 vs 87.9); adding a randomly initialized BiLSTM on top improves SQuAD to 84.9 but still falls far short of the pre-trained bidirectional model and hurts GLUE tasks. Removing NSP also hurts QNLI, MNLI, and SQuAD.",
+      "quote": "The LTR model performs worse than the MLM model on all tasks, with large drops on MRPC and SQuAD.",
+      "confidence": "high"
+    }
+  },
+  "word2vec": {
+    "q01": {
+      "answer": "The Continuous Bag-of-Words (CBOW) model and the Continuous Skip-gram model. CBOW predicts the current word from its surrounding context (removing the non-linear hidden layer and sharing the projection layer so context vectors are averaged), while Skip-gram predicts surrounding words given the current word.",
+      "quote": "Figure 1: New model architectures. The CBOW architecture predicts the current word based on the context, and the Skip-gram predicts surrounding words given the current word.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "Skip-gram maximizes the classification of a word based on another word in the same sentence: each current word is used as input to a log-linear classifier with a continuous projection layer, and the model predicts words within a certain range before and after the current word. Distant words are given less weight by sampling less from them. Its training complexity is Q = C \u00d7 (D + D \u00d7 log2(V)), with C = 10 used in experiments (for each word a random R in <1;C> is drawn and R history plus R future words are used as labels, requiring R \u00d7 2 word classifications).",
+      "quote": "The second architecture is similar to CBOW, but instead of predicting the current word based on the context, it tries to maximize classification of a word based on another word in the same sentence. More precisely, we use each current word as an input to a log-linear classifier with continuous projection layer, and predict words within a certain range before and after the current word.",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "A new comprehensive Semantic-Syntactic Word Relationship test set. It contains five types of semantic questions and nine types of syntactic questions, with 8869 semantic and 10675 syntactic questions total (19544 in all). Each question is formed by connecting two word pairs that share the same relationship (e.g., 'What is the word that is similar to small in the same sense as biggest is similar to big?'), answered via vector arithmetic and cosine-distance nearest-neighbor search; only an exact match to the correct word counts as correct (synonyms count as mistakes). Additionally, the MSR syntactic relationship test set of [20] and the Microsoft Research Sentence Completion Challenge are used.",
+      "quote": "To measure quality of the word vectors, we define a comprehensive test set that contains five types of semantic questions, and nine types of syntactic questions. Two examples from each category are shown in Table 1. Overall, there are 8869 semantic and 10675 syntactic questions.",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "The proposed models are far cheaper because they remove the non-linear hidden layer. NNLM complexity per example is Q = N \u00d7 D + N \u00d7 D \u00d7 H + H \u00d7 V (dominated by N \u00d7 D \u00d7 H) and RNNLM is Q = H \u00d7 H + H \u00d7 V (dominated by H \u00d7 H), while CBOW is Q = N \u00d7 D + D \u00d7 log2(V) and Skip-gram is Q = C \u00d7 (D + D \u00d7 log2(V)). Empirically, in Table 6 an NNLM with 100-dim vectors on 6B words took 14 days \u00d7 180 CPU cores, whereas CBOW with 1000-dim vectors took 2 days \u00d7 140 cores and Skip-gram 2.5 days \u00d7 125 cores, with much higher accuracy. On a single CPU, CBOW trained on 783M words in about a day and Skip-gram in about three days; a previously trained RNNLM took about 8 weeks on a single CPU.",
+      "quote": "The main observation from the previous section was that most of the complexity is caused by the non-linear hidden layer in the model. While this is what makes neural networks so attractive, we decided to explore simpler models that might not be able to represent the data as precisely as neural networks, but can possibly be trained on much more data efficiently.",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "The paper does not describe negative sampling. This version of the paper uses hierarchical softmax with a Huffman binary tree for output normalization; it only mentions that some prior work avoided normalized models. Negative sampling is introduced in the follow-up NIPS 2013 paper [21], not here.",
+      "quote": "In our models, we use hierarchical softmax where the vocabulary is represented as a Huffman binary tree.",
+      "confidence": "low"
+    },
+    "q06": {
+      "answer": "The highest syntactic accuracy reported is 68.9%, achieved by the CBOW model with 1000-dimensional vectors trained on 6B words using DistBelief (Table 6). Among single-CPU/publicly compared models in Table 4, the best syntactic accuracy is 64.5% (Our NNLM, 100 dimensions, 6B words); the Skip-gram (300 dim, 783M words) reaches 55.9% syntactic but the best total accuracy in Table 4 (53.3%).",
+      "quote": "CBOW 1000 6B 57.3 68.9 63.7 2 x 140",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "A Google News corpus containing about 6B tokens, with vocabulary restricted to the 1 million most frequent words. Subsets of 783M and 1.6B words were also used for various experiments. For the architecture comparison in Table 3, several LDC corpora (320M words, 82K vocabulary) were used, and for the Microsoft Sentence Completion Challenge, the 50M words provided in [32].",
+      "quote": "We have used a Google News corpus for training the word vectors. This corpus contains about 6B tokens. We have restricted the vocabulary size to 1 million most frequent words.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "The paper does not describe subsampling of frequent words. The closest related idea mentioned is that in the Skip-gram model, more distant words are given less weight by sampling less from them; subsampling of frequent words is introduced in the follow-up NIPS 2013 paper [21], not in this document.",
+      "quote": "Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples.",
+      "confidence": "low"
+    },
+    "q09": {
+      "answer": "vector(\"King\") - vector(\"Man\") + vector(\"Woman\") results in a vector closest to the vector representation of the word Queen. Other examples given include X = vector(\"biggest\") \u2212 vector(\"big\") + vector(\"small\") \u2248 \"smallest\", and Paris - France + Italy = Rome.",
+      "quote": "it was shown for example that vector(\u201dKing\u201d) - vector(\u201dMan\u201d) + vector(\u201dWoman\u201d) results in a vector that is closest to the vector representation of the word Queen [20].",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "The best reported configuration is 1000-dimensional vectors trained on 6B words with DistBelief (Skip-gram 65.6% total, CBOW 63.7% total). Regarding context size, the paper states CBOW performed best with four future and four history words at the input, and for Skip-gram the maximum distance used in experiments was C = 10. The paper does not report a systematic sweep identifying a single optimal dimensionality/window pair; it notes accuracy improves as both dimensionality and data are increased together (Table 2 shows 600 dimensions on 783M words as the best in that limited-vocabulary sweep).",
+      "quote": "we have obtained the best performance on the task introduced in the next section by building a log-linear classifier with four future and four history words at the input, where the training criterion is to correctly classify the current (middle) word.",
+      "confidence": "medium"
+    }
+  },
+  "clip": {
+    "q01": {
+      "answer": "CLIP stands for Contrastive Language-Image Pre-training.",
+      "quote": "we create a new dataset of 400 million (image, text) pairs and demonstrate that a simplified version of ConVIRT trained from scratch, which we call CLIP, for Contrastive Language-Image Pre-training, is an efficient method of learning from natural language supervision.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "Given a batch of N (image, text) pairs, CLIP predicts which of the N\u00d7N possible pairings actually occurred. It jointly trains an image encoder and text encoder to maximize the cosine similarity of the image and text embeddings of the N real pairs while minimizing the cosine similarity of the N\u00b2\u2212N incorrect pairings, optimizing a symmetric cross entropy loss over these similarity scores (a multi-class N-pair / InfoNCE loss, with a learned temperature parameter \u03c4).",
+      "quote": "Given a batch of N (image, text) pairs, CLIP is trained to predict which of the N \u00d7 N possible (image, text) pairings across a batch actually occurred. To do this, CLIP learns a multi-modal embedding space by jointly training an image encoder and text encoder to maximize the cosine similarity of the image and text embeddings of the N real pairs in the batch while minimizing the cosine similarity of the embeddings of the N2 \u2212 N incorrect pairings. We optimize a symmetric cross entropy loss over these similarity scores.",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "The best zero-shot CLIP model reaches 76.2% top-1 accuracy on ImageNet (95% top-5), matching the performance of the original ResNet-50 without using any of the 1.28 million crowd-labeled training examples.",
+      "quote": "The best CLIP model improves accuracy on ImageNet from a proof of concept 11.5% to 76.2% and matches the performance of the original ResNet-50 despite using none of the 1.28 million crowd-labeled training examples available for this dataset.",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "400 million (image, text) pairs collected from the internet; the dataset is called WIT (WebImageText).",
+      "quote": "we constructed a new dataset of 400 million (image, text) pairs collected form a variety of publicly available sources on the Internet... We refer to this dataset as WIT for WebImageText.",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Prompt engineering means customizing the text used to describe class names (rather than using bare, contextless class names) so it better matches the distribution of the pre-training text and disambiguates polysemous words. The default template is \u201cA photo of a {label}.\u201d, with task-specific variants such as \u201cA photo of a {label}, a type of pet.\u201d for Oxford-IIIT Pets and \u201ca satellite photo of a {label}.\u201d for satellite imagery. Combined with ensembling 80 prompts, it improves ImageNet accuracy by almost 5% (the single default prompt alone gives +1.3%).",
+      "quote": "we found that using the prompt template \u201cA photo of a {label}.\u201d to be a good default that helps specify the text is about the content of the image. This often improves performance over the baseline of using only the label text. For instance, just using this prompt improves accuracy on ImageNet by 1.3%.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "The paper benchmarks zero-shot transfer on over 30 existing datasets; the main analysis uses a 27-dataset evaluation suite (Figure 5), and the scaling/prompt analyses use 36 datasets (39 evaluations on 36 different datasets in Figure 9; 36 datasets in Figure 4). The data overlap analysis covers 35 datasets.",
+      "quote": "We measure this by benchmarking the zero-shot transfer performance of CLIP on over 30 existing datasets and find it can be competitive with prior task-specific supervised models.",
+      "confidence": "medium"
+    },
+    "q07": {
+      "answer": "Zero-shot CLIP is weak on handwritten digit recognition: it achieves only 88% accuracy on MNIST (88.4% reported in Table 14), which is outperformed by a simple logistic regression on raw pixels (92.5%). Its OCR is strongest on digitally rendered text (e.g., Rendered SST2 and Hateful Memes) but poor on SVHN street numbers (51.0% zero-shot).",
+      "quote": "However, CLIP only achieves 88% accuracy on the handwritten digits of MNIST. An embarrassingly simple baseline of logistic regression on raw pixels outperforms zero-shot CLIP.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "Key limitations: (1) zero-shot CLIP is only on par with a simple linear-probe ResNet-50 baseline and far from overall SOTA \u2014 an estimated ~1000x more compute would be needed to reach SOTA zero-shot; (2) weak on fine-grained classification (car models, flower species, aircraft variants), abstract/systematic tasks (counting objects), and novel tasks (distance to nearest car) where performance can be near random; (3) poor generalization to truly out-of-distribution data (e.g., only 88% on MNIST, beaten by logistic regression on raw pixels); (4) limited to choosing among concepts in a given zero-shot classifier \u2014 it cannot generate novel outputs like a captioning model; (5) poor data efficiency (12.8 billion images seen over 32 epochs); (6) methodological limitations \u2014 repeatedly querying full validation sets to guide development, and a somewhat haphazardly assembled 27-dataset eval suite co-adapted with CLIP; (7) trained on unfiltered, uncurated internet image-text pairs, so it learns many social biases; (8) natural language specification is limited for complex concepts, and CLIP does not optimize few-shot performance directly, causing a counter-intuitive drop from zero-shot to few-shot.",
+      "quote": "On datasets with training splits, the performance of zero-shot CLIP is on average competitive with the simple supervised baseline of a linear classifier on top of ResNet-50 features... we estimate around a 1000x increase in compute is required for zero-shot CLIP to reach overall state-of-the-art performance.",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "Zero-shot CLIP matches the average performance of a 4-shot linear classifier trained on CLIP's own feature space, and roughly matches the best 16-shot linear classifier across publicly available models (a BiT-M ResNet-152x2 trained on ImageNet-21K). On ImageNet specifically, zero-shot CLIP matches a 16-shot linear classifier on the same feature space. The analysis used the 20 datasets with at least 16 examples per class.",
+      "quote": "Zero-shot CLIP matches the average performance of a 4-shot linear classifier trained on the same feature space and nearly matches the best results of a 16-shot linear classifier across publicly available models.",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "The two largest models are the ResNet RN50x64 (largest ResNet, ~64x the compute of a ResNet-50; took 18 days to train on 592 V100 GPUs) and the Vision Transformer ViT-L/14 \u2014 with its higher-resolution variant ViT-L/14@336px (pre-trained an additional epoch at 336 pixels) being the best-performing model reported as 'CLIP'; the largest Vision Transformer took 12 days on 256 V100 GPUs.",
+      "quote": "The largest ResNet model, RN50x64, took 18 days to train on 592 V100 GPUs while the largest Vision Transformer took 12 days on 256 V100 GPUs. For the ViT-L/14 we also pre-train at a higher 336 pixel resolution for one additional epoch to boost performance similar to FixRes (Touvron et al., 2019). We denote this model as ViT-L/14@336px.",
+      "confidence": "high"
+    }
+  },
+  "gans": {
+    "q01": {
+      "answer": "The two networks are a generative model G and a discriminative model D. G captures the data distribution (mapping noise z through a multilayer perceptron G(z; \u03b8g) to data space) and is trained to maximize the probability of D making a mistake (i.e., to minimize log(1 \u2212 D(G(z))), or in practice to maximize log D(G(z))). D estimates the probability that a sample came from the training data rather than from G, and is trained to maximize the probability of assigning the correct label to both training examples and samples from G.",
+      "quote": "we simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake.",
+      "confidence": "high"
+    },
+    "q02": {
+      "answer": "min_G max_D V(D, G) = E_{x\u223cp_data(x)}[log D(x)] + E_{z\u223cp_z(z)}[log(1 \u2212 D(G(z)))]  (Equation 1)",
+      "quote": "min\nG\nmax\nD\nV (D, G) = Ex\u223cpdata(x)[log D(x)] + Ez\u223cpz(z)[log(1 \u2212 D(G(z)))]. (1)",
+      "confidence": "high"
+    },
+    "q03": {
+      "answer": "Proposition 1 proves that for a fixed generator G, the optimal discriminator is D*_G(x) = p_data(x) / (p_data(x) + p_g(x)). This follows because for any (a,b) \u2208 R\u00b2\\{0,0}, y \u2192 a log(y) + b log(1\u2212y) attains its maximum on [0,1] at a/(a+b). Consequently, at the global optimum p_g = p_data the discriminator equals 1/2 everywhere, and C(G) = \u2212log 4 + 2\u00b7JSD(p_data\u2016p_g).",
+      "quote": "Proposition 1. For G fixed, the optimal discriminator D is\nD\u2217\nG(x) = pdata(x)\npdata(x) + pg(x)\n(2)",
+      "confidence": "high"
+    },
+    "q04": {
+      "answer": "MNIST, the Toronto Face Database (TFD), and CIFAR-10 (with CIFAR-10 trained using both a fully connected model and a convolutional discriminator with a \"deconvolutional\" generator).",
+      "quote": "We trained adversarial nets an a range of datasets including MNIST[23], the Toronto Face Database (TFD) [28], and CIFAR-10 [21].",
+      "confidence": "high"
+    },
+    "q05": {
+      "answer": "Each training iteration alternates k steps of updating the discriminator (each on a minibatch of m noise samples and m data examples, ascending the stochastic gradient of the discriminator objective) with one step of updating the generator (on a minibatch of m noise samples, descending the gradient of (1/m)\u03a3 log(1 \u2212 D(G(z^(i))))). k is a hyperparameter; the authors used k = 1, the least expensive option, and used momentum for the gradient updates.",
+      "quote": "The number of steps to apply to the discriminator, k, is a hyperparameter. We used k = 1, the least expensive option, in our experiments.",
+      "confidence": "high"
+    },
+    "q06": {
+      "answer": "The paper states that no Markov chains are needed at any point: both training and sample generation avoid them. Sampling from the generator uses only forward propagation, and unlike GSNs the adversarial framework does not require a Markov chain for sampling. This also means samples are uncorrelated (no dependence on Markov chain mixing) and the model can represent very sharp, even degenerate distributions, whereas Markov-chain-based methods need somewhat blurry distributions to mix between modes.",
+      "quote": "There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples.",
+      "confidence": "high"
+    },
+    "q07": {
+      "answer": "Instead of training G to minimize log(1 \u2212 D(G(z))) \u2014 which saturates early in learning when D can reject G's samples with high confidence \u2014 G is trained to maximize log D(G(z)). This yields the same fixed point of the dynamics of G and D but provides much stronger gradients early in learning.",
+      "quote": "Rather than training G to minimize\nlog(1 \u2212 D(G(z))) we can train G to maximize log D(G(z)). This objective function results in the\nsame fixed point of the dynamics of G and D but provides much stronger gradients early in learning.",
+      "confidence": "high"
+    },
+    "q08": {
+      "answer": "Samples are evaluated by fitting a Gaussian Parzen window to samples generated by G and reporting the log-likelihood of the test set under that distribution, with \u03c3 obtained by cross validation on the validation set. Reported Parzen-window log-likelihoods (Table 1): Adversarial nets 225 \u00b1 2 on MNIST and 2057 \u00b1 26 on TFD; compared with DBN 138 \u00b1 2 (MNIST) and 1909 \u00b1 66 (TFD), Stacked CAE 121 \u00b1 1.6 and 2110 \u00b1 50, Deep GSN 214 \u00b1 1.1 and 1890 \u00b1 29.",
+      "quote": "We estimate probability of the test set data under pg by fitting a Gaussian Parzen window to the samples generated with G and reporting the log-likelihood under this distribution.",
+      "confidence": "high"
+    },
+    "q09": {
+      "answer": "The disadvantages are: (1) there is no explicit representation of p_g(x); and (2) D must be synchronized well with G during training \u2014 in particular G must not be trained too much without updating D, to avoid \"the Helvetica scenario\" in which G collapses too many values of z to the same value of x, losing the diversity needed to model p_data. The paper also notes the Parzen-window likelihood evaluation has high variance and performs poorly in high-dimensional spaces, and that using an MLP for G introduces multiple critical points without theoretical guarantees.",
+      "quote": "The disadvantages are primarily that there is no explicit representation of pg(x), and that D must be synchronized well with G during training (in particular, G must not be trained too much without updating D, in order to avoid \u201cthe Helvetica scenario\u201d in which G collapses too many values of z to the same value of x to have enough diversity to model pdata)",
+      "confidence": "high"
+    },
+    "q10": {
+      "answer": "Five extensions are listed: (1) a conditional generative model p(x | c) by adding c as input to both G and D; (2) learned approximate inference by training an auxiliary network to predict z given x; (3) approximately modeling all conditionals p(x_S | x_notS) with a family of parameter-sharing conditional models, i.e., a stochastic extension of the deterministic MP-DBM; (4) semi-supervised learning, where features from the discriminator or inference net could improve classifiers with limited labeled data; and (5) efficiency improvements via better methods for coordinating G and D or better distributions from which to sample z during training.",
+      "quote": "1. A conditional generative model p(x | c) can be obtained by adding c as input to both G and D.\n2. Learned approximate inference can be performed by training an auxiliary network to predict z given x.",
+      "confidence": "high"
+    }
+  }
+}

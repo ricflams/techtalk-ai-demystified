@@ -1,0 +1,128 @@
+{
+  "markdown_verification": {
+    "attention": {
+      "predicted": 10789,
+      "actual": 10796,
+      "delta_pct": 0.06
+    },
+    "resnet": {
+      "predicted": 18335,
+      "actual": 18342,
+      "delta_pct": 0.04
+    },
+    "gpt3": {
+      "predicted": 70924,
+      "actual": 70931,
+      "delta_pct": 0.01
+    },
+    "irs1040": {
+      "predicted": 8187,
+      "actual": 8194,
+      "delta_pct": 0.09
+    },
+    "nist_cloud": {
+      "predicted": 2167,
+      "actual": 2174,
+      "delta_pct": 0.32
+    },
+    "nist_csf": {
+      "predicted": 36815,
+      "actual": 36822,
+      "delta_pct": 0.02
+    },
+    "bert": {
+      "predicted": 17212,
+      "actual": 17219,
+      "delta_pct": 0.04
+    },
+    "word2vec": {
+      "predicted": 10014,
+      "actual": 10021,
+      "delta_pct": 0.07
+    },
+    "clip": {
+      "predicted": 67183,
+      "actual": 67190,
+      "delta_pct": 0.01
+    },
+    "gans": {
+      "predicted": 8231,
+      "actual": 8238,
+      "delta_pct": 0.09
+    }
+  },
+  "end_questions": {
+    "gpt3": [
+      {
+        "question": "What does the data contamination analysis in Appendix C find for the TriviaQA benchmark?",
+        "answer": "The data contamination analysis for the TriviaQA benchmark found that 71.2% of the examples were flagged as potentially contaminated. Upon inspection, it was observed that the majority of the examples contained background information but not the answers, indicating that the model gains access to general context without memorizing specific question-answer pairs. This suggests that while contamination is high, it may not significantly impact the model's ability to perform on the task, as the knowledge required to answer questions is not overly reliant on the contaminated data.",
+        "usage": {
+          "prompt_tokens": 68800,
+          "completion_tokens": 101
+        }
+      },
+      {
+        "question": "What few-shot BLEU score does GPT-3 175B achieve on the French-to-English WMT14 translation task?",
+        "answer": "GPT-3 175B achieves a few-shot BLEU score of **41.4** on the French-to-English WMT14 translation task, according to the data on *page 63*.",
+        "usage": {
+          "prompt_tokens": 68809,
+          "completion_tokens": 40
+        }
+      }
+    ],
+    "nist_csf": [
+      {
+        "question": "How does Appendix A describe the relationship between the Framework and the Baldrige Cybersecurity Excellence Builder?",
+        "answer": "Appendix A outlines the Framework Core, detailing how it can serve as a common structure for cybersecurity activities across various critical infrastructure sectors. While it does not mention the Baldrige Cybersecurity Excellence Builder directly, it implies that both tools aim to improve organizational performance in cybersecurity.\n\nThe Baldrige framework focuses on performance excellence in various domains, including cybersecurity, by providing criteria that organizations can adapt to assess their cybersecurity practices. The structured approach of the Framework helps organizations to align their cybersecurity efforts with their overall operational goals and objectives, similar to how the Baldrige criteria guide organizations in achieving excellence.\n\nIn summary, while Appendix A may not explicitly reference the Baldrige Cybersecurity Excellence Builder, both frameworks share the goal of enhancing performance and resilience in cybersecurity through structured approaches and criteria.",
+        "usage": {
+          "prompt_tokens": 37922,
+          "completion_tokens": 155
+        }
+      },
+      {
+        "question": "How is 'Risk' defined in the Glossary at the end of the document?",
+        "answer": "In the *Glossary* at the end of the document, 'Risk' is defined as:\n\n\"A measure of the extent to which an entity is threatened by a potential circumstance or event, and typically a function of: (i) the adverse impacts that would arise if the circumstance or event occurs; and (ii) the likelihood of occurrence.\"",
+        "usage": {
+          "prompt_tokens": 37919,
+          "completion_tokens": 69
+        }
+      }
+    ],
+    "clip": [
+      {
+        "question": "What specific concern about facial recognition or surveillance does the Broader Impacts section raise?",
+        "answer": "The Broader Impacts section raises several concerns about facial recognition and surveillance, particularly regarding the ethical implications of using CLIP for these purposes. Key points include:\n\n1. **Potential for Misuse**: The ability to create custom classifiers without re-training could enable harmful applications, such as profiling individuals in a way that unjustly targets certain groups.\n\n2. **Social Implications**: The text emphasizes the need for thorough evaluation of performance and societal impacts in context, as the flexibility and capabilities of CLIP can lead to unintended consequences.\n\n3. **Biases in Data**: The model may learn and perpetuate social biases present in the training data, which can affect its performance in real-world applications.\n\n4. **Surveillance Capabilities**: CLIP could enhance surveillance applications, raising ethical concerns about privacy and civil liberties, especially if used without adequate oversight.\n\nThese points underline the necessity for careful consideration when deploying AI systems like CLIP in sensitive areas like surveillance.",
+        "usage": {
+          "prompt_tokens": 71091,
+          "completion_tokens": 194
+        }
+      },
+      {
+        "question": "In Appendix D, what does the analysis of natural distribution shift robustness show about CLIP vs ImageNet models?",
+        "answer": "In Appendix D, the analysis of natural distribution shift robustness indicates that CLIP models demonstrate significantly improved effective robustness compared to traditional ImageNet models. Specifically, the results show that zero-shot CLIP models reduce the gap between accuracy on the ImageNet dataset and accuracy under various natural distribution shifts by up to 75%. \n\nAdditionally, while pre-trained models on ImageNet exhibit a drop in performance when evaluated on datasets involving natural distribution shifts, CLIP's zero-shot approach enables it to maintain higher accuracy across those shifts. This suggests that the flexible and broad training approach of CLIP allows it to generalize better to new and unseen data distributions, unlike the ImageNet models, which often rely on specific training data and can become overfitted to those conditions. \n\nThe section emphasizes the importance of CLIP's dataset and training strategies in yielding models that are more robust to such shifts, as shown by the task-specific performance metrics across different datasets. Overall, CLIP's design seems to provide a more adaptable foundation for tackling real-world visual recognition tasks that may not align perfectly with the conditions present during training.",
+        "usage": {
+          "prompt_tokens": 71096,
+          "completion_tokens": 219
+        }
+      }
+    ]
+  },
+  "figure_questions": {
+    "attention": {
+      "question": "Describe exactly what the architecture diagram in Figure 1 shows \u2014 the boxes, their labels, and how they're connected. This is only answerable by seeing the actual diagram image, not by reading surrounding text.",
+      "answer": "The architecture diagram in Figure 1 illustrates the Transformer model architecture, showing two main sections: the encoder and the decoder.\n\n1. **Encoder Stack**:\n   - **Boxes**:\n     - There are six identical layers stacked vertically.\n     - Each layer includes:\n       - A box labeled \"Multi-Head Attention\".\n       - A box labeled \"Feed Forward Network\".\n     - Each layer also features a residual connection labeled as \"Add & Norm\".\n   - **Connections**:\n     - The input connects to the first layer, and each subsequent layer is connected to the one above it.\n     - The output of the last encoder layer connects to the decoder.\n\n2. **Decoder Stack**:\n   - **Boxes**:\n     - Similar to the encoder, the decoder consists of six identical layers.\n     - Each layer includes:\n       - A box labeled \"Masked Multi-Head Attention\".\n       - A box labeled \"Multi-Head Attention\" (this one connects to the encoder output).\n       - A box labeled \"Feed Forward Network\".\n     - Each layer also has a \"Add & Norm\" for the residual connections.\n   - **Connections**:\n     - The input and encoder output connect to the first decoder layer.\n     - The output of the last decoder layer leads to an output generation box that produces the final predictions.\n\nThis arrangement highlights the flow of information through the attention and feed-forward mechanisms for both encoding and decoding processes in the Transformer architecture.",
+      "usage": {
+        "prompt_tokens": 11420,
+        "completion_tokens": 291
+      }
+    },
+    "clip": {
+      "question": "The paper includes a Figure 1 schematic with three numbered steps (1) Contrastive pre-training, (2) Create dataset classifier from label text, (3) Use for zero-shot prediction. Describe what the actual diagram/icons show for each of these three steps, not just the caption text.",
+      "answer": "In the *Figure 1* schematic from the paper, the three numbered steps are visually represented with specific icons and arrangements:\n\n1. **Contrastive Pre-training**: This section is depicted with an image encoder and text encoder. The image encoder is labeled \"I\" with connection arrows leading to various text labels, indicating that the model is learning to associate images with text captions. The icons likely suggest a pairing of images with their respective text.\n\n2. **Create Dataset Classifier from Label Text**: This step shows a Text Encoder transforming labels (like \"plane,\" \"car,\" etc.) into a structured format that can create a classifier. Icons here illustrate text being processed into a classifier format, with arrows leading to a final classifier representation that implies how these texts serve to categorize or classify images.\n\n3. **Use for Zero-Shot Prediction**: This part includes a pipeline showing the trained models being used to make predictions on unseen data. It visually indicates how the image encoder and the classifier interact to make predictions without any additional fine-tuning. The diagram showcases images being input and the model providing predictions back, likely represented by boxes with probability scores for each class.\n\nOverall, the diagram integrates visual components like arrows, boxes, and icons to illustrate the flow from pre-training to classification and finally to prediction effectively.",
+      "usage": {
+        "prompt_tokens": 71133,
+        "completion_tokens": 263
+      }
+    }
+  }
+}

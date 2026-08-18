@@ -1,6 +1,6 @@
 # Demo: PDF raw vs. converted-to-markdown
 
-**Repo:** `techtalk-ai-llm-demystified/experiment/`
+**Repo:** `techtalk-ai-llm-demystified/demo/pdf-token-cost/`
 
 Tests whether converting a PDF to markdown before sending to an LLM is a meaningful optimisation, or whether uploading the raw PDF is just as good — or better.
 

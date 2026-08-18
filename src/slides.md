@@ -1391,34 +1391,66 @@ But ... what about *files*, like PDFs and images?
 
 * Everything *visual* ("claw of a predator bird") is learned from datasets of image+text
 * VLMs also *learn characters* through that training
-* Images are processed in patches (eg 16x16 pixels) to individual **patch embeddings**, which are then mapped into the same embedding-space as text
+* Images are processed in patches (eg 24x24 pixels) to individual **patch embeddings**, which are then mapped into the same *embedding-space* as text
 * Same approach for *video and audio*, if supported
 * A hybrid approach has gained traction, using *OCR* for pure-text-looking images
 <br>
-* The end result: The model just receive embeddings, bits of "meaning". It doesn't know or care if they come from text, image patches, interpreted images, possibly OCR - it's all just embeddings to the LLM.
-* Text screenshots can easily result in 10x more embeddings than raw text
+* The end result: The model just receive embeddings, bits of "meaning". It doesn't know or care if they come from text, image patches, interpreted images, possibly OCR. The the LLM, *it's all just embeddings*.
+<br>
+* Note: A screenshot of text can easily result in *10x more context* than the raw text
 
 ####
 You simply have a magic algorithm that can convert images into snippets og meaning, ie embeddings.
 
 Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
 
-Using a ViT, a Visual 
-
-The Vision Encoder (the Transformer "eyes") identifies patterns of lines and curves in image patches as "text-like" features.  The model has been trained on millions of images of text (screenshots, menus, handwritten notes) alongside their transcriptions.It "recognizes" a letter "A" just like it recognizes a "cat" — it's simply a visual feature that triggers a specific concept in its latent space.
-
-An ear, etc.
-
-An image of text is typically 10x larger in context than the text would be.
-
-		Images - not likely OCR, split up into patches, each turned into an embedding, then 
-
-
 ### Whatever approach, embeddings comes out
 <img src="images/service/files/images/cat-advanced.png">
 
-### Embeddings - worth a detour
+### A closer look at multi-modal embeddings
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
+
+### Remember, embeddings characterizes "something"
+<img src="images/llm/embeddings/three-embeddings.svg">
+
+### Multi-modal embeddings go beyond text
+<img src="images/service/files/multimodal/multimodal-embeddings.svg">
+
+####
+Some lab trains their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings.
+
+An embedding is rather cheap to calculate. The effort is in the order an LLM producing 1 token, which is close to what's actually happening. Once calculated you can store those numbers somewhere in a database for easy and cheap later use, e.g. comparing it to other embeddings to find similarity.
+
+### The unified embedding space
+<img src="images/service/files/multimodal/unified-embedding-space.webp">
+
+####
+This means that you can compare text, images, video, and audio to see how similar the concepts they are.
+
+### Example: image-similarity
+<img src="images/service/files/multimodal/gemini-2-query.png">
+
+####
+Wih unified embeddings you can compare everything - text, images, video, and audio - to see how similar their meanings are.
+
+### "Simply" compare the embedding's similarity
+<img src="images/service/files/multimodal/gemini-2-embeddings.png">
+
+####
+
+The powerful "unified embedding space"
+
+This means that you can compare text, images, video, and audio to see how similar the concepts they are.
+
+###
+<img src="images/service/files/multimodal/ideas.png">
+
+###
+<img src="images/service/files/multimodal/ideas.svg">
+
+
+
+
 
 ####
 TODO:
@@ -1446,6 +1478,29 @@ Just think about it: with multimodal embeddings you now have a way of comparing 
 ####
 https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### PDFs and other documents
 <img src="images/service/overview/documents.png">
 
@@ -1458,66 +1513,36 @@ Documents doesn't really introduce any new functionality: it is simply subjected
 <img src="images/service/files/pdfs/94pct-savings.png">
 
 ####
-The sentiment surely is everywhere: of course you should, it's just foolish not to.
+PDFs are a wilderness. They're really hard to extract text and structure from - much harder than HTML. They contain binary parts, the internal structure is a jungle beyond description of stacked objects, drawings, and text parts.
+
+Because of that there's a beliefe that passing a PDF raw to the LLM has a masive overhead. So the sentiment everywhere is: "Of course you should extract the text yourself first, it's absolutely foolish not to."
 
 Or is it?
+
+Think about it: Is it reasonable to think that you, on your computer with some tools, can achieve a much better result than Anthropic, Google, and OpenAI can when it comes to grabbing the meaning out of PDFs? Not just plain text but also images, structure, tables, footnotes, etc?
 
 ### Experiment: 10 PDFs, compare markdown vs raw
 <img src="images/service/files/pdfs/experiment-pdfs.png">
 
-Here's the thing: it depends.
+####
+I ran an rigorous experiment where I examined how Claude, Gemini, and ChatGPT dealt with 10 PDFs of varying sizes and content. They all understood the PDFs really well, but their approach was really surprising.
+
+### It depends - but generally, probably don't bother
+* *ChatGPT* did text-extraction completely similar to what I did locally.<br>Raw PDF and markdown had practically the same token cost.<br>Verdict: *No need for local conversion to markdown*
+&nbsp;
+* *Gemini* processes PDFs as pure vision input, but at a flat rate of 258 tokens (embeddings) per page!<br>That was 3-18x fewer tokens than my converted markdown.<br>Verdict: *Give Gemini raw PDFs than converted markdown*
+&nbsp;
+* *Claude* also renders and treats each page as an image, but not at a flat rate.<br>Token-usage for raw PDF was 2-6x more than markdown.<br>Verdict: *For Claude, it can pay off to do local markdown conversion*.
+
+####
+Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on research. They slice the image up in 24x24 pixel squares, 16 patches per side ie 256 patches in total, each needing one embedding. Plus 2 more for some reason, for a total of 258 embeddings in the context. That's hard to beat and the PDFs were really well understood.
+
+Links:
+[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)](https://arxiv.org/pdf/2010.11929)
+[PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)](https://arxiv.org/pdf/2310.09199)
 
 
-
-###
-
-
-
-
-
-
-
-
-
-
-Depending on the AI Service, the answer can be:
-
-Yes, no, and maybe.
-
-It depends on the AI service - and also on the PDF, actually.
-
-TODO:
-PDFs can be large and contains a lot of pdf-instructions, even binary stuff, so the belief is that passing it all to the AI Service is a tremendous overhead.
-TODO: screenshot of "save 95% cost by text extraction"
-TODO: file size vs generated text, embeddings.
-True, they can be big, size-wise. But what you see here is that the AI Service extracts text and images from it itself, with an eye on the structure even. It does so using plain tools like pdftoppm, pymupdf, ghostscript - page rasterization. 4llm and pdftotext. Do you really think 
-The experiment
-The takeaway
-https://claude.ai/chat/bea3ee66-f9c1-4930-b0a6-a1fe1592685b
-
-### Big files are often not included
-TODO:
-The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Text, PDFs, images; all becomes embeddings
+### Text, PDFs, images: just embeddings to the LLM
 <img src="images/service/overview/files.png">
 
 ####
@@ -2461,6 +2486,8 @@ Describe difference between the "circle of context used" and the "bar of token u
 Much has happened since GPT 3 that had 2K context-window.
 
 But more isn't better. 1M may be quite a sweet spot.
+
+The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
 
 
 

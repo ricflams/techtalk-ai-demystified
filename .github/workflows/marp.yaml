@@ -32,6 +32,11 @@ jobs:
       - name: Generate readable version
         run: python3 scripts/make_readable.py src/slides.md public/index.html
 
+      - name: Generate speaker notes companion page
+        run: |
+          python3 scripts/make_notes.py src/slides.md public/presentation.html public/notes.json
+          cp src/notes.html public/notes.html
+
       - name: Copy game
         run: cp -r demo/tokenspree public/tokenspree
 

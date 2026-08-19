@@ -127,13 +127,14 @@ iframe.game { display: none; }
 <h1 id="ai-demystified">AI Demystified</h1>
 <p>Richard Flamsholt</p>
 <p>August 2026</p>
+<p>ricflams.github.io/techtalk-ai-demystified</p>
 <hr />
 <p><img alt="" src="images/intro/dopamine.png" /></p>
 <h4 id="_1"></h4>
 <p>Over time, some landmark tech has particularly triggered my brain.</p>
 <p>Back when HTML and XML came out I was like, man, I just want to know all about it.</p>
 <p>Same with Java and .NET, with their intriguing bytecode and VM-engines.</p>
-<p>For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as imagined.</p>
+<p>For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as you imagined.</p>
 <hr />
 <p><img alt="" src="images/intro/lightbulb.jpeg" /></p>
 <h4 id="_2"></h4>
@@ -216,7 +217,7 @@ iframe.game { display: none; }
 <h4 id="_17"></h4>
 <p>The LLM is the only part that thinks.</p>
 <h3 id="please-tell-me-what-is-an-llm">"Please tell me: what is an LLM?"</h3>
-<p><img src="images/example/claude.png"></p>
+<p><img src="images/llm/claude-please-tell-me.png"></p>
 <h3 id="the-llm-only-does-math-on-numbers">The LLM only does math on numbers</h3>
 <p><img src="images/llm/overview-embeddings.png" /></p>
 <h2 id="tokens-and-embeddings">Tokens and embeddings</h2>
@@ -816,7 +817,7 @@ The output of one 4 x B200 cluster serving a Claude Opus tier model depends on t
 <h3 id="the-actual-math">The actual math</h3>
 <p><img src="images/llm/core/all-the-math.svg" /></p>
 <h4 id="_69"></h4>
-<p>Lots of matrix operations</p>
+<p>Lots of matrix operations.</p>
 <h3 id="think-contextnext-not-questionanswer">Think context→next, not question→answer</h3>
 <p><img src="images/llm/core/context-continuation.svg" /></p>
 <h4 id="_70"></h4>
@@ -909,8 +910,6 @@ the model answers "what does text about counting r's in strawberry usually look 
 <li>The LLMs knowledge itself is fixated after training</li>
 <li>The LLM can only reason about what's in the context</li>
 </ul>
-<h3 id="any-questions">Any questions?</h3>
-<p>I know I have some: how does it browse the web, know what today is, add two numbers, understand a pdf document?</p>
 <hr />
 <p><img src="images/llm/nerdflix.png"></p>
 <h4 id="_74"></h4>
@@ -919,10 +918,16 @@ the model answers "what does text about counting r's in strawberry usually look 
 <p><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT from scratch (2 hours)</a>
 <a href="https://www.youtube.com/watch?v=l8pRSuU81PU">Let's reproduce GPT-2 (4 hours)</a>
 <a href="https://github.com/karpathy/nanoGPT">Github repo for nanoGPT</a>
-<a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Deep Dive into LLMs like ChatGPT</a></p>
-<p><a href="https://github.com/handsOnLLM/Hands-On-Large-Language-Models">Hands-On-Large-Language-Models</a>
-https://elibrary-dev.nusamandiri.ac.id/assets/fileebook/250153.pdf</p>
-<p>The GitHub repo is incredibly thorough: They designed the entire codebase to run flawlessly for free in Google Colab (leveraging free T4 GPUs), meaning you can experiment with the tokenizers, embeddings, and RAG pipelines without paying a dime.  </p>
+<a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Deep Dive into LLMs like ChatGPT</a>
+<a href="https://github.com/handsOnLLM/Hands-On-Large-Language-Models">Hands-On-Large-Language-Models</a></p>
+<h3 id="any-questions">Any questions?</h3>
+<p>TODO: maybe not
+I know I have some:</p>
+<ul>
+<li>How does it browse the web?</li>
+<li>How does it do math, understand PDFs?</li>
+<li>How does it even know <em>what date today is?</em></li>
+</ul>
 <h1 id="ai-agents">AI Agents</h1>
 <hr />
 <p><img src="images/overview/agent.png" /></p>
@@ -2103,7 +2108,7 @@ Some say the best reason for being polite is simply that:
 <li>But they have <em>very different behaviors and values</em></li>
 </ul>
 <h3 id="does-it-understandis-the-ai-sentient">Does it understand?<br>Is the AI sentient?</h3>
-<p class="verdict maybe">Maybe. Experts disagree</p>
+<p class="verdict maybe">Maybe - experts disagree</p>
 
 <ul>
 <li>The fact that the answer isn't a resounding <em>"no"</em> is astounding.</li>
@@ -2111,12 +2116,23 @@ Some say the best reason for being polite is simply that:
 </ul>
 <h4 id="_173"></h4>
 <p><a href="https://ling.auf.net/lingbuzz/007180/current.pdf">Modern language models refute Chomsky’s approach to language</a>
-<a href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a></p>
-<h4 id="does-formatting-matter-any-special-commands-tweaks-cheatcodes">Does formatting matter? Any special commands, tweaks, cheatcodes?</h4>
+<a href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a>
+<a href="https://www.youtube.com/watch?v=p7t1Q_p2gZs">AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried</a>
+<a href="https://www.youtube.com/watch?v=IkdziSLYzHw">Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton</a></p>
+<h3 id="does-formatting-matter-any-tweaks-cheatcodes">Does formatting matter? Any tweaks, cheatcodes?</h3>
+<p class="verdict no">No</p>
+
+<ul>
+<li>The LLM recognize and appreciate <em>structure</em>, be it xml-tags, markdown, or whatever</li>
+</ul>
 <h1 id="most-important-takeaways_1">Most Important Takeaways</h1>
 <h3 id="leave-this-up">(Leave this up)</h3>
 <p>The model has no memory between conversations
-The system prompt has no special architectural status</p>
+It's all just text
+Try the terminal, maybe you'll like it
+Keep your context lean
+"What it knows about you" is crystal-clear, and not in the AI service</p>
+<p>The system prompt has no special architectural status</p>
 <ul>
 <li>xxx</li>
 <li>xxx</li>

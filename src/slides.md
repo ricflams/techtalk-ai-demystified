@@ -201,6 +201,8 @@ Tokenizers:
 ### "hello world"
 <img src="images/llm/tokens/hello-world.png">
 
+####
+Yes, that second token really is _(space)_ followed by "world". It's more token-efficient to have variations of tokens with or without space or punctuation than spending a token on _(space)_.
 
 ### "hello" in the vocabulary
 <img src="images/llm/tokens/vocabulary-hello.png">

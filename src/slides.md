@@ -20,13 +20,13 @@ ricflams.github.io/techtalk-ai-demystified
 ![bg](images/intro/dopamine.png)
 
 ####
-Over time, some landmark tech has particularly triggered my brain.
+Over time, certain landmark tech has particularly triggered my brain.
 
 Back when HTML and XML came out I was like, man, I just want to know all about it.
 
 Same with Java and .NET, with their intriguing bytecode and VM-engines.
 
-For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as you imagined.
+For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
 
 ---
 ![bg](images/intro/lightbulb.jpeg)
@@ -37,14 +37,16 @@ Many lightbulb-moments have given me a better fundamental understanding of AI an
 ---
 ![bg](images/intro/bread/loaf.jpg)
 ####
-Let's begin far removed from any AI: a nice freshly baked bread.
+Let's begin far away from AI: a nice, freshly baked bread.
 
-You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does. "Add yeast, then set the clock to let the dough rise for one hour", as the recipe says. The bread comes out fine. Usually.
+You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does.
+
+"Add yeast, then set the clock to let the dough rise for one hour", as the recipe says. The bread comes out fine. Usually.
 
 ---
 ![bg](images/intro/bread/rise.jpg)
 ####
-But how *does* yeast cause the dough to "rise"? And should it be placed somewhere warm? But not too warm?
+But how *does* yeast cause the dough to "rise"? And should the dough be placed somewhere warm? But not too warm?
 
 ---
 ![bg](images/intro/bread/cold.png)
@@ -66,7 +68,7 @@ This presentation is about the yeast and enzymes of AI. And frankly, it's about 
 ---
 ![bg contain](images/intro/bread/handshake.jpg)
 ####
-Let me say this up front: will that knowledge turn you into an expert baker overnight? Maybe not. But it will help you reason about the underlying mecahnisms, the fundamental behavior and limitations of the AI. Personally I have found that really, really useful.
+Will that kind of knowledge turn you into an expert baker overnight? Maybe not. But it will help you better reason about the underlying mecahnisms, the fundamental behavior and limitations of the AI. Personally I have found that really, really useful.
 
 ---
 ![bg](images/intro/bread/variety.jpg)
@@ -81,13 +83,19 @@ It's my hope and goal that this presentation will help you rise (haha) to become
 ####
 This may well has been the most challenging presentation I've ever put together.
 
-Because it's not some fringe topic, like for example Quantum Computing, where I can shine or dazzle you and you frankly wouldn't have much use of it anyway. On the contrary: everybody is interested in AI and everybody's using AI and I should most certainly strive to give insights that is truly useful. That, I decided, would be the fundamentals: the LLM and AI-service itself, the core understanding that is still relevant in a year. Just those parts. Just keep it simple, I thought.
+It's not some fringe topic, like Quantum Computing where I could just shine or dazzle you and nobody would know anything about it beforehand.
+
+On the contrary: everybody are interested in AI and everybody are using AI.
+
+I should most certainly strive to give insights that is truly useful and I decided it would be the fundamentals: the LLM and AI-service itself, the core understanding that is still relevant in a year.
+
+Just those parts. Just keep it simple, I thought.
 
 ---
 ![bg](images/intro/journey/rabbit-holes.png)
 
 ####
-"Simple", yeah right. Each little bit is a rabbit hole worthy of an entire presentation.
+"Simple", yeah right. Everywhere I looked there was a rabbit hole worthy of an entire presentation. Oh well.
 
 ---
 ![bg](images/intro/journey/route.png)
@@ -95,31 +103,34 @@ Because it's not some fringe topic, like for example Quantum Computing, where I 
 ####
 This is the path we'll take:
 
-We'll start with the technical parts. How does the AI work? What can it do? In particular explore the LLM deeply because it is the most fundamental part of all. That will be the hardest part - just saying.
+We'll start with the technical parts. How does the AI work? What can it do? In particular explore the LLM deeply because it is the most fundamental part of all.
 
-With that in place we'll see *how to use* the AI. How to tame the context. A look at guidance and myths.. At the end there's a surprise.
+With that knowledge loaded we'll see how to tame the context and look at some guidance and demystifications.
 
 ### 10,000,000 videos + 1
 <img src="images/intro/youtube.png">
 
 ####
-Why am I telling you this? What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about LLMs?
+What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about AI and LLMs?
 
-In my opinion for same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: you get a personal, curated presentation that tells the story in a way I find insightful - hopefully presenting **just the good bits** from those 10,000,000 videos. Also, you can ask any questions you have.
+It's For same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: it's just easier to get a refined presentation that tells the story in an insightful way, focusing on the good bits from those 10,000,000 videos. Also, you can ask any questions you have.
 
 ---
 ![bg](images/intro/questions.jpg)
 ####
-About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then feel free to raise your hand and ask questions.
+About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then do feel free to raise your hand and ask questions.
 
 Afterwards go revisit the slides at your own pace. They are on github and has lots of links to related materials.
 
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
+Links:
+[Tech Talk: AI Demystified](https://ricflams.github.io/techtalk-ai-demystified/)
+
 ---
 ![bg](images/intro/one-hour.jpg)
 ####
-Final words: I've strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so we'll move really fast.
+I've really strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so it will be information-packed and move fast.
 
 ---
 <img src="images/overview/full.png" />
@@ -127,18 +138,14 @@ Final words: I've strived to make the presentation deep and useful but also ente
 You, the **human**, use an **AI Agent** to communicate with an **AI Service** that turn your messages into **tokens** and feed it through an **LLM**. The service and agent can use **tools** and the client can **remember**.
 
 ####
-This is what we'll cover.
+This presentation focus on AI that generates text, like Claude, ChatGPT, Gemini, Grok, etc.
 
-I've already said "the AI" many times. Let's be clear: in this presentation I am talking about AI that generates text, like Claude, ChatGPT, Gemini, Grok, etc. They all use an LLM, a Large Language Model AI, and their principles and capabilities are very similar, broadly speaking.
+So AI here means **generative text AI**. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
-So AI here means generative text AI. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
-
+Links:
 [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
 
-
 # The LLM
-
-**Large Language Model**
 
 ---
 <img src="images/intro/journey/enter-rabbithole.png">
@@ -147,18 +154,35 @@ So AI here means generative text AI. Not AI for generating images using stable d
 <img src="images/overview/llm-intro.png">
 
 ####
-The LLM is the only part that thinks.
+The LLM, the **Large Language Model, is the part that does all the *thinking*.
+
+It's fundamental so let's start there and work our ways up.
 
 ### "Please tell me: what is an LLM?"
 <img src="images/llm/claude-please-tell-me.png">
 
+####
+Here's an example I'll use throughout this presentation.
+
+I'm asking Claude: "Please tell me: what is an LLM?"
+
 ### The LLM only does math on numbers
 <img src="images/llm/overview-embeddings.png" />
+
+####
+The LLM can't understand words. It only works on numbers.
+
+Everybody has heard of *tokens*, but the numbers that the LLM works on are not actually those tokens. Instead it works on something very interesting called *embeddings*.
+
+It's important to understand both, not least embeddings, so let's cover them first of all.
 
 ## Tokens and embeddings
 
 ## Tokens
 <img src="images/overview/tokens.png">
+
+####
+First let's focus on tokens.
 
 ### Tokens goes in, tokens comes out
 <img src="images/llm/overview-tokens.png">
@@ -314,8 +338,7 @@ In everyday English "embedding" sounds like something you do: the act of placing
 
 In AI, it means a concrete vector of numbers that _somehow_ represent the characteristics of something. It's a noun, not a verb. It's a "thing", not something that "happens".
 
-### Stay with me
-TODO: maybe another or no image
+### Confused? Okay, stay with me
 <img src="images/llm/embeddings/confused.png">
 
 ####
@@ -331,11 +354,11 @@ You probably knew about tokens. Embeddings are the "live" counterpart to tokens,
 ####
 Spotify really does characterize music using 80 dimensions.
 
-### Imagine capturing the essense of ... anything
+### Imagine capturing the "essense" of ... <em>anything</em>
 <img src="images/llm/embeddings/20d-with-tokens.svg" />
 
 
-### An embedding is a token's characteristics
+### An embedding is a token's <em>characteristics</em>
 
 <div class="cols">
 <div>
@@ -349,7 +372,7 @@ The number of nuances, characteristics, we decide to use is called the embedding
 
 Each number is called the **weight** of that dimension.
 
-Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling* you can have. Any *concept*, including e.g. *a curious yet mildly confused audience*.
+Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling* you can have. Any *concept*, for examlpe *a curious yet mildly confused audience*.
 </div>
 </div>
 
@@ -1155,6 +1178,11 @@ Anything that requires understanding the content or meaning of what's in the con
 
 * The LLMs knowledge itself is fixated after training
 * The LLM can only reason about what's in the context
+
+
+### "Please tell me: what is an LLM?"
+<img src="images/llm/claude-please-tell-me.png">
+
 
 
 

@@ -23,7 +23,7 @@ section {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 28px;
   line-height: 1.;
-  padding: 2.5rem 3.5rem 2rem;
+  padding: 1.2rem 2rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -57,7 +57,7 @@ h3 {
   color: #8b949e;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin: 1em 0 0.3em;
+  margin: 0.3em 0;
 }
 
 p {
@@ -245,12 +245,12 @@ section:has(h1, h2) {
 section:has(h3) {
   justify-content: flex-start;
   align-items: center;
-  padding-top: 1.5rem;
+  padding-top: 0.8rem;
 }
 
 section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) {
   justify-content: center;
-  padding-top: 2.5rem;
+  padding-top: 1.2rem;
 }
 
 /* ── Shared: hide page number on all heading slides ── */
@@ -351,7 +351,7 @@ section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) p { color: #8b949e; }
    <img> — a direct child of a <p> that's a direct child of the slide — so
    this matches that pattern directly instead of a now-gone .full class. */
 section:has(h3):has(> p > img) {
-  padding-top: 1.2rem;
+  padding-top: 0.8rem;
 }
 
 section:has(h3):has(> p > img) h3 {
@@ -365,7 +365,7 @@ section:has(h3):has(> p > img) h3 {
    inconsistent with every other h3 slide. */
 section:has(h3):has(.cols) {
   justify-content: flex-start;
-  padding-top: 1.2rem;
+  padding-top: 0.8rem;
 }
 
 section:has(h3):has(.cols) h3 {

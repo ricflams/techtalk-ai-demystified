@@ -503,3 +503,7 @@ Putting things into the context is expensive and it's constantly evolving just h
 
 
 
+---
+
+Just speak in plain English
+Don't fret too much about planning and background agents, but it's often useful to steer still, by explicitly shifting to planning mode to avoid the agent starting to imlement, or asking to do something using subagent.

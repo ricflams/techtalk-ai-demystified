@@ -14,6 +14,8 @@ Richard Flamsholt
 
 August 2026
 
+ricflams.github.io/techtalk-ai-demystified
+
 ---
 ![bg](images/intro/dopamine.png)
 
@@ -24,7 +26,7 @@ Back when HTML and XML came out I was like, man, I just want to know all about i
 
 Same with Java and .NET, with their intriguing bytecode and VM-engines.
 
-For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as imagined.
+For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". that can lead to FOMO, fear of holding it wrong, disappointment in the AI or yourself if it doesn't work as well as you imagined.
 
 ---
 ![bg](images/intro/lightbulb.jpeg)
@@ -148,7 +150,7 @@ So AI here means generative text AI. Not AI for generating images using stable d
 The LLM is the only part that thinks.
 
 ### "Please tell me: what is an LLM?"
-<img src="images/example/claude.png">
+<img src="images/llm/claude-please-tell-me.png">
 
 ### The LLM only does math on numbers
 <img src="images/llm/overview-embeddings.png" />
@@ -1002,7 +1004,7 @@ Buf "fancy" is doing a lot of heavy lifting in that sentence. A bit like saying 
 <img src="images/llm/core/all-the-math.svg" />
 
 ####
-Lots of matrix operations
+Lots of matrix operations.
 
 ### Think context→next, not question→answer
 <img src="images/llm/core/context-continuation.svg" />
@@ -1023,6 +1025,25 @@ The model has no other input to go by for dealing with your tasks than the conte
 
 ### Even math is a pattern
 <img src="images/llm/core/math.svg" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Not easy - human brain
 
@@ -1134,9 +1155,30 @@ Anything that requires understanding the content or meaning of what's in the con
 * The LLM can only reason about what's in the context
 
 
-### Any questions?
 
-I know I have some: how does it browse the web, know what today is, add two numbers, understand a pdf document?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
@@ -1151,15 +1193,16 @@ Only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
 [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
 [Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
-
 [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
-https://elibrary-dev.nusamandiri.ac.id/assets/fileebook/250153.pdf
 
-The GitHub repo is incredibly thorough: They designed the entire codebase to run flawlessly for free in Google Colab (leveraging free T4 GPUs), meaning you can experiment with the tokenizers, embeddings, and RAG pipelines without paying a dime.  
+### Any questions?
 
+TODO: maybe not
+I know I have some:
 
-
-
+* How does it browse the web?
+* How does it do math, understand PDFs?
+* How does it even know *what date today is?*
 
 # AI Agents
 
@@ -2757,7 +2800,7 @@ Some say the best reason for being polite is simply that:
 
 
 ### Does it understand?<br>Is the AI sentient?
-<p class="verdict maybe">Maybe. Experts disagree</p>
+<p class="verdict maybe">Maybe - experts disagree</p>
 
 * The fact that the answer isn't a resounding *"no"* is astounding.
 * *What even is understanding, sentience, consciousness*? LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.
@@ -2765,10 +2808,13 @@ Some say the best reason for being polite is simply that:
 ####
 [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
 [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
+[AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://www.youtube.com/watch?v=p7t1Q_p2gZs)
+[Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
 
-#### Does formatting matter? Any special commands, tweaks, cheatcodes?
+### Does formatting matter? Any tweaks, cheatcodes?
+<p class="verdict no">No</p>
 
-
+* The LLM recognize and appreciate *structure*, be it xml-tags, markdown, or whatever
 
 
 
@@ -2777,6 +2823,11 @@ Some say the best reason for being polite is simply that:
 ### (Leave this up)
 
 The model has no memory between conversations
+It's all just text
+Try the terminal, maybe you'll like it
+Keep your context lean
+"What it knows about you" is crystal-clear, and not in the AI service
+
 The system prompt has no special architectural status
 
 * xxx

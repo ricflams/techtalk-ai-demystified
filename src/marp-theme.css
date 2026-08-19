@@ -32,15 +32,6 @@ section {
   overflow: hidden;
 }
 
-/* Thin gradient top bar on every slide */
-section::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg, #58a6ff 0%, #bc8cff 50%, #58a6ff 100%);
-}
-
 /* ─── Typography ─────────────────────────────────────────── */
 h1 {
   font-size: 2em;

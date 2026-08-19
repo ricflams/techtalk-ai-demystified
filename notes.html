@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Speaker notes — AI Demystified</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #1f2328;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.75rem 4rem;
+}
+.slide-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #7a7060;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.status {
+  color: #7a7060;
+  font-style: italic;
+}
+.note {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+.note p { margin: 0 0 0.9em; }
+.note a { color: #0969da; text-decoration: none; }
+.note a:hover { text-decoration: underline; }
+.note strong { font-weight: 700; }
+.note code {
+  background: #f6f8fa;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  font-family: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 0.85em;
+}
+.note ul, .note ol { padding-left: 1.4em; }
+.note li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="slide-label" id="slideLabel">Slide —</div>
+  <div id="note" class="note status">Waiting for presentation.html to be opened…</div>
+</div>
+<script>
+let notesMap = {};
+let currentIndex = null;
+
+fetch('notes.json')
+  .then(r => r.json())
+  .then(map => {
+    notesMap = map;
+    if (currentIndex !== null) render(currentIndex);
+  })
+  .catch(() => {
+    document.getElementById('note').textContent = 'Could not load notes.json.';
+  });
+
+function render(index) {
+  currentIndex = index;
+  document.getElementById('slideLabel').textContent = `Slide ${index}`;
+
+  const el = document.getElementById('note');
+  const html = notesMap[String(index)];
+
+  if (html) {
+    el.classList.remove('status');
+    el.innerHTML = html;
+  } else {
+    el.classList.add('status');
+    el.textContent = '(no notes for this slide)';
+  }
+}
+
+const bc = new BroadcastChannel('techtalk-ai-demystified:notes-sync');
+bc.onmessage = e => {
+  const index = parseInt(e.data, 10);
+  if (!Number.isNaN(index)) render(index);
+};
+</script>
+</body>
+</html>

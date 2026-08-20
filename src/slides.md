@@ -984,15 +984,15 @@ And the AI models many billions of small factors, weights.
 
 Once the training is completed, the embeddings and weights are frozen, never to be changed again. Not until they are used to kick-start training of the next model.
 
-### Pre-training cost
+### Pre-training is expensive
 
 - From scratch for a new model
-  - it costs **$200M-$1000M**
-  - it takes **4-8 months**
+  - costs **$200M-$1000M**
+  - takes **4-8 months**
 <br>
 - From an existing model
-  - it costs 1-10% of full training
-  - it takes weeks or months
+  - costs 1-10% of full training
+  - takes weeks or months
 
 ### <em>Pre-trained</em> models are quite similar
 <img src="images/llm/training/pre-training.png">
@@ -1001,7 +1001,7 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 
 No judgement, no reasoning.
 
-It's just a statistical prediction-machine, exactly like an auto-complete.
+It's just a statistical word-prediction.
 <br>
 
 <img src="images/llm/training/pre-training-is-like-autocompete.png">
@@ -1153,7 +1153,7 @@ Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% corr
 
 Buf "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".
 
-### Not "answer"; "most probable continuation"
+### Think "most probable continuation", not "answer"
 
 - You give the model a **context**, which is practically just a text.
 
@@ -1166,7 +1166,7 @@ Buf "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike 
 <br>
 <img src="images/llm/core/once-upon-a-time.svg" />
 
-### Think "context → next", not "question → answer"
+### So "context → next", not "question → answer"
 <img src="images/llm/core/context-continuation.svg" />
 
 ####
@@ -1435,7 +1435,7 @@ This is the part where we finally unlock the concrete functionality you use dail
 ---
 <img src="images/overview/service.png">
 
-### What does the AI service offer?
+### What does the AI service add?
 <div class="cols">
 <img src="images/agents/parts/ai-service.png" />
 <div class="col-2" >
@@ -2540,7 +2540,7 @@ Links:
 
 ### Names and locations
 - Agents used different names: `CLAUDE.md`, `GEMINI.md`, even `AGENT.md` (no s)
-- By now, `AGENTS.md` is the agreed-upon standard name (hooray
+- By now, `AGENTS.md` is the agreed-upon standard name (hooray)
 - Yet, Claude Code does not read `AGENTS.md`, only `CLAUDE.md` (oh dear)
 - Agents differ in how they search for agent-files, up/down from folder to root
 - Use e.g. `/init` to have Claude build an agent-file of useful facts from a folder
@@ -2624,8 +2624,16 @@ Links:
 - [my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
 
 ### Context recap
-- The context is all the LLM see; there are no special backchannels for "other instructions"
+- The context is all the LLM see
+- There are no special backchannels for "other instructions"
 - The context is finite, so it's all about keeping it lean
+
+####
+A former CTO of mine used to say this he took someone's photo, which may sound obvious but still was surprisingly useful:
+
+"If you can't see the camera, you aren't in the picture".
+
+"If it ain't in the context, the AI can't reason about it"
 
 ## Final AI service parts
 
@@ -2784,8 +2792,8 @@ Links:
 ### Your AI skills are an investment
 - Treat it as a tool in your professional toolbox.
 - You're a carpenter - get a good hammer that's yours and then practice
-- Build things for fun
 - A monthly subscription of $20 is a cheap investment
+- Build things for fun
 
 ####
 Links:
@@ -2822,7 +2830,7 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 
 - Large data is typically *truncated*, *sampled*, or *compacted*
 - The LLM will fight tooth and nail to *not include large files or much data*: it will only read the first 1000 lines, the first 20 files, 5 sampled Confluence-pages, even *write small scripts* to do a task, all to save context
-- So *no*, if you have a lot of data it's never processed collectively in one context
+- So *no*, if you have a lot of data it's likely *not all processed* collectively in one context
 - That's why bits and pieces could be *missed*
 
 ### Context is "Lost in the middle"
@@ -2837,14 +2845,14 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 - The context is compacted (or truncated) when it gets close to the context window size. You're bound to lose some information by that. So yes, the AI *can forget* what you've been talking about
 - Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
 &nbsp;
-- The remedy: keep your context lean; clear, compact, start fresh at your own initiative
+- The remedy: keep your context lean: *clear*, *compact*, *start fresh* on your own initiative
 
 ### Soon we will run out of training material
 <p class="verdict maybe">Partly true, but less so</p>
 
-- Yes, models are actually now trained on a meaningful fraction of public human-generated text.
-- *Non-public content, books, transcripts, and video* is a vast potential.
-- Studies show that replacing real data with synthetic data does tend toward collapse, but accumulating the synthetic data alongside the original avoids it. So yes, we can *train on synthetic data* too.
+- Yes, models are actually now trained on a reasonably large (say, 10%) fraction of public human-generated text.
+- However, *non-public content, books, transcripts, and video* is a vast potential.
+- Studies show that replacing real data with synthetic data does tend toward "model collapse", but accumulating the synthetic data alongside the original avoids it. So yes, we can *train on synthetic data* too, in specific ways.
 
 ####
 Links:
@@ -2902,13 +2910,14 @@ Links:
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
 
-- The model doesn't know it's wrong when it hallucinates, so there is no use in saying "don't hallucinate"
-- Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense, which is known as the **Reasoning Trap**, or Paradox.
+- The model *doesn't know it's wrong* when it hallucinates, so there is no use in saying "don't hallucinate"
+- Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense a bit, which is known as the **Reasoning Trap**, or Paradox.
 <br>
-- Give it a clear goal it can finish
-- Related to that: make sure you know and state what "good output" looks like
-- Make failure an explicit accepted continuation, eg: "if there's no xxx then tell me"
-- Have another agent supervise and assess the output
+Mitigations:
+- Give it a *clear goal* it can finish
+- Related to that: make sure you know and *state what "good output" looks like*
+- Make *failure an explicit accepted continuation*, eg: "if there's no xxx then tell me"
+- Have *another agent* supervise and assess the output
 
 ####
 Links:
@@ -2917,7 +2926,7 @@ Links:
 ### Ask it "why it did that" and it will tell you
 <p class="verdict no">No, don't trust that explanation</p>
 
-- The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus question why this?". That reasoning may very well have *nothing to do with how it actually arrived* at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because ..."
+- The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus user questioning 'why this?'". That reasoning may very well have *nothing to do with how it actually arrived* at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because ..."
 - It may not always happen, for sure, but it may well happen.
 
 ### Say no to training, it'll leak your data
@@ -2925,7 +2934,7 @@ Links:
 
 - *No words from your chat is actually remembered*
 - "Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training. Training never stores the text but instead nudges billions of weights a tiny bit.
-- The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. So highly injected texts can be retrieved, yes.
+- The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. So repeatedly injected texts can be retrieved, yes. These are the cases reported in the news.
 
 ### "Make no mistakes"
 <p class="verdict no">Largely useless</p>
@@ -2936,14 +2945,14 @@ Links:
 ### Saying "please" costs a fortune and is useless
 <p class="verdict no">No, it doesn't and no it isn't</p>
 
-- "Please" is 1 input token and that cost really is neglible
-- "Please" add conversational structure and make it clearer that you make a request
-- "Please" is found in productive successful conversations, which we're seeking
+- "Please" is *one input token* and that cost really is neglible
+- "Please" add *conversational structure* and make it clearer that you make a request
+- "Please" is found in *productive successful conversations*, the pattern we're seeking
 - Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
 &nbsp;
 Some say the best reason for being polite is simply that:
 &nbsp;
-- It's good for *you*, even in simulated conversations:<br>positive social behavior release oxytocin and dopamine, while a terse, impolite demeanor release cortisol and adrenaline
+- It's good for *you*, even in simulated conversations: positive social behavior release oxytocin and dopamine, while an impolite demeanor release cortisol and adrenaline
 
 ### "YOU MUST NEVER DO xxx!"
 <p class="verdict maybe">Relative emphasis works, but is no guarantee</p>

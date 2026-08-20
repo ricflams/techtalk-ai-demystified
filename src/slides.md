@@ -289,21 +289,7 @@ English is "better" tokenized that many other languages, simply by virtue of Eng
 
 Here are some examples of English, Danish, Korean, Classical Chinese, and C#.
 
-### TODO: 
-Fun category — Danish/English false friends. Here are 10 good ones:
-
-Gift — dansk: gift (married) eller gift (poison); engelsk: en gave
-Barn — dansk: et barn (child); engelsk: en lade
-Sky — dansk: en sky (cloud, eller sovs-sky); engelsk: himlen
-Slut — dansk: slut (the end); engelsk: … noget helt andet
-Kind — dansk: en kind (cheek); engelsk: venlig
-Tag — dansk: et tag (roof); engelsk: et mærke/en etiket
-Dog — dansk: dog (however); engelsk: en hund
-Gal — dansk: gal (crazy); engelsk: slang for en pige
-Bog — dansk: en bog (book); engelsk: en mose
-Stole — dansk: stole (chairs, eller at stole på); engelsk: datid af "steal"
-
-Bonus: and (duck), men (but), og sand — som på dansk både betyder sand og true, så den er en dobbelt false friend.
+Notice how the English sentence is longer than the Danish sentence below it, but use fewer tokens.
 
 ### The example, tokenized
 <img src="images/llm/tokens/what-is-an-llm-tokens.png">
@@ -315,7 +301,7 @@ Notice how markdown for bold, the double-star `**`, has its own token.
 
 And `**,` is also common enough to have its own token.
 
-### Recap of tokens
+### Tokens recap
 
 <div class="cols">
 <img class="col-1" src="images/llm/tokens/ride-tokens.png">
@@ -545,7 +531,7 @@ Yes, it does feel crazy that by characterizing anything using the "right" 12288 
 
 It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.
 
-### Embeddings recapped
+### Embeddings recap
 
 1. Embeddings are "meanings" and that meaning can be *transformed with math*
 &nbsp;
@@ -750,7 +736,7 @@ Each token really is generated completely independently, only by choosing the mo
 
 There's no planning of emitting an itemized list. At one point a `1` is emitted and then makes a `.` more likely and that cause the likelyhood of a later `2` and `.` to occur to rise significantly. It all happens without any overall grand design or planning.
 
-### The LLM/Transformer, recapped
+### The LLM/Transformer recap
 
 - It makes predictions about the input (context) you pass to it
 <br>
@@ -1233,7 +1219,7 @@ Mechanically though, it truly is "just" a prediction machine.
 
 But hey, maybe we humans are also just prediction machines?
 
-### The trained AI model, recapped
+### Trained AI model recap
 
 1. You give it a string of tokens, aka the *context*
 2. The model produce a response by running that context through *the Transformer*
@@ -1637,7 +1623,7 @@ Links:
 [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)](https://arxiv.org/pdf/2010.11929)
 [PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)](https://arxiv.org/pdf/2310.09199)
 
-### Docs and images recapped: becomes embeddings
+### Docs and images recap
 <img src="images/service/overview/files.png">
 
 ####
@@ -1710,11 +1696,13 @@ No links, no outside preferences, no memories, including from earlier chats:<br>
 <img src="images/service/chat/tokens-turn-50-total.png">
 
 ####
-It gets more and more expensive to keep on dragging the entire conversation along.
+It gets more and more expensive to keep on dragging the entire conversation along. You pay for all those tokens.
+
+
 
 TODO: Show clear and compact
 
-### Chatting, recapped
+### Chatting recap
 
 * The entire conversation is always sent, every time you write anything to the AI
 
@@ -2033,9 +2021,12 @@ So for using an MCP server you must always be "a user" on the service behind it,
 ####
 With the tool-result from the service added to the context, the LLM can now compose a proper response.
 
-### MCP, recapped
+### MCP servers recap
 * An MCP server is a slim facade to some service somewhere.
 <br>
+* MCP servers are *no longer* expensive to include
+<br>
+* You may need to *nudge the LLM* by using same word as the tool name
 
 <img src="images/service/mcp/mcp-simplified.png">
 
@@ -2352,6 +2343,7 @@ Links:
 [Matt Pocock on Github](https://github.com/mattpocock)
 [Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
 [How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
+[So I tried Matt's skills... - Theo](https://www.youtube.com/watch?v=0oXOOlqVu5M)
 
 ### Using a skill
 <img src="images/service/system/skills/skill-parts.png" />
@@ -2421,7 +2413,7 @@ Matt Pocock's skills are also available in ChatGPT. They are called "plugins".
 ####
 Same one we found before, now for ChatGPT.
 
-### Skills, recapped
+### Skills recap
 - It's "just" snippets of text that you or the LLM can ask to *add to the chat*
 &nbsp;
 - Really useful, though, but has no magic abilities - just text and files
@@ -2588,6 +2580,11 @@ Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. 
 ####
 Remember, the LLM is pure math. No "LLM code" exist to deliberately demand the text `<skills>` to appear in order to recognize the list of skills. It may help, but it's not required.
 
+### Context recap
+
+* The context is all the LLM see; there are no special backchannels for "other instructions"
+* The context is finite, so it's all about keeping it lean
+
 ## Final AI service parts
 
 ### Still a few blank spots
@@ -2612,8 +2609,9 @@ Four parts to mention:
 ####
 Indeed, this is the full overview of how any modern AI Service work, in principle.
 
-### AI service, recapped
-- It's all just text, competing for attention
+### AI Service recap
+
+- It's all just text, competing for attention. No hard rules.
 &nbsp;
 - Adding anything to the context is expensive so rest assured that the agent does its best to add as little as possible - no older chats, no hidden files
 &nbsp;

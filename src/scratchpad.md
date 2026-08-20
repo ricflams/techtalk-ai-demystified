@@ -645,5 +645,20 @@ Just speak in plain English
 Don't fret too much about planning and background agents, but it's often useful to steer still, by explicitly shifting to planning mode to avoid the agent starting to imlement, or asking to do something using subagent.
 
 
-There are no special backchannels or place for "specially important instructions".
+
+### TODO: 
+Fun category — Danish/English false friends. Here are 10 good ones:
+
+Gift — dansk: gift (married) eller gift (poison); engelsk: en gave
+Barn — dansk: et barn (child); engelsk: en lade
+Sky — dansk: en sky (cloud, eller sovs-sky); engelsk: himlen
+Slut — dansk: slut (the end); engelsk: … noget helt andet
+Kind — dansk: en kind (cheek); engelsk: venlig
+Tag — dansk: et tag (roof); engelsk: et mærke/en etiket
+Dog — dansk: dog (however); engelsk: en hund
+Gal — dansk: gal (crazy); engelsk: slang for en pige
+Bog — dansk: en bog (book); engelsk: en mose
+Stole — dansk: stole (chairs, eller at stole på); engelsk: datid af "steal"
+
+Bonus: and (duck), men (but), og sand — som på dansk både betyder sand og true, så den er en dobbelt false friend.
 

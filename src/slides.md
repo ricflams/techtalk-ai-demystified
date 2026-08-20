@@ -15,7 +15,8 @@ Richard Flamsholt
 August 2026
 
 ####
-[AI Demystified](https://github.com/ricflams/techtalk-ai-demystified/)
+Links:
+- [AI Demystified](https://github.com/ricflams/techtalk-ai-demystified/)
 
 ---
 ![bg](images/intro/books.jpg)
@@ -130,7 +131,7 @@ Afterwards go revisit the slides at your own pace. They are on github and has lo
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
 Links:
-[Tech Talk: AI Demystified](https://ricflams.github.io/techtalk-ai-demystified/)
+- [Tech Talk: AI Demystified](https://ricflams.github.io/techtalk-ai-demystified/)
 
 ---
 ![bg](images/intro/one-hour.jpg)
@@ -148,9 +149,9 @@ This presentation focus on AI that generates text, like Claude, ChatGPT, Gemini,
 So AI here means **generative text AI**. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
 Links:
-[Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
-[AlphaFold - The Most Useful Thing AI Has Ever Done](https://www.youtube.com/watch?v=P_fHJIYENdI)
-[A quest for a cure: AI drug design | Isomorphic Labs](https://www.youtube.com/watch?v=XpIMuCeEtSk)
+- [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
+- [AlphaFold - The Most Useful Thing AI Has Ever Done](https://www.youtube.com/watch?v=P_fHJIYENdI)
+- [A quest for a cure: AI drug design | Isomorphic Labs](https://www.youtube.com/watch?v=XpIMuCeEtSk)
 
 # The LLM
 
@@ -215,8 +216,8 @@ AI models have specific token vocabularies.
 
 ####
 Links:
-[ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
-[ChatGPT’s vocabulary: The words that ChatGPT knows and how they were chosen](https://emaggiori.com/chatgpt-vocabulary/)
+- [ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
+- [ChatGPT’s vocabulary: The words that ChatGPT knows and how they were chosen](https://emaggiori.com/chatgpt-vocabulary/)
 
 ### "hello"
 <img src="images/llm/tokens/hello.png">
@@ -225,8 +226,8 @@ Links:
 "hello" is one single token.
 
 Links:
-[Tiktokenizer](https://tiktokenizer.vercel.app/)
-[OpenAI's tokenizer](https://platform.openai.com/tokenizer)
+- [Tiktokenizer](https://tiktokenizer.vercel.app/)
+- [OpenAI's tokenizer](https://platform.openai.com/tokenizer)
 
 ### "hello world"
 <img src="images/llm/tokens/hello-world.png">
@@ -235,12 +236,6 @@ Links:
 "hello world" is two tokens.
 
 Yes, that second token really is _(space)_ followed by "world". Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending token on _(space)_.
-
-### "hello" in the vocabulary
-<img src="images/llm/tokens/vocabulary-hello.png">
-
-####
-Notice that "hello" in the gpt-4o tokenizer is #24912 and in the ChatGPT vocabulary it's 15339. Vocabularies vary  from model to model. The concrete numbers doesn't matter outside of the AI service.
 
 ### "h e l l o   w o r l d"
 <img src="images/llm/tokens/h-e-l-l-o-w-o-r-l-d.png">
@@ -262,7 +257,7 @@ The first four words are common and have each their own token, but unsurprisingl
 ####
 Look, there's token "Flam", in dubious company of rather inflammatory tokens.
 
-### Save space and identifies "word-features"
+### Tokenization saves space and let traits emerge
 <img src="images/llm/tokens/wonderful-tokenization.png">
 
 ####
@@ -322,7 +317,7 @@ And `**,` is also common enough to have its own token.
 &nbsp;
 Last, but not least:
 &nbsp;
-- *Processing cost* depends directly on the number of tokens being processed
+- *Processing cost* depends directly on number of tokens
 </div>
 </div>
 
@@ -540,16 +535,16 @@ It may sound magical, and in a way it is. And for now, just accept it as a fact 
 
 ### Embeddings recap
 
-1. Embeddings are "meanings" and that meaning can be *transformed with math*
-&nbsp;
-2. An embedding is *just some numbers*. Cheap to store in a database and work on.
-&nbsp;
-3. You can *compare embeddings* to figure out *how similar* the meanings they represent are.
+- Embeddings are "meanings" and that meaning can be *transformed with math*
+<br>
+- An embedding is *just some numbers*. Cheap to store in a database and work on.
+<br>
+- You can *compare embeddings* to figure out *how similar* the meanings they represent are.
 For instance, find a *synonym* by simply finding the closest embeddings to a word.
-&nbsp;
-4. (Covered later) The embeddings relates to *a concrete AI model* and are created during the training of that specific model; their numbers only make sense to that model.
+<br>
+- (Covered later) The embeddings relates to *a concrete AI model* and are created during the training of that specific model; those 12288 numbers only make sense for that model.
 
-### One more glance of embedding as numbers
+### Any meaning can be captured in numbers
 <img src="images/llm/embeddings/three-embeddings.svg" />
 
 ####
@@ -588,7 +583,7 @@ That's the second thing to note: the LLM itself just produce this set of probabi
 
 ####
 Links:
-[Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
+- [Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
 
 ### A neural network
 <img src="images/llm/neural-network.webp">
@@ -596,11 +591,11 @@ Links:
 ####
 A neural network is basically just a giant, organized set of multiplications and additions.
 
-### Numbers goes in, numbers comes out
+### Add up, multiply by factors, add up, ...
 <img src="images/llm/neural-network-nodes.png">
 
 #### 
-You feed it some numbers, the numbers goes through a number of steps where they are multiplied by "weights" and then added up, and out comes other numbers.
+You feed the network some numbers, the numbers goes through a number of steps where they are multiplied by "weights" and then added up, and out comes other numbers. And so it continues.
 
 ### "The capitol of France is ..."
 <img src="images/llm/neural-network-paris.webp">
@@ -614,11 +609,14 @@ And that is in fact what the LLM does. But let's start at the beginning.
 <img src="images/llm/find-the-next-token.png">
 
 ####
-Let's focus on this example: find out what should follow "That which does not kill you only makes you ___".
+Let's focus on this example:
 
-### Raw probabilities for words following "you"; no good
+Find out what should follow "That which does not kill you only makes you ___".
 
-"That which does not kill you only makes _you can_" - hm, that's not right
+### Context-free probabilities for words following "you"
+
+"That which does not kill you only makes _you can_" - hm, that won't work
+<br>
 
 <img src="images/llm/next-token-after-you.svg">
 
@@ -645,7 +643,7 @@ Today, the paper sits at over 200,000 citations, making it an absolute statistic
 It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
 
 Links:
-[Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+- [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 
 ### The Transformer can figure out the next token
 <img src="images/llm/what-we-want.png">
@@ -745,8 +743,8 @@ However, studies have found that the LLM actually *does latently* plan for the c
 The field of study is called **Interpretability** and the weights that seem involved in such "thoughts about future planning" is dubbed **J-Space**.
 
 Links:
-[Interpretability](https://www.anthropic.com/research/team/interpretability)
-[A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
+- [Interpretability](https://www.anthropic.com/research/team/interpretability)
+- [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
 ### The LLM/Transformer recap
 
@@ -754,17 +752,12 @@ Links:
 <br>
 - It's really good at patterns; "this looks like that".
 <br>
-- The work continue to be in the order of N^2 for N context-length because of all the attention, so we can't just keep cranking up the context window length. The cost will likely remain "per token" for the foreseable future.
-<br>
-- A successor for Transformer-technology is not around the corner
-<br>
-- So the way to get more out of the LLM is: smarter ways of managing the context, not more context
+- A successor for Transformer-technology is not around the corner, but work in ongoing on optimizations like e.g. **Mix of Experts, MoE**
 
 ####
-Some newer architectures use **Mix of Experts** (MoE) for dividing up the work.
 
 Links:
-[Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
+- [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
 ## Effort and Cost
 
@@ -847,11 +840,11 @@ One 8 x B200 cluster costs $500,000
 ####
 The business cost estimation, all included, was rather surprisingly close to the sales price.
 
-### The 4 x B200 cluster
+### The B200 cluster
 <img src="images/llm/cost/b200-cluster.jpeg">
 
 ####
-The NVidia B200 GPU comes in clusters of four.
+The NVidia B200 GPU comes in clusters.
 
 ### Clusters comes as trays
 <img src="images/llm/cost/b200-clusters.jpg"> 
@@ -884,7 +877,7 @@ And why NVidia's stock price has soared.
 
 ####
 Links:
-[The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
+- [The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
 
 ## Training
 
@@ -1069,8 +1062,8 @@ In order to use AI for performing this Reinforcement Learning, Anthropic has wri
 
 ####
 Links:
-[Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
-[OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
+- [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
+- [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
 ### Expresses Claude’s "core principles"
 <img src="images/llm/training/claudes-constitution-helpfulness.png">
@@ -1100,7 +1093,7 @@ So the postulate that "It just wants to please you" doesn't line up with Claude'
 The stated principles in the constitution is also how Anthropic can objectively measure differences in behavior when new models are released: adherence to their stated principles can simply be measured.
 
 Links:
-[Model system cards](https://www.anthropic.com/system-cards)
+- [Model system cards](https://www.anthropic.com/system-cards)
 
 ### ChatGPT - rules over principles
 <img src="images/llm/training/openai-spec.png">
@@ -1241,11 +1234,12 @@ If you find this interesing then I can remommend this 2-hour video of Andrej Kar
 
 The whole thing is only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
 
-[Let's build GPT from scratch (2 hours)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
-[Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
-[Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
-[Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
-[Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
+Links:
+- [Let's build GPT from scratch (2 hours)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
+- [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
+- [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
+- [Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
+- [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
 
 
 # AI Agents
@@ -1539,9 +1533,9 @@ The similarity-match is also called **cosine similarity**. And you will want to 
 The dimension of a multimodal embedding is typically smaller than for text.
 
 Links:
-[Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
-[Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
-[What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
+- [Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
+- [Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
+- [What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
 
 ### The unified embedding space
 <img src="images/service/files/multimodal/unified-embedding-space.webp">
@@ -1622,8 +1616,8 @@ I ran an rigorous experiment where I examined how Claude, Gemini, and ChatGPT de
 Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on research. They slice the image up in 24x24 pixel squares, 16 patches per side ie 256 patches in total, each needing one embedding. Plus 2 more for some reason, for a total of 258 embeddings in the context. That's hard to beat and the PDFs were really well understood.
 
 Links:
-[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)](https://arxiv.org/pdf/2010.11929)
-[PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)](https://arxiv.org/pdf/2310.09199)
+- [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)](https://arxiv.org/pdf/2010.11929)
+- [PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)](https://arxiv.org/pdf/2310.09199)
 
 ### Docs and images recap
 <img src="images/service/overview/files.png">
@@ -1845,9 +1839,9 @@ As an aside: the tool-training is commonly done using a process called *Toolform
 In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgement but purely mathematically as "did this make the future more predictable?".
 
 Links:
-[Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
-[Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
-[Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
+- [Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
+- [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
+- [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
 
 ### The tools is being run (on agent or server)
 <img src="images/service/tools/python-math-example/tool-result.png" />
@@ -1881,7 +1875,7 @@ The introduction of this "tool loop" lead to the name, "the agentic loop": an ag
 
 ####
 Links:
-[How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
+- [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
 
 ### The LLM is in control - via tools
 
@@ -1987,7 +1981,7 @@ The only difference is that the "list of tools" isn't baked into the agent or se
 Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to seet what API services are available in many different ways. There's now just one way; the MCP protocol way: ask for tool-names and call a tool.
 
 Links:
-[Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
 
 ### An MCP server is "just" a middleman to a service
 - An MCP server *does not itself bring new functionality into the world*.
@@ -2072,8 +2066,8 @@ The hardest part was actually that the tool-names were limited to 64 characters 
 There's nothing secret about this MCP server for Siteimprove's public API. Any Siteimprove-user with an API key can use it, and anybody can build an MCP server just like it since Siteimprove's API is publicly available with each API endpoint fully described.
 
 Links:
-[Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp)
-[Siteimprove MCP demo, live tool list](https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got)
+- [Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp)
+- [Siteimprove MCP demo, live tool list](https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got)
 
 ### Siteimprove API, OpenAPI, and MCP
 <div class="cols">
@@ -2091,8 +2085,8 @@ The MCP variant looks very much like the existing OpenAPI spec for that endpoint
 <img src="images/service/mcp/siteimprove/github-readme.png">
 
 ####
-Link:
-[Connect to Claude.ai](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp#connect-to-claudeai)
+Links:
+- [Connect to Claude.ai](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp#connect-to-claudeai)
 
 ### All 531 endpoins/tools now available in Claude
 <img src="images/service/mcp/siteimprove/mcp-connector.png">
@@ -2228,21 +2222,22 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 - Generally, agents don't make it visible in their UI
 
 ####
-[How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
+Links:
+- [How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
 
 ### Claude's agent system prompts are public
 <img src="images/service/system/prompt/claude-prompts.png">
 
 ####
 Links:
-[Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
+- [Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
 
 ### Of course, all agent prompts have been "leaked"
 <img src="images/service/system/prompt/leaks-home.png">
 
 ####
 Links:
-[system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
+- [system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
 
 ### The Microsoft agent prompts
 <img src="images/service/system/prompt/leaks-microsoft.png">
@@ -2347,7 +2342,7 @@ A skill is _some (expertise) instructions, that is loaded when you need it_.
 The above is a generalization; skills can be configured to e.g. not be callable by the LLM.
 
 Links:
-[Agent Skills Overview](https://agentskills.io/home)
+- [Agent Skills Overview](https://agentskills.io/home)
 
 ### What's a skill concretely?
 - It's essentially a little folder - it can e.g. be distributed as *a zip-file*
@@ -2365,11 +2360,11 @@ Description:<br><br>"Grill the user relentlessly about a plan, decision, or idea
 The `SKILL.md` file has just two required fields, name and description, and a markdown body.
 
 Links:
-[grilling skill](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
-[Matt Pocock on Github](https://github.com/mattpocock)
-[Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
-[How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
-[So I tried Matt's skills... - Theo](https://www.youtube.com/watch?v=0oXOOlqVu5M)
+- [grilling skill](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
+- [Matt Pocock on Github](https://github.com/mattpocock)
+- [Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
+- [How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
+- [So I tried Matt's skills... - Theo](https://www.youtube.com/watch?v=0oXOOlqVu5M)
 
 ### Using a skill
 <img src="images/service/system/skills/skill-parts.png" />
@@ -2393,7 +2388,7 @@ Some skills are really simple. Like this one called `bro`:
 It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."
 
 Links:
-[bro](https://github.com/backnotprop/bro)
+- [bro](https://github.com/backnotprop/bro)
 
 ### Installing the bro skill for terminal agents
 <img src="images/service/system/skills/bro/bro-skill-install.png" />
@@ -2470,7 +2465,7 @@ That's why the LLM may sometimes miss a suitable tool: it may simply not conclud
 By the way: this demo name is problematic as it is 68 characters, so it should be shortened.
 
 Links:
-[SEP-986: Specify Format for Tool Names](https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names)
+- [SEP-986: Specify Format for Tool Names](https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names)
 
 ### 20 tokens instead of full 500 tokens
 <img src="images/service/system/mcp/token-length.png">
@@ -2541,7 +2536,7 @@ You're likely almost tired of me repeating "it's just more instructions to put i
 I won't go into details with just how exactly agent-files can be named and organized in your folders, but just highlight a couple of points:
 
 Links:
-[AGENTS.md: A Standard for AI Coding Agents](https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/)
+- [AGENTS.md: A Standard for AI Coding Agents](https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/)
 
 ### Names and locations
 - Agents used different names: `CLAUDE.md`, `GEMINI.md`, even `AGENT.md` (no s)
@@ -2626,7 +2621,7 @@ If you speak directly to the AI service, writing your own agent client code, the
 And it's really simple to do.
 
 Links:
-[my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
+- [my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
 
 ### Context recap
 - The context is all the LLM see; there are no special backchannels for "other instructions"
@@ -2764,16 +2759,16 @@ The AI models of today works generally so cleverly that you very often don't hav
 
 ####
 Links:
-[Google: The New SDLC With Vibe Coding"](https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding)
-[Mixture-of-Expert vs Multi-Agent Systems](https://gurusup.com/blog/moe-vs-multi-agent-systems)
+- [Google: The New SDLC With Vibe Coding"](https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding)
+- [Mixture-of-Expert vs Multi-Agent Systems](https://gurusup.com/blog/moe-vs-multi-agent-systems)
 
 ### Yet, constantly new trends, like "loop of loops"
 <img src="images/guidance/nate-loop-of-loops.png">
 
 ####
 Links:
-[AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://www.youtube.com/watch?v=A4zMyjkL0Dc)
-[I guess we're writing loops now?](https://www.youtube.com/watch?v=iJVJwmCKW9o)
+- [AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://www.youtube.com/watch?v=A4zMyjkL0Dc)
+- [I guess we're writing loops now?](https://www.youtube.com/watch?v=iJVJwmCKW9o)
 
 ### How to speak
 - Just use plain language
@@ -2794,8 +2789,8 @@ Links:
 
 ####
 Links:
-[Claude Academy](https://claude-academy.com/)
-[You're falling behind. It's time to catch up.](https://www.youtube.com/watch?v=Z9UxjmNF7b0)
+- [Claude Academy](https://claude-academy.com/)
+- [You're falling behind. It's time to catch up.](https://www.youtube.com/watch?v=Z9UxjmNF7b0)
 
 
 # Demystifications
@@ -2853,8 +2848,8 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 
 ####
 Links:
-[Will we run out of data? Limits of LLM scaling based on human-generated data](https://arxiv.org/abs/2211.04325)
-[Is Model Collapse Inevitable?](https://arxiv.org/abs/2404.01413)
+- [Will we run out of data? Limits of LLM scaling based on human-generated data](https://arxiv.org/abs/2211.04325)
+- [Is Model Collapse Inevitable?](https://arxiv.org/abs/2404.01413)
 
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
@@ -2866,7 +2861,7 @@ Links:
 
 ####
 Links:
-[Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md)
+- [Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md)
 
 ### Saying "You are xxxx..." is useful
 <p class="verdict maybe">Useful in some ways</p>
@@ -2891,9 +2886,9 @@ Links:
 Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.
 
 Links:
-[The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
-[Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
-[General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
+- [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+- [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
+- [General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
 
 ### The AI just wants to please you
 <p class="verdict maybe">Some do, some don't</p>
@@ -2917,7 +2912,7 @@ Links:
 
 ####
 Links:
-[The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
+- [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
 
 ### Ask it "why it did that" and it will tell you
 <p class="verdict no">No, don't trust that explanation</p>
@@ -2981,10 +2976,11 @@ Some say the best reason for being polite is simply that:
 - *What even is understanding, sentience, consciousness*? LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.
 
 ####
-[Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
-[Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
-[AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://www.youtube.com/watch?v=p7t1Q_p2gZs)
-[Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
+Links:
+- [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
+- [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
+- [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://www.youtube.com/watch?v=p7t1Q_p2gZs)
+- [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
 
 
 # Closing
@@ -3016,9 +3012,10 @@ And remember, don't dispair 😊
 <img src="images/intro/two-years-behind.png">
 
 ####
-[AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
-[You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
-Best LLM resources, imho: [3blue1brown](https://www.3blue1brown.com/?topic=neural-networks)
+Links:
+- [AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
+- [You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
+- Best LLM resources, imho: [3blue1brown](https://www.3blue1brown.com/?topic=neural-networks)
 
 ---
 <img src="images/intro/slide-count.png">

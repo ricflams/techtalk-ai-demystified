@@ -811,6 +811,13 @@ try t see where you are in the loop and see if you can remove yourself out of it
 ####
 Lots of matrix operations.
 
+### "hello" in the vocabulary
+<img src="images/llm/tokens/vocabulary-hello.png">
+
+####
+Notice that "hello" in the gpt-4o tokenizer is #24912 and in the ChatGPT vocabulary it's 15339. Vocabularies vary  from model to model. The concrete numbers doesn't matter outside of the AI service.
+
+
 
 
 

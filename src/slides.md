@@ -162,7 +162,7 @@ Links:
 <img src="images/overview/llm-intro.png">
 
 ####
-The LLM, the **Large Language Model, is the part that does all the *thinking*.
+The LLM, the **Large Language Model**, is the part that does all the *thinking*.
 
 It's fundamental so let's start there and work our ways up.
 

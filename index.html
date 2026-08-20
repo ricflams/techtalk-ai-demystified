@@ -796,21 +796,21 @@ One 8 x B200 cluster with Claude Opus can output serve 40 tokens/sec.</p>
 <p>The embeddings, meanig the vector of numbers for each of the tokens.</p>
 <p>And the AI models many billions of small factors, weights.</p>
 <p>Once the training is completed, the embeddings and weights are frozen, never to be changed again. Not until they are used to kick-start training of the next model.</p>
-<h3 id="pre-training-cost">Pre-training cost</h3>
+<h3 id="pre-training-is-expensive">Pre-training is expensive</h3>
 <ul>
 <li>From scratch for a new model</li>
-<li>it costs <strong>$200M-$1000M</strong></li>
-<li>it takes <strong>4-8 months</strong>
+<li>costs <strong>$200M-$1000M</strong></li>
+<li>takes <strong>4-8 months</strong>
 <br></li>
 <li>From an existing model</li>
-<li>it costs 1-10% of full training</li>
-<li>it takes weeks or months</li>
+<li>costs 1-10% of full training</li>
+<li>takes weeks or months</li>
 </ul>
 <h3 id="pre-trained-models-are-quite-similar"><em>Pre-trained</em> models are quite similar</h3>
 <p><img src="images/llm/training/pre-training.png"></p>
 <h3 id="pre-trained-answers-are-pure-auto-completions">Pre-trained answers are pure "auto-completions"</h3>
 <p>No judgement, no reasoning.</p>
-<p>It's just a statistical prediction-machine, exactly like an auto-complete.
+<p>It's just a statistical word-prediction.
 <br></p>
 <p><img src="images/llm/training/pre-training-is-like-autocompete.png"></p>
 <h3 id="post-training-is-what-shapes-the-model"><em>Post-training</em> is what shapes the model</h3>
@@ -913,7 +913,7 @@ One 8 x B200 cluster with Claude Opus can output serve 40 tokens/sec.</p>
 <h4 id="_107"></h4>
 <p>Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, it's an autocomplete.</p>
 <p>Buf "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".</p>
-<h3 id="not-answer-most-probable-continuation">Not "answer"; "most probable continuation"</h3>
+<h3 id="think-most-probable-continuation-not-answer">Think "most probable continuation", not "answer"</h3>
 <ul>
 <li>
 <p>You give the model a <strong>context</strong>, which is practically just a text.</p>
@@ -930,7 +930,7 @@ One 8 x B200 cluster with Claude Opus can output serve 40 tokens/sec.</p>
 </ul>
 <p><br>
 <img src="images/llm/core/once-upon-a-time.svg" /></p>
-<h3 id="think-context-next-not-question-answer">Think "context → next", not "question → answer"</h3>
+<h3 id="so-context-next-not-question-answer">So "context → next", not "question → answer"</h3>
 <p><img src="images/llm/core/context-continuation.svg" /></p>
 <h4 id="_108"></h4>
 <p>Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.</p>
@@ -1111,7 +1111,7 @@ Signifying nothing.</em></p>
 <p>This is the part where we finally unlock the concrete functionality you use daily: chatting, uploading files, having the AI work on that Confluence page using an MCP server, using a skill, etc etc. It all comes together now, and many parts are less mysterios than you might think.</p>
 <hr />
 <p><img src="images/overview/service.png"></p>
-<h3 id="what-does-the-ai-service-offer">What does the AI service offer?</h3>
+<h3 id="what-does-the-ai-service-add">What does the AI service add?</h3>
 <div class="cols">
 <p><img src="images/agents/parts/ai-service.png" /></p>
 <div class="col-2">
@@ -1919,7 +1919,7 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <h3 id="names-and-locations">Names and locations</h3>
 <ul>
 <li>Agents used different names: <code>CLAUDE.md</code>, <code>GEMINI.md</code>, even <code>AGENT.md</code> (no s)</li>
-<li>By now, <code>AGENTS.md</code> is the agreed-upon standard name (hooray</li>
+<li>By now, <code>AGENTS.md</code> is the agreed-upon standard name (hooray)</li>
 <li>Yet, Claude Code does not read <code>AGENTS.md</code>, only <code>CLAUDE.md</code> (oh dear)</li>
 <li>Agents differ in how they search for agent-files, up/down from folder to root</li>
 <li>Use e.g. <code>/init</code> to have Claude build an agent-file of useful facts from a folder
@@ -1977,15 +1977,20 @@ Let's check it out.</p>
 - <a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent">my-agent</a></p>
 <h3 id="context-recap">Context recap</h3>
 <ul>
-<li>The context is all the LLM see; there are no special backchannels for "other instructions"</li>
+<li>The context is all the LLM see</li>
+<li>There are no special backchannels for "other instructions"</li>
 <li>The context is finite, so it's all about keeping it lean</li>
 </ul>
+<h4 id="_234"></h4>
+<p>A former CTO of mine used to say this he took someone's photo, which may sound obvious but still was surprisingly useful:</p>
+<p>"If you can't see the camera, you aren't in the picture".</p>
+<p>"If it ain't in the context, the AI can't reason about it"</p>
 <h2 id="final-ai-service-parts">Final AI service parts</h2>
 <h3 id="still-a-few-blank-spots">Still a few blank spots</h3>
 <p><img src="images/service/overview/full-except-misc.png"></p>
 <h3 id="the-final-parts">The final parts</h3>
 <p><img src="images/service/overview/misc.png"></p>
-<h4 id="_234"></h4>
+<h4 id="_235"></h4>
 <p>Four parts to mention:</p>
 <ul>
 <li>In addition to the text context, the request also does send along <em>some real hard parameters</em>: the <strong>model</strong>, the <strong>temperature</strong>, the <strong>thinking budget</strong> in tokens, and some other model-specific bits. In particular, the <em>temperature</em> adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In pactice that leads to a weirdly clinical and un-appealing output. Higher temperature simply mean increased likelihood of choosing some of the less probably next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelity in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one session to another.</li>
@@ -1996,7 +2001,7 @@ Let's check it out.</p>
 <h2 id="now-i-have-the-full-picture">"Now I have the full picture"</h2>
 <hr />
 <p><img src="images/service/overview/full.png"></p>
-<h4 id="_235"></h4>
+<h4 id="_236"></h4>
 <p>Indeed, this is the full overview of how any modern AI Service work, in principle.</p>
 <h3 id="ai-service-recap">AI Service recap</h3>
 <ul>
@@ -2007,11 +2012,11 @@ Let's check it out.</p>
 <li>Adding <em>barely enough hints of useful info</em> for the LLM is the challenge, and the approaches are constantly evolving</li>
 </ul>
 <h1 id="the-context">The Context</h1>
-<h4 id="_236"></h4>
+<h4 id="_237"></h4>
 <p>Everything we've looked at is about <em>putting tokens into a context</em> with the intent of steering the next prediction toward something useful.</p>
 <hr />
 <p><img src="images/context/its-the-context-economy-stupid.png"></p>
-<h4 id="_237"></h4>
+<h4 id="_238"></h4>
 <p>But the context is finite and processing costs you per token.</p>
 <p>So not just adding the right things, but also keeping the context lean, is the challenge.</p>
 <p>The cost of tokens in the context has a couple of surprises in store.</p>
@@ -2041,7 +2046,7 @@ Let's check it out.</p>
 <p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/"><img alt="Token spending game preview" src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" /></a></p>
 <p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/">Open interactive version</a></em></p>
 </div>
-<h4 id="_238"></h4>
+<h4 id="_239"></h4>
 <p>Here's an interactive visualization of where your token costs go.</p>
 <p>Try this:</p>
 <ul>
@@ -2072,7 +2077,7 @@ Let's check it out.</p>
 <p>Mitigations:
 - Try clear and compact. They save, of course, but it's a proper shield against the other token-spending ways.</p>
 <h1 id="advice">Advice</h1>
-<h4 id="_239"></h4>
+<h4 id="_240"></h4>
 <p>The AI models of today works generally so cleverly that you very often don't have hold them in a special way</p>
 <h3 id="modern-ai-models-need-little-hand-holding">Modern AI models need little hand-holding</h3>
 <ul>
@@ -2087,13 +2092,13 @@ Let's check it out.</p>
 <br></li>
 <li>So: how you <em>"hold it"</em> seem less and less important</li>
 </ul>
-<h4 id="_240"></h4>
+<h4 id="_241"></h4>
 <p>Links:
 - <a href="https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding">Google: The New SDLC With Vibe Coding"</a>
 - <a href="https://gurusup.com/blog/moe-vs-multi-agent-systems">Mixture-of-Expert vs Multi-Agent Systems</a></p>
 <h3 id="yet-constantly-new-trends-like-loop-of-loops">Yet, constantly new trends, like "loop of loops"</h3>
 <p><img src="images/guidance/nate-loop-of-loops.png"></p>
-<h4 id="_241"></h4>
+<h4 id="_242"></h4>
 <p>Links:
 - <a href="https://www.youtube.com/watch?v=A4zMyjkL0Dc">AI Prompt Engineering: I Stopped Prompting One Task At A Time</a>
 - <a href="https://www.youtube.com/watch?v=iJVJwmCKW9o">I guess we're writing loops now?</a></p>
@@ -2119,20 +2124,20 @@ Let's check it out.</p>
 <ul>
 <li>Treat it as a tool in your professional toolbox.</li>
 <li>You're a carpenter - get a good hammer that's yours and then practice</li>
-<li>Build things for fun</li>
 <li>A monthly subscription of $20 is a cheap investment</li>
+<li>Build things for fun</li>
 </ul>
-<h4 id="_242"></h4>
+<h4 id="_243"></h4>
 <p>Links:
 - <a href="https://claude-academy.com/">Claude Academy</a>
 - <a href="https://www.youtube.com/watch?v=Z9UxjmNF7b0">You're falling behind. It's time to catch up.</a></p>
 <h1 id="demystifications">Demystifications</h1>
-<h4 id="_243"></h4>
+<h4 id="_244"></h4>
 <p>Let's run through a quick series of myths and facts and demystify them.</p>
 <h3 id="we-dont-know-how-the-ai-works">We don't know how the AI works</h3>
 <p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
 
-<h4 id="_244"></h4>
+<h4 id="_245"></h4>
 <p>We know <em>exactly</em> how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.</p>
 <h3 id="we-dont-know-what-goes-on-inside-the-ai">We don't know what goes on inside the AI</h3>
 <p class="verdict yes">Now <em>that's</em> true - we don't</p>
@@ -2155,7 +2160,7 @@ Let's check it out.</p>
 <ul>
 <li>Large data is typically <em>truncated</em>, <em>sampled</em>, or <em>compacted</em></li>
 <li>The LLM will fight tooth and nail to <em>not include large files or much data</em>: it will only read the first 1000 lines, the first 20 files, 5 sampled Confluence-pages, even <em>write small scripts</em> to do a task, all to save context</li>
-<li>So <em>no</em>, if you have a lot of data it's never processed collectively in one context</li>
+<li>So <em>no</em>, if you have a lot of data it's likely <em>not all processed</em> collectively in one context</li>
 <li>That's why bits and pieces could be <em>missed</em></li>
 </ul>
 <h3 id="context-is-lost-in-the-middle">Context is "Lost in the middle"</h3>
@@ -2172,17 +2177,17 @@ Let's check it out.</p>
 <li>The context is compacted (or truncated) when it gets close to the context window size. You're bound to lose some information by that. So yes, the AI <em>can forget</em> what you've been talking about</li>
 <li>Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
 &nbsp;</li>
-<li>The remedy: keep your context lean; clear, compact, start fresh at your own initiative</li>
+<li>The remedy: keep your context lean: <em>clear</em>, <em>compact</em>, <em>start fresh</em> on your own initiative</li>
 </ul>
 <h3 id="soon-we-will-run-out-of-training-material">Soon we will run out of training material</h3>
 <p class="verdict maybe">Partly true, but less so</p>
 
 <ul>
-<li>Yes, models are actually now trained on a meaningful fraction of public human-generated text.</li>
-<li><em>Non-public content, books, transcripts, and video</em> is a vast potential.</li>
-<li>Studies show that replacing real data with synthetic data does tend toward collapse, but accumulating the synthetic data alongside the original avoids it. So yes, we can <em>train on synthetic data</em> too.</li>
+<li>Yes, models are actually now trained on a reasonably large (say, 10%) fraction of public human-generated text.</li>
+<li>However, <em>non-public content, books, transcripts, and video</em> is a vast potential.</li>
+<li>Studies show that replacing real data with synthetic data does tend toward "model collapse", but accumulating the synthetic data alongside the original avoids it. So yes, we can <em>train on synthetic data</em> too, in specific ways.</li>
 </ul>
-<h4 id="_245"></h4>
+<h4 id="_246"></h4>
 <p>Links:
 - <a href="https://arxiv.org/abs/2211.04325">Will we run out of data? Limits of LLM scaling based on human-generated data</a>
 - <a href="https://arxiv.org/abs/2404.01413">Is Model Collapse Inevitable?</a></p>
@@ -2195,7 +2200,7 @@ Let's check it out.</p>
 <li>Grammar is useful for <em>your own thinking</em> as well in framing your request</li>
 <li>Terse can be okay: "Fix null check line 40" works fine. But "make good" is bad.</li>
 </ul>
-<h4 id="_246"></h4>
+<h4 id="_247"></h4>
 <p>Links:
 - <a href="https://github.com/JuliusBrussee/caveman/blob/main/README.md">Caveman</a></p>
 <h3 id="saying-you-are-xxxx-is-useful">Saying "You are xxxx..." is useful</h3>
@@ -2224,7 +2229,7 @@ Let's check it out.</p>
 </ul>
 </li>
 </ul>
-<h4 id="_247"></h4>
+<h4 id="_248"></h4>
 <p>Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.</p>
 <p>Links:
 - <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">The Bitter Lesson</a>
@@ -2244,22 +2249,23 @@ Let's check it out.</p>
 <p class="verdict yes">True, but it can largely be mitigated</p>
 
 <ul>
-<li>The model doesn't know it's wrong when it hallucinates, so there is no use in saying "don't hallucinate"</li>
-<li>Interestingly, deeper reasoning (chain of thought) actually <em>lowers</em> the success rate for the LLM detecting nonsense, which is known as the <strong>Reasoning Trap</strong>, or Paradox.
-<br></li>
-<li>Give it a clear goal it can finish</li>
-<li>Related to that: make sure you know and state what "good output" looks like</li>
-<li>Make failure an explicit accepted continuation, eg: "if there's no xxx then tell me"</li>
-<li>Have another agent supervise and assess the output</li>
+<li>The model <em>doesn't know it's wrong</em> when it hallucinates, so there is no use in saying "don't hallucinate"</li>
+<li>Interestingly, deeper reasoning (chain of thought) actually <em>lowers</em> the success rate for the LLM detecting nonsense a bit, which is known as the <strong>Reasoning Trap</strong>, or Paradox.
+<br>
+Mitigations:</li>
+<li>Give it a <em>clear goal</em> it can finish</li>
+<li>Related to that: make sure you know and <em>state what "good output" looks like</em></li>
+<li>Make <em>failure an explicit accepted continuation</em>, eg: "if there's no xxx then tell me"</li>
+<li>Have <em>another agent</em> supervise and assess the output</li>
 </ul>
-<h4 id="_248"></h4>
+<h4 id="_249"></h4>
 <p>Links:
 - <a href="https://arxiv.org/html/2510.22977v1">The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination</a></p>
 <h3 id="ask-it-why-it-did-that-and-it-will-tell-you">Ask it "why it did that" and it will tell you</h3>
 <p class="verdict no">No, don't trust that explanation</p>
 
 <ul>
-<li>The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus question why this?". That reasoning may very well have <em>nothing to do with how it actually arrived</em> at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because ..."</li>
+<li>The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus user questioning 'why this?'". That reasoning may very well have <em>nothing to do with how it actually arrived</em> at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because ..."</li>
 <li>It may not always happen, for sure, but it may well happen.</li>
 </ul>
 <h3 id="say-no-to-training-itll-leak-your-data">Say no to training, it'll leak your data</h3>
@@ -2268,7 +2274,7 @@ Let's check it out.</p>
 <ul>
 <li><em>No words from your chat is actually remembered</em></li>
 <li>"Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training. Training never stores the text but instead nudges billions of weights a tiny bit.</li>
-<li>The model only memorizes <em>repetitions</em>. Send your password once? Doesn't stick. Send it 10 times? Then it's <em>1000x</em> more likely to stick, due to an effect called <em>superlinearity</em>. So highly injected texts can be retrieved, yes.</li>
+<li>The model only memorizes <em>repetitions</em>. Send your password once? Doesn't stick. Send it 10 times? Then it's <em>1000x</em> more likely to stick, due to an effect called <em>superlinearity</em>. So repeatedly injected texts can be retrieved, yes. These are the cases reported in the news.</li>
 </ul>
 <h3 id="make-no-mistakes">"Make no mistakes"</h3>
 <p class="verdict no">Largely useless</p>
@@ -2281,14 +2287,14 @@ Let's check it out.</p>
 <p class="verdict no">No, it doesn't and no it isn't</p>
 
 <ul>
-<li>"Please" is 1 input token and that cost really is neglible</li>
-<li>"Please" add conversational structure and make it clearer that you make a request</li>
-<li>"Please" is found in productive successful conversations, which we're seeking</li>
+<li>"Please" is <em>one input token</em> and that cost really is neglible</li>
+<li>"Please" add <em>conversational structure</em> and make it clearer that you make a request</li>
+<li>"Please" is found in <em>productive successful conversations</em>, the pattern we're seeking</li>
 <li>Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
 &nbsp;
 Some say the best reason for being polite is simply that:
 &nbsp;</li>
-<li>It's good for <em>you</em>, even in simulated conversations:<br>positive social behavior release oxytocin and dopamine, while a terse, impolite demeanor release cortisol and adrenaline</li>
+<li>It's good for <em>you</em>, even in simulated conversations: positive social behavior release oxytocin and dopamine, while an impolite demeanor release cortisol and adrenaline</li>
 </ul>
 <h3 id="you-must-never-do-xxx">"YOU MUST NEVER DO xxx!"</h3>
 <p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
@@ -2321,14 +2327,14 @@ Some say the best reason for being polite is simply that:
 <li>The fact that the answer isn't a resounding <em>"no"</em> is astounding.</li>
 <li><em>What even is understanding, sentience, consciousness</em>? LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.</li>
 </ul>
-<h4 id="_249"></h4>
+<h4 id="_250"></h4>
 <p>Links:
 - <a href="https://ling.auf.net/lingbuzz/007180/current.pdf">Modern language models refute Chomsky’s approach to language</a>
 - <a href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a>
 - <a href="https://www.youtube.com/watch?v=p7t1Q_p2gZs">AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried</a>
 - <a href="https://www.youtube.com/watch?v=IkdziSLYzHw">Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton</a></p>
 <h1 id="closing">Closing</h1>
-<h4 id="_250"></h4>
+<h4 id="_251"></h4>
 <p>What a journey.</p>
 <h3 id="takeaways">Takeaways</h3>
 <div class="cols">
@@ -2346,7 +2352,7 @@ And remember, don't dispair 😊
 <br>
 <br>
 <img src="images/intro/two-years-behind.png"></p>
-<h4 id="_251"></h4>
+<h4 id="_252"></h4>
 <p>Links:
 - <a href="https://github.com/ricflams/techtalk-ai-demystified/">AI Demystified repo</a>
 - <a href="https://www.youtube.com/watch?v=MsQACpcuTkU">You've Been Using AI the Hard Way (Use This Instead)</a>

@@ -341,12 +341,6 @@ In AI, an *embedding* is vector of numbers that _somehow_ represent the characte
 ####
 You probably knew about tokens. Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.
 
-### Specialty Coffee Association (SCA)
-<img src="images/llm/embeddings/analogy_coffee.svg" />
-
-####
-If you wanted to characterize coffee, you could assign a number to each of the characteristics that coffe has: its aroma, acidity, sweetness, and so on. You can compare their aspects, find the least acidic coffees, etc.
-
 ### Spotify's 80-dimensional characteristics
 <img src="images/llm/embeddings/analogy_spotify.svg" />
 
@@ -759,126 +753,6 @@ Links:
 Links:
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
-## Effort and Cost
-
-####
-Let's briefly talk about the amount of work that's involved in producing tokens and the cost of it.
-
-### It's one token, what could it cost?
-
-<img src="images/llm/cost/one-banana.jpg">
-
-### Harry Potter ~ 100,000 tokens
-
-<div class="cols fit">
-<div><img src="images/llm/cost/harry-potter-front.png" /></div>
-<div><img src="images/llm/cost/harry-potter-page-1.jpg" /></div>
-</div>
-
-####
-Let's say we tokenized and fed Harry Potter through the LLM, and had it produce the next expected token. What would that entail?
-
-Specifically for Harry Potter: People have tried that and the resulting stories are incredibly bizarre hybrids. The AI might invent a plot where Harry returns to Hogwarts, but it will subconsciously add in details from the Chamber of Secrets anyway; like renaming the Basilisk to something else but keeping the exact structural cadence of the original sequel.
-
-### 100,000 context tokens in, 1 token out
-<img src="images/llm/cost/harry-potter-transformer.png"> 
-
-### How much math does one "token out" really need?
-<img src="images/llm/cost/dr-evil-one-million-flops.jpg"> 
-
-### Actually, about 1,200,000,000,000 multiplications
-<img src="images/llm/cost/dr-evil-teraflops.jpg"> 
-
-**FLOP** is short for Floating-Point Operation: a multiplication of two numbers
-
-### Enter: the NVidia B200 GPU
-
-The NVidia B200 GPU is not your grandma's GeForce graphics card, for sure.
-
-<img src="images/llm/cost/nvidia-jensen-b200.png"> 
-
-### 4,500,000,000,000,000 FLOPS/sec
-
-####
-The NVidia B200 GPU does 4500 trillion FLOPS/sec.
-
-### Pedal to the metal
-<div class="cols">
-<img src="images/llm/cost/nvidia-b200-focus.png"> 
-<div class="col-4">
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
-
-4,500,000,000,000,000 FLOPS/sec is B200 capacity
-<br>
-One 8 x B200 cluster with Claude Opus can output serve 40 tokens/sec.
-</div>
-</div>
-
-####
-Or rather, it depends on the length of the context:
-
-- 4,000 token context: 50 users at 60 tokens/sec
-- 100,000 token context: 10 users at 40 tokens/sec
-- 1,000,000 token context: 1 user at 15 token/sec
-
-### Ballpark cost per output token (June 2026)
-<div class="cols">
-<img src="images/llm/cost/cost-per-token.png"> 
-<div class="col-2">
-
-One 8 x B200 cluster costs $500,000
-
-- Ballpark running cost, all-included: *$27/MToken out*
-- Claude Opus is priced at $25/MToken
-&nbsp;
-
-<img src="images/llm/cost/claude-pricing.png"> 
-</div>
-</div>
-
-####
-The business cost estimation, all included, was rather surprisingly close to the sales price.
-
-### The B200 cluster
-<img src="images/llm/cost/b200-cluster.jpeg">
-
-####
-The NVidia B200 GPU comes in clusters.
-
-### Clusters comes as trays
-<img src="images/llm/cost/b200-clusters.jpg"> 
-
-### Trays goes into racks
-<img src="images/llm/cost/b200-rack.jpg"> 
-
-### Racks goes into aisles
-<img src="images/llm/cost/b200-rack-aisle.jpeg"> 
-
-### Now you have a datacenter
-<img src="images/intro/datacenter.jpg"> 
-
-### Why Graphics Cards (GPU)?
-
-### Transformer's superpower: all tokens at once
-<img src="images/llm/transformer-vs-sequential.png">
-
-### GPU: master of parallel computations
-<img src="images/llm/cost/red-dead-redemption.webp">
-
-####
-That's why Mac Mini and Mac Studio are so sought after: their GPU can use the full on-board RAM.
-
-### NVidia stock price
-<img src="images/llm/cost/nvidia-stock-5y.png"> 
-
-####
-And why NVidia's stock price has soared.
-
-####
-Links:
-- [The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
-
 ## Training
 
 ####
@@ -1137,83 +1011,7 @@ They run on *different hardware*, LLM has *different sizes*, e.g. number of atte
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
 
-## A mental model for the LLM
 
-####
-I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.
-
-### "Once upon a ..."
-
-### "It's just a fancy autocomplete"
-
-<img src="images/llm/core/once-upon-a-time.svg" />
-
-####
-Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, it's an autocomplete.
-
-Buf "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".
-
-### Think "most probable continuation", not "answer"
-
-- You give the model a **context**, which is practically just a text.
-
-- The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
-
-- That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
-
-- So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
-
-<br>
-<img src="images/llm/core/once-upon-a-time.svg" />
-
-### So "context → next", not "question → answer"
-<img src="images/llm/core/context-continuation.svg" />
-
-####
-Words go into context with the intent of steering the next prediction toward what's useful for you. That's the whole game.
-
-The model has no other input to go by for dealing with your tasks than the context you give it.
-
-### Predictions from seen patterns
-<img src="images/llm/core/coffee.svg" />
-
-####
-The neural network is really good at making predictions based on patterns, even combinations of patterns.
-
-### Context determines the "likely next text"
-<img src="images/llm/core/knock-knock.svg" />
-
-####
-Is it just the two words "Knock knock" or does it look like a conversation? These are different patterns.
-
-### Some "reasoning" is maybe "just a pattern"
-<img src="images/llm/core/expert-advice.svg" />
-
-####
-What might look like "reasoning" is really "pattern matching"
-
-### Even math is a pattern
-<img src="images/llm/core/math.svg" />
-
-####
-Even simple math can be trained to be recognized.
-
-But not harder math. So what's up with this "calc()" method call? We'll get to that next.
-
-### What "a pattern-prediction machine" implies
-
-- *Plain language with regular words* will steer it in the desired direction via pure pattern-matching of similar conversations seen during training
-<br>
-- *Adding examples* often gives way better output
-<br>
-- *Be descriptive and straightforward*, so the prediction has something to work with
-
-####
-The Transformer architecture is an incredibly impressive feat, no doubt about it.
-
-Mechanically though, it truly is "just" a prediction machine.
-
-But hey, maybe we humans are also just prediction machines?
 
 ### Trained AI model recap
 1. You give it a string of tokens, aka the *context*
@@ -1335,64 +1133,6 @@ At least that's how it *usually* is today. It's changing slowly, it seems, and t
 
 So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
 
-## Where do the parts live?
-
-### Frontier Models live in a datacenter
-<img src="images/agents/parts/datacenter.png">
-
-####
-The Frontier Models (FM), ie Claude, Gemini, ChatGPT, etc, always lives in their lab's data center.
-
-### Typically, the agent is web or terminal/app
-
-<div class="cols">
-<img src="images/agents/parts/browser.png" />
-<div>
-
-*Browse* to chatgpt.com, claude.com, etc:
-- Chats and settings are *on the website*
-- You can *do a lot*: chat, make images, documents, use online tools, etc
-
-</div>
-</div>
-<br>
-<div class="cols">
-<img src="images/agents/parts/cli.png" />
-<div>
-
-*Install* claude, gemini, opencode, etc:
-- Chats, settings, files are *all on your pc*
-- Better *control* over the AI
-- *Text only*, which can feel like a barrier
-</div>
-</div>
-
-####
-Claude Cowork is actually a real stand-along app that works on your local pc, just like in the terminal.
-
-### Alternatively, in apps or fully self-hosted
-
-<div class="cols">
-<img src="images/agents/parts/app.png" />
-<div>
-
-Use AI *indirectly* through apps you use:
-- Very little control
-- Chat-knowledge still comes in handy; you can maybe ask "list your tools"
-
-</div>
-</div>
-<br>
-<div class="cols">
-<img src="images/agents/parts/local.png" />
-<div>
-
-Run *open-weight full LLM* on your pc:
-- Gives you *full control*, eg for *training*
-- Free to run, but *expensive* to run well
-</div>
-</div>
-
 ## My personal AI-journey
 
 ### Chat, copy-paste, embedded, now terminal
@@ -1448,8 +1188,6 @@ The full functionality is quite lean:
 4. It can use *tools*
 <br>
 5. It has *caching* and *safeguards*
-<br>
-That's it - and remember:<br>*It knows nothing about you personally*
 </div>
 </div>
 
@@ -1800,7 +1538,7 @@ So far, we've only seen the LLM generate text.
 
 Using *tools* is how the LLM can seek out new facts and generally, surprisingly maybe, be *in control*.
 
-### Remember the math-example?
+### A math-example
 <img src="images/llm/core/math.svg" />
 
 ####

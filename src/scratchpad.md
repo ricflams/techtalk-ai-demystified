@@ -662,3 +662,151 @@ Stole — dansk: stole (chairs, eller at stole på); engelsk: datid af "steal"
 
 Bonus: and (duck), men (but), og sand — som på dansk både betyder sand og true, så den er en dobbelt false friend.
 
+RAG
+
+
+
+### Tips
+
+
+###
+
+clear, edit on mistakes
+btw
+branch
+be precise about what you want as output foormat
+ask multiple questions in one go
+search files yourself if you can, ie make the model search it for you
+save the results in short form for later
+use /insight or whatever to see how you're doing
+
+
+Much has happened since GPT 3 that had 2K context-window.
+
+But more isn't better. 1M may be quite a sweet spot.
+
+The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
+
+
+
+"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
+
+### How do I see the used context in tool x?
+
+
+
+## That's where non-LLM innovation is happening
+
+TODO: you'll find that everything is about putting things into the context, have the LLM chew on it, deal with the output from the LLM, refine, repeat.
+
+"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
+
+
+Show tool-belt-image
+
+The agents are just becoming really good at managing the context. They'll fitght tooth and nail to not include large files, for instance. I tried but often in vain.
+
+
+
+### What content goes in
+https://claude.ai/chat/8d0a1c64-57b8-4b51-bb48-2d9b6ff24e6b
+Null and compact are genuinely orthogonal — include-everything vs. lossy-transform.
+and then selection, one of which a powerful variant is the embedding-similarity lookup: grep, rag, etc
+
+## Two kinds
+
+## How do AI Clients work nowadays
+How the llm controls the agent, so to speak: https://claude.ai/chat/1c9ad7db-4dad-47e9-89d6-323b23fafb08
+Orchestrator/worker judgment
+Verification before claiming done
+Goal persistence across many steps
+Memory as a pattern 
+
+"Trust, but verify"
+
+Give the audience the three-layer shape — stated (you said it, it's stored verbatim), synthesized (periodic curated compression of what happened, regenerated wholesale, subject to recency decay), retrieved (opt-in search over raw history, triggered by cue-detection, scored by a real relevance mechanism). That structure is what's actually stable — it's the shape every vendor has converged on for the same token-economic reasons, independent of which embedding model or summarization prompt sits inside each box this quarter
+
+
+## The challenge
+Fable 5 stays focused across millions of tokens in long-running tasks and improves its outputs using its own notes. When we had the model play the deck-building game Slay the Spire, giving it access to persistent file-based memory improved its performance three times more than for Opus 4.8; Fable also reached the game’s final act three times more often.
+
+## Managing the context
+
+https://gurusup.com/blog/agent-orchestration-patterns
+https://gurusup.com/blog/moe-vs-multi-agent-systems
+
+
+
+
+say what you want, not what is there: "there's a comma at the end of the sentence" - yes, I can see that
+
+
+
+
+### "Level up"
+
+<div class="cols">
+<img class="col-1" src="images/guidance/level-up.png">
+
+<div class="col-6" >
+
+- Pick an agent and try *the terminal*
+<br>
+- Customize your agent with *MCP servers, and skills*
+<br>
+- Speak directly to the AI Service, not via an agent
+<br>
+- Experiment with Run your own AI
+</div>
+</div>
+
+####
+Links:
+[You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
+
+
+
+## Advice
+
+Give examples. 
+
+I use LLMs frequently to help build Excel tools and calculators, especially for budget management, both professionally and personally. I’ll often explain what I want it to do, all the parameters, etc. but then will end the prompt with, “Before you start building, let me know what questions or uncertainties you have, or what clarifications you need”.
+I often find that with whatever it responds with that I wasn’t clear enough with my initial explanation and request. A quick clarification on the front end helps save a lot of time from having it rebuild tools over and over due to my poor directions.
+
+Be precise. Don't say "it's green" or "it should not be green", but "it should be red"
+
+Consider your prompts first-level source too, eligible to be committed.
+Deterministic vs pure AI-driven.
+
+### How I use AI now
+
+Small nudging words
+Planning
+Like a partner
+	https://youtu.be/Rtkac4WHC1o?si=RoF-SAnoKd6a20IH
+
+### Workflows
+
+LLM-sentence-loop
+thinking-loop
+next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
+review loops
+try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
+
+### Check out embeddings
+
+----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

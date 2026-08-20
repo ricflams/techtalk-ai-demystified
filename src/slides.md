@@ -16,16 +16,23 @@ August 2026
 
 ricflams.github.io/techtalk-ai-demystified
 
+####
+[AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
+
+---
+![bg](images/intro/books.jpg)
+
+####
+Over time, some landmark tech has particularly triggered my brain.
+
+When HTML came out I was like, man, I just want to know all about it.
+
+Same with Java and .NET, with their intriguing bytecode and VM-engines. So interesting.
+
 ---
 ![bg](images/intro/dopamine.png)
 
 ####
-Over time, certain landmark tech has particularly triggered my brain.
-
-Back when HTML and XML came out I was like, man, I just want to know all about it.
-
-Same with Java and .NET, with their intriguing bytecode and VM-engines.
-
 For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
 
 ---
@@ -144,6 +151,8 @@ So AI here means **generative text AI**. Not AI for generating images using stab
 
 Links:
 [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
+[AlphaFold - The Most Useful Thing AI Has Ever Done](https://www.youtube.com/watch?v=P_fHJIYENdI)
+[A quest for a cure: AI drug design | Isomorphic Labs](https://www.youtube.com/watch?v=XpIMuCeEtSk)
 
 # The LLM
 
@@ -1696,15 +1705,37 @@ No links, no outside preferences, no memories, including from earlier chats:<br>
 <img src="images/service/chat/tokens-turn-50-total.png">
 
 ####
-It gets more and more expensive to keep on dragging the entire conversation along. You pay for all those tokens.
+The total tokens you pay for is added up for every turn, so you use more and more tokens at every turn.
 
+### Save tokens: clear and compact
 
+####
+The best way to save tokens is simply to not keep on dragging the entire conversation along all the time.
 
-TODO: Show clear and compact
+### Clear: wipe all, get back to scratch
+<img src="images/service/chat/clear.png">
+
+####
+"Clear" simply means wiping the entire chat and starting from scratch.
+
+### Compact: keep a summary of the chat
+<img src="images/service/chat/compact.png">
+
+####
+"Compact" means that the agent ask the LLM to summarize the chat and add that summary as a first message.
+
+### Your best token-saving friends: clear and compact
+- In terminal agents write `/clear` or `/compact`
+- In web agents, just start a new chat; compact may not be an option
+- compact can be preferable, as it doesn't use that many more tokens
+- If you don't clear or compact, the agent will auto-compact for you
+<br>
+- The token-cost-saving story is more complicated; more on that later
 
 ### Chatting recap
 
-* The entire conversation is always sent, every time you write anything to the AI
+- The entire conversation is always sent, every time you write anything to the AI
+- Use clear and compact to keep the context lean
 
 ## "Think harder"
 <img src="images/overview/thinking.png">
@@ -1907,11 +1938,11 @@ For example, the agent is not the one making the decision when to actually *run*
 So in a way it's "easy" to write an agent: just provide well-described tools that the LLM can work with: like "ask the user", "delete a file", "start multiple agents", etc. The LLM will then decide to call them.
 
 ### The home-field advantage
-* Models are trained on their own lab's tools.
+- Models are trained on their own lab's tools.
 <br>
-* When Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalise, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
+- When Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalise, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
 <br>
-* That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
+- That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
 
 ### "I did the thing" No, you didn't?
 Sometimes the AI will say "I did the thing". For example, "I wrote the file".<br>
@@ -1964,13 +1995,13 @@ Links:
 [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
 
 ### An MCP server is "just" a middleman to a service
-* An MCP server *does not itself bring new functionality into the world*.
+- An MCP server *does not itself bring new functionality into the world*.
 <br>
-* It's a middleman, *a standardized protocol*, that enable the AI Service to discover another service that exists somewhere.
+- It's a middleman, *a standardized protocol*, that enable the AI Service to discover another service that exists somewhere.
 <br>
-* So when you hear somebody say e.g. _"You can add an MCP server for Atlassian"_, what it means is: _"You can tell the AI about Atlassian's API ("their tools")"_.
+- When somebody says _"You can add an MCP server for Atlassian"_, they mean: _"You can tell the AI about Atlassian's API/tools"_.
 <br>
-* The *agent or server always call the MCP server*, never the other way around.
+- The *agent or server always call the MCP server*, never the other way around.
 
 ####
 Yes, it's really "just that". A live list of tools and a way to call them.
@@ -2022,11 +2053,11 @@ So for using an MCP server you must always be "a user" on the service behind it,
 With the tool-result from the service added to the context, the LLM can now compose a proper response.
 
 ### MCP servers recap
-* An MCP server is a slim facade to some service somewhere.
+- An MCP server is a slim facade to some service somewhere.
 <br>
-* MCP servers are *no longer* expensive to include
+- MCP servers are *no longer* expensive to include
 <br>
-* You may need to *nudge the LLM* by using same word as the tool name
+- You may need to *nudge the LLM* by using same word as the tool name
 
 <img src="images/service/mcp/mcp-simplified.png">
 
@@ -2522,9 +2553,9 @@ Links:
 - By now, `AGENTS.md` is the agreed-upon standard name (hooray
 - Yet, Claude Code does not read `AGENTS.md`, only `CLAUDE.md` (oh dear)
 - Agents differ in how they search for agent-files, up/down from folder to root
-&nbsp;
+<br>
 - Anyways, *agent-files are just more text*, added into the system prompt path
-&nbsp;
+<br>
 
 <img src="images/service/system/agent-files/agents-md.png">
 
@@ -2580,10 +2611,30 @@ Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. 
 ####
 Remember, the LLM is pure math. No "LLM code" exist to deliberately demand the text `<skills>` to appear in order to recognize the list of skills. It may help, but it's not required.
 
-### Context recap
+### Be in control: write your own agent
+Claude.ai add lots of info:
 
-* The context is all the LLM see; there are no special backchannels for "other instructions"
-* The context is finite, so it's all about keeping it lean
+<img src="images/service/system/my-agent/who-am-i-claude.png">
+
+My own agent is a clean slate
+
+<img src="images/service/system/my-agent/who-am-i-agent.png">
+
+####
+If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the cli agent entirely is likely preferable.
+
+### This simple agent was simple to write
+<img src="images/service/system/my-agent/my-agent-source-code.png">
+
+####
+And it's really simple to do.
+
+Links:
+[my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
+
+### Context recap
+- The context is all the LLM see; there are no special backchannels for "other instructions"
+- The context is finite, so it's all about keeping it lean
 
 ## Final AI service parts
 
@@ -2618,52 +2669,35 @@ Indeed, this is the full overview of how any modern AI Service work, in principl
 - Adding *barely enough hints of useful info* for the LLM is the challenge, and the approaches are constantly evolving
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# AI Agents, revisited
-
-## Two final puzzle pieces, for completion
-
-### Compaction
-Context vs context window
-
-Describe difference between the "circle of context used" and the "bar of token used".
-
-### RAG
-
-
 # The Context
 
+####
+Everything we've looked at is about *putting tokens into a context* with the intent of steering the next prediction toward something useful.
 
-Much has happened since GPT 3 that had 2K context-window.
+---
+<img src="images/context/its-the-context-economy-stupid.png">
 
-But more isn't better. 1M may be quite a sweet spot.
+####
+But the context is finite and processing costs you per token.
 
-The LLM is fighting tooth and nail to avoid loading in full files: it will use tools (find/grep/awk) to extract info, it will search only the first part of a file, it will write a small program to do the searching.
+So not just adding the right things, but also keeping the context lean, is the challenge.
 
+The cost of tokens in the context has a couple of surprises in store.
 
-
-"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
-
-### How do I see the used context in tool x?
+### Insights and tips for context cost
+- You *pay per token*; fixed price/token for API, or via *your quota* when using an agent
+<br>
+- *Output tokens* are typically *5 times* as expensive as input tokens
+<br>
+- *Cached tokens cost 10%*, so continue your chat within 5 min (optional 1 hour) to save cost
+<br>
+- System, tools, results, images, docs eat many tokens; don't anguish over *your tiny prompt*
+<br>
+- *Starting a fresh chat* is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to *summarize your chat or results to a file*, then start fresh with that
+<br>
+- Pack multiple asks into one; *"Yes, and also..."* and *"Looks fine. And now x and y..."*
+<br>
+- Save tokens by being *be precise* about names of files, what the output should look like, etc
 
 ### Token spree
 
@@ -2680,157 +2714,98 @@ iframe.game { flex: 1; width: 100%; border: none; }
 </iframe>
 
 <div class="github-fallback">
-
 [![Token spending game preview](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png)](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)
 
-*[▶ Open interactive version](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)*
-
+*[Open interactive version](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)*
 </div>
 
-
-
-## That's where non-LLM innovation is happening
-
-TODO: you'll find that everything is about putting things into the context, have the LLM chew on it, deal with the output from the LLM, refine, repeat.
-
-"Everything we just looked at — the social script, the authority register, the thinking trigger — is the same trick from a different angle. Tokens go into context with the intent of steering the next prediction toward what's useful. That's the whole game. The model has no other input, no other lever, no other faculty. Which means if you understand what's in the context and why each piece is there, you understand what the model is going to do. And if you understand that, you understand why prompt injection works, why agents need careful prompting, why thinking helps, why long contexts degrade — every interesting property of these systems flows from the same fact: the only knob is the tokens in the window, and somebody is always deciding which ones go in."
-
-
-Show tool-belt-image
-
-The agents are just becoming really good at managing the context. They'll fitght tooth and nail to not include large files, for instance. I tried but often in vain.
-
-
-https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding
-Loops, loop of loops, etc.
-
-
-### What content goes in
-https://claude.ai/chat/8d0a1c64-57b8-4b51-bb48-2d9b6ff24e6b
-Null and compact are genuinely orthogonal — include-everything vs. lossy-transform.
-and then selection, one of which a powerful variant is the embedding-similarity lookup: grep, rag, etc
-
-## Two kinds
-
-## How do AI Clients work nowadays
-How the llm controls the agent, so to speak: https://claude.ai/chat/1c9ad7db-4dad-47e9-89d6-323b23fafb08
-Orchestrator/worker judgment
-Verification before claiming done
-Goal persistence across many steps
-Memory as a pattern 
-
-
-Give the audience the three-layer shape — stated (you said it, it's stored verbatim), synthesized (periodic curated compression of what happened, regenerated wholesale, subject to recency decay), retrieved (opt-in search over raw history, triggered by cue-detection, scored by a real relevance mechanism). That structure is what's actually stable — it's the shape every vendor has converged on for the same token-economic reasons, independent of which embedding model or summarization prompt sits inside each box this quarter
-
-
-## The challenge
-Fable 5 stays focused across millions of tokens in long-running tasks and improves its outputs using its own notes. When we had the model play the deck-building game Slay the Spire, giving it access to persistent file-based memory improved its performance three times more than for Opus 4.8; Fable also reached the game’s final act three times more often.
-
-## Managing the context
-
-https://gurusup.com/blog/agent-orchestration-patterns
-https://gurusup.com/blog/moe-vs-multi-agent-systems
-
-clear, edit on mistakes
-btw
-branch
-be precise about what you want as output foormat
-ask multiple questions in one go
-search files yourself if you can, ie make the model search it for you
-save the results in short form for later
-use /insight or whatever to see how you're doing
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Guidance
-
-### It's an investment
-
-Treat it as a tool in your professional toolbox.
-You're a carpenter - buy a good hammer that's yours.
-Pay the $20/month for a subscription. Make it yours.
-See it as an investment.
-
-https://claude-academy.com/
-
-### Level up
-Base level: try using the terminal, get acquainted with slash-commands, familiarize yourself with a cli tool and special agent/ai
-	[ou've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
-Level 1: Use the basic controls: modes (plan, agent), thinking, individual chats. Practice prompting. Checkout some techniques.
-Level 2: Make it yours: give it specific general instructions, give it task-specific instructions: in web, use projects or gems etc; on CLI use agent.md files
-Level 2: Start using MCP and skills
-Level 4: Go crazy with subagents, agent-specific commands, openclaw, etc
-Level 5: Go beyond the Agent: speak directly AI API, setup RAG vector database, control temperature and sys prompt, etc
-Level 6: run your own AI
-
-## Advice
-
-Give examples. 
-
-I use LLMs frequently to help build Excel tools and calculators, especially for budget management, both professionally and personally. I’ll often explain what I want it to do, all the parameters, etc. but then will end the prompt with, “Before you start building, let me know what questions or uncertainties you have, or what clarifications you need”.
-I often find that with whatever it responds with that I wasn’t clear enough with my initial explanation and request. A quick clarification on the front end helps save a lot of time from having it rebuild tools over and over due to my poor directions.
-
-Be precise. Don't say "it's green" or "it should not be green", but "it should be red"
-
-Consider your prompts first-level source too, eligible to be committed.
-Deterministic vs pure AI-driven.
-
-### How I use AI now
-
-Small nudging words
-Planning
-Like a partner
-	https://youtu.be/Rtkac4WHC1o?si=RoF-SAnoKd6a20IH
-
-### Workflows
-
-LLM-sentence-loop
-thinking-loop
-next up: agentic loops https://www.youtube.com/watch?v=iJVJwmCKW9o (theo)
-review loops
-try t see where you are in the loop and see if you can remove yourself out of it. The cost: is cost.
-
-### Check out embeddings
-
-----------
-
-
-
-
-
-
-
-
-
-
-
-
-
+####
+Here's an interactive visualization of where your token costs go.
+
+Try this:
+
+- Click the "Per-turn cost" and see that *the first turn is un-cached* and that *outputs are more expensive*
+- Click the "Total cost" to see what the total cost after 10 turns is
+- Try turning off the cache and see that it would be 2-3x more expensive, and then turn it back on
+- Let's increase the number of turns to, say, 30
+
+Now let's spend some tokens. Try each spending spree, one by one:
+
+- Add some MCP servers. They're actually not that expensive nowadays
+- Upload a big document. Your chat carry that doc in every turn
+- Helpful IDE/tools. Send the selected document, tool results
+- Think harder. That can eat a lot of tokens and we hit the quota at turn 34. Try unchecking/checking "Discard thinking" to see what will happen if thinking isn't discarded.
+- Long outputs, like producing code or documents. Expensive. Coindidentally, I first made this app online in Claude.ai and hit my quota.
+- Bust the cache. It's expensive to be Away From Keyboard, or change the model
+- Expensive model. Everything gets N times more costly.
+
+Now add them all:
+
+- MCP, doc, IDE - hey, what happened, why the the curve "break"?
+- Going back to Per-turn tokens reveal that auto-compaction kicked in because the context window was only 200 K; up it to 1M and switch back to Total cost
+- Think harder - now we reached the quota
+- Long outputs - quota reached twice
+- Bust cache - quota reached 4 times
+- Expensive model - bam!
+
+Mitigations:
+- Try clear and compact. They save, of course, but it's a proper shield against the other token-spending ways.
+
+# Advice
+
+####
+The AI models of today works generally so cleverly that you very often don't have hold them in a special way
+
+### Modern AI models need little hand-holding
+- Modern agentic workflows, *as conjured up by the LLM*, revolve around:
+	- Using *multiple agents* in an "orchestrator/worker" fashion
+	- Explicitly *verifying the result* before claiming it's done
+	- Perform tasks in small steps, setting and updating goals along the way
+	- Taking notes (store results in files), which boosts reasoning very much (eg 3x)
+- These improvements comes *automatically* and *continuously* by virtue of newer models
+<br>
+- So: how you *"hold it"* seem less and less important
+
+####
+Links:
+[Google: The New SDLC With Vibe Coding"](https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding)
+[Mixture-of-Expert vs Multi-Agent Systems](https://gurusup.com/blog/moe-vs-multi-agent-systems)
+
+### Yet, constantly new trends, like "loop of loops"
+<img src="images/guidance/nate-loop-of-loops.png">
+
+####
+Links:
+[AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://www.youtube.com/watch?v=A4zMyjkL0Dc)
+[I guess we're writing loops now?](https://www.youtube.com/watch?v=iJVJwmCKW9o)
+
+### How to speak
+- Just use plain language
+- I personally use lots of small nugding words to avoid steering to coarsely
+	- "I would mildly prefer xxx, but not if yyy"
+- Be *precise* about the goal you want
+	- Don't say "it's green" or "it should not be green" - say "it should be red"
+- But often *don't be precise* about exactly how the AI should precisely *achieve* the goal
+	- Instead, talk about the goal. "I want fluid layout, and the graph is the centerpiece"
+- Using *examples* often produce much better output
+- In eg Claude, use `/insight` to see how you're doing
+
+### Your AI skills are an investment
+- Treat it as a tool in your professional toolbox.
+- You're a carpenter - get a good hammer that's yours and then practice
+- Build things for fun
+- A monthly subscription of $20 is a cheap investment
+
+####
+Links:
+[Claude Academy](https://claude-academy.com/)
+[You're falling behind. It's time to catch up.](https://www.youtube.com/watch?v=Z9UxjmNF7b0)
 
 
 # Demystifications
+
+####
+Let's run through a quick series of myths and facts and demystify them.
 
 ### We don't know how the AI works
 <p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
@@ -3020,27 +2995,37 @@ Some say the best reason for being polite is simply that:
 [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://www.youtube.com/watch?v=p7t1Q_p2gZs)
 [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
 
-### Does formatting matter? Any tweaks, cheatcodes?
-<p class="verdict no">No</p>
 
-- The LLM recognize and appreciate *structure*, be it xml-tags, markdown, or whatever
+# Closing
+
+####
+What a journey.
+
+### Takeaways
+<div class="cols">
+<img class="col-1" src="images/intro/github-com-ricflams-techtalk-ai-demystified.png">
+<div class="col-4">
+
+It's all *just text*
+
+Keep your *context lean*
+
+Try *the terminal*, maybe you'll like it
+
+*Re-visit this* at ricflams.github.io/techtalk-ai-demystified/
+
+</div>
+</div>
+
+<br>
+<br>
+And remember, don't dispair 😊
+<br>
+<br>
+<img src="images/intro/two-years-behind.png">
 
 
-
-# Most Important Takeaways
-
-### (Leave this up)
-
-The model has no memory between conversations
-It's all just text
-Try the terminal, maybe you'll like it
-Keep your context lean
-"What it knows about you" is crystal-clear, and not in the AI service
-
-The system prompt has no special architectural status
-
-- xxx
-- xxx
-
-
-The End
+####
+[AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
+[You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
+Best LLM resources, imho: [3blue1brown](https://www.3blue1brown.com/?topic=neural-networks)

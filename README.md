@@ -6,12 +6,9 @@ By Richard Flamsholt · 2026
 
 ---
 
-## Read or watch
+Read through **[the presentation](https://ricflams.github.io/techtalk-ai-demystified/)** at your own pace
 
-**[📖 Read the presentation](https://ricflams.github.io/techtalk-ai-demystified/)** — slides with speaker notes, scroll at your own pace
-
-**[🎞 Interactive slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)** — the live presentation format
+The **[Seven Habits of Highly Effective Token Rollers](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)** shows how your tokens are spent
 
 ---
-
-Built with [Marp](https://marp.app/). Source in [`src/slides.md`](src/slides.md).
+For presenters, here's the [live slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html).

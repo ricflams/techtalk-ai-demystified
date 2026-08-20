@@ -38,29 +38,27 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 
 /* --- Right column --- */
 .right { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
-.chart-wrap { position: relative; width: 100%; flex: 1; min-height: 0; }
-.chart-wrap canvas { display: block; }
-@media (max-height: 900px) {
-  .chart-wrap { max-height: 48vh; }
-}
+.chart-wrap { position: relative; width: 100%; flex: 1; min-height: 0; z-index: 1; }
+.chart-wrap canvas { display: block; position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
 
 /* --- Mode toggle --- */
-.mode-toggle { display: flex; gap: 6px; margin-top: -20px; flex-shrink: 0; align-items: center; }
-.turns-control { display: flex; align-items: center; gap: 8px; margin-left: auto;
+.mode-toggle { display: flex; gap: 6px; margin-top: 6px; flex-shrink: 0; align-items: center;
+  position: relative; z-index: 5; }
+.turns-control { display: flex; align-items: center; gap: 12px; margin-left: auto;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-size: 12px; font-weight: 600; color: #3a3028; }
-#turnsSlider { width: 280px; height: 4px; appearance: none; -webkit-appearance: none;
-  background: #e0dbd0; border-radius: 2px; cursor: pointer; outline: none; }
-#turnsSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px;
+  font-size: 18px; font-weight: 600; color: #3a3028; }
+#turnsSlider { width: 420px; height: 6px; appearance: none; -webkit-appearance: none;
+  background: #e0dbd0; border-radius: 3px; cursor: pointer; outline: none; position: relative; z-index: 5; }
+#turnsSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px;
   border-radius: 50%; background: #1a1810; cursor: pointer; }
-#turnsSlider::-moz-range-thumb { width: 13px; height: 13px; border-radius: 50%; border: none;
+#turnsSlider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; border: none;
   background: #1a1810; cursor: pointer; }
 .turns-step-btn {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-size: 15px; font-weight: 800; line-height: 1; color: #1a1810;
-  width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+  font-size: 23px; font-weight: 800; line-height: 1; color: #1a1810;
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
   background: #fff; border: 1.5px solid #d0cbc0; border-radius: 4px;
-  padding: 0; cursor: pointer; user-select: none;
+  padding: 0; cursor: pointer; user-select: none; position: relative; z-index: 5;
 }
 .turns-step-btn:hover { border-color: #a05010; color: #a05010; }
 .mode-btn {
@@ -227,7 +225,7 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 // ─────────────────────────────────────────────
 // CONSTANTS
 // ─────────────────────────────────────────────
-const MCP_TOK_PER_TOOL = 400;
+const MCP_TOK_PER_SERVER = 500;
 const TURN_STEPS = [1, 2, 3, 4, 5, 10, 15, ...Array.from({length: 19}, (_, i) => (i + 2) * 10)];  // 1-5, 10, 15, 20-200
 let   turnStepIdx = TURN_STEPS.indexOf(10);
 let   TURNS       = TURN_STEPS[turnStepIdx];
@@ -244,8 +242,8 @@ const PARAMS = {
   systemTok:    { label: 'System prompt',        value: 5000,  min: 0,     max: 10000,  step: 250  },
   inputTok:     { label: 'Input from user',      value: 100,   min: 0,     max: 200,    step: 25   },
   outputTok:    { label: 'Output from assistant',value: 600,   min: 0,     max: 1200,   step: 100  },
-  mcpCount:     { label: 'MCP tools',             value: 10,    min: 5,     max: 15,     step: 1    },
-  ideTok:       { label: 'Input from IDE',       value: 7000,  min: 1000,  max: 13000,  step: 500  },
+  mcpCount:     { label: 'MCP servers',           value: 10,    min: 5,     max: 15,     step: 1    },
+  ideTok:       { label: 'Input from IDE/tools', value: 5000,  min: 0,     max: 10000,  step: 500  },
   outputTokLong:{ label: 'Extra long output',    value: 8000,  min: 1000,  max: 15000,  step: 500  },
   thinkTok:     { label: 'Output from thinking', value: 8000,  min: 2000,  max: 14000,  step: 1000 },
   bustEvery:    { label: 'Bust every N turns', value: 4,     min: 1,     max: 20,     step: 1    },
@@ -257,9 +255,9 @@ const PARAMS = {
 // SPREES
 // ─────────────────────────────────────────────
 const sprees = [
-  { id:'s1', color:'#1a7a8a', teaser:'5 M...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP tools`, effectFn: () => `${PARAMS.mcpCount.value} tools × ${MCP_TOK_PER_TOOL} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_TOOL}) },
+  { id:'s1', color:'#1a7a8a', teaser:'10 ...', num:'spree #1', secret: () => `${PARAMS.mcpCount.value} MCP servers`, effectFn: () => `${PARAMS.mcpCount.value} servers × ${MCP_TOK_PER_SERVER} tok`, apply: p => ({...p, mcpTok: PARAMS.mcpCount.value * MCP_TOK_PER_SERVER}) },
   { id:'s2', color:'#902878', teaser:'Bi...', num:'spree #2', secret:'Big doc up front',  effectFn: () => `${(PARAMS.docTok.value/1000).toFixed(0)} K tokens every turn`, apply: p => ({...p, docTok: PARAMS.docTok.value}) },
-  { id:'s3', color:'#7a5ab8', teaser:'A h...', num:'spree #3', secret:'A helpful IDE',   effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
+  { id:'s3', color:'#7a5ab8', teaser:'He...', num:'spree #3', secret:'Helpful IDE/tools', effectFn: () => `+${PARAMS.ideTok.value} input tok/turn`,              apply: p => ({...p, inputTok: p.inputTok + PARAMS.ideTok.value}) },
   { id:'s4', color:'#1a8a40', teaser:'Th...', num:'spree #4', secret:'Think harder',      effectFn: () => `+${PARAMS.thinkTok.value.toLocaleString()} hidden tokens`, apply: p => ({...p, thinkTok: PARAMS.thinkTok.value}) },
   { id:'s5', color:'#2563b8', teaser:'Lo...', num:'spree #5', secret:'Long outputs',      effectFn: () => `Plans, essays, code`,                               apply: p => ({...p, outputTok: PARAMS.outputTokLong.value}) },
   { id:'s6', color:'#a07800', teaser:'Bu...', num:'spree #6', secret:'Bust the cache',    effectFn: () => `>5 min or model swap`,                              apply: p => ({...p, bustCache: true}) },
@@ -436,7 +434,7 @@ buildSliderCol('slidersCol1', SLIDER_KEYS);
 
 // Reset button
 document.getElementById('resetBtn').addEventListener('click', () => {
-  const defaults = { systemTok:5000, inputTok:100, outputTok:600, mcpCount:10, ideTok:7000, outputTokLong:8000, thinkTok:8000, docTok:20000 };
+  const defaults = { systemTok:5000, inputTok:100, outputTok:600, mcpCount:10, ideTok:5000, outputTokLong:8000, thinkTok:8000, docTok:20000 };
   SLIDER_KEYS.forEach(key => {
     PARAMS[key].value = defaults[key];
     document.getElementById('param-' + key).value = defaults[key];
@@ -556,7 +554,7 @@ function computeQuotaHits(p) {
     sessionCost += (p.systemTok + p.mcpTok + docTok + compactTok + histTok) * cf * mm
                  + p.inputTok * mm
                  + (p.thinkTok + p.outputTok) * of * mm;
-    histTok += p.inputTok + p.thinkTok + p.outputTok;
+    histTok += p.inputTok + (p.discardThink ? 0 : p.thinkTok) + p.outputTok;
     if (p.kvCache) cacheCost = 0.1;
 
     if (sessionCost >= PARAMS.quota.value) { hits.push(t); sessionCost = 0; }
@@ -613,7 +611,7 @@ let _renderMode = 'pertokens';
 let _hitmap = [];
 
 const TYPE_LABEL = {
-  sys:'System prompt', mcp:'MCP tools', doc:'Document',
+  sys:'System prompt', mcp:'MCP servers', doc:'Document',
   compact:'Compacted context', user:'User input', think:'Thinking', assist:'Assistant output',
 };
 
@@ -803,11 +801,9 @@ const bandPlugin = {
       }
     });
     // green spend tick — top of last bar, label centred above
-    if (_curves.length) {
+    if (_curves.length && _renderMode === 'total') {
       const lastCurve = _curves[_curves.length - 1];
-      const finalCost = _renderMode === 'total'
-        ? lastCurve.reduce((s, t) => s + turnCost(t), 0)
-        : turnCost(lastCurve[TURNS - 1]);
+      const finalCost = lastCurve.reduce((s, t) => s + turnCost(t), 0);
       const x = xs.getPixelForValue(TURNS + 0.5);
       ctx.fillStyle = '#1a8a40';
       ctx.font = 'bold 22px Inter, system-ui, sans-serif';
@@ -847,7 +843,8 @@ const chart = new Chart(document.getElementById('mainChart'), {
 });
 
 function sizeChart() {
-  chart.resize();
+  const rect = document.getElementById('chartWrap').getBoundingClientRect();
+  chart.resize(rect.width, rect.height);
 }
 
 
@@ -1039,7 +1036,7 @@ const MODE_ENCODE = { pertokens: 'tok', percost: 'cst', total: 'ttl' };
 const MODE_DECODE = Object.fromEntries(Object.entries(MODE_ENCODE).map(([k,v]) => [v,k]));
 
 const URL_DEFAULTS = {
-  sys:5000, in:100, out:600, mcp:10, ide:7000, long:8000, think:8000,
+  sys:5000, in:100, out:600, mcp:10, ide:5000, long:8000, think:8000,
   bust:4, doc:20000, cmp:10, sq:1500000, ofac:5, mult:3,
   dth:1, acp:80, ctx:'200k', t:10, m:'tok', cmb:0,
 };
@@ -1179,7 +1176,11 @@ applyUrlParams();
 applyBreakdownConstraint();
 redraw();
 setTimeout(sizeChart, 100);
-window.addEventListener('resize', () => setTimeout(() => { sizeChart(); chart.update('none'); }, 150));
+let _resizeRaf = null;
+new ResizeObserver(() => {
+  if (_resizeRaf) cancelAnimationFrame(_resizeRaf);
+  _resizeRaf = requestAnimationFrame(() => { _resizeRaf = null; sizeChart(); chart.update('none'); });
+}).observe(document.getElementById('chartWrap'));
 
 // ─────────────────────────────────────────────
 // HOVER TOOLTIP

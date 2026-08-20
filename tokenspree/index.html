@@ -42,11 +42,11 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 .chart-wrap canvas { display: block; position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
 
 /* --- Mode toggle --- */
-.mode-toggle { display: flex; gap: 6px; margin-top: 6px; flex-shrink: 0; align-items: center;
+.mode-toggle { display: flex; gap: 6px; margin-top: 2px; flex-shrink: 0; align-items: center;
   position: relative; z-index: 5; }
 .turns-control { display: flex; align-items: center; gap: 12px; margin-left: auto;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-size: 18px; font-weight: 600; color: #3a3028; }
+  font-size: 14px; font-weight: 600; color: #3a3028; }
 #turnsSlider { width: 420px; height: 6px; appearance: none; -webkit-appearance: none;
   background: #e0dbd0; border-radius: 3px; cursor: pointer; outline: none; position: relative; z-index: 5; }
 #turnsSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px;
@@ -785,19 +785,19 @@ const bandPlugin = {
     // red quota-hit ticks — top flush with x-axis line
     _quotaHits.filter(t => t <= TURNS).forEach((turn, idx) => {
       const x = xs.getPixelForValue(turn);
-      ctx.beginPath(); ctx.moveTo(x, ys.bottom); ctx.lineTo(x, ys.bottom + 20);
+      ctx.beginPath(); ctx.moveTo(x, ys.bottom); ctx.lineTo(x, ys.bottom + 12);
       ctx.strokeStyle = '#e03020'; ctx.lineWidth = 5; ctx.setLineDash([]); ctx.stroke();
       ctx.fillStyle = '#e03020';
-      ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+      ctx.font = 'bold 15px Inter, system-ui, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(turn, x, ys.bottom + 44);
+      ctx.fillText(turn, x, ys.bottom + 30);
       if (idx === 0) {
-        ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+        ctx.font = 'bold 15px Inter, system-ui, sans-serif';
         const numLeft = x - ctx.measureText(String(turn)).width / 2;
-        ctx.font = '14px Inter, system-ui, sans-serif';
+        ctx.font = '12px Inter, system-ui, sans-serif';
         const gap = ctx.measureText(' ').width;
         ctx.textAlign = 'right';
-        ctx.fillText('quota reached at turn', numLeft - gap, ys.bottom + 44);
+        ctx.fillText('quota reached at turn', numLeft - gap, ys.bottom + 30);
       }
     });
     // green spend tick — top of last bar, label centred above
@@ -825,7 +825,7 @@ const chart = new Chart(document.getElementById('mainChart'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend:{display:false}, tooltip:{enabled:false}, bandPlugin:{} },
     animation: { duration: 0 },
-    layout: { padding: { bottom: 44 } },
+    layout: { padding: { bottom: 16 } },
     scales: {
       x: { type:'linear', min:0.5, max:TURNS+0.5,
            afterBuildTicks(axis) {

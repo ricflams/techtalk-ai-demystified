@@ -799,6 +799,18 @@ try t see where you are in the loop and see if you can remove yourself out of it
 
 
 
+### Just math: no lookup, search, humans, if-then code
+<img src="images/llm/core/no-lookups.svg" />
+
+### As you saw, the LLM is really pure math
+<img src="images/llm/core/pure-math.svg" />
+
+### (the actual math)
+<img src="images/llm/core/all-the-math.svg" />
+
+####
+Lots of matrix operations.
+
 
 
 

@@ -310,26 +310,14 @@ iframe.game { display: none; }
 <h4 id="_33"></h4>
 <p>English is "better" tokenized that many other languages, simply by virtue of English words being very common.</p>
 <p>Here are some examples of English, Danish, Korean, Classical Chinese, and C#.</p>
-<h3 id="todo">TODO:</h3>
-<p>Fun category — Danish/English false friends. Here are 10 good ones:</p>
-<p>Gift — dansk: gift (married) eller gift (poison); engelsk: en gave
-Barn — dansk: et barn (child); engelsk: en lade
-Sky — dansk: en sky (cloud, eller sovs-sky); engelsk: himlen
-Slut — dansk: slut (the end); engelsk: … noget helt andet
-Kind — dansk: en kind (cheek); engelsk: venlig
-Tag — dansk: et tag (roof); engelsk: et mærke/en etiket
-Dog — dansk: dog (however); engelsk: en hund
-Gal — dansk: gal (crazy); engelsk: slang for en pige
-Bog — dansk: en bog (book); engelsk: en mose
-Stole — dansk: stole (chairs, eller at stole på); engelsk: datid af "steal"</p>
-<p>Bonus: and (duck), men (but), og sand — som på dansk både betyder sand og true, så den er en dobbelt false friend.</p>
+<p>Notice how the English sentence is longer than the Danish sentence below it, but use fewer tokens.</p>
 <h3 id="the-example-tokenized">The example, tokenized</h3>
 <p><img src="images/llm/tokens/what-is-an-llm-tokens.png"></p>
 <h4 id="_34"></h4>
 <p>This is what the example conversation looks like when tokenized.</p>
 <p>Notice how markdown for bold, the double-star <code>**</code>, has its own token.</p>
 <p>And <code>**,</code> is also common enough to have its own token.</p>
-<h3 id="recap-of-tokens">Recap of tokens</h3>
+<h3 id="tokens-recap">Tokens recap</h3>
 <div class="cols">
 <p><img class="col-1" src="images/llm/tokens/ride-tokens.png"></p>
 <div class="col-3">
@@ -489,7 +477,7 @@ Last, but not least:
 <h4 id="_59"></h4>
 <p>Yes, it does feel crazy that by characterizing anything using the "right" 12288 numbers we can and end up with "concepts" we can manipulate mathematically.</p>
 <p>It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.</p>
-<h3 id="embeddings-recapped">Embeddings recapped</h3>
+<h3 id="embeddings-recap">Embeddings recap</h3>
 <ol>
 <li>Embeddings are "meanings" and that meaning can be <em>transformed with math</em>
 &nbsp;</li>
@@ -626,7 +614,7 @@ Is it "stranger"? That one's pretty close.
 <h4 id="_78"></h4>
 <p>Each token really is generated completely independently, only by choosing the most likely next word to come after what has already been seen now.</p>
 <p>There's no planning of emitting an itemized list. At one point a <code>1</code> is emitted and then makes a <code>.</code> more likely and that cause the likelyhood of a later <code>2</code> and <code>.</code> to occur to rise significantly. It all happens without any overall grand design or planning.</p>
-<h3 id="the-llmtransformer-recapped">The LLM/Transformer, recapped</h3>
+<h3 id="the-llmtransformer-recap">The LLM/Transformer recap</h3>
 <ul>
 <li>It makes predictions about the input (context) you pass to it
 <br></li>
@@ -978,7 +966,7 @@ The output of one 4 x B200 cluster serving a Claude Opus tier model depends on t
 <p>The Transformer architecture is an incredibly impressive feat, no doubt about it.</p>
 <p>Mechanically though, it truly is "just" a prediction machine.</p>
 <p>But hey, maybe we humans are also just prediction machines?</p>
-<h3 id="the-trained-ai-model-recapped">The trained AI model, recapped</h3>
+<h3 id="trained-ai-model-recap">Trained AI model recap</h3>
 <ol>
 <li>You give it a string of tokens, aka the <em>context</em></li>
 <li>The model produce a response by running that context through <em>the Transformer</em></li>
@@ -1258,7 +1246,7 @@ But ... what about <em>files</em>, like PDFs and images?
 <p>Links:
 <a href="https://arxiv.org/pdf/2010.11929">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)</a>
 <a href="https://arxiv.org/pdf/2310.09199">PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)</a></p>
-<h3 id="docs-and-images-recapped-becomes-embeddings">Docs and images recapped: becomes embeddings</h3>
+<h3 id="docs-and-images-recap">Docs and images recap</h3>
 <p><img src="images/service/overview/files.png"></p>
 <h4 id="_143"></h4>
 <p>By the time the LLM goes to work, everything in the context has been converted into a big pile of embeddings, small bits of meaning.</p>
@@ -1307,9 +1295,9 @@ No links, no outside preferences, no memories, including from earlier chats:<br>
 <h3 id="total-123n-on2-messages">Total: 1+2+3+...N = O(N²) messages</h3>
 <p><img src="images/service/chat/tokens-turn-50-total.png"></p>
 <h4 id="_147"></h4>
-<p>It gets more and more expensive to keep on dragging the entire conversation along.</p>
+<p>It gets more and more expensive to keep on dragging the entire conversation along. You pay for all those tokens.</p>
 <p>TODO: Show clear and compact</p>
-<h3 id="chatting-recapped">Chatting, recapped</h3>
+<h3 id="chatting-recap">Chatting recap</h3>
 <ul>
 <li>The entire conversation is always sent, every time you write anything to the AI</li>
 </ul>
@@ -1560,10 +1548,13 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <p><img src="images/service/mcp/flow/6-response.png"></p>
 <h4 id="_174"></h4>
 <p>With the tool-result from the service added to the context, the LLM can now compose a proper response.</p>
-<h3 id="mcp-recapped">MCP, recapped</h3>
+<h3 id="mcp-servers-recap">MCP servers recap</h3>
 <ul>
 <li>An MCP server is a slim facade to some service somewhere.
 <br></li>
+<li>MCP servers are <em>no longer</em> expensive to include
+<br></li>
+<li>You may need to <em>nudge the LLM</em> by using same word as the tool name</li>
 </ul>
 <p><img src="images/service/mcp/mcp-simplified.png"></p>
 <h3 id="example-siteimprove-mcp">Example: Siteimprove MCP</h3>
@@ -1791,7 +1782,8 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <a href="https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling">grilling skill</a>
 <a href="https://github.com/mattpocock">Matt Pocock on Github</a>
 <a href="https://www.youtube.com/@mattpocockuk/videos">Matt Pocock on Youtube</a>
-<a href="https://tosea.ai/blog/matt-pocock-skills-claude-code-guide">How to Use Matt Pocock's Skills for Claude Code: A Complete Guide</a></p>
+<a href="https://tosea.ai/blog/matt-pocock-skills-claude-code-guide">How to Use Matt Pocock's Skills for Claude Code: A Complete Guide</a>
+<a href="https://www.youtube.com/watch?v=0oXOOlqVu5M">So I tried Matt's skills... - Theo</a></p>
 <h3 id="using-a-skill">Using a skill</h3>
 <p><img src="images/service/system/skills/skill-parts.png" /></p>
 <h4 id="_204"></h4>
@@ -1836,7 +1828,7 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <p><img src="images/service/system/skills/install/chatgpt-grilling.png" /></p>
 <h4 id="_212"></h4>
 <p>Same one we found before, now for ChatGPT.</p>
-<h3 id="skills-recapped">Skills, recapped</h3>
+<h3 id="skills-recap">Skills recap</h3>
 <ul>
 <li>It's "just" snippets of text that you or the LLM can ask to <em>add to the chat</em>
 &nbsp;</li>
@@ -1948,6 +1940,11 @@ Let's check it out.</p>
 <p><img src="images/llm/attention-space-seek.png"></p>
 <h4 id="_227"></h4>
 <p>Remember, the LLM is pure math. No "LLM code" exist to deliberately demand the text <code>&lt;skills&gt;</code> to appear in order to recognize the list of skills. It may help, but it's not required.</p>
+<h3 id="context-recap">Context recap</h3>
+<ul>
+<li>The context is all the LLM see; there are no special backchannels for "other instructions"</li>
+<li>The context is finite, so it's all about keeping it lean</li>
+</ul>
 <h2 id="final-ai-service-parts">Final AI service parts</h2>
 <h3 id="still-a-few-blank-spots">Still a few blank spots</h3>
 <p><img src="images/service/overview/full-except-misc.png"></p>
@@ -1966,9 +1963,9 @@ Let's check it out.</p>
 <p><img src="images/service/overview/full.png"></p>
 <h4 id="_229"></h4>
 <p>Indeed, this is the full overview of how any modern AI Service work, in principle.</p>
-<h3 id="ai-service-recapped">AI service, recapped</h3>
+<h3 id="ai-service-recap">AI Service recap</h3>
 <ul>
-<li>It's all just text, competing for attention
+<li>It's all just text, competing for attention. No hard rules.
 &nbsp;</li>
 <li>Adding anything to the context is expensive so rest assured that the agent does its best to add as little as possible - no older chats, no hidden files
 &nbsp;</li>

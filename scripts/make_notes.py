@@ -11,6 +11,9 @@ Also injects a tiny sync script into the already-built presentation.html
 that broadcasts the current slide number (via BroadcastChannel) whenever
 it changes, so notes.html can follow along.
 
+Also injects a focus guard that keeps keyboard focus out of embedded
+iframes, so the deck stays navigable after clicking inside one.
+
 Note: bespoke.js's navigation updates the URL fragment via the History API
 (pushState/replaceState), which does *not* fire a `hashchange` event -- so
 the sync script polls `location.hash` on an interval rather than listening
@@ -39,6 +42,28 @@ SYNC_SCRIPT = """<script>
   };
   setInterval(broadcast, 250);
   broadcast();
+})();
+</script>
+"""
+
+
+FOCUS_GUARD_SCRIPT = """<script>
+(function () {
+  // Clicking inside an embedded iframe (the tokenspree game) moves keyboard
+  // focus into that iframe's document, so bespoke.js -- whose keydown handler
+  // lives on the parent document -- stops seeing arrow/space/PgDn keys and the
+  // deck becomes un-navigable until you click outside the frame. The embedded
+  // games are click-only, so nothing is lost by bouncing focus straight back
+  // out; mouse events still reach the iframe regardless of who has focus.
+  // Polled rather than event-driven because focus/blur behavior on iframes is
+  // inconsistent across browsers.
+  setInterval(function () {
+    var el = document.activeElement;
+    if (el && el.tagName === 'IFRAME') {
+      el.blur();
+      window.focus();
+    }
+  }, 200);
 })();
 </script>
 """
@@ -141,7 +166,9 @@ def main():
         json.dump(notes_map, f, ensure_ascii=False)
 
     if '</body>' in presentation_html and 'techtalk-ai-demystified:notes-sync' not in presentation_html:
-        presentation_html = presentation_html.replace('</body>', SYNC_SCRIPT + '</body>')
+        presentation_html = presentation_html.replace(
+            '</body>', SYNC_SCRIPT + FOCUS_GUARD_SCRIPT + '</body>'
+        )
         with open(presentation_path, 'w', encoding='utf-8') as f:
             f.write(presentation_html)
 

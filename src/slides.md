@@ -2113,7 +2113,10 @@ The cost of tokens in the context has a couple of surprises in store.
 ### Token spree
 
 <style scoped>
-section { padding: 0; display: flex; flex-direction: column; }
+/* A slim slide margin is left around the iframe on purpose: it gives you
+   somewhere to click to pull keyboard focus back out of the game, and keeps
+   the on-screen navigation controls reachable. */
+section { padding: 12px; display: flex; flex-direction: column; }
 h3 { display: none; }
 iframe.game { flex: 1; width: 100%; border: none; }
 .github-fallback { display: none; }

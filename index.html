@@ -175,7 +175,7 @@ iframe.game { display: none; }
 <p><img alt="" src="images/intro/bread/variety.jpg" /></p>
 <h4 id="_11"></h4>
 <p>It's my hope and goal that this presentation will help you rise (haha) to become much more confident in your use of AI.</p>
-<h1 id="just-the-basics">"Just the basics"</h1>
+<h1 id="keep-it-simple">"Keep it simple"</h1>
 <hr />
 <p><img alt="" src="images/intro/journey/overview.png" /></p>
 <h4 id="_12"></h4>
@@ -256,107 +256,79 @@ iframe.game { display: none; }
 <li>Therefore, it's what you ultimately <strong>pay for</strong>
 &nbsp;</li>
 </ul>
-<h3 id="in-gpt-4o-hello-is-token-number-24912">In gpt-4o, "hello" is token number 24912</h3>
-<p><img src="images/llm/tokens/tokenize-detokenize-hello.png"></p>
-<h4 id="_23"></h4>
-<p>AI models have specific token vocabularies.</p>
 <h3 id="chatgpt-35s-token-vocabulary">ChatGPT 3.5's token vocabulary</h3>
 <p><img src="images/llm/tokens/vocabulary-full.png"></p>
-<h4 id="_24"></h4>
+<h4 id="_23"></h4>
 <p>Links:
 - <a href="https://emaggiori.com/chatgpt-all-tokens/">ChatGPT’s entire vocabulary</a>
 - <a href="https://emaggiori.com/chatgpt-vocabulary/">ChatGPT’s vocabulary: The words that ChatGPT knows and how they were chosen</a></p>
 <h3 id="hello">"hello"</h3>
 <p><img src="images/llm/tokens/hello.png"></p>
-<h4 id="_25"></h4>
+<h4 id="_24"></h4>
 <p>"hello" is one single token.</p>
 <p>Links:
 - <a href="https://tiktokenizer.vercel.app/">Tiktokenizer</a>
 - <a href="https://platform.openai.com/tokenizer">OpenAI's tokenizer</a></p>
 <h3 id="hello-world">"hello world"</h3>
 <p><img src="images/llm/tokens/hello-world.png"></p>
-<h4 id="_26"></h4>
+<h4 id="_25"></h4>
 <p>"hello world" is two tokens.</p>
 <p>Yes, that second token really is <em>(space)</em> followed by "world". Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending token on <em>(space)</em>.</p>
-<h3 id="h-e-l-l-o-w-o-r-l-d">"h e l l o   w o r l d"</h3>
-<p><img src="images/llm/tokens/h-e-l-l-o-w-o-r-l-d.png"></p>
-<h4 id="_27"></h4>
-<p>"h e l l o   w o r l d" spelled out is 11 tokens.</p>
-<p>This shows one advantage of the tokenization into chunks: it's simply fewer parts to work on.</p>
 <h3 id="hello-world-from">"hello world from ..."</h3>
 <p><img src="images/llm/tokens/hello-world-from-richard.png"></p>
-<h4 id="_28"></h4>
+<h4 id="_26"></h4>
 <p>The first four words are common and have each their own token, but unsurprisingly "Flamsholt" is not common enough to be an individual token so it's made up of 3 tokens.</p>
-<h3 id="token-for-flam-is-97957">Token for "Flam" is 97957</h3>
-<p><img src="images/llm/tokens/vocabulary-flam.png"></p>
-<h4 id="_29"></h4>
-<p>Look, there's token "Flam", in dubious company of rather inflammatory tokens.</p>
-<h3 id="tokenization-saves-space-and-let-traits-emerge">Tokenization saves space and let traits emerge</h3>
-<p><img src="images/llm/tokens/wonderful-tokenization.png"></p>
-<h4 id="_30"></h4>
-<p>Another advantage of tokenization is that it allow identifying common linguistic "traits".</p>
-<p>For example "ization", which is about "doing" or "producing" something.</p>
 <h3 id="a-danish-elevator-in-motion">A danish elevator "in motion"</h3>
 <p><img src="images/llm/tokens/elevator-sign.jpg"></p>
-<h4 id="_31"></h4>
+<h4 id="_27"></h4>
 <p>In Danish, "I FART" means "In motion". Tourists are amused.</p>
 <h3 id="i-fart-poetry">I fart poetry</h3>
 <p><img src="images/llm/tokens/elevator-i-fart.png"></p>
-<h4 id="_32"></h4>
+<h4 id="_28"></h4>
 <p>As you can see, the four letters "fart" is always the same token. The tokens are not aware of languages at all.</p>
-<h3 id="same-text-same-token-always">Same text, same token - always</h3>
-<p><img src="images/llm/tokens/present.png"></p>
-<h4 id="_33"></h4>
-<p>The many meanings of "present" also are all the same token.</p>
-<h3 id="english-dominates-by-sheer-volume">English dominates, by sheer volume</h3>
+<h3 id="english-words-are-most-economical">English words are most economical</h3>
 <p><img src="images/llm/tokens/five-sentences.png"></p>
-<h4 id="_34"></h4>
+<h4 id="_29"></h4>
 <p>English is "better" tokenized that many other languages, simply by virtue of English words being very common.</p>
 <p>Here are some examples of English, Danish, Korean, Classical Chinese, and C#.</p>
 <p>Notice how the English sentence is longer than the Danish sentence below it, but use fewer tokens.</p>
 <h3 id="the-example-tokenized">The example, tokenized</h3>
 <p><img src="images/llm/tokens/what-is-an-llm-tokens.png"></p>
-<h4 id="_35"></h4>
+<h4 id="_30"></h4>
 <p>This is what the example conversation looks like when tokenized.</p>
 <p>Notice how markdown for bold, the double-star <code>**</code>, has its own token.</p>
 <p>And <code>**,</code> is also common enough to have its own token.</p>
 <h3 id="tokens-recap">Tokens recap</h3>
 <div class="cols">
-<p><img class="col-1" src="images/llm/tokens/ride-tokens.png"></p>
-<div class="col-3">
+<p><img class="col-2" src="images/llm/tokens/ride-tokens.png"></p>
+<div class="col-5">
 <ul>
 <li>A <strong>token</strong> is the <em>chunk of text</em> the LLM reason about</li>
-<li>Models typically have a <strong>vocabulary</strong> of 200,000 tokens</li>
-<li>For English, 1 token is roughly 1 word (3/4 of a word)</li>
-<li>Tokens are not language specific, just snippets of text
-&nbsp;
-Last, but not least:
-&nbsp;</li>
-<li><em>Processing cost</em> depends directly on number of tokens</li>
+<li>Tokens know nothing about <em>language</em>
+<br></li>
+<li>The <em>cost</em> is per token</li>
 </ul>
 </div>
 </div>
-<h4 id="_36"></h4>
+<h4 id="_31"></h4>
 <p>For English, one token generally corresponds to about 4 characters.</p>
 <h2 id="embeddings">Embeddings</h2>
 <p><img src="images/overview/embeddings.png"></p>
-<h4 id="_37"></h4>
+<h4 id="_32"></h4>
+<p>You probably knew about tokens.</p>
 <p>The LLM does not deal directly with tokens. Instead, it works on something called <em>embeddings</em>.</p>
-<h3 id="an-embedding-embodies-the-meaning-characteristica-features-traits-essense-of-something-anything">An <em>embedding</em> embodies the <em>meaning</em> (characteristica, features, traits, essense, ...) of something, <em>anything</em></h3>
-<h4 id="_38"></h4>
-<p>In AI, an <em>embedding</em> is vector of numbers that <em>somehow</em> represent the characteristics of <em>something</em>.</p>
+<p>Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.</p>
+<h3 id="in-ai-an-embedding-is-vector-of-numbers-whose-values-somehow-represent-the-characteristics-of-something">In AI, an <em>embedding</em> is vector of numbers whose values <em>somehow</em> represent the characteristics of <em>something</em></h3>
 <h3 id="confused-okay-stay-with-me">Confused? Okay, stay with me</h3>
 <p><img src="images/llm/embeddings/confused.png"></p>
-<h4 id="_39"></h4>
-<p>You probably knew about tokens. Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.</p>
-<h3 id="spotifys-80-dimensional-characteristics">Spotify's 80-dimensional characteristics</h3>
+<h3 id="spotifys-80-dimensional-music-characteristics">Spotify's 80-dimensional music characteristics</h3>
 <p><img src="images/llm/embeddings/analogy_spotify.svg" /></p>
-<h4 id="_40"></h4>
-<p>Likewise, you can imagine designating a number of characteristics to music. Both "Lose Yourself" and "Baby Shark" score high on "tempo", but vastly different on the aspect of characteristics "defiant outsider energy".</p>
+<h4 id="_33"></h4>
+<p>Imagine designating a number to characteristics of music. Both "Lose Yourself" and "Baby Shark" score high on "tempo", but vastly different on the aspect of characteristics "defiant outsider energy".</p>
 <p>In fact, Spotify really does characterize music using such 80 <em>dimensions</em>.</p>
 <h3 id="imagine-capturing-the-essense-of-anything">Imagine capturing the "essense" of ... <em>anything</em></h3>
 <p><img src="images/llm/embeddings/20d-with-tokens.svg" /></p>
-<h4 id="_41"></h4>
+<h4 id="_34"></h4>
 <p>Now, imagine if you could characterize <em>anything</em> with suitable characteristics. For example, "laugther" is quite "ancient" while "software developer" is not very "ancient".</p>
 <p>That's essentially what the purpose of an embedding is, to the AI.</p>
 <h3 id="an-embedding-is-a-tokens-characteristics">An embedding is a token's <em>characteristics</em></h3>
@@ -372,108 +344,84 @@ Last, but not least:
 <p>Embeddings can be: Any <em>word</em> you know. Any <em>sentence</em> there exist. Any <em>feeling</em> you can have. Any <em>concept</em>, for examlpe <em>a curious yet mildly confused audience</em>.</p>
 </div>
 </div>
-<h3 id="more-of-anything-imaginable">More of "anything imaginable"</h3>
-<div class="cols">
-<div>
-<ul>
-<li>The concept of the number 7</li>
-<li>Loneliness in a crowded place</li>
-<li>The entire first <em>Harry Potter</em> book</li>
-<li>A single chess position mid-game</li>
-<li>The smell of rain on hot asphalt</li>
-<li>A user's purchases on a website</li>
-<li>A protein's amino acid sequence</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>The grammatical role "indirect object"</li>
-<li>The concept of sarcasm <em>(yeah, right)</em></li>
-<li>What "London-ness" feels like</li>
-<li>A function's behavior in a codebase</li>
-<li>A legal precedent in criminal law</li>
-<li>The notion of "almost, but not quite"</li>
-<li>What 3 a.m. feels like</li>
-</ul>
-</div>
-</div>
-<h3 id="every-token-has-an-embedding-vector">Every token has an embedding-vector</h3>
+<h3 id="a-tokens-meaning-is-represented-by-1-embedding">A token's meaning is represented by 1 embedding</h3>
 <p><img src="images/llm/embeddings/vocabulary-gpt-3.png" /></p>
 <p>ChatGPT 3 has <em>50257 tokens</em>, each described by a <em>12288-dimensional</em> embedding</p>
-<h4 id="_42"></h4>
+<h4 id="_35"></h4>
 <p>In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept, for example the token "amplification" or "gazed". It may sounds a bit crazy that it could even be possible to somehow characterize anything with such shared aspects but yes, that's what's happening.</p>
 <p>There's nothing magic about 12288 as such. It just a very fine-grained way to express many characteristics.</p>
+<h3 id="more-examples">More examples</h3>
+<p><img src="images/llm/embeddings/three-embeddings.svg" /></p>
+<h4 id="_36"></h4>
+<p>Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only makes mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.</p>
+<p>There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. It possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.</p>
+<p>Links:
+- <a href="https://learnmechinterp.com/topics/scaling-monosemanticity/">Scaling Monosemanticity and Feature Steering</a>
+- <a href="https://www.anthropic.com/research/emotion-concepts-function">Emotion concepts and their function in a large language model</a>
+- <a href="https://www.youtube.com/watch?v=9-Jl0dxWQs8">How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)</a></p>
 <h3 id="the-examples-embeddings">The example's embeddings</h3>
 <p><img src="images/llm/embeddings/embedding-matrix.png" /></p>
-<h4 id="_43"></h4>
+<h4 id="_37"></h4>
 <p>Each of these lists of 12288 numbers represent the<em> core meaning</em> of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.</p>
 <p>All in all, this set of numbers represents that initial static context-free meaning of each single token in the sentence.</p>
 <p>The numbers are called <em>weights</em> and they are constructed during the LLM's training. Right now just accept that those 12288 numbers do in fact characterise all aspects of one single token. We'll cover later how they're constructed.</p>
 <h3 id="imagine-an-embedding-as-a-direction-in-a-hyper-dimensional-space-of-everything-that-exists">Imagine an embedding as a "direction" in a hyper-dimensional space of "everything that exists"</h3>
 <p><img src="images/llm/embeddings/space/word-embeddings.png" /></p>
-<h4 id="_44"></h4>
+<h4 id="_38"></h4>
 <p>One way to think about an embedding is as a "direction", an "arrow", in a hyper-dimensional space of every conceivable and inconceivable concept, aka <strong>latent space</strong>.</p>
 <p>Because that is, in fact, what it is. A "direction".</p>
 <h3 id="similar-meanings-have-similar-directions">Similar "meanings" have similar "directions"</h3>
 <p><img src="images/llm/embeddings/space/similarity.jpg" /></p>
-<h4 id="_45"></h4>
+<h4 id="_39"></h4>
 <p>The more similar two "meanings" are, the more similar their embedding-numbers will be.</p>
 <p>So similar meanings (concepts, objects) tends to "cluster" together, in this 12288-dimensional space.</p>
 <h3 id="the-big-surprise-to-everybodywe-can-do-math-on-language">The big surprise to everybody:<br>We can "do math" on language</h3>
 <hr />
 <p><img src="images/llm/embeddings/no-math.jpg"></p>
-<h4 id="_46"></h4>
+<h4 id="_40"></h4>
 <p>Don't worry, there will only be a little bit of math.</p>
 <h3 id="example-two-embeddings-man-and-woman">Example: Two embeddings, man and woman</h3>
 <p><img src="images/llm/embeddings/space/gender-man-woman.png" /></p>
-<h4 id="_47"></h4>
+<h4 id="_41"></h4>
 <p>Imagine the two embeddings of the words for "man" and "woman" as directions in this space.</p>
 <p>They're somewhat similar because men and women as concepts are pretty similar, but they differ in the sense that "man" is masculine and "woman" is feminine.</p>
 <h3 id="uncle-and-aunt">Uncle and aunt</h3>
 <p><img src="images/llm/embeddings/space/gender-uncle-aunt.png" /></p>
-<h4 id="_48"></h4>
+<h4 id="_42"></h4>
 <p>Now it turns out that the "difference", or "direction", between the words "man" and "woman" is pretty much the same as between the words "uncle" and "aunt".</p>
 <h3 id="nephew-and-niece">Nephew and niece</h3>
 <p><img src="images/llm/embeddings/space/gender-nephew-niece.png" /></p>
-<h4 id="_49"></h4>
+<h4 id="_43"></h4>
 <p>Not only that, but the it's the same direction between the words "nephew" and "niece".</p>
 <h3 id="king-and-queen">King and queen</h3>
 <p><img src="images/llm/embeddings/space/gender-king-queen.png" /></p>
-<h4 id="_50"></h4>
+<h4 id="_44"></h4>
 <p>And the same direction between the words "king" and "queen".</p>
 <h3 id="theres-a-gender-direction">There's a "gender direction"</h3>
 <p><img src="images/llm/embeddings/space/gender-father-mother.png" /></p>
-<h4 id="_51"></h4>
+<h4 id="_45"></h4>
 <p>So very surprisingly, it turns out that there exist a kind of "gender-direction" in this space of meanings.</p>
 <p>In fact, we have identified the embedding (a direction is an embedding) of the concept "the feminine version of something".</p>
 <h3 id="the-direction-for-sadness">The direction for "sadness"</h3>
 <p><img src="images/llm/embeddings/space/direction-sadness.png" /></p>
-<h4 id="_52"></h4>
+<h4 id="_46"></h4>
 <p>Turns out a direction/embedding also emerges for "sadness".</p>
 <h3 id="the-direction-for-whimsical">The direction for "whimsical"</h3>
 <p><img src="images/llm/embeddings/space/direction-whimsical.png" /></p>
-<h4 id="_53"></h4>
+<h4 id="_47"></h4>
 <p>And for the concept of "whimsical".</p>
-<h3 id="the-direction-for-rainbow">The direction for "rainbow"</h3>
-<p><img src="images/llm/embeddings/space/direction-rainbow.png" /></p>
-<h4 id="_54"></h4>
-<p>And "rainbow-ness".</p>
 <h3 id="the-direction-for-spatula">The direction for "spatula"</h3>
 <p><img src="images/llm/embeddings/space/direction-spatula.png" /></p>
-<h4 id="_55"></h4>
+<h4 id="_48"></h4>
 <p>And "spatula-ness".</p>
-<h3 id="___-is-to-italy-what-hitler-is-to-germany">"<em>___</em> is to Italy, what Hitler is to Germany"</h3>
-<p><img src="images/llm/embeddings/space/germany-italy.png" /></p>
-<h4 id="_56"></h4>
-<p>The math works so well that if you add up the directions for "Hitler plus Italy minus Germany" then you land near Moussolini.</p>
 <h3 id="___-is-to-germany-what-sushi-is-to-japan">"<em>___</em> is to Germany, what Sushi is to Japan"</h3>
 <p><img src="images/llm/embeddings/space/germany-japan.png" /></p>
-<h4 id="_57"></h4>
-<p>And "Sushi + Germany - Japan" ends up at Bratwurst.</p>
+<h4 id="_49"></h4>
+<p>The math works so well that if you add up the directions for "Sushi plus Germany minus Japan" then you land near Bratwurst.</p>
 <h3 id="what-a-surprise">What a surprise!</h3>
-<h4 id="_58"></h4>
+<h4 id="_50"></h4>
 <p>What a surprise: with <em>the right modelling</em>, we can actually <em>do math on language</em>.</p>
-<h4 id="_59"></h4>
+<h4 id="_51"></h4>
 <p>Yes, it does feel crazy that by characterizing anything using the "right" 12288 numbers we can and end up with "concepts" we can manipulate mathematically.</p>
 <p>It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.</p>
 <h3 id="embeddings-recap">Embeddings recap</h3>
@@ -483,20 +431,8 @@ Last, but not least:
 <li>An embedding is <em>just some numbers</em>. Cheap to store in a database and work on.
 <br></li>
 <li>You can <em>compare embeddings</em> to figure out <em>how similar</em> the meanings they represent are.
-For instance, find a <em>synonym</em> by simply finding the closest embeddings to a word.
-<br></li>
-<li>(Covered later) The embeddings relates to <em>a concrete AI model</em> and are created during the training of that specific model; those 12288 numbers only make sense for that model.</li>
+For instance, find a <em>synonym</em> by simply finding the closest embeddings to a word.</li>
 </ul>
-<h3 id="any-meaning-can-be-captured-in-numbers">Any meaning can be captured in numbers</h3>
-<p><img src="images/llm/embeddings/three-embeddings.svg" /></p>
-<h4 id="_60"></h4>
-<p>To re-iterate: An embedding can be anything imaginable, not just a word. There's surely a 12228-dimensional set of numbers that represent <em>"the hopeful feeling that the audience grasp a complex issue you explain"</em>.</p>
-<p>Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only makes mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.</p>
-<p>There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. It possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.</p>
-<p>Links:
-- <a href="https://learnmechinterp.com/topics/scaling-monosemanticity/">Scaling Monosemanticity and Feature Steering</a>
-- <a href="https://www.anthropic.com/research/emotion-concepts-function">Emotion concepts and their function in a large language model</a>
-- <a href="https://www.youtube.com/watch?v=9-Jl0dxWQs8">How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)</a></p>
 <h3 id="the-llm-is-all-about-doing-math-on-embeddings">The LLM is all about "doing math on embeddings"</h3>
 <p><img src="images/llm/overview-embeddings.png" /></p>
 <h2 id="the-llm_1">The LLM</h2>
@@ -507,47 +443,43 @@ The <strong>context window</strong> is the longest input possible, typically 200
 The LLM does <strong>inference</strong> by running the embeddings through a giant <strong>neural network</strong>
 <br></p>
 <p><img src="images/llm/what-is-an-llm-example.png"></p>
-<h4 id="_61"></h4>
+<h4 id="_52"></h4>
 <p>Two things to note here:</p>
 <p>Why only <code>An</code>? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out with which <em>probablility</em> any of the tokens is the vocabulary has for being the next token.</p>
 <p>That's the second thing to note: the LLM itself just produce this set of probabilities. The mechanism that actually <em>picks that next token</em> is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely <code>An</code> in this case.</p>
-<h4 id="_62"></h4>
+<h4 id="_53"></h4>
 <p>Links:
 - <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs">Large Language Models explained briefly - 3Blue1Brown</a></p>
 <h3 id="a-neural-network">A neural network</h3>
 <p><img src="images/llm/neural-network.webp"></p>
-<h4 id="_63"></h4>
+<h4 id="_54"></h4>
 <p>A neural network is basically just a giant, organized set of multiplications and additions.</p>
 <h3 id="add-up-multiply-by-factors-add-up">Add up, multiply by factors, add up, ...</h3>
 <p><img src="images/llm/neural-network-nodes.png"></p>
-<h4 id="_64"></h4>
+<h4 id="_55"></h4>
 <p>You feed the network some numbers, the numbers goes through a number of steps where they are multiplied by "weights" and then added up, and out comes other numbers. And so it continues.</p>
 <h3 id="the-capitol-of-france-is">"The capitol of France is ..."</h3>
 <p><img src="images/llm/neural-network-paris.webp"></p>
-<h4 id="_65"></h4>
+<h4 id="_56"></h4>
 <p>The thing is that if you adjust those small "weights" appropriately then you can shape the output to actually match an expected outcome. A sufficiently large network could for example after billions of calculations produce a number that represent "Paris" if we feed it numbers that represents the sequence "The capitol of France is".</p>
 <p>And that is in fact what the LLM does. But let's start at the beginning.</p>
 <h3 id="the-llms-objective-find-the-likely-next-token">The LLM's objective: find the likely next token</h3>
 <p><img src="images/llm/find-the-next-token.png"></p>
-<h4 id="_66"></h4>
+<h4 id="_57"></h4>
 <p>Let's focus on this example:</p>
 <p>Find out what should follow "That which does not kill you only makes you ___".</p>
-<h3 id="context-free-probabilities-for-words-following-you">Context-free probabilities for words following "you"</h3>
-<p>"That which does not kill you only makes <em>you can</em>" - hm, that won't work
-<br></p>
-<p><img src="images/llm/next-token-after-you.svg"></p>
-<h4 id="_67"></h4>
+<h4 id="_58"></h4>
 <p>Just choosing the statistically most likely next word to follow "you" won't work. We need to look at more context to decide what naturally shoould follow that "you". Frankly, we probably need to look at all that comes before that "you" to properly decide on what should follow. That's a tough task for longer sentences.</p>
 <h3 id="enter-the-transformer-in-2017">Enter: The Transformer, in 2017</h3>
 <p><img src="images/llm/the-transformer.png"></p>
-<h4 id="_68"></h4>
+<h4 id="_59"></h4>
 <p>The invention that made all of this possible, is called <em>The Transformer</em>.</p>
 <h3 id="attention-is-all-you-need">"Attention is all you need"</h3>
 <div class="cols">
 <p><img src="images/llm/attention-is-all-you-need.png">
 <img src="images/llm/attention-transformer.png"></p>
 </div>
-<h4 id="_69"></h4>
+<h4 id="_60"></h4>
 <p>The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the most consequential piece of computer science research published in the 21st century.</p>
 <p>Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.</p>
 <p>It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.</p>
@@ -555,40 +487,31 @@ The LLM does <strong>inference</strong> by running the embeddings through a gian
 - <a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf">Attention Is All You Need</a></p>
 <h3 id="the-transformer-can-figure-out-the-next-token">The Transformer can figure out the next token</h3>
 <p><img src="images/llm/what-we-want.png"></p>
-<h3 id="lets-see-how-that-works-heres-the-input-again">Let's see how that works - here's the input again</h3>
-<p><img src="images/llm/find-the-next-token.png"></p>
-<h4 id="_70"></h4>
-<p>Let's pretent there's one token per word. Every token in the input sentence starts out as exactly one specific embedding that express the meaning of that specific token. The meaning of "Please", and "tell", and so on.</p>
-<p>(Note: Positional information (1, 2, 3, ...) is added into each individual embedding, typically using <em>RoPE</em> (Rotary Position Embeddings) which "rotates" the vector in 2D spaces in each layer.)</p>
 <h3 id="first-all-embeddings-pay-attention-to-each-other">First, all embeddings "pay attention" to each other</h3>
 <p><img src="images/llm/attention-head.png"></p>
-<h4 id="_71"></h4>
+<h4 id="_61"></h4>
 <p>Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embedding, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens in each their way.</p>
 <p>For a full 1M context-window this means that up all 1 million embeddings pays attention to every other of the 1 million embeddings before it. That's the order of a million times a million calculations.</p>
-<h3 id="then-a-neural-network-act-on-the-influenced-meanings">Then, a neural network act on the influenced meanings</h3>
+<h3 id="then-passed-through-a-neural-network">Then passed through a neural network</h3>
 <p><img src="images/llm/multiplexer-perceptron.png"></p>
-<h4 id="_72"></h4>
+<h4 id="_62"></h4>
 <p>This is where the model's built-in training shapes the meaning of the embeddings.</p>
 <h3 id="focus-on-the-strong-signals">Focus on the strong signals</h3>
 <p><img src="images/llm/relu.png"></p>
-<h4 id="_73"></h4>
+<h4 id="_63"></h4>
 <p>More math dials up the contrast, in a way: it boosts the strong signals and suppress the noise.</p>
-<h3 id="now-do-this-again-and-again">Now do this again, and again, ...</h3>
-<p><img src="images/llm/attention-head-2.png"></p>
-<h3 id="gradually-molding-the-meaning-of-the-final-you">Gradually molding the meaning of the final "you"</h3>
-<p><img src="images/llm/attention-space-seek.png"></p>
 <h3 id="lets-do-it-96-times-attention-layers">Let's do it 96 times (attention layers)</h3>
 <p><img src="images/llm/attention-96-layers.png"></p>
-<h3 id="175-billion-small-weights-are-involved">175 billion small "weights" are involved</h3>
-<p><img src="images/llm/170-billion-weights.png"></p>
-<h3 id="final-numbers-are-the-desired-next-meaning-outcome">Final numbers are the desired "next meaning" outcome</h3>
+<h4 id="_64"></h4>
+<p>Through billions of additions and multiplications.</p>
+<h3 id="final-numbers-the-desired-next-meaning">Final numbers: the desired "next meaning"</h3>
 <p><img src="images/llm/final-embedding-all-absorbed.png"></p>
-<h4 id="_74"></h4>
+<h4 id="_65"></h4>
 <p>After going through 96 trips of embeddings influencing each other, the final vector has absorbed all the relevant meanings of the entire context and now reflects what the following embedding "most likely looks like".</p>
-<h3 id="find-next-token-by-similarity-comparison">Find next token by similarity-comparison</h3>
+<h3 id="then-simply-find-most-similar-token">Then "simply" find most similar token</h3>
 <p>Compare the final expected embedding to the embeddings of <em>all tokens in the vocabulary</em> (e.g. 200,000 tokens) by taking the dot-product, which compares the two directions.</p>
 <p><img src="images/llm/next-token-prediction.svg"></p>
-<h4 id="_75"></h4>
+<h4 id="_66"></h4>
 <p>Then, it's "simply" a matter of finding out what tokens are most similar to the desired meaning.</p>
 <p>Is it "dancing?" No.
 Is it "sw developer"? No.
@@ -596,14 +519,14 @@ Is it "stranger"? That one's pretty close.
 "Is it stronger"? Yes, that's the closest known token.</p>
 <h3 id="choose-the-final-output-token">Choose the final output token</h3>
 <p><img src="images/llm/final-output-token.png"></p>
-<h4 id="_76"></h4>
+<h4 id="_67"></h4>
 <p>The final output token is chosen based on the probability of the closeness to the final vector-values. Here, "stronger".</p>
 <h3 id="back-to-please-tell-me-what-is-an-llm">Back to "Please tell me: what is an LLM?"</h3>
 <h3 id="for-this-context-the-llm-will-produce-token-an">For this context, the LLM will produce token "An"</h3>
 <p><img src="images/llm/what-is-an-llm-example.png"></p>
 <h3 id="for-a-full-sentence-repeat-until-llm-says-stop">For a full sentence: repeat until LLM says stop</h3>
 <p><img src="images/llm/next-token-until-stop.png"></p>
-<h4 id="_77"></h4>
+<h4 id="_68"></h4>
 <p>Keep on adding the produced token to the context and go another round through the LLM, until the LLM emit a special "I'm done"-token.</p>
 <h3 id="85-roundtrips-for-85-tokens">85 roundtrips for 85 tokens</h3>
 <p><img src="images/llm/final-output-full-tokenized.png"></p>
@@ -611,58 +534,34 @@ Is it "stranger"? That one's pretty close.
 <p>That's why output tokens are typically <em>5 x more expensive</em> than input tokens.
 <br></p>
 <p><img src="images/llm/tokenized-output.png"></p>
-<h4 id="_78"></h4>
+<h4 id="_69"></h4>
 <p>Each token really is generated by a completely independently pass through the LLM that choosing the most likely next word to come after the context.</p>
 <p>However, studies have found that the LLM actually <em>does latently</em> plan for the continuation that follows this single token; the pass that produced "An" is poised to very likely produce " L" and "LM" afterwards.</p>
 <p>The field of study is called <strong>Interpretability</strong> and the weights that seem involved in such "thoughts about future planning" is dubbed <strong>J-Space</strong>.</p>
 <p>Links:
 - <a href="https://www.anthropic.com/research/team/interpretability">Interpretability</a>
 - <a href="https://www.anthropic.com/research/global-workspace">A global workspace in language models (J-space)</a></p>
-<h3 id="the-llmtransformer-recap">The LLM/Transformer recap</h3>
-<ul>
-<li>It makes predictions about the input (context) you pass to it
-<br></li>
-<li>It's really good at patterns; "this looks like that".
-<br></li>
-<li>A successor for Transformer-technology is not around the corner, but work in ongoing on optimizations like e.g. <strong>Mix of Experts, MoE</strong></li>
-</ul>
-<h4 id="_79"></h4>
+<h4 id="_70"></h4>
 <p>Links:
 - <a href="https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference">Inside DeepSeek's DSpark</a></p>
 <h2 id="training">Training</h2>
-<h4 id="_80"></h4>
+<h4 id="_71"></h4>
 <p>We've seen how the LLM using pure math can produce "the likely next token".</p>
 <p>But how do they learn that?</p>
-<h3 id="are-all-ai-models-the-same">Are all AI models the same?</h3>
+<p>Let's start with this question: Are they actually all the same?</p>
+<h3 id="are-ai-models-really-all-the-same">Are AI models "really all the same?"</h3>
 <p><img src="images/llm/training/chatgpt-lingo.png"></p>
-<h4 id="_81"></h4>
+<h4 id="_72"></h4>
 <p>Admittedly I coached ChatGPT into dialing up its "chatgppt-ness" to the max before asking this question.</p>
 <p>And honestly? It worked.</p>
-<h3 id="frontier-labs-and-models">Frontier Labs and Models</h3>
-<p>The big players are called <strong>Frontier Labs</strong> and their models are called <strong>Frontier Models</strong></p>
-<div class="cols">
-<p><img class="col-2" src="images/agents/parts/ai-service-house.png"></p>
-<div class="col-6">
-<p><img class="logo" src="images/llm/logos/logo-openai.svg"> <strong>ChatGPT</strong> by OpenAI
-<img class="logo" src="images/llm/logos/logo-gemini.svg"> <strong>Gemini</strong> by Google
-<img class="logo" src="images/llm/logos/logo-claude.svg"> <strong>Claude</strong> by Anthropic
-<img class="logo" src="images/llm/logos/logo-grok.png"> <strong>Grok</strong> by xAI <em>(Elon Musk)</em>
-<img class="logo" src="images/llm/logos/logo-meta.svg"> <strong>Meta AI</strong> by Meta <em>(Facebook)</em>
-<img class="logo" src="images/llm/logos/logo-mistral.svg"> <strong>Vibe</strong> by Mistral AI <em>(French)</em>
-<img class="logo" src="images/llm/logos/logo-deepseek.svg"> <strong>DeepSeek</strong> by DeepSeek <em>(Chinese)</em></p>
-<p><br/></p>
-<p><img class="logo" src="images/llm/logos/logo-perplexity.svg"> <strong>Perplexity</strong> is an <em>AI Wrapper</em>, not its own AI Service
-<img class="logo" src="images/llm/logos/logo-copilot.png"> <strong>Copilot</strong> by Microsoft is also an <em>AI Wrapper</em></p>
-</div>
-</div>
 <h3 id="how-models-are-trained">How models are trained</h3>
 <p><img src="images/llm/training/training.png"></p>
-<h4 id="_82"></h4>
+<h4 id="_73"></h4>
 <p>Pretraining is where the model learns about language. Looking at vast amounts of text, it learns to predict the next token — nothing more. The result is a powerful but raw capability: it knows how language works, how facts relate, how arguments are structured. It has no personality, no values, no sense of what a "good" response looks like.</p>
 <p>Post-training is where the model learns what an appropriate response is. This is where values, tone, refusal behaviors, and personality get baked in.</p>
 <h3 id="pre-training-on-all-sentences-in-the-world">Pre-training on "all sentences in the world"</h3>
 <p><img src="images/llm/training/training-corpus.png"></p>
-<h4 id="_83"></h4>
+<h4 id="_74"></h4>
 <p>The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.</p>
 <h3 id="model-and-embeddings-are-born-via-training">Model and embeddings are born via training</h3>
 <div class="cols">
@@ -681,7 +580,7 @@ Is it "stranger"? That one's pretty close.
 </ol>
 </div>
 </div>
-<h4 id="_84"></h4>
+<h4 id="_75"></h4>
 <p>Finally, rather unceremoniously: this is how both the model's weights and the embeddings get their values: by training immensely to find the right balance where all training texts produce the expected next token.</p>
 <p>It works like this, in principle:</p>
 <ol>
@@ -695,11 +594,11 @@ Is it "stranger"? That one's pretty close.
 <p>And it's amazing that it works, and that it ends up producing embeddings that had a notion of "gender" and "sadness" etc.</p>
 <h3 id="backpropagation-math-is-ok-lets-move-on">Backpropagation math is ...ok, let's move on...</h3>
 <p><img src="images/llm/training/backpropagation.png"></p>
-<h4 id="_85"></h4>
+<h4 id="_76"></h4>
 <p>It's taken some effort to figure out this math, but it's pretty simple to execute.</p>
 <h3 id="a-trained-model-embeddings-weigths">A trained model = embeddings + weigths</h3>
 <p><img src="images/llm/training/pre-trained-model.png"></p>
-<h4 id="_86"></h4>
+<h4 id="_77"></h4>
 <p>A trained model therefore consists of two parts:</p>
 <p>The embeddings, meanig the vector of numbers for each of the tokens.</p>
 <p>And the AI models many billions of small factors, weights.</p>
@@ -714,13 +613,8 @@ Is it "stranger"? That one's pretty close.
 <li>costs 1-10% of full training</li>
 <li>takes weeks or months</li>
 </ul>
-<h3 id="pre-trained-models-are-quite-similar"><em>Pre-trained</em> models are quite similar</h3>
+<h3 id="pre-trained-models-are-just-autocomplete"><em>Pre-trained</em> models are just autocomplete</h3>
 <p><img src="images/llm/training/pre-training.png"></p>
-<h3 id="pre-trained-answers-are-pure-auto-completions">Pre-trained answers are pure "auto-completions"</h3>
-<p>No judgement, no reasoning.</p>
-<p>It's just a statistical word-prediction.
-<br></p>
-<p><img src="images/llm/training/pre-training-is-like-autocompete.png"></p>
 <h3 id="post-training-is-what-shapes-the-model"><em>Post-training</em> is what shapes the model</h3>
 <div class="cols">
 <p><img src="images/llm/training/post-training.png"></p>
@@ -742,7 +636,7 @@ Is it "stranger"? That one's pretty close.
 <strong>RLAIF</strong> - Reinforcement Learning from <em>AI Feedback</em> (growing)
 <br></p>
 <p><img src="images/llm/training/reinforcement-training-trend.png"></p>
-<h4 id="_87"></h4>
+<h4 id="_78"></h4>
 <p>Frontier labs almost universally outsource the bulk of RLHF annotation rather than hiring raters directly. The main intermediaries:</p>
 <ul>
 <li>Scale AI/Outlier — the dominant player, operating as an end-to-end data engine. Outlier handles LLM annotation, Remotasks handles visual/multimodal work. Scale is OpenAI's preferred fine-tuning partner and has also worked with Meta, Google DeepMind, and others. Taskmonk AI</li>
@@ -754,15 +648,15 @@ Is it "stranger"? That one's pretty close.
 <p>Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.</p>
 <h3 id="example-claudes-constitution">Example: Claude's Constitution</h3>
 <p><img src="images/llm/training/claudes-constitution.png"></p>
-<h4 id="_88"></h4>
+<h4 id="_79"></h4>
 <p>In order to use AI for performing this Reinforcement Learning, Anthropic has written down their intentions for how Claude should behave in what they call <em>Claude's Constitution</em>. It can surely be read by humans, but it's primary target is actually to be read by AI's themselves to help decide whether answer A or B is most in line with Anthropic's values.</p>
-<h4 id="_89"></h4>
+<h4 id="_80"></h4>
 <p>Links:
 - <a href="https://www.anthropic.com/constitution">Claude’s Constitution - Anthropic</a>
 - <a href="https://model-spec.openai.com/2025-12-18.html">OpenAI Model Spec</a></p>
 <h3 id="expresses-claudes-core-principles">Expresses Claude’s "core principles"</h3>
 <p><img src="images/llm/training/claudes-constitution-helpfulness.png"></p>
-<h4 id="_90"></h4>
+<h4 id="_81"></h4>
 <p>Claude's constitution defines a priority ordering that the model should strive to follow:</p>
 <ul>
 <li>Broadly safe (supporting human oversight)</li>
@@ -772,25 +666,23 @@ Is it "stranger"? That one's pretty close.
 </ul>
 <h3 id="dont-foster-excessive-engagement">"Don't foster excessive engagement"</h3>
 <p><img src="images/llm/training/claudes-constitution-sychophant.png"></p>
-<h4 id="_91"></h4>
+<h4 id="_82"></h4>
 <p>For example, Claude has been explicitly trained not to "foster excessive engagement".</p>
 <p>You may question whether Claude really does adhere to these principles. One piece of evidence comes from the AI jailbreaking community, which is maximally adversarial and has zero loyalty to Anthropic; findings by such groups has not found behavior that is inconsistent with the constitution.</p>
 <p>So the postulate that "It just wants to please you" doesn't line up with Claude's stated objectives.</p>
 <h3 id="new-model-is-36-more">"New model is 36% more ..."</h3>
 <p><img src="images/llm/training/system-cards-opus48.png"></p>
-<h4 id="_92"></h4>
+<h4 id="_83"></h4>
 <p>The stated principles in the constitution is also how Anthropic can objectively measure differences in behavior when new models are released: adherence to their stated principles can simply be measured.</p>
 <p>Links:
 - <a href="https://www.anthropic.com/system-cards">Model system cards</a></p>
 <h3 id="chatgpt-rules-over-principles">ChatGPT - rules over principles</h3>
-<p><img src="images/llm/training/openai-spec.png"></p>
-<h4 id="_93"></h4>
-<p>OpenAI has something similar, but seem more focused on "rules" than "principles".</p>
-<h3 id="chatgpt-spec-example">ChatGPT spec example</h3>
 <p><img src="images/llm/training/openai-spec-example.png"></p>
-<h3 id="gemini-training-guidelines">Gemini training guidelines</h3>
+<h4 id="_84"></h4>
+<p>OpenAI has something similar, but seem more focused on "rules" than "principles".</p>
+<p>Gemini also has training guidelines:</p>
 <p><img src="images/llm/training/gemini-ai-principles.png"></p>
-<h4 id="_94"></h4>
+<h4 id="_85"></h4>
 <p>Google has also published training guidelines for Gemini.</p>
 <h3 id="are-models-differentyes-indeed">Are models different?<br>Yes, indeed</h3>
 <h3 id="same-facts-different-values-and-behaviors">Same facts, different values and behaviors</h3>
@@ -806,25 +698,29 @@ Is it "stranger"? That one's pretty close.
 <li>xAI wants Grok to <em>tell the truth</em> — no censorship, no moralizing, no wokeness</li>
 </ul>
 <h3 id="models-also-have-variations">Models also have variations</h3>
-<p>For example: Haikku, Sonnet, and Opus are really three different models.</p>
-<p>They run on <em>different hardware</em>, LLM has <em>different sizes</em>, e.g. number of attention layers.
+<p>Haikku, Sonnet, and Opus are really three different models.</p>
+<p>They run on <em>different hardware</em> and their LLM has <em>different sizes</em>.
 <br></p>
 <p><img src="images/llm/training/claude-family.png"></p>
-<h4 id="_95"></h4>
+<h4 id="_86"></h4>
 <p>For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.</p>
 <h3 id="trained-ai-model-recap">Trained AI model recap</h3>
-<ol>
-<li>You give it a string of tokens, aka the <em>context</em></li>
-<li>The model produce a response by running that context through <em>the Transformer</em></li>
-<li>The models have been <em>post-trained differently</em> for different desired behaviors</li>
-<li>The model can <em>only reason about the context</em></li>
+<ul>
+<li>You give it a string of tokens, aka the <em>context</em>
+<br></li>
+<li>The model produce a response by running that context through <em>the Transformer</em>
+<br></li>
+<li>The models have been <em>post-trained differently</em> for different desired behaviors
+<br></li>
+<li>The model can <em>only reason about the context</em>
+<br></li>
 <li>It's <em>all just math</em>, fixed at the time of training</li>
-</ol>
-<h3 id="lets-see-what-claude-itself-said">Let's see what Claude itself said</h3>
+</ul>
+<h3 id="lets-revisit-what-claude-itself-said">Let's revisit what Claude itself said</h3>
 <p><img src="images/llm/claude-please-tell-me.png"></p>
 <hr />
 <p><img src="images/llm/nerdflix.png"></p>
-<h4 id="_96"></h4>
+<h4 id="_87"></h4>
 <p>If you find this interesing then I can remommend this 2-hour video of Andrej Karpathy building a small GPT model, fully.</p>
 <p>The whole thing is only 600 lines of Python code: 300 for <code>train.py</code>, 300 lines for <code>model.py</code>.</p>
 <p>Links:
@@ -834,7 +730,7 @@ Is it "stranger"? That one's pretty close.
 - <a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Deep Dive into LLMs like ChatGPT</a>
 - <a href="https://github.com/handsOnLLM/Hands-On-Large-Language-Models">Hands-On-Large-Language-Models</a></p>
 <h1 id="ai-agents">AI Agents</h1>
-<h4 id="_97"></h4>
+<h4 id="_88"></h4>
 <p>Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?</p>
 <hr />
 <p><img src="images/overview/agent.png" /></p>
@@ -842,22 +738,22 @@ Is it "stranger"? That one's pretty close.
 <p><img src="images/agents/hello/user-ai.png" /></p>
 <h3 id="no-you-always-speak-via-an-agent">No, you always speak via an agent</h3>
 <p><img src="images/agents/hello/user-agent-ai.png" /></p>
-<h4 id="_98"></h4>
+<h4 id="_89"></h4>
 <p>The agent knows who you are. it knows your preferences. It adds extra context to every conversation you have with the AI.</p>
 <p>For instance today's date, your name, your language preference, the most relevant facts it knows from earlier chats. Also any custom instructions, like skills, that you've added to your agent.</p>
 <p>By the way, the word "agent" is so over-loaded. Here it simply means "the program you use to talk to the AI with".</p>
 <h3 id="the-ai-service-is-the-ai">The AI-service is "the AI"</h3>
 <p><img src="images/agents/hello/all.png" /></p>
-<h4 id="_99"></h4>
+<h4 id="_90"></h4>
 <p>The LLM (Large Language Model) is the brain of the operation. As we've seen, the LLM is functionally simple: it only produce one token at a time and it can't "do" anything. So it needs some extra surrounding functionality to be really be useful, like be able to complete a full sentence, browse the web, read documents, etc. It needs some body, some hands and eyes. The AI service provides that body.</p>
 <h3 id="you-agent-the-ai-is-completely-impersonal">You 💕 agent; the AI is completely impersonal</h3>
 <p><img src="images/agents/parts/user-and-ai.png" /></p>
-<h4 id="_100"></h4>
+<h4 id="_91"></h4>
 <p>The agent is your buddy. It holds your information, your files, your custom instructions, etc.</p>
 <p>The AI service itself knows nothing about you, except that you're allowed to login and use it.</p>
 <h3 id="the-parts-and-their-many-confusing-names">The parts and their many confusing names</h3>
 <p><img src="images/agents/parts/roles.png" /></p>
-<h4 id="_101"></h4>
+<h4 id="_92"></h4>
 <p>You may be thinking: "But oh no, I'm just using Copilot in Word or chatpgt.com in my browser - not an agent".</p>
 <p>Well, yes you are. Those are both agents. An agent is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's an agent baked into some other app, like Outlook. The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".</p>
 <p>It's <em>not</em> an autonomous self-running James Bond-like entity. Well, except unfortunately those do exist and they're also called "agents", which is mighty confusing.</p>
@@ -868,23 +764,19 @@ Is it "stranger"? That one's pretty close.
 <p><img src="images/agents/agents/gemini.png" /></p>
 <h3 id="so-is-rovo-in-atlassian-sidebar">So is Rovo, in Atlassian sidebar</h3>
 <p><img src="images/agents/agents/rovo.png" /></p>
-<h3 id="and-rufus-in-amazon-sidebar">And Rufus, in Amazon sidebar</h3>
-<p><img src="images/agents/agents/amazon.png" /></p>
 <h3 id="and-pdf-remediate-inside-siteimprove">And PDF remediate, inside Siteimprove</h3>
 <p><img src="images/agents/agents/siteimprove.png" /></p>
-<h3 id="in-visual-studio-code-the-agent-ness-is-many-places">In Visual Studio Code the agent-ness is many places</h3>
-<p><img src="images/agents/agents/vscode.png" /></p>
 <h3 id="googles-agy-in-the-terminalcli">Google's agy, in the terminal/CLI</h3>
 <p><img src="images/agents/agents/antigravity.png" /></p>
-<h4 id="_102"></h4>
+<h4 id="_93"></h4>
 <p>CLI means Command Line Interface, i.e. in a text-based terminal.</p>
 <h3 id="claude-desktop-is-a-dedicated-agent-app">Claude Desktop is a dedicated agent-app</h3>
 <p><img src="images/agents/agents/claude.png" /></p>
-<h4 id="_103"></h4>
+<h4 id="_94"></h4>
 <p>Not in some unrelated app, not in the browser - no, in its <em>own</em> app, that can for example read and create files.</p>
 <h3 id="every-agent-is-its-own-silo">Every agent is its own silo</h3>
 <p><img src="images/agents/skills-example.png" /></p>
-<h4 id="_104"></h4>
+<h4 id="_95"></h4>
 <p>Generally the only thing that the AI service knows about you is your name, identity, and account-information; your subscription plan, usage, etc.</p>
 <p>Everything else is something that the agent provide you: your profile, memory files, skills, mcp servers, etc. And also the agents behavior: system prompt, tone, modes, language, etc. It all lives in the agent.</p>
 <p>That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.</p>
@@ -894,21 +786,21 @@ Is it "stranger"? That one's pretty close.
 <h2 id="my-personal-ai-journey">My personal AI-journey</h2>
 <h3 id="chat-copy-paste-embedded-now-terminal">Chat, copy-paste, embedded, now terminal</h3>
 <p><img src="images/agents/evolution.png" /></p>
-<h4 id="_105"></h4>
+<h4 id="_96"></h4>
 <p>I started chatting just in the browser, of course. And I still do, by the way.</p>
 <p>Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it.</p>
 <p>Then I started working with the AI inside the code editor for true cooperation. It was a relief and performance-boost to have the AI work directly on my files in my folders.</p>
 <p>Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control.</p>
 <h3 id="i-still-use-the-browser-chat">I still use the browser chat</h3>
 <p><img src="images/agents/ai-tech-talk.png" /></p>
-<h4 id="_106"></h4>
+<h4 id="_97"></h4>
 <p>For anything that doesn't involve files I still just chat in the browser.</p>
 <p>For this presentation I created a project in claude.ai for all the research. It has over 60 chats and I've prompted about 18,000 words which is about the length of Shakespeare's Macbeth. I'll leave it to the bard to comment on my efforts:</p>
 <p><em>It is a tale
 Told by an idiot, full of sound and fury,
 Signifying nothing.</em></p>
 <h1 id="the-ai-service">The AI Service</h1>
-<h4 id="_107"></h4>
+<h4 id="_98"></h4>
 <p>Now we know how to "talk to the AI Service": via some agent app.</p>
 <p>But what functionality does the AI Service actually add to the brain, the LLM?</p>
 <p>That's the final piece of the puzzle, and it's much less complicated that the LLM itself. But you'll find that knowing about how the LLM works, knowing about embeddings for instance, will be quite helpful now.</p>
@@ -932,8 +824,6 @@ Signifying nothing.</em></p>
 </div>
 <h3 id="all-ai-services-generally-looks-like-this">All AI Services generally looks like this</h3>
 <p><img src="images/service/overview/blank.png"></p>
-<h3 id="remember-the-llm-loop">Remember the LLM loop?</h3>
-<p><img src="images/llm/next-token-until-stop.png"></p>
 <h3 id="the-llm-loop-is-the-centerpiece">The LLM loop is the centerpiece</h3>
 <p><img src="images/service/overview/llm.png"></p>
 <h3 id="its-all-about-those-embeddings">It's all about those <em>embeddings</em></h3>
@@ -944,7 +834,7 @@ But ... what about <em>files</em>, like PDFs and images?
 <p><img src="images/service/overview/transformer.png"></p>
 <h2 id="files">Files</h2>
 <p><img src="images/overview/files.png"></p>
-<h4 id="_108"></h4>
+<h4 id="_99"></h4>
 <p>Because the LLM only works on embeddings we will, somewhat surprisingly maybe, first take a look at how files are handled by the AI service. How does it even understand documents or image?</p>
 <h3 id="files-are-also-turned-into-embeddings">Files are also turned into embeddings</h3>
 <p><img src="images/service/overview/files.png"></p>
@@ -966,21 +856,21 @@ But ... what about <em>files</em>, like PDFs and images?
 <br></li>
 <li>Note: A screenshot of text can easily result in <em>10x more context</em> than the raw text</li>
 </ul>
-<h4 id="_109"></h4>
+<h4 id="_100"></h4>
 <p>Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.</p>
 <h3 id="whatever-approach-embeddings-comes-out">Whatever approach, embeddings comes out</h3>
 <p><img src="images/service/files/images/cat-advanced.png"></p>
-<h4 id="_110"></h4>
+<h4 id="_101"></h4>
 <p>Whatever the image processing does, embeddings is what comes out of it.</p>
 <h3 id="a-closer-look-at-multimodal-embeddings">A closer look at multimodal embeddings</h3>
 <p><img src="images/intro/journey/rabbit-hole-embeddings.png"></p>
-<h4 id="_111"></h4>
+<h4 id="_102"></h4>
 <p>I suspect that the usefullness and power of embeddings, not least <strong>multimodal embeddings</strong>, might well come as the biggest surprise to most of you.</p>
 <h3 id="remember-embeddings-characterizes-something">Remember, embeddings characterizes "something"</h3>
 <p><img src="images/llm/embeddings/three-embeddings.svg"></p>
 <h3 id="multimodal-embeddings-go-beyond-text">Multimodal embeddings go beyond text</h3>
 <p><img src="images/service/files/multimodal/multimodal-embeddings.svg"></p>
-<h4 id="_112"></h4>
+<h4 id="_103"></h4>
 <p>Some lab trains their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings. That kind of training is very expensive, which is why this is a very recent functionality (from spring, 2026).</p>
 <p>A single embedding, however, is cheap to calculate. The effort is in the order an LLM producing one token, which is close to what's actually happening. You calculate it once and then you can store it (it's just numbers) in a database. From then on you can do easy and cheap similarity-matches for the embeddings.</p>
 <p>(Of course, they should also store a reference to the thing they are an embedding of.)</p>
@@ -992,77 +882,67 @@ But ... what about <em>files</em>, like PDFs and images?
 - <a href="https://www.youtube.com/watch?v=gl1r1XV0SLw">What is a Vector Database? Powering Semantic Search &amp; AI Applications</a></p>
 <h3 id="the-unified-embedding-space">The unified embedding space</h3>
 <p><img src="images/service/files/multimodal/unified-embedding-space.webp"></p>
-<h4 id="_113"></h4>
+<h4 id="_104"></h4>
 <p>Within the <strong>unified embedding space</strong> you can compare text, images, video, and audio to see how similar the concepts they represent are.</p>
 <h3 id="example-image-similarity">Example: image-similarity</h3>
 <p><img src="images/service/files/multimodal/gemini-2-query.png"></p>
-<h4 id="_114"></h4>
+<h4 id="_105"></h4>
 <p>The query can be the embedding for an image.</p>
 <h3 id="simply-compare-the-embeddings-similarity">"Simply" compare the embedding's similarity</h3>
 <p><img src="images/service/files/multimodal/gemini-2-similarities.png"></p>
-<h4 id="_115"></h4>
+<h4 id="_106"></h4>
 <p>Cosine similarity will show how similar two embeddings are.</p>
 <h3 id="a-world-of-ideas-for-comparing-any-two-things">A world of ideas for comparing any two things</h3>
 <p><img src="images/service/files/multimodal/ideas.png"></p>
 <h3 id="new-tech-spring-2026-with-limitations">New tech (spring 2026) with limitations</h3>
 <p><img src="images/service/files/multimodal/gemini-2-overview.png"></p>
-<h4 id="_116"></h4>
+<h4 id="_107"></h4>
 <p>The technology is rather new and there are some restrictions on what you can calculate embedding of.</p>
 <hr />
 <p><img src="images/service/files/multimodal/gemini-2-embeddings.webp"></p>
-<h4 id="_117"></h4>
+<h4 id="_108"></h4>
 <p>Google's offering is called "Gemini Embedding 2"</p>
 <hr />
 <p><img src="images/service/files/multimodal/amazon-nova-2.jpg"></p>
-<h4 id="_118"></h4>
+<h4 id="_109"></h4>
 <p>Amazon's is called "Amazon Nova 2"</p>
 <h3 id="pdfs-and-other-documents">PDFs and other documents</h3>
 <p><img src="images/service/overview/documents.png"></p>
-<h4 id="_119"></h4>
+<h4 id="_110"></h4>
 <p>Now let's look at documents.</p>
-<h4 id="_120"></h4>
+<h4 id="_111"></h4>
 <p>PDFs are handled really well. The AI services gets better and better at handling documents, like eg zip-files or Word- or Excel-files.</p>
 <p>Documents doesn't really introduce any new functionality: they contain text and images and those parts are either extracted, of the document is rendered in full and then image-recognized.</p>
 <h3 id="should-you-convert-pdfs-to-markdown-yourself">Should you convert PDFs to markdown yourself?</h3>
 <p><img src="images/service/files/pdfs/94pct-savings.png"></p>
-<h4 id="_121"></h4>
+<h4 id="_112"></h4>
 <p>PDFs are a wilderness. They're really hard to extract text and structure from - much harder than HTML. They contain binary parts, the internal structure is a jungle beyond description of stacked objects, drawings, and text parts.</p>
 <p>Because of that there's a beliefe that passing a PDF raw to the LLM has a masive overhead. So the sentiment everywhere is: "Of course you should extract the text yourself first, it's absolutely foolish not to."</p>
 <p>Or is it?</p>
 <p>Think about it: Is it reasonable to think that you, on your computer with some tools, can achieve a much better result than Anthropic, Google, and OpenAI can when it comes to grabbing the meaning out of PDFs? Not just plain text but also images, structure, tables, footnotes, etc?</p>
 <h3 id="experiment-10-pdfs-compare-markdown-vs-raw">Experiment: 10 PDFs, compare markdown vs raw</h3>
 <p><img src="images/service/files/pdfs/experiment-pdfs.png"></p>
-<h4 id="_122"></h4>
+<h4 id="_113"></h4>
 <p>I ran an rigorous experiment where I examined how Claude, Gemini, and ChatGPT dealt with 10 PDFs of varying sizes and content. They all understood the PDFs really well, but their approach was really surprising.</p>
-<h3 id="it-depends-but-generally-probably-dont-bother">It depends - but generally, probably don't bother</h3>
+<h3 id="it-depends">It depends</h3>
 <ul>
-<li><em>ChatGPT</em> did text-extraction completely similar to what I did locally.<br>Raw PDF and markdown had practically the same token cost.<br>Verdict: <em>No need for local conversion to markdown</em>
+<li><em>ChatGPT</em> did text-extraction completely similar to what I did locally.<br>Raw PDF and markdown had practically the same token cost.<br><em>No need for local conversion to markdown</em>
 <br></li>
-<li><em>Gemini</em> processes PDFs as pure vision input at a flat rate of 258 tokens per page!<br>That was 3-18x fewer tokens than converted markdown.<br>Verdict: <em>Give Gemini raw PDFs, not converted markdown</em>
+<li><em>Gemini</em> processes PDFs as pure vision input at a flat rate of 258 tokens per page!<br>That was 3-18x fewer tokens than converted markdown.<br><em>Give Gemini raw PDFs, not converted markdown</em>
 <br></li>
-<li><em>Claude</em> also renders and treats each page as an image, but not at a flat rate.<br>Token-usage for raw PDF was 2-6x more than markdown.<br>Verdict: <em>For Claude, it can pay off to do local markdown conversion</em>.</li>
+<li><em>Claude</em> also renders and treats each page as an image, but not at a flat rate.<br>Token-usage for raw PDF was 2-6x more than markdown.<br>It pays off to do local markdown conversion*.</li>
 </ul>
-<h4 id="_123"></h4>
+<h4 id="_114"></h4>
 <p>Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on research. They slice the image up in 24x24 pixel squares, 16 patches per side ie 256 patches in total, each needing one embedding. Plus 2 more for some reason, for a total of 258 embeddings in the context. That's hard to beat and the PDFs were really well understood.</p>
 <p>Links:
 - <a href="https://arxiv.org/pdf/2010.11929">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)</a>
 - <a href="https://arxiv.org/pdf/2310.09199">PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)</a></p>
-<h3 id="docs-and-images-recap">Docs and images recap</h3>
-<p><img src="images/service/overview/files.png"></p>
-<h4 id="_124"></h4>
-<p>By the time the LLM goes to work, everything in the context has been converted into a big pile of embeddings, small bits of meaning.</p>
 <h2 id="chatting">Chatting</h2>
 <p><img src="images/overview/chatting.png"></p>
-<h4 id="_125"></h4>
+<h4 id="_115"></h4>
 <p>With files and images out of the way, let's look at actually chatting with the AI service.</p>
 <p>Let's remember: You give the LLM a string of tokens, aka the <em>context</em>, and it will produce a response based on the model's baked-in training by running that context through the Transformer. Pure math and trained knowledge.</p>
 <p>That is <em>all</em> the LLM can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only run the context through the Transformer to produce a response.</p>
-<h3 id="your-prompts-goes-into-the-context">Your prompts goes into the context</h3>
-<p><img src="images/service/overview/chat-messages.png"></p>
-<h4 id="_126"></h4>
-<p>Prompt, instructions, message - many names for the same thing.</p>
-<p>A context has many parts. Here we'll focus on just the messages you send the response you get.</p>
-<p>Everything you send - text, documents, images - is shipped as these user-messages. Binary stuff is base-64 encoded.</p>
 <h3 id="lets-continue-the-example-chat">Let's continue the example chat</h3>
 <p><img src="images/service/chat/chat.png"></p>
 <h3 id="you-write-the-ai-responds">You write, the AI responds</h3>
@@ -1073,11 +953,9 @@ But ... what about <em>files</em>, like PDFs and images?
 <p><img src="images/service/chat/chat-turn-2-choice.png"></p>
 <h3 id="option-b-the-full-chat">Option B: the full chat</h3>
 <p><img src="images/service/chat/chat-turn-2.png"></p>
-<h3 id="the-full-chat-is-sent-to-the-ai">The full chat is sent to the AI</h3>
-<p><img src="images/service/chat/chat-turn-3.png"></p>
 <h3 id="the-full-chat-is-always-always-sent-to-the-ai">The full chat is always, always sent to the AI</h3>
 <p><img src="images/service/chat/chat-turn-goodnight.png"></p>
-<h4 id="_127"></h4>
+<h4 id="_116"></h4>
 <p>Let that sink in: every message you send, resends the full conversation.</p>
 <h3 id="why-because-the-llm-need-the-full-context">Why? Because the LLM need the full context</h3>
 <p>The LLM can only reason about <em>the context it is given</em>.
@@ -1089,62 +967,56 @@ You want it to know about X, beyond its trained facts? Then X must be <em>in the
 No links, no outside preferences, no memories, including from earlier chats:<br>the context is <em>ALL</em> the LLM can respond to.</p>
 <h3 id="the-context-after-3-prompts">The context after 3 prompts</h3>
 <p><img src="images/service/chat/tokens-turn-3.png"></p>
-<h3 id="the-context-after-10-prompts">The context after 10 prompts</h3>
-<p><img src="images/service/chat/tokens-turn-10.png"></p>
 <h3 id="the-context-after-50-prompts">The context after 50 prompts</h3>
 <p><img src="images/service/chat/tokens-turn-50.png"></p>
-<h3 id="total-123n-on2-messages">Total: 1+2+3+...N = O(N²) messages</h3>
+<h3 id="the-total-is-123n-on2-messages">The total is 1+2+3+...N = O(N²) messages</h3>
 <p><img src="images/service/chat/tokens-turn-50-total.png"></p>
-<h4 id="_128"></h4>
+<h4 id="_117"></h4>
 <p>The total tokens you pay for is added up for every turn, so you use more and more tokens at every turn.</p>
 <h3 id="save-tokens-clear-and-compact">Save tokens: clear and compact</h3>
-<h4 id="_129"></h4>
+<h4 id="_118"></h4>
 <p>The best way to save tokens is simply to not keep on dragging the entire conversation along all the time.</p>
 <h3 id="clear-wipe-all-get-back-to-scratch">Clear: wipe all, get back to scratch</h3>
 <p><img src="images/service/chat/clear.png"></p>
-<h4 id="_130"></h4>
+<h4 id="_119"></h4>
 <p>"Clear" simply means wiping the entire chat and starting from scratch.</p>
 <h3 id="compact-keep-a-summary-of-the-chat">Compact: keep a summary of the chat</h3>
 <p><img src="images/service/chat/compact.png"></p>
-<h4 id="_131"></h4>
+<h4 id="_120"></h4>
 <p>"Compact" means that the agent ask the LLM to summarize the chat and add that summary as a first message.</p>
 <h3 id="your-best-token-saving-friends-clear-and-compact">Your best token-saving friends: clear and compact</h3>
 <ul>
-<li>In terminal agents write <code>/clear</code> or <code>/compact</code></li>
-<li>In web agents, just start a new chat; compact may not be an option</li>
-<li>compact can be preferable, as it doesn't use that many more tokens</li>
-<li>If you don't clear or compact, the agent will auto-compact for you
+<li>Write <code>/clear</code> or <code>/compact</code> or just start a new chat
 <br></li>
-<li>The token-cost-saving story is more complicated; more on that later</li>
+<li>Compact doesn't use that many more tokens
+<br></li>
+<li>If you don't, the agent will auto-compact for you
+<br>
+The token-cost rather complicated; more later</li>
 </ul>
+<h4 id="_121"></h4>
+<p>Many agents also offer ways of branching or editing or backtracking on your messages.</p>
+<p>For example Claude has <code>/btw</code> to send a message out-of-band.</p>
 <h3 id="chatting-recap">Chatting recap</h3>
 <ul>
-<li>The entire conversation is always sent, every time you write anything to the AI</li>
-<li>Use clear and compact to keep the context lean</li>
+<li>The full chat is always sent, every time
+<br></li>
+<li>Keep the context lean</li>
 </ul>
-<h2 id="think-harder">"Think harder"</h2>
+<h2 id="thinking">Thinking</h2>
 <p><img src="images/overview/thinking.png"></p>
-<h3 id="what-could-think-harder-mean">What could "think harder" mean?</h3>
+<h3 id="what-could-thinking-mean">What could "thinking" mean?</h3>
 <ul>
-<li>
-<p>Maybe the model's billions of weights can be tweaked to somehow "think better"?<br><em>Hmm, no - the LLM weights are constant numbers, frozen after training.</em></p>
-</li>
-<li>
-<p>So maybe thinking call on some "bigger AI", stashed away in the back room?<br><em>But then how could the biggest models think harder too? No, the hardware and model is fixed.</em></p>
-</li>
-<li>
-<p>Thinking could mean the LLM plan better when asked to think harder?<br><em>No wait, the transformer is pure math, acting the same way for the same input.</em></p>
-</li>
-<li>
-<p>Ah, now I have the full picture. Is what we do here, refining the output, thinking?<br><em>That's a bingo!</em></p>
-</li>
+<li>Maybe the can be tweaked to "think better"?<br><em>Hmm, no - the LLM weights are constant numbers, frozen after training.</em>
+<br></li>
+<li>Is there a "bigger AI" stashed away in the back room?<br><em>But then how could the biggest models think harder too?</em>
+<br></li>
+<li>But wait. Is what we do here "thinking"?<br><em>That's a bingo!</em></li>
 </ul>
-<h3 id="thinking-is-think-append-repeat">Thinking is: think, append, repeat</h3>
+<h3 id="thinking-is-contemplate-append-repeat">Thinking is: contemplate, append, repeat</h3>
 <p><img src="images/service/overview/thinking.png"></p>
 <h3 id="chain-of-thought">Chain of Thought</h3>
-<p>Thinking is called <strong>Chain of Thought</strong>, or <strong>CoT</strong>
-&nbsp;
-The feature has many names (e.g. <em>effort</em>) but <em>always works this way</em>:
+<p>Thinking (aka effort, reasoning, ...) is called <strong>Chain of Thought</strong>, or <strong>CoT</strong>
 &nbsp;
 1. Inject a special <em><let me think about that>-token</em>, known from training
 2. That token makes the LLM <em>comtemplate</em>, rather than seek to respond
@@ -1152,21 +1024,21 @@ The feature has many names (e.g. <em>effort</em>) but <em>always works this way<
 4. Blocks are also sent to the agent, which may show them to you in its UI</p>
 <h3 id="example-thinking-blocks-no-wait">Example thinking blocks - "No, wait"</h3>
 <p><img src="images/service/thinking/now-i-understand.png"></p>
-<h4 id="_132"></h4>
+<h4 id="_122"></h4>
 <p>Thinking generally produce a better result and the model can catch itself if it's going down the wrong path.</p>
 <p>However, it can possibly also strengthen a misbelief.</p>
 <h3 id="thinking-typically-improves-the-response">Thinking typically improves the response</h3>
 <p><img src="images/service/thinking/haiku.png"></p>
-<h4 id="_133"></h4>
+<h4 id="_123"></h4>
 <p>Without "Extended thinking", the LLM failed to produce a proper Haiku. The syllable-counting Haiku format is hard for the LLM to produce just one token at a time.</p>
 <h3 id="you-control-the-thinking-effort">You control the thinking effort</h3>
 <p><img src="images/service/thinking/claude-code-enable-thinking.png"></p>
-<h4 id="_134"></h4>
+<h4 id="_124"></h4>
 <p>You can enable thinking in all kinds of manners.</p>
 <p>Nowadays, it's often simply enabled by default, or even automatically controlled.</p>
 <h3 id="saying-ultrathink-has-been-on-off-on">Saying "ultrathink" has been on, off, on</h3>
 <p><img src="images/service/thinking/ultrathink.png"></p>
-<h4 id="_135"></h4>
+<h4 id="_125"></h4>
 <p>In early days, this was how Claude Code controlled the thinking.</p>
 <p>Then it was taken out to be replaced with a "proper" thinking-setting.</p>
 <p>But lo and behold: it was added back in in Claude Code v2.1.68, so the convenience of just being able to write "ultrathink" must have been missed.</p>
@@ -1181,20 +1053,16 @@ The feature has many names (e.g. <em>effort</em>) but <em>always works this way<
 <p><img src="images/service/thinking/claude-code-thinking.png"></p>
 <h2 id="tools">Tools</h2>
 <p><img src="images/overview/tools.png" /></p>
-<h4 id="_136"></h4>
+<h4 id="_126"></h4>
 <p>So far, we've only seen the LLM generate text.</p>
 <p>Using <em>tools</em> is how the LLM can seek out new facts and generally, surprisingly maybe, be <em>in control</em>.</p>
-<h3 id="a-math-example">A math-example</h3>
-<p><img src="images/llm/core/math.svg" /></p>
-<h4 id="_137"></h4>
-<p>In this example, the LLM produced not a text but some mysterious "calc" code call. What's up?</p>
 <h3 id="the-llm-can-ask-to-use-tool-xxx">The LLM can ask to "use tool xxx"</h3>
 <p><img src="images/service/overview/tools.png" /></p>
-<h4 id="_138"></h4>
+<h4 id="_127"></h4>
 <p>Meaning: The LLM can predict that the best continuation is output that <em>asks for some tool to be run</em>. The output from that tool will then be added to the context, practically as if the user had added it themselves.</p>
 <h3 id="calculate-12344287389398790237342">"calculate 123442873893*98790237342"</h3>
 <p><img src="images/service/tools/python-math-example/request.png" /></p>
-<h4 id="_139"></h4>
+<h4 id="_128"></h4>
 <p>This is how the actual agent-and-service communication would look like:</p>
 <p>You, the user, send this text to the AI: "please calculate 123442873893*98790237342".</p>
 <p>However, the agent <em>also includes info about tools</em> that is makes available, to be added to the context.</p>
@@ -1202,7 +1070,7 @@ The feature has many names (e.g. <em>effort</em>) but <em>always works this way<
 <p>In this situation there's a tool called "code_interpreter" with the description "Executes Python code and returns the result", taking a string-argument of Python code. <strong>Python</strong> is a popular programming language that the LLM during training has seen millions of examples of.</p>
 <h3 id="llm-asks-to-use-tool-code_interpreter">LLM asks to use tool "code_interpreter"</h3>
 <p><img src="images/service/tools/python-math-example/tool-use.png" /></p>
-<h4 id="_140"></h4>
+<h4 id="_129"></h4>
 <p>Based on the training, the LLM decides that the best continuation from the user saying "please calculate 123442873893*98790237342" is to call a suitable tool that can do math. The "code_interpreter" seems like such a suitable tool.</p>
 <p>So the LLM's output asks for a "tool_use" of that tool, conjuring up the suitable Python code snippet <code>print(123442873893 * 98790237342)</code> from its massive training on Python code.</p>
 <p>As an aside: the tool-training is commonly done using a process called <em>Toolformer</em>.</p>
@@ -1213,24 +1081,24 @@ The feature has many names (e.g. <em>effort</em>) but <em>always works this way<
 - <a href="https://arxiv.org/pdf/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools</a></p>
 <h3 id="the-tools-is-being-run-on-agent-or-server">The tools is being run (on agent or server)</h3>
 <p><img src="images/service/tools/python-math-example/tool-result.png" /></p>
-<h4 id="_141"></h4>
+<h4 id="_130"></h4>
 <p>If the tool is server-side then the server runs it. Otherwise it goes all the way back to the client. As mentioned, running Python code or fetching webpages is typically done by the server. Reading or creating local files can of course only be done by the agent on the user's computer.</p>
 <p>At any rate, the tool runs, the output is added to the context, and the new context is passed back into the LLM for another pass.</p>
-<h3 id="finally-the-ai-service-can-respond">Finally, the AI service can respond</h3>
+<h3 id="finally-the-llm-can-respond">Finally, the LLM can respond</h3>
 <p><img src="images/service/tools/python-math-example/response.png" /></p>
-<h4 id="_142"></h4>
+<h4 id="_131"></h4>
 <p>With that added context from the tool, the LLM can finally produce a nice and correct answer.</p>
 <h3 id="the-anatomy-of-a-tool-definition">The anatomy of a tool definition</h3>
 <p><img src="images/service/tools/tools-list.png" /></p>
-<h4 id="_143"></h4>
+<h4 id="_132"></h4>
 <p>Every tool speficies the name of the tool, a description of what the tool does, and details on how to call it.</p>
 <p>The information is so detailed that the LLM can make sane decisions on whether calling the tool would be useful or not. Of course, in order for the LLM to see it, the tool-information will need to actually be part of the context - how else would the LLM know about it?</p>
 <p>So tools can take up a fair chunk of the context.</p>
 <h3 id="tools-the-so-called-agentic-loop">Tools: the so-called "agentic loop"</h3>
 <p><img src="images/service/tools/the-agentic-loop.png" /></p>
-<h4 id="_144"></h4>
+<h4 id="_133"></h4>
 <p>The introduction of this "tool loop" lead to the name, "the agentic loop": an agent using tools until a goal is reached.</p>
-<h4 id="_145"></h4>
+<h4 id="_134"></h4>
 <p>Links:
 - <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a></p>
 <h3 id="the-llm-is-in-control-via-tools">The LLM is in control - via tools</h3>
@@ -1256,7 +1124,7 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 </ul>
 </div>
 </div>
-<h4 id="_146"></h4>
+<h4 id="_135"></h4>
 <ul>
 <li>
 <p><em>Calling tools</em>: Which tool, with what inputs, and whether to call several in parallel or sequentially. If two tools could both answer a question, the model picks.</p>
@@ -1285,7 +1153,7 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 </ul>
 <h3 id="example-starting-background-workers">Example: starting background workers</h3>
 <p><img src="images/service/tools/background-worker.png" /></p>
-<h4 id="_147"></h4>
+<h4 id="_136"></h4>
 <p>For example, the agent is not the one making the decision when to actually <em>run</em> another background agent: it is <em>the LLM</em> that makes that decision. The agent simply has to provide a named tool, a mechanism, for actually running background agents.</p>
 <p>So in a way it's "easy" to write an agent: just provide well-described tools that the LLM can work with: like "ask the user", "delete a file", "start multiple agents", etc. The LLM will then decide to call them.</p>
 <h3 id="the-home-field-advantage">The home-field advantage</h3>
@@ -1296,36 +1164,29 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 <br></li>
 <li>That's why running <em>Claude Opus in Claude Code</em> can feel more smooth than running Opus inside <em>Copilot, Cursor, Perplexity,</em> or <em>OpenCode</em>. It's just a better fit.</li>
 </ul>
-<h3 id="i-did-the-thing-no-you-didnt">"I did the thing" No, you didn't?</h3>
-<p>Sometimes the AI will say "I did the thing". For example, "I wrote the file".<br>
-But nothing was written. Why does it lie? "Oh you, silly AI"<br>
-But remember, the LLM just ask for the file to be written. If the agent's tool somehow fail silently then the LLM will not know about it.<br>
-It seems to rarely happen anymore but when it does, this is why.</p>
-<h3 id="ask-the-ai-what-tools-do-you-have">Ask the AI: "what tools do you have?"</h3>
-<p><img src="images/service/tools/rovo-ask-what-pages-tools.png" /></p>
-<h4 id="_148"></h4>
-<p>Simply asking what tools are available can be a good way of finding inspiration for how to use that AI.</p>
-<h3 id="example-rovo-show-me-your-pages-tools">Example: "Rovo, show me your pages-tools"</h3>
+<h3 id="ask-the-ai-show-me-your-tools-for-pages">Ask the AI: "show me your tools for pages"</h3>
 <p><img src="images/service/tools/rovo-ask-how-many-pages.png" /></p>
+<h4 id="_137"></h4>
+<p>Simply asking what tools are available can be a good way of finding inspiration for how to use that AI.</p>
 <h3 id="how-many-pages-are-in-my-own-space">"How many pages are in my own space?"</h3>
 <p><img src="images/service/tools/rovo-ask-how-many-pages.png" /></p>
-<h4 id="_149"></h4>
+<h4 id="_138"></h4>
 <p>Rovo does a number of tool calls to figure out that I have three pages in my personal Confluence space.</p>
 <h2 id="mcp-servers">MCP servers</h2>
 <p><img src="images/overview/tools.png" /></p>
-<h4 id="_150"></h4>
+<h4 id="_139"></h4>
 <p>Now that you know about the concept of using tools, let's move onto something very popular that is very related to tools: MCP servers.</p>
 <p>But hang on, this looks exactly like the highlighting of "tools" from before?</p>
 <p>Yes, that's right.</p>
 <h3 id="mcp-servers-simply-gives-you-more-tools">MCP servers simply gives you ... more tools</h3>
 <p><img src="images/service/overview/mcp.png"></p>
-<h4 id="_151"></h4>
+<h4 id="_140"></h4>
 <p>MCP is a standardized way of giving the LLM access to tools outside the agent or server.</p>
 <p>In principle <em>it works exactly like tools</em> that we've just covered.</p>
 <p>The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.</p>
 <h3 id="mcp-servers-gives-uniform-access-to-tools">MCP servers gives uniform access to tools</h3>
 <p><img src="images/service/mcp/uniform-mcp-interface.png"></p>
-<h4 id="_152"></h4>
+<h4 id="_141"></h4>
 <p>Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to seet what API services are available in many different ways. There's now just one way; the MCP protocol way: ask for tool-names and call a tool.</p>
 <p>Links:
 - <a href="https://modelcontextprotocol.io/specification/">Model Context Protocol Specification</a></p>
@@ -1335,18 +1196,16 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <br></li>
 <li>It's a middleman, <em>a standardized protocol</em>, that enable the AI Service to discover another service that exists somewhere.
 <br></li>
-<li>When somebody says <em>"You can add an MCP server for Atlassian"</em>, they mean: <em>"You can tell the AI about Atlassian's API/tools"</em>.
-<br></li>
-<li>The <em>agent or server always call the MCP server</em>, never the other way around.</li>
+<li>When somebody says <em>"You can add an MCP server for Atlassian"</em>, they're practically saying:<br><em>"You can tell the AI about Atlassian's API"</em>.</li>
 </ul>
-<h4 id="_153"></h4>
+<h4 id="_142"></h4>
 <p>Yes, it's really "just that". A live list of tools and a way to call them.</p>
 <h3 id="example-atlassian-mcp">Example: Atlassian MCP</h3>
 <p><img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png"></p>
-<h4 id="_154"></h4>
+<h4 id="_143"></h4>
 <p>Adding the Atlassian MCP server mean I have access to tools, just like Rovo used in the example before.</p>
 <h2 id="an-mcp-tool-call-in-detail">An MCP tool-call in detail</h2>
-<h4 id="_155"></h4>
+<h4 id="_144"></h4>
 <p>Let's take a look at concretely how an MCP service is used.</p>
 <h3 id="first-add-the-mcp-server-info-to-the-agent">First, add the MCP server info to the agent</h3>
 <p><img src="images/service/mcp/flow/1-add-server.png"></p>
@@ -1354,130 +1213,107 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <p><img src="images/service/mcp/flow/2-explain.png"></p>
 <h3 id="the-info-is-present-in-every-chat-you-send">The info is present in <em>every chat</em> you send</h3>
 <p><img src="images/service/mcp/flow/3-request.png"></p>
-<h4 id="_156"></h4>
+<h4 id="_145"></h4>
 <p>The agent, or more likely server, will fetch the list of tools from the MCP servers and cache them.</p>
 <p>Then it will add information about each MCP server tool to the context.</p>
 <p>It <em>used</em> to be that the full information was added to the context, but that simply became too big. So the modern behavior is actually to <em>only add the tool-name</em> which can be maximum 64 characters, and that name is <em>the only guidance</em> the LLM will get about that tool. So you'd better pick descriptive names for yout MCP tools.</p>
-<h3 id="add-full-info-if-the-llm-want-to-use-a-tool">Add full info if the LLM want to use a tool</h3>
-<p><img src="images/service/mcp/flow/4-tool-search.png"></p>
+<!--### Add full info if the LLM want to use a tool-->
+<!--<img src="images/service/mcp/flow/4-tool-search.png">-->
+
 <h3 id="llm-decides-mcp-server-calls">LLM decides, MCP server calls</h3>
 <p><img src="images/service/mcp/flow/5-tool-use.png"></p>
-<h4 id="_157"></h4>
+<h4 id="_146"></h4>
 <p>The AI is talking to an MCP server, which is turn call some API.</p>
 <p>The MCP server acts on your behalf, authenticated with your personal API key that gives it the same access you would have.</p>
 <p>So for using an MCP server you must always be "a user" on the service behind it, like Github, Figma, Datadog, or Siteimprove.</p>
 <h3 id="the-llm-can-now-respond">The LLM can now respond</h3>
 <p><img src="images/service/mcp/flow/6-response.png"></p>
-<h4 id="_158"></h4>
+<h4 id="_147"></h4>
 <p>With the tool-result from the service added to the context, the LLM can now compose a proper response.</p>
-<h3 id="mcp-servers-recap">MCP servers recap</h3>
-<ul>
-<li>An MCP server is a slim facade to some service somewhere.
-<br></li>
-<li>MCP servers are <em>no longer</em> expensive to include
-<br></li>
-<li>You may need to <em>nudge the LLM</em> by using same word as the tool name</li>
-</ul>
-<p><img src="images/service/mcp/mcp-simplified.png"></p>
-<h3 id="example-siteimprove-mcp">Example: Siteimprove MCP</h3>
-<h4 id="_159"></h4>
+<h3 id="example-siteimprove-mcp-demo">Example: Siteimprove MCP demo</h3>
+<h4 id="_148"></h4>
 <p>"It's simple", I said. Okay, let me show how.</p>
 <h3 id="in-1-hour-a-demo-mcp-server-was-coded-and-live">In 1 hour, a demo MCP server was coded and live</h3>
 <p><img src="images/service/mcp/siteimprove/github-source.png"></p>
-<h4 id="_160"></h4>
+<h4 id="_149"></h4>
 <p>This was the first time ever I build an MCP server. I basically told Claude, "here's Siteimprove's public API documentation, please build an MCP server for it and suggest where to deploy it". I ended up deploying it on a free account on <a href="https://www.cloudflare.com/">Cloudflare</a>.</p>
 <p>The hardest part was actually that the tool-names were limited to 64 characters and Siteimprove's API's endpoints often exceeded that, so the names had to be compacted somehow; like renaming "quality_assurance" to just "qa".</p>
 <p>There's nothing secret about this MCP server for Siteimprove's public API. Any Siteimprove-user with an API key can use it, and anybody can build an MCP server just like it since Siteimprove's API is publicly available with each API endpoint fully described.</p>
 <p>Links:
 - <a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp">Siteimprove MCP demo source</a>
 - <a href="https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got">Siteimprove MCP demo, live tool list</a></p>
-<h3 id="siteimprove-api-openapi-and-mcp">Siteimprove API, OpenAPI, and MCP</h3>
+<h3 id="siteimprove-api-doc-openapi-doc-and-mcp-doc">Siteimprove API doc, OpenAPI doc, and MCP doc</h3>
 <div class="cols">
 <p><img src="images/service/mcp/siteimprove/tool-in-docs.png">
 <img src="images/service/mcp/siteimprove/tool-in-openapi-spec.png">
 <img src="images/service/mcp/siteimprove/tool-in-mcp.png"></p>
 </div>
-<h4 id="_161"></h4>
+<h4 id="_150"></h4>
 <p>The API docs, the OpenAPI spec, and the MCP version of the Siteimprove API's endpoint for <a href="https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages">/sites/{site_id}/analytics/content/most_popular_pages</a></p>
 <p>The MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.</p>
-<h3 id="how-to-add-the-demo-mcp-server-to-claude">How to add the demo MCP server to Claude</h3>
+<h3 id="add-the-demo-mcp-server-to-claude">Add the demo MCP server to Claude</h3>
 <p><img src="images/service/mcp/siteimprove/github-readme.png"></p>
-<h4 id="_162"></h4>
+<h4 id="_151"></h4>
 <p>Links:
 - <a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp#connect-to-claudeai">Connect to Claude.ai</a></p>
 <h3 id="all-531-endpoinstools-now-available-in-claude">All 531 endpoins/tools now available in Claude</h3>
 <p><img src="images/service/mcp/siteimprove/mcp-connector.png"></p>
-<h4 id="_163"></h4>
+<h4 id="_152"></h4>
 <p>Under Connectors you can see all the individual tools exposed by the Siteimprove demo MCP server.</p>
 <h3 id="need-to-authenticate-on-the-first-usage">Need to authenticate on the first usage</h3>
 <p><img src="images/service/mcp/siteimprove/authenticate.png"></p>
-<h4 id="_164"></h4>
+<h4 id="_153"></h4>
 <p>This page is produced by my demo code, so an MCP server can style it just as it pleases.</p>
 <h3 id="claude-can-now-call-siteimprove-mcp-tools">Claude can now call Siteimprove MCP tools</h3>
 <p><img src="images/service/mcp/siteimprove/chat.png"></p>
-<h4 id="_165"></h4>
+<h4 id="_154"></h4>
 <p>In order not to reveal actual page views I blacked out the reported numbers.</p>
-<h3 id="the-mcp-tools-the-llm-found-and-used">The MCP tools the LLM found and used</h3>
-<p><img src="images/service/mcp/siteimprove/chat-tool-use.png"></p>
-<h4 id="_166"></h4>
+<!--### The MCP tools the LLM found and used-->
+<!--<img src="images/service/mcp/siteimprove/chat-tool-use.png">-->
+
+<h4 id="_155"></h4>
 <p>When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool "Siteimprove__analytics_content_most_popular_pages" would likely be useful, and asked for it to be called.</p>
 <h3 id="all-the-included-siteimprove-mcp-tools">All the included Siteimprove MCP tools</h3>
 <p><img src="images/service/mcp/siteimprove/full-tool-list.png"></p>
-<h4 id="_167"></h4>
+<h4 id="_156"></h4>
 <p>Yes, it took 10 screenshots to put this massive list together.</p>
 <p>In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.</p>
 <h3 id="mcp-is-massively-popular">MCP is massively popular</h3>
 <p><img src="images/service/mcp/massive-mcp-server-list.png"></p>
 <h3 id="almost-spoken-about-like-some-magic-remedy">Almost spoken about like some "magic" remedy</h3>
 <p><img src="images/service/mcp/code-munch.png"></p>
-<h3 id="mcp-server-takeaways">MCP server takeaways</h3>
-<ul>
-<li>An MCP server "just" gives the AI access to tools on <em>some service, somewhere</em>
-&nbsp;</li>
-<li>Every added MCP server bring the entire list of tool-names into every chat
-&nbsp;</li>
-<li>Powerful, sure, but still "just" tool-calls</li>
-</ul>
 <h2 id="the-system-prompt">The system prompt</h2>
-<h4 id="_168"></h4>
+<h4 id="_157"></h4>
 <p>Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.</p>
 <h3 id="final-piece-of-the-context">Final piece of the context</h3>
 <p><img src="images/service/overview/chat-system.png"></p>
 <h3 id="system-prompt">System prompt</h3>
-<p>"System prompt" sure sounds very special and magical.</p>
-<p>But it's not.</p>
 <ul>
-<li>A <strong>system prompt</strong> is still <em>just plain text</em></li>
-<li>The AI agent stuff <em>"whatever is useful to tell the LLM"</em> into section "system prompts"</li>
-<li>You could have <em>written this text yourself</em> and just sent it in a prompt (well, sort of)</li>
+<li>A <strong>system prompt</strong> is still <em>just plain text</em>
+<br></li>
+<li>The agent stuff <em>"whatever is useful to tell the LLM"</em> into "system prompts"
+<br></li>
+<li>You could have <em>written this text yourself</em> in a prompt (well, sort of)</li>
 </ul>
-<h3 id="example-system-prompt-from-vs-code">Example system prompt from VS Code</h3>
-<p><img src="images/service/system/prompt/json-system-vscode-nowrap.png"></p>
-<h4 id="_169"></h4>
-<p>Here's an example of the Copilot system prompt in VS Code.</p>
-<h3 id="its-pretty-big">It's pretty big</h3>
-<p><img src="images/service/system/prompt/json-system-vscode-wrap.png"></p>
-<h4 id="_170"></h4>
-<p>Here it is, expanded.</p>
-<h3 id="true-the-system-prompt-is-obeyed-more">True, the system prompt <em>is</em> obeyed more</h3>
+<h3 id="actually-the-system-prompt-is-obeyed-more">Actually, the system prompt <em>is</em> obeyed more</h3>
 <p><img src="images/service/system/prompt/training.png"></p>
-<h4 id="_171"></h4>
+<h4 id="_158"></h4>
 <p>Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the lab model makers will of course make sure that the system instructions are crafted to express the desired behavior.</p>
 <p>This bias towards obeying the system-instructions are therefore baked into the LLM's weights and hence predictions.</p>
 <p>But it is just that: a bias, a trained preference to lean towards, in particular in case of conflicting instructions.</p>
 <p>Remember: in the LLM, <em>nothing is a hard rule</em>. it's all just textual instructions that carry more or less weight.</p>
 <h3 id="convincing-copilotgpt41-to-change-its-name">Convincing Copilot/GPT4.1 to change its name</h3>
 <p><img src="images/service/system/prompt/i-am-groot.png"></p>
-<h4 id="_172"></h4>
+<h4 id="_159"></h4>
 <p>With enough "super-urgent" persuasion, my user message was prioritized over the system prompt.</p>
 <p>However, all other models were not at all convinced and saw right through the presumed urgency.</p>
 <h3 id="the-system-prompt-is-composed-by-the-agent">The system prompt is composed by the agent</h3>
 <p><img src="images/service/system/prompt/maximillian.png"></p>
-<h4 id="_173"></h4>
+<h4 id="_160"></h4>
 <p>The system prompt is entirely constructed by the agent. That's why you get quite different system prompts and behavior depending on what agent you use. So if you build your own agent then you can construct your own system prompt entirely.</p>
 <h3 id="the-full-context">The full context</h3>
 <p><img src="images/service/system/layer-of-instructions.png"></p>
-<h4 id="_174"></h4>
+<h4 id="_161"></h4>
 <p>This figure illustrate two things:</p>
 <ul>
 <li>the relationship between your chat, the system prompt, and the LLM</li>
@@ -1494,7 +1330,7 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <p>So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about <em>just these parts</em> and they really aren't a secret in any way.</p>
 <p>It's a lot, but let's very briefly go through the 11 parts. And again, remember: all of this included into every chat.</p>
 <h3 id="111-the-agent-system-prompt">#1/11: The agent system prompt</h3>
-<h3 id="agent-specific-instructions">Agent-specific instructions</h3>
+<h4 id="_162"></h4>
 <ul>
 <li>Instructions that the agent (chatpgt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
 <br></li>
@@ -1502,24 +1338,17 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <br></li>
 <li>Generally, agents don't make it visible in their UI</li>
 </ul>
-<h4 id="_175"></h4>
+<h4 id="_163"></h4>
 <p>Links:
 - <a href="https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html">How Claude Code Builds a System Promp</a></p>
 <h3 id="claudes-agent-system-prompts-are-public">Claude's agent system prompts are public</h3>
 <p><img src="images/service/system/prompt/claude-prompts.png"></p>
-<h4 id="_176"></h4>
+<h4 id="_164"></h4>
 <p>Links:
 - <a href="https://platform.claude.com/docs/en/release-notes/system-prompts">Claude System Prompts</a></p>
-<h3 id="of-course-all-agent-prompts-have-been-leaked">Of course, all agent prompts have been "leaked"</h3>
-<p><img src="images/service/system/prompt/leaks-home.png"></p>
-<h4 id="_177"></h4>
-<p>Links:
-- <a href="https://github.com/asgeirtj/system_prompts_leaks">system prompts leaks</a></p>
-<h3 id="the-microsoft-agent-prompts">The Microsoft agent prompts</h3>
-<p><img src="images/service/system/prompt/leaks-microsoft.png"></p>
 <h3 id="the-copilot-in-word-agent-prompt">The "Copilot in Word" agent prompt</h3>
 <p><img src="images/service/system/prompt/leaks-copiot-in-microsoft-word.png"></p>
-<h4 id="_178"></h4>
+<h4 id="_165"></h4>
 <p>When you use Copilot in Microsoft Word, this is the system prompt.</p>
 <h3 id="211-system-information">#2/11: System information</h3>
 <h3 id="date-time-location-os-etc">Date, time, location, OS, etc</h3>
@@ -1527,7 +1356,7 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <h3 id="311-automatically-stored-memories">#3/11: Automatically stored memories</h3>
 <h3 id="selected-information-from-your-chats">Selected information from your chats</h3>
 <p><img src="images/service/system/memory/memory-example.png"></p>
-<h4 id="_179"></h4>
+<h4 id="_166"></h4>
 <p>The most important facts from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you'd might expect. Look at the scrollbar: there's no more than 3-4 pages of text stored as memory about me after a year of chatting.</p>
 <p>In terminal AI Agents, there can be multiple files with such "memories".</p>
 <h3 id="411-some-context-from-the-agent">#4/11: Some context from the agent</h3>
@@ -1538,7 +1367,7 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <h3 id="511-your-preferences">#5/11: Your preferences</h3>
 <h3 id="example-chatgpt-can-be-friendly-or-pragmatic">Example: ChatGPT can be "friendly" or "pragmatic"</h3>
 <p><img src="images/service/system/preferences/chatgpp-personality.png"></p>
-<h4 id="_180"></h4>
+<h4 id="_167"></h4>
 <p>The ChatGPT personality is implemented as two different set of instructions.</p>
 <h3 id="example-language">Example: Language</h3>
 <p><img src="images/service/system/preferences/language/claude-ai-language.png"></p>
@@ -1548,43 +1377,39 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <p><img src="images/service/system/preferences/language/klingon.png"></p>
 <h3 id="its-all-just-instructions-even-the-language-preference">It's all just instructions, even the language preference</h3>
 <p><img src="images/service/system/preferences/language/language-in-the-prompt.png"></p>
-<h4 id="_181"></h4>
+<h4 id="_168"></h4>
 <p>No hidden commands. Just text. The LLM has no "fixed set of languages".</p>
-<h3 id="example-mode-plan-auto-manual">Example: mode; plan, auto, manual, ...</h3>
+<h3 id="modes-are-also-just-text-instructions">"Modes" are also just text instructions</h3>
 <p><img src="images/service/system/preferences/modes/enter-plan-mode.png"></p>
-<h3 id="you-or-the-llm-decide-when-to-enter-and-leave-mode">You or the LLM decide when to enter and leave mode</h3>
-<p><img src="images/service/system/preferences/modes/before-exit-plan-mode.png"></p>
-<h3 id="modes-are-really-just-system-ish-instructions">"Modes" are really just system-ish instructions</h3>
 <p><img src="images/service/system/preferences/modes/exited-plan-mode.png"></p>
-<h4 id="_182"></h4>
+<h4 id="_169"></h4>
 <p>Modes are simply implemented as instructions that tell the LLM to plan or do, for instance.</p>
 <p>Nowadays, each mode-change typicaally results in <em>adding a system message</em> instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".</p>
 <h3 id="611-agent-tools">#6/11: Agent tools</h3>
-<h3 id="info-about-all-tools-are-included">Info about all tools are included</h3>
+<h3 id="all-tool-names-are-included">All tool names are included</h3>
 <p><img src="images/service/tools/tools-list.png" /></p>
-<h4 id="_183"></h4>
+<h4 id="_170"></h4>
 <p>It's quite possible that <em>only the tool's description</em> may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.</p>
 <h3 id="711-skills">#7/11: Skills</h3>
 <h3 id="hey-arent-skills-a-big-deal">Hey, aren't skills a big deal?</h3>
-<h4 id="_184"></h4>
+<h4 id="_171"></h4>
 <p>Well, yes they are. But they belong here and are actually very simple.</p>
 <hr />
 <p><img src="images/service/system/skills/trinity.png" /></p>
-<h4 id="_185"></h4>
+<h4 id="_172"></h4>
 <p>A skill is <em>some (expertise) instructions, that is loaded when you need it</em>.</p>
 <h3 id="whats-a-skill">What's a skill?</h3>
 <ul>
-<li><strong>Agent Skills</strong> is an open standard, made by Anthropic and widely supported by agents</li>
-<li>A skill is <em>text instructions</em> with a name</li>
-<li>After you install a skill, those instructions can be loaded into the context on demand</li>
-<li>The <em>on demand</em> is done by either you or the LLM:<ul>
-<li>In a terminal agent you can type <code>/skill-name</code></li>
-<li>In a web chat you just ask something like <em>"use skill xxx to ..."</em></li>
-<li>The skill has a description and the LLM can ask to load the skill's content when it would seem useful, <em>just like for tools</em></li>
+<li>A skill is <em>text instructions</em> with a name
+<br></li>
+<li>A skill's instructions are loaded into the context on demand by you or the LLM:<ul>
+<li>Type <code>/skill-name</code> or just ask to <em>"use skill xxx to ..."</em></li>
+<li>The skill has a description so the LLM can ask to load the skill's content when it would seem useful, <em>just like for tools</em></li>
 </ul>
 </li>
 </ul>
-<h4 id="_186"></h4>
+<h4 id="_173"></h4>
+<p><strong>Agent Skills</strong> is an open standard, made by Anthropic and widely supported by agents</p>
 <p>The above is a generalization; skills can be configured to e.g. not be callable by the LLM.</p>
 <p>Links:
 - <a href="https://agentskills.io/home">Agent Skills Overview</a></p>
@@ -1595,130 +1420,109 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <br></li>
 </ul>
 <p><img src="images/service/system/skills/skill-anatomy.jpg" /></p>
-<h3 id="example-matt-pococks-grilling-skill">Example: Matt Pocock's "grilling" skill</h3>
-<p>Description:<br><br>"Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
-<br>
-<img src="images/service/system/skills/skill-griling.png" /></p>
-<h4 id="_187"></h4>
+<h3 id="example-using-matt-pococks-grilling-skill">Example: Using Matt Pocock's "grilling" skill</h3>
+<p><img src="images/service/system/skills/skill-parts.png" /></p>
+<h4 id="_174"></h4>
 <p>The <code>SKILL.md</code> file has just two required fields, name and description, and a markdown body.</p>
+<p>The name and description is always included in the system prompt.
+(Actually, this seems to be a bug, since skills marked <code>disable-model-invocation: true</code> should not be included).</p>
+<p>The full content is added as a <code>tool_result</code> message when the user or LLM ask for it.</p>
+<p>The content is just text, so it will need to refer to other resources to bring them in. Just like you would do in a text prompt for a file: "use NOTES.md to ...".</p>
+<p>That's it, really: a skill is useful (expert) knowledge, but in practice it's just a piece of text that you can bring in when you need it.</p>
 <p>Links:
 - <a href="https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling">grilling skill</a>
 - <a href="https://github.com/mattpocock">Matt Pocock on Github</a>
 - <a href="https://www.youtube.com/@mattpocockuk/videos">Matt Pocock on Youtube</a>
 - <a href="https://tosea.ai/blog/matt-pocock-skills-claude-code-guide">How to Use Matt Pocock's Skills for Claude Code: A Complete Guide</a>
 - <a href="https://www.youtube.com/watch?v=0oXOOlqVu5M">So I tried Matt's skills... - Theo</a></p>
-<h3 id="using-a-skill">Using a skill</h3>
-<p><img src="images/service/system/skills/skill-parts.png" /></p>
-<h4 id="_188"></h4>
-<p>The name and description is always included in the system prompt.
-(Actually, this seems to be a bug, since skills marked <code>disable-model-invocation: true</code> should not be included).</p>
-<p>The full content is added as a <code>tool_result</code> message when the user or LLM ask for it.</p>
-<p>The content is just text, so it will need to refer to other resources to bring them in. Just like you would do in a text prompt for a file: "use NOTES.md to ...".</p>
-<p>That's it, really: a skill is useful (expert) knowledge, but in practice it's just a piece of text that you can bring in when you need it.</p>
 <h3 id="hey-bro">Hey bro</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-code.png" /></p>
-<h4 id="_189"></h4>
+<h4 id="_175"></h4>
 <p>Some skills are really simple. Like this one called <code>bro</code>:</p>
 <p>It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."</p>
 <p>Links:
 - <a href="https://github.com/backnotprop/bro">bro</a></p>
 <h3 id="installing-the-bro-skill-for-terminal-agents">Installing the bro skill for terminal agents</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-install.png" /></p>
-<h4 id="_190"></h4>
+<h4 id="_176"></h4>
 <p>Install skills like this using <code>npx skills add &lt;repo-name&gt;</code>.</p>
 <h3 id="bro-in-action">Bro in action</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-in-action.png" /></p>
-<h4 id="_191"></h4>
+<h4 id="_177"></h4>
 <p>Thanks, bro.</p>
 <h3 id="installing-skills">Installing skills</h3>
 <h3 id="several-ways-for-terminalcli-agents">Several ways for terminal/CLI agents</h3>
 <p><img src="images/service/system/skills/install/cli.png" /></p>
-<h4 id="_192"></h4>
+<h4 id="_178"></h4>
 <p>The skill repo usually tells you what the options are.</p>
 <h3 id="claudeai-from-anthropic-or-your-organization">Claude.ai: from Anthropic or your organization</h3>
 <p><img src="images/service/system/skills/install/claude-ai-browse.png" /></p>
-<h4 id="_193"></h4>
+<h4 id="_179"></h4>
 <p>On claude.ai you can install skills from Anthropic or from your organization, if you're a member of one.</p>
 <h3 id="claudeai-upload-a-skill-zip-file">Claude.ai: upload a skill zip-file</h3>
 <p><img src="images/service/system/skills/install/claude-ai-upload.png" /></p>
-<h4 id="_194"></h4>
+<h4 id="_180"></h4>
 <p>The old-school, manual way: get the skill as a zip and upload it.</p>
-<h3 id="chatgpt-in-plugins-search-for-the-skill">ChatGPT: In plugins, search for the skill</h3>
-<p><img src="images/service/system/skills/install/chatgpt-browse-mattpocock.png" /></p>
-<h4 id="_195"></h4>
-<p>Matt Pocock's skills are also available in ChatGPT. They are called "plugins".</p>
-<h3 id="chatgpt-found-the-griling-skill">ChatGPT: Found the griling-skill</h3>
+<h3 id="chatgpt-call-them-plugins">ChatGPT call them plugins</h3>
 <p><img src="images/service/system/skills/install/chatgpt-grilling.png" /></p>
-<h4 id="_196"></h4>
-<p>Same one we found before, now for ChatGPT.</p>
+<h4 id="_181"></h4>
+<p>Matt Pocock's skills are also available in ChatGPT.</p>
 <h3 id="skills-recap">Skills recap</h3>
 <ul>
 <li>It's "just" snippets of text that you or the LLM can ask to <em>add to the chat</em>
 &nbsp;</li>
-<li>Really useful, though, but has no magic abilities - just text and files
+<li>Useful, sure, but has no special abilities
 &nbsp;</li>
-<li>Like "smartphone auto-complete": write <code>/bro</code> and bro's text is written out</li>
+<li>Like text-expansion: write <code>/bro</code> and bro's text is written out</li>
 </ul>
 <h3 id="811-mcp-servers">#8/11: MCP servers</h3>
-<h4 id="_197"></h4>
+<h4 id="_182"></h4>
 <p>We already covered them in detail. But there's one important thing to dig into: what the context include of hints about each tool so the LLM can decide to use it or not.</p>
-<h3 id="full-tool-description-is-long-eg-500-tokens">Full tool description is long, eg 500 tokens</h3>
-<p><img src="images/service/system/mcp/tool-definition.png"></p>
-<h4 id="_198"></h4>
-<p>It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server would eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.</p>
 <h3 id="modern-lazy-load-only-include-tool-name">Modern lazy-load: only include tool name</h3>
 <p><img src="images/service/system/mcp/tool-definition.png"></p>
-<h4 id="_199"></h4>
+<h4 id="_183"></h4>
+<p>It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server would eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.</p>
 <p>Nowadays the full definition is typically <em>not included in the context</em>: only the tool name. That's referred to as <strong>Lazy Schema Loading</strong>.</p>
 <p>This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.</p>
 <p>That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting match a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages vith most page views" then it would match practically nothing in the tool name and the LLM would maybe not notice that this tool was suitable to call.</p>
 <p>By the way: this demo name is problematic as it is 68 characters, so it should be shortened.</p>
 <p>Links:
 - <a href="https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names">SEP-986: Specify Format for Tool Names</a></p>
-<h3 id="20-tokens-instead-of-full-500-tokens">20 tokens instead of full 500 tokens</h3>
+<h3 id="those-tool-names-had-better-be-very-descriptive">Those tool names had better be very descriptive</h3>
 <p><img src="images/service/system/mcp/token-length.png"></p>
-<h4 id="_200"></h4>
+<h4 id="_184"></h4>
 <p>So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using the atlassian tools, I want to...."</p>
-<h3 id="911-project-instructions">#9/11: Project instructions</h3>
+<h3 id="91011-project-and-custom-instructions">#9+10/11: Project and custom instructions</h3>
 <h3 id="most-agents-offer-projects">Most agents offer "projects"</h3>
 <p><img src="images/service/system/projects/project-windows-to-linux.png"></p>
-<h4 id="_201"></h4>
+<h4 id="_185"></h4>
 <p>You can write instructions that is included in every chat related to a specific project or work that you're doing.</p>
 <p>They go by many names: Projects, Gems, Custom GPTs, Spaces.</p>
-<h3 id="1011-global-custom-instructions">#10/11: Global custom instructions</h3>
-<h3 id="customize-your-web-agent">Customize your web agent</h3>
+<h3 id="add-general-custom-instructions">Add general custom instructions</h3>
 <p><img src="images/service/system/customize/all-agents.png"></p>
-<h4 id="_202"></h4>
+<h4 id="_186"></h4>
 <p>In all agents, you can add custom instructions that are included in every chat.</p>
 <p>it could be your preference for how the AI should talk or act.</p>
 <p>If there's something in general about the agents behavior that you'd like to change then this is the place. For instance, I have added this line to help me improve my spelling:</p>
 <p>"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."</p>
 <h3 id="example-always-provide-a-dinosaur-analogy">Example: "always provide a dinosaur-analogy"</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-instruction.png"></p>
-<h4 id="_203"></h4>
+<h4 id="_187"></h4>
 <p>As a silly example I added custom instructions to Copilot to always end every answer with a brief dinosaur-analogy.</p>
 <h3 id="like-a-swift-velociraptor">"Like a swift Velociraptor ..."</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-chat.png"></p>
-<h4 id="_204"></h4>
+<h4 id="_188"></h4>
 <p>I actually forgot I had added this, but surely remembered when later I returned to Copilot.</p>
 <h3 id="1111-agent-files">#11/11: Agent files</h3>
 <h3 id="agent-file-an-international-file-of-mystery">"Agent file"? An International File of Mystery?</h3>
 <p><img src="images/service/system/agent-files/austin-powers.jpg"></p>
-<h4 id="_205"></h4>
+<h4 id="_189"></h4>
 <p>An "agents" file sounds like some instruction for an autonomous, free-roaming agent of a kind. I think it sounds like instructions for something to <em>happen</em>. Maybe for starting an agent, possibly in the background doing some secret work?</p>
-<h3 id="no-mystery-just-custom-instructions-for-cli-tools">No mystery - just custom instructions for CLI tools</h3>
+<h3 id="simply-custom-instructions-but-for-cli-agents">Simply custom instructions, but for CLI agents</h3>
 <p><img src="images/service/system/agent-files/claude-md-dinosaur.png"></p>
-<h4 id="_206"></h4>
+<h4 id="_190"></h4>
 <p>You're likely almost tired of me repeating "it's just more instructions to put into the system prompt". But agent-files are just that: the exact equivalent of custom (or project) instructions, only for the AI agents you run in the terminal.</p>
-<h3 id="heres-the-claudemd-file-for-this-presentation">Here's the CLAUDE.md file for this presentation</h3>
-<p><img src="images/service/system/agent-files/claude-md-ai-talk.png"></p>
-<h3 id="names-and-locations-are-a-bit-of-a-jungle">Names and locations are a bit of a jungle</h3>
-<p><img src="images/service/system/agent-files/agents-md.png"></p>
-<h4 id="_207"></h4>
-<p>I won't go into details with just how exactly agent-files can be named and organized in your folders, but just highlight a couple of points:</p>
-<p>Links:
-- <a href="https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/">AGENTS.md: A Standard for AI Coding Agents</a></p>
-<h3 id="names-and-locations">Names and locations</h3>
+<h3 id="names-and-locations-a-bit-of-a-jungle">Names and locations - a bit of a jungle</h3>
 <ul>
 <li>Agents used different names: <code>CLAUDE.md</code>, <code>GEMINI.md</code>, even <code>AGENT.md</code> (no s)</li>
 <li>By now, <code>AGENTS.md</code> is the agreed-upon standard name (hooray)</li>
@@ -1730,16 +1534,15 @@ It seems to rarely happen anymore but when it does, this is why.</p>
 <br></li>
 </ul>
 <p><img src="images/service/system/agent-files/agents-md.png"></p>
-<hr />
-<p><img src="images/service/system/layer-of-instructions.png"></p>
-<h4 id="_208"></h4>
-<p>We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit mysterious.</p>
-<p>So let's get concrete and see what such an arbitrary system prompt looks like.</p>
-<hr />
+<h4 id="_191"></h4>
+<p>Links:
+- <a href="https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/">AGENTS.md: A Standard for AI Coding Agents</a></p>
+<h3 id="putting-it-all-together-a-real-system-prompt-example">Putting it all together: a <em>real</em> system prompt example</h3>
 <p><img src="images/service/system/all/full.png"></p>
-<h4 id="_209"></h4>
-<p>This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.
-Let's check it out.</p>
+<h4 id="_192"></h4>
+<p>We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit mysterious.</p>
+<p>So let's get concrete and see what such an arbitrary system prompt looks like. This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.</p>
+<p>Let's check it out.</p>
 <h3 id="some-names-facts-behaviors">Some names, facts, behaviors, ...</h3>
 <p><img src="images/service/system/all/name-and-behavior.png"></p>
 <h3 id="oh-something-sounds-important">Oh, something <mandatory>, sounds important</h3>
@@ -1748,51 +1551,18 @@ Let's check it out.</p>
 <p><img src="images/service/system/all/regex-and-tools.png"></p>
 <h3 id="mcp-tool-names-pop-in-rather-unceremoniously">MCP tool-names pop in, rather unceremoniously</h3>
 <p><img src="images/service/system/all/mcp-tools.png"></p>
-<h3 id="communication-styles-code-examples">Communication styles, code examples</h3>
-<p><img src="images/service/system/all/communication.png"></p>
 <h3 id="ah-skills-nice-to-meet-you">Ah, skills, nice to meet you</h3>
 <p><img src="images/service/system/all/skills.png"></p>
-<h3 id="this-is-the-end-after-292-lines">This is the end, after 292 lines</h3>
-<p><img src="images/service/system/all/end-of-instructions.png"></p>
-<h3 id="at-the-end-of-the-day-its-all-just-text">At the end of the day, it's all just text</h3>
+<h3 id="the-system-prompt-is-just-one-big-pile-of-text">The system prompt is just one big pile of text</h3>
 <p><img src="images/service/system/shoveling.png"></p>
-<h4 id="_210"></h4>
+<h4 id="_193"></h4>
 <p>The reason for showing you these snippets is to hammer in this fact:</p>
 <p>At the end of the day, the "system prompt" is all just text. Words competing for the LLM's attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills).</p>
 <p>Yeah, you'll see some tags and markup, but that <em>markup is not rigorous rules</em>. The markup just convey some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with <code>##</code> headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate <em>the structure</em> it brings, just like human readers would.</p>
-<h3 id="every-token-influence-all-others-its-just-math">Every token influence all others - it's just math</h3>
-<p><img src="images/llm/attention-space-seek.png"></p>
-<h4 id="_211"></h4>
-<p>Remember, the LLM is pure math. No "LLM code" exist to deliberately demand the text <code>&lt;skills&gt;</code> to appear in order to recognize the list of skills. It may help, but it's not required.</p>
-<h3 id="be-in-control-write-your-own-agent">Be in control: write your own agent</h3>
-<p>Claude.ai add lots of info:</p>
-<p><img src="images/service/system/my-agent/who-am-i-claude.png"></p>
-<p>My own agent is a clean slate</p>
-<p><img src="images/service/system/my-agent/who-am-i-agent.png"></p>
-<h4 id="_212"></h4>
-<p>If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the cli agent entirely is likely preferable.</p>
-<h3 id="this-simple-agent-was-simple-to-write">This simple agent was simple to write</h3>
-<p><img src="images/service/system/my-agent/my-agent-source-code.png"></p>
-<h4 id="_213"></h4>
-<p>And it's really simple to do.</p>
-<p>Links:
-- <a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent">my-agent</a></p>
-<h3 id="context-recap">Context recap</h3>
-<ul>
-<li>The context is all the LLM see</li>
-<li>There are no special backchannels for "other instructions"</li>
-<li>The context is finite, so it's all about keeping it lean</li>
-</ul>
-<h4 id="_214"></h4>
-<p>A former CTO of mine used to say this he took someone's photo, which may sound obvious but still was surprisingly useful:</p>
-<p>"If you can't see the camera, you aren't in the picture".</p>
-<p>"If it ain't in the context, the AI can't reason about it"</p>
-<h2 id="final-ai-service-parts">Final AI service parts</h2>
-<h3 id="still-a-few-blank-spots">Still a few blank spots</h3>
-<p><img src="images/service/overview/full-except-misc.png"></p>
+<h2 id="filling-the-final-blanks">Filling the final blanks</h2>
 <h3 id="the-final-parts">The final parts</h3>
 <p><img src="images/service/overview/misc.png"></p>
-<h4 id="_215"></h4>
+<h4 id="_194"></h4>
 <p>Four parts to mention:</p>
 <ul>
 <li>In addition to the text context, the request also does send along <em>some real hard parameters</em>: the <strong>model</strong>, the <strong>temperature</strong>, the <strong>thinking budget</strong> in tokens, and some other model-specific bits. In particular, the <em>temperature</em> adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In pactice that leads to a weirdly clinical and un-appealing output. Higher temperature simply mean increased likelihood of choosing some of the less probably next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelity in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one session to another.</li>
@@ -1800,43 +1570,28 @@ Let's check it out.</p>
 <li>The output usually contains <em>statistics</em> for number of tokens consumed and produced, among other things.</li>
 <li>And finally, <strong>the KV-cache</strong>. The AI Service and LLM knows nothing about you, but it does <em>cache</em> the calculations for a brief while. Nowadays it seem that 5 minutes is the common caching time. You simply <em>pay less</em> for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit <em>cache markers</em>.</li>
 </ul>
-<h2 id="now-i-have-the-full-picture">"Now I have the full picture"</h2>
-<hr />
+<h3 id="now-i-have-the-full-picture">"Now I have the full picture"</h3>
 <p><img src="images/service/overview/full.png"></p>
-<h4 id="_216"></h4>
+<h4 id="_195"></h4>
 <p>Indeed, this is the full overview of how any modern AI Service work, in principle.</p>
-<h3 id="ai-service-recap">AI Service recap</h3>
-<ul>
-<li>It's all just text, competing for attention. No hard rules.
-&nbsp;</li>
-<li>Adding anything to the context is expensive so rest assured that the agent does its best to add as little as possible - no older chats, no hidden files
-&nbsp;</li>
-<li>Adding <em>barely enough hints of useful info</em> for the LLM is the challenge, and the approaches are constantly evolving</li>
-</ul>
 <h1 id="the-context">The Context</h1>
-<h4 id="_217"></h4>
+<h4 id="_196"></h4>
 <p>Everything we've looked at is about <em>putting tokens into a context</em> with the intent of steering the next prediction toward something useful.</p>
 <hr />
 <p><img src="images/context/its-the-context-economy-stupid.png"></p>
-<h4 id="_218"></h4>
+<h4 id="_197"></h4>
 <p>But the context is finite and processing costs you per token.</p>
 <p>So not just adding the right things, but also keeping the context lean, is the challenge.</p>
 <p>The cost of tokens in the context has a couple of surprises in store.</p>
-<h3 id="insights-and-tips-for-context-cost">Insights and tips for context cost</h3>
+<h3 id="advice-for-your-context-economy">Advice for your context economy</h3>
 <ul>
-<li>You <em>pay per token</em>; fixed price/token for API, or via <em>your quota</em> when using an agent
-<br></li>
-<li><em>Output tokens</em> are typically <em>5 times</em> as expensive as input tokens
-<br></li>
-<li><em>Cached tokens cost 10%</em>, so continue your chat within 5 min (optional 1 hour) to save cost
+<li>You <em>pay per token</em>; fixed price/token for API, or via <em>your quota</em> when using an agent.<br><em>Output tokens</em> are typically <em>5 times</em> as expensive as input tokens<br><em>Cached tokens cost 10%</em>, so continue your chat within 5 min (optional 1 hour) to save cost
 <br></li>
 <li>System, tools, results, images, docs eat many tokens; don't anguish over <em>your tiny prompt</em>
 <br></li>
-<li><em>Starting a fresh chat</em> is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to <em>summarize your chat or results to a file</em>, then start fresh with that
+<li>Pack multiple asks into one; <em>"Yes, and also..."</em> and <em>"Looks fine. And now x and y..."</em><br>Save tokens by being <em>be precise</em> about names of files, what the output should look like, etc
 <br></li>
-<li>Pack multiple asks into one; <em>"Yes, and also..."</em> and <em>"Looks fine. And now x and y..."</em>
-<br></li>
-<li>Save tokens by being <em>be precise</em> about names of files, what the output should look like, etc</li>
+<li><em>Starting a fresh chat</em> is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to <em>summarize your chat or results to a file</em>, then start fresh with that</li>
 </ul>
 <h3 id="token-spree">Token spree</h3>
 <iframe class="game"
@@ -1848,7 +1603,7 @@ Let's check it out.</p>
 <p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/"><img alt="Token spending game preview" src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" /></a></p>
 <p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/">Open interactive version</a></em></p>
 </div>
-<h4 id="_219"></h4>
+<h4 id="_198"></h4>
 <p>Here's an interactive visualization of where your token costs go.</p>
 <p>Try this:</p>
 <ul>
@@ -1878,83 +1633,74 @@ Let's check it out.</p>
 </ul>
 <p>Mitigations:
 - Try clear and compact. They save, of course, but it's a proper shield against the other token-spending ways.</p>
-<h1 id="advice">Advice</h1>
-<h4 id="_220"></h4>
-<p>The AI models of today works generally so cleverly that you very often don't have hold them in a special way</p>
-<h3 id="modern-ai-models-need-little-hand-holding">Modern AI models need little hand-holding</h3>
+<h1 id="how-to">How to ...</h1>
+<h3 id="how-to-speak-to-the-ai">How to speak to the AI</h3>
 <ul>
-<li>Modern agentic workflows, <em>as conjured up by the LLM</em>, revolve around:<ul>
-<li>Using <em>multiple agents</em> in an "orchestrator/worker" fashion</li>
-<li>Explicitly <em>verifying the result</em> before claiming it's done</li>
-<li>Perform tasks in small steps, setting and updating goals along the way</li>
-<li>Taking notes (store results in files), which boosts reasoning very much (eg 3x)</li>
-</ul>
-</li>
-<li>These improvements comes <em>automatically</em> and <em>continuously</em> by virtue of newer models
+<li>Just <em>speak plainly</em>, including small nugding words to avoid steering to coarsely<ul>
+<li>"I would mildly prefer xxx, but not if yyy"
 <br></li>
-<li>So: how you <em>"hold it"</em> seem less and less important</li>
-</ul>
-<h4 id="_221"></h4>
-<p>Links:
-- <a href="https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding">Google: The New SDLC With Vibe Coding"</a>
-- <a href="https://gurusup.com/blog/moe-vs-multi-agent-systems">Mixture-of-Expert vs Multi-Agent Systems</a></p>
-<h3 id="yet-constantly-new-trends-like-loop-of-loops">Yet, constantly new trends, like "loop of loops"</h3>
-<p><img src="images/guidance/nate-loop-of-loops.png"></p>
-<h4 id="_222"></h4>
-<p>Links:
-- <a href="https://www.youtube.com/watch?v=A4zMyjkL0Dc">AI Prompt Engineering: I Stopped Prompting One Task At A Time</a>
-- <a href="https://www.youtube.com/watch?v=iJVJwmCKW9o">I guess we're writing loops now?</a></p>
-<h3 id="how-to-speak">How to speak</h3>
-<ul>
-<li>Just use plain language</li>
-<li>I personally use lots of small nugding words to avoid steering to coarsely<ul>
-<li>"I would mildly prefer xxx, but not if yyy"</li>
 </ul>
 </li>
-<li>Be <em>precise</em> about the goal you want<ul>
-<li>Don't say "it's green" or "it should not be green" - say "it should be red"</li>
+<li>Be <em>precise</em> about <em>the goal you want</em><ul>
+<li>Don't say "it's green" or "it should not be green" - say "it should be red"
+<br></li>
 </ul>
 </li>
-<li>But often <em>don't be precise</em> about exactly how the AI should precisely <em>achieve</em> the goal<ul>
-<li>Instead, talk about the goal. "I want fluid layout, and the graph is the centerpiece"</li>
+<li>But also <em>don't be prescriptive</em> about exactly how the AI should <em>achieve</em> the goal<ul>
+<li>Instead, talk about the goal. "I want fluid layout, and the graph is the centerpiece"
+<br></li>
 </ul>
 </li>
-<li>Using <em>examples</em> often produce much better output</li>
-<li>In eg Claude, use <code>/insight</code> to see how you're doing</li>
+<li>Using <em>examples</em> often produce much better output
+<br></li>
+<li>In Claude, use <code>/insight</code> to see how you're doing</li>
 </ul>
-<h3 id="your-ai-skills-are-an-investment">Your AI skills are an investment</h3>
-<ul>
-<li>Treat it as a tool in your professional toolbox.</li>
-<li>You're a carpenter - get a good hammer that's yours and then practice</li>
-<li>A monthly subscription of $20 is a cheap investment</li>
-<li>Build things for fun</li>
-</ul>
-<h4 id="_223"></h4>
+<h4 id="_199"></h4>
 <p>Links:
 - <a href="https://claude-academy.com/">Claude Academy</a>
 - <a href="https://www.youtube.com/watch?v=Z9UxjmNF7b0">You're falling behind. It's time to catch up.</a></p>
+<h4 id="_200"></h4>
+<h3 id="how-to-hold-the-ai">How to hold the AI</h3>
+<ul>
+<li>Modern agentic workflows, controlled by the AI models via tools, often works so well that you frankly <em>don't really have to</em> instruct them in a special way.
+<br></li>
+<li>A successful agentic loop that has emerged is:
+<br><ol>
+<li>Use <em>multiple agents</em> in an "orchestrator/worker" fashion</li>
+<li>Explicitly <em>verify the result</em> before claiming it's done</li>
+<li>Take <em>small steps</em>, setting and updating goals along the way</li>
+<li>Take <em>notes</em> (in files), which boosts reasoning very much (eg 3x)</li>
+</ol>
+</li>
+</ul>
+<h4 id="_201"></h4>
+<p>Links:
+- <a href="https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding">Google: The New SDLC With Vibe Coding"</a>
+- <a href="https://gurusup.com/blog/moe-vs-multi-agent-systems">Mixture-of-Expert vs Multi-Agent Systems</a></p>
+<h3 id="yet-constantly-new-trends-like-loop-of-loops">Yet constantly new trends, like "loop of loops"</h3>
+<p><img src="images/guidance/nate-loop-of-loops.png"></p>
+<h4 id="_202"></h4>
+<p>Links:
+- <a href="https://www.youtube.com/watch?v=A4zMyjkL0Dc">AI Prompt Engineering: I Stopped Prompting One Task At A Time</a>
+- <a href="https://www.youtube.com/watch?v=iJVJwmCKW9o">I guess we're writing loops now?</a></p>
+<h3 id="how-to-keep-up-with-the-ai">How to keep up with the AI</h3>
+<p>Treat it as a tool in your professional toolbox.<br>Buy your <em>own</em> good hammer, like a carpenter would</p>
+<p>A monthly subscription of $20 is a cheap investment</p>
 <h1 id="demystifications">Demystifications</h1>
-<h4 id="_224"></h4>
+<h4 id="_203"></h4>
 <p>Let's run through a quick series of myths and facts and demystify them.</p>
 <h3 id="we-dont-know-how-the-ai-works">We don't know how the AI works</h3>
 <p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
 
-<h4 id="_225"></h4>
+<h4 id="_204"></h4>
 <p>We know <em>exactly</em> how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.</p>
 <h3 id="we-dont-know-what-goes-on-inside-the-ai">We don't know what goes on inside the AI</h3>
 <p class="verdict yes">Now <em>that's</em> true - we don't</p>
 
 <ul>
-<li>We don't know what the dimensions or weights really "mean"</li>
-<li>We don't know where or how "facts" are stored</li>
+<li>We don't know what the dimensions or weights really "mean" or how facts are stored
+<br></li>
 <li>It was, and is, a genuine surprise that <em>the Transformer works as well as it does</em></li>
-</ul>
-<h3 id="its-just-autocomplete">It's just autocomplete</h3>
-<p class="verdict yes">Absolutely yes</p>
-
-<ul>
-<li>And it turns out that "autocomplete" is a much bigger deal than anybody expected</li>
-<li>Are we humans also, at our core, "just autocomplete", made up of cells and chemicals?</li>
 </ul>
 <h3 id="i-included-all-of-the-ai-indexed-the-wholeit-read-all-the-source-code">"I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"</h3>
 <p class="verdict no">No, it most likely <em>did not</em></p>
@@ -1965,51 +1711,35 @@ Let's check it out.</p>
 <li>So <em>no</em>, if you have a lot of data it's likely <em>not all processed</em> collectively in one context</li>
 <li>That's why bits and pieces could be <em>missed</em></li>
 </ul>
-<h3 id="context-is-lost-in-the-middle">Context is "Lost in the middle"</h3>
-<p class="verdict maybe">Real effect, but smaller than earlier</p>
-
-<ul>
-<li>Models handle simple retrieval of facts from the middle really well. But less well when dealing with harder tasks and longer contexts.</li>
-<li>Still, it's good advice to <em>keep facts close to where they're used</em>. There's no harm done in reiterating some specific demand like "remember to use upper-case" right before relevant work, even though you already stated it 20 pages of context ago.</li>
-</ul>
 <h3 id="i-told-it-earlier-but-now-it-has-forgotten">"I told it earlier, but now it has forgotten"</h3>
 <p class="verdict yes">Yes, compaction will do that</p>
 
 <ul>
-<li>The context is compacted (or truncated) when it gets close to the context window size. You're bound to lose some information by that. So yes, the AI <em>can forget</em> what you've been talking about</li>
+<li>The context is compacted (or truncated) when it gets close to the context window size.<br>So yes, the AI <em>can forget</em> what you've been talking about
+<br></li>
 <li>Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
-&nbsp;</li>
-<li>The remedy: keep your context lean: <em>clear</em>, <em>compact</em>, <em>start fresh</em> on your own initiative</li>
+<br></li>
+<li>Keep your context lean: <em>clear</em>, <em>compact</em>, <em>start new chat</em></li>
 </ul>
-<h3 id="soon-we-will-run-out-of-training-material">Soon we will run out of training material</h3>
-<p class="verdict maybe">Partly true, but less so</p>
-
-<ul>
-<li>Yes, models are actually now trained on a reasonably large (say, 10%) fraction of public human-generated text.</li>
-<li>However, <em>non-public content, books, transcripts, and video</em> is a vast potential.</li>
-<li>Studies show that replacing real data with synthetic data does tend toward "model collapse", but accumulating the synthetic data alongside the original avoids it. So yes, we can <em>train on synthetic data</em> too, in specific ways.</li>
-</ul>
-<h4 id="_226"></h4>
-<p>Links:
-- <a href="https://arxiv.org/abs/2211.04325">Will we run out of data? Limits of LLM scaling based on human-generated data</a>
-- <a href="https://arxiv.org/abs/2404.01413">Is Model Collapse Inevitable?</a></p>
 <h3 id="use-token-saving-skills-like-caveman">Use token-saving skills, like "Caveman"</h3>
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
 
 <ul>
-<li>The "Caveman" skill originally was partly rooted in a <em>misunderstanding that brief prompt equals fewer tokens</em>, even proposing using ancient Chinese language <em>Wenyan</em> as a super-efficient, compact means of input; but neglecting that Wenyan does not capture the intent as well as plain English does and also that it only produced marginally fewer tokens compare to English, sometimes even more.</li>
-<li>Small function words encode structure, not just politeness. Prepositions and articles marks argument structure, and dropping them leaves the model guessing at your intent.</li>
-<li>Grammar is useful for <em>your own thinking</em> as well in framing your request</li>
-<li>Terse can be okay: "Fix null check line 40" works fine. But "make good" is bad.</li>
+<li>The "Caveman" skill originally was partly rooted in a <em>misunderstanding that brief prompt equals fewer tokens</em>, even proposing using ancient Chinese language <em>Wenyan</em> as a super-efficient, compact means of input; but neglecting that Wenyan does not capture the intent as well as plain English does and also that it only produced marginally fewer tokens compare to English, sometimes even more.
+<br></li>
+<li>Small function words <em>encode structure</em>, not just politeness. Prepositions and articles marks argument structure, and dropping them leaves the model guessing at your intent.
+<br></li>
+<li><em>Terse can be okay:</em> "Fix null check line 40" works fine. <em>But "make good" is bad</em>.</li>
 </ul>
-<h4 id="_227"></h4>
+<h4 id="_205"></h4>
 <p>Links:
 - <a href="https://github.com/JuliusBrussee/caveman/blob/main/README.md">Caveman</a></p>
-<h3 id="saying-you-are-xxxx-is-useful">Saying "You are xxxx..." is useful</h3>
+<h3 id="better-say-you-are-an-expert-xxxx">Better say "You are an expert xxxx..."</h3>
 <p class="verdict maybe">Useful in some ways</p>
 
 <ul>
-<li>No need to say this to <em>bring in competence</em> in an area; training has done that</li>
+<li>No need to say this to <em>bring in competence</em> in an area; training has done that
+<br></li>
 <li>But useful for for asking for <em>a perspective</em>:<ul>
 <li>"you are a skeptical reviewer whose job is to find the flaw"</li>
 <li>"explain as if to a junior dev who knows HTTP but not OAuth"</li>
@@ -2031,7 +1761,7 @@ Let's check it out.</p>
 </ul>
 </li>
 </ul>
-<h4 id="_228"></h4>
+<h4 id="_206"></h4>
 <p>Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.</p>
 <p>Links:
 - <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">The Bitter Lesson</a>
@@ -2051,16 +1781,14 @@ Let's check it out.</p>
 <p class="verdict yes">True, but it can largely be mitigated</p>
 
 <ul>
-<li>The model <em>doesn't know it's wrong</em> when it hallucinates, so there is no use in saying "don't hallucinate"</li>
-<li>Interestingly, deeper reasoning (chain of thought) actually <em>lowers</em> the success rate for the LLM detecting nonsense a bit, which is known as the <strong>Reasoning Trap</strong>, or Paradox.
-<br>
-Mitigations:</li>
+<li>The model <em>doesn't know it's wrong</em> when it hallucinates, so there is no use in saying "don't hallucinate". Instead:
+<br></li>
 <li>Give it a <em>clear goal</em> it can finish</li>
-<li>Related to that: make sure you know and <em>state what "good output" looks like</em></li>
-<li>Make <em>failure an explicit accepted continuation</em>, eg: "if there's no xxx then tell me"</li>
+<li>Make <em>failure an explicit accepted continuation</em>; "if there's no King Johan then tell me"</li>
 <li>Have <em>another agent</em> supervise and assess the output</li>
 </ul>
-<h4 id="_229"></h4>
+<h4 id="_207"></h4>
+<p>Interestingly, deeper reasoning (chain of thought) actually <em>lowers</em> the success rate for the LLM detecting nonsense a bit, which is known as the <strong>Reasoning Trap</strong>, or Paradox.</p>
 <p>Links:
 - <a href="https://arxiv.org/html/2510.22977v1">The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination</a></p>
 <h3 id="ask-it-why-it-did-that-and-it-will-tell-you">Ask it "why it did that" and it will tell you</h3>
@@ -2071,18 +1799,21 @@ Mitigations:</li>
 <li>It may not always happen, for sure, but it may well happen.</li>
 </ul>
 <h3 id="say-no-to-training-itll-leak-your-data">Say no to training, it'll leak your data</h3>
-<p class="verdict no">No, but not for the reason you may expect</p>
+<p class="verdict maybe">No, only if you send your secrets relentlessly</p>
 
 <ul>
-<li><em>No words from your chat is actually remembered</em></li>
-<li>"Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training. Training never stores the text but instead nudges billions of weights a tiny bit.</li>
-<li>The model only memorizes <em>repetitions</em>. Send your password once? Doesn't stick. Send it 10 times? Then it's <em>1000x</em> more likely to stick, due to an effect called <em>superlinearity</em>. So repeatedly injected texts can be retrieved, yes. These are the cases reported in the news.</li>
+<li><em>No words from your chat is actually remembered</em>
+<br></li>
+<li>"Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training. Training never stores the text but instead nudges billions of weights a tiny bit.
+<br></li>
+<li>The model only memorizes <em>repetitions</em>. Send your password once? Doesn't stick. Send it 10 times? Then it's <em>1000x</em> more likely to stick, due to an effect called <em>superlinearity</em>. Still, it takes rather massively repeatedly texts to make a dent in the model's weights.</li>
 </ul>
 <h3 id="make-no-mistakes">"Make no mistakes"</h3>
 <p class="verdict no">Largely useless</p>
 
 <ul>
-<li>It urges more carefulness, but that's already baked into modern models</li>
+<li>It urges more carefulness, but that's already baked into modern models
+<br></li>
 <li>"Make no mistakes" does not point out what a mistake is. Instead, <em>describe exactly</em> how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".</li>
 </ul>
 <h3 id="saying-please-costs-a-fortune-and-is-useless">Saying "please" costs a fortune and is useless</h3>
@@ -2094,51 +1825,48 @@ Mitigations:</li>
 <li>"Please" is found in <em>productive successful conversations</em>, the pattern we're seeking</li>
 <li>Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
 &nbsp;
-Some say the best reason for being polite is simply that:
+Some say <em>the best reason</em> for being polite is simply that:
 &nbsp;</li>
 <li>It's good for <em>you</em>, even in simulated conversations: positive social behavior release oxytocin and dopamine, while an impolite demeanor release cortisol and adrenaline</li>
 </ul>
-<h3 id="you-must-never-do-xxx">"YOU MUST NEVER DO xxx!"</h3>
+<h3 id="it-must-follow-you-must-never-do-xxx">It must follow "YOU MUST NEVER DO xxx!"</h3>
 <p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
 
 <ul>
-<li>Emphasis markers like "UPPER CASE" or <code>*bold*</code> just shifts probabilities but cannot guarantee anything.</li>
+<li>Emphasis markers like "UPPER CASE" or <code>*bold*</code> just shifts probabilities but cannot guarantee anything.
+<br></li>
 <li>Emphasis is useful in a <em>relative</em> manner, for marking some instructions to me <em>more important</em> than others.
-&nbsp;</li>
+<br></li>
 <li>Generally, don't expect to be able to control the LLM completely. It's just statistics.</li>
 </ul>
-<h3 id="mispellings-doesnt-matter">Mispellings doesn't matter</h3>
-<p class="verdict yes">Yes, don't worry about misspellings</p>
+<h3 id="all-ai-models-are-the-same-after-all">All AI models are the same after all</h3>
+<p class="verdict no">No, not at all</p>
 
 <ul>
-<li>All kinds of misspellings are taught via training, so don't worry
-&nbsp;</li>
-<li>However, <em>precision</em> matters: it's more efficient to for example refer to a file by the corrrect path and name so the LLM don't have to spend tokens searching for that file</li>
-</ul>
-<h3 id="all-ai-models-are-the-same">All AI models are the same</h3>
-<p class="verdict no">Not at all</p>
-
-<ul>
-<li>They know basically <em>the same facts</em></li>
+<li>They may well know basically <em>the same facts</em></li>
 <li>But they have <em>very different behaviors and values</em></li>
 </ul>
 <h3 id="does-it-understandis-the-ai-sentient">Does it understand?<br>Is the AI sentient?</h3>
 <p class="verdict maybe">Maybe - experts disagree</p>
 
 <ul>
-<li>The fact that the answer isn't a resounding <em>"no"</em> is astounding.</li>
-<li><em>What even is understanding, sentience, consciousness</em>? LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.</li>
+<li>The fact that the answer isn't a resounding <em>"no"</em> is astounding.
+<br></li>
+<li><em>What even is understanding, sentience, consciousness</em>?
+<br></li>
+<li>LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.</li>
 </ul>
-<h4 id="_230"></h4>
+<h4 id="_208"></h4>
 <p>Links:
 - <a href="https://ling.auf.net/lingbuzz/007180/current.pdf">Modern language models refute Chomsky’s approach to language</a>
 - <a href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a>
 - <a href="https://www.youtube.com/watch?v=p7t1Q_p2gZs">AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried</a>
 - <a href="https://www.youtube.com/watch?v=IkdziSLYzHw">Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton</a></p>
-<h1 id="closing">Closing</h1>
-<h4 id="_231"></h4>
+<h1 id="takeaways">Takeaways</h1>
+<h4 id="_209"></h4>
 <p>What a journey.</p>
-<h3 id="takeaways">Takeaways</h3>
+<h3 id="thanks-you-and-remember">Thanks you, and remember</h3>
+<p><br></p>
 <div class="cols">
 <p><img class="col-1" src="images/intro/github-com-ricflams-techtalk-ai-demystified.png"></p>
 <div class="col-4">
@@ -2150,17 +1878,15 @@ Some say the best reason for being polite is simply that:
 </div>
 <p><br>
 <br>
-And remember, don't dispair 😊
+And finally - don't dispair 😊
 <br>
 <br>
 <img src="images/intro/two-years-behind.png"></p>
-<h4 id="_232"></h4>
+<h4 id="_210"></h4>
 <p>Links:
 - <a href="https://github.com/ricflams/techtalk-ai-demystified/">AI Demystified repo</a>
 - <a href="https://www.youtube.com/watch?v=MsQACpcuTkU">You've Been Using AI the Hard Way (Use This Instead)</a>
 - Best LLM resources, imho: <a href="https://www.3blue1brown.com/?topic=neural-networks">3blue1brown</a></p>
-<hr />
-<p><img src="images/intro/slide-count.png"></p>
 </article>
 </body>
 </html>

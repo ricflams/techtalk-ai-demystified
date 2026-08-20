@@ -503,7 +503,147 @@ Putting things into the context is expensive and it's constantly evolving just h
 
 
 
+The very observant reader may spot something unexpected. I claimed that each token's embedding was a fixed vector. But why do the two instances of "you" then not have the same embedding-values?
+
+That's because the transformer initially instill some positional information (1, 2, 3, ...) into each individual embedding, typically using *RoPE* (Rotary Position Embeddings) which "rotates" the vector in 2D spaces in each layer.
+
+Surprisingly, changing the vector values does not remove any of the embedding's "meaning" in the high-dimensional space. It retains its core conceptual meaning, only nudged a little bit.
+
+ is good means to its creators. Humans or AI (RLHF or RLAIF) evaluators compare outputs and rank them. The model is iteratively shaped toward preferred behavior — 
+
+
+
+ 
+
+
+
+
+
+
+### Not easy - human brain
+
+That doesn't mean that it's easy to produce such a machine, or that what it does is not a great feat. It only speaks about what it actually does - how it operates, not just "at its core" but at all.
+####
+None of this means LLMs are simple to build, or that what they do isn't remarkable. It's a description of what they do — not just "at their core," but at all.
+
+I'm not saying this is "earth shattering revelations" but I can sense that often this knowledge grounds me in a better understanding of how to shape the context.
+
+TODO: End the LLM story
+
+#### What that means
+
+- Patterns and nudging words will steer it in the desired direction via pattern-matching
+
+- Adding examples gives much better output
+
+- Be explicit about the output format - make it stop guessing
+
+#### LLM summarized
+
+TODO: Drawing of full context-window with "Once upon a time" -> LLM/math (lots of facts, trained behavior) -> most likely continuation
+
+####
+
+scaling laws
+interpretability
+
+
+2019, The mainstream view was that you needed cleverer architectures, not bigger ones.
+
+
+
+GPT-2 (1.5B params, 2019) had produced surprisingly fluent text. But "fluent text" isn't "general capabilities." The leap to GPT-3 was ~100×
+
+The wager was not "the loss curve will keep going" — Kaplan had already shown that. The wager was: something qualitatively useful will fall out of low enough loss. That part had no theoretical basis. GPT-2 had shown hints — coherent paragraphs, some pattern-following within a prompt — but few-shot learning as a general capability wasn't predicted by any theory.
+
+The paper's title — "Language Models are Few-Shot Learners"
+
+#### What comes after the LLM?
+
+- A successor for LLMs is not around the corner
+- There's work being done with **Mix of Experts** (MoE), divvying up the network
+<br>
+- The work continue to be N^2 for N context-length because of all the attention
+- So we can't just keep cranking up the context window and the cost will likely stay somehow "per token"
+
+So if we want to do more with the same set of tools - LLM operating on context - then the best path is: smarter ways of managing the context and those tokens.
+
+#### LLM recap
+
+1. You give it a string of tokens, aka the *context*
+2. The LLM  will produce a response based on the model's baked-in training by running that context through the Transformer.
+3. Pure math via training and reinforcement learning
+
+And yes, LLM and context and tokens are pretty fixed.
+Sort of hit the ROI-ceiling for context-lengths which are O(N^2). Needs to work smarter with the context, bringing in the agent to do it and the LLM to know how.
+Despite eg DSpark, Mix of Experts.
+https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference
+
+
+#### Takeaways
+
+- The LLM can only reason about what's in the context
+- It can't browse the web, do large math, read a file, remember anything
+- Yes, the models are different - and the comes from training
+
+There's nothing in the horison that seem to remove LLMs, context limitations and token-cost.
+
+- Only smaller models can run well on your own hardware
+- Fine-tuning is not an easy matter and typically not something you "just do"
+
+preferences. The LLM can only reason about what's in the context.
+
+That is *all* it can do. It can't browse the web, multiply two large numbers, read a file, remember anything about you, no nothing. It can only - let's repeat: run the context through the Transformer to produce a response.
+
+It's static, constant, and fixed on the day it was completed. The weights never changes. As a user you can't make it think differently or think "harder" or learn it something new or train it or have it remember anything. It only knows what was known the day its training was concluded.
+
+A successor tech for LLMs is not around the corner. There's work being done with "X of experts" but generally the work continue to be N^2 for N context-length because of all the attention, so 1) we can't just keep cranking up the context window (source?) and 2) the cost will likely stay somehow "per token". So if we want to do more with the same toolset (context window) then we need to explore smarter ways of managing the context and those tokens.
+
+Called a Foundation Model because it can be used for all kinds of things without further specializing. You can fine-tune a FM but it's not all that simple - much much simpler and safer to simply give it a prompt.
+
+####
+When you hear somebody say "then we can just fine-tune the model" you should pack a fair amount of skepticism because you can only do that for certain models and it's not as easy as it might seem. TODO: Who would fine-tune a model?
+
+
+#### Takeaways
+
+It's all statistics: All the words influence each other, absorb meaning from each other.
+
+No dictionaries, no lookup of facts, no language translations. No learning.
+
+No strict rules. Just statistical math. This means no guarantees (actually you can't even run the same input and be guaranteed to get the same output), not enforcement, no rules. whatever text is most convincing or authoritative wins. the most probable continuation given the training distribution. It's not a battle but a likelihood contest
+
+"no secret modes or unlock codes". No unlocking. Just. Math.
+
+What's it good at:
+
+Pattern recognition and analogy — "this looks like that" .
+
+Arithmetic and counting — no calculator inside; "17 × 23" is answered by what such answers usually look like.
+the model answers "what does text about counting r's in strawberry usually look like?" — not "how many r's are there?"
+
+Anything that requires understanding the content or meaning of what's in the context is the model's decision. Anything that can be evaluated against a fixed rule without understanding content is the client's. The client enforces; the model decides. And the system prompt is the interface between them — it's the client telling the model what decisions it's responsible for making, expressed in natural language because that's the only channel available, which is also why it's not a hard guarantee.
+
+#### Most Important Takeaways
+
+- The LLMs knowledge itself is fixated after training
+- The LLM can only reason about what's in the context
+
+### Any questions?
+
+TODO: maybe not
+I know I have some:
+
+- How does it browse the web?
+- How does it do math, understand PDFs?
+- How does it even know *what date today is?*
+
+
 ---
 
 Just speak in plain English
 Don't fret too much about planning and background agents, but it's often useful to steer still, by explicitly shifting to planning mode to avoid the agent starting to imlement, or asking to do something using subagent.
+
+
+There are no special backchannels or place for "specially important instructions".
+

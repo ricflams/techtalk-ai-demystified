@@ -2189,9 +2189,9 @@ Links:
 ####
 
 ### How to hold the AI
-* Modern agentic workflows, controlled by the AI models via tools, often works so well that you frankly *don't really have to* instruct them in a special way.
+- Modern agentic workflows, controlled by the AI models via tools, often works so well that you frankly *don't really have to* instruct them in a special way.
 <br>
-* A successful agentic loop that has emerged is:
+- A successful agentic loop that has emerged is:
 <br>
 	1. Use *multiple agents* in an "orchestrator/worker" fashion
 	2. Explicitly *verify the result* before claiming it's done

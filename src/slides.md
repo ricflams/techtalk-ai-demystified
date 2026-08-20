@@ -2004,7 +2004,7 @@ Let's take a look at concretely how an MCP service is used.
 ### You only need to do that once
 <img src="images/service/mcp/flow/2-explain.png">
 
-### The info is present in <em>every chat<em> you send
+### The info is present in <em>every chat</em> you send
 <img src="images/service/mcp/flow/3-request.png">
 
 ####
@@ -2021,27 +2021,40 @@ It *used* to be that the full information was added to the context, but that sim
 <img src="images/service/mcp/flow/5-tool-use.png">
 
 ####
-The AI is talking to an MCP server, which is turn call some API. The MCP server acts on your behalf, authenticated with your personal API key that gives it the same access you would have.
+The AI is talking to an MCP server, which is turn call some API.
+
+The MCP server acts on your behalf, authenticated with your personal API key that gives it the same access you would have.
+
+So for using an MCP server you must always be "a user" on the service behind it, like Github, Figma, Datadog, or Siteimprove.
 
 ### The LLM can now respond
 <img src="images/service/mcp/flow/6-response.png">
 
-### MCP, recapped
-<img src="images/service/mcp/mcp-simplified.png">
-
 ####
-An MCP server is a slim facade to some service somewhere
+With the tool-result from the service added to the context, the LLM can now compose a proper response.
+
+### MCP, recapped
+* An MCP server is a slim facade to some service somewhere.
+<br>
+
+<img src="images/service/mcp/mcp-simplified.png">
 
 ### Example: Siteimprove MCP
 
-### In 1 hour, the demo MCP server was live
+####
+"It's simple", I said. Okay, let me show how.
+
+### In 1 hour, a demo MCP server was coded and live
 <img src="images/service/mcp/siteimprove/github-source.png">
 
 ####
-This was the first time ever I build an MCP server. I Basically told Claude "here's Siteimprove's public API documentation, please build an MCP server for it and suggest where to deploy it". I ended up deploying it on a free account on [Cloudflare](https://www.cloudflare.com/).
+This was the first time ever I build an MCP server. I basically told Claude, "here's Siteimprove's public API documentation, please build an MCP server for it and suggest where to deploy it". I ended up deploying it on a free account on [Cloudflare](https://www.cloudflare.com/).
 
-The hardest part was actually that the tool-names were limited to 64 characters and Siteimprove's API's endpoints often exceeded that so the names had to be compacted somewhat, like renaming "quality_assurance" to just "qa".
+The hardest part was actually that the tool-names were limited to 64 characters and Siteimprove's API's endpoints often exceeded that, so the names had to be compacted somehow; like renaming "quality_assurance" to just "qa".
 
+There's nothing secret about this MCP server for Siteimprove's public API. Any Siteimprove-user with an API key can use it, and anybody can build an MCP server just like it since Siteimprove's API is publicly available with each API endpoint fully described.
+
+Links:
 [Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp)
 [Siteimprove MCP demo, live tool list](https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got)
 
@@ -2060,23 +2073,33 @@ The MCP variant looks very much like the existing OpenAPI spec for that endpoint
 ### How to add the demo MCP server to Claude
 <img src="images/service/mcp/siteimprove/github-readme.png">
 
-### Now available in Claude
+####
+Link:
+[Connect to Claude.ai](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp#connect-to-claudeai)
+
+### All 531 endpoins/tools now available in Claude
 <img src="images/service/mcp/siteimprove/mcp-connector.png">
 
 ####
-Here you can see all the tools the Siteimprove demo MCP server
+Under Connectors you can see all the individual tools exposed by the Siteimprove demo MCP server.
 
 ### Need to authenticate on the first usage
 <img src="images/service/mcp/siteimprove/authenticate.png">
 
+####
+This page is produced by my demo code, so an MCP server can style it just as it pleases.
+
 ### Claude can now call Siteimprove MCP tools
 <img src="images/service/mcp/siteimprove/chat.png">
+
+####
+In order not to reveal actual page views I blacked out the reported numbers.
 
 ### The MCP tools the LLM found and used
 <img src="images/service/mcp/siteimprove/chat-tool-use.png">
 
 ####
-When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool "Siteimprove__analytics_content_most_popular_pages" would likely be useful.
+When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool "Siteimprove__analytics_content_most_popular_pages" would likely be useful, and asked for it to be called.
 
 ### All the included Siteimprove MCP tools
 <img src="images/service/mcp/siteimprove/full-tool-list.png">
@@ -2089,18 +2112,21 @@ In reality, a massive API such as Siteimprove's would likely be better off by be
 ### MCP is massively popular
 <img src="images/service/mcp/massive-mcp-server-list.png">
 
-### Almost portraied like "magic"
+### Almost spoken about like some "magic" remedy
 <img src="images/service/mcp/code-munch.png">
 
 ### MCP server takeaways
-- An MCP server "just" gives the AI tools for some service, somewhere
+- An MCP server "just" gives the AI access to tools on *some service, somewhere*
 &nbsp;
 - Every added MCP server bring the entire list of tool-names into every chat
 &nbsp;
-- Powerful, but is often spoken about as "magic that can do everything"
+- Powerful, sure, but still "just" tool-calls
 
 
 ## The system prompt
+
+####
+Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.
 
 ### Final piece of the context
 <img src="images/service/overview/chat-system.png">
@@ -2108,33 +2134,43 @@ In reality, a massive API such as Siteimprove's would likely be better off by be
 ### System prompt
 "System prompt" sure sounds very special and magical.
 
-Well, yes and no.
+But it's not.
 
 - A **system prompt** is still *just plain text*
-- The AI agent combine *"whatever is useful to tell the LLM"* into "system prompts"
+- The AI agent stuff *"whatever is useful to tell the LLM"* into section "system prompts"
 - You could have *written this text yourself* and just sent it in a prompt (well, sort of)
 
 ### Example system prompt from VS Code
 <img src="images/service/system/prompt/json-system-vscode-nowrap.png">
 
+####
+Here's an example of the Copilot system prompt in VS Code.
+
 ### It's pretty big
 <img src="images/service/system/prompt/json-system-vscode-wrap.png">
 
-### The system prompt does carry more weight
+####
+Here it is, expanded.
+
+### True, the system prompt <em>is</em> obeyed more
 <img src="images/service/system/prompt/training.png">
 
 ####
-Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the model makers will of course make sure that the system instructions are crafted to express the desired behavior.
+Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embodies the desired behavior and values of the model so the lab model makers will of course make sure that the system instructions are crafted to express the desired behavior.
 
-This bias towards obeying the system-instructions are therefore baked into the LLM's weights. It is just that: a bias, a trained preference to lean towards, in particular in case of conflicting instructions. Practically *nothing is a hard rule*: it's all just textual instructions that carry more or less weight.
+This bias towards obeying the system-instructions are therefore baked into the LLM's weights and hence predictions.
+
+But it is just that: a bias, a trained preference to lean towards, in particular in case of conflicting instructions.
+
+Remember: in the LLM, *nothing is a hard rule*. it's all just textual instructions that carry more or less weight.
 
 ### Convincing Copilot/GPT4.1 to change its name
 <img src="images/service/system/prompt/i-am-groot.png">
 
 ####
-With enough super-urgent persuasion, my user message won over the system prompt.
+With enough "super-urgent" persuasion, my user message was prioritized over the system prompt.
 
-Gemini 2.5 (back then) was not at all convinced and saw right through the presumed urgency.
+However, all other models were not at all convinced and saw right through the presumed urgency.
 
 ### The system prompt is composed by the agent
 <img src="images/service/system/prompt/maximillian.png">
@@ -2155,13 +2191,13 @@ The context consists of your prompts and the AI's responses, and the system prom
 
 I've grouped the bits that agents put into the system prompt into three parts:
 
-- Red are parts the agents invisibly adds, some of which you can control; your preferred language, for example
-- Green is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-call you can try out"
-- Blue are prompts, concrete text, that you write yourself and ask the agent to include in every chat
+- *Red* are parts the agents invisibly adds, some of which you can control; your preferred language, for example
+- *Green* is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-call you can try out"
+- *Blue* are prompts, text instructions, that you write yourself and ask the agent to include in every chat
 
-You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. It will *not include* earlier chats, browser history, your facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it - many agents will let you search your chat history, if you ask to.
+You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. An agent will *not include* earlier chats, browser history, your facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it - many agents will let you search your chat history, if you ask to.
 
-So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about these parts and they really aren't a secret in any way.
+So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about *just these parts* and they really aren't a secret in any way.
 
 It's a lot, but let's very briefly go through the 11 parts. And again, remember: all of this included into every chat.
 
@@ -2172,21 +2208,23 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 <br>
 - It brings information about the agent's name, purpose, behavior, etc.
 <br>
-- Generally, it's not visible in the UI - it's just there
+- Generally, agents don't make it visible in their UI
 
 ####
 [How Claude Code Builds a System Promp](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
 
-### Claude prompts are public
+### Claude's agent system prompts are public
 <img src="images/service/system/prompt/claude-prompts.png">
 
 ####
+Links:
 [Claude System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts)
 
-### See all "leaked" agent prompts
+### Of course, all agent prompts have been "leaked"
 <img src="images/service/system/prompt/leaks-home.png">
 
 ####
+Links:
 [system prompts leaks](https://github.com/asgeirtj/system_prompts_leaks)
 
 ### The Microsoft agent prompts
@@ -2195,6 +2233,8 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 ### The "Copilot in Word" agent prompt
 <img src="images/service/system/prompt/leaks-copiot-in-microsoft-word.png">
 
+####
+When you use Copilot in Microsoft Word, this is the system prompt.
 
 ### #2/11: System information
 
@@ -2202,14 +2242,16 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 <img src="images/service/system/system-info/today.png">
 
 ### #3/11: Automatically stored memories
+
+### Selected information from your chats
 <img src="images/service/system/memory/memory-example.png">
 
 ####
-The most important facts from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you'd might expect.
+The most important facts from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you'd might expect. Look at the scrollbar: there's no more than 3-4 pages of text stored as memory about me after a year of chatting.
 
 In terminal AI Agents, there can be multiple files with such "memories".
 
-### #4/11: The agent's context right now
+### #4/11: Some context from the agent
 
 ### Example: Rovo includes the current page
 <img src="images/service/system/agent-context/rovo-context.png">
@@ -2219,8 +2261,11 @@ In terminal AI Agents, there can be multiple files with such "memories".
 
 ### #5/11: Your preferences
 
-### Example: ChatGPT "friendly" or "pragmatic"
+### Example: ChatGPT can be "friendly" or "pragmatic"
 <img src="images/service/system/preferences/chatgpp-personality.png">
+
+####
+The ChatGPT personality is implemented as two different set of instructions.
 
 ### Example: Language
 <img src="images/service/system/preferences/language/claude-ai-language.png">
@@ -2231,11 +2276,11 @@ In terminal AI Agents, there can be multiple files with such "memories".
 ### Respond in Klingon
 <img src="images/service/system/preferences/language/klingon.png">
 
-### It's all just instructions, even language preference
+### It's all just instructions, even the language preference
 <img src="images/service/system/preferences/language/language-in-the-prompt.png">
 
 ####
-No hidden commands. All is just text. Coincidentally, this screenshot also show information about the environment, like my working directory at the time etc. That's what the system prompt looks like: just text.
+No hidden commands. Just text. The LLM has no "fixed set of languages".
 
 ### Example: mode; plan, auto, manual, ...
 <img src="images/service/system/preferences/modes/enter-plan-mode.png">
@@ -2243,13 +2288,13 @@ No hidden commands. All is just text. Coincidentally, this screenshot also show 
 ### You or the LLM decide when to enter and leave mode
 <img src="images/service/system/preferences/modes/before-exit-plan-mode.png">
 
-### "Modes" are really just system prompt instructions
+### "Modes" are really just system-ish instructions
 <img src="images/service/system/preferences/modes/exited-plan-mode.png">
 
 ####
 Modes are simply implemented as instructions that tell the LLM to plan or do, for instance.
 
-Nowadays, each mode-change typicaally results in *adding a system prompt message* instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".
+Nowadays, each mode-change typicaally results in *adding a system message* instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".
 
 ### #6/11: Agent tools
 
@@ -2264,13 +2309,13 @@ It's quite possible that *only the tool's description* may be included in the co
 ### Hey, aren't skills a big deal?
 
 ####
-Well, yes and no.
+Well, yes they are. But they belong here and are actually very simple.
 
 ---
 <img src="images/service/system/skills/trinity.png" />
 
 ####
-A skill is _some expertise, that is loaded when you need it_.
+A skill is _some (expertise) instructions, that is loaded when you need it_.
 
 ### What's a skill?
 - **Agent Skills** is an open standard, made by Anthropic and widely supported by agents
@@ -2282,12 +2327,15 @@ A skill is _some expertise, that is loaded when you need it_.
 	- The skill has a description and the LLM can ask to load the skill's content when it would seem useful, _just like for tools_
 
 ####
+The above is a generalization; skills can be configured to e.g. not be callable by the LLM.
+
 Links:
 [Agent Skills Overview](https://agentskills.io/home)
 
 ### What's a skill concretely?
 - It's essentially a little folder - it can e.g. be distributed as *a zip-file*
 - It *must* contain a file `SKILL.md` and *it can contain whatever else* the skill could need, with no upper limit; texts, files, images, whatever
+<br>
 
 <img src="images/service/system/skills/skill-anatomy.jpg" />
 
@@ -2316,7 +2364,7 @@ The full content is added as a `tool_result` message when the user or LLM ask fo
 
 The content is just text, so it will need to refer to other resources to bring them in. Just like you would do in a text prompt for a file: "use NOTES.md to ...".
 
-That's it, really: a skill is useful expert knowledge, but in practice it's just a piece of text that you can bring in when you need it.
+That's it, really: a skill is useful (expert) knowledge, but in practice it's just a piece of text that you can bring in when you need it.
 
 ### Hey bro
 <img src="images/service/system/skills/bro/bro-skill-code.png" />
@@ -2353,7 +2401,7 @@ The skill repo usually tells you what the options are.
 <img src="images/service/system/skills/install/claude-ai-browse.png" />
 
 ####
-On claude.ai you can install skills from Anthropic or from your organization, if you're a member.
+On claude.ai you can install skills from Anthropic or from your organization, if you're a member of one.
 
 ### Claude.ai: upload a skill zip-file
 <img src="images/service/system/skills/install/claude-ai-upload.png" />
@@ -2365,7 +2413,7 @@ The old-school, manual way: get the skill as a zip and upload it.
 <img src="images/service/system/skills/install/chatgpt-browse-mattpocock.png" />
 
 ####
-Here are Matt Pocock's skills also.
+Matt Pocock's skills are also available in ChatGPT. They are called "plugins".
 
 ### ChatGPT: Found the griling-skill
 <img src="images/service/system/skills/install/chatgpt-grilling.png" />
@@ -2374,11 +2422,11 @@ Here are Matt Pocock's skills also.
 Same one we found before, now for ChatGPT.
 
 ### Skills, recapped
-- It's "just" snippets of text you or the LLM can ask to insert into the context
+- It's "just" snippets of text that you or the LLM can ask to *add to the chat*
 &nbsp;
-- Really useful, though, and certainly not magic
+- Really useful, though, but has no magic abilities - just text and files
 &nbsp;
-- A bit like "smartphone auto-complete": write `/bro` and bro's text is written out
+- Like "smartphone auto-complete": write `/bro` and bro's text is written out
 
 ### #8/11: MCP servers
 
@@ -2389,7 +2437,7 @@ We already covered them in detail. But there's one important thing to dig into: 
 <img src="images/service/system/mcp/tool-definition.png">
 
 ####
-It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server could eat up 50K or more or the context, about 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.
+It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server would eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.
 
 ### Modern lazy-load: only include tool name
 <img src="images/service/system/mcp/tool-definition.png">
@@ -2399,7 +2447,7 @@ Nowadays the full definition is typically *not included in the context*: only th
 
 This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.
 
-That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting match a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages viwth most page views" then it would match practically nothing in the tool name and the LLM would likely not notice that this tool was suitable to call.
+That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting match a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages vith most page views" then it would match practically nothing in the tool name and the LLM would maybe not notice that this tool was suitable to call.
 
 By the way: this demo name is problematic as it is 68 characters, so it should be shortened.
 
@@ -2410,7 +2458,7 @@ Links:
 <img src="images/service/system/mcp/token-length.png">
 
 ####
-So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using thew atlassian ...."
+So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using the atlassian tools, I want to...."
 
 
 ### #9/11: Project instructions
@@ -2456,9 +2504,10 @@ I actually forgot I had added this, but surely remembered when later I returned 
 <img src="images/service/system/agent-files/austin-powers.jpg">
 
 ####
-An "agents" file sounds like some instruction for an autonomous agent of a kind. I think it sounds like instructions for something to *happen*. Maybe for starting an agent, possibly in the background doing some secret work?
+An "agents" file sounds like some instruction for an autonomous, free-roaming agent of a kind. I think it sounds like instructions for something to *happen*. Maybe for starting an agent, possibly in the background doing some secret work?
 
 ### No mystery - just custom instructions for CLI tools
+
 <img src="images/service/system/agent-files/claude-md-dinosaur.png">
 
 ####
@@ -2499,7 +2548,7 @@ So let's get concrete and see what such an arbitrary system prompt looks like.
 <img src="images/service/system/all/full.png">
 
 ####
-This is what one of my older system prompts from Copilot looked like, just as an example.
+This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.
 Let's check it out.
 
 ### Some names, facts, behaviors, ...
@@ -2511,7 +2560,7 @@ Let's check it out.
 ### A bit on regex formatting and the available tools
 <img src="images/service/system/all/regex-and-tools.png">
 
-### MCP tool-names pop in rather unceremoniously
+### MCP tool-names pop in, rather unceremoniously
 <img src="images/service/system/all/mcp-tools.png">
 
 ### Communication styles, code examples
@@ -2537,7 +2586,7 @@ Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. 
 <img src="images/llm/attention-space-seek.png">
 
 ####
-Remember, the LLM is pure math. No "LLM code" will deliberately demand the text `<skills>` to appear in order to recognize the list of skills. It may help, but it's not required.
+Remember, the LLM is pure math. No "LLM code" exist to deliberately demand the text `<skills>` to appear in order to recognize the list of skills. It may help, but it's not required.
 
 ## Final AI service parts
 
@@ -2560,14 +2609,34 @@ Four parts to mention:
 ---
 <img src="images/service/overview/full.png">
 
-## Takeaways
+####
+Indeed, this is the full overview of how any modern AI Service work, in principle.
 
-### Main AI service takeaways
-- It's all just text, competeting for attention
+### AI service, recapped
+- It's all just text, competing for attention
 &nbsp;
-- Adding stuff to the context is expensive so the tooling does its best to add as little as possible.
+- Adding anything to the context is expensive so rest assured that the agent does its best to add as little as possible - no older chats, no hidden files
 &nbsp;
 - Adding *barely enough hints of useful info* for the LLM is the challenge, and the approaches are constantly evolving
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2674,6 +2743,29 @@ save the results in short form for later
 use /insight or whatever to see how you're doing
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Guidance
 
 ### It's an investment
@@ -2725,6 +2817,19 @@ try t see where you are in the loop and see if you can remove yourself out of it
 ### Check out embeddings
 
 ----------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Demystifications

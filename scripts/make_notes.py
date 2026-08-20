@@ -28,6 +28,10 @@ import sys
 
 import markdown
 
+# Shares the CommonMark-vs-python-markdown list fixup so notes.html renders
+# exactly like the readable page does.
+from make_readable import normalize_lazy_lists
+
 SYNC_SCRIPT = """<script>
 (function () {
   if (new URLSearchParams(location.search).has('view')) return; // skip presenter/next-slide iframes
@@ -159,7 +163,8 @@ def main():
         note_md = extract_notes(slide_text)
         if note_md:
             notes_map[str(index)] = markdown.markdown(
-                note_md, extensions=['extra', 'sane_lists', 'toc', 'md_in_html']
+                normalize_lazy_lists(note_md),
+                extensions=['extra', 'sane_lists', 'toc', 'md_in_html'],
             )
 
     with open(notes_path, 'w', encoding='utf-8') as f:

@@ -152,6 +152,51 @@ iframe.game { display: none; }
 """
 
 
+def normalize_lazy_lists(text: str) -> str:
+    """Insert the blank line python-markdown needs in front of a list.
+
+    CommonMark -- GitHub, and the markdown-it parser Marp uses -- lets a list
+    start on the line straight after a paragraph, so `Links:` followed
+    immediately by `- [...]` is a paragraph plus a list. python-markdown
+    instead swallows the items into the paragraph and renders them as one
+    run-on line, so the blank line is added here rather than littering
+    slides.md with blank lines that only exist to appease this script.
+    """
+    list_item = re.compile(r'^([-*+]|\d+[.)])\s+\S')
+    fence = re.compile(r'^\s*(```|~~~)')
+
+    out: list[str] = []
+    in_fence = False
+    in_list = False  # current run of non-blank lines is already a list
+    for line in text.split('\n'):
+        if fence.match(line):
+            in_fence = not in_fence
+            in_list = False
+            out.append(line)
+            continue
+        if in_fence:
+            out.append(line)
+            continue
+
+        is_item = bool(list_item.match(line))
+        # Only break out of ordinary paragraph text: a raw HTML line, an
+        # indented continuation or a heading either needs no help or would be
+        # damaged by the split. A list already under way must not be split
+        # either -- a lone `&nbsp;` spacer line between items is a lazy
+        # continuation of the item above it, not the end of the list.
+        if (is_item and out and not in_list
+                and out[-1].strip()
+                and not out[-1].startswith((' ', '\t', '<', '>', '#'))):
+            out.append('')
+
+        if not line.strip():
+            in_list = False
+        elif is_item or line.startswith((' ', '\t')):
+            in_list = True
+        out.append(line)
+    return '\n'.join(out)
+
+
 def transform(src: str) -> str:
     # Strip the leading YAML frontmatter block only (the very first
     # `---`-delimited block). Every other `---` in the file is a real
@@ -171,6 +216,8 @@ def transform(src: str) -> str:
     # `markdown="1"` (unlike markdown-it, which does this by default) --
     # mark every <div> so nested content renders instead of staying literal.
     text = re.sub(r'<div(?![^>]*\bmarkdown=)', '<div markdown="1"', text)
+
+    text = normalize_lazy_lists(text)
 
     body = markdown.markdown(text, extensions=['extra', 'sane_lists', 'toc', 'md_in_html'])
 

@@ -9,8 +9,15 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { height: 100%; }
-body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f7f5f0; color: #1a1810; padding: 10px 14px 6px; min-height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f7f5f0; color: #1a1810; }
+/* Everything except the tooltip lives in #fitWrap, which is laid out at a
+   virtual size of at least FIT_MIN_W x FIT_MIN_H and then scaled down to fit
+   the real viewport (see fit() below). Embedded in the slide deck the iframe
+   is only ~1256x672 CSS px, which is too short for this layout -- without
+   this the bottom of the page is simply scrolled out of view. */
+#fitWrap { position: fixed; top: 0; left: 0; transform-origin: 0 0;
+  padding: 10px 14px 6px; display: flex; flex-direction: column; overflow: hidden; }
 #tip { display:none; position:fixed; pointer-events:none; z-index:200;
   background:#1e1a14; color:#f0ede8; border-radius:8px; padding:9px 13px;
   font-family:'Inter',system-ui,sans-serif; font-size:13px; line-height:1.7;
@@ -155,6 +162,8 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 </head>
 <body>
 
+<div id="fitWrap">
+
 <h1>Seven Habits of Highly Effective Token Rollers</h1>
 
 <div class="layout">
@@ -222,6 +231,29 @@ h1 { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-se
 </div>
 
 <script>
+// ─────────────────────────────────────────────
+// FIT TO VIEWPORT
+// ─────────────────────────────────────────────
+// Lay the page out at no less than FIT_MIN_W x FIT_MIN_H CSS px and scale the
+// whole thing down uniformly until it fits the viewport, so nothing is ever
+// scrolled out of sight. Never scales up: in a roomy window the wrapper is
+// exactly the viewport and the layout behaves as it always did.
+const FIT_MIN_W = 1240, FIT_MIN_H = 900;
+let _fitScale = 1;
+
+function fit() {
+  const vw = document.documentElement.clientWidth;
+  const vh = document.documentElement.clientHeight;
+  _fitScale = Math.min(1, vw / FIT_MIN_W, vh / FIT_MIN_H);
+  const wrap = document.getElementById('fitWrap');
+  wrap.style.width  = (vw / _fitScale) + 'px';
+  wrap.style.height = (vh / _fitScale) + 'px';
+  wrap.style.transform = _fitScale === 1 ? 'none' : 'scale(' + _fitScale + ')';
+}
+
+fit();
+window.addEventListener('resize', fit);
+
 // ─────────────────────────────────────────────
 // CONSTANTS
 // ─────────────────────────────────────────────
@@ -843,8 +875,12 @@ const chart = new Chart(document.getElementById('mainChart'), {
 });
 
 function sizeChart() {
-  const rect = document.getElementById('chartWrap').getBoundingClientRect();
-  chart.resize(rect.width, rect.height);
+  // offsetWidth/Height, not getBoundingClientRect(): the latter is in real
+  // viewport px (post-fit-scale), which would leave the chart's internal
+  // coordinate system smaller than the CSS box it is stretched across --
+  // blurring the render and throwing off hover hit-testing.
+  const el = document.getElementById('chartWrap');
+  chart.resize(el.offsetWidth, el.offsetHeight);
 }
 
 
@@ -1188,7 +1224,8 @@ new ResizeObserver(() => {
 const _tipEl = document.getElementById('tip');
 document.getElementById('mainChart').addEventListener('mousemove', e => {
   const rect = e.currentTarget.getBoundingClientRect();
-  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  // rect is in real viewport px but _hitmap is in unscaled chart px.
+  const mx = (e.clientX - rect.left) / _fitScale, my = (e.clientY - rect.top) / _fitScale;
   const hit = _hitmap.find(h => mx >= h.x1 && mx <= h.x2 && my >= h.y1 && my <= h.y2);
   if (!hit) { _tipEl.style.display = 'none'; return; }
   _tipEl.innerHTML = tipContent(hit);
@@ -1211,5 +1248,7 @@ document.addEventListener('mousedown', e => {
   }
 });
 </script>
+
+</div><!-- /#fitWrap -->
 </body>
 </html>

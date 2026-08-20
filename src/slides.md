@@ -2391,28 +2391,27 @@ Links:
 ####
 What a journey.
 
-### Thanks you, and remember
+### Thank you, and remember
 
 <br>
 <div class="cols">
 <img class="col-1" src="images/intro/github-com-ricflams-techtalk-ai-demystified.png">
 <div class="col-4">
 
-It's all *just text*
+It's all *just text*, not rules
 
 Keep your *context lean*
 
 Try *the terminal*, maybe you'll like it
 
-*Re-visit this* at ricflams.github.io/techtalk-ai-demystified/
+*Re-visit this* at ricflams.github.io/techtalk-ai-demystified/<br>in readable form with *plenty* more notes and links
 
 </div>
 </div>
 
 <br>
 <br>
-And finally - don't dispair 😊
-<br>
+Enjoy and don't dispair 😊
 <br>
 <img src="images/intro/two-years-behind.png">
 

@@ -121,17 +121,24 @@ What can I possibly say that hasn't already been said in the 10,000,000 existing
 
 It's for same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: it's just easier to get a refined presentation that tells the story in an insightful way, focusing on the good bits from those 10,000,000 videos. Also, you can ask any questions you have.
 
+####
+But if I had to recommend just one single video about "how AI works", then it would be this short one. Those 8 minutes are very well spent.
+
+Links:
+- [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs)
+
 ---
 ![bg](images/intro/questions.jpg)
 ####
 About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then do feel free to raise your hand and ask questions.
 
-Afterwards go revisit the slides at your own pace. They are on github and has lots of links to related materials.
+Afterwards go revisit the slides at your own pace. They are on github in a nice, readable format, with lots of links to related materials.
 
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
 Links:
 - [Tech Talk: AI Demystified](https://ricflams.github.io/techtalk-ai-demystified/)
+- [Marp: Ditch PowerPoint and embrace Markdown for creating slides](https://youtu.be/I0VoesfTTnA)
 
 ---
 ![bg](images/intro/one-hour.jpg)
@@ -149,9 +156,9 @@ This presentation focus on AI that generates text, like Claude, ChatGPT, Gemini,
 So AI here means **generative text AI**. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
 Links:
-- [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://www.youtube.com/watch?v=aBUniZHgCnE)
-- [AlphaFold - The Most Useful Thing AI Has Ever Done](https://www.youtube.com/watch?v=P_fHJIYENdI)
-- [A quest for a cure: AI drug design | Isomorphic Labs](https://www.youtube.com/watch?v=XpIMuCeEtSk)
+- [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://youtu.be/aBUniZHgCnE)
+- [AlphaFold - The Most Useful Thing AI Has Ever Done](https://youtu.be/P_fHJIYENdI)
+- [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk)
 
 # The LLM
 
@@ -354,7 +361,7 @@ There's a research field called mechanistic interpretability that tries to decom
 Links:
 - [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
 - [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
-- [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://www.youtube.com/watch?v=9-Jl0dxWQs8)
+- [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://youtu.be/9-Jl0dxWQs8)
 
 ### The example's embeddings
 <img src="images/llm/embeddings/embedding-matrix.png" />
@@ -492,13 +499,17 @@ That's the second thing to note: the LLM itself just produce this set of probabi
 
 ####
 Links:
-- [Large Language Models explained briefly - 3Blue1Brown](https://www.youtube.com/watch?v=LPZh9BOjkQs)
+- [Large Language Models explained briefly - 3Blue1Brown](https://youtu.be/LPZh9BOjkQs)
 
 ### A neural network
 <img src="images/llm/neural-network.webp">
 
 ####
 A neural network is basically just a giant, organized set of multiplications and additions.
+
+####
+Links:
+- [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU)
 
 ### Add up, multiply by factors, add up, ...
 <img src="images/llm/neural-network-nodes.png">
@@ -546,6 +557,7 @@ It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, 
 
 Links:
 - [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+- [The 35 Year History of ChatGPT](https://youtu.be/OFS90-FX6pg)
 
 ### The Transformer can figure out the next token
 <img src="images/llm/what-we-want.png">
@@ -711,6 +723,9 @@ And it's amazing that it works, and that it ends up producing embeddings that ha
 ####
 It's taken some effort to figure out this math, but it's pretty simple to execute.
 
+Links:
+- [ChatGPT is made from 100 million of these [The Perceptron]](https://youtu.be/l-9ALe3U-Fg)
+
 ### A trained model = embeddings + weigths
 <img src="images/llm/training/pre-trained-model.png">
 
@@ -793,6 +808,7 @@ In order to use AI for performing this Reinforcement Learning, Anthropic has wri
 ####
 Links:
 - [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
+- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg)
 - [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
 ### Expresses Claude’s "core principles"
@@ -868,15 +884,11 @@ For example, the Claude family are physically three different models: different 
 
 
 ### Trained AI model recap
-- You give it a string of tokens, aka the *context*
+- You give it a string of tokens, aka the *context*<br>The model produce a response by running that context through *the Transformer*<br>The transformer can *only reason about the context* you give it
 <br>
-- The model produce a response by running that context through *the Transformer*
+- AI models have been *post-trained differently* for different desired behaviors
 <br>
-- The models have been *post-trained differently* for different desired behaviors
-<br>
-- The model can *only reason about the context*
-<br>
-- It's *all just math*, fixed at the time of training
+- It's *all just math*, fixed at the time of training; no dictionaries or web-browsing
 
 ### Let's revisit what Claude itself said
 <img src="images/llm/claude-please-tell-me.png">
@@ -891,10 +903,10 @@ If you find this interesing then I can remommend this 2-hour video of Andrej Kar
 The whole thing is only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
 
 Links:
-- [Let's build GPT from scratch (2 hours)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
-- [Let's reproduce GPT-2 (4 hours)](https://www.youtube.com/watch?v=l8pRSuU81PU)
+- [Let's build GPT from scratch (2 hours)](https://youtu.be/kCc8FmEb1nY)
+- [Let's reproduce GPT-2 (4 hours)](https://youtu.be/l8pRSuU81PU)
 - [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
-- [Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
+- [Deep Dive into LLMs like ChatGPT](https://youtu.be/7xTGNNLPyMI)
 - [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
 
 
@@ -1124,8 +1136,8 @@ The dimension of a multimodal embedding is typically smaller than for text.
 
 Links:
 - [Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
-- [Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
-- [What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
+- [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw)
+- [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw)
 
 ####
 Within the **unified embedding space** you can compare text, images, video, and audio to see how similar the concepts they represent are.
@@ -1400,8 +1412,8 @@ As an aside: the tool-training is commonly done using a process called *Toolform
 In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgement but purely mathematically as "did this make the future more predictable?".
 
 Links:
-- [Toolformer: AI learns to use APIs - AssemblyAI](https://www.youtube.com/watch?v=LxZ3gYvbV7I)  (5 min)
-- [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://www.youtube.com/watch?v=UID_oXuN-0Y) (55 min)
+- [Toolformer: AI learns to use APIs - AssemblyAI](https://youtu.be/LxZ3gYvbV7I)  (5 min)
+- [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://youtu.be/UID_oXuN-0Y)
 - [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
 
 ### The tools is being run (on agent or server)
@@ -1618,7 +1630,7 @@ Links:
 </div>
 
 ####
-The API docs, the OpenAPI spec, and the MCP version of the Siteimprove API's endpoint for [/sites/{site_id}/analytics/content/most_popular_pages](https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages)
+The API docs, the OpenAPI spec, and the MCP version of the Siteimprove API's endpoint for [most_popular_pages](https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages) endpoint.
 
 The MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.
 
@@ -1877,7 +1889,7 @@ Links:
 - [Matt Pocock on Github](https://github.com/mattpocock)
 - [Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
 - [How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
-- [So I tried Matt's skills... - Theo](https://www.youtube.com/watch?v=0oXOOlqVu5M)
+- [So I tried Matt's skills... - Theo](https://youtu.be/0oXOOlqVu5M)
 
 ### Hey bro
 <img src="images/service/system/skills/bro/bro-skill-code.png" />
@@ -2195,8 +2207,7 @@ Mitigations:
 
 ####
 Links:
-- [Claude Academy](https://claude-academy.com/)
-- [You're falling behind. It's time to catch up.](https://www.youtube.com/watch?v=Z9UxjmNF7b0)
+- [The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting](https://youtu.be/GTEz5WWbfiw)
 
 ####
 
@@ -2214,20 +2225,26 @@ Links:
 Links:
 - [Google: The New SDLC With Vibe Coding"](https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding)
 - [Mixture-of-Expert vs Multi-Agent Systems](https://gurusup.com/blog/moe-vs-multi-agent-systems)
+- [4 AI Labs Built the Same System Without Talking to Each Other](https://youtu.be/LO0Ws-l6brg)
 
 ### Yet constantly new trends, like "loop of loops"
 <img src="images/guidance/nate-loop-of-loops.png">
 
 ####
 Links:
-- [AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://www.youtube.com/watch?v=A4zMyjkL0Dc)
-- [I guess we're writing loops now?](https://www.youtube.com/watch?v=iJVJwmCKW9o)
+- [AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://youtu.be/A4zMyjkL0Dc)
+- [I guess we're writing loops now?](https://youtu.be/iJVJwmCKW9o)
 
 
 ### How to keep up with the AI
 Treat it as a tool in your professional toolbox.<br>Buy your *own* good hammer, like a carpenter would
 
 A monthly subscription of $20 is a cheap investment
+
+####
+Links:
+- [Claude Academy](https://claude-academy.com/)
+- [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0)
 
 # A Bonus Round of<br>Demystifications
 
@@ -2374,7 +2391,8 @@ Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI
 
 Links:
 - [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
-- [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
+- [Can humans make AI any better?](https://youtu.be/2hcsmtkSzIw)
+- [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://youtu.be/-W2JdSl1v48)
 - [General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
 
 ### All AI models are the same after all
@@ -2398,8 +2416,8 @@ Links:
 Links:
 - [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
 - [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
-- [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://www.youtube.com/watch?v=p7t1Q_p2gZs)
-- [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
+- [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://youtu.be/p7t1Q_p2gZs)
+- [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw)
 
 
 # That's all
@@ -2434,9 +2452,9 @@ Enjoy and don't dispair 😊
 ####
 Links:
 - [AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
-- [You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
-- Best LLM resources, imho: [3blue1brown](https://www.3blue1brown.com/?topic=neural-networks)
-
+- [Neural network - 3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+- [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU)
+- [Veritasium: What Everyone Gets Wrong About AI and Learning](https://youtu.be/0xS68sl2D70)
 
 # Bonus
 
@@ -2561,7 +2579,7 @@ And why NVidia's stock price has soared.
 
 ####
 Links:
-- [The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
+- [The World's Most Important Machine - Veritasium](https://youtu.be/MiUHjLxm3V0)
 
 
 ## A mental model for the LLM

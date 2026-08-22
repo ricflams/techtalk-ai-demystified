@@ -289,9 +289,10 @@ And `**,` is also common enough to have its own token.
 <div class="col-5" >
 
 - A **token** is the *chunk of text* the LLM reasons about
+<br>
 - Tokens know nothing about *language*
 <br>
-- The *cost* is per token
+- The *processing cost* is per token
 </div>
 </div>
 
@@ -339,7 +340,7 @@ That's essentially what the purpose of an embedding is, to the AI.
 
 An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterizes _something_. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
 
-The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. If we choose 20 characteristics then the embedding of "kitten" has 20 dimensions.
+The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" has 20 dimensions. The more dimensions, the more nuances can be captured.
 
 Each number is called the **weight** of that dimension.
 
@@ -993,7 +994,7 @@ Links:
 ####
 Not in some unrelated app, not in the browser - no, in its *own* app, that can for example read and create files.
 
-### Every agent is its own silo
+### An agent is often its own little silo
 <img src="images/agents/skills-example.png" />
 
 ####
@@ -1011,7 +1012,7 @@ So now you know why the settings, like Skills, you set online at claude.ai are n
 
 ## My personal AI-journey
 
-### Chat, copy-paste, embedded, now terminal
+### Chat, copy-paste, in app, now terminal
 <img src="images/agents/evolution.png" />
 
 ####
@@ -1052,6 +1053,7 @@ This is the part where we finally unlock the concrete functionality you use dail
 <img src="images/overview/service.png">
 
 ### What does the AI service add?
+<br>
 <div class="cols">
 <img src="images/agents/parts/ai-service.png" />
 <div class="col-2" >
@@ -1076,7 +1078,8 @@ The full functionality is quite lean:
 ### It's all about those <em>embeddings</em>
 Remember, the Transformer works on *embeddings*
 Text maps to tokens, each token has an embedding in the model
-But ... what about *files*, like PDFs and images?
+&nbsp;
+But what about *files*, like PDFs and images?
 <br>
 
 <img src="images/service/overview/transformer.png">
@@ -1711,7 +1714,7 @@ Files, chatting, thinking, tools - just one major thing remains. And it's rather
 <br>
 - You could have *written this text yourself* in a prompt (well, sort of)
 
-### Actually, the system prompt _is_ obeyed more
+### True, the system prompt _is_ obeyed more
 <img src="images/service/system/prompt/training.png">
 
 ####

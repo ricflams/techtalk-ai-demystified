@@ -145,6 +145,10 @@ Links:
 ####
 I've really strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so it will be information-packed and move fast.
 
+####
+Links:
+- [Veritasium: What Everyone Gets Wrong About AI and Learning](https://youtu.be/0xS68sl2D70)
+
 ---
 <img src="images/overview/full.png" />
 
@@ -1324,7 +1328,7 @@ But it's better for you to be deliberately in control than have your long conver
 ### Chain of Thought
 Thinking (aka effort, reasoning, ...) is called **Chain of Thought**, or **CoT**
 &nbsp;
-1. Inject a special *<let me think about that>-token*, known from training
+1. Inject a special *&lt;let me think about that&gt;-token*, known from training
 2. That token makes the LLM *comtemplate*, rather than seek to respond
 3. Keep producing, appending, and processing **thinking blocks**, refining the LLM's understanding of the matter until the LLM says "thinking completed" or the allotted **thinking budget** is exceeded
 4. Blocks are also sent to the agent, which may show them to you in its UI
@@ -2056,7 +2060,7 @@ Let's check it out.
 ### Some names, facts, behaviors, ...
 <img src="images/service/system/all/name-and-behavior.png">
 
-### Oh, something <mandatory>, sounds important
+### Oh, something &lt;mandatory&gt;, sounds important
 <img src="images/service/system/all/something-mandatory.png">
 
 ### A bit on regex formatting and the available tools
@@ -2451,10 +2455,14 @@ Enjoy and don't dispair 😊
 
 ####
 Links:
-- [AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
+- [AI Demystified - this talk](https://github.com/ricflams/techtalk-ai-demystified/)
 - [Neural network - 3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
-- [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU)
-- [Veritasium: What Everyone Gets Wrong About AI and Learning](https://youtu.be/0xS68sl2D70)
+- [You've Been Using AI the Hard Way](https://youtu.be/MsQACpcuTkU) (the terminal)
+
+My *favorite youtube channels* for AI-related content:
+- [3Blue1Brown](https://www.youtube.com/@3blue1brown)
+- [Welch Labs](https://www.youtube.com/@WelchLabs/videos)
+- [AI News & Strategy Daily | Nate B Jones](https://www.youtube.com/@NateBJones)
 
 # Bonus
 

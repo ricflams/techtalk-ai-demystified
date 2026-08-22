@@ -199,16 +199,6 @@ iframe.game { display: none; }
 .cols > div > :first-child { margin-top: 0; }
 .cols > div > :last-child { margin-bottom: 0; }
 .cols ul, .cols ol { padding-left: 1.3em; }
-/* A side-by-side pair needs more room than a single column of prose, so let
-   these blocks bleed a little past the 800px reading measure when the
-   viewport can spare it. */
-@media (min-width: 1040px) {
-  .cols {
-    width: calc(100% + 200px);
-    margin-left: -100px;
-    margin-right: -100px;
-  }
-}
 /* Too narrow for columns: fall back to the stacked reading order. */
 @media (max-width: 720px) {
   .cols, .cols > p:has(img + img) { display: block; }

@@ -34,7 +34,7 @@ Same with Java and .NET, with their intriguing bytecode and VM-engines. So inter
 ####
 For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also *mysterious*.
 
-There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, and fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
+There's this feeling that "it can do anything if I only hold it right". That can lead to fear of holding it wrong, fear of missing out, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
 
 Links:
 - [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0)
@@ -48,7 +48,7 @@ Many lightbulb-moments have given me a better fundamental understanding of AI an
 ---
 ![bg](images/intro/bread/loaf.jpg)
 ####
-Let's begin far away from AI: with a nice, freshly baked bread.
+Let's begin far away from AI: with some nice, freshly baked bread.
 
 You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does.
 
@@ -284,7 +284,7 @@ This is what the example conversation looks like when tokenized.
 
 Notice how markdown for bold, the double-star `**`, has its own token.
 
-And the three-letter sequence `**,` is also common enough to have its own token.
+And the three-character sequence `**,` is also common enough to have its own token.
 
 ### Tokens recap
 
@@ -335,9 +335,7 @@ That's essentially what the purpose of an embedding is, to the AI.
 ### An embedding is a token's <em>characteristics</em>
 
 <div class="cols">
-<div>
-	<img src="images/llm/embeddings/20d-kitten.png" />
-</div>
+<img src="images/llm/embeddings/20d-kitten.png" />
 <div class="col-6">
 
 An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterizes _something_. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
@@ -698,9 +696,7 @@ The training material is pretty commonplace for all frontier models nowadays. It
 ### Model and embeddings are born via training
 
 <div class="cols">
-<div class="col-2">
-	<img src="images/llm/training/training-example.png">
-</div>
+<img class="col-2" src="images/llm/training/training-example.png">
 <div>
 
 **Backpropagation**:
@@ -1014,7 +1010,7 @@ So now you know why the settings, like Skills, you set online at claude.ai are n
 
 ## My personal AI-journey
 
-### Chat, copy-paste, in app, now terminal
+### Chat, copy-paste, in-app, now terminal
 <img src="images/agents/evolution.png" />
 
 ####
@@ -2173,43 +2169,46 @@ iframe.game { flex: 1; width: 100%; border: none; }
 </iframe>
 
 <div class="github-fallback">
-[![Token spending game preview](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png)](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)
+<!-- Raw <a> rather than markdown links: the game is its own little app, so
+     target="_blank" keeps the reader's place on this page. Markdown link
+     syntax can't express a target. -->
+<a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener"><img src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" alt="Token spending game preview"></a>
 
-*[Open interactive version](https://ricflams.github.io/techtalk-ai-demystified/tokenspree/)*
+*<a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener">Open interactive version</a>*
 </div>
 
 ####
 Here's an interactive visualization of where your token costs go.
 
-Try this:
+Try this, on the default 10-turn view:
 
 - Click the "Per-turn cost" and see that *the first turn is un-cached* and that *outputs are more expensive*
 - Click the "Total cost" to see what the total cost after 10 turns is
 - Try turning off the cache and see that it would be 2-3x more expensive, and then turn it back on
 
-Now let's spend some tokens. Try each spending spree, one by one:
+Now let's spend some tokens. Try each spending spree, one by one, disabling each one after seeing the effect of it:
 
-- Add some MCP servers. They're actually not that expensive nowadays
-- Upload a big document. Your chat carries that doc in every turn
-- Helpful IDE/tools. Send the selected document, tool results
-- Think harder. That can eat a lot of tokens and we hit the quota at turn 34. Try unchecking/checking "Discard thinking" to see what will happen if thinking isn't discarded.
-- Long outputs, like producing code or documents. Expensive. Coincidentally, I first made this app online in Claude.ai and hit my quota.
-- Bust the cache. It's expensive to be Away From Keyboard, or change the model
-- Expensive model. Everything gets N times more costly.
+- Add some MCP servers - they're actually not that expensive nowadays
+- Upload a big document - your chat carries that doc in every turn
+- Helpful IDE/tools - sends, for example, the selected document, and includes tool results
+- Think harder - that can eat a lot of tokens
+- Long outputs - producing code or documents is expensive
+- Bust the cache - it's expensive to be Away From Keyboard, or change the model
+- Expensive model - then everything gets N times more costly
 
-Now do more turns and add all token spending sprees:
+Now increase the number of turns to 30 and add all token spending sprees one by one without disabling them again:
 
-- Let's increase the number of turns to, say, 30
 - MCP, doc, IDE - hey, what happened, why the curve "break"?
 - Going back to Per-turn tokens reveals that auto-compaction kicked in because the context window was only 200 K; up it to 1M and switch back to Total cost
 - Think harder - now we reached the quota
 - Long outputs - quota reached twice
-- Bust cache - quota reached 4 times
+- Bust cache - quota reached earlier
 - Expensive model - bam!
+- Click on "Combine similar" to better see the contributions
 
 Mitigations:
 
-- Try clear and compact.
+- Try clear and compact
 
 # 3 x How to ...
 

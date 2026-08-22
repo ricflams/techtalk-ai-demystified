@@ -120,6 +120,79 @@ img.logo {
 iframe.game { display: none; }
 .github-fallback { display: block; }
 
+/* `.cols` blocks pair things that belong side by side on the slide -- an
+   image next to the bullets explaining it, or two images being compared.
+   Left unstyled they collapse into document order, so the image lands
+   full-width above text that reads as if it were a separate section. Keep
+   the pairing here, honoring the same col-N weights layout.css uses. */
+.cols {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.cols > * { flex: 1 1 0; min-width: 0; }
+.cols > .col-2 { flex: 2 1 0; }
+.cols > .col-3 { flex: 3 1 0; }
+.cols > .col-4 { flex: 4 1 0; }
+.cols > .col-5 { flex: 5 1 0; }
+.cols > .col-6 { flex: 6 1 0; }
+/* Marp's markdown-it leaves a standalone `<img>` line as a raw HTML block,
+   so its col-N class sits directly on the flex child. python-markdown
+   instead wraps that image in a <p>, which becomes the flex child and
+   carries no class -- so read the weight off the wrapped image. */
+.cols > p { margin: 0; }
+.cols > p:has(> .col-2) { flex: 2 1 0; }
+.cols > p:has(> .col-3) { flex: 3 1 0; }
+.cols > p:has(> .col-4) { flex: 4 1 0; }
+.cols > p:has(> .col-5) { flex: 5 1 0; }
+.cols > p:has(> .col-6) { flex: 6 1 0; }
+/* Overrides the page-wide `img:not(.logo)` cap, which sizes an image to sit
+   alone in the text column: inside a column an image should fill the column
+   it was given. Same specificity as that rule would be a source-order tie,
+   so match .logo here too and win outright. */
+.cols img:not(.logo) {
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  margin: 0;
+}
+/* Consecutive `<img>` lines are one paragraph to python-markdown, so a row
+   of images arrives as a single flex child and would stack inside it. Lay
+   that paragraph out as its own row instead. */
+.cols > p:has(img + img) { display: flex; gap: 1.5rem; align-items: center; }
+.cols > p:has(img + img) > img:not(.logo) { flex: 1 1 0; width: auto; min-width: 0; }
+/* Two-image comparisons shouldn't stretch to unequal heights. */
+.cols.fit { justify-content: center; }
+.cols.fit img:not(.logo) { width: auto; max-height: 420px; margin: 0 auto; }
+.cols > div > :first-child { margin-top: 0; }
+.cols > div > :last-child { margin-bottom: 0; }
+.cols ul, .cols ol { padding-left: 1.3em; }
+/* A side-by-side pair needs more room than a single column of prose, so let
+   these blocks bleed a little past the 800px reading measure when the
+   viewport can spare it. */
+@media (min-width: 1040px) {
+  .cols {
+    width: calc(100% + 200px);
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+}
+/* Too narrow for columns: fall back to the stacked reading order. */
+@media (max-width: 720px) {
+  .cols, .cols > p:has(img + img) { display: block; }
+  /* Back to the page's ordinary standalone-image treatment, height cap
+     included, so a tall image doesn't tower over the text below it. */
+  .cols img:not(.logo) {
+    width: auto;
+    max-width: 100%;
+    max-height: 600px;
+    margin: 1.5rem auto;
+  }
+  .cols > div + div, .cols > p + div { margin-top: 1rem; }
+}
+
 </style>
 </head>
 <body>
@@ -141,7 +214,8 @@ iframe.game { display: none; }
 <hr />
 <p><img alt="" src="images/intro/dopamine.png" /></p>
 <h4 id="_3"></h4>
-<p>For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.</p>
+<p>For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also <em>mysterious</em>.</p>
+<p>There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, and fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/Z9UxjmNF7b0">You're falling behind. It's time to catch up.</a></li>
@@ -153,9 +227,10 @@ iframe.game { display: none; }
 <hr />
 <p><img alt="" src="images/intro/bread/loaf.jpg" /></p>
 <h4 id="_5"></h4>
-<p>Let's begin far away from AI: a nice, freshly baked bread.</p>
+<p>Let's begin far away from AI: with a nice, freshly baked bread.</p>
 <p>You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does.</p>
-<p>"Add yeast, then set the clock to let the dough rise for one hour", as the recipe says. The bread comes out fine. Usually.</p>
+<p>"Add yeast, then set the clock to let the dough rise for one hour", the recipe says.</p>
+<p>And the bread comes out fine. Usually.</p>
 <hr />
 <p><img alt="" src="images/intro/bread/rise.jpg" /></p>
 <h4 id="_6"></h4>
@@ -289,7 +364,7 @@ iframe.game { display: none; }
 <h3 id="hello">"hello"</h3>
 <p><img src="images/llm/tokens/hello.png"></p>
 <h4 id="_26"></h4>
-<p>"hello" is one single token.</p>
+<p>An online <em>tokenizer</em> shows how "hello" is one single token.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://tiktokenizer.vercel.app/">Tiktokenizer</a></li>
@@ -323,7 +398,7 @@ iframe.game { display: none; }
 <h4 id="_32"></h4>
 <p>This is what the example conversation looks like when tokenized.</p>
 <p>Notice how markdown for bold, the double-star <code>**</code>, has its own token.</p>
-<p>And <code>**,</code> is also common enough to have its own token.</p>
+<p>And the three-letter sequence <code>**,</code> is also common enough to have its own token.</p>
 <h3 id="tokens-recap">Tokens recap</h3>
 <div class="cols">
 <p><img class="col-2" src="images/llm/tokens/ride-tokens.png"></p>
@@ -342,8 +417,7 @@ iframe.game { display: none; }
 <h2 id="embeddings">Embeddings</h2>
 <p><img src="images/overview/embeddings.png"></p>
 <h4 id="_34"></h4>
-<p>You probably knew about tokens.</p>
-<p>The LLM does not deal directly with tokens. Instead, it works on something called <em>embeddings</em>.</p>
+<p>It's likely that you already knew about tokens. But the LLM does not deal directly with tokens. Instead, it works on something called <em>embeddings</em>.</p>
 <p>Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.</p>
 <h3 id="in-ai-an-embedding-is-a-vector-of-numbers-whose-values-somehow-represent-the-characteristics-of-something">In AI, an <em>embedding</em> is a vector of numbers whose values <em>somehow</em> represent the characteristics of <em>something</em></h3>
 <h3 id="confused-okay-stay-with-me">Confused? Okay, stay with me</h3>
@@ -361,8 +435,7 @@ iframe.game { display: none; }
 <h3 id="an-embedding-is-a-tokens-characteristics">An embedding is a token's <em>characteristics</em></h3>
 <div class="cols">
 <div>
-<pre><code>&lt;img src="images/llm/embeddings/20d-kitten.png" /&gt;
-</code></pre>
+<p><img src="images/llm/embeddings/20d-kitten.png" /></p>
 </div>
 <div class="col-6">
 <p>An <strong>embedding</strong> is a list of numbers (also called a <strong>vector</strong> or <strong>tensor</strong>) that <em>somehow</em> characterizes <em>something</em>. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.</p>
@@ -613,8 +686,7 @@ Is it "stronger"? Yes, that's the closest known token.</p>
 <h3 id="model-and-embeddings-are-born-via-training">Model and embeddings are born via training</h3>
 <div class="cols">
 <div class="col-2">
-<pre><code>&lt;img src="images/llm/training/training-example.png"&gt;
-</code></pre>
+<p><img src="images/llm/training/training-example.png"></p>
 </div>
 <div>
 <p><strong>Backpropagation</strong>:</p>

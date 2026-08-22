@@ -333,7 +333,7 @@ Embeddings can be: Any *word* you know. Any *sentence* there exist. Any *feeling
 </div>
 </div>
 
-### A token's meaning is represented by 1 embedding
+### 1 token's meaning is represented by 1 embedding
 <img src="images/llm/embeddings/vocabulary-gpt-3.png" />
 
 ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding
@@ -1277,24 +1277,29 @@ The best way to save tokens is simply to not keep on dragging the entire convers
 "Compact" means that the agent ask the LLM to summarize the chat and add that summary as a first message.
 
 ### Your best token-saving friends: clear and compact
-- Write `/clear` or `/compact` or just start a new chat
+- Write `/clear` or `/compact` or *just start a new chat*
 <br>
-- Compact doesn't use that many more tokens
+- The context doesn't grow by much if you can *use compact*
 <br>
-- If you don't, the agent will auto-compact for you
-<br>
-The token-cost rather complicated; more later
+- If you don't, the agent will *auto-compact* for you
 
 ####
 Many agents also offer ways of branching or editing or backtracking on your messages.
 
 For example Claude has `/btw` to send a message out-of-band.
 
-### Chatting recap
+### _"Start a new chat? But then I would lose ..."_
+<img src="images/service/chat/my-precious-context.png">
 
-- The full chat is always sent, every time
+####
+Yes, it can feel hard, I know.
+
+But it's better for you to be deliberately in control than have your long conversation slowly deteriorate because it is being compacted and compacted over and over, so it simply lose the messages you started with.
+
+### Chatting recap
+- The *full chat* is always sent, every time
 <br>
-- Keep the context lean
+- Keep the context lean - *compact* or *start new chats*
 
 ## Thinking
 <img src="images/overview/thinking.png">
@@ -2067,8 +2072,6 @@ At the end of the day, the "system prompt" is all just text. Words competing for
 
 Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. The markup just convey some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with `##` headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate *the structure* it brings, just like human readers would.
 
-## Filling the final blanks
-
 ### The final parts
 <img src="images/service/overview/misc.png">
 
@@ -2086,20 +2089,35 @@ Four parts to mention:
 ####
 Indeed, this is the full overview of how any modern AI Service work, in principle.
 
-# The Context
+### The full context you send is *this and nothing else*
+<img src="images/service/system/full-context.png">
+
+####
+Besides the messages you send and the response from the AI service, the context consists of
+
+- instructions that *you* somehow have asked to be added, and
+- instructions that *the agent* has chosen to add
+
+In your chat, the response may well contain something that gives the impression that the AI model somehow knows a lot about you. You talk about buying doog food and it responds by mentioning the name of your dog. What's up?
+
+The reason is this. As you chat, the typical agents will (using the LLM, of course) keep a small record of most important facts about you and what you've most recently talked about. That's the *automatically stored memories" we looked at earlier, in part 3 of the system prompt.
+
+And *this* is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, but not much; and you can see it for yourself, in the settings for web-agents or in files for terminal-agents. When you chat it's *just this brief summary* (or summaries, maybe) that is included - not all the former chats.
+
+# Context Economy
 
 ####
 Everything we've looked at is about *putting tokens into a context* with the intent of steering the next prediction toward something useful.
+
+Here is some advice on how to do that *economically*.
 
 ---
 <img src="images/context/its-the-context-economy-stupid.png">
 
 ####
-But the context is finite and processing costs you per token.
+The context is finite and processing costs you per token.
 
 So not just adding the right things, but also keeping the context lean, is the challenge.
-
-The cost of tokens in the context has a couple of surprises in store.
 
 ### Advice for your context economy
 - You *pay per token*; fixed price/token for API, or via *your quota* when using an agent.<br>*Output tokens* are typically *5 times* as expensive as input tokens<br>*Cached tokens cost 10%*, so continue your chat within 5 min (optional 1 hour) to save cost
@@ -2420,3 +2438,233 @@ Links:
 - [AI Demystified repo](https://github.com/ricflams/techtalk-ai-demystified/)
 - [You've Been Using AI the Hard Way (Use This Instead)](https://www.youtube.com/watch?v=MsQACpcuTkU)
 - Best LLM resources, imho: [3blue1brown](https://www.3blue1brown.com/?topic=neural-networks)
+
+
+# Bonus
+
+####
+Here are a few parts that was cut from the presentation in the interest of time, but are still interesting.
+
+## Effort and Cost
+
+####
+Let's briefly talk about the amount of work that's involved in producing tokens and the cost of it.
+
+### It's one token, what could it cost?
+
+<img src="images/bonus/cost/one-banana.jpg">
+
+### Harry Potter ~ 100,000 tokens
+
+<div class="cols fit">
+<div><img src="images/bonus/cost/harry-potter-front.png" /></div>
+<div><img src="images/bonus/cost/harry-potter-page-1.jpg" /></div>
+</div>
+
+####
+Let's say we tokenized and fed Harry Potter through the LLM, and had it produce the next expected token. What would that entail?
+
+Specifically for Harry Potter: People have tried that and the resulting stories are incredibly bizarre hybrids. The AI might invent a plot where Harry returns to Hogwarts, but it will subconsciously add in details from the Chamber of Secrets anyway; like renaming the Basilisk to something else but keeping the exact structural cadence of the original sequel.
+
+### 100,000 context tokens in, 1 token out
+<img src="images/bonus/cost/harry-potter-transformer.png"> 
+
+### How much math does one "token out" really need?
+<img src="images/bonus/cost/dr-evil-one-million-flops.jpg"> 
+
+### Actually, about 1,200,000,000,000 multiplications
+<img src="images/bonus/cost/dr-evil-teraflops.jpg"> 
+
+**FLOP** is short for Floating-Point Operation: a multiplication of two numbers
+
+### Enter: the NVidia B200 GPU
+
+The NVidia B200 GPU is not your grandma's GeForce graphics card, for sure.
+
+<img src="images/bonus/cost/nvidia-jensen-b200.png"> 
+
+### 4,500,000,000,000,000 FLOPS/sec
+
+####
+The NVidia B200 GPU does 4500 trillion FLOPS/sec.
+
+### Pedal to the metal
+<div class="cols">
+<img src="images/bonus/cost/nvidia-b200-focus.png"> 
+<div class="col-4">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
+
+4,500,000,000,000,000 FLOPS/sec is B200 capacity
+<br>
+One 8 x B200 cluster with Claude Opus can output serve 40 tokens/sec.
+</div>
+</div>
+
+####
+Or rather, it depends on the length of the context:
+
+- 4,000 token context: 50 users at 60 tokens/sec
+- 100,000 token context: 10 users at 40 tokens/sec
+- 1,000,000 token context: 1 user at 15 token/sec
+
+### Ballpark cost per output token (June 2026)
+<div class="cols">
+<img src="images/bonus/cost/cost-per-token.png"> 
+<div class="col-2">
+
+One 8 x B200 cluster costs $500,000
+
+- Ballpark running cost, all-included: *$27/MToken out*
+- Claude Opus is priced at $25/MToken
+&nbsp;
+
+<img src="images/bonus/cost/claude-pricing.png"> 
+</div>
+</div>
+
+####
+The business cost estimation, all included, was rather surprisingly close to the sales price.
+
+### The B200 cluster
+<img src="images/bonus/cost/b200-cluster.jpeg">
+
+####
+The NVidia B200 GPU comes in clusters.
+
+### Clusters comes as trays
+<img src="images/bonus/cost/b200-clusters.jpg"> 
+
+### Trays goes into racks
+<img src="images/bonus/cost/b200-rack.jpg"> 
+
+### Racks goes into aisles
+<img src="images/bonus/cost/b200-rack-aisle.jpeg"> 
+
+### Now you have a datacenter
+<img src="images/bonus/cost/datacenter.jpg"> 
+
+### Why Graphics Cards (GPU)?
+
+### Transformer's superpower: all tokens at once
+<img src="images/bonus/cost/transformer-vs-sequential.png">
+
+### GPU: master of parallel computations
+<img src="images/bonus/cost/red-dead-redemption.webp">
+
+####
+That's why Mac Mini and Mac Studio are so sought after: their GPU can use the full on-board RAM.
+
+### NVidia stock price
+<img src="images/bonus/cost/nvidia-stock-5y.png"> 
+
+####
+And why NVidia's stock price has soared.
+
+####
+Links:
+- [The World's Most Important Machine - Veritasium](https://www.youtube.com/watch?v=MiUHjLxm3V0)
+
+
+## A mental model for the LLM
+
+####
+I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.
+
+### "Once upon a ..."
+
+####
+When you read this sentence, your brain autocompletes it - right?
+
+### "It's just a fancy autocomplete"
+<img src="images/bonus/continuation/once-upon-a-time.svg" />
+
+####
+Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, it's an autocomplete.
+
+Buf "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".
+
+### Think "most probable continuation", not "answer"
+- You give the model a **context**, which is practically just a text.
+<br>
+- The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
+<br>
+- That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
+<br>
+- So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
+
+<br>
+<img src="images/bonus/continuation/once-upon-a-time.svg" />
+
+### So "context → next", not "question → answer"
+<img src="images/bonus/continuation/context-continuation.svg" />
+
+####
+"What would the next likely continuation of this context be? How would this *kind of story* continue?"
+
+### Predictions from seen patterns
+<img src="images/bonus/continuation/coffee.svg" />
+
+####
+The neural network is really good at making predictions based on patterns, even combinations of patterns.
+
+### Context determines the "likely next text"
+<img src="images/bonus/continuation/knock-knock.svg" />
+
+####
+Is it just the two words "Knock knock" or does it look like a conversation? These are different patterns.
+
+### Some "reasoning" is maybe "just a pattern"
+<img src="images/bonus/continuation/expert-advice.svg" />
+
+####
+What might look like "reasoning" is really "pattern matching"
+
+### Even math is a pattern
+<img src="images/bonus/continuation/math.svg" />
+
+####
+Even simple math can be trained to be recognized.
+
+But not harder math. There' training has learned the LLM that guessing lead to failure and asking for a tool, a calculator, lead to success.
+
+### What "a pattern-prediction machine" implies
+- *Plain language with regular words* will steer it in the desired direction via pure pattern-matching of similar conversations seen during training
+<br>
+- *Adding examples* often gives way better output
+<br>
+- *Be descriptive and straightforward*, so the prediction has something to work with
+
+####
+The Transformer architecture is an incredibly impressive feat, no doubt about it.
+
+Mechanically though, it truly is "just" a prediction machine.
+
+But hey, maybe we humans are also just prediction machines?
+
+## An agent of your own
+
+### Write your own agent to have full control
+Using an agent like *Claude add lots of info*
+
+<br>
+<img src="images/bonus/my-agent/who-am-i-claude.png">
+
+<br>
+
+Maybe you don't want that? Then write *your own clean, agent*
+
+<br>
+<img src="images/bonus/my-agent/who-am-i-agent.png">
+
+####
+If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the cli agent entirely is likely preferable.
+
+### A simple agent is simple to write
+<img src="images/bonus/my-agent/my-agent-source-code.png">
+
+####
+Links:
+- [my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
+
+

@@ -149,6 +149,79 @@ img.logo {
    -- this is exactly that context. */
 iframe.game { display: none; }
 .github-fallback { display: block; }
+
+/* `.cols` blocks pair things that belong side by side on the slide -- an
+   image next to the bullets explaining it, or two images being compared.
+   Left unstyled they collapse into document order, so the image lands
+   full-width above text that reads as if it were a separate section. Keep
+   the pairing here, honoring the same col-N weights layout.css uses. */
+.cols {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.cols > * { flex: 1 1 0; min-width: 0; }
+.cols > .col-2 { flex: 2 1 0; }
+.cols > .col-3 { flex: 3 1 0; }
+.cols > .col-4 { flex: 4 1 0; }
+.cols > .col-5 { flex: 5 1 0; }
+.cols > .col-6 { flex: 6 1 0; }
+/* Marp's markdown-it leaves a standalone `<img>` line as a raw HTML block,
+   so its col-N class sits directly on the flex child. python-markdown
+   instead wraps that image in a <p>, which becomes the flex child and
+   carries no class -- so read the weight off the wrapped image. */
+.cols > p { margin: 0; }
+.cols > p:has(> .col-2) { flex: 2 1 0; }
+.cols > p:has(> .col-3) { flex: 3 1 0; }
+.cols > p:has(> .col-4) { flex: 4 1 0; }
+.cols > p:has(> .col-5) { flex: 5 1 0; }
+.cols > p:has(> .col-6) { flex: 6 1 0; }
+/* Overrides the page-wide `img:not(.logo)` cap, which sizes an image to sit
+   alone in the text column: inside a column an image should fill the column
+   it was given. Same specificity as that rule would be a source-order tie,
+   so match .logo here too and win outright. */
+.cols img:not(.logo) {
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  margin: 0;
+}
+/* Consecutive `<img>` lines are one paragraph to python-markdown, so a row
+   of images arrives as a single flex child and would stack inside it. Lay
+   that paragraph out as its own row instead. */
+.cols > p:has(img + img) { display: flex; gap: 1.5rem; align-items: center; }
+.cols > p:has(img + img) > img:not(.logo) { flex: 1 1 0; width: auto; min-width: 0; }
+/* Two-image comparisons shouldn't stretch to unequal heights. */
+.cols.fit { justify-content: center; }
+.cols.fit img:not(.logo) { width: auto; max-height: 420px; margin: 0 auto; }
+.cols > div > :first-child { margin-top: 0; }
+.cols > div > :last-child { margin-bottom: 0; }
+.cols ul, .cols ol { padding-left: 1.3em; }
+/* A side-by-side pair needs more room than a single column of prose, so let
+   these blocks bleed a little past the 800px reading measure when the
+   viewport can spare it. */
+@media (min-width: 1040px) {
+  .cols {
+    width: calc(100% + 200px);
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+}
+/* Too narrow for columns: fall back to the stacked reading order. */
+@media (max-width: 720px) {
+  .cols, .cols > p:has(img + img) { display: block; }
+  /* Back to the page's ordinary standalone-image treatment, height cap
+     included, so a tall image doesn't tower over the text below it. */
+  .cols img:not(.logo) {
+    width: auto;
+    max-width: 100%;
+    max-height: 600px;
+    margin: 1.5rem auto;
+  }
+  .cols > div + div, .cols > p + div { margin-top: 1rem; }
+}
 """
 
 
@@ -197,6 +270,27 @@ def normalize_lazy_lists(text: str) -> str:
     return '\n'.join(out)
 
 
+def dedent_raw_html(text: str) -> str:
+    """Un-indent raw HTML lines that are indented purely for readability.
+
+    Inside a `.cols` block an `<img>` is often written indented under its
+    wrapping `<div>`. markdown-it (what Marp uses) doesn't care, but
+    python-markdown reads four spaces or a tab as an indented code block and
+    renders the tag as literal source. Straightening the indentation here
+    keeps slides.md formatted the way it reads best in the editor.
+    """
+    fence = re.compile(r'^\s*(```|~~~)')
+    out: list[str] = []
+    in_fence = False
+    for line in text.split('\n'):
+        if fence.match(line):
+            in_fence = not in_fence
+        elif not in_fence and re.match(r'^[ \t]+<', line):
+            line = line.lstrip()
+        out.append(line)
+    return '\n'.join(out)
+
+
 def transform(src: str) -> str:
     # Strip the leading YAML frontmatter block only (the very first
     # `---`-delimited block). Every other `---` in the file is a real
@@ -216,6 +310,8 @@ def transform(src: str) -> str:
     # `markdown="1"` (unlike markdown-it, which does this by default) --
     # mark every <div> so nested content renders instead of staying literal.
     text = re.sub(r'<div(?![^>]*\bmarkdown=)', '<div markdown="1"', text)
+
+    text = dedent_raw_html(text)
 
     text = normalize_lazy_lists(text)
 

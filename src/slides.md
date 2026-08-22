@@ -32,7 +32,9 @@ Same with Java and .NET, with their intriguing bytecode and VM-engines. So inter
 ![bg](images/intro/dopamine.png)
 
 ####
-For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also mysterious. There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
+For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also *mysterious*.
+
+There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, and fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
 
 Links:
 - [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0)
@@ -46,11 +48,13 @@ Many lightbulb-moments have given me a better fundamental understanding of AI an
 ---
 ![bg](images/intro/bread/loaf.jpg)
 ####
-Let's begin far away from AI: a nice, freshly baked bread.
+Let's begin far away from AI: with a nice, freshly baked bread.
 
 You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does.
 
-"Add yeast, then set the clock to let the dough rise for one hour", as the recipe says. The bread comes out fine. Usually.
+"Add yeast, then set the clock to let the dough rise for one hour", the recipe says.
+
+And the bread comes out fine. Usually.
 
 ---
 ![bg](images/intro/bread/rise.jpg)
@@ -230,7 +234,7 @@ Links:
 <img src="images/llm/tokens/hello.png">
 
 ####
-"hello" is one single token.
+An online *tokenizer* shows how "hello" is one single token.
 
 Links:
 - [Tiktokenizer](https://tiktokenizer.vercel.app/)
@@ -280,7 +284,7 @@ This is what the example conversation looks like when tokenized.
 
 Notice how markdown for bold, the double-star `**`, has its own token.
 
-And `**,` is also common enough to have its own token.
+And the three-letter sequence `**,` is also common enough to have its own token.
 
 ### Tokens recap
 
@@ -303,9 +307,7 @@ For English, one token generally corresponds to about 4 characters.
 <img src="images/overview/embeddings.png">
 
 ####
-You probably knew about tokens.
-
-The LLM does not deal directly with tokens. Instead, it works on something called *embeddings*.
+It's likely that you already knew about tokens. But the LLM does not deal directly with tokens. Instead, it works on something called *embeddings*.
 
 Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.
 

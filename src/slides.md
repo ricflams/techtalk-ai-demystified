@@ -1099,13 +1099,16 @@ Whatever the image processing does, embeddings is what comes out of it.
 ### A closer look at multimodal embeddings
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
 
+### The unified embedding space
+<img src="images/service/files/multimodal/unified-embedding-space.webp">
+
 ####
-I suspect that the usefullness and power of embeddings, not least **multimodal embeddings**, might well come as the biggest surprise to most of you.
+The usefullness and power of embeddings, not least **multimodal embeddings**, might come as the biggest surprise to most of you.
 
 ### Remember, embeddings characterizes "something"
 <img src="images/llm/embeddings/three-embeddings.svg">
 
-### Multimodal embeddings go beyond text
+### Multimodal embeddings: text, image, audio, video
 <img src="images/service/files/multimodal/multimodal-embeddings.svg">
 
 ####
@@ -1124,19 +1127,10 @@ Links:
 - [Unleash the power of vector search and multimodal embeddings in BigQuery](https://www.youtube.com/watch?v=B-0dZGJDtJw)
 - [What is a Vector Database? Powering Semantic Search & AI Applications](https://www.youtube.com/watch?v=gl1r1XV0SLw)
 
-### The unified embedding space
-<img src="images/service/files/multimodal/unified-embedding-space.webp">
-
 ####
 Within the **unified embedding space** you can compare text, images, video, and audio to see how similar the concepts they represent are.
 
-### Example: image-similarity
-<img src="images/service/files/multimodal/gemini-2-query.png">
-
-####
-The query can be the embedding for an image.
-
-### "Simply" compare the embedding's similarity
+### Simply compare embeddings to find the similarity
 <img src="images/service/files/multimodal/gemini-2-similarities.png">
 
 ####
@@ -1145,7 +1139,7 @@ Cosine similarity will show how similar two embeddings are.
 ### A world of ideas for comparing any two things
 <img src="images/service/files/multimodal/ideas.png">
 
-### New tech (spring 2026) with limitations
+### It's a new tech, with limitations
 <img src="images/service/files/multimodal/gemini-2-overview.png">
 
 ####
@@ -2183,7 +2177,7 @@ Now add them all:
 Mitigations:
 - Try clear and compact. They save, of course, but it's a proper shield against the other token-spending ways.
 
-# How to ...
+# 3 x How to ...
 
 ### How to speak to the AI
 - Just *speak plainly*, including small nugding words to avoid steering to coarsely
@@ -2235,7 +2229,7 @@ Treat it as a tool in your professional toolbox.<br>Buy your *own* good hammer, 
 
 A monthly subscription of $20 is a cheap investment
 
-# Demystifications
+# A Bonus Round of<br>Demystifications
 
 ####
 Let's run through a quick series of myths and facts and demystify them.
@@ -2257,9 +2251,10 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 <p class="verdict no">No, it most likely <em>did not</em></p>
 
 - Large data is typically *truncated*, *sampled*, or *compacted*
+<br>
 - The LLM will fight tooth and nail to *not include large files or much data*: it will only read the first 1000 lines, the first 20 files, 5 sampled Confluence-pages, even *write small scripts* to do a task, all to save context
-- So *no*, if you have a lot of data it's likely *not all processed* collectively in one context
-- That's why bits and pieces could be *missed*
+<br>
+- So *no*, if you have a lot of data it's likely *not all processed* collectively in one context.<br>And that's why parts can be *missed*
 
 ### "I told it earlier, but now it has forgotten"
 <p class="verdict yes">Yes, compaction will do that</p>
@@ -2269,6 +2264,85 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 - Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
 <br>
 - Keep your context lean: *clear*, *compact*, *start new chat*
+
+### The AI just wants to please you
+<p class="verdict maybe">Some do, some don't</p>
+
+- For example, Claude's training specifically *discourages pleasing behavior*
+<br>
+- However, the *LLM continuation-nature* does favor "continuing with the story so far", which is biased towards "playing along" with your postulates.
+<br>
+- So make sure to challenge the output; *"Roast this, poke holes, find the weak spots"*
+
+### The AI can't help hallucinating
+<p class="verdict yes">True, but it can largely be mitigated</p>
+
+- The model *doesn't know it's wrong* so saying "don't hallucinate" doesn't help.<br><br>Instead:
+<br>
+- Give the AI a *clear goal* it can finish
+- Make *failure an explicit accepted continuation*; "if there's no King Tobias then tell me"
+- Have *another agent* supervise and assess the output
+
+####
+Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense a bit, which is known as the **Reasoning Trap**, or Paradox.
+
+Links:
+- [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
+
+### Ask "Why did you do that?" and it will tell you
+<p class="verdict no">No, don't trust that explanation</p>
+
+- The *reasoning*, chain of thought, is *no longer present* when you see the response.
+<br>
+- So if you ask "why this?" then the LLM seek a plausible continuation which has *nothing to do with how it actually arrived* at the response. It simply produces the most likely narrative to support it's earlier response: "It must have been done so because ..."
+
+### Say "You are an expert xxxx..."
+<p class="verdict maybe">Useful in some ways</p>
+
+- No need to say this to *bring in competence* in an area; training has done that
+<br>
+- But useful for for asking for *a perspective*:
+	- "you are a skeptical reviewer whose job is to find the flaw"
+	- "explain as if to a junior dev who knows HTTP but not OAuth"
+
+### Say "Make no mistakes"
+<p class="verdict no">Largely useless</p>
+
+- It urges more carefulness, but that's already baked into modern models
+<br>
+- "Make no mistakes" does not point out what a mistake is.
+<br>
+- Instead, *describe exactly* how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".
+
+### Saying "please" costs a fortune and is useless
+<p class="verdict no">No, it doesn't and no it isn't</p>
+
+- "Please" is *one input token* and that cost really is neglible
+- "Please" add *conversational structure* and make it clearer that you make a request
+- "Please" is found in *productive successful conversations*, the pattern we're seeking
+- Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
+&nbsp;
+Some say *the best reason* for being polite is simply that:
+&nbsp;
+- It's good for *you*, even in simulated conversations: positive social behavior release oxytocin and dopamine, while an impolite demeanor release cortisol and adrenaline
+
+### Say no to training, it'll leak your data
+<p class="verdict maybe">No, only if you send your secrets relentlessly</p>
+
+- *No words from your chat is actually remembered*
+<br>
+- "Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training.
+<br>
+- The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. Still, it takes rather massively repeatedly texts to make a dent in the model's weights.
+
+### It must follow "YOU MUST NEVER DO xxx!"
+<p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
+
+- Emphasis markers like "UPPER CASE" or `*bold*` just shifts probabilities but cannot guarantee anything.
+<br>
+- Emphasis is useful in a *relative* manner, for marking some instructions to me *more important* than others.
+<br>
+- Generally, don't expect to be able to control the LLM completely. It's just statistics.
 
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
@@ -2283,26 +2357,17 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 Links:
 - [Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md)
 
-### Better say "You are an expert xxxx..."
-<p class="verdict maybe">Useful in some ways</p>
+### Our own fine-tuned model would be even better
+<p class="verdict no">It's likely not the ideal you imagine</p>
 
-- No need to say this to *bring in competence* in an area; training has done that
+- Fine-tuning is expensive, hard, and can even produce *overall worse results*
 <br>
-- But useful for for asking for *a perspective*:
-	- "you are a skeptical reviewer whose job is to find the flaw"
-	- "explain as if to a junior dev who knows HTTP but not OAuth"
-
-### A fine-tuned model would be better
-<p class="verdict maybe">It's not the ideal you might imagine</p>
-
-- Fine-tuning is rather expensive and hard
-- It can even produce *overall worse results*
 - Recent studies show modern frontier models outperforming fine-tuned models
-&nbsp;
-- Better alternatives
-	- *plain models with RAG* for injecting domain knowledge
-	- better *prompts* for context engineering
-	- use *skills* and *tools* for reasoning workflows
+<br>
+- A better alternative is often just
+	- *plain models with RAG*, for more domain knowledge
+	- *better prompts*, for describing the task
+	- *skills and tools*
 
 ####
 Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. Game playing, vision, speech — same pattern every time. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.
@@ -2312,78 +2377,11 @@ Links:
 - [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://www.youtube.com/watch?v=-W2JdSl1v48)
 - [General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
 
-### The AI just wants to please you
-<p class="verdict maybe">Some do, some don't</p>
-
-- For example, Claude's training specifically *discourages pleasing behavior*
-- The LLM continuation-reasoning does by its very nature tend to favor "continuing with the story so far", which generally means "playing along" with your postulates.
-<br>
-- Make sure to challenge the output
-- Say e.g. "Roast this, poke holes and find the weak spots"
-
-### The AI can't help hallucinating
-<p class="verdict yes">True, but it can largely be mitigated</p>
-
-- The model *doesn't know it's wrong* when it hallucinates, so there is no use in saying "don't hallucinate". Instead:
-<br>
-- Give it a *clear goal* it can finish
-- Make *failure an explicit accepted continuation*; "if there's no King Johan then tell me"
-- Have *another agent* supervise and assess the output
-
-####
-Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense a bit, which is known as the **Reasoning Trap**, or Paradox.
-
-Links:
-- [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
-
-### Ask it "why it did that" and it will tell you
-<p class="verdict no">No, don't trust that explanation</p>
-
-- The reasoning, chain of thought, is over and done when you see the response. If you ask "why this?" then the LLM seek a plausible continuation of the context "response plus user questioning 'why this?'". That reasoning may very well have *nothing to do with how it actually arrived* at the response. So, it produces the most likely narrative to support that earlier response, possibly completely hallucinatory. "It must have been done so because ..."
-- It may not always happen, for sure, but it may well happen.
-
-### Say no to training, it'll leak your data
-<p class="verdict maybe">No, only if you send your secrets relentlessly</p>
-
-- *No words from your chat is actually remembered*
-<br>
-- "Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training. Training never stores the text but instead nudges billions of weights a tiny bit.
-<br>
-- The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. Still, it takes rather massively repeatedly texts to make a dent in the model's weights.
-
-### "Make no mistakes"
-<p class="verdict no">Largely useless</p>
-
-- It urges more carefulness, but that's already baked into modern models
-<br>
-- "Make no mistakes" does not point out what a mistake is. Instead, *describe exactly* how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".
-
-### Saying "please" costs a fortune and is useless
-<p class="verdict no">No, it doesn't and no it isn't</p>
-
-- "Please" is *one input token* and that cost really is neglible
-- "Please" add *conversational structure* and make it clearer that you make a request
-- "Please" is found in *productive successful conversations*, the pattern we're seeking
-- Politeness is mirrored in the output. A terse and impolite respose is more prone to leave out something useful so it needs more follow-up chats.
-&nbsp;
-Some say *the best reason* for being polite is simply that:
-&nbsp;
-- It's good for *you*, even in simulated conversations: positive social behavior release oxytocin and dopamine, while an impolite demeanor release cortisol and adrenaline
-
-### It must follow "YOU MUST NEVER DO xxx!"
-<p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
-
-- Emphasis markers like "UPPER CASE" or `*bold*` just shifts probabilities but cannot guarantee anything.
-<br>
-- Emphasis is useful in a *relative* manner, for marking some instructions to me *more important* than others.
-<br>
-- Generally, don't expect to be able to control the LLM completely. It's just statistics.
-
-
 ### All AI models are the same after all
 <p class="verdict no">No, not at all</p>
 
 - They may well know basically *the same facts*
+<br>
 - But they have *very different behaviors and values*
 
 
@@ -2392,9 +2390,9 @@ Some say *the best reason* for being polite is simply that:
 
 - The fact that the answer isn't a resounding *"no"* is astounding.
 <br>
-- *What even is understanding, sentience, consciousness*?
+- *What even is understanding, sentience, and consciousness*?
 <br>
-- LLMs have reinvigorated the linquistic science and debate. It's utterly fascinating.
+- AI models have *reinvigorated linquistic science* and debate. It's fascinating times.
 
 ####
 Links:
@@ -2404,7 +2402,7 @@ Links:
 - [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://www.youtube.com/watch?v=IkdziSLYzHw)
 
 
-# Takeaways
+# That's all
 
 ####
 What a journey.

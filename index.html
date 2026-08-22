@@ -169,16 +169,6 @@ iframe.game { display: none; }
 .cols > div > :first-child { margin-top: 0; }
 .cols > div > :last-child { margin-bottom: 0; }
 .cols ul, .cols ol { padding-left: 1.3em; }
-/* A side-by-side pair needs more room than a single column of prose, so let
-   these blocks bleed a little past the 800px reading measure when the
-   viewport can spare it. */
-@media (min-width: 1040px) {
-  .cols {
-    width: calc(100% + 200px);
-    margin-left: -100px;
-    margin-right: -100px;
-  }
-}
 /* Too narrow for columns: fall back to the stacked reading order. */
 @media (max-width: 720px) {
   .cols, .cols > p:has(img + img) { display: block; }
@@ -215,7 +205,7 @@ iframe.game { display: none; }
 <p><img alt="" src="images/intro/dopamine.png" /></p>
 <h4 id="_3"></h4>
 <p>For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also <em>mysterious</em>.</p>
-<p>There's this feeling that "it can do anything if I only hold it right". That can lead to FOMO, and fear of holding it wrong, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.</p>
+<p>There's this feeling that "it can do anything if I only hold it right". That can lead to fear of holding it wrong, fear of missing out, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/Z9UxjmNF7b0">You're falling behind. It's time to catch up.</a></li>
@@ -227,7 +217,7 @@ iframe.game { display: none; }
 <hr />
 <p><img alt="" src="images/intro/bread/loaf.jpg" /></p>
 <h4 id="_5"></h4>
-<p>Let's begin far away from AI: with a nice, freshly baked bread.</p>
+<p>Let's begin far away from AI: with some nice, freshly baked bread.</p>
 <p>You can bake lovely, soft, crunchy bread without knowing what "yeast" actually is or what it does.</p>
 <p>"Add yeast, then set the clock to let the dough rise for one hour", the recipe says.</p>
 <p>And the bread comes out fine. Usually.</p>
@@ -398,7 +388,7 @@ iframe.game { display: none; }
 <h4 id="_32"></h4>
 <p>This is what the example conversation looks like when tokenized.</p>
 <p>Notice how markdown for bold, the double-star <code>**</code>, has its own token.</p>
-<p>And the three-letter sequence <code>**,</code> is also common enough to have its own token.</p>
+<p>And the three-character sequence <code>**,</code> is also common enough to have its own token.</p>
 <h3 id="tokens-recap">Tokens recap</h3>
 <div class="cols">
 <p><img class="col-2" src="images/llm/tokens/ride-tokens.png"></p>
@@ -434,9 +424,7 @@ iframe.game { display: none; }
 <p>That's essentially what the purpose of an embedding is, to the AI.</p>
 <h3 id="an-embedding-is-a-tokens-characteristics">An embedding is a token's <em>characteristics</em></h3>
 <div class="cols">
-<div>
 <p><img src="images/llm/embeddings/20d-kitten.png" /></p>
-</div>
 <div class="col-6">
 <p>An <strong>embedding</strong> is a list of numbers (also called a <strong>vector</strong> or <strong>tensor</strong>) that <em>somehow</em> characterizes <em>something</em>. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.</p>
 <p>The number of nuances, characteristics, we decide to use is called the embedding's <strong>dimension</strong>. The embedding for "kitten" has 20 dimensions. The more dimensions, the more nuances can be captured.</p>
@@ -685,9 +673,7 @@ Is it "stronger"? Yes, that's the closest known token.</p>
 <p>The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.</p>
 <h3 id="model-and-embeddings-are-born-via-training">Model and embeddings are born via training</h3>
 <div class="cols">
-<div class="col-2">
-<p><img src="images/llm/training/training-example.png"></p>
-</div>
+<p><img class="col-2" src="images/llm/training/training-example.png"></p>
 <div>
 <p><strong>Backpropagation</strong>:</p>
 <ol>
@@ -914,7 +900,7 @@ Is it "stronger"? Yes, that's the closest known token.</p>
 <p>At least that's how it <em>usually</em> is today. It's changing slowly, it seems, and that's nice because it's annoying that your settings etc follow the installation, not your profile. It's just not an area that has gotten a lot of attention.</p>
 <p>So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.</p>
 <h2 id="my-personal-ai-journey">My personal AI-journey</h2>
-<h3 id="chat-copy-paste-in-app-now-terminal">Chat, copy-paste, in app, now terminal</h3>
+<h3 id="chat-copy-paste-in-app-now-terminal">Chat, copy-paste, in-app, now terminal</h3>
 <p><img src="images/agents/evolution.png" /></p>
 <h4 id="_100"></h4>
 <p>I started chatting just in the browser, of course. And I still do, by the way.</p>
@@ -1776,40 +1762,43 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 </iframe>
 
 <div class="github-fallback">
-<p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/"><img alt="Token spending game preview" src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" /></a></p>
-<p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/">Open interactive version</a></em></p>
+<!-- Raw <a> rather than markdown links: the game is its own little app, so
+     target="_blank" keeps the reader's place on this page. Markdown link
+     syntax can't express a target. -->
+<p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener"><img src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" alt="Token spending game preview"></a></p>
+<p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener">Open interactive version</a></em></p>
 </div>
 <h4 id="_204"></h4>
 <p>Here's an interactive visualization of where your token costs go.</p>
-<p>Try this:</p>
+<p>Try this, on the default 10-turn view:</p>
 <ul>
 <li>Click the "Per-turn cost" and see that <em>the first turn is un-cached</em> and that <em>outputs are more expensive</em></li>
 <li>Click the "Total cost" to see what the total cost after 10 turns is</li>
 <li>Try turning off the cache and see that it would be 2-3x more expensive, and then turn it back on</li>
 </ul>
-<p>Now let's spend some tokens. Try each spending spree, one by one:</p>
+<p>Now let's spend some tokens. Try each spending spree, one by one, disabling each one after seeing the effect of it:</p>
 <ul>
-<li>Add some MCP servers. They're actually not that expensive nowadays</li>
-<li>Upload a big document. Your chat carries that doc in every turn</li>
-<li>Helpful IDE/tools. Send the selected document, tool results</li>
-<li>Think harder. That can eat a lot of tokens and we hit the quota at turn 34. Try unchecking/checking "Discard thinking" to see what will happen if thinking isn't discarded.</li>
-<li>Long outputs, like producing code or documents. Expensive. Coincidentally, I first made this app online in Claude.ai and hit my quota.</li>
-<li>Bust the cache. It's expensive to be Away From Keyboard, or change the model</li>
-<li>Expensive model. Everything gets N times more costly.</li>
+<li>Add some MCP servers - they're actually not that expensive nowadays</li>
+<li>Upload a big document - your chat carries that doc in every turn</li>
+<li>Helpful IDE/tools - sends, for example, the selected document, and includes tool results</li>
+<li>Think harder - that can eat a lot of tokens</li>
+<li>Long outputs - producing code or documents is expensive</li>
+<li>Bust the cache - it's expensive to be Away From Keyboard, or change the model</li>
+<li>Expensive model - then everything gets N times more costly</li>
 </ul>
-<p>Now do more turns and add all token spending sprees:</p>
+<p>Now increase the number of turns to 30 and add all token spending sprees one by one without disabling them again:</p>
 <ul>
-<li>Let's increase the number of turns to, say, 30</li>
 <li>MCP, doc, IDE - hey, what happened, why the curve "break"?</li>
 <li>Going back to Per-turn tokens reveals that auto-compaction kicked in because the context window was only 200 K; up it to 1M and switch back to Total cost</li>
 <li>Think harder - now we reached the quota</li>
 <li>Long outputs - quota reached twice</li>
-<li>Bust cache - quota reached 4 times</li>
+<li>Bust cache - quota reached earlier</li>
 <li>Expensive model - bam!</li>
+<li>Click on "Combine similar" to better see the contributions</li>
 </ul>
 <p>Mitigations:</p>
 <ul>
-<li>Try clear and compact.</li>
+<li>Try clear and compact</li>
 </ul>
 <h1 id="3-x-how-to">3 x How to ...</h1>
 <h3 id="how-to-speak-to-the-ai">How to speak to the AI</h3>

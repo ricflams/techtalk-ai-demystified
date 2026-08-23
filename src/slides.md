@@ -202,8 +202,6 @@ Everybody has heard of *tokens*, but the numbers that the LLM works on are not a
 
 It's important to understand both, not least embeddings, so let's cover them first of all.
 
-## Tokens and embeddings
-
 ## Tokens
 <img src="images/overview/tokens.png">
 
@@ -1697,7 +1695,7 @@ In reality, a massive API such as Siteimprove's would likely be better off by be
 <img src="images/service/mcp/code-munch.png">
 
 
-## The system prompt
+## System prompt
 
 ####
 Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.

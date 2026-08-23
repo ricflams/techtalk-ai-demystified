@@ -20,17 +20,17 @@ jobs:
       - name: Fix public/ ownership
         run: sudo chown -R runner public/
 
-      - name: Copy images
-        run: cp -r src/images public/images
-
       - name: Copy layout.css
         run: cp src/layout.css public/layout.css
 
       - name: Install readable-version dependencies
         run: pip install markdown
 
-      - name: Generate readable version
-        run: python3 scripts/make_readable.py src/slides.md public/index.html
+      # Same script you run locally (scripts/build-readable.sh), so the
+      # readable page is produced exactly one way: it syncs src/images into
+      # public/ -- which the slideshow needs too -- and renders index.html.
+      - name: Generate readable version and sync images
+        run: scripts/build-readable.sh --no-open
 
       - name: Generate speaker notes companion page
         run: |

@@ -28,6 +28,8 @@ In CI, this runs inside the `marpteam/marp-cli:latest` Docker container. Pushing
 
 For local preview, the [VS Code Marp extension](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode) renders slides in the editor — `.vscode/settings.json` already points it at the custom theme.
 
+To preview the **readable** page instead, run `scripts\build-readable.ps1` (or `scripts/build-readable.sh`): it renders `public/index.html` and opens it. Add `-Watch` / `--watch` to rebuild on every save. It needs only `pip install markdown` — not the Marp CLI — and takes about 0.3s per rebuild.
+
 ### Speaker notes
 
 Each slide can carry a presenter-only note: a bare `####` marker followed by prose, hidden from the compiled slideshow by a global CSS rule at the top of `src/slides.md` (`h4, h4 ~ * { display: none; }`). These notes render as ordinary content on the readable page (`public/index.html`) since that page is built independently from the same markdown.

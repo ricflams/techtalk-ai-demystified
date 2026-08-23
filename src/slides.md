@@ -1580,7 +1580,7 @@ Yes, it's really "just that". A live list of tools and a way to call them.
 ####
 Adding the Atlassian MCP server means I have access to tools, just like Rovo used in the example before.
 
-## An MCP tool-call in detail
+### An MCP tool-call in detail
 
 ####
 Let's take a look at concretely how an MCP service is used.

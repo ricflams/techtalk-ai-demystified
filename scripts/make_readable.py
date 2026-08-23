@@ -126,6 +126,38 @@ img:not(.logo) {
   margin: 1.5rem auto;
   border-radius: 4px;
 }
+/* Contents, opening the page. Chapters (h1) sit on their own lines with no
+   bullets; the sections (h2) inside each run together on one indented line,
+   so the whole deck fits in one glance. Every entry is a plain link -- the
+   indentation alone carries the hierarchy. */
+.toc {
+  margin: 0 0 1rem;
+  line-height: 1.8;
+}
+/* Quieter than a page h2 -- it labels the block without competing with the
+   deck title right below it. */
+.toc-title {
+  font-size: 1.15em;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  padding: 0;
+  border: none;
+}
+/* padding-left on an inline span indents the line it starts, which is what a
+   run of sections needs -- and if it wraps, the continuation lines sit flush,
+   keeping a long run visually subordinate to its chapter. */
+.toc-sections {
+  padding-left: 1.6rem;
+  font-size: 0.95em;
+}
+.toc-sep {
+  color: #8c959f;
+  padding: 0 0.5em;
+  font-size: 0.8em;
+  /* The separator is furniture, not content -- keep it out of a copied
+     selection and out of the accessibility tree. */
+  user-select: none;
+}
 .verdict {
   display: block;
   font-weight: 400;
@@ -260,6 +292,53 @@ def normalize_lazy_lists(text: str) -> str:
     return '\n'.join(out)
 
 
+def build_toc(body: str) -> str:
+    """Build the contents block from the rendered h1/h2 headings.
+
+    Each h1 (a chapter) gets its own line; the h2s inside it run together on
+    one indented line beneath, separated by bullets -- they're signposts for
+    what a chapter covers, not a list you read top to bottom.
+
+    Kept deliberately compact -- plain <br>-separated lines rather than block
+    elements -- so the whole deck fits in one glance at the top of the page.
+    """
+    def text_of(markup: str) -> str:
+        plain = re.sub(r'<br\s*/?>', ' ', markup)
+        plain = re.sub(r'<[^>]+>', '', plain)
+        return re.sub(r'\s+', ' ', plain).strip()
+
+    headings = re.findall(r'<h([12]) id="([^"]+)">(.*?)</h\1>', body, re.DOTALL)
+
+    sections: list[tuple[str, str, list[tuple[str, str]]]] = []
+    for level, anchor, markup in headings:
+        if level == '1':
+            sections.append((anchor, text_of(markup), []))
+        elif sections:
+            sections[-1][2].append((anchor, text_of(markup)))
+
+    if not sections:
+        return ''
+
+    lines = []
+    for anchor, title, subs in sections:
+        lines.append(f'<a href="#{anchor}">{title}</a>')
+        if subs:
+            links = [f'<a href="#{a}">{t}</a>' for a, t in subs]
+            lines.append('<span class="toc-sections">'
+                         + '<span class="toc-sep">&bull;</span>'.join(links)
+                         + '</span>')
+    return ('<nav class="toc">\n'
+            '<h2 class="toc-title">Jump straight to&hellip;</h2>\n'
+            + '<br>\n'.join(lines)
+            + '\n</nav>')
+
+
+def insert_toc(body: str) -> str:
+    """Put the contents at the very top, as the page's own opening screen."""
+    toc = build_toc(body)
+    return f'{toc}\n{body}' if toc else body
+
+
 def dedent_raw_html(text: str) -> str:
     """Un-indent raw HTML lines that are indented purely for readability.
 
@@ -306,6 +385,8 @@ def transform(src: str) -> str:
     text = normalize_lazy_lists(text)
 
     body = markdown.markdown(text, extensions=['extra', 'sane_lists', 'toc', 'md_in_html'])
+
+    body = insert_toc(body)
 
     return PAGE_TEMPLATE.format(style=STYLE, body=body)
 

@@ -1008,7 +1008,7 @@ At least that's how it *usually* is today. It's changing slowly, it seems, and t
 
 So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
 
-## My personal AI-journey
+### My personal AI-journey
 
 ### Chat, copy-paste, in-app, now terminal
 <img src="images/agents/evolution.png" />
@@ -2266,7 +2266,7 @@ A monthly subscription of $20 is a cheap investment
 Links:
 - [Claude Academy](https://claude-academy.com/)
 
-# A Bonus Round of<br>Demystifications
+# A Quick Round of<br>Demystifications
 
 ####
 Let's run through a quick series of myths and facts and demystify them.

@@ -2106,11 +2106,15 @@ Four parts to mention:
 - The output usually contains *statistics* for number of tokens consumed and produced, among other things.
 - And finally, **the KV-cache**. The AI Service and LLM know nothing about you, but it does *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
 
+## Full AI
+
 ### "Now I have the full picture"
 <img src="images/service/overview/full.png">
 
 ####
 Indeed, this is the full overview of how any modern AI Service works, in principle.
+
+## Full context
 
 ### The full context you send is *this and nothing else*
 <img src="images/service/system/full-context.png">

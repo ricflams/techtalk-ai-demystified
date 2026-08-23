@@ -227,7 +227,7 @@ iframe.game { display: none; }
 <span class="toc-sections"><a href="#tokens-and-embeddings">Tokens and embeddings</a><span class="toc-sep">&bull;</span><a href="#tokens">Tokens</a><span class="toc-sep">&bull;</span><a href="#embeddings">Embeddings</a><span class="toc-sep">&bull;</span><a href="#the-llm_1">The LLM</a><span class="toc-sep">&bull;</span><a href="#training">Training</a></span><br>
 <a href="#ai-agents">AI Agents</a><br>
 <a href="#the-ai-service">The AI Service</a><br>
-<span class="toc-sections"><a href="#files">Files</a><span class="toc-sep">&bull;</span><a href="#chatting">Chatting</a><span class="toc-sep">&bull;</span><a href="#thinking">Thinking</a><span class="toc-sep">&bull;</span><a href="#tools">Tools</a><span class="toc-sep">&bull;</span><a href="#mcp-servers">MCP servers</a><span class="toc-sep">&bull;</span><a href="#an-mcp-tool-call-in-detail">An MCP tool-call in detail</a><span class="toc-sep">&bull;</span><a href="#the-system-prompt">The system prompt</a></span><br>
+<span class="toc-sections"><a href="#files">Files</a><span class="toc-sep">&bull;</span><a href="#chatting">Chatting</a><span class="toc-sep">&bull;</span><a href="#thinking">Thinking</a><span class="toc-sep">&bull;</span><a href="#tools">Tools</a><span class="toc-sep">&bull;</span><a href="#mcp-servers">MCP servers</a><span class="toc-sep">&bull;</span><a href="#an-mcp-tool-call-in-detail">An MCP tool-call in detail</a><span class="toc-sep">&bull;</span><a href="#the-system-prompt">The system prompt</a><span class="toc-sep">&bull;</span><a href="#full-ai">Full AI</a><span class="toc-sep">&bull;</span><a href="#full-context">Full context</a></span><br>
 <a href="#context-economy">Context Economy</a><br>
 <a href="#3-x-how-to">3 x How to ...</a><br>
 <a href="#a-quick-round-ofdemystifications">A Quick Round of Demystifications</a><br>
@@ -1769,10 +1769,12 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 <li>The output usually contains <em>statistics</em> for number of tokens consumed and produced, among other things.</li>
 <li>And finally, <strong>the KV-cache</strong>. The AI Service and LLM know nothing about you, but it does <em>cache</em> the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply <em>pay less</em> for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit <em>cache markers</em>.</li>
 </ul>
+<h2 id="full-ai">Full AI</h2>
 <h3 id="now-i-have-the-full-picture">"Now I have the full picture"</h3>
 <p><img src="images/service/overview/full.png"></p>
 <h4 id="_200"></h4>
 <p>Indeed, this is the full overview of how any modern AI Service works, in principle.</p>
+<h2 id="full-context">Full context</h2>
 <h3 id="the-full-context-you-send-is-this-and-nothing-else">The full context you send is <em>this and nothing else</em></h3>
 <p><img src="images/service/system/full-context.png"></p>
 <h4 id="_201"></h4>

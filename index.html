@@ -233,7 +233,7 @@ iframe.game { display: none; }
 <a href="#a-quick-round-ofdemystifications">A Quick Round of Demystifications</a><br>
 <a href="#thats-all">That's all</a><br>
 <a href="#bonus">Bonus</a><br>
-<span class="toc-sections"><a href="#effort-and-cost">Effort and Cost</a><span class="toc-sep">&bull;</span><a href="#a-mental-model-for-the-llm">A mental model for the LLM</a><span class="toc-sep">&bull;</span><a href="#an-agent-of-your-own">An agent of your own</a></span>
+<span class="toc-sections"><a href="#effort-and-cost">Effort and Cost</a><span class="toc-sep">&bull;</span><a href="#rag">RAG</a><span class="toc-sep">&bull;</span><a href="#build-your-own-agent">Build your own agent</a><span class="toc-sep">&bull;</span><a href="#a-fancy-autocomplete">A fancy autocomplete</a><span class="toc-sep">&bull;</span><a href="#dimensionality-by-superposition">Dimensionality by superposition</a></span>
 </nav>
 <h1 id="ai-demystified">AI Demystified</h1>
 <p>Richard Flamsholt</p>
@@ -241,7 +241,7 @@ iframe.game { display: none; }
 <h4 id="_1"></h4>
 <p>Links:</p>
 <ul>
-<li><a href="https://github.com/ricflams/techtalk-ai-demystified/">AI Demystified</a></li>
+<li><a href="https://github.com/ricflams/techtalk-ai-demystified/">Source for this presentation</a></li>
 </ul>
 <hr />
 <p><img alt="" src="images/intro/books.jpg" /></p>
@@ -1810,9 +1810,9 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 </iframe>
 
 <div class="github-fallback">
-<!-- Raw <a> rather than markdown links: the game is its own little app, so
-     target="_blank" keeps the reader's place on this page. Markdown link
-     syntax can't express a target. -->
+<!-- Raw anchor tags rather than markdown links: the game is its own little
+     app, so target="_blank" keeps the reader's place on this page. Markdown
+     link syntax can't express a target. -->
 <p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener"><img src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" alt="Token spending game preview"></a></p>
 <p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener">Open interactive version</a></em></p>
 </div>
@@ -2217,7 +2217,7 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <h3 id="gpu-master-of-parallel-computations">GPU: master of parallel computations</h3>
 <p><img src="images/bonus/cost/red-dead-redemption.webp"></p>
 <h4 id="_225"></h4>
-<p>That's why Mac Mini and Mac Studio are so sought after: their GPU can use the full on-board RAM.</p>
+<p>That's why Mac Mini and Mac Studio are so sought after: their GPUs can use the full on-board RAM.</p>
 <h3 id="nvidia-stock-price">NVidia stock price</h3>
 <p><img src="images/bonus/cost/nvidia-stock-5y.png"> </p>
 <h4 id="_226"></h4>
@@ -2227,20 +2227,57 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <ul>
 <li><a href="https://youtu.be/MiUHjLxm3V0">The World's Most Important Machine - Veritasium</a></li>
 </ul>
-<h2 id="a-mental-model-for-the-llm">A mental model for the LLM</h2>
+<h2 id="rag">RAG</h2>
+<h3 id="rag-is-injecting-existing-relevant-content">RAG is "injecting existing relevant content"</h3>
+<p><img src="images/bonus/rag/system-architecture.webp"> </p>
 <h4 id="_228"></h4>
+<p>RAG, <em>Retrieval-Augmented Generation</em>, is about adding <em>more existing information</em> that is related to your context.</p>
+<p>It works in two steps:</p>
+<ol>
+<li>Your company has a vector-database into which are added reasonably-sized chunks of documents along with the embedding of each chunk.
+<br></li>
+<li>Instead of using an ordinary agent, like Claude.ai or Claude Code, your company has constructed a special agent for this purpose. When you speak to it, it will calculate the embedding of your message (or the last few messages) and then compare it to the embeddings of all the stored document-chunks.
+<br>
+If you e.g. say "What is our company's mission statement?" then that information would normally have to be in the context for the LLM to reason about (unless your company's mission statement is publicly known to the LLM during training, which is unlikely). But now, the special agent will calculate the embedding for that question, compare it to the embeddings of all the [document-chunk, embedding] pairs in the database, and then add to the context the chunks that seem relevant - and <em>that</em> is how the information is given to the LLM.</li>
+</ol>
+<p>The takeaways are:</p>
+<ul>
+<li>RAG can assist in adding domain-specific knowledge automatically into the context, as an alternative to e.g. fine-tuning
+<br></li>
+<li>In reality this requires a fully dedicated agent, not ChatGPT, Claude, etc. You have to bake this document-lookup into an agent yourself.</li>
+</ul>
+<h2 id="build-your-own-agent">Build your own agent</h2>
+<h3 id="build-your-own-agent-to-have-full-control">Build your own agent to have full control</h3>
+<p>Using <em>an agent like Claude</em> adds lots of info</p>
+<p><br>
+<img src="images/bonus/my-agent/who-am-i-claude.png"></p>
+<p><br></p>
+<p>Maybe you don't want that? Then write <em>your own clean agent</em></p>
+<p><br>
+<img src="images/bonus/my-agent/who-am-i-agent.png"></p>
+<h4 id="_229"></h4>
+<p>If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the CLI agent entirely is likely preferable.</p>
+<h3 id="a-simple-agent-is-simple-to-write">A simple agent is simple to write</h3>
+<p><img src="images/bonus/my-agent/my-agent-source-code.png"></p>
+<h4 id="_230"></h4>
+<p>Links:</p>
+<ul>
+<li><a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent">my-agent</a></li>
+</ul>
+<h2 id="a-fancy-autocomplete">A fancy autocomplete</h2>
+<h4 id="_231"></h4>
 <p>I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.</p>
 <h3 id="once-upon-a">"Once upon a ..."</h3>
-<h4 id="_229"></h4>
+<h4 id="_232"></h4>
 <p>When you read this sentence, your brain autocompletes it - right?</p>
 <h3 id="its-just-a-fancy-autocomplete">"It's just a fancy autocomplete"</h3>
 <p><img src="images/bonus/continuation/once-upon-a-time.svg" /></p>
-<h4 id="_230"></h4>
+<h4 id="_233"></h4>
 <p>Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, it's an autocomplete.</p>
 <p>But "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".</p>
 <h3 id="think-most-probable-continuation-not-answer">Think "most probable continuation", not "answer"</h3>
 <ul>
-<li>You give the model a <strong>context</strong>, which is practically just a text.
+<li>You give the model a <strong>context</strong>, which is practically just text.
 <br></li>
 <li>The model can do <em>just one thing</em>: it has seen so much text that it can <em>produce next-word-probabilities</em> for any given context. Meaning, it can <em>continue the context</em>.
 <br></li>
@@ -2252,23 +2289,23 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <img src="images/bonus/continuation/once-upon-a-time.svg" /></p>
 <h3 id="so-context-next-not-question-answer">So "context → next", not "question → answer"</h3>
 <p><img src="images/bonus/continuation/context-continuation.svg" /></p>
-<h4 id="_231"></h4>
+<h4 id="_234"></h4>
 <p>"What would the next likely continuation of this context be? How would this <em>kind of story</em> continue?"</p>
 <h3 id="predictions-from-seen-patterns">Predictions from seen patterns</h3>
 <p><img src="images/bonus/continuation/coffee.svg" /></p>
-<h4 id="_232"></h4>
+<h4 id="_235"></h4>
 <p>The neural network is really good at making predictions based on patterns, even combinations of patterns.</p>
 <h3 id="context-determines-the-likely-next-text">Context determines the "likely next text"</h3>
 <p><img src="images/bonus/continuation/knock-knock.svg" /></p>
-<h4 id="_233"></h4>
+<h4 id="_236"></h4>
 <p>Is it just the two words "Knock knock" or does it look like a conversation? These are different patterns.</p>
 <h3 id="some-reasoning-is-maybe-just-a-pattern">Some "reasoning" is maybe "just a pattern"</h3>
 <p><img src="images/bonus/continuation/expert-advice.svg" /></p>
-<h4 id="_234"></h4>
-<p>What might look like "reasoning" is really "pattern matching"</p>
+<h4 id="_237"></h4>
+<p>What might look like "reasoning" is really "pattern matching".</p>
 <h3 id="even-math-is-a-pattern">Even math is a pattern</h3>
 <p><img src="images/bonus/continuation/math.svg" /></p>
-<h4 id="_235"></h4>
+<h4 id="_238"></h4>
 <p>Even simple math can be trained to be recognized.</p>
 <p>But not harder math. Through training, the LLM has learned that guessing the continuation of text involving longer strings of digits leads to failure and asking for a tool, a calculator, instead leads to success.</p>
 <h3 id="what-a-pattern-prediction-machine-implies">What "a pattern-prediction machine" implies</h3>
@@ -2279,27 +2316,43 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <br></li>
 <li><em>Be descriptive and straightforward</em>, so the prediction has something to work with</li>
 </ul>
-<h4 id="_236"></h4>
+<h4 id="_239"></h4>
 <p>The Transformer architecture is an incredibly impressive feat, no doubt about it.</p>
 <p>Mechanically though, it truly is "just" a prediction machine.</p>
 <p>But hey, maybe we humans are also just prediction machines?</p>
-<h2 id="an-agent-of-your-own">An agent of your own</h2>
-<h3 id="write-your-own-agent-to-have-full-control">Write your own agent to have full control</h3>
-<p>Using <em>an agent like Claude</em> adds lots of info</p>
-<p><br>
-<img src="images/bonus/my-agent/who-am-i-claude.png"></p>
-<p><br></p>
-<p>Maybe you don't want that? Then write <em>your own clean agent</em></p>
-<p><br>
-<img src="images/bonus/my-agent/who-am-i-agent.png"></p>
-<h4 id="_237"></h4>
-<p>If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the CLI agent entirely is likely preferable.</p>
-<h3 id="a-simple-agent-is-simple-to-write">A simple agent is simple to write</h3>
-<p><img src="images/bonus/my-agent/my-agent-source-code.png"></p>
-<h4 id="_238"></h4>
+<h2 id="dimensionality-by-superposition">Dimensionality by superposition</h2>
+<h3 id="two-dimensions-in-2d-wholly-independent">Two dimensions in 2D, wholly independent</h3>
+<p><img src="images/bonus/dimensions/2d-90deg.png"></p>
+<h4 id="_240"></h4>
+<p>How can "only" 12288 dimensions characterize everything as well as they apparently do?</p>
+<p>The answer is: by allowing the individual dimensions to not be completely 100% independently orthogonal, but instead allowing a dimension to be <em>slightly</em> related to some other dimensions too. In practice that relation is negligible, it seems, but it makes all the difference. And the reason lies in a phenomenon called <em>superposition explosion</em> that happens at higher dimensions.</p>
+<p>Let's try to visualize that idea using just two dimensions on an x- and y-axis. The example would never really work well in practice for 2D, but it serves to illustrate the principle.</p>
+<p>Imagine two dimensions that describe the <em>catness</em> and the <em>cuteness</em> of anything. The two dimensions and characteristics are completely independent. A mouse has low catness but some cuteness. A bat also has low catness but less cuteness.</p>
+<h3 id="two-dimensions-in-2d-not-completely-independent">Two dimensions in 2D, not <em>completely</em> independent</h3>
+<p><img src="images/bonus/dimensions/2d-88deg.png"></p>
+<h4 id="_241"></h4>
+<p>Now let's <em>tilt</em> the catness-axis so the characteristics, the dimensions, no longer are absolutely completely independent, ie orthogonal. More catness would then also cause more cuteness, but not much. It <em>could</em> work without distorting the characteristics too much.</p>
+<h3 id="two-dimensions-in-2d-very-much-not-independent">Two dimensions in 2D, <em>very much</em> not independent</h3>
+<p><img src="images/bonus/dimensions/2d-60deg.png"></p>
+<h4 id="_242"></h4>
+<p>Now imagine that the catness- and cuteness-dimensions were <em>way</em> more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two dimensions if they're so related. But if it worked, then it could open the door to something interesting.</p>
+<h3 id="tilting-allows-fitting-three-dimensions-into-2d">Tilting allows fitting <em>three dimensions</em> into 2D</h3>
+<p><img src="images/bonus/dimensions/2d-3d.png"></p>
+<h4 id="_243"></h4>
+<p>Because <em>if</em> we could accept catness- and cuteness-dimensions being so related, then there could be room for <em>one more dimension</em> to squeeze in. In this example <em>largeness</em>.</p>
+<p>In 2D this would never really work but that's because the dependencies are too high. At the very first tilt, just 2 degrees off complete orthogonality, the idea did seem acceptable in principle. It just falls apart if we have to tilt the dimension 30 degrees to make room for one more; that's just too much dimension-dependency.</p>
+<h3 id="huge-dimensionality-by-relaxing-orthogonality">Huge dimensionality by relaxing orthogonality</h3>
+<p><img src="images/bonus/dimensions/superposition-explosion.png"></p>
+<h4 id="_244"></h4>
+<p>However, a space in 12288D behaves astoundingly differently than the 2D space.</p>
+<p>If we tweak the dimensions <em>just a tiny bit</em> then there's "room" for enormously many more dimensions due to superposition.</p>
+<p>If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 dimensions.</p>
+<p>But if we allow for <em>just a 2-degree tilt/dependency</em>, like in the first example, then there's room for <em>34,000,000</em> dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.</p>
+<p>So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express <em>a billion billion ...</em> characteristics.</p>
 <p>Links:</p>
 <ul>
-<li><a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent">my-agent</a></li>
+<li><a href="https://youtu.be/XIDyLFDqlck">Why LLMs Live In 12,288 Dimensions</a></li>
+<li><a href="https://barnabywreford.co.uk/problems/vector_orthogonality_and_llm_superposition/">High Dimension Vector Orthogonality and Superposition in LLMs</a></li>
 </ul>
 </article>
 </body>

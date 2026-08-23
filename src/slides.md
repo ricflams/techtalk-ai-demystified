@@ -2593,7 +2593,7 @@ The NVidia B200 GPU comes in clusters.
 <img src="images/bonus/cost/red-dead-redemption.webp">
 
 ####
-That's why Mac Mini and Mac Studio are so sought after: their GPU can use the full on-board RAM.
+That's why Mac Mini and Mac Studio are so sought after: their GPUs can use the full on-board RAM.
 
 ### NVidia stock price
 <img src="images/bonus/cost/nvidia-stock-5y.png"> 
@@ -2618,9 +2618,9 @@ It works in two steps:
 
 1. Your company has a vector-database into which are added reasonably-sized chunks of documents along with the embedding of each chunk.
 <br>
-2. Instead of using an ordinary agent, like Claude.ai or Claude Code, your company has constructed a special agent for this purpose. When you speak to it, it will calculate the embedding of your message (or more last messages) and then compare it to the embeddings of all the stored document-chunks.
+2. Instead of using an ordinary agent, like Claude.ai or Claude Code, your company has constructed a special agent for this purpose. When you speak to it, it will calculate the embedding of your message (or the last few messages) and then compare it to the embeddings of all the stored document-chunks.
 <br>
-If you e.g. say "What is our company's mission statement?" then that information would normally have to be in the context for the LLM to reason about (unless your company's mission statement is publicly known to the LLM during training, which is unlikely). But now, the special agent will calculate the embedding for that question, compare it to the embeddings of all the [document-chunk,embedding] in the database, and then include into the context the chunks that seem relevant - and *that* is how the information is given to the LLM.
+If you e.g. say "What is our company's mission statement?" then that information would normally have to be in the context for the LLM to reason about (unless your company's mission statement is publicly known to the LLM during training, which is unlikely). But now, the special agent will calculate the embedding for that question, compare it to the embeddings of all the [document-chunk, embedding] pairs in the database, and then add to the context the chunks that seem relevant - and *that* is how the information is given to the LLM.
 
 The takeaways are:
 
@@ -2629,9 +2629,9 @@ The takeaways are:
 - In reality this requires a fully dedicated agent, not ChatGPT, Claude, etc. You have to bake this document-lookup into an agent yourself.
 
 
-## Building your own agent
+## Build your own agent
 
-### Write your own agent to have full control
+### Build your own agent to have full control
 Using *an agent like Claude* adds lots of info
 
 <br>
@@ -2674,7 +2674,7 @@ Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% corr
 But "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".
 
 ### Think "most probable continuation", not "answer"
-- You give the model a **context**, which is practically just a text.
+- You give the model a **context**, which is practically just text.
 <br>
 - The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
 <br>
@@ -2731,17 +2731,17 @@ Mechanically though, it truly is "just" a prediction machine.
 
 But hey, maybe we humans are also just prediction machines?
 
-## Dimensionality by superpositioning
+## Dimensionality by superposition
 
 ### Two dimensions in 2D, wholly independent
 <img src="images/bonus/dimensions/2d-90deg.png">
 
 ####
-How can "only" 12288 dimensions characterize everything so sufficiently well as it apparently does?
+How can "only" 12288 dimensions characterize everything as well as they apparently do?
 
 The answer is: by allowing the individual dimensions to not be completely 100% independently orthogonal, but instead allowing a dimension to be *slightly* related to some other dimensions too. In practice that relation is negligible, it seems, but it makes all the difference. And the reason lies in a phenomenon called *superposition explosion* that happens at higher dimensions.
 
-Let's try to visualize that not-completely-orthogonality using just two dimensions on an x- and y-axis. The example would never really work well in practice for 2D, but it serves to illustrate the principle.
+Let's try to visualize that idea using just two dimensions on an x- and y-axis. The example would never really work well in practice for 2D, but it serves to illustrate the principle.
 
 Imagine two dimensions that describe the *catness* and the *cuteness* of anything. The two dimensions and characteristics are completely independent. A mouse has low catness but some cuteness. A bat also has low catness but less cuteness.
 
@@ -2755,7 +2755,7 @@ Now let's *tilt* the catness-axis so the characteristics, the dimensions, no lon
 <img src="images/bonus/dimensions/2d-60deg.png">
 
 ####
-Now imagine that the catness- and cuteness-dimensions were *way* more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two dimensions if they're so related. But if it worked, then it could open up for something interesting.
+Now imagine that the catness- and cuteness-dimensions were *way* more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two dimensions if they're so related. But if it worked, then it could open the door to something interesting.
 
 ### Tilting allows fitting _three dimensions_ into 2D
 <img src="images/bonus/dimensions/2d-3d.png">
@@ -2763,7 +2763,7 @@ Now imagine that the catness- and cuteness-dimensions were *way* more related. I
 ####
 Because *if* we could accept catness- and cuteness-dimensions being so related, then there could be room for *one more dimension* to squeeze in. In this example *largeness*.
 
-In 2D this would never really work but that's because the dependencies are too high. At the very first tilt, just 2 degrees off complete orthogonality, the idea did seem acceptable in principle. It just falls apart if we have to tilt the dimension 30% to make room for one more; that's just too much dimension-dependency.
+In 2D this would never really work but that's because the dependencies are too high. At the very first tilt, just 2 degrees off complete orthogonality, the idea did seem acceptable in principle. It just falls apart if we have to tilt the dimension 30 degrees to make room for one more; that's just too much dimension-dependency.
 
 ### Huge dimensionality by relaxing orthogonality
 <img src="images/bonus/dimensions/superposition-explosion.png">
@@ -2775,10 +2775,11 @@ If we tweak the dimensions *just a tiny bit* then there's "room" for enormously 
 
 If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 dimensions.
 
-But if we allow for *just 2 degree tilt/dependency*, like in the first example, then there's room for *34,000,000* dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.
+But if we allow for *just a 2-degree tilt/dependency*, like in the first example, then there's room for *34,000,000* dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.
 
 So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express *a billion billion ...* characteristics.
 
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck)
+- [High Dimension Vector Orthogonality and Superposition in LLMs](https://barnabywreford.co.uk/problems/vector_orthogonality_and_llm_superposition/)
 

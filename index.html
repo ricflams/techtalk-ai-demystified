@@ -96,6 +96,38 @@ img:not(.logo) {
   margin: 1.5rem auto;
   border-radius: 4px;
 }
+/* Contents, opening the page. Chapters (h1) sit on their own lines with no
+   bullets; the sections (h2) inside each run together on one indented line,
+   so the whole deck fits in one glance. Every entry is a plain link -- the
+   indentation alone carries the hierarchy. */
+.toc {
+  margin: 0 0 1rem;
+  line-height: 1.8;
+}
+/* Quieter than a page h2 -- it labels the block without competing with the
+   deck title right below it. */
+.toc-title {
+  font-size: 1.15em;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  padding: 0;
+  border: none;
+}
+/* padding-left on an inline span indents the line it starts, which is what a
+   run of sections needs -- and if it wraps, the continuation lines sit flush,
+   keeping a long run visually subordinate to its chapter. */
+.toc-sections {
+  padding-left: 1.6rem;
+  font-size: 0.95em;
+}
+.toc-sep {
+  color: #8c959f;
+  padding: 0 0.5em;
+  font-size: 0.8em;
+  /* The separator is furniture, not content -- keep it out of a copied
+     selection and out of the accessibility tree. */
+  user-select: none;
+}
 .verdict {
   display: block;
   font-weight: 400;
@@ -187,6 +219,22 @@ iframe.game { display: none; }
 </head>
 <body>
 <article class="markdown-body">
+<nav class="toc">
+<h2 class="toc-title">Jump straight to&hellip;</h2>
+<a href="#ai-demystified">AI Demystified</a><br>
+<a href="#keep-it-simple">"Keep it simple"</a><br>
+<a href="#the-llm">The LLM</a><br>
+<span class="toc-sections"><a href="#tokens-and-embeddings">Tokens and embeddings</a><span class="toc-sep">&bull;</span><a href="#tokens">Tokens</a><span class="toc-sep">&bull;</span><a href="#embeddings">Embeddings</a><span class="toc-sep">&bull;</span><a href="#the-llm_1">The LLM</a><span class="toc-sep">&bull;</span><a href="#training">Training</a></span><br>
+<a href="#ai-agents">AI Agents</a><br>
+<a href="#the-ai-service">The AI Service</a><br>
+<span class="toc-sections"><a href="#files">Files</a><span class="toc-sep">&bull;</span><a href="#chatting">Chatting</a><span class="toc-sep">&bull;</span><a href="#thinking">Thinking</a><span class="toc-sep">&bull;</span><a href="#tools">Tools</a><span class="toc-sep">&bull;</span><a href="#mcp-servers">MCP servers</a><span class="toc-sep">&bull;</span><a href="#an-mcp-tool-call-in-detail">An MCP tool-call in detail</a><span class="toc-sep">&bull;</span><a href="#the-system-prompt">The system prompt</a></span><br>
+<a href="#context-economy">Context Economy</a><br>
+<a href="#3-x-how-to">3 x How to ...</a><br>
+<a href="#a-quick-round-ofdemystifications">A Quick Round of Demystifications</a><br>
+<a href="#thats-all">That's all</a><br>
+<a href="#bonus">Bonus</a><br>
+<span class="toc-sections"><a href="#effort-and-cost">Effort and Cost</a><span class="toc-sep">&bull;</span><a href="#a-mental-model-for-the-llm">A mental model for the LLM</a><span class="toc-sep">&bull;</span><a href="#an-agent-of-your-own">An agent of your own</a></span>
+</nav>
 <h1 id="ai-demystified">AI Demystified</h1>
 <p>Richard Flamsholt</p>
 <p>August 2026</p>
@@ -899,7 +947,7 @@ Is it "stronger"? Yes, that's the closest known token.</p>
 <p>And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.</p>
 <p>At least that's how it <em>usually</em> is today. It's changing slowly, it seems, and that's nice because it's annoying that your settings etc follow the installation, not your profile. It's just not an area that has gotten a lot of attention.</p>
 <p>So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.</p>
-<h2 id="my-personal-ai-journey">My personal AI-journey</h2>
+<h3 id="my-personal-ai-journey">My personal AI-journey</h3>
 <h3 id="chat-copy-paste-in-app-now-terminal">Chat, copy-paste, in-app, now terminal</h3>
 <p><img src="images/agents/evolution.png" /></p>
 <h4 id="_100"></h4>
@@ -1864,7 +1912,7 @@ Practically every <em>decision</em> in the interaction you have with the agent a
 <ul>
 <li><a href="https://claude-academy.com/">Claude Academy</a></li>
 </ul>
-<h1 id="a-bonus-round-ofdemystifications">A Bonus Round of<br>Demystifications</h1>
+<h1 id="a-quick-round-ofdemystifications">A Quick Round of<br>Demystifications</h1>
 <h4 id="_210"></h4>
 <p>Let's run through a quick series of myths and facts and demystify them.</p>
 <h3 id="we-dont-know-how-the-ai-works">We don't know how the AI works</h3>

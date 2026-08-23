@@ -16,7 +16,7 @@ August 2026
 
 ####
 Links:
-- [AI Demystified](https://github.com/ricflams/techtalk-ai-demystified/)
+- [Source for this presentation](https://github.com/ricflams/techtalk-ai-demystified/)
 
 ---
 ![bg](images/intro/books.jpg)

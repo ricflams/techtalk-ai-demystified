@@ -15,6 +15,16 @@ Richard Flamsholt
 August 2026
 
 ####
+We all use AI. But it's still a bit mysterious.
+
+_"How does it know that...?"_ or _"Why doesn't it know that...?"_
+
+Words like _tokens_, _context_, _MCP servers_, _thinking_, and _agent files_ get tossed around daily. But do you really know what they are?
+
+This presentation will explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
+
+There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily.
+
 Links:
 - [Source for this presentation](https://github.com/ricflams/techtalk-ai-demystified/)
 

@@ -126,16 +126,16 @@ img:not(.logo) {
   margin: 1.5rem auto;
   border-radius: 4px;
 }
-/* Contents, opening the page. Chapters (h1) sit on their own lines with no
-   bullets; the sections (h2) inside each run together on one indented line,
-   so the whole deck fits in one glance. Every entry is a plain link -- the
-   indentation alone carries the hierarchy. */
+/* Contents, sitting just under the title slide. Chapters (h1) go on their own
+   lines with no bullets; the sections (h2) inside each run together on one
+   indented line, so the whole deck fits in one glance. Every entry is a plain
+   link -- the indentation alone carries the hierarchy. */
 .toc {
-  margin: 0 0 1rem;
+  margin: 0.5rem 0 1rem;
   line-height: 1.8;
 }
 /* Quieter than a page h2 -- it labels the block without competing with the
-   deck title right below it. */
+   deck title just above it. */
 .toc-title {
   font-size: 1.15em;
   font-weight: 600;
@@ -300,7 +300,10 @@ def build_toc(body: str) -> str:
     what a chapter covers, not a list you read top to bottom.
 
     Kept deliberately compact -- plain <br>-separated lines rather than block
-    elements -- so the whole deck fits in one glance at the top of the page.
+    elements -- so the whole deck fits in one glance.
+
+    The first h1 is the deck's own title slide, which the contents sits
+    directly under, so it is skipped.
     """
     def text_of(markup: str) -> str:
         plain = re.sub(r'<br\s*/?>', ' ', markup)
@@ -316,11 +319,11 @@ def build_toc(body: str) -> str:
         elif sections:
             sections[-1][2].append((anchor, text_of(markup)))
 
-    if not sections:
+    if len(sections) < 2:
         return ''
 
     lines = []
-    for anchor, title, subs in sections:
+    for anchor, title, subs in sections[1:]:
         lines.append(f'<a href="#{anchor}">{title}</a>')
         if subs:
             links = [f'<a href="#{a}">{t}</a>' for a, t in subs]
@@ -334,9 +337,18 @@ def build_toc(body: str) -> str:
 
 
 def insert_toc(body: str) -> str:
-    """Put the contents at the very top, as the page's own opening screen."""
+    """Place the contents just after the title slide.
+
+    The first `<hr>` is the slide break closing the title slide, so the
+    contents lands between the title and the first chapter.
+    """
     toc = build_toc(body)
-    return f'{toc}\n{body}' if toc else body
+    if not toc:
+        return body
+    first_break = re.search(r'<hr\s*/?>', body)
+    if not first_break:
+        return body
+    return body[:first_break.end()] + '\n' + toc + body[first_break.end():]
 
 
 def dedent_raw_html(text: str) -> str:

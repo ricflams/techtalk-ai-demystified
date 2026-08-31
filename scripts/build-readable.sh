@@ -39,8 +39,12 @@ build() {
   if command -v rsync >/dev/null 2>&1; then
     rsync -a --delete src/images/ public/images/
   else
-    rm -rf public/images
-    cp -r src/images public/images
+    # Copy the *contents* into the directory. `rm -rf` then `cp -r src/images
+    # public/images` looks equivalent but isn't: if the remove is refused (a
+    # browser or server on Windows can hold a handle open), the copy nests a
+    # second images/ inside the old one instead of replacing it.
+    mkdir -p public/images
+    cp -r src/images/. public/images/
   fi
   if ! "$py" "$script" "$slides" "$output"; then
     echo "make_readable.py failed. If it can't import 'markdown', run: pip install markdown" >&2

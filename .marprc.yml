@@ -1,0 +1,8 @@
+# Use CommonMark line-break semantics: a single newline is a space, not a <br>.
+# python-markdown (which builds the readable page and speaker notes via
+# scripts/make_readable.py and make_notes.py) already behaves this way, so this
+# keeps the slideshow and the readable page rendering the same source alike.
+# Write a blank line for a new paragraph, or an explicit <br> for a hard break.
+options:
+  markdown:
+    breaks: false

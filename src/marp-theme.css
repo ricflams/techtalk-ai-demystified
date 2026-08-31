@@ -253,6 +253,25 @@ section:has(h3):not(:has(h3 ~ :not(h4 ~ *):not(h4))) {
   padding-top: 1.2rem;
 }
 
+/* ── Body blocks share one centered column, so paragraphs and lists line up
+   on a common left edge. Without this each block is its own shrink-to-fit
+   box centered independently, which is why blocks used to be glued together
+   with <br> just to make them share an edge. Write blank lines instead. ── */
+section:has(h3) > :is(p, ul, ol) {
+  width: min(100%, 40em);
+  margin-inline: auto;
+}
+
+/* Airy spacing between body blocks and between list items, replacing the lone
+   <br>/&nbsp; lines that used to be hand-written to open the layout up. */
+section:has(h3) > :is(p, ul, ol) + :is(p, ul, ol) {
+  margin-top: 0.9em;
+}
+
+section:has(h3) li + li {
+  margin-top: 0.9em;
+}
+
 /* ── Shared: hide page number on all heading slides ── */
 section:has(h1, h2, h3)::after { display: none; }
 

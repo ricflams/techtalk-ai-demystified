@@ -63,4 +63,12 @@ theme: custom-theme
 ---
 ```
 
-Custom slide layout classes defined in `marp-theme.css`: `lead`, `chapter`, `invert`, `highlight`. Apply them with `<!-- _class: chapter -->` directives inside a slide.
+Slide layout is driven entirely by which heading a slide carries (h1 → act, h2 → chapter, h3 → section), via `:has()` rules in `marp-theme.css` — there are no `<!-- _class: -->` directives anywhere in `slides.md`.
+
+### Writing slide body text
+
+`.marprc.yml` sets `breaks: false`, so Marp follows standard CommonMark: **a single newline is a space, not a line break.** This matches python-markdown, which builds the readable page and the speaker notes, so both outputs render the same source identically.
+
+- **Separate blocks** — leave a blank line. Paragraphs and list items get airy spacing from the theme (`section:has(h3) > :is(p,ul,ol) + …` and `li + li`), so no manual spacers are needed.
+- **A hard break inside one block** (a stanza, a paired definition) — end the line with `<br>`.
+- Body blocks on h3 slides share one centered 40em column, so paragraphs and lists line up on a common left edge automatically. Gluing lines together with `<br>` purely to make them share an edge is no longer necessary.

@@ -214,11 +214,10 @@ First let's focus on tokens.
 ### A token is
 
 - A token is practically **a word**, like "hello"
-&nbsp;
+
 - It is the **chunk of text** the LLM works on
-&nbsp;
+
 - Therefore, it's what you ultimately **pay for**
-&nbsp;
 
 ### ChatGPT 3.5's token vocabulary
 <img src="images/llm/tokens/vocabulary-full.png">
@@ -485,9 +484,9 @@ It may sound magical, and in a way it is. And for now, just accept it as a fact 
 ### Embeddings recap
 
 - Embeddings are "meanings" and that meaning can be *transformed with math*
-<br>
+
 - An embedding is *just some numbers*. Cheap to store in a database and work on.
-<br>
+
 - You can *compare embeddings* to figure out *how similar* the meanings they represent are.
 For instance, find a *synonym* by simply finding the closest embeddings to a word.
 
@@ -637,9 +636,9 @@ Compare the final expected embedding to the embeddings of *all tokens in the voc
 ####
 Then, it's "simply" a matter of finding out what tokens are most similar to the desired meaning.
 
-Is it "dancing?" No.
-Is it "sw developer"? No.
-Is it "stranger"? That one's pretty close.
+Is it "dancing?" No.<br>
+Is it "sw developer"? No.<br>
+Is it "stranger"? That one's pretty close.<br>
 Is it "stronger"? Yes, that's the closest known token.
 
 ### Choose the final output token
@@ -778,7 +777,7 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 - From scratch for a new model
 	- costs **$200M-$1000M**
 	- takes **4-8 months**
-<br>
+
 - From an existing model
 	- costs 1-10% of full training
 	- takes weeks or months
@@ -815,7 +814,7 @@ DeepSeek –  Censored thinker
 
 ### Reinforcement Learning by Feedback
 
-**RLHF** - Reinforcement Learning from *Human Feedback* (declining)
+**RLHF** - Reinforcement Learning from *Human Feedback* (declining)<br>
 **RLAIF** - Reinforcement Learning from *AI Feedback* (growing)
 <br>
 
@@ -920,9 +919,9 @@ For example, the Claude family are physically three different models: different 
 
 ### Trained AI model recap
 - You give it a string of tokens, aka the *context*<br>The model produces a response by running that context through *the Transformer*<br>The transformer can *only reason about the context* you give it
-<br>
+
 - AI models have been *post-trained differently* for different desired behaviors
-<br>
+
 - It's *all just math*, fixed at the time of training; no dictionaries or web-browsing
 
 ### Let's revisit what Claude itself said
@@ -1058,8 +1057,8 @@ For anything that doesn't involve files I still just chat in the browser.
 
 For this presentation I created a project in claude.ai for all the research. It has over 60 chats and I've prompted about 18,000 words which is about the length of Shakespeare's Macbeth. I'll leave it to the bard to comment on my efforts:
 
-*It is a tale
-Told by an idiot, full of sound and fury,
+*It is a tale<br>
+Told by an idiot, full of sound and fury,<br>
 Signifying nothing.*
 
 
@@ -1081,9 +1080,7 @@ This is the part where we finally unlock the concrete functionality you use dail
 <br>
 <div class="cols">
 <img src="images/agents/parts/ai-service.png" />
-<div class="col-2" >
-
-The full functionality is quite lean:
+<div class="col-3" >
 
 1. It can read *files* you upload
 2. It can *chat* with you
@@ -1094,6 +1091,11 @@ The full functionality is quite lean:
 </div>
 </div>
 
+####
+The full functionality of the AI service that surrounds the LLM is quite lean.
+
+In principle, at least, because individual AI services may of course have variations.
+
 ### All AI Services generally look like this
 <img src="images/service/overview/blank.png">
 
@@ -1101,9 +1103,9 @@ The full functionality is quite lean:
 <img src="images/service/overview/llm.png">
 
 ### It's all about those <em>embeddings</em>
-Remember, the Transformer works on *embeddings*
+Remember, the Transformer works on *embeddings*<br>
 Text maps to tokens, each token has an embedding in the model
-&nbsp;
+
 But what about *files*, like PDFs and images?
 <br>
 
@@ -1134,9 +1136,9 @@ Because the LLM only works on embeddings we will, somewhat surprisingly maybe, f
 - Images are processed in patches (eg 24x24 pixels) to individual **patch embeddings**, which are then mapped into the same *embedding-space* as text
 - Same approach for *video and audio*, if supported
 - A hybrid approach has gained traction, using *OCR* for pure-text-looking images
-<br>
+
 - The end result: The model just receives embeddings, bits of "meaning". It doesn't know or care if they come from text, image patches, interpreted images, possibly OCR. To the LLM, *it's all just embeddings*.
-<br>
+
 - Note: A screenshot of text can easily result in *10x more context* than the raw text
 
 ####
@@ -1240,9 +1242,9 @@ I ran a rigorous experiment where I examined how Claude, Gemini, and ChatGPT dea
 
 ### It depends
 - *ChatGPT* did text-extraction completely similar to what I did locally.<br>Raw PDF and markdown had practically the same token cost.<br>*No need for local conversion to markdown*
-<br>
+
 - *Gemini* processes PDFs as pure vision input at a flat rate of 258 tokens per page!<br>That was 3-18x fewer tokens than converted markdown.<br>*Give Gemini raw PDFs, not converted markdown*
-<br>
+
 - *Claude* also renders and treats each page as an image, but not at a flat rate.<br>Token-usage for raw PDF was 2-6x more than markdown.<br>*It pays off to do local markdown conversion*.
 
 ####
@@ -1286,11 +1288,11 @@ Let that sink in: every message you send, resends the full conversation.
 ### Why? Because the LLM needs the full context
 
 The LLM can only reason about *the context it is given*.
-<br>
+
 It does not, it *cannot*, know or reason about *anything other than* what is in the context.<br>The LLM is completely *stateless*.
-<br>
+
 You want it to know about X, beyond its trained facts? Then X must be *in the context*.
-<br>
+
 No links, no outside preferences, no memories, including from earlier chats:<br>the context is *ALL* the LLM can respond to.
 
 ### The context after 3 prompts
@@ -1324,9 +1326,9 @@ The best way to save tokens is simply to not keep on dragging the entire convers
 
 ### Your best token-saving friends: clear and compact
 - Write `/clear` or `/compact` or *just start a new chat*
-<br>
+
 - The context doesn't grow by much if you can *use compact*
-<br>
+
 - If you don't, the agent will *auto-compact* for you
 
 ####
@@ -1344,7 +1346,7 @@ But it's better for you to be deliberately in control than have your long conver
 
 ### Chatting recap
 - The *full chat* is always sent, every time
-<br>
+
 - Keep the context lean - *compact* or *start new chats*
 
 ## Thinking
@@ -1353,9 +1355,9 @@ But it's better for you to be deliberately in control than have your long conver
 ### What could "thinking" mean?
 
 - Maybe the LLM can be tweaked to "think better"?<br>*Hmm, no - the LLM weights are constant numbers, frozen after training.*
-<br>
+
 - Is there a "bigger AI" stashed away in the back room?<br>*But then how could the biggest models think harder too?*
-<br>
+
 - But wait. Is what we do here "thinking"?<br>*That's a bingo!*
 
 ####
@@ -1367,7 +1369,7 @@ Links:
 
 ### Chain of Thought
 Thinking (aka effort, reasoning, ...) is called **Chain of Thought**, or **CoT**
-&nbsp;
+<br>
 1. Inject a special *&lt;let me think about that&gt;-token*, known from training
 2. That token makes the LLM *contemplate*, rather than seek to respond
 3. Keep producing, appending, and processing **thinking blocks**, refining the LLM's understanding of the matter until the LLM says "thinking completed" or the allotted **thinking budget** is exceeded
@@ -1407,9 +1409,9 @@ But lo and behold: it was added back in in Claude Code v2.1.68, so the convenien
 
 ### A penny for your thoughts
 - Thinking-blocks are output tokens, and then input-tokens, so they cost you, too.
-&nbsp;
+
 - For reasoning-heavy tasks, thinking tokens can therefore easily multiply your effective output costs by 10x.
-&nbsp;
+
 - However, thinking-blocks are (typically) *not included* in the context after this turn, even though the agent's UI may still show them. Only the final response *after the thinking* is kept in the context for the next turns. So they will cost you, but not "keep on costing you".
 
 <img src="images/service/thinking/claude-code-thinking.png">
@@ -1497,7 +1499,7 @@ Links:
 ### The LLM is in control - via tools
 
 *However*, tools can be much more than just doing math, file, or web operations.
-&nbsp;
+
 Practically every *decision* in the interaction you have with the agent and AI service, is actually *conjured up by the LLM*. The agent and service are predominantly simply *carrying out the LLM's bidding* about practically everything:
 <br>
 
@@ -1545,9 +1547,9 @@ So in a way it's "easy" to write an agent: just provide well-described tools tha
 
 ### The home-field advantage
 - Models are trained on their own lab's tools.
-<br>
+
 - When Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalize, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
-<br>
+
 - That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
 
 ### Ask the AI: "show me your tools for pages"
@@ -1593,9 +1595,9 @@ Links:
 
 ### An MCP server is "just" a middleman to a service
 - An MCP server *does not itself bring new functionality into the world*.
-<br>
+
 - It's a middleman, *a standardized protocol*, that enables the AI Service to discover another service that exists somewhere.
-<br>
+
 - When somebody says _"You can add an MCP server for Atlassian"_, they're practically saying:<br>_"You can tell the AI about Atlassian's API"_.
 
 ####
@@ -1734,9 +1736,9 @@ Files, chatting, thinking, tools - just one major thing remains. And it's rather
 
 ### System prompt
 - A **system prompt** is still *just plain text*
-<br>
+
 - The agent stuffs *"whatever is useful to tell the LLM"* into "system prompts"
-<br>
+
 - You could have *written this text yourself* in a prompt (well, sort of)
 
 ### True, the system prompt _is_ obeyed more
@@ -1792,9 +1794,9 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 
 ####
 - Instructions that the agent (chatgpt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
-<br>
+
 - It brings information about the agent's name, purpose, behavior, etc.
-<br>
+
 - Generally, agents don't make it visible in their UI
 
 ####
@@ -1893,7 +1895,7 @@ A skill is _some (expertise) instructions, loaded when you need it_.
 
 ### What's a skill?
 - A skill is *text instructions* with a name
-<br>
+
 - A skill's instructions are loaded into the context on demand by you or the LLM:
 	- Type `/skill-name` or just ask to _"use skill xxx to ..."_
 	- The skill has a description so the LLM can ask to load the skill's content when it would seem useful, _just like for tools_
@@ -1919,7 +1921,7 @@ Links:
 ####
 The `SKILL.md` file has just two required fields, name and description, and a markdown body.
 
-The name and description are always included in the system prompt.
+The name and description are always included in the system prompt.<br>
 (Actually, this seems to be a bug, since skills marked `disable-model-invocation: true` should not be included).
 
 The full content is added as a `tool_result` message when the user or LLM asks for it.
@@ -1986,9 +1988,9 @@ Matt Pocock's skills are also available in ChatGPT.
 
 ### Skills recap
 - It's "just" snippets of text that you or the LLM can ask to *add to the chat*
-&nbsp;
+
 - Useful, sure, but has no special abilities
-&nbsp;
+
 - Like text-expansion: write `/bro` and bro's text is written out
 
 ### #8/11: MCP servers
@@ -2076,7 +2078,7 @@ You're likely almost tired of me repeating "it's just more instructions to put i
 - Yet, Claude Code does not read `AGENTS.md`, only `CLAUDE.md` (oh dear)
 - Agents differ in how they search for agent-files, up/down from folder to root
 - Use e.g. `/init` to have Claude build an agent-file of useful facts from a folder
-<br>
+
 - Anyways, *agent-files are just more text*, added into the system prompt path
 <br>
 
@@ -2175,11 +2177,11 @@ So not just adding the right things, but also keeping the context lean, is the c
 
 ### Advice for your context economy
 - You *pay per token*; fixed price/token for API, or via *your quota* when using an agent.<br>*Output tokens* are typically *5 times* as expensive as input tokens<br>*Cached tokens cost 10%*, so continue your chat within 5 min (optional 1 hour) to save cost
-<br>
+
 - System, tools, results, images, docs eat many tokens; don't anguish over *your tiny prompt*
-<br>
+
 - Pack multiple asks into one; *"Yes, and also..."* and *"Looks fine. And now x and y..."*<br>Save tokens by *being precise* about names of files, what the output should look like, etc
-<br>
+
 - *Starting a fresh chat* is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to *summarize your chat or results to a file*, then start fresh with that
 
 ### Token spree
@@ -2246,15 +2248,15 @@ Mitigations:
 ### How to speak to the AI
 - Just *speak plainly*, including small nudging words to avoid steering too coarsely
 	- "I would mildly prefer xxx, but not if yyy"
-<br>
+
 - Be *precise* about *the goal you want*
 	- Don't say "it's green" or "it should not be green" - say "it should be red"
-<br>
+
 - But also *don't be prescriptive* about exactly how the AI should *achieve* the goal
 	- Instead, talk about the goal. "I want fluid layout, and the graph is the centerpiece"
-<br>
+
 - Using *examples* often produces much better output
-<br>
+
 - In Claude, use `/insight` to see how you're doing
 
 ####
@@ -2265,9 +2267,9 @@ Links:
 
 ### How to hold the AI
 - Modern agentic workflows, controlled by the AI models via tools, often work so well that you frankly *don't really have to* instruct them in a special way.
-<br>
+
 - A successful agentic loop that has emerged is:
-<br>
+
 	1. Use *multiple agents* in an "orchestrator/worker" fashion
 	2. Explicitly *verify the result* before claiming it's done
 	3. Take *small steps*, setting and updating goals along the way
@@ -2312,41 +2314,41 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 <p class="verdict yes">Now <em>that's</em> true - we don't</p>
 
 - We don't know what the dimensions or weights really "mean" or how facts are stored
-<br>
+
 - It was, and is, a genuine surprise that *the Transformer works as well as it does*
 
 ### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
 <p class="verdict no">No, it most likely <em>did not</em></p>
 
 - Large data is typically *truncated*, *sampled*, or *compacted*
-<br>
+
 - The LLM will fight tooth and nail to *not include large files or much data*: it will only read the first 1000 lines, the first 20 files, 5 sampled Confluence-pages, even *write small scripts* to do a task, all to save context
-<br>
+
 - So *no*, if you have a lot of data it's likely *not all processed* collectively in one context.<br>And that's why parts can be *missed*
 
 ### "I told it earlier, but now it has forgotten"
 <p class="verdict yes">Yes, compaction will do that</p>
 
 - The context is compacted (or truncated) when it gets close to the context window size.<br>So yes, the AI *can forget* what you've been talking about
-<br>
+
 - Extensive output, e.g. long tool-results, can cause this so it's possible that the AI forgets/compacts something you feel you've "just talked about".
-<br>
+
 - Keep your context lean: *clear*, *compact*, *start new chat*
 
 ### The AI just wants to please you
 <p class="verdict maybe">Some do, some don't</p>
 
 - For example, Claude's training specifically *discourages pleasing behavior*
-<br>
+
 - However, the *LLM continuation-nature* does favor "continuing with the story so far", which is biased towards "playing along" with your postulates.
-<br>
+
 - So make sure to challenge the output; *"Roast this, poke holes, find the weak spots"*
 
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
 
 - The model *doesn't know it's wrong* so saying "don't hallucinate" doesn't help.<br><br>Instead:
-<br>
+
 - Give the AI a *clear goal* it can finish
 - Make *failure an explicit accepted continuation*; "if there's no King Tobias then tell me"
 - Have *another agent* supervise and assess the output
@@ -2361,14 +2363,14 @@ Links:
 <p class="verdict no">No, don't trust that explanation</p>
 
 - The *reasoning*, chain of thought, is *no longer present* when you see the response.
-<br>
+
 - So if you ask "why this?" then the LLM seeks a plausible continuation which has *nothing to do with how it actually arrived* at the response. It simply produces the most likely narrative to support its earlier response: "It must have been done so because ..."
 
 ### Say "You are an expert xxxx..."
 <p class="verdict maybe">Useful in some ways</p>
 
 - No need to say this to *bring in competence* in an area; training has done that
-<br>
+
 - But useful for asking for *a perspective*:
 	- "you are a skeptical reviewer whose job is to find the flaw"
 	- "explain as if to a junior dev who knows HTTP but not OAuth"
@@ -2377,9 +2379,9 @@ Links:
 <p class="verdict no">Largely useless</p>
 
 - It urges more carefulness, but that's already baked into modern models
-<br>
+
 - "Make no mistakes" does not point out what a mistake is.
-<br>
+
 - Instead, *describe exactly* how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".
 
 ### Saying "please" costs a fortune and is useless
@@ -2389,36 +2391,36 @@ Links:
 - "Please" adds *conversational structure* and makes it clearer that you make a request
 - "Please" is found in *productive successful conversations*, the pattern we're seeking
 - Politeness is mirrored in the output. A terse and impolite response is more prone to leave out something useful so it needs more follow-up chats.
-&nbsp;
+
 Some say *the best reason* for being polite is simply that:
-&nbsp;
+
 - It's good for *you*, even in simulated conversations: positive social behavior releases oxytocin and dopamine, while an impolite demeanor releases cortisol and adrenaline
 
 ### Say no to training, it'll leak your data
 <p class="verdict maybe">No, only if you send your secrets relentlessly</p>
 
 - *No words from your chat are actually remembered*
-<br>
+
 - "Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training.
-<br>
+
 - The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. Still, it takes rather massively repeated text to make a dent in the model's weights.
 
 ### It must follow "YOU MUST NEVER DO xxx!"
 <p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
 
 - Emphasis markers like "UPPER CASE" or `*bold*` just shift probabilities but cannot guarantee anything.
-<br>
+
 - Emphasis is useful in a *relative* manner, for marking some instructions to be *more important* than others.
-<br>
+
 - Generally, don't expect to be able to control the LLM completely. It's just statistics.
 
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
 
 - The "Caveman" skill originally was partly rooted in a *misunderstanding that a brief prompt equals fewer tokens*, even proposing using ancient Chinese language *Wenyan* as a super-efficient, compact means of input; but neglecting that Wenyan does not capture the intent as well as plain English does and also that it only produced marginally fewer tokens compared to English, sometimes even more.
-<br>
+
 - Small function words *encode structure*, not just politeness. Prepositions and articles mark argument structure, and dropping them leaves the model guessing at your intent.
-<br>
+
 - *Terse can be okay:* "Fix null check line 40" works fine. *But "make good" is bad*.
 
 ####
@@ -2429,9 +2431,9 @@ Links:
 <p class="verdict no">It's likely not the ideal you imagine</p>
 
 - Fine-tuning is expensive, hard, and can even produce *overall worse results*
-<br>
+
 - Recent studies show modern frontier models outperforming fine-tuned models
-<br>
+
 - A better alternative is often just
 	- *plain models with RAG*, for more domain knowledge
 	- *better prompts*, for describing the task
@@ -2450,7 +2452,7 @@ Links:
 <p class="verdict no">No, not at all</p>
 
 - They may well know basically *the same facts*
-<br>
+
 - But they have *very different behaviors and values*
 
 
@@ -2458,9 +2460,9 @@ Links:
 <p class="verdict maybe">Maybe - experts disagree</p>
 
 - The fact that the answer isn't a resounding *"no"* is astounding.
-<br>
+
 - *What even is understanding, sentience, and consciousness*?
-<br>
+
 - AI models have *reinvigorated linguistic science* and debate. It's fascinating times.
 
 ####
@@ -2588,7 +2590,7 @@ One 8 x B200 cluster costs $500,000
 
 - Ballpark running cost, all-included: *$27/MToken out*
 - Claude Opus is priced at $25/MToken
-&nbsp;
+<br>
 
 <img src="images/bonus/cost/claude-pricing.png"> 
 </div>

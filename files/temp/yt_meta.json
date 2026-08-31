@@ -1,0 +1,267 @@
+{
+ "-W2JdSl1v48": {
+  "title": "Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA",
+  "channel": "IBM Technology",
+  "duration": "10:52"
+ },
+ "-uW5-TaVXu4": {
+  "title": "Most devs don’t understand how context windows work",
+  "channel": "Matt Pocock",
+  "duration": "9:33"
+ },
+ "005JLRt3gXI": {
+  "title": "Why do AI models hallucinate?",
+  "channel": "Claude",
+  "duration": "5:13"
+ },
+ "0oXOOlqVu5M": {
+  "title": "So I tried Matt's skills...",
+  "channel": "Theo - t3․gg",
+  "duration": "38:21"
+ },
+ "0xS68sl2D70": {
+  "title": "Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains",
+  "channel": "Perimeter Institute for Theoretical Physics",
+  "duration": "1:15:10"
+ },
+ "2hcsmtkSzIw": {
+  "title": "Can humans make AI any better?",
+  "channel": "Welch Labs",
+  "duration": "23:39"
+ },
+ "7j1t3UZA1TY": {
+  "title": "MCP vs API: Simplifying AI Agent Integration with External Data",
+  "channel": "IBM Technology",
+  "duration": "13:10"
+ },
+ "7xTGNNLPyMI": {
+  "title": "Deep Dive into LLMs like ChatGPT",
+  "channel": "Andrej Karpathy",
+  "duration": "3:31:23"
+ },
+ "9-Jl0dxWQs8": {
+  "title": "How might LLMs store facts | Deep Learning Chapter 7",
+  "channel": "3Blue1Brown",
+  "duration": "22:42"
+ },
+ "A4zMyjkL0Dc": {
+  "title": "AI Prompt Engineering: I Stopped Prompting One Task At A Time",
+  "channel": "AI News & Strategy Daily | Nate B Jones",
+  "duration": "15:38"
+ },
+ "B-0dZGJDtJw": {
+  "title": "Unleash the power of vector search and multimodal embeddings in BigQuery",
+  "channel": "Google Cloud Tech",
+  "duration": "40:59"
+ },
+ "FLpS7OfD5-s": {
+  "title": "Why MCP really is a big deal | Model Context Protocol with Tim Berglund",
+  "channel": "Confluent Developer",
+  "duration": "11:09"
+ },
+ "GTEz5WWbfiw": {
+  "title": "The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting",
+  "channel": "AI News & Strategy Daily | Nate B Jones",
+  "duration": "13:20"
+ },
+ "GuTcle5edjk": {
+  "title": "you need to learn MCP RIGHT NOW!! (Model Context Protocol)",
+  "channel": "NetworkChuck",
+  "duration": "38:40"
+ },
+ "I0VoesfTTnA": {
+  "title": "Marp: Ditch PowerPoint and embrace Markdown for creating slides",
+  "channel": "Infralovers GmbH",
+  "duration": "9:33"
+ },
+ "IHZwWFHWa-w": {
+  "title": "Gradient descent, how neural networks learn | Deep Learning Chapter 2",
+  "channel": "3Blue1Brown",
+  "duration": "20:33"
+ },
+ "IkdziSLYzHw": {
+  "title": "Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton",
+  "channel": "The Royal Institution",
+  "duration": "47:15"
+ },
+ "Ilg3gGewQ5U": {
+  "title": "Backpropagation, intuitively | Deep Learning Chapter 3",
+  "channel": "3Blue1Brown",
+  "duration": "12:47"
+ },
+ "LO0Ws-l6brg": {
+  "title": "4 AI Labs Built the Same System Without Talking to Each Other (And Nobody's Discussing Why)",
+  "channel": "AI News & Strategy Daily | Nate B Jones",
+  "duration": "27:15"
+ },
+ "LPZh9BOjkQs": {
+  "title": "Large Language Models explained briefly",
+  "channel": "3Blue1Brown",
+  "duration": "7:58"
+ },
+ "LxZ3gYvbV7I": {
+  "title": "Toolformer: AI learns to use APIs",
+  "channel": "AssemblyAI",
+  "duration": "4:37"
+ },
+ "MiUHjLxm3V0": {
+  "title": "The World's Most Important Machine",
+  "channel": "Veritasium",
+  "duration": "55:00"
+ },
+ "MsQACpcuTkU": {
+  "title": "You've Been Using AI the Hard Way (Use This Instead)",
+  "channel": "NetworkChuck",
+  "duration": "33:43"
+ },
+ "OFS90-FX6pg": {
+  "title": "The 35 Year History of ChatGPT",
+  "channel": "Art of the Problem",
+  "duration": "26:55"
+ },
+ "OOlr4W22s1o": {
+  "title": "This Prompt Behavior Hack Beats 'Expert' Every Single Time",
+  "channel": "Craig Does AI",
+  "duration": "7:27"
+ },
+ "P_fHJIYENdI": {
+  "title": "AlphaFold - The Most Useful Thing AI Has Ever Done",
+  "channel": "Veritasium",
+  "duration": "24:51"
+ },
+ "UID_oXuN-0Y": {
+  "title": "Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools",
+  "channel": "Harvard CMSA",
+  "duration": "55:42"
+ },
+ "XIDyLFDqlck": {
+  "title": "Why LLMs Live In 12,288 Dimensions",
+  "channel": "ML & AI: Foundations & Methods",
+  "duration": "32:41"
+ },
+ "XpIMuCeEtSk": {
+  "title": "A quest for a cure: AI drug design | Isomorphic Labs",
+  "channel": "Google DeepMind",
+  "duration": "47:08"
+ },
+ "Z9UxjmNF7b0": {
+  "title": "You're falling behind. It's time to catch up.",
+  "channel": "Theo - t3․gg",
+  "duration": "32:45"
+ },
+ "aBUniZHgCnE": {
+  "title": "Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)",
+  "channel": "Alliance for Responsible Citizenship",
+  "duration": "14:34"
+ },
+ "aircAruvnKk": {
+  "title": "But what is a neural network? | Deep learning chapter 1",
+  "channel": "3Blue1Brown",
+  "duration": "18:40"
+ },
+ "eMlx5fFNoYc": {
+  "title": "Attention in transformers, step-by-step | Deep Learning Chapter 6",
+  "channel": "3Blue1Brown",
+  "duration": "26:09"
+ },
+ "g9JIUM0MHgQ": {
+  "title": "CLI vs MCP: How AI Agents Choose the Right Tool for the Job",
+  "channel": "IBM Technology",
+  "duration": "14:06"
+ },
+ "gl1r1XV0SLw": {
+  "title": "What is a Vector Database? Powering Semantic Search & AI Applications",
+  "channel": "IBM Technology",
+  "duration": "9:48"
+ },
+ "hVM8qGRTaOA": {
+  "title": "What Are Word Embeddings?",
+  "channel": "Under The Hood",
+  "duration": "19:32"
+ },
+ "ho4pQ6pI8Rg": {
+  "title": "Peering into Claude's soul (I can't believe this is real...)",
+  "channel": "Theo - t3․gg",
+  "duration": "1:12:19"
+ },
+ "iJVJwmCKW9o": {
+  "title": "I guess we're writing loops now?",
+  "channel": "Theo - t3․gg",
+  "duration": "24:44"
+ },
+ "izbifbq3-eI": {
+  "title": "Tokens vs Embeddings – what are they + how are they different?",
+  "channel": "Annie Sexton",
+  "duration": "6:52"
+ },
+ "kCc8FmEb1nY": {
+  "title": "Let's build GPT: from scratch, in code, spelled out.",
+  "channel": "Andrej Karpathy",
+  "duration": "1:56:20"
+ },
+ "l-9ALe3U-Fg": {
+  "title": "ChatGPT is made from 100 million of these [The Perceptron]",
+  "channel": "Welch Labs",
+  "duration": "24:01"
+ },
+ "l8pRSuU81PU": {
+  "title": "Let's reproduce GPT-2 (124M)",
+  "channel": "Andrej Karpathy",
+  "duration": "4:01:26"
+ },
+ "nKSk_TiR8YA": {
+  "title": "Most devs don't understand how LLM tokens work",
+  "channel": "Matt Pocock",
+  "duration": "10:57"
+ },
+ "nZrZOI0oRuw": {
+  "title": "Transformer Explained",
+  "channel": "Caleb Writes Code",
+  "duration": "6:55"
+ },
+ "p7t1Q_p2gZs": {
+  "title": "AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried",
+  "channel": "Alex Kantrowitz",
+  "duration": "54:54"
+ },
+ "qx7hirqgfuU": {
+  "title": "Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]",
+  "channel": "Welch Labs",
+  "duration": "34:08"
+ },
+ "tIeHLnjs5U8": {
+  "title": "Backpropagation calculus | Deep Learning Chapter 4",
+  "channel": "3Blue1Brown",
+  "duration": "10:17"
+ },
+ "u57EnkQaUTY": {
+  "title": "What is Prompt Caching? Optimize LLM Latency with AI Transformers",
+  "channel": "IBM Technology",
+  "duration": "9:06"
+ },
+ "wfOH_6dhzSA": {
+  "title": "\"That's a bingo!\" | Inglourious Basterds | CLIP",
+  "channel": "Boxoffice Movie Scenes",
+  "duration": "4:53"
+ },
+ "wgfSDrqYMJ4": {
+  "title": "What are Word Embeddings?",
+  "channel": "IBM Technology",
+  "duration": "8:38"
+ },
+ "wjZofJX0v4M": {
+  "title": "Transformers, the tech behind LLMs | Deep Learning Chapter 5",
+  "channel": "3Blue1Brown",
+  "duration": "27:14"
+ },
+ "QGk82QWWr4s": {
+  "title": "Nvidia B200 GPU Explained: Specs, Performance & Use Cases (2026 Guide)",
+  "channel": "AceCloud",
+  "duration": "2:57"
+ },
+ "7a0UGHvxrLw": {
+  "title": "This is NVIDIA’s new GPU - Blackwell NVL72 Rack",
+  "channel": "Linus Tech Tips",
+  "duration": "12:57"
+ }
+}

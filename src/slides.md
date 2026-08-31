@@ -47,7 +47,7 @@ For the past year I've felt that way about AI. And I think we're all filled with
 There's this feeling that "it can do anything if I only hold it right". That can lead to fear of holding it wrong, fear of missing out, and disappointment in the AI or yourself if it doesn't work as well as you imagined it would.
 
 Links:
-- [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0)
+- [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0) - Theo - t3․gg (32:45)
 
 ---
 ![bg](images/intro/lightbulb.jpeg)
@@ -142,7 +142,7 @@ It's for the same reason that you ask an AI about any topic instead of reading s
 But if I had to recommend just one single video about "how AI works", then it would be this short one. Those 8 minutes are very well spent.
 
 Links:
-- [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs)
+- [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs) - 3Blue1Brown (7:58)
 
 ---
 ![bg](images/intro/questions.jpg)
@@ -155,7 +155,7 @@ And ask me or other colleagues if you've got questions. I'd be happy to elaborat
 
 Links:
 - [Tech Talk: AI Demystified](https://ricflams.github.io/techtalk-ai-demystified/)
-- [Marp: Ditch PowerPoint and embrace Markdown for creating slides](https://youtu.be/I0VoesfTTnA)
+- [Marp: Ditch PowerPoint and embrace Markdown for creating slides](https://youtu.be/I0VoesfTTnA) - Infralovers GmbH (9:33)
 
 ---
 ![bg](images/intro/one-hour.jpg)
@@ -164,7 +164,7 @@ I've really strived to make the presentation deep and useful but also entertaini
 
 ####
 Links:
-- [Veritasium: What Everyone Gets Wrong About AI and Learning](https://youtu.be/0xS68sl2D70)
+- [Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains](https://youtu.be/0xS68sl2D70) - Perimeter Institute for Theoretical Physics (1:15:10)
 
 ---
 <img src="images/overview/full.png" />
@@ -177,9 +177,9 @@ This presentation focuses on AI that generates text, like Claude, ChatGPT, Gemin
 So AI here means **generative text AI**. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
 Links:
-- [Understand AI in 14 minutes – with Anthropic's Chloe Lubinski [ARC 2026]](https://youtu.be/aBUniZHgCnE)
-- [AlphaFold - The Most Useful Thing AI Has Ever Done](https://youtu.be/P_fHJIYENdI)
-- [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk)
+- [Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)](https://youtu.be/aBUniZHgCnE) - Alliance for Responsible Citizenship (14:34)
+- [AlphaFold - The Most Useful Thing AI Has Ever Done](https://youtu.be/P_fHJIYENdI) - Veritasium (24:51)
+- [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk) - Google DeepMind (47:08)
 
 # The LLM
 
@@ -312,7 +312,7 @@ And the three-character sequence `**,` is also common enough to have its own tok
 For English, one token generally corresponds to about 4 characters.
 
 Links:
-- [Most devs don't understand how LLM tokens work](https://youtu.be/nKSk_TiR8YA)
+- [Most devs don't understand how LLM tokens work](https://youtu.be/nKSk_TiR8YA) - Matt Pocock (10:57)
 
 ## Embeddings
 <img src="images/overview/embeddings.png">
@@ -327,7 +327,7 @@ Embeddings are sort of the "live" counterpart to tokens. They are very valuable 
 ####
 Links:
 - [Embeddings: What they are and why they matter](https://simonwillison.net/2023/Oct/23/embeddings/)
-- [What are Word Embeddings?](https://youtu.be/wgfSDrqYMJ4)
+- [What are Word Embeddings?](https://youtu.be/wgfSDrqYMJ4) - IBM Technology (8:38)
 
 ### Confused? Okay, stay with me
 <img src="images/llm/embeddings/confused.png">
@@ -366,7 +366,7 @@ Embeddings can be: Any *word* you know. Any *sentence* that exists. Any *feeling
 
 ####
 Links:
-- [Tokens vs Embeddings – what are they + how are they different?](https://youtu.be/izbifbq3-eI)
+- [Tokens vs Embeddings – what are they + how are they different?](https://youtu.be/izbifbq3-eI) - Annie Sexton (6:52)
 
 ### 1 token's meaning is represented by 1 embedding
 <img src="images/llm/embeddings/vocabulary-gpt-3.png" />
@@ -378,7 +378,7 @@ In the AI, an embedding is a large set of numbers, for example 12288 numbers in 
 
 ####
 Links:
-- [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck)
+- [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck) - ML & AI: Foundations & Methods (32:41)
 
 ### More examples
 <img src="images/llm/embeddings/three-embeddings.svg" />
@@ -391,7 +391,7 @@ There's a research field called mechanistic interpretability that tries to decom
 Links:
 - [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
 - [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
-- [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://youtu.be/9-Jl0dxWQs8)
+- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 
 ### The example's embeddings
 <img src="images/llm/embeddings/embedding-matrix.png" />
@@ -506,7 +506,7 @@ For instance, find a *synonym* by simply finding the closest embeddings to a wor
 
 ####
 Links:
-- [What Are Word Embeddings?](https://youtu.be/hVM8qGRTaOA)
+- [What Are Word Embeddings?](https://youtu.be/hVM8qGRTaOA) - Under The Hood (19:32)
 
 ### The LLM is all about "doing math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
@@ -532,7 +532,7 @@ That's the second thing to note: the LLM itself just produces this set of probab
 
 ####
 Links:
-- [Large Language Models explained briefly - 3Blue1Brown](https://youtu.be/LPZh9BOjkQs)
+- [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs) - 3Blue1Brown (7:58)
 
 ### A neural network
 <img src="images/llm/neural-network.webp">
@@ -542,7 +542,7 @@ A neural network is basically just a giant, organized set of multiplications and
 
 ####
 Links:
-- [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU)
+- [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU) - Welch Labs (34:08)
 
 ### Add up, multiply by factors, add up, ...
 <img src="images/llm/neural-network-nodes.png">
@@ -560,7 +560,7 @@ And that is in fact what the LLM does. But let's start at the beginning.
 
 ####
 Links:
-- [But what is a neural network? | Deep learning chapter 1](https://youtu.be/aircAruvnKk)
+- [But what is a neural network? | Deep learning chapter 1](https://youtu.be/aircAruvnKk) - 3Blue1Brown (18:40)
 
 ### The LLM's objective: find the likely next token
 <img src="images/llm/find-the-next-token.png">
@@ -594,14 +594,14 @@ It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, 
 
 Links:
 - [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
-- [The 35 Year History of ChatGPT](https://youtu.be/OFS90-FX6pg)
+- [The 35 Year History of ChatGPT](https://youtu.be/OFS90-FX6pg) - Art of the Problem (26:55)
 
 ### The Transformer can figure out the next token
 <img src="images/llm/what-we-want.png">
 
 ####
 Links:
-- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M)
+- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M) - 3Blue1Brown (27:14)
 
 ### First, all embeddings "pay attention" to each other
 <img src="images/llm/attention-head.png">
@@ -612,7 +612,7 @@ Every embedding gets influenced by every embedding token before it. They "absorb
 For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
 
 Links:
-- [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc)
+- [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
 
 ### Then passed through a neural network
 <img src="images/llm/multiplexer-perceptron.png">
@@ -627,7 +627,7 @@ This is where the model's built-in training shapes the meaning of the embeddings
 More math dials up the contrast, in a way: it boosts the strong signals and suppresses the noise.
 
 Links:
-- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8)
+- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 
 ### Let's do it 96 times (attention layers)
 <img src="images/llm/attention-96-layers.png">
@@ -769,10 +769,10 @@ And it's amazing that it works, and that it ends up producing embeddings that ha
 It's taken some effort to figure out this math, but it's pretty simple to execute.
 
 Links:
-- [Gradient descent, how neural networks learn | Deep Learning Chapter 2](https://youtu.be/IHZwWFHWa-w)
-- [Backpropagation, intuitively | Deep Learning Chapter 3](https://youtu.be/Ilg3gGewQ5U)
-- [Backpropagation calculus | Deep Learning Chapter 4](https://youtu.be/tIeHLnjs5U8)
-- [ChatGPT is made from 100 million of these [The Perceptron]](https://youtu.be/l-9ALe3U-Fg)
+- [Gradient descent, how neural networks learn | Deep Learning Chapter 2](https://youtu.be/IHZwWFHWa-w) - 3Blue1Brown (20:33)
+- [Backpropagation, intuitively | Deep Learning Chapter 3](https://youtu.be/Ilg3gGewQ5U) - 3Blue1Brown (12:47)
+- [Backpropagation calculus | Deep Learning Chapter 4](https://youtu.be/tIeHLnjs5U8) - 3Blue1Brown (10:17)
+- [ChatGPT is made from 100 million of these [The Perceptron]](https://youtu.be/l-9ALe3U-Fg) - Welch Labs (24:01)
 
 ### A trained model = embeddings + weights
 <img src="images/llm/training/pre-trained-model.png">
@@ -860,7 +860,7 @@ In order to use AI for performing this Reinforcement Learning, Anthropic has wri
 ####
 Links:
 - [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
-- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg)
+- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
 - [OpenAI Model Spec](https://model-spec.openai.com/2025-12-18.html)
 
 ### Expresses Claude’s "core principles"
@@ -958,10 +958,10 @@ If you find this interesting then I can recommend this 2-hour video of Andrej Ka
 The whole thing is only 600 lines of Python code: 300 for `train.py`, 300 lines for `model.py`.
 
 Links:
-- [Let's build GPT from scratch (2 hours)](https://youtu.be/kCc8FmEb1nY)
-- [Let's reproduce GPT-2 (4 hours)](https://youtu.be/l8pRSuU81PU)
+- [Let's build GPT: from scratch, in code, spelled out.](https://youtu.be/kCc8FmEb1nY) - Andrej Karpathy (1:56:20)
+- [Let's reproduce GPT-2 (124M)](https://youtu.be/l8pRSuU81PU) - Andrej Karpathy (4:01:26)
 - [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
-- [Deep Dive into LLMs like ChatGPT](https://youtu.be/7xTGNNLPyMI)
+- [Deep Dive into LLMs like ChatGPT](https://youtu.be/7xTGNNLPyMI) - Andrej Karpathy (3:31:23)
 - [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
 
 
@@ -1214,8 +1214,8 @@ The dimension of a multimodal embedding is typically smaller than for text.
 
 Links:
 - [Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
-- [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw)
-- [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw)
+- [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw) - Google Cloud Tech (40:59)
+- [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw) - IBM Technology (9:48)
 
 ### Simply compare embeddings to find the similarity
 <img src="images/service/files/multimodal/gemini-2-similarities.png">
@@ -1431,7 +1431,7 @@ All frontier AI services offer some kind of "extended thinking", or "deep reason
 
 ####
 Links:
-- ["That's a bingo!" | Inglourious Basterds](https://youtu.be/wfOH_6dhzSA)
+- ["That's a bingo!" | Inglourious Basterds | CLIP](https://youtu.be/wfOH_6dhzSA) - Boxoffice Movie Scenes (4:53)
 
 ### Thinking is: contemplate, append, repeat until stop
 <img src="images/service/overview/thinking.png">
@@ -1527,8 +1527,8 @@ As an aside: the tool-training is commonly done using a process called *Toolform
 In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgment but purely mathematically as "did this make the future more predictable?".
 
 Links:
-- [Toolformer: AI learns to use APIs - AssemblyAI](https://youtu.be/LxZ3gYvbV7I)
-- [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://youtu.be/UID_oXuN-0Y)
+- [Toolformer: AI learns to use APIs](https://youtu.be/LxZ3gYvbV7I) - AssemblyAI (4:37)
+- [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://youtu.be/UID_oXuN-0Y) - Harvard CMSA (55:42)
 - [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
 
 ### The tool is being run (on agent or server)
@@ -1654,9 +1654,9 @@ In principle *it works exactly like tools* that we've just covered.
 The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
 
 Links:
-- [MCP vs API: Simplifying AI Agent Integration with External Data](https://youtu.be/7j1t3UZA1TY)
-- [you need to learn MCP RIGHT NOW!! (Model Context Protocol)](https://youtu.be/GuTcle5edjk)
-- [Why MCP really is a big deal | Model Context Protocol with Tim Berglund](https://youtu.be/FLpS7OfD5-s)
+- [MCP vs API: Simplifying AI Agent Integration with External Data](https://youtu.be/7j1t3UZA1TY) - IBM Technology (13:10)
+- [you need to learn MCP RIGHT NOW!! (Model Context Protocol)](https://youtu.be/GuTcle5edjk) - NetworkChuck (38:40)
+- [Why MCP really is a big deal | Model Context Protocol with Tim Berglund](https://youtu.be/FLpS7OfD5-s) - Confluent Developer (11:09)
 
 ### MCP servers give uniform access to tools
 <img src="images/service/mcp/uniform-mcp-interface.png">
@@ -1800,7 +1800,7 @@ MCP servers are massively popular. You can find MCP servers for all the major Sa
 But remember: using an MCP server does incur some extra cost in terms of a network call. For example, your local Claude Code CLI agent can use MCP to (have the LLM) interact with Github: search code, check commits, etc. But hang on: if you're already working on a local repo on your disk then won't it be cheaper to simply have the agent use `git` on the commandline to work on local files? Oh yes, indeed it will. So while MCP gives you a near-universal ability to reach out to all kinds of online services, it's often preferable to "go local" using CLI-tools if that's an option.
 
 Links:
-- [CLI vs MCP: How AI Agents Choose the Right Tool for the Job](https://youtu.be/g9JIUM0MHgQ)
+- [CLI vs MCP: How AI Agents Choose the Right Tool for the Job](https://youtu.be/g9JIUM0MHgQ) - IBM Technology (14:06)
 
 ### Almost spoken about like some "magic" remedy
 <img src="images/service/mcp/code-munch.png">
@@ -2049,7 +2049,7 @@ Links:
 - [Matt Pocock on Github](https://github.com/mattpocock)
 - [Matt Pocock on Youtube](https://www.youtube.com/@mattpocockuk/videos)
 - [How to Use Matt Pocock's Skills for Claude Code: A Complete Guide](https://tosea.ai/blog/matt-pocock-skills-claude-code-guide)
-- [So I tried Matt's skills... - Theo](https://youtu.be/0oXOOlqVu5M)
+- [So I tried Matt's skills...](https://youtu.be/0oXOOlqVu5M) - Theo - t3․gg (38:21)
 
 ### Hey bro
 <img src="images/service/system/skills/bro/bro-skill-code.png" />
@@ -2261,7 +2261,7 @@ Four parts to mention:
 
 ####
 Links:
-- [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY)
+- [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
 
 ## Full AI
 
@@ -2392,7 +2392,7 @@ Here's a round of advice on how to speak, hold, and keep up with the AI.
 
 ####
 Links:
-- [The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting](https://youtu.be/GTEz5WWbfiw)
+- [The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting](https://youtu.be/GTEz5WWbfiw) - AI News & Strategy Daily | Nate B Jones (13:20)
 
 ####
 
@@ -2410,15 +2410,15 @@ Links:
 Links:
 - [Google: The New SDLC With Vibe Coding](https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding)
 - [Mixture-of-Expert vs Multi-Agent Systems](https://gurusup.com/blog/moe-vs-multi-agent-systems)
-- [4 AI Labs Built the Same System Without Talking to Each Other](https://youtu.be/LO0Ws-l6brg)
+- [4 AI Labs Built the Same System Without Talking to Each Other (And Nobody's Discussing Why)](https://youtu.be/LO0Ws-l6brg) - AI News & Strategy Daily | Nate B Jones (27:15)
 
 ### Yet constantly new trends, like "loop of loops"
 <img src="images/guidance/nate-loop-of-loops.png">
 
 ####
 Links:
-- [AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://youtu.be/A4zMyjkL0Dc)
-- [I guess we're writing loops now?](https://youtu.be/iJVJwmCKW9o)
+- [AI Prompt Engineering: I Stopped Prompting One Task At A Time](https://youtu.be/A4zMyjkL0Dc) - AI News & Strategy Daily | Nate B Jones (15:38)
+- [I guess we're writing loops now?](https://youtu.be/iJVJwmCKW9o) - Theo - t3․gg (24:44)
 
 
 ### How to keep up with the AI
@@ -2453,7 +2453,7 @@ Links:
 
 ####
 Links:
-- [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://youtu.be/9-Jl0dxWQs8)
+- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 - [Interpretability](https://www.anthropic.com/research/team/interpretability)
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
@@ -2477,7 +2477,7 @@ Links:
 
 ####
 Links:
-- [Most devs don’t understand how context windows work](https://youtu.be/-uW5-TaVXu4)
+- [Most devs don’t understand how context windows work](https://youtu.be/-uW5-TaVXu4) - Matt Pocock (9:33)
 
 ### The AI just wants to please you
 <p class="verdict maybe">Some do, some don't</p>
@@ -2490,7 +2490,7 @@ Links:
 
 ####
 Links:
-- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg)
+- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
 
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
@@ -2506,7 +2506,7 @@ Interestingly, deeper reasoning (chain of thought) actually *lowers* the success
 
 Links:
 - [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
-- [Why do AI models hallucinate?](https://youtu.be/005JLRt3gXI)
+- [Why do AI models hallucinate?](https://youtu.be/005JLRt3gXI) - Claude (5:13)
 
 ### Ask "Why did you do that?" and it will tell you
 <p class="verdict no">No, don't trust that explanation</p>
@@ -2597,8 +2597,8 @@ Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI
 
 Links:
 - [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
-- [Can humans make AI any better?](https://youtu.be/2hcsmtkSzIw)
-- [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://youtu.be/-W2JdSl1v48)
+- [Can humans make AI any better?](https://youtu.be/2hcsmtkSzIw) - Welch Labs (23:39)
+- [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://youtu.be/-W2JdSl1v48) - IBM Technology (10:52)
 - [General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
 
 ### All AI models are the same after all
@@ -2622,8 +2622,8 @@ Links:
 Links:
 - [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
 - [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
-- [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://youtu.be/p7t1Q_p2gZs)
-- [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw)
+- [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://youtu.be/p7t1Q_p2gZs) - Alex Kantrowitz (54:54)
+- [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw) - The Royal Institution (47:15)
 
 
 # That's all
@@ -2659,7 +2659,7 @@ Enjoy and don't despair 😊
 Links:
 - [AI Demystified - this talk](https://github.com/ricflams/techtalk-ai-demystified/)
 - [Neural network - 3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
-- [You've Been Using AI the Hard Way](https://youtu.be/MsQACpcuTkU) (the terminal)
+- [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU) - NetworkChuck (33:43)
 
 My *favorite youtube channels* for AI-related content:
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
@@ -2701,13 +2701,18 @@ Specifically for Harry Potter: People have tried that and the resulting stories 
 ### Actually, about 1,200,000,000,000 multiplications
 <img src="images/bonus/cost/dr-evil-teraflops.jpg"> 
 
+####
 **FLOP** is short for Floating-Point Operation, i.e. multiplying or adding two numbers
 
 ### Enter: the NVidia B200 GPU
+<img src="images/bonus/cost/nvidia-jensen-b200.png"> 
 
+####
 The NVidia B200 GPU is not your grandma's GeForce graphics card, for sure.
 
-<img src="images/bonus/cost/nvidia-jensen-b200.png"> 
+Links:
+- [Nvidia B200 GPU Explained: Specs, Performance & Use Cases (2026 Guide)](https://youtu.be/QGk82QWWr4s) - AceCloud (2:57)
+- [This is NVIDIA’s new GPU - Blackwell NVL72 Rack](https://youtu.be/7a0UGHvxrLw) - Linus Tech Tips (12:57)
 
 ### 4,500,000,000,000,000 FLOPS/sec
 
@@ -2777,7 +2782,7 @@ The NVidia B200 GPU comes in clusters.
 
 ####
 Links:
-- [Transformer Explained](https://youtu.be/nZrZOI0oRuw)
+- [Transformer Explained](https://youtu.be/nZrZOI0oRuw) - Caleb Writes Code (6:55)
 
 ### GPU: master of parallel computations
 <img src="images/bonus/cost/red-dead-redemption.webp">
@@ -2793,7 +2798,7 @@ And why NVidia's stock price has soared.
 
 ####
 Links:
-- [The World's Most Important Machine - Veritasium](https://youtu.be/MiUHjLxm3V0)
+- [The World's Most Important Machine](https://youtu.be/MiUHjLxm3V0) - Veritasium (55:00)
 
 
 ## RAG
@@ -2970,7 +2975,7 @@ But if we allow for *just a 2-degree tilt/dependency*, like in the first example
 So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express *a billion billion ...* characteristics.
 
 Links:
-- [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck)
+- [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck) - ML & AI: Foundations & Methods (32:41)
 - [High Dimension Vector Orthogonality and Superposition in LLMs](https://barnabywreford.co.uk/problems/vector_orthogonality_and_llm_superposition/)
 
 ### The End

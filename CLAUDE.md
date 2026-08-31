@@ -72,3 +72,16 @@ Slide layout is driven entirely by which heading a slide carries (h1 → act, h2
 - **Separate blocks** — leave a blank line. Paragraphs and list items get airy spacing from the theme (`section:has(h3) > :is(p,ul,ol) + …` and `li + li`), so no manual spacers are needed.
 - **A hard break inside one block** (a stanza, a paired definition) — end the line with `<br>`.
 - Body blocks on h3 slides share one centered 40em column, so paragraphs and lists line up on a common left edge automatically. Gluing lines together with `<br>` purely to make them share an edge is no longer necessary.
+
+### Promoting a slide into the contents
+
+The readable page's contents list (built by `scripts/make_readable.py`) shows h1 chapters and their h2 sections. To pull an individual h3 slide in at section level, tag it in `slides.md`:
+
+```markdown
+### #7/11: Skills
+<!-- toc-entry Skills -->
+```
+
+The heading stays an h3 in the slideshow; only the contents list changes. The text after `toc-entry` is optional and overrides the label, so a heading that reads "#7/11: Skills" on the slide can appear as just "Skills" in the contents. A bare `<!-- toc-entry -->` promotes the heading under its own name.
+
+The marker deliberately avoids `key: value` shape so Marp can never mistake it for one of its own directives. Put it on the line directly after the heading (directly before also works, but then Marp files the stray comment as a presenter note against the *previous* slide). Marp turns any standalone comment into a `bespoke-marp-note`, which is invisible on the slide and unused by this deck — the speaker notes here come from `####` markers via `make_notes.py`.

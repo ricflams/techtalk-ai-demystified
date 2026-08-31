@@ -9,6 +9,8 @@
 .cols > .col-4 { flex: 4 1 0; }
 .cols > .col-5 { flex: 5 1 0; }
 .cols > .col-6 { flex: 6 1 0; }
+.cols > .col-7 { flex: 7 1 0; }
+.cols > .col-8 { flex: 8 1 0; }
 .cols img { width: 100%; max-width: none; height: auto; display: block; border-radius: 0; }
 /* Any image alone in its own paragraph fills the slide by default (grows
    the wrapping <p> to fill remaining slide height, then fills that box

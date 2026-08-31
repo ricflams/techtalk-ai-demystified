@@ -23,7 +23,7 @@ Words like _tokens_, _context_, _MCP servers_, _thinking_, and _agent files_ get
 
 This presentation will explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
 
-There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily.
+There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.
 
 Links:
 - [Source for this presentation](https://github.com/ricflams/techtalk-ai-demystified/)
@@ -183,6 +183,9 @@ Links:
 
 # The LLM
 
+####
+The LLM is the most fundamental piece and even though it's quite technical, it's actually the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
+
 ---
 <img src="images/intro/journey/enter-rabbithole.png">
 
@@ -191,8 +194,6 @@ Links:
 
 ####
 The LLM, the **Large Language Model**, is the part that does all the *thinking*.
-
-It's fundamental so let's start there and work our way up.
 
 ### "Please tell me: what is an LLM?"
 <img src="images/llm/claude-please-tell-me.png">
@@ -310,6 +311,9 @@ And the three-character sequence `**,` is also common enough to have its own tok
 ####
 For English, one token generally corresponds to about 4 characters.
 
+Links:
+- [Most devs don't understand how LLM tokens work](https://youtu.be/nKSk_TiR8YA)
+
 ## Embeddings
 <img src="images/overview/embeddings.png">
 
@@ -323,7 +327,7 @@ Embeddings are sort of the "live" counterpart to tokens. They are very valuable 
 ####
 Links:
 - [Embeddings: What they are and why they matter](https://simonwillison.net/2023/Oct/23/embeddings/)
-- [What are Word Embeddings?](https://www.youtu.be/wgfSDrqYMJ4)
+- [What are Word Embeddings?](https://youtu.be/wgfSDrqYMJ4)
 
 ### Confused? Okay, stay with me
 <img src="images/llm/embeddings/confused.png">
@@ -348,7 +352,7 @@ That's essentially what the purpose of an embedding is, to the AI.
 
 <div class="cols">
 <img src="images/llm/embeddings/20d-kitten.png" />
-<div class="col-6">
+<div class="col-8">
 
 An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterizes _something_. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
 
@@ -795,6 +799,8 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 ### _Pre-trained_ models are just autocomplete
 <img src="images/llm/training/pre-training.png">
 
+After pre-training, the LLM is really just a statistical prediction-machine. It's great at figuring out the likelihood of what tokens should follow next based on all the trained sentences. But it has no judgment, no pushback, no idea of what a desired outcome looks like.
+
 ### _Post-training_ is what shapes the model
 <div class="cols">
 <img src="images/llm/training/post-training.png">
@@ -822,8 +828,12 @@ DeepSeek –  Censored thinker
 ### Post-training: reinforce the <em>desired outcomes</em>
 <img src="images/llm/training/reinforcement-learning.png">
 
-### Reinforcement Learning by Feedback
+####
+In *post-training*, sentences are again fed through the LLM just like during pre-training. But this time a sentence is run through the LLM twice and the two outputs are compared against the AI lab's stated values. All the little weights that produced the winning sentence are dialed up a bit, and all the little weights that produced the losing sentence are dialed down a bit. Just like during training, but this time based on an assessment of how desired the output is.
 
+Two outputs will always vary if there's any kind of wiggle-room in the possible continuations. The LLM will really only produce identical outputs if there is just one probable continuation, e.g. for "in one digit, what is 2+2?".
+
+### Reinforcement Learning by Feedback
 **RLHF** - Reinforcement Learning from *Human Feedback* (declining)<br>
 **RLAIF** - Reinforcement Learning from *AI Feedback* (growing)
 <br>
@@ -833,13 +843,11 @@ DeepSeek –  Censored thinker
 ####
 Frontier labs almost universally outsource the bulk of RLHF annotation rather than hiring raters directly. The main intermediaries:
 
-- Scale AI/Outlier — the dominant player, operating as an end-to-end data engine. Outlier handles LLM annotation, Remotasks handles visual/multimodal work. Scale is OpenAI's preferred fine-tuning partner and has also worked with Meta, Google DeepMind, and others. Taskmonk AI
-- Surge AI — Anthropic's primary RLHF provider, with ~50,000 expert contractors. Also used by OpenAI and Meta. Taskmonk AI
-- Invisible — shifted from executive VA services to RLHF work for labs including Microsoft, Cohere, and Mistral. Routes model outputs through trained raters who score completions and rank outputs. Sacra
+- Scale AI/Outlier — the dominant player, operating as an end-to-end data engine. Outlier handles LLM annotation, Remotasks handles visual/multimodal work. Scale is OpenAI's preferred fine-tuning partner and has also worked with Meta, Google DeepMind, and others.
+- Surge AI — Anthropic's primary RLHF provider, with ~50,000 expert contractors. Also used by OpenAI and Meta.
+- Invisible — shifted from executive VA services to RLHF work for labs including Microsoft, Cohere, and Mistral. Routes model outputs through trained raters who score completions and rank outputs.
 
 Outlier alone runs a network of 700,000+ contractors globally. The work is heavily gig-economy in structure.
-
-Pay ranges from $15/hr for generalist annotators up to $500+/hr for domain experts like medical fellows and legal professionals. Invisible charges labs $30–45/hr for annotation work while paying raters $15–20/hr.
 
 Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.
 
@@ -891,12 +899,13 @@ Links:
 ####
 OpenAI has something similar, but seems more focused on "rules" than "principles".
 
-Gemini also has training guidelines:
+Google has also published training guidelines for Gemini.
 
 <img src="images/llm/training/gemini-ai-principles.png">
 
-####
-Google has also published training guidelines for Gemini.
+Links:
+- [OpenAI Model Spec](https://model-spec.openai.com/)
+- [Our AI Principles](https://ai.google/principles/) - Gemini
 
 ### Are models different?<br>Yes, indeed
 
@@ -937,6 +946,8 @@ For example, the Claude family are physically three different models: different 
 ### Let's revisit what Claude itself said
 <img src="images/llm/claude-please-tell-me.png">
 
+####
+Every part of Claude's description of an LLM matches pretty much what we've been through here.
 
 ---
 <img src="images/llm/nerdflix.png">
@@ -1109,8 +1120,14 @@ In principle, at least, because individual AI services may of course have variat
 ### All AI Services generally look like this
 <img src="images/service/overview/blank.png">
 
+####
+Let's start filling in the blanks.
+
 ### The LLM loop is the centerpiece
 <img src="images/service/overview/llm.png">
+
+####
+At the center of the AI service we find the familiar LLM-loop.
 
 ### It's all about those <em>embeddings</em>
 Remember, the Transformer works on *embeddings*<br>
@@ -1133,11 +1150,20 @@ Because the LLM only works on embeddings we will, somewhat surprisingly maybe, f
 ### Images
 <img src="images/service/overview/images.png">
 
+####
+Let's begin by taking a look at how images are turned into embeddings the LLM can understand.
+
 ### Images are not handled via OCR (well, maybe a bit)
 <img src="images/service/files/images/ocr.jpg">
 
+####
+Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
+
 ### Images are understood in small patches
 <img src="images/service/files/images/eagle.png">
+
+####
+Images are chopped up and understood *purely visually* as little chunks of meanings based on image-training: here's a claw, a tail, a head of a predator bird.
 
 ### VLMs (Vision-Language Models)
 
@@ -1151,9 +1177,6 @@ Because the LLM only works on embeddings we will, somewhat surprisingly maybe, f
 
 - Note: A screenshot of text can easily result in *10x more context* than the raw text
 
-####
-Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
-
 ### Whatever approach, embeddings come out
 <img src="images/service/files/images/cat-advanced.png">
 
@@ -1162,6 +1185,9 @@ Whatever the image processing does, embeddings is what comes out of it.
 
 ### A closer look at multimodal embeddings
 <img src="images/intro/journey/rabbit-hole-embeddings.png">
+
+####
+It's worth taking a closer look at *multimodal embeddings* because it is such a powerful concept.
 
 ### The unified embedding space
 <img src="images/service/files/multimodal/unified-embedding-space.webp">
@@ -1191,9 +1217,6 @@ Links:
 - [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw)
 - [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw)
 
-####
-Within the **unified embedding space** you can compare text, images, video, and audio to see how similar the concepts they represent are.
-
 ### Simply compare embeddings to find the similarity
 <img src="images/service/files/multimodal/gemini-2-similarities.png">
 
@@ -1202,6 +1225,9 @@ Cosine similarity will show how similar two embeddings are.
 
 ### A world of ideas for comparing any two things
 <img src="images/service/files/multimodal/ideas.png">
+
+####
+The ability to *compare anything* (text, images, video, audio) can be used in many powerful ways. Above are some examples related to analysis of the content found on web pages.
 
 ### It's a new tech, with limitations
 <img src="images/service/files/multimodal/gemini-2-overview.png">
@@ -1228,9 +1254,9 @@ Amazon's is called "Amazon Nova 2"
 Now let's look at documents.
 
 ####
-PDFs are handled really well. The AI services get better and better at handling documents, like eg zip-files or Word- or Excel-files.
-
 Documents don't really introduce any new functionality: they contain text and images and those parts are either extracted, or the document is rendered in full and then image-recognized.
+
+PDFs are handled really well. The AI services get better and better at handling documents, like eg zip-files or Word- or Excel-files.
 
 ### Should you convert PDFs to markdown yourself?
 <img src="images/service/files/pdfs/94pct-savings.png">
@@ -1248,17 +1274,19 @@ Think about it: Is it reasonable to think that you, on your computer with some t
 <img src="images/service/files/pdfs/experiment-pdfs.png">
 
 ####
-I ran a rigorous experiment where I examined how Claude, Gemini, and ChatGPT dealt with 10 PDFs of varying sizes and content. They all understood the PDFs really well, but their approach was really surprising.
+I ran a rigorous experiment where I examined how Claude, Gemini, and ChatGPT dealt with 10 PDFs of varying sizes and content. They all understood the PDFs really well, but their approach was very surprising.
 
-### It depends
-- *ChatGPT* did text-extraction completely similar to what I did locally.<br>Raw PDF and markdown had practically the same token cost.<br>*No need for local conversion to markdown*
+### Convert PDF to markdown? Yes and no.
+- *ChatGPT* converts PDFs to markdown just like local tools, with near-exact same size:<br>*No*, don't convert to markdown yourself; let ChatGPT do it
 
-- *Gemini* processes PDFs as pure vision input at a flat rate of 258 tokens per page!<br>That was 3-18x fewer tokens than converted markdown.<br>*Give Gemini raw PDFs, not converted markdown*
+- *Gemini* renders PDFs as images at flat rate 258 tokens/page, ie cheaper than markdown<br>*No*, keep as PDF for cheaper and better understanding of the PDF
 
-- *Claude* also renders and treats each page as an image, but not at a flat rate.<br>Token-usage for raw PDF was 2-6x more than markdown.<br>*It pays off to do local markdown conversion*.
+- *Claude* also renders PDFs as images but uses 2-6x more tokens than markdown<br>*Yes*, convert if you want to save tokens<br>*No*, don't convert if you want the best understanding of the PDF
 
 ####
-Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on research. They slice the image up in 24x24 pixel squares, 16 patches per side ie 256 patches in total, each needing one embedding. Plus 2 more for some reason, for a total of 258 embeddings in the context. That's hard to beat and the PDFs were really well understood.
+Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on actual research.
+
+The image is sliced up in 24x24 pixel squares, 16 patches per side ie 256 patches in total, each needing one embedding. Plus 2 more for some reason, for a total of 258 embeddings in the context. That's hard to beat token-economy-wise and the rendered PDFs were really well understood.
 
 Links:
 - [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)](https://arxiv.org/pdf/2010.11929)
@@ -1277,17 +1305,32 @@ That is *all* the LLM can do. It can't browse the web, multiply two large number
 ### Let's continue the example chat
 <img src="images/service/chat/chat.png">
 
+####
+Here's the example chat, now continued.
+
 ### You write, the AI responds
 <img src="images/service/chat/chat-turn-1.png">
+
+####
+We've already covered this exchange in great detail: you write "Please tell me: what is an LLM?" and the AI responds. One context in, one continuation out.
 
 ### You respond again - but now what?
 <img src="images/service/chat/chat-turn-2-question.png">
 
+####
+But a chat is more than just one message and one response. So next up, you write "Explain briefly how the context grows in a chat like this" and press Send. Now what happens?
+
 ### Question: What is sent to the AI?
 <img src="images/service/chat/chat-turn-2-choice.png">
 
+####
+Take a moment to consider what the AI agent will send to the AI service now.
+
 ### Option B: the full chat
 <img src="images/service/chat/chat-turn-2.png">
+
+####
+Yes, it's B: the full chat. Your first message, the AI response, plus your second message.
 
 ### The full chat is always, always sent to the AI
 <img src="images/service/chat/chat-turn-goodnight.png">
@@ -1295,8 +1338,9 @@ That is *all* the LLM can do. It can't browse the web, multiply two large number
 ####
 Let that sink in: every message you send, resends the full conversation.
 
-### Why? Because the LLM needs the full context
+And not just the text messages you've sent and the AI responses you've received, but also for instance all the PDFs and images you've pasted into the chat - plus even more stuff, which we haven't covered yet.
 
+### Why? Because the LLM needs the full context
 The LLM can only reason about *the context it is given*.
 
 It does not, it *cannot*, know or reason about *anything other than* what is in the context.<br>The LLM is completely *stateless*.
@@ -1308,14 +1352,22 @@ No links, no outside preferences, no memories, including from earlier chats:<br>
 ### The context after 3 prompts
 <img src="images/service/chat/tokens-turn-3.png">
 
+####
+Here's the context after your three messages and the AI's three responses.
+
+The yellow boxes are your messages, and the orange boxes are the AI's somewhat bigger responses.
+
 ### The context after 50 prompts
 <img src="images/service/chat/tokens-turn-50.png">
+
+####
+Here it is after 50 turns of messages plus responses.
 
 ### The total is 1+2+3+...N = O(N²) messages
 <img src="images/service/chat/tokens-turn-50-total.png">
 
 ####
-The total tokens you pay for are added up for every turn, so you use more and more tokens at every turn.
+The total tokens you pay for are added up for every turn, and the cost of each turn is also added up, so you simply spend more and more tokens at every turn.
 
 ### Save tokens: clear and compact
 
@@ -1334,17 +1386,21 @@ The best way to save tokens is simply to not keep on dragging the entire convers
 ####
 "Compact" means that the agent asks the LLM to summarize the chat and add that summary as a first message.
 
+Here, the blue area represents the compacted chat. Chats are compacted to be, say, 10% of their size at compaction time. And yes, even though it should be needless to say: that means information is thrown away.
+
 ### Your best token-saving friends: clear and compact
 - Write `/clear` or `/compact` or *just start a new chat*
 
-- The context doesn't grow by much if you can *use compact*
+- The context doesn't grow by much extra if you can *use compact*
 
 - If you don't, the agent will *auto-compact* for you
 
 ####
-Many agents also offer ways of branching or editing or backtracking on your messages.
+Many agents also offer ways of branching, editing, or backtracking on your messages.
 
 For example Claude has `/btw` to send a message out-of-band.
+
+Also, when a *sub-agent* is launched in the background to address some issue, it may well start out with the full context but only the *response* from the sub-agent will eventually somehow end up being added to the chat. If it spends 200,000 tokens figuring out the answer "42" then only "42" will eventually end up in your main context.
 
 ### _"Start a new chat? But then I would lose ..."_
 <img src="images/service/chat/my-precious-context.png">
@@ -1361,6 +1417,9 @@ But it's better for you to be deliberately in control than have your long conver
 
 ## Thinking
 <img src="images/overview/thinking.png">
+
+####
+All frontier AI services offer some kind of "extended thinking", or "deep reasoning", or whatever term they have chosen. But what is that actually? What is "thinking"?
 
 ### What could "thinking" mean?
 
@@ -1415,7 +1474,7 @@ In early days, this was how Claude Code controlled the thinking.
 
 Then it was taken out to be replaced with a "proper" thinking-setting.
 
-But lo and behold: it was added back in in Claude Code v2.1.68, so the convenience of just being able to write "ultrathink" must have been missed.
+But lo and behold: it was added back in, in Claude Code v2.1.68, so the convenience of just being able to write "ultrathink" was apparently missed.
 
 ### A penny for your thoughts
 - Thinking-blocks are output tokens, and then input-tokens, so they cost you, too.
@@ -1445,7 +1504,7 @@ Meaning: The LLM can predict that the best continuation is output that *asks for
 <img src="images/service/tools/python-math-example/request.png" />
 
 ####
-This is how the actual agent-and-service communication would look like:
+This is what the actual agent-and-service communication would look like:
 
 You, the user, send this text to the AI: "please calculate 123442873893*98790237342".
 
@@ -1468,7 +1527,7 @@ As an aside: the tool-training is commonly done using a process called *Toolform
 In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgment but purely mathematically as "did this make the future more predictable?".
 
 Links:
-- [Toolformer: AI learns to use APIs - AssemblyAI](https://youtu.be/LxZ3gYvbV7I)  (5 min)
+- [Toolformer: AI learns to use APIs - AssemblyAI](https://youtu.be/LxZ3gYvbV7I)
 - [Timo Schick | Toolformer: Language Models Can Teach Themselves to Use Tools](https://youtu.be/UID_oXuN-0Y)
 - [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/pdf/2302.04761)
 
@@ -1547,7 +1606,7 @@ Practically every *decision* in the interaction you have with the agent and AI s
 
 - *When to stop*: In an agentic loop, the model decides when the task is genuinely done vs when it should keep going. end_turn is its call, and getting this wrong in either direction is a real failure mode.
 
-### Example: starting background workers
+### Example: starting background agents
 <img src="images/service/tools/background-worker.png" />
 
 ####
@@ -1578,7 +1637,7 @@ Rovo does a number of tool calls to figure out that I have three pages in my per
 <img src="images/overview/tools.png" />
 
 ####
-Now that you know about the concept of using tools, let's move onto something very popular that is very related to tools: MCP servers.
+Now that you know about the concept of using tools, let's move onto a very popular functionality that is intimately related to tools: MCP servers.
 
 But hang on, this looks exactly like the highlighting of "tools" from before?
 
@@ -1588,11 +1647,16 @@ Yes, that's right.
 <img src="images/service/overview/mcp.png">
 
 ####
-MCP is a standardized way of giving the LLM access to tools outside the agent or server.
+**MCP** (**Model Context Protocol**) is a standardized way of giving the LLM access to tools outside the agent or server.
 
 In principle *it works exactly like tools* that we've just covered.
 
 The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
+
+Links:
+- [MCP vs API: Simplifying AI Agent Integration with External Data](https://youtu.be/7j1t3UZA1TY)
+- [you need to learn MCP RIGHT NOW!! (Model Context Protocol)](https://youtu.be/GuTcle5edjk)
+- [Why MCP really is a big deal | Model Context Protocol with Tim Berglund](https://youtu.be/FLpS7OfD5-s)
 
 ### MCP servers give uniform access to tools
 <img src="images/service/mcp/uniform-mcp-interface.png">
@@ -1617,7 +1681,7 @@ Yes, it's really "just that". A live list of tools and a way to call them.
 <img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png">
 
 ####
-Adding the Atlassian MCP server means I have access to tools, just like Rovo used in the example before.
+Adding the Atlassian MCP server means the AI agent has access to tools, just like Rovo used in the example before.
 
 ### An MCP tool-call in detail
 
@@ -1639,9 +1703,6 @@ The agent, or more likely server, will fetch the list of tools from the MCP serv
 Then it will add information about each MCP server tool to the context.
 
 It *used* to be that the full information was added to the context, but that simply became too big. So the modern behavior is actually to *only add the tool-name* which can be maximum 64 characters, and that name is *the only guidance* the LLM will get about that tool. So you'd better pick descriptive names for your MCP tools.
-
-<!--### Add full info if the LLM want to use a tool-->
-<!--<img src="images/service/mcp/flow/4-tool-search.png">-->
 
 ### LLM decides, MCP server calls
 <img src="images/service/mcp/flow/5-tool-use.png">
@@ -1686,9 +1747,13 @@ Links:
 </div>
 
 ####
-The API docs, the OpenAPI spec, and the MCP version of the Siteimprove API's endpoint for [most_popular_pages](https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages).
+Here you can see just how similar an MCP service endpoint description is to an OpenAPI/SwaggerUI description.
 
-The MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.
+Let's consider one Siteimprove API endpoint, that for [most_popular_pages](https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages).
+
+From left to right we have the user-facing API docs for that endpoint, then the OpenAPI/SwaggerUI spec for the endpoint, and finally the MCP version of that same endpoint now exposed as an MCP tool.
+
+You can see that the MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.
 
 ### Add the demo MCP server to Claude
 <img src="images/service/mcp/siteimprove/github-readme.png">
@@ -1715,11 +1780,8 @@ This page is produced by my demo code, so an MCP server can style it just as it 
 ####
 In order not to reveal actual page views I blacked out the reported numbers.
 
-<!--### The MCP tools the LLM found and used-->
-<!--<img src="images/service/mcp/siteimprove/chat-tool-use.png">-->
-
 ####
-When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool "Siteimprove__analytics_content_most_popular_pages" would likely be useful, and asked for it to be called.
+When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool `mcp__claude_ai_Siteimprove_MCP__analytics_content_most_popular_pages` would likely be useful, and asks for it to be called.
 
 ### All the included Siteimprove MCP tools
 <img src="images/service/mcp/siteimprove/full-tool-list.png">
@@ -1732,9 +1794,19 @@ In reality, a massive API such as Siteimprove's would likely be better off by be
 ### MCP is massively popular
 <img src="images/service/mcp/massive-mcp-server-list.png">
 
+####
+MCP servers are massively popular. You can find MCP servers for all the major SaaS companies and also for a ton of other things.
+
+But remember: using an MCP server does incur some extra cost in terms of a network call. For example, your local Claude Code CLI agent can use MCP to (have the LLM) interact with Github: search code, check commits, etc. But hang on: if you're already working on a local repo on your disk then won't it be cheaper to simply have the agent use `git` on the commandline to work on local files? Oh yes, indeed it will. So while MCP gives you a near-universal ability to reach out to all kinds of online services, it's often preferable to "go local" using CLI-tools if that's an option.
+
+Links:
+- [CLI vs MCP: How AI Agents Choose the Right Tool for the Job](https://youtu.be/g9JIUM0MHgQ)
+
 ### Almost spoken about like some "magic" remedy
 <img src="images/service/mcp/code-munch.png">
 
+####
+To reiterate: "You can add an MCP server to xxx" means "You can tell the AI agent to call endpoints on service xxx's API".
 
 ## System prompt
 
@@ -1803,11 +1875,11 @@ It's a lot, but let's very briefly go through the 11 parts. And again, remember:
 ### #1/11: The agent system prompt
 
 ####
-- Instructions that the agent (chatgpt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
+The *agent system prompt* holds instructions that the agent (chatgpt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
 
-- It brings information about the agent's name, purpose, behavior, etc.
+It brings information about the agent's name, purpose, behavior, etc.
 
-- Generally, agents don't make it visible in their UI
+Generally, agents don't make it visible in their UI
 
 ####
 Links:
@@ -1828,28 +1900,46 @@ When you use Copilot in Microsoft Word, this is the system prompt.
 
 ### #2/11: System information
 
-### Date, time, location, OS, etc
+####
+The agent adds all kinds of information about your environment: the date, operating system, working folder, possibly your location, etc.
+
+### Date, location, OS, etc
 <img src="images/service/system/system-info/today.png">
 
 ### #3/11: Automatically stored memories
+
+####
+The "stored memories" are in a way the only slightly magical part of the context because they are entirely constructed and maintained by the agent itself, not by you.
 
 ### Selected information from your chats
 <img src="images/service/system/memory/memory-example.png">
 
 ####
-The most important facts from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you might expect. Look at the scrollbar: there's no more than 3-4 pages of text stored as memory about me after a year of chatting.
+These are the "most important facts" from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you might expect. Look at the scrollbar: there's no more than 3-4 pages of text stored as memory about me after a year of chatting.
 
 In terminal AI Agents, there can be multiple files with such "memories".
 
 ### #4/11: Some context from the agent
 
+####
+Each agent also includes information about what you're working on right now: the selected file, for instance.
+
 ### Example: Rovo includes the current page
 <img src="images/service/system/agent-context/rovo-context.png">
+
+####
+For example, Rovo includes by default the current Confluence page in the context.
 
 ### Example: Visual Studio
 <img src="images/service/system/agent-context/visual-studio.png">
 
+####
+Visual Studio includes a lot of information about the current code solution: paths, file content, possibly the selected text, project type, etc.
+
 ### #5/11: Your preferences
+
+####
+All agents let you configure some preferences one way or another. If those preferences have to do with the way the LLM generates text, ie as opposed to e.g. a color theme for the agent, then they practically always simply end up as text instructions in system prompts. It really does stress that "it's all text".
 
 ### Example: ChatGPT can be "friendly" or "pragmatic"
 <img src="images/service/system/preferences/chatgpp-personality.png">
@@ -1860,17 +1950,28 @@ The ChatGPT personality is implemented as two different sets of instructions.
 ### Example: Language
 <img src="images/service/system/preferences/language/claude-ai-language.png">
 
+####
+Does the AI service have a set of languages it can instruct the LLM to respond in? Actually no.
+
 ### Respond in Japanese, English, Dansk, ...
 <img src="images/service/system/preferences/language/claude-code-set-language.png">
 
+####
+You can simply ask the AI service to respond in any language you so desire.
+
 ### Respond in Klingon
 <img src="images/service/system/preferences/language/klingon.png">
+
+####
+Even made-up languages, like Klingon. There's no fixed set of languages.
+
+But if the AI service and LLM itself are completely language-agnostic then how does the AI agent "set the language" then?
 
 ### It's all just instructions, even the language preference
 <img src="images/service/system/preferences/language/language-in-the-prompt.png">
 
 ####
-No hidden commands. Just text. The LLM has no "fixed set of languages".
+The language is not set using some hidden command. Just text.
 
 ### "Modes" are also just text instructions
 <img src="images/service/system/preferences/modes/enter-plan-mode.png">
@@ -1884,6 +1985,11 @@ Nowadays, each mode-change typically results in *adding a system message* instea
 
 ### #6/11: Agent tools
 
+####
+We already covered the functionality of tools.
+
+In order for the LLM to be able to ask to use a tool it must know that the tool exists and what it does. That info goes into the system prompt.
+
 ### All tool names are included
 <img src="images/service/tools/tools-list.png" />
 
@@ -1891,17 +1997,15 @@ Nowadays, each mode-change typically results in *adding a system message* instea
 It's quite possible that *only the tool's description* may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.
 
 ### #7/11: Skills
+<!-- toc-entry Skills -->
 
 ### Hey, aren't skills a big deal?
 
 ####
 Well, yes they are. But they belong here and are actually very simple.
 
----
+### A skill is expertise, only loaded when you need it
 <img src="images/service/system/skills/trinity.png" />
-
-####
-A skill is _some (expertise) instructions, loaded when you need it_.
 
 ### What's a skill?
 - A skill is *text instructions* with a name
@@ -1972,6 +2076,9 @@ Thanks, bro.
 
 ### Installing skills
 
+####
+There are many ways to install skills. Let's just look at some examples.
+
 ### Several ways for terminal/CLI agents
 <img src="images/service/system/skills/install/cli.png" />
 
@@ -2012,13 +2119,13 @@ We already covered them in detail. But there's one important thing to dig into: 
 <img src="images/service/system/mcp/tool-definition.png">
 
 ####
-It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server would eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service would fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.
+It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server could eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service could fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.
 
 Nowadays the full definition is typically *not included in the context*: only the tool name. That's referred to as **Lazy Schema Loading**.
 
 This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.
 
-That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting matches a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages with most page views" then it would match practically nothing in the tool name and the LLM would maybe not notice that this tool was suitable to call.
+That's why the LLM may sometimes miss a suitable tool: it may simply not conclude that your prompting matches a certain tool name because the tool names are so compact. If you ask for "the most popular pages on my Siteimprove sites" then it's a strong match, but if you just talked about "the top of those 1000 pages with most page views" then it would badly match the tool name and the LLM would maybe not notice that this tool was suitable to call.
 
 By the way: this demo name is problematic as it is 68 characters, so it should be shortened.
 
@@ -2033,6 +2140,9 @@ So nowadays, don't worry about adding MCP servers. But also be aware that you ma
 
 
 ### #9+10/11: Project and custom instructions
+
+####
+Sometimes it's convenient to write some guideline instructions for a set of related chats.
 
 ### Most agents offer "projects"
 <img src="images/service/system/projects/project-windows-to-linux.png">
@@ -2065,9 +2175,12 @@ As a silly example I added custom instructions to Copilot to always end every an
 <img src="images/service/system/customize/copilot-dinosaur-chat.png">
 
 ####
-I actually forgot I had added this, but surely remembered when later I returned to Copilot.
+I actually forgot I had added this, but surely remembered when I returned to Copilot some weeks later and it added a dinosaur-analogy after each response.
 
 ### #11/11: Agent files
+
+####
+Finally, "agent files". Here's another term with an air of mystery about it.
 
 ### "Agent file"? An International File of Mystery?
 <img src="images/service/system/agent-files/austin-powers.jpg">
@@ -2088,8 +2201,7 @@ You're likely almost tired of me repeating "it's just more instructions to put i
 - Yet, Claude Code does not read `AGENTS.md`, only `CLAUDE.md` (oh dear)
 - Agents differ in how they search for agent-files, up/down from folder to root
 - Use e.g. `/init` to have Claude build an agent-file of useful facts from a folder
-
-- Anyways, *agent-files are just more text*, added into the system prompt path
+- Anyways: *agent-files are just more text*, added into the system prompt
 <br>
 
 <img src="images/service/system/agent-files/agents-md.png">
@@ -2103,7 +2215,7 @@ Links:
 <img src="images/service/system/all/full.png">
 
 ####
-We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit mysterious.
+We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit abstract and mysterious. Just what does it _mean_ to be "added to the system prompt"?
 
 So let's get concrete and see what such an arbitrary system prompt looks like. This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.
 
@@ -2132,7 +2244,9 @@ The reason for showing you these snippets is to hammer in this fact:
 
 At the end of the day, the "system prompt" is all just text. Words competing for the LLM's attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills).
 
-Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. The markup just convey some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with `##` headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate *the structure* it brings, just like human readers would.
+Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. The markup just conveys some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with `##` headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate *the structure* it brings, just like human readers would.
+
+Remember though that the system prompt through training *carries more weight* with the LLM. Custom or global instructions, e.g. in agent files, carry more weight than if you had written them in a message. So *place important instructions there*, not in the chat.
 
 ### The final parts
 <img src="images/service/overview/misc.png">
@@ -2140,10 +2254,14 @@ Yeah, you'll see some tags and markup, but that *markup is not rigorous rules*. 
 ####
 Four parts to mention:
 
-- In addition to the text context, the request also does send along *some real hard parameters*: the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelism in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one session to another.
+- In addition to the text context, the request also does send along *some real hard parameters*: the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelism in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one chat to another.
 - There are **safety classifiers** for content going in or coming out, that act as hard stops for inappropriate content. So even if you do somehow convince the LLM to produce a recipe for a biochemical weapon that output will suffer a hard veto at the exit.
-- The output usually contains *statistics* for number of tokens consumed and produced, among other things.
-- And finally, **the KV-cache**. The AI Service and LLM know nothing about you, but it does *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
+- The output usually contains **statistics** for number of tokens consumed and produced, among other things.
+- And finally, **the KV-cache**. The AI Service and LLM know nothing about you, but they do *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
+
+####
+Links:
+- [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY)
 
 ## Full AI
 
@@ -2234,14 +2352,14 @@ Now let's spend some tokens. Try each spending spree, one by one, disabling each
 - Add some MCP servers - they're actually not that expensive nowadays
 - Upload a big document - your chat carries that doc in every turn
 - Helpful IDE/tools - sends, for example, the selected document, and includes tool results
-- Think harder - that can eat a lot of tokens
+- Think harder - produces and consumes a lot of tokens, but at least they don't compound
 - Long outputs - producing code or documents is expensive
 - Bust the cache - it's expensive to be Away From Keyboard, or change the model
 - Expensive model - then everything gets N times more costly
 
 Now increase the number of turns to 30 and add all token spending sprees one by one without disabling them again:
 
-- MCP, doc, IDE - hey, what happened, why the curve "break"?
+- MCP, doc, IDE - hey, what happened, why does the curve "break"?
 - Going back to Per-turn tokens reveals that auto-compaction kicked in because the context window was only 200 K; up it to 1M and switch back to Total cost
 - Think harder - now we reached the quota
 - Long outputs - quota reached twice
@@ -2254,6 +2372,9 @@ Mitigations:
 - Try clear and compact
 
 # 3 x How to ...
+
+####
+Here's a round of advice on how to speak, hold, and keep up with the AI.
 
 ### How to speak to the AI
 - Just *speak plainly*, including small nudging words to avoid steering too coarsely
@@ -2278,7 +2399,7 @@ Links:
 ### How to hold the AI
 - Modern agentic workflows, controlled by the AI models via tools, often work so well that you frankly *don't really have to* instruct them in a special way.
 
-- A successful agentic loop that has emerged is:
+- A successful agentic loop that has emerged for LLMs is:
 
 	1. Use *multiple agents* in an "orchestrator/worker" fashion
 	2. Explicitly *verify the result* before claiming it's done
@@ -2309,7 +2430,7 @@ A monthly subscription of $20 is a cheap investment
 Links:
 - [Claude Academy](https://claude-academy.com/)
 
-# A Quick Round of<br>Demystifications
+# A Quick Round of Demystifications
 
 ####
 Let's run through a quick series of myths and facts and demystify them.
@@ -2320,12 +2441,21 @@ Let's run through a quick series of myths and facts and demystify them.
 ####
 We know *exactly* how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.
 
+Links:
+- [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
 ### We don't know what goes on inside the AI
 <p class="verdict yes">Now <em>that's</em> true - we don't</p>
 
 - We don't know what the dimensions or weights really "mean" or how facts are stored
 
 - It was, and is, a genuine surprise that *the Transformer works as well as it does*
+
+####
+Links:
+- [How might LLMs store facts | Deep Learning Chapter 7 (3Blue1Brown)](https://youtu.be/9-Jl0dxWQs8)
+- [Interpretability](https://www.anthropic.com/research/team/interpretability)
+- [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
 ### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
 <p class="verdict no">No, it most likely <em>did not</em></p>
@@ -2345,6 +2475,10 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 
 - Keep your context lean: *clear*, *compact*, *start new chat*
 
+####
+Links:
+- [Most devs don’t understand how context windows work](https://youtu.be/-uW5-TaVXu4)
+
 ### The AI just wants to please you
 <p class="verdict maybe">Some do, some don't</p>
 
@@ -2353,6 +2487,10 @@ We know *exactly* how the math and code works, as you've seen throughout this pr
 - However, the *LLM continuation-nature* does favor "continuing with the story so far", which is biased towards "playing along" with your postulates.
 
 - So make sure to challenge the output; *"Roast this, poke holes, find the weak spots"*
+
+####
+Links:
+- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg)
 
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
@@ -2368,6 +2506,7 @@ Interestingly, deeper reasoning (chain of thought) actually *lowers* the success
 
 Links:
 - [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
+- [Why do AI models hallucinate?](https://youtu.be/005JLRt3gXI)
 
 ### Ask "Why did you do that?" and it will tell you
 <p class="verdict no">No, don't trust that explanation</p>
@@ -2384,6 +2523,10 @@ Links:
 - But useful for asking for *a perspective*:
 	- "you are a skeptical reviewer whose job is to find the flaw"
 	- "explain as if to a junior dev who knows HTTP but not OAuth"
+
+####
+Links:
+- [This Prompt Behavior Hack Beats 'Expert' Every Single Time](https://youtu.be/OOlr4W22s1o) - Craig Does AI (7:27)
 
 ### Say "Make no mistakes"
 <p class="verdict no">Largely useless</p>
@@ -2558,7 +2701,7 @@ Specifically for Harry Potter: People have tried that and the resulting stories 
 ### Actually, about 1,200,000,000,000 multiplications
 <img src="images/bonus/cost/dr-evil-teraflops.jpg"> 
 
-**FLOP** is short for Floating-Point Operation: a multiplication of two numbers
+**FLOP** is short for Floating-Point Operation, i.e. multiplying or adding two numbers
 
 ### Enter: the NVidia B200 GPU
 
@@ -2574,7 +2717,7 @@ The NVidia B200 GPU does 4500 trillion FLOPS/sec.
 ### Pedal to the metal
 <div class="cols">
 <img src="images/bonus/cost/nvidia-b200-focus.png"> 
-<div class="col-4">
+<div class="col-7">
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
 
@@ -2823,11 +2966,11 @@ If we tweak the dimensions *just a tiny bit* then there's "room" for enormously 
 If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 dimensions.
 
 But if we allow for *just a 2-degree tilt/dependency*, like in the first example, then there's room for *34,000,000* dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.
-2 
+
 So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express *a billion billion ...* characteristics.
 
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck)
 - [High Dimension Vector Orthogonality and Superposition in LLMs](https://barnabywreford.co.uk/problems/vector_orthogonality_and_llm_superposition/)
 
-### the end
+### The End

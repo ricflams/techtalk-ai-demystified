@@ -199,6 +199,8 @@ iframe.game { display: none; }
 .cols > .col-4 { flex: 4 1 0; }
 .cols > .col-5 { flex: 5 1 0; }
 .cols > .col-6 { flex: 6 1 0; }
+.cols > .col-7 { flex: 7 1 0; }
+.cols > .col-8 { flex: 8 1 0; }
 /* Marp's markdown-it leaves a standalone `<img>` line as a raw HTML block,
    so its col-N class sits directly on the flex child. python-markdown
    instead wraps that image in a <p>, which becomes the flex child and
@@ -209,6 +211,8 @@ iframe.game { display: none; }
 .cols > p:has(> .col-4) { flex: 4 1 0; }
 .cols > p:has(> .col-5) { flex: 5 1 0; }
 .cols > p:has(> .col-6) { flex: 6 1 0; }
+.cols > p:has(> .col-7) { flex: 7 1 0; }
+.cols > p:has(> .col-8) { flex: 8 1 0; }
 /* Overrides the page-wide `img:not(.logo)` cap, which sizes an image to sit
    alone in the text column: inside a column an image should fill the column
    it was given. Same specificity as that rule would be a source-order tie,
@@ -304,20 +308,51 @@ def build_toc(body: str) -> str:
 
     The first h1 is the deck's own title slide, which the contents sits
     directly under, so it is skipped.
+
+    An h3 can be pulled into the contents at section level by tagging it in
+    slides.md with a `<!-- toc-entry -->` comment on the line right after (or
+    before) the heading. `<!-- toc-entry Skills -->` also overrides the label,
+    so a heading that reads "#7/11: Skills" on the slide can appear as just
+    "Skills" here. Deliberately not `key: value` shaped, so it can never be
+    taken for one of Marp's own directives.
     """
     def text_of(markup: str) -> str:
         plain = re.sub(r'<br\s*/?>', ' ', markup)
         plain = re.sub(r'<[^>]+>', '', plain)
         return re.sub(r'\s+', ' ', plain).strip()
 
-    headings = re.findall(r'<h([12]) id="([^"]+)">(.*?)</h\1>', body, re.DOTALL)
+    token = re.compile(
+        r'<!--\s*toc-entry\b\s*(?P<label>.*?)\s*-->'
+        r'|<h(?P<lvl>[123]) id="(?P<anchor>[^"]+)">(?P<markup>.*?)</h(?P=lvl)>',
+        re.DOTALL)
+    tokens = list(token.finditer(body))
+
+    # Bind each marker to exactly one heading, preferring the heading directly
+    # above it (the documented placement). Without claiming it, a marker
+    # written between two headings would tag both of them.
+    is_heading = [t.group('lvl') is not None for t in tokens]
+    marker_for: dict[int, re.Match] = {}
+    for i, m in enumerate(tokens):
+        if is_heading[i]:
+            continue
+        if i and is_heading[i - 1] and (i - 1) not in marker_for:
+            marker_for[i - 1] = m
+        elif i + 1 < len(tokens) and is_heading[i + 1]:
+            marker_for[i + 1] = m
 
     sections: list[tuple[str, str, list[tuple[str, str]]]] = []
-    for level, anchor, markup in headings:
-        if level == '1':
-            sections.append((anchor, text_of(markup), []))
-        elif sections:
-            sections[-1][2].append((anchor, text_of(markup)))
+    for i, m in enumerate(tokens):
+        if not is_heading[i]:
+            continue
+        marker = marker_for.get(i)
+        title = (marker.group('label') if marker and marker.group('label')
+                 else text_of(m.group('markup')))
+        level, anchor = int(m.group('lvl')), m.group('anchor')
+
+        if level == 1:
+            sections.append((anchor, title, []))
+        elif (level == 2 or marker) and sections:
+            sections[-1][2].append((anchor, title))
 
     if len(sections) < 2:
         return ''

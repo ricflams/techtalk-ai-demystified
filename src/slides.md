@@ -1622,7 +1622,7 @@ So in a way it's "easy" to write an agent: just provide well-described tools tha
 - That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
 
 ### Ask the AI: "show me your tools for pages"
-<img src="images/service/tools/rovo-ask-how-many-pages.png" />
+<img src="images/service/tools/rovo-ask-what-pages-tools.png" />
 
 ####
 Simply asking what tools are available can be a good way of finding inspiration for how to use that AI.

@@ -287,8 +287,8 @@ And the three-character sequence `**,` is also common enough to have its own tok
 ### Tokens recap
 
 <div class="cols">
-<img class="col-2" src="images/llm/tokens/ride-tokens.png">
-<div class="col-5" >
+<img class="col-1" src="images/llm/tokens/ride-tokens.png">
+<div class="col-4" >
 
 - A **token** is the *chunk of text* the LLM reasons about
 <br>
@@ -310,6 +310,11 @@ It's likely that you already knew about tokens. But the LLM does not deal direct
 Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.
 
 ### In AI, an *embedding* is a vector of numbers whose values *somehow* represent the characteristics of *something*
+
+####
+Links:
+- [Embeddings: What they are and why they matter](https://simonwillison.net/2023/Oct/23/embeddings/)
+- [What are Word Embeddings?](https://www.youtu.be/wgfSDrqYMJ4)
 
 ### Confused? Okay, stay with me
 <img src="images/llm/embeddings/confused.png">
@@ -345,6 +350,10 @@ Each number is called the **weight** of that dimension.
 Embeddings can be: Any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *concept*, for example *a curious yet mildly confused audience*.
 </div>
 </div>
+
+####
+Links:
+- [Tokens vs Embeddings – what are they + how are they different?](https://youtu.be/izbifbq3-eI)
 
 ### 1 token's meaning is represented by 1 embedding
 <img src="images/llm/embeddings/vocabulary-gpt-3.png" />
@@ -469,7 +478,6 @@ The math works so well that if you add up the directions for "Sushi plus Germany
 ####
 What a surprise: with *the right modeling*, we can actually *do math on language*.
 
-####
 Yes, it does feel crazy that by characterizing anything using the "right" 12288 numbers we can end up with "concepts" we can manipulate mathematically.
 
 It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.
@@ -483,6 +491,10 @@ It may sound magical, and in a way it is. And for now, just accept it as a fact 
 - You can *compare embeddings* to figure out *how similar* the meanings they represent are.
 For instance, find a *synonym* by simply finding the closest embeddings to a word.
 
+####
+Links:
+- [What Are Word Embeddings?](https://youtu.be/hVM8qGRTaOA)
+
 ### The LLM is all about "doing math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
 
@@ -491,8 +503,8 @@ For instance, find a *synonym* by simply finding the closest embeddings to a wor
 
 ### Putting the example through the LLM
 
-The **context** is the input given to the LLM - here, 10 tokens
-The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
+The **context** is the input given to the LLM - here, 10 tokens<br>
+The **context window** is the longest input possible, typically 200,000-1,000,000 tokens<br>
 The LLM does **inference** by running the embeddings through a giant **neural network**
 <br>
 
@@ -533,6 +545,10 @@ The thing is that if you adjust those small "weights" appropriately then you can
 
 And that is in fact what the LLM does. But let's start at the beginning.
 
+####
+Links:
+- [But what is a neural network? | Deep learning chapter 1](https://youtu.be/aircAruvnKk)
+
 ### The LLM's objective: find the likely next token
 <img src="images/llm/find-the-next-token.png">
 
@@ -570,13 +586,20 @@ Links:
 ### The Transformer can figure out the next token
 <img src="images/llm/what-we-want.png">
 
+####
+Links:
+- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M)
+
 ### First, all embeddings "pay attention" to each other
 <img src="images/llm/attention-head.png">
 
 ####
 Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embeddings, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens each in their own way.
 
-For a full 1M context-window this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
+For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
+
+Links:
+- [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc)
 
 ### Then passed through a neural network
 <img src="images/llm/multiplexer-perceptron.png">
@@ -590,6 +613,9 @@ This is where the model's built-in training shapes the meaning of the embeddings
 ####
 More math dials up the contrast, in a way: it boosts the strong signals and suppresses the noise.
 
+Links:
+- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8)
+
 ### Let's do it 96 times (attention layers)
 <img src="images/llm/attention-96-layers.png">
 
@@ -600,7 +626,7 @@ Through billions of additions and multiplications.
 <img src="images/llm/final-embedding-all-absorbed.png">
 
 ####
-After going through 96 trips of embeddings influencing each other, the final vector has absorbed all the relevant meanings of the entire context and now reflects what the following embedding "most likely looks like".
+After going through 96 trips of embeddings influencing each other, the final vector has absorbed all the relevant meanings of the entire context and now reflects what the LLM has been trained to predict the following embedding "most likely looks like".
 
 ### Then "simply" find most similar token
 
@@ -621,6 +647,10 @@ Is it "stronger"? Yes, that's the closest known token.
 
 ####
 The final output token is chosen based on the probability of the closeness to the final vector-values. Here, "stronger".
+
+Links:
+- [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
 
 ### Back to "Please tell me: what is an LLM?"
 
@@ -653,10 +683,6 @@ The field of study is called **Interpretability** and the weights that seem invo
 Links:
 - [Interpretability](https://www.anthropic.com/research/team/interpretability)
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
-
-####
-
-Links:
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
 ## Training
@@ -730,6 +756,9 @@ And it's amazing that it works, and that it ends up producing embeddings that ha
 It's taken some effort to figure out this math, but it's pretty simple to execute.
 
 Links:
+- [Gradient descent, how neural networks learn | Deep Learning Chapter 2](https://youtu.be/IHZwWFHWa-w)
+- [Backpropagation, intuitively | Deep Learning Chapter 3](https://youtu.be/Ilg3gGewQ5U)
+- [Backpropagation calculus | Deep Learning Chapter 4](https://youtu.be/tIeHLnjs5U8)
 - [ChatGPT is made from 100 million of these [The Perceptron]](https://youtu.be/l-9ALe3U-Fg)
 
 ### A trained model = embeddings + weights
@@ -747,12 +776,12 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 ### Pre-training is expensive
 
 - From scratch for a new model
-  - costs **$200M-$1000M**
-  - takes **4-8 months**
+	- costs **$200M-$1000M**
+	- takes **4-8 months**
 <br>
 - From an existing model
-  - costs 1-10% of full training
-  - takes weeks or months
+	- costs 1-10% of full training
+	- takes weeks or months
 
 ### _Pre-trained_ models are just autocomplete
 <img src="images/llm/training/pre-training.png">
@@ -2591,6 +2620,10 @@ The NVidia B200 GPU comes in clusters.
 ### Transformer's superpower: all tokens at once
 <img src="images/bonus/cost/transformer-vs-sequential.png">
 
+####
+Links:
+- [Transformer Explained](https://youtu.be/nZrZOI0oRuw)
+
 ### GPU: master of parallel computations
 <img src="images/bonus/cost/red-dead-redemption.webp">
 
@@ -2778,10 +2811,11 @@ If we tweak the dimensions *just a tiny bit* then there's "room" for enormously 
 If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 dimensions.
 
 But if we allow for *just a 2-degree tilt/dependency*, like in the first example, then there's room for *34,000,000* dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.
-
+2 
 So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express *a billion billion ...* characteristics.
 
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck)
 - [High Dimension Vector Orthogonality and Superposition in LLMs](https://barnabywreford.co.uk/problems/vector_orthogonality_and_llm_superposition/)
 
+### the end

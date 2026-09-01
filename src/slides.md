@@ -2583,6 +2583,8 @@ Some say *the best reason* for being polite is simply that:
 
 - Generally, don't expect to be able to control the LLM completely. It's just statistics.
 
+- However, here's a tip. Remember that *custom instructions* in your settings or agent-files goes into the system prompt, and that the system prompt carries more weight for the LLM. So if you have something particularly important to say, add it to your custom instructions.
+
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
 

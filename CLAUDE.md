@@ -85,3 +85,23 @@ The readable page's contents list (built by `scripts/make_readable.py`) shows h1
 The heading stays an h3 in the slideshow; only the contents list changes. The text after `toc-entry` is optional and overrides the label, so a heading that reads "#7/11: Skills" on the slide can appear as just "Skills" in the contents. A bare `<!-- toc-entry -->` promotes the heading under its own name.
 
 The marker deliberately avoids `key: value` shape so Marp can never mistake it for one of its own directives. Put it on the line directly after the heading (directly before also works, but then Marp files the stray comment as a presenter note against the *previous* slide). Marp turns any standalone comment into a `bespoke-marp-note`, which is invisible on the slide and unused by this deck — the speaker notes here come from `####` markers via `make_notes.py`.
+
+### Section anchors on the readable page
+
+Every h1/h2/h3 on `public/index.html` gets an HTML `id` automatically — `make_readable.py`'s `toc` extension slugifies the title text (`### The direction for "sadness"` → `index.html#the-direction-for-sadness`). That slug moves whenever the title is reworded, breaking any link pointing at it, so landmark headings are pinned to a stable id with a marker:
+
+```markdown
+## Training
+<!-- anchor llm-training -->
+```
+
+`apply_anchor_markers` in `make_readable.py` turns that into `id="llm-training"` (via python-markdown `attr_list` syntax) and drops the marker line. The contents list links to whatever id a heading ends up with, so pinned headings are linked by their stable id too. Same comment shape and placement rules as `<!-- toc-entry -->` (bare word, not `key: value`; on the line right after the heading, with blank lines or a `toc-entry` comment allowed in between). It only affects the readable page — the Marp slideshow navigates by slide number, not heading id.
+
+Convention in use — the slug mirrors the deck structure, slugified from the title with a leading `The` dropped (a couple of long chapter titles get a hand-picked short form instead):
+
+- **h1 chapter** → `llm`, `ai-agents`, `ai-service`, `context-economy`, `how-to` (`# 3 x How to ...`), `demystifications` (`# A Quick Round of Demystifications`), `bonus`, …
+- **h2 section** → `<chapter>-<section>`: `llm-tokens`, `llm-training`, `ai-service-mcp-servers`, `bonus-rag`, `bonus-a-fancy-autocomplete`, …
+
+Pin a fragile-but-linkable h3 the same way (`<chapter>-<slug>`); leave the long tail to auto-slug. Pinning also heads off the order-dependent `-1` suffix python-markdown appends when two headings would slugify to the same id.
+
+`add_headerlinks` then hangs a GitHub-style chain-link glyph (`.headerlink`) in every h1/h2/h3's left gutter — hidden until the heading is hovered/focused on desktop, shown inline and always tappable below 700px.

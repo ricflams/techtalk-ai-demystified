@@ -69,6 +69,34 @@ h1 { font-size: 2em; padding-bottom: 0.3em; }
 h2 { font-size: 1.5em; padding-bottom: 0.3em; }
 h3 { font-size: 1.25em; }
 h4 { font-size: 1em; color: #57606a; }
+/* GitHub-style section anchor: a chain-link glyph in the left gutter, hidden
+   until the heading (or the link itself) is hovered or keyboard-focused.
+   Absolutely positioned with no `top`, so it sits on the heading's first
+   line; `left` pulls it into the column's left padding. */
+.markdown-body :is(h1, h2, h3) { position: relative; }
+.headerlink {
+  position: absolute;
+  left: -1.15em;
+  opacity: 0;
+  color: #8c959f;
+  transition: opacity 0.1s;
+}
+.headerlink svg { display: block; width: 0.8em; height: 0.8em; fill: currentColor; }
+.headerlink:hover { color: #0969da; }
+.markdown-body :is(h1, h2, h3):hover > .headerlink,
+.headerlink:focus-visible { opacity: 1; }
+/* Narrow screens: no left gutter to hang the glyph in, and no hover to reveal
+   it -- drop it inline after the heading, faint but always tappable. */
+@media (max-width: 699px) {
+  .headerlink {
+    position: static;
+    opacity: 1;
+    margin-left: 0.4em;
+    color: #d0d7de;
+    vertical-align: middle;
+  }
+  .headerlink svg { display: inline-block; }
+}
 p { margin: 0.8em 0; }
 a { color: #0969da; text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -315,6 +343,10 @@ def build_toc(body: str) -> str:
     so a heading that reads "#7/11: Skills" on the slide can appear as just
     "Skills" here. Deliberately not `key: value` shaped, so it can never be
     taken for one of Marp's own directives.
+
+    Contents links point at whatever `id` each heading ended up with, so a
+    heading pinned with `<!-- anchor -->` (see `apply_anchor_markers`) is
+    linked by that stable id automatically.
     """
     def text_of(markup: str) -> str:
         plain = re.sub(r'<br\s*/?>', ' ', markup)
@@ -386,6 +418,39 @@ def insert_toc(body: str) -> str:
     return body[:first_break.end()] + '\n' + toc + body[first_break.end():]
 
 
+# GitHub's own anchor glyph (Octicon "link", 16px grid).
+_HEADERLINK_ICON = (
+    '<svg viewBox="0 0 16 16" aria-hidden="true">'
+    '<path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 '
+    '2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 '
+    '4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 '
+    '1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 '
+    '0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06'
+    '-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg>'
+)
+
+
+def add_headerlinks(body: str) -> str:
+    """Prepend a GitHub-style `#`-link to every h1/h2/h3 that carries an id.
+
+    Runs after `insert_toc`, so the contents block (which parses bare
+    `<hN id="...">`) never sees this markup, and the injected `<nav>`'s own
+    `<h2 class="toc-title">` -- which has no id -- is skipped. Styling lives
+    in STYLE under `.headerlink`.
+    """
+    def decorate(m: re.Match) -> str:
+        level, attrs, inner = m.group(1), m.group(2), m.group(3)
+        id_match = re.search(r'\bid="([^"]+)"', attrs)
+        if not id_match:
+            return m.group(0)
+        anchor = id_match.group(1)
+        link = (f'<a class="headerlink" href="#{anchor}" '
+                f'aria-label="Permalink to this section">{_HEADERLINK_ICON}</a>')
+        return f'<h{level}{attrs}>{link}{inner}</h{level}>'
+
+    return re.sub(r'<h([123])([^>]*)>(.*?)</h\1>', decorate, body, flags=re.DOTALL)
+
+
 def dedent_raw_html(text: str) -> str:
     """Un-indent raw HTML lines that are indented purely for readability.
 
@@ -407,6 +472,64 @@ def dedent_raw_html(text: str) -> str:
     return '\n'.join(out)
 
 
+def apply_anchor_markers(text: str) -> str:
+    """Honor `<!-- anchor stable-id -->` markers: pin a heading's HTML id.
+
+    Every h1/h2/h3 already gets an `id` automatically -- the `toc` extension
+    slugifies the title text. That slug changes whenever the title is
+    reworded, silently breaking any link pointing at it. Putting
+
+        ### Post-training reshapes the model
+        <!-- anchor llm-post-training -->
+
+    on the line directly after a heading fixes that heading's id to
+    `llm-post-training` for good, no matter how the title later changes.
+    Untagged headings keep their auto-slug -- tag only the ones worth linking
+    to (chapters, sections, the odd memorable slide).
+
+    Mirrors the `<!-- toc-entry -->` convention: a bare-word HTML comment, not
+    `key: value` shaped, so Marp can't mistake it for one of its own
+    directives, and invisible on the compiled slide. Blank lines and other
+    standalone comments (e.g. a `toc-entry` on its own line) may sit between
+    the heading and the marker. Placement *before* the heading also works but
+    is discouraged -- Marp files a comment that precedes a slide's heading as
+    a note against the previous slide.
+
+    Implemented by appending python-markdown's `attr_list` syntax
+    (`{: #id }`) to the heading line, which both `attr_list` and `toc` then
+    honor; the marker line itself is dropped.
+    """
+    lines = text.split('\n')
+    is_heading = re.compile(r'^#{1,3}\s+\S')
+    is_comment = re.compile(r'^\s*<!--.*-->\s*$')
+    anchor = re.compile(r'^\s*<!--\s*anchor\s+([A-Za-z0-9][\w-]*)\s*-->\s*$')
+
+    def nearest_heading(start: int, step: int) -> int | None:
+        j = start + step
+        while 0 <= j < len(lines):
+            if not lines[j].strip() or is_comment.match(lines[j]):
+                j += step
+                continue
+            return j if is_heading.match(lines[j]) else None
+        return None
+
+    claimed: set[int] = set()
+    drop: set[int] = set()
+    for i, line in enumerate(lines):
+        m = anchor.match(line)
+        if not m:
+            continue
+        for step in (-1, 1):  # heading above the marker first (the norm)
+            j = nearest_heading(i, step)
+            if j is not None and j not in claimed:
+                lines[j] = lines[j].rstrip() + f' {{: #{m.group(1)} }}'
+                claimed.add(j)
+                drop.add(i)
+                break
+
+    return '\n'.join(l for i, l in enumerate(lines) if i not in drop)
+
+
 def transform(src: str) -> str:
     # Strip the leading YAML frontmatter block only (the very first
     # `---`-delimited block). Every other `---` in the file is a real
@@ -419,6 +542,10 @@ def transform(src: str) -> str:
 
     # `![bg]`, `![bg contain]`, etc. -> plain image references.
     text = re.sub(r'!\[bg[^\]]*\]', '![]', text)
+
+    # `<!-- anchor stable-id -->` markers -> pinned heading ids (the rest
+    # auto-slug from their title via the `toc` extension).
+    text = apply_anchor_markers(text)
 
     # `.cols` layouts and the game-slide fallback nest real markdown (lists,
     # links, bold text) inside raw <div> blocks. python-markdown only
@@ -434,6 +561,8 @@ def transform(src: str) -> str:
     body = markdown.markdown(text, extensions=['extra', 'sane_lists', 'toc', 'md_in_html'])
 
     body = insert_toc(body)
+
+    body = add_headerlinks(body)
 
     return PAGE_TEMPLATE.format(style=STYLE, body=body)
 

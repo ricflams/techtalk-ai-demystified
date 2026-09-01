@@ -99,6 +99,7 @@ Will that kind of knowledge turn you into an expert baker overnight? Maybe not. 
 It's my hope and goal that this presentation will help you rise (haha) to become much more confident in your use of AI.
 
 # "Keep it simple"
+<!-- anchor keep-it-simple -->
 
 ---
 ![bg](images/intro/journey/overview.png)
@@ -182,6 +183,7 @@ Links:
 - [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk) - Google DeepMind (47:08)
 
 # The LLM
+<!-- anchor llm -->
 
 ####
 The LLM is the most fundamental piece and even though it's quite technical, it's actually the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
@@ -214,6 +216,7 @@ Everybody has heard of *tokens*, but the numbers that the LLM works on are not a
 It's important to understand both, not least embeddings, so let's cover them first of all.
 
 ## Tokens
+<!-- anchor llm-tokens -->
 <img src="images/overview/tokens.png">
 
 ####
@@ -315,6 +318,7 @@ Links:
 - [Most devs don't understand how LLM tokens work](https://youtu.be/nKSk_TiR8YA) - Matt Pocock (10:57)
 
 ## Embeddings
+<!-- anchor llm-embeddings -->
 <img src="images/overview/embeddings.png">
 
 ####
@@ -340,7 +344,7 @@ Imagine assigning a number to characteristics of music. Both "Lose Yourself" and
 
 In fact, Spotify really does characterize music using such 80 *dimensions*.
 
-### Imagine capturing the "essence" of ... <em>anything</em>
+### Imagine capturing the "essence" of ... _anything_
 <img src="images/llm/embeddings/20d-with-tokens.svg" />
 
 ####
@@ -348,7 +352,7 @@ Now, imagine if you could characterize _anything_ with suitable characteristics.
 
 That's essentially what the purpose of an embedding is, to the AI.
 
-### An embedding is a token's <em>characteristics</em>
+### An embedding is a token's _characteristics_
 
 <div class="cols">
 <img src="images/llm/embeddings/20d-kitten.png" />
@@ -480,7 +484,7 @@ And for the concept of "whimsical".
 ####
 And "spatula-ness".
 
-### "<em>___</em> is to Germany, what Sushi is to Japan"
+### "____ is to Germany, what Sushi is to Japan"
 <img src="images/llm/embeddings/space/germany-japan.png" />
 
 ####
@@ -511,8 +515,11 @@ Links:
 ### The LLM is all about "doing math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
 
-## The LLM
+## The Transformer
+<!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
+
+Today's LLMs are built on the _Transformer_ architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLL/Transformer works.
 
 ### Putting the example through the LLM
 
@@ -727,6 +734,7 @@ Links:
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
 ## Training
+<!-- anchor llm-training -->
 
 ####
 We've seen how the LLM using pure math can produce "the likely next token".
@@ -853,7 +861,7 @@ DeepSeek –  Censored thinker
 </div>
 </div>
 
-### Post-training: reinforce the <em>desired outcomes</em>
+### Post-training: reinforce the _desired outcomes_
 <img src="images/llm/training/reinforcement-learning.png">
 
 ####
@@ -994,6 +1002,7 @@ Links:
 
 
 # AI Agents
+<!-- anchor ai-agents -->
 
 ####
 Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?
@@ -1112,6 +1121,7 @@ Signifying nothing.*
 
 
 # The AI Service
+<!-- anchor ai-service -->
 
 ####
 Now we know how to "talk to the AI Service": via some agent app.
@@ -1157,7 +1167,7 @@ Let's start filling in the blanks.
 ####
 At the center of the AI service we find the familiar LLM-loop.
 
-### It's all about those <em>embeddings</em>
+### It's all about those _embeddings_
 Remember, the Transformer works on *embeddings*<br>
 Text maps to tokens, each token has an embedding in the model
 
@@ -1167,6 +1177,7 @@ But what about *files*, like PDFs and images?
 <img src="images/service/overview/transformer.png">
 
 ## Files
+<!-- anchor ai-service-files -->
 <img src="images/overview/files.png">
 
 ####
@@ -1324,6 +1335,7 @@ Links:
 - [PaLI-3 Vision Language Models: Smaller, Faster, Stronger (Chen et al., 2023)](https://arxiv.org/pdf/2310.09199)
 
 ## Chatting
+<!-- anchor ai-service-chatting -->
 <img src="images/overview/chatting.png">
 
 ####
@@ -1447,6 +1459,7 @@ But it's better for you to be deliberately in control than have your long conver
 - Keep the context lean - *compact* or *start new chats*
 
 ## Thinking
+<!-- anchor ai-service-thinking -->
 <img src="images/overview/thinking.png">
 
 ####
@@ -1521,6 +1534,7 @@ But lo and behold: it was added back in, in Claude Code v2.1.68, so the convenie
 
 
 ## Tools
+<!-- anchor ai-service-tools -->
 <img src="images/overview/tools.png" />
 
 ####
@@ -1668,6 +1682,7 @@ Simply asking what tools are available can be a good way of finding inspiration 
 Rovo does a number of tool calls to figure out that I have three pages in my personal Confluence space.
 
 ## MCP servers
+<!-- anchor ai-service-mcp-servers -->
 <img src="images/overview/tools.png" />
 
 ####
@@ -1728,7 +1743,7 @@ Let's take a look at concretely how an MCP service is used.
 ### You only need to do that once
 <img src="images/service/mcp/flow/2-explain.png">
 
-### The info is present in <em>every chat</em> you send
+### The info is present in _every chat_ you send
 <img src="images/service/mcp/flow/3-request.png">
 
 ####
@@ -1843,6 +1858,7 @@ Links:
 To reiterate: "You can add an MCP server to xxx" means "You can tell the AI agent to call endpoints on service xxx's API".
 
 ## System prompt
+<!-- anchor ai-service-system-prompt -->
 
 ####
 Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.
@@ -2301,6 +2317,7 @@ Links:
 - [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
 
 ## Full AI
+<!-- anchor ai-service-full-ai -->
 
 ### "Now I have the full picture"
 <img src="images/service/overview/full.png">
@@ -2309,6 +2326,7 @@ Links:
 Indeed, this is the full overview of how any modern AI Service works, in principle.
 
 ## Full context
+<!-- anchor ai-service-full-context -->
 
 ### The full context you send is *this and nothing else*
 <img src="images/service/system/full-context.png">
@@ -2326,6 +2344,7 @@ The reason is this. As you chat, the typical agents will (using the LLM, of cour
 And *this* is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, but not much; and you can see it for yourself, in the settings for web-agents or in files for terminal-agents. When you chat it's *just this brief summary* (or summaries, maybe) that is included - not all the former chats.
 
 # Context Economy
+<!-- anchor context-economy -->
 
 ####
 Everything we've looked at is about *putting tokens into a context* with the intent of steering the next prediction toward something useful.
@@ -2409,6 +2428,7 @@ Mitigations:
 - Try clear and compact
 
 # 3 x How to ...
+<!-- anchor how-to -->
 
 ####
 Here's a round of advice on how to speak, hold, and keep up with the AI.
@@ -2468,12 +2488,13 @@ Links:
 - [Claude Academy](https://claude-academy.com/)
 
 # A Quick Round of Demystifications
+<!-- anchor demystifications -->
 
 ####
 Let's run through a quick series of myths and facts and demystify them.
 
 ### We don't know how the AI works
-<p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
+<p class="verdict no">Oh yes, we know _exactly_ how the LLM works</p>
 
 ####
 We know *exactly* how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.
@@ -2482,7 +2503,7 @@ Links:
 - [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 
 ### We don't know what goes on inside the AI
-<p class="verdict yes">Now <em>that's</em> true - we don't</p>
+<p class="verdict yes">Now _that's_ true - we don't</p>
 
 - We don't know what the dimensions or weights really "mean" or how facts are stored
 
@@ -2495,7 +2516,7 @@ Links:
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
 ### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
-<p class="verdict no">No, it most likely <em>did not</em></p>
+<p class="verdict no">No, it most likely _did not_</p>
 
 - Large data is typically *truncated*, *sampled*, or *compacted*
 
@@ -2664,6 +2685,7 @@ Links:
 
 
 # That's all
+<!-- anchor thats-all -->
 
 ####
 What a journey.
@@ -2704,11 +2726,13 @@ My *favorite youtube channels* for AI-related content:
 - [AI News & Strategy Daily | Nate B Jones](https://www.youtube.com/@NateBJones)
 
 # Bonus
+<!-- anchor bonus -->
 
 ####
 Here are a few parts that were cut from the presentation in the interest of time, but are still interesting.
 
 ## Effort and Cost
+<!-- anchor bonus-effort-and-cost -->
 
 ####
 Let's briefly talk about the amount of work that's involved in producing tokens and the cost of it.
@@ -2839,6 +2863,7 @@ Links:
 
 
 ## RAG
+<!-- anchor bonus-rag -->
 
 ### RAG is "injecting existing relevant content"
 <img src="images/bonus/rag/system-architecture.webp"> 
@@ -2865,6 +2890,7 @@ Links:
 - [Is RAG Still Needed? Choosing the Best Approach for LLMs](https://youtu.be/UabBYexBD4k) - IBM Technology (11:09)
 
 ## Build your own agent
+<!-- anchor bonus-build-your-own-agent -->
 
 ### Build your own agent to have full control
 Using *an agent like Claude* adds lots of info
@@ -2891,6 +2917,7 @@ Links:
 
 
 ## A fancy autocomplete
+<!-- anchor bonus-a-fancy-autocomplete -->
 
 ####
 I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.
@@ -2967,6 +2994,7 @@ Mechanically though, it truly is "just" a prediction machine.
 But hey, maybe we humans are also just prediction machines?
 
 ## Dimensionality by superposition
+<!-- anchor bonus-dimensionality-by-superposition -->
 
 ### Two dimensions in 2D, wholly independent
 <img src="images/bonus/dimensions/2d-90deg.png">

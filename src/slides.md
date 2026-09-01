@@ -17,9 +17,9 @@ August 2026
 ####
 We all use AI. But it's still a bit mysterious.
 
-_"How does it know that...?"_ or _"Why doesn't it know that...?"_
+*"How does it know that...?"* or *"Why doesn't it know that...?"*
 
-Words like _tokens_, _context_, _MCP servers_, _thinking_, and _agent files_ get tossed around daily. But do you really know what they are?
+Words like *tokens*, *context*, *MCP servers*, *thinking*, and *agent files* get tossed around daily. But do you really know what they are?
 
 This presentation will explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
 
@@ -255,7 +255,7 @@ Links:
 ####
 "hello world" is two tokens.
 
-Yes, that second token really is _(space)_ followed by "world". Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending a token on _(space)_.
+Yes, that second token really is *(space)* followed by "world". Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending a token on *(space)*.
 
 ### "hello world from ..."
 <img src="images/llm/tokens/hello-world-from-richard.png">
@@ -340,20 +340,20 @@ Imagine assigning a number to characteristics of music. Both "Lose Yourself" and
 
 In fact, Spotify really does characterize music using such 80 *dimensions*.
 
-### Imagine capturing the "essence" of ... _anything_
+### Imagine capturing the "essence" of ... *anything*
 <img src="images/llm/embeddings/20d-with-tokens.svg" />
 
 ####
-Now, imagine if you could characterize _anything_ with suitable characteristics. For example, "laughter" is quite "ancient" while "software developer" is not very "ancient".
+Now, imagine if you could characterize *anything* with suitable characteristics. For example, "laughter" is quite "ancient" while "software developer" is not very "ancient".
 
 That's essentially what the purpose of an embedding is, to the AI.
 
-### An embedding is a token's _characteristics_
+### An embedding is a token's *characteristics*
 <div class="cols">
 <img src="images/llm/embeddings/20d-kitten.png" />
 <div class="col-8">
 
-An **embedding** is a list of numbers (also called a **vector** or **tensor**) that _somehow_ characterizes _something_. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
+An **embedding** is a list of numbers (also called a **vector** or **tensor**) that *somehow* characterizes *something*. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
 
 The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" has 20 dimensions. The more dimensions, the more nuances can be captured.
 
@@ -511,7 +511,7 @@ Links:
 <!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
 
-Today's LLMs are built on the _Transformer_ architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
+Today's LLMs are built on the *Transformer* architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
 
 ### Putting the example through the LLM
 The **context** is the input given to the LLM - here, 10 tokens<br>
@@ -696,7 +696,7 @@ user: Please tell me: what is an LLM?
 assistant: An L
 ```
 
-and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` etc. Over and over, token by token, until the most likely next token for the LLM to choose is a special token that signifies _"end of my turn of a conversation"_.
+and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` etc. Over and over, token by token, until the most likely next token for the LLM to choose is a special token that signifies *"end of my turn of a conversation"*.
 
 ### 85 roundtrips for 85 tokens
 <img src="images/llm/final-output-full-tokenized.png">
@@ -818,12 +818,12 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 	- costs 1-10% of full training
 	- takes weeks or months
 
-### _Pre-trained_ models are just autocomplete
+### *Pre-trained* models are just autocomplete
 <img src="images/llm/training/pre-training.png">
 
 After pre-training, the LLM is really just a statistical prediction-machine. It's great at figuring out the likelihood of what tokens should follow next based on all the trained sentences. But it has no judgment, no pushback, no idea of what a desired outcome looks like.
 
-### _Post-training_ is what shapes the model
+### *Post-training* is what shapes the model
 <div class="cols">
 <img src="images/llm/training/post-training.png">
 <div>
@@ -847,7 +847,7 @@ DeepSeek –  Censored thinker
 </div>
 </div>
 
-### Post-training: reinforce the _desired outcomes_
+### Post-training: reinforce the *desired outcomes*
 <img src="images/llm/training/reinforcement-learning.png">
 
 ####
@@ -1148,7 +1148,7 @@ Let's start filling in the blanks.
 ####
 At the center of the AI service we find the familiar LLM-loop.
 
-### It's all about those _embeddings_
+### It's all about those *embeddings*
 Remember, the Transformer works on *embeddings*<br>
 Text maps to tokens, each token has an embedding in the model
 
@@ -1424,7 +1424,7 @@ For example Claude has `/btw` to send a message out-of-band.
 
 Also, when a *sub-agent* is launched in the background to address some issue, it may well start out with the full context but only the *response* from the sub-agent will eventually somehow end up being added to the chat. If it spends 200,000 tokens figuring out the answer "42" then only "42" will eventually end up in your main context.
 
-### _"Start a new chat? But then I would lose ..."_
+### *"Start a new chat? But then I would lose ..."*
 <img src="images/service/chat/my-precious-context.png">
 
 ####
@@ -1698,7 +1698,7 @@ Links:
 
 - It's a middleman, *a standardized protocol*, that enables the AI Service to discover another service that exists somewhere.
 
-- When somebody says _"You can add an MCP server for Atlassian"_, they're practically saying:<br>_"You can tell the AI about Atlassian's API"_.
+- When somebody says *"You can add an MCP server for Atlassian"*, they're practically saying:<br>*"You can tell the AI about Atlassian's API"*.
 
 ####
 Yes, it's really "just that". A live list of tools and a way to call them.
@@ -1719,7 +1719,7 @@ Let's take a look at concretely how an MCP service is used.
 ### You only need to do that once
 <img src="images/service/mcp/flow/2-explain.png">
 
-### The info is present in _every chat_ you send
+### The info is present in *every chat* you send
 <img src="images/service/mcp/flow/3-request.png">
 
 ####
@@ -1847,7 +1847,7 @@ Files, chatting, thinking, tools - just one major thing remains. And it's rather
 
 - You could have *written this text yourself* in a prompt (well, sort of)
 
-### True, the system prompt _is_ obeyed more
+### True, the system prompt *is* obeyed more
 <img src="images/service/system/prompt/training.png">
 
 ####
@@ -1961,7 +1961,7 @@ Visual Studio includes a lot of information about the current code solution: pat
 
 ### #5/11: Your preferences
 ####
-All agents let you configure some preferences one way or another. If those preferences have to do with the way the LLM generates text, ie as opposed to e.g. a color theme for the agent, then they practically always simply end up as text instructions in system prompts. It really does stress that _"it's all just text to the LLM"_.
+All agents let you configure some preferences one way or another. If those preferences have to do with the way the LLM generates text, ie as opposed to e.g. a color theme for the agent, then they practically always simply end up as text instructions in system prompts. It really does stress that *"it's all just text to the LLM"*.
 
 ### Example: ChatGPT can be "friendly" or "pragmatic"
 <img src="images/service/system/preferences/chatgpp-personality.png">
@@ -2031,8 +2031,8 @@ Well, yes they are. But they belong here and are actually very simple.
 - A skill is *text instructions* with a name
 
 - A skill's instructions are loaded into the context on demand by you or the LLM:
-	- Type `/skill-name` or just ask to _"use skill xxx to ..."_
-	- The skill has a description so the LLM can ask to load the skill's content when it would seem useful, _just like for tools_
+	- Type `/skill-name` or just ask to *"use skill xxx to ..."*
+	- The skill has a description so the LLM can ask to load the skill's content when it would seem useful, *just like for tools*
 
 ####
 **Agent Skills** is an open standard, made by Anthropic and widely supported by agents
@@ -2226,11 +2226,11 @@ Links:
 - [AGENTS.md: A Standard for AI Coding Agents](https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/)
 
 
-### Putting it all together: a _real_ system prompt example
+### Putting it all together: a *real* system prompt example
 <img src="images/service/system/all/full.png">
 
 ####
-We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit abstract and mysterious. Just what does it _mean_ to be "added to the system prompt"?
+We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit abstract and mysterious. Just what does it *mean* to be "added to the system prompt"?
 
 So let's get concrete and see what such an arbitrary system prompt looks like. This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.
 
@@ -2410,6 +2410,8 @@ Here's a round of advice on how to speak, hold, and keep up with the AI.
 Links:
 - [The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting](https://youtu.be/GTEz5WWbfiw) - AI News & Strategy Daily | Nate B Jones (13:20)
 
+####
+
 ### How to hold the AI
 - Modern agentic workflows, controlled by the AI models via tools, often work so well that you frankly *don't really have to* instruct them in a special way.
 
@@ -2450,7 +2452,7 @@ Links:
 Let's run through a quick series of myths and facts and demystify them.
 
 ### We don't know how the AI works
-<p class="verdict no">Oh yes, we know _exactly_ how the LLM works</p>
+<p class="verdict no">Oh yes, we know *exactly* how the LLM works</p>
 
 ####
 We know *exactly* how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.
@@ -2459,7 +2461,7 @@ Links:
 - [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 
 ### We don't know what goes on inside the AI
-<p class="verdict yes">Now _that's_ true - we don't</p>
+<p class="verdict yes">Now *that's* true - we don't</p>
 
 - We don't know what the dimensions or weights really "mean" or how facts are stored
 
@@ -2472,7 +2474,7 @@ Links:
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
 ### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
-<p class="verdict no">No, it most likely _did not_</p>
+<p class="verdict no">No, it most likely *did not*</p>
 
 - Large data is typically *truncated*, *sampled*, or *compacted*
 
@@ -2580,8 +2582,6 @@ Some say *the best reason* for being polite is simply that:
 - Emphasis is useful in a *relative* manner, for marking some instructions to be *more important* than others.
 
 - Generally, don't expect to be able to control the LLM completely. It's just statistics.
-
-- However, here's a tip. Remember that *custom instructions* in your settings or agent-files goes into the system prompt, and that the system prompt carries more weight for the LLM. So if you have something particularly important to say, add it to your custom instuctions.
 
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
@@ -2957,19 +2957,19 @@ Let's try to visualize that idea using just two dimensions on an x- and y-axis. 
 
 Imagine two dimensions that describe the *catness* and the *cuteness* of anything. The two dimensions and characteristics are completely independent. A mouse has low catness but some cuteness. A bat also has low catness but less cuteness.
 
-### Two dimensions in 2D, not _completely_ independent
+### Two dimensions in 2D, not *completely* independent
 <img src="images/bonus/dimensions/2d-88deg.png">
 
 ####
 Now let's *tilt* the catness-axis so the characteristics, the dimensions, no longer are absolutely completely independent, ie orthogonal. More catness would then also cause more cuteness, but not much. It *could* work without distorting the characteristics too much.
 
-### Two dimensions in 2D, _very much_ not independent
+### Two dimensions in 2D, *very much* not independent
 <img src="images/bonus/dimensions/2d-60deg.png">
 
 ####
 Now imagine that the catness- and cuteness-dimensions were *way* more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two dimensions if they're so related. But if it worked, then it could open the door to something interesting.
 
-### Tilting allows fitting _three dimensions_ into 2D
+### Tilting allows fitting *three dimensions* into 2D
 <img src="images/bonus/dimensions/2d-3d.png">
 
 ####

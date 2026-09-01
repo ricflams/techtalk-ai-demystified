@@ -641,7 +641,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <p><img src="images/llm/overview-embeddings.png" /></p>
 <h2 id="llm-transformer"><a class="headerlink" href="#llm-transformer" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The Transformer</h2>
 <p><img src="images/overview/llm.png"></p>
-<p>Today's LLMs are built on the <em>Transformer</em> architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLL/Transformer works.</p>
+<p>Today's LLMs are built on the <em>Transformer</em> architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.</p>
 <h3 id="putting-the-example-through-the-llm"><a class="headerlink" href="#putting-the-example-through-the-llm" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Putting the example through the LLM</h3>
 <p>The <strong>context</strong> is the input given to the LLM - here, 10 tokens<br>
 The <strong>context window</strong> is the longest input possible, typically 200,000-1,000,000 tokens<br>
@@ -1806,7 +1806,6 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>It's quite possible that <em>only the tool's description</em> may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.</p>
 <h3 id="711-skills"><a class="headerlink" href="#711-skills" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#7/11: Skills</h3>
 <!-- toc-entry Skills -->
-
 <h4 id="_209"></h4>
 <p>Hey, aren't skills a big deal?</p>
 <p>Well, yes they are. But they belong here and are actually very simple.</p>
@@ -2175,7 +2174,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <h4 id="_247"></h4>
 <p>Let's run through a quick series of myths and facts and demystify them.</p>
 <h3 id="we-dont-know-how-the-ai-works"><a class="headerlink" href="#we-dont-know-how-the-ai-works" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>We don't know how the AI works</h3>
-<p class="verdict no">Oh yes, we know _exactly_ how the LLM works</p>
+<p class="verdict no">Oh yes, we know *exactly* how the LLM works</p>
 
 <h4 id="_248"></h4>
 <p>We know <em>exactly</em> how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.</p>
@@ -2184,7 +2183,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">Neural networks, all chapters from 3Blue1Brown</a></li>
 </ul>
 <h3 id="we-dont-know-what-goes-on-inside-the-ai"><a class="headerlink" href="#we-dont-know-what-goes-on-inside-the-ai" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>We don't know what goes on inside the AI</h3>
-<p class="verdict yes">Now _that's_ true - we don't</p>
+<p class="verdict yes">Now *that's* true - we don't</p>
 
 <ul>
 <li>
@@ -2202,7 +2201,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li><a href="https://www.anthropic.com/research/global-workspace">A global workspace in language models (J-space)</a></li>
 </ul>
 <h3 id="i-included-all-of-the-ai-indexed-the-wholeit-read-all-the-source-code"><a class="headerlink" href="#i-included-all-of-the-ai-indexed-the-wholeit-read-all-the-source-code" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"</h3>
-<p class="verdict no">No, it most likely _did not_</p>
+<p class="verdict no">No, it most likely *did not*</p>
 
 <ul>
 <li>

@@ -184,7 +184,6 @@ Links:
 
 # The LLM
 <!-- anchor llm -->
-
 ####
 The LLM is the most fundamental piece and even though it's quite technical, it's actually the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
 
@@ -226,7 +225,6 @@ First let's focus on tokens.
 <img src="images/llm/overview-tokens.png">
 
 ### A token is
-
 - A token is practically **a word**, like "hello"
 
 - It is the **chunk of text** the LLM works on
@@ -298,7 +296,6 @@ Notice how markdown for bold, the double-star `**`, has its own token.
 And the three-character sequence `**,` is also common enough to have its own token.
 
 ### Tokens recap
-
 <div class="cols">
 <img class="col-1" src="images/llm/tokens/ride-tokens.png">
 <div class="col-4" >
@@ -327,7 +324,6 @@ It's likely that you already knew about tokens. But the LLM does not deal direct
 Embeddings are sort of the "live" counterpart to tokens. They are very valuable to grasp the meaning of. It may feel abstract and complex so sit tight.
 
 ### In AI, an *embedding* is a vector of numbers whose values *somehow* represent the characteristics of *something*
-
 ####
 Links:
 - [Embeddings: What they are and why they matter](https://simonwillison.net/2023/Oct/23/embeddings/)
@@ -353,7 +349,6 @@ Now, imagine if you could characterize _anything_ with suitable characteristics.
 That's essentially what the purpose of an embedding is, to the AI.
 
 ### An embedding is a token's _characteristics_
-
 <div class="cols">
 <img src="images/llm/embeddings/20d-kitten.png" />
 <div class="col-8">
@@ -408,7 +403,6 @@ All in all, this set of numbers represents that initial static context-free mean
 The numbers are called *weights* and they are constructed during the LLM's training. Right now just accept that those 12288 numbers do in fact characterize all aspects of one single token. We'll cover later how they're constructed.
 
 ### Imagine an embedding as a "direction" in a hyper-dimensional space of "everything that exists"
-
 <img src="images/llm/embeddings/space/word-embeddings.png" />
 
 ####
@@ -491,7 +485,6 @@ And "spatula-ness".
 The math works so well that if you add up the directions for "Sushi plus Germany minus Japan" then you land near Bratwurst.
 
 ### What a surprise!
-
 ####
 What a surprise: with *the right modeling*, we can actually *do math on language*.
 
@@ -500,7 +493,6 @@ Yes, it does feel crazy that by characterizing anything using the "right" 12288 
 It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.
 
 ### Embeddings recap
-
 - Embeddings are "meanings" and that meaning can be *transformed with math*
 
 - An embedding is *just some numbers*. Cheap to store in a database and work on.
@@ -522,7 +514,6 @@ Links:
 Today's LLMs are built on the _Transformer_ architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
 
 ### Putting the example through the LLM
-
 The **context** is the input given to the LLM - here, 10 tokens<br>
 The **context window** is the longest input possible, typically 200,000-1,000,000 tokens<br>
 The LLM does **inference** by running the embeddings through a giant **neural network**
@@ -649,7 +640,6 @@ Through billions of additions and multiplications.
 After going through 96 trips of embeddings influencing each other, the final vector has absorbed all the relevant meanings of the entire context and now reflects what the LLM has been trained to predict the following embedding "most likely looks like".
 
 ### Then "simply" find most similar token
-
 Compare the final expected embedding to the embeddings of *all tokens in the vocabulary* (e.g. 200,000 tokens) by taking the dot-product, which compares the two directions.
 
 <img src="images/llm/next-token-prediction.svg">
@@ -715,7 +705,6 @@ and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` et
 The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens now also form a part of the context.
 
 ### Tokens are really generated one by one
-
 That's why output tokens are typically *5 x more expensive* than input tokens.
 <br>
 
@@ -735,7 +724,6 @@ Links:
 
 ## Training
 <!-- anchor llm-training -->
-
 ####
 We've seen how the LLM using pure math can produce "the likely next token".
 
@@ -767,7 +755,6 @@ Post-training is where the model learns what an appropriate response is. This is
 The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.
 
 ### Model and embeddings are born via training
-
 <div class="cols">
 <img class="col-2" src="images/llm/training/training-example.png">
 <div>
@@ -823,7 +810,6 @@ And the AI model's many billions of small factors, weights.
 Once the training is completed, the embeddings and weights are frozen, never to be changed again. Not until they are used to kick-start training of the next model.
 
 ### Pre-training is expensive
-
 - From scratch for a new model
 	- costs **$200M-$1000M**
 	- takes **4-8 months**
@@ -946,7 +932,6 @@ Links:
 ### Are models different?<br>Yes, indeed
 
 ### Same facts, different values and behaviors
-
 <img src="images/llm/training/model-behavior.svg">
 <br>
 
@@ -959,7 +944,6 @@ Links:
 - xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
 
 ### Models also have variations
-
 Haiku, Sonnet, and Opus are really three different models.
 
 They run on *different hardware* and their LLM has *different sizes*.
@@ -1003,7 +987,6 @@ Links:
 
 # AI Agents
 <!-- anchor ai-agents -->
-
 ####
 Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?
 
@@ -1107,7 +1090,6 @@ Then I started working with the AI inside the code editor for true cooperation. 
 Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control.
 
 ### I still use the browser chat
-
 <img src="images/agents/ai-tech-talk.png" />
 
 ####
@@ -1122,7 +1104,6 @@ Signifying nothing.*
 
 # The AI Service
 <!-- anchor ai-service -->
-
 ####
 Now we know how to "talk to the AI Service": via some agent app.
 
@@ -1208,7 +1189,6 @@ Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a 
 Images are chopped up and understood *purely visually* as little chunks of meanings based on image-training: here's a claw, a tail, a head of a predator bird.
 
 ### VLMs (Vision-Language Models)
-
 - Everything *visual* ("claw of a predator bird") is learned from datasets of image+text
 - VLMs also *learn characters* through that training
 - Images are processed in patches (eg 24x24 pixels) to individual **patch embeddings**, which are then mapped into the same *embedding-space* as text
@@ -1413,7 +1393,6 @@ Here it is after 50 turns of messages plus responses.
 The total tokens you pay for are added up for every turn, and the cost of each turn is also added up, so you simply spend more and more tokens at every turn.
 
 ### Save tokens: clear and compact
-
 ####
 The best way to save tokens is simply to not keep on dragging the entire conversation along all the time.
 
@@ -1466,7 +1445,6 @@ But it's better for you to be deliberately in control than have your long conver
 All frontier AI services offer some kind of "extended thinking", or "deep reasoning", or whatever term they have chosen. But what is that actually? What is "thinking"?
 
 ### What could "thinking" mean?
-
 - Maybe the LLM can be tweaked to "think better"?<br>*Hmm, no - the LLM weights are constant numbers, frozen after training.*
 
 - Is there a "bigger AI" stashed away in the back room?<br>*But then how could the biggest models think harder too?*
@@ -1614,7 +1592,6 @@ Links:
 - [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
 
 ### The LLM is in control - via tools
-
 *However*, tools can be much more than just doing math, file, or web operations.
 
 Practically every *decision* in the interaction you have with the agent and AI service, is actually *conjured up by the LLM*. The agent and service are predominantly simply *carrying out the LLM's bidding* about practically everything:
@@ -1733,7 +1710,6 @@ Yes, it's really "just that". A live list of tools and a way to call them.
 Adding the Atlassian MCP server means the AI agent has access to tools, just like Rovo used in the example before.
 
 ### An MCP tool-call in detail
-
 ####
 Let's take a look at concretely how an MCP service is used.
 
@@ -1770,7 +1746,6 @@ So for using an MCP server you must always be "a user" on the service behind it,
 With the tool-result from the service added to the context, the LLM can now compose a proper response.
 
 ### Example: Siteimprove MCP demo
-
 ####
 "It's simple", I said. Okay, let me show how.
 
@@ -1859,7 +1834,6 @@ To reiterate: "You can add an MCP server to xxx" means "You can tell the AI agen
 
 ## System prompt
 <!-- anchor ai-service-system-prompt -->
-
 ####
 Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.
 
@@ -1923,7 +1897,6 @@ So when you find yourself wondering "How does it know that...?" or "Why doesn't 
 It's a lot, but let's very briefly go through the 11 parts. And again, remember: all of this is included into every chat.
 
 ### #1/11: The agent system prompt
-
 ####
 The *agent system prompt* holds instructions that the agent (chatgpt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.
 
@@ -1952,7 +1925,6 @@ Links:
 - [system_prompts_leaks/Microsoft/copilot-in-microsoft-word.md](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Microsoft/copilot-in-microsoft-word.md)
 
 ### #2/11: System information
-
 ####
 The agent adds all kinds of information about your environment: the date, operating system, working folder, possibly your location, etc.
 
@@ -1960,7 +1932,6 @@ The agent adds all kinds of information about your environment: the date, operat
 <img src="images/service/system/system-info/today.png">
 
 ### #3/11: Automatically stored memories
-
 ####
 The "stored memories" are in a way the only slightly magical part of the context because they are entirely constructed and maintained by the agent itself, not by you.
 
@@ -1973,7 +1944,6 @@ These are the "most important facts" from your conversations, kept updated and c
 In terminal AI Agents, there can be multiple files with such "memories".
 
 ### #4/11: Some context from the agent
-
 ####
 Each agent also includes information about what you're working on right now: the selected file, for instance.
 
@@ -1990,7 +1960,6 @@ For example, Rovo includes by default the current Confluence page in the context
 Visual Studio includes a lot of information about the current code solution: paths, file content, possibly the selected text, project type, etc.
 
 ### #5/11: Your preferences
-
 ####
 All agents let you configure some preferences one way or another. If those preferences have to do with the way the LLM generates text, ie as opposed to e.g. a color theme for the agent, then they practically always simply end up as text instructions in system prompts. It really does stress that _"it's all just text to the LLM"_.
 
@@ -2037,7 +2006,6 @@ Modes are simply implemented as instructions that tell the LLM to plan or do, fo
 Nowadays, each mode-change typically results in *adding a system message* instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".
 
 ### #6/11: Agent tools
-
 ####
 We already covered the functionality of tools.
 
@@ -2051,7 +2019,6 @@ It's quite possible that *only the tool's description* may be included in the co
 
 ### #7/11: Skills
 <!-- toc-entry Skills -->
-
 ####
 Hey, aren't skills a big deal?
 
@@ -2128,7 +2095,6 @@ Install skills like this using `npx skills add <repo-name>`.
 Thanks, bro.
 
 ### Installing skills
-
 ####
 There are many ways to install skills. Let's just look at some examples.
 
@@ -2164,7 +2130,6 @@ Matt Pocock's skills are also available in ChatGPT.
 - Like text-expansion: write `/bro` and bro's text is written out
 
 ### #8/11: MCP servers
-
 ####
 We already covered them in detail. But there's one important thing to dig into: what hints the context includes about each tool so the LLM can decide to use it or not.
 
@@ -2193,7 +2158,6 @@ So nowadays, don't worry about adding MCP servers. But also be aware that you ma
 
 
 ### #9+10/11: Project and custom instructions
-
 ####
 Sometimes it's convenient to write some guideline instructions for a set of related chats.
 
@@ -2231,7 +2195,6 @@ As a silly example I added custom instructions to Copilot to always end every an
 I actually forgot I had added this, but surely remembered when I returned to Copilot some weeks later and it added a dinosaur-analogy after each response.
 
 ### #11/11: Agent files
-
 ####
 Finally, "agent files". Here's another term with an air of mystery about it.
 
@@ -2242,7 +2205,6 @@ Finally, "agent files". Here's another term with an air of mystery about it.
 An "agents" file sounds like some instruction for an autonomous, free-roaming agent of a kind. I think it sounds like instructions for something to *happen*. Maybe for starting an agent, possibly in the background doing some secret work?
 
 ### Simply custom instructions, but for CLI agents
-
 <img src="images/service/system/agent-files/claude-md-dinosaur.png">
 
 ####
@@ -2345,7 +2307,6 @@ And *this* is what gives you the spooky impression that "oh, it knows and learns
 
 # Context Economy
 <!-- anchor context-economy -->
-
 ####
 Everything we've looked at is about *putting tokens into a context* with the intent of steering the next prediction toward something useful.
 
@@ -2369,7 +2330,6 @@ So not just adding the right things, but also keeping the context lean, is the c
 - *Starting a fresh chat* is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to *summarize your chat or results to a file*, then start fresh with that
 
 ### Token spree
-
 <style scoped>
 /* A slim slide margin is left around the iframe on purpose: it gives you
    somewhere to click to pull keyboard focus back out of the game, and keeps
@@ -2429,7 +2389,6 @@ Mitigations:
 
 # 3 x How to ...
 <!-- anchor how-to -->
-
 ####
 Here's a round of advice on how to speak, hold, and keep up with the AI.
 
@@ -2489,7 +2448,6 @@ Links:
 
 # A Quick Round of Demystifications
 <!-- anchor demystifications -->
-
 ####
 Let's run through a quick series of myths and facts and demystify them.
 
@@ -2686,12 +2644,10 @@ Links:
 
 # That's all
 <!-- anchor thats-all -->
-
 ####
 What a journey.
 
 ### Thank you, and remember
-
 <br>
 <div class="cols">
 <img class="col-1" src="images/intro/github-com-ricflams-techtalk-ai-demystified.png">
@@ -2727,22 +2683,18 @@ My *favorite youtube channels* for AI-related content:
 
 # Bonus
 <!-- anchor bonus -->
-
 ####
 Here are a few parts that were cut from the presentation in the interest of time, but are still interesting.
 
 ## Effort and Cost
 <!-- anchor bonus-effort-and-cost -->
-
 ####
 Let's briefly talk about the amount of work that's involved in producing tokens and the cost of it.
 
 ### It's one token, what could it cost?
-
 <img src="images/bonus/cost/one-banana.jpg">
 
 ### Harry Potter ~ 100,000 tokens
-
 <div class="cols fit">
 <div><img src="images/bonus/cost/harry-potter-front.png" /></div>
 <div><img src="images/bonus/cost/harry-potter-page-1.jpg" /></div>
@@ -2776,7 +2728,6 @@ Links:
 - [This is NVIDIA’s new GPU - Blackwell NVL72 Rack](https://youtu.be/7a0UGHvxrLw) - Linus Tech Tips (12:57)
 
 ### 4,500,000,000,000,000 FLOPS/sec
-
 ####
 The NVidia B200 GPU does 4500 trillion FLOPS/sec.
 
@@ -2918,12 +2869,10 @@ Links:
 
 ## A fancy autocomplete
 <!-- anchor bonus-a-fancy-autocomplete -->
-
 ####
 I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.
 
 ### "Once upon a ..."
-
 ####
 When you read this sentence, your brain autocompletes it - right?
 

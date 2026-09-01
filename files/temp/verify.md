@@ -76,15 +76,21 @@ python - <<'PY'
 import re
 lines = open('src/slides.md', encoding='utf-8').read().split('\n')
 fence = style = 0
+in_fence = False
 for n, l in enumerate(lines, 1):
-    if re.match(r'^\s*```', l): fence += 1
+    if re.match(r'^\s*```', l):        # a fence marker is 3 backticks -- an odd
+        fence += 1                     # count by definition, so skip it and the
+        in_fence = not in_fence        # code inside the block
+        continue
+    if in_fence:
+        continue
     if re.search(r'<style\b', l, re.I): style += 1
     if re.search(r'</style>', l, re.I): style -= 1
     if l.count('`') % 2:
         print(f'{n}: odd backticks: {l.strip()[:80]}')
     if re.sub(r'`[^`]*`|<[^>]*>', '', l).count('**') % 2:
         print(f'{n}: odd ** markers: {l.strip()[:80]}')
-print(f'code fences balanced: {fence % 2 == 0};  <style> balanced: {style == 0}')
+print(f'fences balanced: {fence % 2 == 0} ({fence} markers);  <style> balanced: {style == 0}')
 PY
 ```
 
@@ -165,9 +171,13 @@ outputs. That's usually what you want; this flags where it might not be.
 python - <<'PY'
 import re
 lines = open('src/slides.md', encoding='utf-8').read().split('\n')
-in_style = depth = 0; prev = None; runs = []
+in_style = depth = 0; in_fence = False; prev = None; runs = []
 for n, l in enumerate(lines, 1):
     s = l.strip()
+    if s.startswith('```'):            # fenced code is not prose
+        in_fence = not in_fence; prev = None; continue
+    if in_fence:
+        prev = None; continue
     if re.search(r'<style', s, re.I): in_style = 1
     if in_style:
         if re.search(r'</style>', s, re.I): in_style = 0

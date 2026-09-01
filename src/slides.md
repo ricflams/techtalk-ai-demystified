@@ -519,7 +519,7 @@ Links:
 <!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
 
-Today's LLMs are built on the _Transformer_ architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLL/Transformer works.
+Today's LLMs are built on the _Transformer_ architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
 
 ### Putting the example through the LLM
 

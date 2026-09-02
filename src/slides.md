@@ -712,7 +712,7 @@ user: Please tell me: what is an LLM?
 assistant: An
 ```
 
-That context is again passed through the Transformer's 96 attention-layers, this time producing the token `" L"`, which is added to the context
+That context is now passed through the Transformer's 96 attention-layers, this time producing token `" L"`, which is then added to the context
 
 ```
 user: Please tell me: what is an LLM?

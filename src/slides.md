@@ -27,7 +27,7 @@ There's a lot to cover so be ready to pay attention. I'll do my part by covering
 
 Links:
 - [View as slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
-- [Source on github](https://github.com/ricflams/techtalk-ai-demystified/)
+- [Source on GitHub](https://github.com/ricflams/techtalk-ai-demystified/)
 
 ---
 ![bg](images/intro/books.jpg)

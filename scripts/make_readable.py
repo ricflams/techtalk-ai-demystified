@@ -152,7 +152,14 @@ img:not(.logo) {
   height: auto;
   display: block;
   margin: 1.5rem auto;
-  border-radius: 4px;
+  /* A dark hairline so an image reads as an image and not as page content --
+     screenshots on a white background otherwise dissolve into the page. Dark
+     rather than the usual #d0d7de chrome grey because the deck mixes light and
+     dark images: on the ~60 dark ones the border simply disappears into the
+     image, while a light border would be the one doing nothing on the ~127
+     light ones, which are the case that actually needs bounding. */
+  border: 1px solid #57606a;
+  border-radius: 6px;
 }
 /* Contents, sitting just under the title slide. Chapters (h1) go on their own
    lines with no bullets; the sections (h2) inside each run together on one

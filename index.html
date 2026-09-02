@@ -269,7 +269,7 @@ iframe.game { display: none; }
 <p>There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.</p>
 <p>Links:</p>
 <ul>
-<li><a href="https://ricflams.github.io/techtalk-ai-demystified/presentation.html">View as slideshow</a></li>
+<li><a href="https://ricflams.github.io/techtalk-ai-demystified/presentation.html">View as slideshow (without speaker notes, like here)</a></li>
 <li><a href="https://github.com/ricflams/techtalk-ai-demystified/">Source on GitHub</a></li>
 </ul>
 <hr />
@@ -499,7 +499,6 @@ iframe.game { display: none; }
 </div>
 </div>
 <h4 id="_34"></h4>
-<p>For English, one token generally corresponds to about 4 characters.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/nKSk_TiR8YA">Most devs don't understand how LLM tokens work</a> - Matt Pocock (10:57)</li>
@@ -535,7 +534,7 @@ iframe.game { display: none; }
 <p>An <strong>embedding</strong> is a list of numbers (also called a <strong>vector</strong> or <strong>tensor</strong>) that <em>somehow</em> characterizes <em>something</em>. Sometimes called "features", as each value in the vector encodes some semantic trait of the thing.</p>
 <p>The number of nuances, characteristics, we decide to use is called the embedding's <strong>dimension</strong>. The embedding for "kitten" here has 20 dimensions. The more dimensions, the more nuances can be captured.</p>
 <p>Each number is called the <strong>weight</strong> of that dimension. A kitten is very playful (weight=9) and not very wet (weight=1).</p>
-<p>An embeddings can express any <em>word</em> you know. Any <em>sentence</em> that exists. Any <em>feeling</em> you can have. Any <em>possible concept</em>, for example <em>a curious yet mildly confused audience</em>.</p>
+<p>An embedding can express any <em>word</em> you know. Any <em>sentence</em> that exists. Any <em>feeling</em> you can have. Any <em>possible concept</em>, for example <em>a curious yet mildly confused audience</em>.</p>
 </div>
 </div>
 <h4 id="_39"></h4>
@@ -763,7 +762,8 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <h3 id="lets-do-it-96-times-attention-layers"><a class="headerlink" href="#lets-do-it-96-times-attention-layers" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Let's do it 96 times (attention layers)</h3>
 <p><img src="images/llm/attention-96-layers.png"></p>
 <h4 id="_75"></h4>
-<p>Through billions of additions and multiplications.</p>
+<p>Tbis process is repeated over and over again, through billions of additions and multiplications.</p>
+<p>GPT 3 had 96 such <strong>attention layers</strong>. Adding more layers doesn’t significantly pay off so Transformers typically have, say, 60-130 layers. I’ll just stick to the 96 layers in this presentation because it’s a reasonable number and it’s easier to speak concretely and say “the 96 layers” even though it’s not universally fixed at 96.</p>
 <h3 id="final-numbers-the-desired-next-meaning"><a class="headerlink" href="#final-numbers-the-desired-next-meaning" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Final numbers: the desired "next meaning"</h3>
 <p><img src="images/llm/final-embedding-all-absorbed.png"></p>
 <h4 id="_76"></h4>

@@ -300,7 +300,7 @@ And the three-character sequence `**,` is also common enough to have its own tok
 <img class="col-1" src="images/llm/tokens/ride-tokens.png">
 <div class="col-4" >
 
-- A **token** is the *chunk of text* the LLM reasons about
+- A **token** is the *chunk of text* the LLM reasons about.<br>Which is the reason for introducing tokenization and tokens at all: it's simply more *efficient* to work on tokens than on individual letters
 <br>
 - Tokens know nothing about *language*
 <br>
@@ -353,13 +353,13 @@ That's essentially what the purpose of an embedding is, to the AI.
 <img src="images/llm/embeddings/20d-kitten.png" />
 <div class="col-8">
 
-An **embedding** is a list of numbers (also called a **vector** or **tensor**) that *somehow* characterizes *something*. Sometimes called "features", as each value in the vector encodes some semantic trait of the token.
+An **embedding** is a list of numbers (also called a **vector** or **tensor**) that *somehow* characterizes *something*. Sometimes called "features", as each value in the vector encodes some semantic trait of the thing.
 
-The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" has 20 dimensions. The more dimensions, the more nuances can be captured.
+The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" here has 20 dimensions. The more dimensions, the more nuances can be captured.
 
-Each number is called the **weight** of that dimension.
+Each number is called the **weight** of that dimension. A kitten is very playful (weight=9) and not very wet (weight=1).
 
-Embeddings can be: Any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *concept*, for example *a curious yet mildly confused audience*.
+An embeddings can express any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
 </div>
 </div>
 
@@ -385,22 +385,12 @@ Links:
 ####
 Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only make mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
 
-There's a research field called mechanistic interpretability that tries to decompose these representations into interpretable directions. It's possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
+There's a research field called **mechanistic interpretability** that tries to decompose these representations into interpretable directions. It's possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
 
 Links:
 - [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
 - [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
 - [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
-
-### The example's embeddings
-<img src="images/llm/embeddings/embedding-matrix.png" />
-
-####
-Each of these lists of 12288 numbers represents the *core meaning* of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.
-
-All in all, this set of numbers represents that initial static context-free meaning of each single token in the sentence.
-
-The numbers are called *weights* and they are constructed during the LLM's training. Right now just accept that those 12288 numbers do in fact characterize all aspects of one single token. We'll cover later how they're constructed.
 
 ### Imagine an embedding as a "direction" in a hyper-dimensional space of "everything that exists"
 <img src="images/llm/embeddings/space/word-embeddings.png" />
@@ -511,11 +501,22 @@ Links:
 <!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
 
+####
 Today's LLMs are built on the *Transformer* architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
 
+### The example's embeddings
+<img src="images/llm/embeddings/embedding-matrix.png" />
+
+####
+Remember, each of these lists of 12288 numbers, the *weights*, represents the *core meaning* of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.
+
+Those weights are constructed during the LLM's training which we'll cover later. For now just accept that those 12288 weigths do in fact characterize all aspects of a single token.
+
 ### Putting the example through the LLM
-The **context** is the input given to the LLM - here, 10 tokens<br>
-The **context window** is the longest input possible, typically 200,000-1,000,000 tokens<br>
+The **context** is the input given to the LLM - here, 10 tokens
+
+The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
+
 The LLM does **inference** by running the embeddings through a giant **neural network**
 <br>
 

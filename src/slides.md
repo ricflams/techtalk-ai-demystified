@@ -588,7 +588,7 @@ The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the mos
 
 Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.
 
-It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.
+It is the cornerstone of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized **foundation models**.
 
 Links:
 - [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
@@ -598,6 +598,8 @@ Links:
 <img src="images/llm/what-we-want.png">
 
 ####
+Let's briefly see what actually happens inside the Transformer. I don't expect you to really grasp the next slides and the math. The primary reason for walking through the Transformer is to convey a gist of what's going on inside and show that it's really all just math (a *lot of* math), not web-browsing or dictionary-lookups.
+
 Links:
 - [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M) - 3Blue1Brown (27:14)
 

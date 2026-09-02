@@ -185,7 +185,7 @@ Links:
 # The LLM
 <!-- anchor llm -->
 ####
-The LLM is the most fundamental piece and even though it's quite technical, it's actually the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
+The LLM is the most fundamental piece and even though it's quite technical, it's the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
 
 ---
 <img src="images/intro/journey/enter-rabbithole.png">
@@ -210,7 +210,7 @@ I'm asking Claude: "Please tell me: what is an LLM?"
 ####
 The LLM can't understand words. It only works on numbers.
 
-Everybody has heard of *tokens*, but the numbers that the LLM works on are not actually those tokens. Instead it works on something very interesting called *embeddings*.
+Everybody has heard of *tokens*, but the numbers that the LLM works on are not those tokens. Instead it works on something very interesting called *embeddings*.
 
 It's important to understand both, not least embeddings, so let's cover them first of all.
 
@@ -235,6 +235,10 @@ First let's focus on tokens.
 <img src="images/llm/tokens/vocabulary-full.png">
 
 ####
+Every AI model has its own fixed **vocabulary** of tokens, usually in the range of 50-200 thousand individual tokens.
+
+Those tokens are not hand-picked but arrived at by analysis of vast amounts of text, so there are many weirdly looking tokens that it just makes good statistical sense to have. The primary reason for having tokens at all is that working on bigger chunks of text, instead of single letters, is more economical. It’s simply *cheaper to process* the word “hello” as one chunk instead of the five individual letters.
+
 Links:
 - [ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
 - [ChatGPT’s vocabulary: The words that ChatGPT knows and how they were chosen](https://emaggiori.com/chatgpt-vocabulary/)

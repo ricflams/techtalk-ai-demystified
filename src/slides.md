@@ -545,7 +545,7 @@ Two things to note here:
 
 Why only `"An"`? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out what *probability* any of the tokens in the vocabulary has of being the desired next token.
 
-That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is, strictly speaking, outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `"An"` in this case.
+That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is, strictly speaking, outside the LLM. Let's include it here to convey that the outcome is eventually a token, namely `"An"` in this case.
 
 ####
 Links:
@@ -766,7 +766,7 @@ Consider what the Transformer does. In attention, every embedding *absorbs* the 
 
 And that's why the surprising aspect of being able to "do math" on language matters. Without that ability, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
 
-When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process, only influencing. If you say **"You MUST"**, then what you're really adding are just *two single tokens*, and while they of course do influence the full context and all the LLM-generated tokens, they're still just that: an influence, not a guarantee of the outcome.
+When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process, only influencing. If you say **"You MUST"**, then what you're really adding is just *two single tokens*, and while they of course do influence the full context and all the LLM-generated tokens, they're still just that: an influence, not a guarantee of the outcome.
 
 ## Training
 <!-- anchor llm-training -->

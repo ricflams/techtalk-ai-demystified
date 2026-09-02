@@ -656,9 +656,9 @@ Links:
 <img src="images/llm/attention-96-layers.png">
 
 ####
-Tbis process is repeated over and over again, through billions of additions and multiplications.
+This process is repeated over and over again, through billions of additions and multiplications.
 
-GPT 3 had 96 such **attention layers**. Adding more layers doesn’t significantly pay off so Transformers typically have, say, 60-130 layers. I’ll just stick to the 96 layers in this presentation because it’s a reasonable number and it’s easier to speak concretely and say “the 96 layers” even though it’s not universally fixed at 96.
+GPT 3 had 96 such **attention layers**. Adding more layers doesn’t significantly pay off so Transformers typically have, say, 60-130 layers. I’ll just stick to saying “96 layers” because it’s easier and shorter to speak concretely.
 
 ### Final numbers: the desired "next meaning"
 <img src="images/llm/final-embedding-all-absorbed.png">

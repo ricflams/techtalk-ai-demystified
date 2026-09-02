@@ -122,7 +122,14 @@ img:not(.logo) {
   height: auto;
   display: block;
   margin: 1.5rem auto;
-  border-radius: 4px;
+  /* A dark hairline so an image reads as an image and not as page content --
+     screenshots on a white background otherwise dissolve into the page. Dark
+     rather than the usual #d0d7de chrome grey because the deck mixes light and
+     dark images: on the ~60 dark ones the border simply disappears into the
+     image, while a light border would be the one doing nothing on the ~127
+     light ones, which are the case that actually needs bounding. */
+  border: 1px solid #57606a;
+  border-radius: 6px;
 }
 /* Contents, sitting just under the title slide. Chapters (h1) go on their own
    lines with no bullets; the sections (h2) inside each run together on one
@@ -699,7 +706,7 @@ The LLM does <strong>inference</strong> by running the embeddings through a gian
 <h4 id="_68"></h4>
 <p>The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the most consequential piece of computer science research published in the 21st century.</p>
 <p>Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.</p>
-<p>It is the Genesis block of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized foundation models.</p>
+<p>It is the cornerstone of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized <strong>foundation models</strong>.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf">Attention Is All You Need</a></li>
@@ -708,6 +715,7 @@ The LLM does <strong>inference</strong> by running the embeddings through a gian
 <h3 id="the-transformer-can-figure-out-the-next-token"><a class="headerlink" href="#the-transformer-can-figure-out-the-next-token" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The Transformer can figure out the next token</h3>
 <p><img src="images/llm/what-we-want.png"></p>
 <h4 id="_69"></h4>
+<p>Let's briefly see what actually happens inside the Transformer. I don't expect you to really grasp the next slides and the math. The primary reason for walking through the Transformer is to convey a gist of what's going on inside and show that it's really all just math (a <em>lot of</em> math), not web-browsing or dictionary-lookups.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/wjZofJX0v4M">Transformers, the tech behind LLMs | Deep Learning Chapter 5</a> - 3Blue1Brown (27:14)</li>

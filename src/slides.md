@@ -151,7 +151,7 @@ Links:
 ####
 About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then do feel free to raise your hand and ask questions.
 
-Afterwards go revisit the slides at your own pace. They are on github in a nice, readable format, with lots of links to related materials.
+Afterwards go revisit the slides at your own pace. They are on GitHub in a nice, readable format, with lots of links to related materials. (In fact, that readable format is what you're reading *right now*)
 
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
@@ -178,9 +178,9 @@ This presentation focuses on AI that generates text, like Claude, ChatGPT, Gemin
 So AI here means **generative text AI**. Not AI for generating images using stable diffusion, not AI for self-driving cars, not AI for folding proteins.
 
 Links:
-- [Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)](https://youtu.be/aBUniZHgCnE) - Alliance for Responsible Citizenship (14:34)
 - [AlphaFold - The Most Useful Thing AI Has Ever Done](https://youtu.be/P_fHJIYENdI) - Veritasium (24:51)
 - [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk) - Google DeepMind (47:08)
+- [Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)](https://youtu.be/aBUniZHgCnE) - Alliance for Responsible Citizenship (14:34)
 
 # The LLM
 <!-- anchor llm -->
@@ -225,7 +225,7 @@ First let's focus on tokens.
 <img src="images/llm/overview-tokens.png">
 
 ### A token is
-- A token is practically **a word**, like "hello"
+- A token is practically **a word**, like `"hello"`
 
 - It is the **chunk of text** the LLM works on
 
@@ -243,7 +243,7 @@ Links:
 <img src="images/llm/tokens/hello.png">
 
 ####
-An online *tokenizer* shows how "hello" is one single token.
+An online *tokenizer* shows how `"hello"` is one single token.
 
 Links:
 - [Tiktokenizer](https://tiktokenizer.vercel.app/)
@@ -253,15 +253,15 @@ Links:
 <img src="images/llm/tokens/hello-world.png">
 
 ####
-"hello world" is two tokens.
+`"hello world"` is two tokens.
 
-Yes, that second token really is *(space)* followed by "world". Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending a token on *(space)*.
+Yes, that second token really is *(space)* followed by `"world"`. Turns out it's more efficient to have variations of tokens with or without space or punctuation than spending a token on *(space)*.
 
 ### "hello world from ..."
 <img src="images/llm/tokens/hello-world-from-richard.png">
 
 ####
-The first four words are common and each have their own token, but unsurprisingly "Flamsholt" is not common enough to be an individual token so it's made up of 3 tokens.
+The first four words are common and each have their own token, but unsurprisingly `"Flamsholt"` is not common enough to be an individual token so it's made up of 3 tokens.
 
 ### A Danish elevator "in motion"
 <img src="images/llm/tokens/elevator-sign.jpg">
@@ -273,7 +273,7 @@ In Danish, "I FART" means "In motion". Tourists are amused.
 <img src="images/llm/tokens/elevator-i-fart.png">
 
 ####
-As you can see, the four letters "fart" are always the same token. The tokens are not aware of languages at all.
+As you can see, the four letters `"fart"` are always the same token. The tokens are not aware of languages at all.
 
 ### English words are most economical
 <img src="images/llm/tokens/five-sentences.png">
@@ -291,9 +291,9 @@ Notice how the English sentence is longer than the Danish sentence below it, but
 ####
 This is what the example conversation looks like when tokenized.
 
-Notice how markdown for bold, the double-star `**`, has its own token.
+Notice how markdown for bold, the double-star `"**"`, has its own token.
 
-And the three-character sequence `**,` is also common enough to have its own token.
+And the three-character sequence `"**,"` is also common enough to have its own token.
 
 ### Tokens recap
 <div class="cols">
@@ -398,7 +398,7 @@ Links:
 ####
 One way to think about an embedding is as a "direction", an "arrow", in a hyper-dimensional space of every conceivable and inconceivable concept, aka **latent space**.
 
-Because that is, in fact, what it is. A "direction".
+Because that is, in fact, what an embedding is: a "direction".
 
 ### Similar "meanings" have similar "directions"
 <img src="images/llm/embeddings/space/similarity.jpg" />
@@ -483,9 +483,25 @@ The math works so well that if you add up the directions for "Sushi plus Germany
 ####
 What a surprise: with *the right modeling*, we can actually *do math on language*.
 
-Yes, it does feel crazy that by characterizing anything using the "right" 12288 numbers we can end up with "concepts" we can manipulate mathematically.
+####
+That's certainly a discovery that has deeply shaken classical generative linguistics, pioneered by Noam Chomsky. For decades, Chomskyan linguistics has argued that language cannot be learned purely through statistical approximation from exposure to text. The overwhelming opinion now is that yeah, apparently *language can be learned* that way. The proof is in the pudding, so to speak.
 
-It may sound magical, and in a way it is. And for now, just accept it as a fact that we can construct these embeddings so the math works out. You'll understand in a bit.
+Links:
+- [To Understand LLMs, Forget Chomsky](https://medium.com/@acornapocalypse/to-understand-llms-forget-chomsky-b5e015738c9d)
+- ["This CRAZY Man at MIT called Chomsky"](https://youtu.be/aAvtBdtyEOg) - How to AI (2:30)
+- [Chomsky was wrong.They taught me a lie.](https://youtu.be/w9ahdAH5OOA) - languagejones (24:42)
+
+### The LLM is all about "doing math on embeddings"
+<img src="images/llm/overview-embeddings.png" />
+
+####
+The implied math in the examples of gender-directions and Bratwurst is a hint at what kind of machine we're going to need to understand and process the input embeddings.
+
+Think about what it means that "man" to "woman" is *the same direction* as "uncle" to "aunt". The direction *emerges* from having seen thousands of such pairs in texts, and it isn't tied to any one of them: whatever the model has learned about "man" and "woman" applies equally well to "uncle" and "aunt", and the other way around.
+
+It turns out the machine we're about to look at in principle really only does one thing: take embeddings and *nudge them* - add a bit of this direction, a bit of that one - until they point at the answer. That's the whole trick, in a nutshell. Adding directions, turning them a bit up and down, over and over and over again.
+
+That machine is called the *Transformer*, and we'll cover that next. First, let's recap this section on embeddings.
 
 ### Embeddings recap
 - Embeddings are "meanings" and that meaning can be *transformed with math*
@@ -499,39 +515,27 @@ For instance, find a *synonym* by simply finding the closest embeddings to a wor
 Links:
 - [What Are Word Embeddings?](https://youtu.be/hVM8qGRTaOA) - Under The Hood (19:32)
 
-### The LLM is all about "doing math on embeddings"
-<img src="images/llm/overview-embeddings.png" />
-
-####
-Why did we spend all that time on gender-directions and Bratwurst? Because it tells us what kind of machine we're going to need to understand and process these embeddings, these small "bits of meaning" that our input consists of.
-
-Think about what it means that "man" to "woman" is *the same direction* as "uncle" to "aunt". The direction *emerges* from having seen thousands of such pairs in texts, and it isn't tied to any one of them: whatever the model has learned about "man" and "woman" applies equally well to "uncle" and "aunt", and the other way around.
-
-It turns out the machine we're about to look at in principle really only does one thing: take embeddings and *nudge them* - add a bit of this direction, a bit of that one - until they point at the answer. That's the whole trick, in a nutshell. Adding directions, turning them a bit up and down, over and over and over again.
-
-That machine is called the **Transformer**.
-
 ## The Transformer
 <!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
 
 ####
-Today's LLMs are built on the **Transformer** architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM aka Transformer works.
+Today's LLMs are built on an architecture called the *Transformer*. The terms are used almost interchangeably.
+
+It's time to concretely dive into just how the LLM aka Transformer works.
 
 ### The example's embeddings
 <img src="images/llm/embeddings/embedding-matrix.png" />
 
 ####
-Remember, each of these lists of 12288 numbers, the *weights*, represents the *core meaning* of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on.
-
-Those weights are constructed during the LLM's training which we'll cover later. For now just accept that those 12288 weigths do in fact characterize all aspects of a single token.
+Here's our example again, with the corresponding embedding for each token. Remember, each of these lists of 12288 numbers, the *weights*, represents the *core meaning* of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on. Those weights are constructed during the LLM's training which we'll cover later.
 
 ### Putting the example through the LLM
-The **context** is the input given to the LLM - here, 10 tokens
+The **context** is the input given to the LLM - here, the embeddings of *10 tokens*
 
-The **context window** is the longest input possible, typically 200,000-1,000,000 tokens
+The **context window** is the longest input possible, typically *200,000-1,000,000 tokens*
 
-The LLM does **inference** by running the embeddings through a giant **neural network**
+The LLM generates the next token, called **inference**, by running the embeddings through a giant **neural network**
 <br>
 
 <img src="images/llm/what-is-an-llm-example.png">
@@ -539,7 +543,7 @@ The LLM does **inference** by running the embeddings through a giant **neural ne
 ####
 Two things to note here:
 
-Why only `An`? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out with which *probability* any of the tokens in the vocabulary has for being the next token.
+Why only `"An"`? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out what *probability* any of the tokens in the vocabulary has of being the desired next token.
 
 That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `An` in this case.
 
@@ -613,7 +617,7 @@ Links:
 <img src="images/llm/what-we-want.png">
 
 ####
-Let's briefly see what actually happens inside the Transformer. I don't expect you to really grasp the next slides and the math. The primary reason for walking through the Transformer is to convey a gist of what's going on inside and show that it's really all just math (a *lot of* math), not web-browsing or dictionary-lookups.
+Next, let's see what actually happens inside the Transformer. The next slides are intentionally free of math because the main reason for showing the context's pass through the Transformer is just to convey a gist of what's going on inside and the vast scale of all the math that happens.
 
 Links:
 - [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M) - 3Blue1Brown (27:14)
@@ -625,6 +629,8 @@ Links:
 Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embeddings, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens each in their own way.
 
 For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
+
+This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are.
 
 Links:
 - [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
@@ -664,16 +670,16 @@ Compare the final expected embedding to the embeddings of *all tokens in the voc
 ####
 Then, it's "simply" a matter of finding out what tokens are most similar to the desired meaning.
 
-Is it "dancing?" No.<br>
-Is it "sw developer"? No.<br>
-Is it "stranger"? That one's pretty close.<br>
-Is it "stronger"? Yes, that's the closest known token.
+Is it `"dancing?"` No.<br>
+Is it `"sw developer"`? No.<br>
+Is it `"stranger"`? That one's pretty close.<br>
+Is it `"stronger"`? Yes, that's the closest known token.
 
 ### Choose the final output token
 <img src="images/llm/final-output-token.png">
 
 ####
-The final output token is chosen based on the probability of the closeness to the final vector-values. Here, "stronger".
+The final output token is chosen based on the probability of the closeness to the final vector-values. Here, `"stronger"`.
 
 Links:
 - [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
@@ -752,15 +758,13 @@ Links:
 ####
 Now we can close the loop back to the embeddings section.
 
-Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it isn't: it's the thing this whole architecture rests on.
+Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture rests on.
 
 Consider what the Transformer does. In attention, every embedding *absorbs* the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. "Sushi" plus "Germany" minus "Japan", billions of times.
 
-Only then, right at the end, after all the real work is done, something different happens: one quick lookup for whichever token sits closest to where we landed in the vast embedding-space.
+And that's why the emergent, and surprising, aspect of being able to "do math" on language matters. Without that aspect, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
 
-And that's why the emergent, and surprising, aspect of being able to "do math" on language matters. Without that aspect, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after.
-
-So the fact that "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence all the generative text AI models we have today.
+When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output template. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process - only influencing.
 
 ## Training
 <!-- anchor llm-training -->

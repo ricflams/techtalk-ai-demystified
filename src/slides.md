@@ -539,8 +539,8 @@ Links:
 ####
 A neural network is basically just a giant, organized set of multiplications and additions.
 
-####
 Links:
+- [Neural Networks Explained in 5 minutes](https://youtu.be/jmmW0F0biz0)
 - [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU) - Welch Labs (34:08)
 
 ### Add up, multiply by factors, add up, ...
@@ -2891,11 +2891,11 @@ But "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike 
 
 ### Think "most probable continuation", not "answer"
 - You give the model a **context**, which is practically just text.
-<br>
+
 - The model can do *just one thing*: it has seen so much text that it can *produce next-word-probabilities* for any given context. Meaning, it can *continue the context*.
-<br>
+
 - That means *the context is everything*. It is *the only thing* the model sees. Every word in the context *nudges the model's continuation* in some direction, all based on trained patterns.
-<br>
+
 - So you don't "tell the model what to do": you give it a context so that *what you want to come next* becomes the model's *most likely continuation*.
 
 <br>

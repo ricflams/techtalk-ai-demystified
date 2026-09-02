@@ -674,7 +674,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <h4 id="_61"></h4>
 <p>Two things to note here:</p>
 <p>Why only <code>"An"</code>? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out what <em>probability</em> any of the tokens in the vocabulary has of being the desired next token.</p>
-<p>That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually <em>picks that next token</em> is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely <code>An</code> in this case.</p>
+<p>That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually <em>picks that next token</em> is, strictly speaking, outside the LLM. Let's include it here to convey that the outcome is eventually a token, namely <code>"An"</code> in this case.</p>
 <h4 id="_62"></h4>
 <p>Links:</p>
 <ul>
@@ -697,7 +697,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <p><img src="images/llm/neural-network-paris.webp"></p>
 <h4 id="_65"></h4>
 <p>The thing is that if you adjust those small "weights" appropriately then you can shape the output to actually match an expected outcome. A sufficiently large network could for example after billions of calculations produce a number that represents "Paris" if we feed it numbers that represent the sequence "The capital of France is".</p>
-<p>And that is in fact what the LLM does. But let's start at the beginning.</p>
+<p>And that is in fact what the LLM does.</p>
 <h4 id="_66"></h4>
 <p>Links:</p>
 <ul>
@@ -707,7 +707,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <p><img src="images/llm/find-the-next-token.png"></p>
 <h4 id="_67"></h4>
 <p>Let's focus on this example:</p>
-<p>Find out what should follow "That which does not kill you only makes you ___".</p>
+<p>Find out what should follow <code>"That which does not kill you only makes you ___"</code>.</p>
 <h4 id="_68"></h4>
 <p>Just choosing the statistically most likely next word to follow "you" won't work. We need to look at more context to decide what naturally should follow that "you". Frankly, we probably need to look at all that comes before that "you" to properly decide on what should follow. That's a tough task for longer sentences.</p>
 <h3 id="enter-the-transformer-in-2017"><a class="headerlink" href="#enter-the-transformer-in-2017" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Enter: The Transformer, in 2017</h3>
@@ -741,7 +741,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <h4 id="_72"></h4>
 <p>Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embeddings, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens each in their own way.</p>
 <p>For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of <em>a million times a million</em> calculations.</p>
-<p>This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are.</p>
+<p>This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are. This is where we "Add Sushi to Germany", so to speak.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/eMlx5fFNoYc">Attention in transformers, step-by-step | Deep Learning Chapter 6</a> - 3Blue1Brown (26:09)</li>
@@ -749,7 +749,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <h3 id="then-passed-through-a-neural-network"><a class="headerlink" href="#then-passed-through-a-neural-network" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Then passed through a neural network</h3>
 <p><img src="images/llm/multiplexer-perceptron.png"></p>
 <h4 id="_73"></h4>
-<p>This is where the model's built-in training shapes the meaning of the embeddings.</p>
+<p>Next, the model's built-in training shapes the meaning of the embeddings.</p>
 <h3 id="focus-on-the-strong-signals"><a class="headerlink" href="#focus-on-the-strong-signals" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Focus on the strong signals</h3>
 <p><img src="images/llm/relu.png"></p>
 <h4 id="_74"></h4>
@@ -789,9 +789,9 @@ Is it <code>"stronger"</code>? Yes, that's the closest known token.</p>
 <h3 id="for-a-full-sentence-repeat-until-llm-says-stop"><a class="headerlink" href="#for-a-full-sentence-repeat-until-llm-says-stop" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>For a full sentence: repeat until LLM says stop</h3>
 <p><img src="images/llm/next-token-until-stop.png"></p>
 <h4 id="_79"></h4>
-<p>Keep on adding the produced token to the context and go another round through the LLM, until the LLM emits a special "I'm done"-token.</p>
+<p>Keep on adding the produced token to the context and go another round through the LLM, until the LLM emits a special "end of my turn"-token.</p>
 <p>Let's flesh out the first couple of output-tokens just to be completely clear about what's happening here.</p>
-<p>What the LLM is <em>actually getting</em> is a tad more elaborate than just the question. The context looks more like a real conversation:</p>
+<p>What the LLM is <em>actually getting</em> is a tad more elaborate than just the question. The context looks more like a real conversation. After the user's message, there's actually also an "end of my turn"-token, but I've omitted that here for simplicity.</p>
 <pre><code>user: Please tell me: what is an LLM?
 assistant:
 </code></pre>
@@ -803,11 +803,11 @@ assistant: An
 <pre><code>user: Please tell me: what is an LLM?
 assistant: An L
 </code></pre>
-<p>and fed through the LLM once more, producing <code>"LM"</code>, then <code>","</code>, then <code>" or"</code> etc. Over and over, token by token, until the most likely next token for the LLM to choose is a special token that signifies <em>"end of my turn of a conversation"</em>.</p>
+<p>and fed through the LLM once more, producing <code>"LM"</code>, then <code>","</code>, then <code>" or"</code> etc. Over and over, token by token, until the most likely next token for the LLM to choose is the special "end of my turn"-token.</p>
 <h3 id="85-roundtrips-for-85-tokens"><a class="headerlink" href="#85-roundtrips-for-85-tokens" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>85 roundtrips for 85 tokens</h3>
 <p><img src="images/llm/final-output-full-tokenized.png"></p>
 <h4 id="_80"></h4>
-<p>The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens now also form a part of the context.</p>
+<p>The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens are added one by one to the context.</p>
 <h3 id="tokens-are-really-generated-one-by-one"><a class="headerlink" href="#tokens-are-really-generated-one-by-one" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tokens are really generated one by one</h3>
 <p>That's why output tokens are typically <em>5 x more expensive</em> than input tokens.
 <br></p>
@@ -838,13 +838,16 @@ assistant: An L
 <li>No "if-then-else" code</li>
 </ul>
 </li>
+<li>
+<p>There are <em>no "hard rules"</em> in the Transformer, only <em>influencing</em><br><em>"You MUST"</em> is just two single tokens that can try their best to influence the full context</p>
+</li>
 </ul>
 <h4 id="_82"></h4>
 <p>Now we can close the loop back to the embeddings section.</p>
-<p>Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture rests on.</p>
-<p>Consider what the Transformer does. In attention, every embedding <em>absorbs</em> the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: <em>nudge this embedding a bit that way</em>. "Sushi" plus "Germany" minus "Japan", billions of times.</p>
-<p>And that's why the emergent, and surprising, aspect of being able to "do math" on language matters. Without that aspect, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have <em>generalized</em>, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.</p>
-<p>When you understand this, you also understand why it's practically <em>impossible to steer the LLM absolutely</em>, for instance to have it stick to a certain output template. All the little bits of the context simply pull and tug and influence each other. There are <em>no "hard rules"</em> in that process - only influencing.</p>
+<p>Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture hinges on.</p>
+<p>Consider what the Transformer does. In attention, every embedding <em>absorbs</em> the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: <em>nudge this embedding a bit that way</em>. It's the meanings of "Sushi" plus "Germany" minus "Japan", billions of times.</p>
+<p>And that's why the surprising aspect of being able to "do math" on language matters. Without that ability, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have <em>generalized</em>, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.</p>
+<p>When you understand this, you also understand why it's practically <em>impossible to steer the LLM absolutely</em>, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are <em>no "hard rules"</em> in that process, only influencing. If you say <strong>"You MUST"</strong>, then what you're really adding is just <em>two single tokens</em>, and while they of course do influence the full context and all the LLM-generated tokens, they're still just that: an influence, not a guarantee of the outcome.</p>
 <h2 id="llm-training"><a class="headerlink" href="#llm-training" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Training</h2>
 <h4 id="_83"></h4>
 <p>We've seen how the LLM using pure math can produce "the likely next token".</p>

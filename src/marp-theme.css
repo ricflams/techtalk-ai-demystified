@@ -272,6 +272,12 @@ section:has(h3) li + li {
   margin-top: 0.9em;
 }
 
+/* ...but only between top-level bullets. Nested items keep the tight base
+   spacing from the `li` rule above. */
+section:has(h3) li li + li {
+  margin-top: 0;
+}
+
 /* ── Shared: hide page number on all heading slides ── */
 section:has(h1, h2, h3)::after { display: none; }
 

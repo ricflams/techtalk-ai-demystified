@@ -442,6 +442,11 @@ Not only that, but it's the same direction between the words "nephew" and "niece
 ####
 And the same direction between the words "king" and "queen".
 
+In practice this is the weakest of the examples, because "king" and "queen" have many more meanings than just masculine and feminine royal titles.
+
+Links:
+- [Fair Is Better than Sensational: Man Is to Doctor as Woman Is to Doctor](https://direct.mit.edu/coli/article/46/2/487/93368/Fair-Is-Better-than-Sensational-Man-Is-to-Doctor)
+
 ### There's a "gender direction"
 <img src="images/llm/embeddings/space/gender-father-mother.png" />
 
@@ -497,12 +502,21 @@ Links:
 ### The LLM is all about "doing math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
 
+####
+Why did we spend all that time on gender-directions and Bratwurst? Because it tells us what kind of machine we're going to need to understand and process these embeddings, these small "bits of meaning" that our input consists of.
+
+Think about what it means that "man" to "woman" is *the same direction* as "uncle" to "aunt". The direction *emerges* from having seen thousands of such pairs in texts, and it isn't tied to any one of them: whatever the model has learned about "man" and "woman" applies equally well to "uncle" and "aunt", and the other way around.
+
+It turns out the machine we're about to look at in principle really only does one thing: take embeddings and *nudge them* - add a bit of this direction, a bit of that one - until they point at the answer. That's the whole trick, in a nutshell. Adding directions, turning them a bit up and down, over and over and over again.
+
+That machine is called the **Transformer**.
+
 ## The Transformer
 <!-- anchor llm-transformer -->
 <img src="images/overview/llm.png">
 
 ####
-Today's LLMs are built on the *Transformer* architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM/Transformer works.
+Today's LLMs are built on the **Transformer** architecture - so much so that the terms are used almost interchangeably. It's time to concretely dive into just how the LLM aka Transformer works.
 
 ### The example's embeddings
 <img src="images/llm/embeddings/embedding-matrix.png" />
@@ -540,7 +554,7 @@ Links:
 A neural network is basically just a giant, organized set of multiplications and additions.
 
 Links:
-- [Neural Networks Explained in 5 minutes](https://youtu.be/jmmW0F0biz0)
+- [Neural Networks Explained in 5 minutes](https://youtu.be/jmmW0F0biz0) - IBM Technology (4:31)
 - [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU) - Welch Labs (34:08)
 
 ### Add up, multiply by factors, add up, ...
@@ -576,7 +590,7 @@ Just choosing the statistically most likely next word to follow "you" won't work
 <img src="images/llm/the-transformer.png">
 
 ####
-The invention that made all of this possible, is called *The Transformer*.
+The invention that made all of this possible, is called the **Transformer**.
 
 ### "Attention is all you need"
 <div class="cols">
@@ -589,7 +603,7 @@ The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the mos
 
 Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.
 
-It is the cornerstone of modern AI. Without it, there is no GPT-4, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized **foundation models**.
+It is the cornerstone of modern AI. Without it, there is no ChatGPT, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized **foundation models**.
 
 Links:
 - [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
@@ -725,14 +739,37 @@ Links:
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
+### Transformer recap
+- The Transformer does essentially one thing, billions of times: it *nudges embeddings* by adding up directions and dials them a bit up and down
+
+- It only works because the "directions" that emerged via training *behave generally*<br>For example there is a "feminine" direction, which means that patterns involving "man"/"woman" can generally apply to "uncle"/"aunt" too
+
+- It's still *all just pure math and statistics*
+	- No web-browsing
+	- No dictionaries of facts
+	- No "if-then-else" code
+
+####
+Now we can close the loop back to the embeddings section.
+
+Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it isn't: it's the thing this whole architecture rests on.
+
+Consider what the Transformer does. In attention, every embedding *absorbs* the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. "Sushi" plus "Germany" minus "Japan", billions of times.
+
+Only then, right at the end, after all the real work is done, something different happens: one quick lookup for whichever token sits closest to where we landed in the vast embedding-space.
+
+And that's why the emergent, and surprising, aspect of being able to "do math" on language matters. Without that aspect, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after.
+
+So the fact that "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence all the generative text AI models we have today.
+
 ## Training
 <!-- anchor llm-training -->
 ####
 We've seen how the LLM using pure math can produce "the likely next token".
 
-But how has it learned that? So far, the embeddings are just mysterious numbers pulled from thin air.
+But how has it learned that? So far, the embeddings are just 12288 mysterious numbers pulled from thin air.
 
-Let's start with this question: Are all AI models actually the same?
+Let's explore that by starting with this question: Are all AI models actually the same?
 
 ### Are AI models "really all the same?"
 <img src="images/llm/training/chatgpt-lingo.png">
@@ -813,6 +850,8 @@ And the AI model's many billions of small factors, weights.
 Once the training is completed, the embeddings and weights are frozen, never to be changed again. Not until they are used to kick-start training of the next model.
 
 ### Pre-training is expensive
+<div>
+
 - From scratch for a new model
 	- costs **$200M-$1000M**
 	- takes **4-8 months**
@@ -820,6 +859,7 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 - From an existing model
 	- costs 1-10% of full training
 	- takes weeks or months
+</div>
 
 ### *Pre-trained* models are just autocomplete
 <img src="images/llm/training/pre-training.png">
@@ -1053,8 +1093,13 @@ It's *not* an autonomous self-running James Bond-like entity. Well, except unfor
 ####
 CLI means Command Line Interface, i.e. in a text-based terminal.
 
+Terminal-based agents works surprisingly well: you can adjust the color-theme, resize the window, adjust the font-size by a scroll of the mouse-button, add documents and images into the chat by simple drag-and-drop, etc. It's pretty neat, and not least also the most powerful way to control the AI.
+
 Links:
-- [Google Antigravity](https://antigravity.google/)
+- [Antigravity](https://antigravity.google/) from Google/Gemini
+- [Codex CLI](https://learn.chatgpt.com/docs/codex/cli) from OpenAI/ChatGPT
+- [Claude Code](https://code.claude.com/docs/en/quickstart) from Anthropic/Claude
+- [Claude Code Cheat Sheet](https://cheat-sheets.nth-root.nl/claude-code-cheat-sheet.pdf)
 
 ### Claude Desktop is a dedicated agent-app
 <img src="images/agents/agents/claude.png" />
@@ -1079,6 +1124,8 @@ At least that's how it *usually* is today. It's changing slowly, it seems, and t
 So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
 
 ### My personal AI-journey
+####
+For perspective, here's how my own use of AI has evolved over time.
 
 ### Chat, copy-paste, in-app, now terminal
 <img src="images/agents/evolution.png" />
@@ -1098,11 +1145,10 @@ Since late 2025 I'm now exclusively coding by running the AI in a terminal and h
 ####
 For anything that doesn't involve files I still just chat in the browser.
 
-For this presentation I created a project in claude.ai for all the research. It has over 60 chats and I've prompted about 18,000 words which is about the length of Shakespeare's Macbeth. I'll leave it to the bard to comment on my efforts:
+The AI didn't write this presentation, but I surely sparred a lot with Claude for all the research. My Claude "AI tech talk" project spans 80 chats and I've prompted about 28,000 words which is about the length of Shakespeare's longest play, *Hamlet*. In that spirit, I'll leave it to the bard to comment on my efforts:
 
-*It is a tale<br>
-Told by an idiot, full of sound and fury,<br>
-Signifying nothing.*
+*There is nothing either good or bad,<br>
+but thinking makes it so.*
 
 
 # The AI Service
@@ -2406,6 +2452,7 @@ Here's a round of advice on how to speak, hold, and keep up with the AI.
 	- Instead, talk about the goal. "I want fluid layout, and the graph is the centerpiece"
 
 - Using *examples* often produces much better output
+	- The LLM *thrives on patterns* and examples are also great for stating your expectations
 
 - In Claude, use `/insight` to see how you're doing
 

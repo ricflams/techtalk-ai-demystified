@@ -545,7 +545,7 @@ Two things to note here:
 
 Why only `"An"`? Why not the full answer? Yeah, hold your horses just a bit longer, because: the LLM only deals with producing one next token. That's all it is concerned about: figuring out what *probability* any of the tokens in the vocabulary has of being the desired next token.
 
-That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is strictly speaking outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `An` in this case.
+That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is, strictly speaking, outside the LLM. Let's include it here to convey that the outcome eventually is a token, namely `"An"` in this case.
 
 ####
 Links:
@@ -573,7 +573,7 @@ You feed the network some numbers, the numbers go through a number of steps wher
 ####
 The thing is that if you adjust those small "weights" appropriately then you can shape the output to actually match an expected outcome. A sufficiently large network could for example after billions of calculations produce a number that represents "Paris" if we feed it numbers that represent the sequence "The capital of France is".
 
-And that is in fact what the LLM does. But let's start at the beginning.
+And that is in fact what the LLM does.
 
 ####
 Links:
@@ -585,7 +585,7 @@ Links:
 ####
 Let's focus on this example:
 
-Find out what should follow "That which does not kill you only makes you ___".
+Find out what should follow `"That which does not kill you only makes you ___"`.
 
 ####
 Just choosing the statistically most likely next word to follow "you" won't work. We need to look at more context to decide what naturally should follow that "you". Frankly, we probably need to look at all that comes before that "you" to properly decide on what should follow. That's a tough task for longer sentences.
@@ -630,7 +630,7 @@ Every embedding gets influenced by every embedding token before it. They "absorb
 
 For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
 
-This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are.
+This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are. This is where we "Add Sushi to Germany", so to speak.
 
 Links:
 - [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
@@ -639,7 +639,7 @@ Links:
 <img src="images/llm/multiplexer-perceptron.png">
 
 ####
-This is where the model's built-in training shapes the meaning of the embeddings.
+Next, the model's built-in training shapes the meaning of the embeddings.
 
 ### Focus on the strong signals
 <img src="images/llm/relu.png">
@@ -694,11 +694,11 @@ Links:
 <img src="images/llm/next-token-until-stop.png">
 
 ####
-Keep on adding the produced token to the context and go another round through the LLM, until the LLM emits a special "I'm done"-token.
+Keep on adding the produced token to the context and go another round through the LLM, until the LLM emits a special "end of my turn"-token.
 
 Let's flesh out the first couple of output-tokens just to be completely clear about what's happening here.
 
-What the LLM is *actually getting* is a tad more elaborate than just the question. The context looks more like a real conversation:
+What the LLM is *actually getting* is a tad more elaborate than just the question. The context looks more like a real conversation. After the user's message, there's actually also an "end of my turn"-token, but I've omitted that here for simplicity.
 
 ```
 user: Please tell me: what is an LLM?
@@ -719,13 +719,13 @@ user: Please tell me: what is an LLM?
 assistant: An L
 ```
 
-and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` etc. Over and over, token by token, until the most likely next token for the LLM to choose is a special token that signifies *"end of my turn of a conversation"*.
+and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` etc. Over and over, token by token, until the most likely next token for the LLM to choose is the special "end of my turn"-token.
 
 ### 85 roundtrips for 85 tokens
 <img src="images/llm/final-output-full-tokenized.png">
 
 ####
-The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens now also form a part of the context.
+The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens are added one by one to the context.
 
 ### Tokens are really generated one by one
 That's why output tokens are typically *5 x more expensive* than input tokens.
@@ -755,16 +755,18 @@ Links:
 	- No dictionaries of facts
 	- No "if-then-else" code
 
+- There are *no "hard rules"* in the Transformer, only *influencing*<br>*"You MUST"* is just two single tokens that can try their best to influence the full context
+
 ####
 Now we can close the loop back to the embeddings section.
 
-Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture rests on.
+Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture hinges on.
 
-Consider what the Transformer does. In attention, every embedding *absorbs* the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. "Sushi" plus "Germany" minus "Japan", billions of times.
+Consider what the Transformer does. In attention, every embedding *absorbs* the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. It's the meanings of "Sushi" plus "Germany" minus "Japan", billions of times.
 
-And that's why the emergent, and surprising, aspect of being able to "do math" on language matters. Without that aspect, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
+And that's why the surprising aspect of being able to "do math" on language matters. Without that ability, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
 
-When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output template. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process - only influencing.
+When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process, only influencing. If you say **"You MUST"**, then what you're really adding are just *two single tokens*, and while they of course do influence the full context and all the LLM-generated tokens, they're still just that: an influence, not a guarantee of the outcome.
 
 ## Training
 <!-- anchor llm-training -->

@@ -26,7 +26,7 @@ This presentation will explain and **demystify AI**. It's for everybody who uses
 There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.
 
 Links:
-- [View as slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
+- [View as slideshow (without speaker notes, like here)](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
 - [Source on GitHub](https://github.com/ricflams/techtalk-ai-demystified/)
 
 ---
@@ -313,8 +313,6 @@ And the three-character sequence `"**,"` is also common enough to have its own t
 </div>
 
 ####
-For English, one token generally corresponds to about 4 characters.
-
 Links:
 - [Most devs don't understand how LLM tokens work](https://youtu.be/nKSk_TiR8YA) - Matt Pocock (10:57)
 
@@ -363,7 +361,7 @@ The number of nuances, characteristics, we decide to use is called the embedding
 
 Each number is called the **weight** of that dimension. A kitten is very playful (weight=9) and not very wet (weight=1).
 
-An embeddings can express any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
+An embedding can express any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
 </div>
 </div>
 
@@ -658,7 +656,9 @@ Links:
 <img src="images/llm/attention-96-layers.png">
 
 ####
-Through billions of additions and multiplications.
+Tbis process is repeated over and over again, through billions of additions and multiplications.
+
+GPT 3 had 96 such **attention layers**. Adding more layers doesn’t significantly pay off so Transformers typically have, say, 60-130 layers. I’ll just stick to the 96 layers in this presentation because it’s a reasonable number and it’s easier to speak concretely and say “the 96 layers” even though it’s not universally fixed at 96.
 
 ### Final numbers: the desired "next meaning"
 <img src="images/llm/final-embedding-all-absorbed.png">

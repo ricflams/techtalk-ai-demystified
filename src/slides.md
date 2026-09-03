@@ -398,6 +398,7 @@ Links:
 - [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
 - [Emotion concepts and their function in a large language model](https://www.anthropic.com/research/emotion-concepts-function)
 - [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
+- [The Dark Matter of AI [Mechanistic Interpretability]](https://youtu.be/UGO_Ehywuxc) - Welch Labs (24:09)
 
 ### Imagine an embedding as a "direction" in a hyper-dimensional space of "everything that exists"
 <img src="images/llm/embeddings/space/word-embeddings.png" />

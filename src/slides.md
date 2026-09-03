@@ -49,6 +49,8 @@ There's this feeling that "it can do anything if I only hold it right". That can
 
 Links:
 - [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0) - Theo - t3․gg (32:45)
+- [I almost quit YouTube....](https://youtu.be/dbMXi9q78Tk) - NetworkChuck (23:08)
+- [It was more fun before AI](https://youtu.be/SaHHgzoXceU) - Maximilian Schwarzmüller (12:20)
 
 ---
 ![bg](images/intro/lightbulb.jpeg)
@@ -115,6 +117,9 @@ On the contrary: everybody is interested in AI and everybody is using AI.
 I should most certainly strive to give insights that are truly useful and I decided it would be the fundamentals: the LLM and AI-service itself, the core understanding that is still relevant in a year.
 
 Just those parts. Just keep it simple, I thought.
+
+Links:
+- [9 AI Concepts Explained in 7 minutes: AI Agents, RAGs, Tokenization, RLHF, Diffusion, LoRA...](https://youtu.be/nVnxG10D5W0) - ByteByteAI (6:36)
 
 ---
 ![bg](images/intro/journey/rabbit-holes.png)
@@ -561,6 +566,8 @@ A neural network is basically just a giant, organized set of multiplications and
 
 Links:
 - [Neural Networks Explained in 5 minutes](https://youtu.be/jmmW0F0biz0) - IBM Technology (4:31)
+- [The Misconception that Almost Stopped AI [How Models Learn Part 1]](https://youtu.be/NrO20Jb-hy0) - Welch Labs (22:56)
+- [The F=ma of Artificial Intelligence [Backpropagation, How Models Learn Part 2]](https://youtu.be/VkHfRKewkWw) - Welch Labs (30:31)
 - [Why Deep Learning Works Unreasonably Well [How Models Learn Part 3]](https://youtu.be/qx7hirqgfuU) - Welch Labs (34:08)
 
 ### Add up, multiply by factors, add up, ...
@@ -687,6 +694,7 @@ The final output token is chosen based on the probability of the closeness to th
 
 Links:
 - [Neural networks, all chapters from 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+- [Why You Cannot See a Watermark in AI Text](https://youtu.be/Cmi-1QSaptA) - No Hype AI (17:52)
 
 
 ### Back to "Please tell me: what is an LLM?"
@@ -759,7 +767,7 @@ Links:
 	- No dictionaries of facts
 	- No "if-then-else" code
 
-- There are *no "hard rules"* in the Transformer, only *influencing*<br>*"You MUST"* is just two single tokens that can try their best to influence the full context
+- There are *no "hard rules"* in the Transformer, only *influencing*<br>*"You MUST"* is still just two single tokens, doing their best to influence the full context
 
 ####
 Now we can close the loop back to the embeddings section.
@@ -770,7 +778,12 @@ Consider what the Transformer does. In attention, every embedding *absorbs* the 
 
 And that's why the surprising aspect of being able to "do math" on language matters. Without that ability, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
 
-When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process, only influencing. If you say **"You MUST"**, then what you're really adding is just *two single tokens*, and while they of course do influence the full context and all the LLM-generated tokens, they're still just that: an influence, not a guarantee of the outcome.
+When you understand this, you also understand why it's practically *impossible to steer the LLM absolutely*, for instance to have it stick to a certain output format. All the little bits of the context simply pull and tug and influence each other. There are *no "hard rules"* in that process, only influencing. If you say **"You MUST"**, then what you're adding is still just *two single tokens*, and while they of course do influence the full context and all the LLM-generated output, they can only do just that: *influence* the outcome, not *guarantee* it.
+
+Links:
+- [Visualizing transformers and attention | Talk for TNG Big Tech Day '24](https://youtu.be/KJtZARuO3JY) - Grant Sanderson (57:44)
+- [How DeepSeek Rewrote the Transformer [MLA]](https://youtu.be/0VLAoVGf_74) - Welch Labs (18:09)
+- [The most complex model we actually understand](https://youtu.be/D8GOeCFFby4) - Welch Labs (35:28)
 
 ## Training
 <!-- anchor llm-training -->
@@ -1073,6 +1086,9 @@ The agent is your buddy. It holds your information, your files, your custom inst
 
 The AI service itself knows nothing about you, except that you're allowed to login and use it.
 
+Links:
+- [I need to rant about local models](https://youtu.be/wnfxSxP8pGs) - Theo - t3․gg (28:11)
+
 ### The parts and their many confusing names
 <img src="images/agents/parts/roles.png" />
 
@@ -1110,6 +1126,7 @@ Links:
 - [Codex CLI](https://learn.chatgpt.com/docs/codex/cli) from OpenAI/ChatGPT
 - [Claude Code](https://code.claude.com/docs/en/quickstart) from Anthropic/Claude
 - [Claude Code Cheat Sheet](https://cheat-sheets.nth-root.nl/claude-code-cheat-sheet.pdf)
+- [My Biggest AI Unlock — It Does Everything](https://youtu.be/FcWi9j0FiYk) - Matt Maher (11:13)
 
 ### Claude Desktop is a dedicated agent-app
 <img src="images/agents/agents/claude.png" />
@@ -1294,7 +1311,6 @@ The similarity-match is also called **cosine similarity**. And you will want to 
 The dimension of a multimodal embedding is typically smaller than for text.
 
 Links:
-- [Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
 - [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw) - Google Cloud Tech (40:59)
 - [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw) - IBM Technology (9:48)
 
@@ -1322,11 +1338,18 @@ The technology is rather new and there are some restrictions on what you can cal
 ####
 Google's offering is called "Gemini Embedding 2"
 
+Links:
+- [Gemini Embedding 2: Our first natively multimodal embedding model](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/)
+- [Building with Gemini Embedding 2: Our first natively multimodal embedding model](https://youtu.be/_en7QoZ_utc) - Google for Developers (11:14)
+
 ---
 <img src="images/service/files/multimodal/amazon-nova-2.jpg">
 
 ####
 Amazon's is called "Amazon Nova 2"
+
+Links:
+- [Introducing Amazon Nova Multimodal Embeddings | Amazon Web Services](https://youtu.be/Lji5YzwAb_c) - Amazon Web Services (2:25)
 
 ### PDFs and other documents
 <img src="images/service/overview/documents.png">
@@ -2188,6 +2211,10 @@ Matt Pocock's skills are also available in ChatGPT.
 
 - Like text-expansion: write `/bro` and bro's text is written out
 
+####
+Links:
+- [Building Great Agent Skills: The Missing Manual](https://youtu.be/UNzCG3lw6O0) - AI Engineer (20:43)
+
 ### #8/11: MCP servers
 ####
 We already covered them in detail. But there's one important thing to dig into: what hints the context includes about each tool so the LLM can decide to use it or not.
@@ -2505,6 +2532,10 @@ A monthly subscription of $20 is a cheap investment
 ####
 Links:
 - [Claude Academy](https://claude-academy.com/)
+- [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0) - Theo - t3․gg (32:45)
+- [What Skills Do Developers NEED To Have In An AI Future?](https://youtu.be/lJiDBRh96oU) - Modern Software Engineering (24:29)
+- [Going Slower Feels Safer, But Your Domain Expertise Won't Save You Anymore. Here's What Will.](https://youtu.be/q6p-_W6_VoM) - AI News & Strategy Daily | Nate B Jones (14:02)
+- [The Truth About Developer Productivity in the AI Age (IT'S A TRAP)](https://youtu.be/kDBeFOscZpc) - Modern Software Engineering (16:14)
 
 # A Quick Round of Demystifications
 <!-- anchor demystifications -->
@@ -2702,7 +2733,9 @@ Links:
 - [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
 - [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://youtu.be/p7t1Q_p2gZs) - Alex Kantrowitz (54:54)
 - [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw) - The Royal Institution (47:15)
-
+- [The future of intelligence | Demis Hassabis (Co-founder and CEO of DeepMind)](https://youtu.be/PqVbypvxDto) - Google DeepMind (56:07)
+- [What Creates Consciousness? | World Science Festival](https://youtu.be/06-iq-0yJNM) - World Science Festival (45:44)
+- [Superintelligence Will Drive Us to Extinction and We Cannot Stop It 🤖 | 🎙️ Roman Yampolskiy](https://youtu.be/zYs9PVrBOUg) - Jon Hernandez AI (1:30:25)
 
 # That's all
 <!-- anchor thats-all -->

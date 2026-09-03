@@ -26,7 +26,7 @@ This presentation will explain and **demystify AI**. It's for everybody who uses
 There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.
 
 Links:
-- [View as slideshow (without speaker notes, like here)](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
+- [View as slideshow (without these speaker notes)](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
 - [Source on GitHub](https://github.com/ricflams/techtalk-ai-demystified/)
 
 ---

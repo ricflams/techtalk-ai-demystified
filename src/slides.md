@@ -145,8 +145,7 @@ What can I possibly say that hasn't already been said in the 10,000,000 existing
 
 It's for the same reason that you ask an AI about any topic instead of reading some of the 10,000,000 webpages about that topic: it's just easier to get a refined presentation that tells the story in an insightful way, focusing on the good bits from those 10,000,000 videos. Also, you can ask any questions you have.
 
-####
-But if I had to recommend just one single video about "how AI works", then it would be this short one. Those 8 minutes are very well spent.
+However, if I had to recommend *just one single video* about "how AI works", then it would be this short one. Those 8 minutes are very well spent.
 
 Links:
 - [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs) - 3Blue1Brown (7:58)
@@ -168,7 +167,6 @@ Links:
 ####
 I've really strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so it will be information-packed and move fast.
 
-####
 Links:
 - [Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains](https://youtu.be/0xS68sl2D70) - Perimeter Institute for Theoretical Physics (1:15:10)
 
@@ -382,7 +380,6 @@ ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding
 ####
 In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept, for example the token "amplification" or "gazed". It may sound a bit crazy that it could even be possible to somehow characterize anything with such shared aspects but yes, that's what's happening.
 
-####
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck) - ML & AI: Foundations & Methods (32:41)
 
@@ -491,7 +488,6 @@ The math works so well that if you add up the directions for "Sushi plus Germany
 ####
 What a surprise: with *the right modeling*, we can actually *do math on language*.
 
-####
 That's certainly a discovery that has deeply shaken classical generative linguistics, pioneered by Noam Chomsky. For decades, Chomskyan linguistics has argued that language cannot be learned purely through statistical approximation from exposure to text. The overwhelming opinion now is that yeah, apparently *language can be learned* that way. The proof is in the pudding, so to speak.
 
 Links:
@@ -555,7 +551,6 @@ Why only `"An"`? Why not the full answer? Yeah, hold your horses just a bit long
 
 That's the second thing to note: the LLM itself just produces this set of probabilities. The mechanism that actually *picks that next token* is, strictly speaking, outside the LLM. Let's include it here to convey that the outcome is eventually a token, namely `"An"` in this case.
 
-####
 Links:
 - [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs) - 3Blue1Brown (7:58)
 
@@ -585,7 +580,6 @@ The thing is that if you adjust those small "weights" appropriately then you can
 
 And that is in fact what the LLM does.
 
-####
 Links:
 - [But what is a neural network? | Deep learning chapter 1](https://youtu.be/aircAruvnKk) - 3Blue1Brown (18:40)
 
@@ -597,8 +591,7 @@ Let's focus on this example:
 
 Find out what should follow `"That which does not kill you only makes you ___"`.
 
-####
-Just choosing the statistically most likely next word to follow "you" won't work. We need to look at more context to decide what naturally should follow that "you". Frankly, we probably need to look at all that comes before that "you" to properly decide on what should follow. That's a tough task for longer sentences.
+Just choosing the statistically most likely next word to follow `"you"` won't work. We need to look at more context to decide what naturally should follow that `"you"`. Frankly, we probably need to look at *all that comes before* that `"you"` to properly decide on what should follow. That's a tough task for longer sentences.
 
 ### Enter: The Transformer, in 2017
 <img src="images/llm/the-transformer.png">
@@ -946,7 +939,6 @@ Each major frontier AI lab spends approximately $1 billion per year on human-gen
 ####
 In order to use AI for performing this Reinforcement Learning, Anthropic has written down their intentions for how Claude should behave in what they call *Claude's Constitution*. It can surely be read by humans, but its primary target is actually to be read by AIs themselves to help decide whether answer A or B is most in line with Anthropic's values.
 
-####
 Links:
 - [Claude’s Constitution - Anthropic](https://www.anthropic.com/constitution)
 - [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
@@ -1356,9 +1348,6 @@ Links:
 <img src="images/service/overview/documents.png">
 
 ####
-Now let's look at documents.
-
-####
 Documents don't really introduce any new functionality: they contain text and images and those parts are either extracted, or the document is rendered in full and then image-recognized.
 
 PDFs are handled really well. The AI services get better and better at handling documents, like eg zip-files or Word- or Excel-files.
@@ -1670,7 +1659,6 @@ So tools can take up a fair chunk of the context.
 ####
 The introduction of this "tool loop" led to the name, "the agentic loop": an agent using tools until a goal is reached.
 
-####
 Links:
 - [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
 
@@ -1885,9 +1873,8 @@ This page is produced by my demo code, so an MCP server can style it just as it 
 <img src="images/service/mcp/siteimprove/chat.png">
 
 ####
-In order not to reveal actual page views I blacked out the reported numbers.
+Note that in order not to reveal actual page views I blacked out the reported numbers.
 
-####
 When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool `mcp__claude_ai_Siteimprove_MCP__analytics_content_most_popular_pages` would likely be useful, and asks for it to be called.
 
 ### All the included Siteimprove MCP tools
@@ -1985,9 +1972,8 @@ The *agent system prompt* holds instructions that the agent (chatgpt.com, VS Cod
 
 It brings information about the agent's name, purpose, behavior, etc.
 
-Generally, agents don't make it visible in their UI
+Generally, agents don't give you any way to see their system prompt.
 
-####
 Links:
 - [How Claude Code Builds a System Prompt](https://www.dbreunig.com/2026/04/04/how-claude-code-builds-a-system-prompt.html)
 
@@ -2361,7 +2347,6 @@ Four parts to mention:
 - The output usually contains **statistics** for number of tokens consumed and produced, among other things.
 - And finally, **the KV-cache**. The AI Service and LLM know nothing about you, but they do *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
 
-####
 Links:
 - [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
 
@@ -2497,8 +2482,7 @@ Here's a round of advice on how to speak, hold, and keep up with the AI.
 ####
 Links:
 - [The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting](https://youtu.be/GTEz5WWbfiw) - AI News & Strategy Daily | Nate B Jones (13:20)
-
-####
+- [Anthropic Just Revealed 7 New Rules for Prompting Claude 5 Models](https://youtu.be/HDmBwU5uvEE) - Ben AI (13:15)
 
 ### How to hold the AI
 - Modern agentic workflows, controlled by the AI models via tools, often work so well that you frankly *don't really have to* instruct them in a special way.
@@ -2902,9 +2886,8 @@ That's why Mac Mini and Mac Studio are so sought after: their GPUs can use the f
 <img src="images/bonus/cost/nvidia-stock-5y.png"> 
 
 ####
-And why NVidia's stock price has soared.
+And it's why NVidia's stock price has soared.
 
-####
 Links:
 - [The World's Most Important Machine](https://youtu.be/MiUHjLxm3V0) - Veritasium (55:00)
 

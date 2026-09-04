@@ -84,6 +84,34 @@ cp -r demo/tokenspree public/tokenspree
 
 Pushing to `main` does all of this and deploys to GitHub Pages automatically.
 
+## Shrink the images
+
+`src/images` is capped at 1920x1080. Marp puts every slide in one HTML file, so the
+browser fetches all the images up front — oversized ones are pure download weight. The
+1280x720 canvas renders at 1.5x fullscreen on an HD display, so past 1920x1080 the extra
+pixels can't be seen.
+
+```bash
+python scripts/shrink_images.py --dry-run   # report only, writes nothing
+python scripts/shrink_images.py             # rewrite src/images in place
+python scripts/shrink_images.py --zopfli    # + lossless deflate pass, ~20s/file
+```
+
+Run it after adding new screenshots or illustrations. It downscales with one uniform scale
+factor, so aspect ratios never change and anything already inside the box is left alone; it
+aborts if that ever fails to hold. One-time setup: `pip install pillow`.
+
+It also picks a format by content: a PNG with more than 65536 distinct colours (an
+illustration or photo, not a flat-colour screenshot) is re-encoded as lossless WebP instead
+— same pixels, exact alpha, smaller file — and it renames the file and updates the matching
+`images/...` references in `src/slides.md` for you. A ShareX-style capture is always
+flat-colour, so new screenshots always stay PNG; the extension you type while authoring a
+slide never has to guess ahead of a later optimization pass.
+
+Originals live in git history — `git restore src/images` undoes a run (note: a full
+`restore` reverts *every* prior pass, not just the last one, since nothing is committed
+between runs — commit after a pass you want to keep).
+
 ## Present
 
 ```powershell
@@ -104,5 +132,6 @@ over `BroadcastChannel` as you move through the deck.
 | `make_readable.py` | renders `slides.md` to the readable page (called by the above) |
 | `make_notes.py` | builds `notes.json` and injects the slide-sync script into `presentation.html` |
 | `present.ps1` | opens the deployed slideshow + notes windows for presenting |
+| `shrink_images.py` | caps `src/images` at 1920x1080; losslessly re-encodes PNGs, converting photographic ones to WebP |
 
 `public/` is entirely generated and git-ignored — delete it any time.

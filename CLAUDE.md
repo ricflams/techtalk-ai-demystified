@@ -30,6 +30,40 @@ For local preview, the [VS Code Marp extension](https://marketplace.visualstudio
 
 To preview the **readable** page instead, run `scripts\build-readable.ps1` (or `scripts/build-readable.sh`): it renders `public/index.html` and opens it. Add `-Watch` / `--watch` to rebuild on every save. It needs only `pip install markdown` — not the Marp CLI — and takes about 0.3s per rebuild.
 
+### Slide images
+
+`src/images` is capped at **1920x1080**. The Marp canvas is 1280x720 CSS px (no `size:`
+directive, so Marp's default applies), so fullscreen on an HD display the deck renders at
+exactly 1.5x — 1920x1080 is the point where extra source pixels stop being visible and
+become pure download weight. Marp emits one HTML file containing every slide, so the
+browser fetches *all* images up front; oversized ones directly slow the deployed deck.
+
+`scripts/shrink_images.py` enforces this. It rewrites `src/images` in place: downscales to
+fit the box using a single uniform scale factor (aspect ratio never changes, images already
+inside the box are never upscaled), then picks a format by content. A PNG with more than
+65536 distinct colours is continuous-tone content — an illustration or photo, not this
+deck's usual flat-colour UI screenshot — and PNG's predictive row filters do badly on that,
+so it's re-encoded as lossless WebP instead (bit-exact pixels, exact alpha). Flat-colour
+PNGs stay PNG, using an exact palette when the image genuinely has ≤256 colours. It refuses
+to finish if any output was upscaled, drifted in aspect ratio, or exceeds the box.
+
+```bash
+python scripts/shrink_images.py --dry-run   # report only
+python scripts/shrink_images.py             # rewrite src/images in place
+python scripts/shrink_images.py --zopfli    # + lossless deflate pass on PNGs, ~20s/file
+```
+
+Run it after adding new screenshots or illustrations — it renames any file it converts to
+WebP and updates the matching `images/...` references in `src/slides.md` for you. Needs
+`pip install pillow` (and `zopfli` for `--zopfli`). Downscaling is the only step that
+changes pixels; everything else — including the WebP conversion — is bit-exact. Note the
+trade-off: at HD this is invisible, but presenting fullscreen on a **4K** display scales the
+canvas 3x, where these images would be upscaled by the browser.
+
+A ShareX-style capture is always flat-colour, so it's always classified as PNG — the
+extension you type while authoring a slide right after taking a screenshot never needs to
+guess ahead of a later optimization pass.
+
 ### Speaker notes
 
 Each slide can carry a presenter-only note: a bare `####` marker followed by prose, hidden from the compiled slideshow by a global CSS rule at the top of `src/slides.md` (`h4, h4 ~ * { display: none; }`). These notes render as ordinary content on the readable page (`public/index.html`) since that page is built independently from the same markdown.
@@ -46,6 +80,7 @@ For remote presenting (screen-sharing `presentation.html` in a call), `scripts/m
 | `src/notes.html` | Speaker-notes companion page, synced live to `presentation.html` via `BroadcastChannel` |
 | `scripts/make_readable.py` | Post-processes Marp HTML into a continuous-scroll readable page |
 | `scripts/make_notes.py` | Builds `public/notes.json` and injects the sync script into `presentation.html` |
+| `scripts/shrink_images.py` | Caps `src/images` at 1920x1080; losslessly re-encodes PNGs, converting photographic ones to WebP |
 | `.github/workflows/marp.yaml` | Build + GitHub Pages deploy |
 | `public/presentation.html` | Interactive slideshow — build artifact (generated, not committed) |
 | `public/index.html` | Continuous-scroll readable version — build artifact (generated, not committed) |

@@ -40,7 +40,7 @@ When HTML came out I was like, man, I just want to know all about it.
 Same with Java and .NET, with their intriguing bytecode and VM-engines. So interesting.
 
 ---
-![bg](images/intro/dopamine.png)
+![bg](images/intro/dopamine.webp)
 
 ####
 For the past year I've felt that way about AI. And I think we're all filled with emotions about AI. It's so exciting and promising, but also *mysterious*.
@@ -80,14 +80,14 @@ But how *does* yeast cause the dough to "rise"? And should the dough be placed s
 Some even say "put the dough in the fridge". It can seem a bit mysterious.
 
 ---
-![bg contain](images/intro/bread/science.png)
+![bg contain](images/intro/bread/science.webp)
 ####
 Now, if you know that yeast is a living organism that causes fermentation by using enzymes to feed on sugar in the flour, then the whole thing can become quite demystified. Still complex, sure, but you can now understand how the choice of flour, additives, and temperature over time affect the dough. And understand how you can make deliberate choices to "steer" the dough better.
 
 For example a "cold ferment": let the yeast work normally for an hour and then place the dough in the fridge to put the yeast to sleep while the enzymes continue to work on building flavor and gluten. A lot of advanced baking processes can seem arbitrary or magical ("add diastatic malt powder to ...") but armed with a fundamental understanding of the way yeast and enzymes work you're much better equipped to understand them - and steer them your own way, too.
 
 ---
-![bg contain](images/intro/bread/ai.png)
+![bg contain](images/intro/bread/ai.webp)
 ####
 This presentation is about the yeast and enzymes of AI. And frankly, it's about *all of the AI*.
 
@@ -105,7 +105,7 @@ It's my hope and goal that this presentation will help you rise (haha) to become
 <!-- anchor keep-it-simple -->
 
 ---
-![bg](images/intro/journey/overview.png)
+![bg](images/intro/journey/overview.webp)
 
 ####
 This may well have been the most challenging presentation I've ever put together.
@@ -122,13 +122,13 @@ Links:
 - [9 AI Concepts Explained in 7 minutes: AI Agents, RAGs, Tokenization, RLHF, Diffusion, LoRA...](https://youtu.be/nVnxG10D5W0) - ByteByteAI (6:36)
 
 ---
-![bg](images/intro/journey/rabbit-holes.png)
+![bg](images/intro/journey/rabbit-holes.webp)
 
 ####
 "Simple", yeah right. Everywhere I looked there was a rabbit hole worthy of an entire presentation. Oh well.
 
 ---
-![bg](images/intro/journey/route.png)
+![bg](images/intro/journey/route.webp)
 
 ####
 This is the path we'll take:
@@ -138,7 +138,7 @@ We'll start with the technical parts. How does the AI work? What can it do? In p
 With that knowledge loaded we'll see how to tame the context and look at some guidance and demystifications.
 
 ### 10,000,000 videos + 1
-<img src="images/intro/youtube.png">
+<img src="images/intro/youtube.webp">
 
 ####
 What can I possibly say that hasn't already been said in the 10,000,000 existing AI-related videos? Why not just give you 10 links to the most popular videos about AI and LLMs?
@@ -171,7 +171,7 @@ Links:
 - [Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains](https://youtu.be/0xS68sl2D70) - Perimeter Institute for Theoretical Physics (1:15:10)
 
 ---
-<img src="images/overview/full.png" />
+<img src="images/overview/full.webp" />
 
 You, the **human**, use an **AI Agent** to communicate with an **AI Service** that turns your messages into **tokens** and feeds them through an **LLM**. The service and agent can use **tools** and the agent can **remember**.
 
@@ -191,10 +191,10 @@ Links:
 The LLM is the most fundamental piece and even though it's quite technical, it's the best place to start for understanding how generative text AI works. So let's begin with the LLM and work our way out from there.
 
 ---
-<img src="images/intro/journey/enter-rabbithole.png">
+<img src="images/intro/journey/enter-rabbithole.webp">
 
 ### The LLM is the brain
-<img src="images/overview/llm-intro.png">
+<img src="images/overview/llm-intro.webp">
 
 ####
 The LLM, the **Large Language Model**, is the part that does all the *thinking*.
@@ -219,7 +219,7 @@ It's important to understand both, not least embeddings, so let's cover them fir
 
 ## Tokens
 <!-- anchor llm-tokens -->
-<img src="images/overview/tokens.png">
+<img src="images/overview/tokens.webp">
 
 ####
 First let's focus on tokens.
@@ -304,7 +304,7 @@ And the three-character sequence `"**,"` is also common enough to have its own t
 
 ### Tokens recap
 <div class="cols">
-<img class="col-1" src="images/llm/tokens/ride-tokens.png">
+<img class="col-1" src="images/llm/tokens/ride-tokens.webp">
 <div class="col-4" >
 
 - A **token** is the *chunk of text* the LLM reasons about.<br>Which is the reason for introducing tokenization and tokens at all: it's simply more *efficient* to work on tokens than on individual letters
@@ -321,7 +321,7 @@ Links:
 
 ## Embeddings
 <!-- anchor llm-embeddings -->
-<img src="images/overview/embeddings.png">
+<img src="images/overview/embeddings.webp">
 
 ####
 It's likely that you already knew about tokens. But the LLM does not deal directly with tokens. Instead, it works on something called *embeddings*.
@@ -521,7 +521,7 @@ Links:
 
 ## The Transformer
 <!-- anchor llm-transformer -->
-<img src="images/overview/llm.png">
+<img src="images/overview/llm.webp">
 
 ####
 Today's LLMs are built on an architecture called the *Transformer*. The terms are used almost interchangeably.
@@ -601,7 +601,7 @@ The invention that made all of this possible, is called the **Transformer**.
 
 ### "Attention is all you need"
 <div class="cols">
-<img src="images/llm/attention-is-all-you-need.png">
+<img src="images/llm/attention-is-all-you-need.webp">
 <img src="images/llm/attention-transformer.png">
 </div>
 
@@ -639,7 +639,7 @@ Links:
 - [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
 
 ### Then passed through a neural network
-<img src="images/llm/multiplexer-perceptron.png">
+<img src="images/llm/multiplexer-perceptron.webp">
 
 ####
 Next, the model's built-in training shapes the meaning of the embeddings.
@@ -654,7 +654,7 @@ Links:
 - [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 
 ### Let's do it 96 times (attention layers)
-<img src="images/llm/attention-96-layers.png">
+<img src="images/llm/attention-96-layers.webp">
 
 ####
 This process is repeated over and over again, through billions of additions and multiplications.
@@ -885,7 +885,7 @@ After pre-training, the LLM is really just a statistical prediction-machine. It'
 
 ### *Post-training* is what shapes the model
 <div class="cols">
-<img src="images/llm/training/post-training.png">
+<img src="images/llm/training/post-training.webp">
 <div>
 
 *Different personalities*
@@ -1008,7 +1008,7 @@ Haiku, Sonnet, and Opus are really three different models.
 They run on *different hardware* and their LLM has *different sizes*.
 <br>
 
-<img src="images/llm/training/claude-family.png">
+<img src="images/llm/training/claude-family.webp">
 
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
@@ -1029,7 +1029,7 @@ For example, the Claude family are physically three different models: different 
 Every part of Claude's description of an LLM matches pretty much what we've been through here.
 
 ---
-<img src="images/llm/nerdflix.png">
+<img src="images/llm/nerdflix.webp">
 
 ####
 If you find this interesting then I can recommend this 2-hour video of Andrej Karpathy building a small GPT model, fully.
@@ -1050,7 +1050,7 @@ Links:
 Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?
 
 ---
-<img src="images/overview/agent.png" />
+<img src="images/overview/agent.webp" />
 
 ### So, do you speak to the LLM?
 <img src="images/agents/hello/user-ai.png" />
@@ -1148,7 +1148,7 @@ So now you know why the settings, like Skills, you set online at claude.ai are n
 For perspective, here's how my own use of AI has evolved over time.
 
 ### Chat, copy-paste, in-app, now terminal
-<img src="images/agents/evolution.png" />
+<img src="images/agents/evolution.webp" />
 
 ####
 I started chatting just in the browser, of course. And I still do, by the way.
@@ -1183,7 +1183,7 @@ That's the final piece of the puzzle, and it's much less complicated than the LL
 This is the part where we finally unlock the concrete functionality you use daily: chatting, uploading files, having the AI work on that Confluence page using an MCP server, using a skill, etc etc. It all comes together now, and many parts are less mysterious than you might think.
 
 ---
-<img src="images/overview/service.png">
+<img src="images/overview/service.webp">
 
 ### What does the AI service add?
 <br>
@@ -1228,7 +1228,7 @@ But what about *files*, like PDFs and images?
 
 ## Files
 <!-- anchor ai-service-files -->
-<img src="images/overview/files.png">
+<img src="images/overview/files.webp">
 
 ####
 Because the LLM only works on embeddings we will, somewhat surprisingly maybe, first take a look at how files are handled by the AI service. How does it even understand documents or images?
@@ -1252,7 +1252,7 @@ Let's begin by taking a look at how images are turned into embeddings the LLM ca
 Modern Multimodal LLMs (like GPT-4o, Gemini, and Claude) generally do not use a separate, traditional OCR engine (like Tesseract or Google Vision OCR) in their standard workflow. Instead, they treat text recognition as a purely visual task.
 
 ### Images are understood in small patches
-<img src="images/service/files/images/eagle.png">
+<img src="images/service/files/images/eagle.webp">
 
 ####
 Images are chopped up and understood *purely visually* as little chunks of meanings based on image-training: here's a claw, a tail, a head of a predator bird.
@@ -1269,7 +1269,7 @@ Images are chopped up and understood *purely visually* as little chunks of meani
 - Note: A screenshot of text can easily result in *10x more context* than the raw text
 
 ### Whatever approach, embeddings come out
-<img src="images/service/files/images/cat-advanced.png">
+<img src="images/service/files/images/cat-advanced.webp">
 
 ####
 Whatever the image processing does, embeddings is what comes out of it.
@@ -1308,7 +1308,7 @@ Links:
 - [What is a Vector Database? Powering Semantic Search & AI Applications](https://youtu.be/gl1r1XV0SLw) - IBM Technology (9:48)
 
 ### Simply compare embeddings to find the similarity
-<img src="images/service/files/multimodal/gemini-2-similarities.png">
+<img src="images/service/files/multimodal/gemini-2-similarities.webp">
 
 ####
 Cosine similarity will show how similar two embeddings are.
@@ -1353,7 +1353,7 @@ Documents don't really introduce any new functionality: they contain text and im
 PDFs are handled really well. The AI services get better and better at handling documents, like eg zip-files or Word- or Excel-files.
 
 ### Should you convert PDFs to markdown yourself?
-<img src="images/service/files/pdfs/94pct-savings.png">
+<img src="images/service/files/pdfs/94pct-savings.webp">
 
 ####
 PDFs are a wilderness. They're really hard to extract text and structure from - much harder than HTML. They contain binary parts, the internal structure is a jungle beyond description of stacked objects, drawings, and text parts.
@@ -1388,7 +1388,7 @@ Links:
 
 ## Chatting
 <!-- anchor ai-service-chatting -->
-<img src="images/overview/chatting.png">
+<img src="images/overview/chatting.webp">
 
 ####
 With files and images out of the way, let's look at actually chatting with the AI service.
@@ -1497,7 +1497,7 @@ For example Claude has `/btw` to send a message out-of-band.
 Also, when a *sub-agent* is launched in the background to address some issue, it may well start out with the full context but only the *response* from the sub-agent will eventually somehow end up being added to the chat. If it spends 200,000 tokens figuring out the answer "42" then only "42" will eventually end up in your main context.
 
 ### *"Start a new chat? But then I would lose ..."*
-<img src="images/service/chat/my-precious-context.png">
+<img src="images/service/chat/my-precious-context.webp">
 
 ####
 Yes, it can feel hard, I know.
@@ -1585,7 +1585,7 @@ But lo and behold: it was added back in, in Claude Code v2.1.68, so the convenie
 
 ## Tools
 <!-- anchor ai-service-tools -->
-<img src="images/overview/tools.png" />
+<img src="images/overview/tools.webp" />
 
 ####
 So far, we've only seen the LLM generate text.
@@ -1644,7 +1644,7 @@ At any rate, the tool runs, the output is added to the context, and the new cont
 With that added context from the tool, the LLM can finally produce a nice and correct answer.
 
 ### The anatomy of a tool definition
-<img src="images/service/tools/tools-list.png" />
+<img src="images/service/tools/tools-list.webp" />
 
 ####
 Every tool specifies the name of the tool, a description of what the tool does, and details on how to call it.
@@ -1731,7 +1731,7 @@ Rovo does a number of tool calls to figure out that I have three pages in my per
 
 ## MCP servers
 <!-- anchor ai-service-mcp-servers -->
-<img src="images/overview/tools.png" />
+<img src="images/overview/tools.webp" />
 
 ####
 Now that you know about the concept of using tools, let's move onto a very popular functionality that is intimately related to tools: MCP servers.
@@ -1886,7 +1886,7 @@ Yes, it took 10 screenshots to put this massive list together.
 In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.
 
 ### MCP is massively popular
-<img src="images/service/mcp/massive-mcp-server-list.png">
+<img src="images/service/mcp/massive-mcp-server-list.webp">
 
 ####
 MCP servers are massively popular. You can find MCP servers for all the major SaaS companies and also for a ton of other things.
@@ -2081,7 +2081,7 @@ We already covered the functionality of tools.
 In order for the LLM to be able to ask to use a tool it must know that the tool exists and what it does. That info goes into the system prompt.
 
 ### All tool names are included
-<img src="images/service/tools/tools-list.png" />
+<img src="images/service/tools/tools-list.webp" />
 
 ####
 It's quite possible that *only the tool's description* may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.
@@ -2094,7 +2094,7 @@ Hey, aren't skills a big deal?
 Well, yes they are. But they belong here and are actually very simple.
 
 ### A skill is some expertise, loaded when you need it
-<img src="images/service/system/skills/trinity.png" />
+<img src="images/service/system/skills/trinity.webp" />
 
 ### What's a skill?
 - A skill is *text instructions* with a name
@@ -2119,7 +2119,7 @@ Links:
 <img src="images/service/system/skills/skill-anatomy.jpg" />
 
 ### Example: Using Matt Pocock's "grilling" skill
-<img src="images/service/system/skills/skill-parts.png" />
+<img src="images/service/system/skills/skill-parts.webp" />
 
 ####
 The `SKILL.md` file has just two required fields, name and description, and a markdown body.
@@ -2300,7 +2300,7 @@ Links:
 
 
 ### Putting it all together: a *real* system prompt example
-<img src="images/service/system/all/full.png">
+<img src="images/service/system/all/full.webp">
 
 ####
 We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit abstract and mysterious. Just what does it *mean* to be "added to the system prompt"?
@@ -2310,22 +2310,22 @@ So let's get concrete and see what such an arbitrary system prompt looks like. T
 Let's check it out.
 
 ### Some names, facts, behaviors, ...
-<img src="images/service/system/all/name-and-behavior.png">
+<img src="images/service/system/all/name-and-behavior.webp">
 
 ### Oh, something &lt;mandatory&gt;, sounds important
 <img src="images/service/system/all/something-mandatory.png">
 
 ### A bit on regex formatting and the available tools
-<img src="images/service/system/all/regex-and-tools.png">
+<img src="images/service/system/all/regex-and-tools.webp">
 
 ### MCP tool-names pop in, rather unceremoniously
 <img src="images/service/system/all/mcp-tools.png">
 
 ### Ah, skills, nice to meet you
-<img src="images/service/system/all/skills.png">
+<img src="images/service/system/all/skills.webp">
 
 ### The system prompt is just one big pile of text
-<img src="images/service/system/shoveling.png">
+<img src="images/service/system/shoveling.webp">
 
 ####
 The reason for showing you these snippets is to hammer in this fact:
@@ -2501,7 +2501,7 @@ Links:
 - [4 AI Labs Built the Same System Without Talking to Each Other (And Nobody's Discussing Why)](https://youtu.be/LO0Ws-l6brg) - AI News & Strategy Daily | Nate B Jones (27:15)
 
 ### Yet constantly new trends, like "loop of loops"
-<img src="images/guidance/nate-loop-of-loops.png">
+<img src="images/guidance/nate-loop-of-loops.webp">
 
 ####
 Links:
@@ -2776,7 +2776,7 @@ Let's briefly talk about the amount of work that's involved in producing tokens 
 
 ### Harry Potter ~ 100,000 tokens
 <div class="cols fit">
-<div><img src="images/bonus/cost/harry-potter-front.png" /></div>
+<div><img src="images/bonus/cost/harry-potter-front.webp" /></div>
 <div><img src="images/bonus/cost/harry-potter-page-1.jpg" /></div>
 </div>
 
@@ -2798,7 +2798,7 @@ Specifically for Harry Potter: People have tried that and the resulting stories 
 **FLOP** is short for Floating-Point Operation, i.e. multiplying or adding two numbers
 
 ### Enter: the NVidia B200 GPU
-<img src="images/bonus/cost/nvidia-jensen-b200.png"> 
+<img src="images/bonus/cost/nvidia-jensen-b200.webp"> 
 
 ####
 The NVidia B200 GPU is not your grandma's GeForce graphics card, for sure.
@@ -2813,7 +2813,7 @@ The NVidia B200 GPU does 4500 trillion FLOPS/sec.
 
 ### Pedal to the metal
 <div class="cols">
-<img src="images/bonus/cost/nvidia-b200-focus.png"> 
+<img src="images/bonus/cost/nvidia-b200-focus.webp"> 
 <div class="col-7">
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
@@ -3043,13 +3043,13 @@ Imagine two dimensions that describe the *catness* and the *cuteness* of anythin
 Now let's *tilt* the catness-axis so the characteristics, the dimensions, no longer are absolutely completely independent, ie orthogonal. More catness would then also cause more cuteness, but not much. It *could* work without distorting the characteristics too much.
 
 ### Two dimensions in 2D, *very much* not independent
-<img src="images/bonus/dimensions/2d-60deg.png">
+<img src="images/bonus/dimensions/2d-60deg.webp">
 
 ####
 Now imagine that the catness- and cuteness-dimensions were *way* more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two dimensions if they're so related. But if it worked, then it could open the door to something interesting.
 
 ### Tilting allows fitting *three dimensions* into 2D
-<img src="images/bonus/dimensions/2d-3d.png">
+<img src="images/bonus/dimensions/2d-3d.webp">
 
 ####
 Because *if* we could accept catness- and cuteness-dimensions being so related, then there could be room for *one more dimension* to squeeze in. In this example *largeness*.

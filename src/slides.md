@@ -242,6 +242,8 @@ Every AI model has its own fixed **vocabulary** of tokens, usually in the range 
 
 Those tokens are not hand-picked but arrived at by analysis of vast amounts of text, so there are many weirdly looking tokens that it just makes good statistical sense to have. The primary reason for having tokens at all is that working on bigger chunks of text, instead of single letters, is more economical. It’s simply *cheaper to process* the word “hello” as one chunk instead of the five individual letters.
 
+Note: The screenshot is of the *ChatGPT 3.5* vocabulary of 100,261 tokens. I picked it mostly because the website presents them well and has a nice explanation of how they were chosen. The upcoming examples use another vocabulary, *gpt-4o*. The specific vocabulary doesn't really matter for the examples.
+
 Links:
 - [ChatGPT’s entire vocabulary](https://emaggiori.com/chatgpt-all-tokens/)
 - [ChatGPT’s vocabulary: The words that ChatGPT knows and how they were chosen](https://emaggiori.com/chatgpt-vocabulary/)
@@ -250,7 +252,8 @@ Links:
 <img src="images/llm/tokens/hello.png">
 
 ####
-An online *tokenizer* shows how `"hello"` is one single token.
+An online *tokenizer* like **Tiktokenizer** shows how `"hello"` is one single token.
+
 
 Links:
 - [Tiktokenizer](https://tiktokenizer.vercel.app/)
@@ -281,6 +284,8 @@ In Danish, "I FART" means "In motion". Tourists are amused.
 
 ####
 As you can see, the four letters `"fart"` are always the same token. The tokens are not aware of languages at all.
+
+(Okay, it's really five letters because the leading *(space)* is part of the token)
 
 ### English words are most economical
 <img src="images/llm/tokens/five-sentences.png">
@@ -343,7 +348,12 @@ Links:
 ####
 Imagine assigning a number to characteristics of music. Both "Lose Yourself" and "Baby Shark" score high on "tempo", but vastly differently on "defiant outsider energy".
 
-In fact, Spotify really does characterize music using such 80 *dimensions*.
+In fact, Spotify really does characterize music using dimensions like that.
+
+Links:
+- [Recommending music on Spotify with deep learning](https://sander.ai/2014/08/05/spotify-cnns)
+- [Deep Content-User Embedding Model for Music Recommendation](https://arxiv.org/html/1807.06786v1)
+
 
 ### Imagine capturing the "essence" of ... *anything*
 <img src="images/llm/embeddings/20d-with-tokens.svg" />
@@ -364,7 +374,7 @@ The number of nuances, characteristics, we decide to use is called the embedding
 
 Each number is called the **weight** of that dimension. A kitten is very playful (weight=9) and not very wet (weight=1).
 
-An embedding can express any *word* you know. Any *sentence* that exists. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
+An embedding can express any *word* you know. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
 </div>
 </div>
 
@@ -478,6 +488,11 @@ And for the concept of "whimsical".
 ####
 And "spatula-ness".
 
+####
+How can so many concepts be encoded in 12288 dimensions?
+
+This is explained in the bonus-section [Dimensionality by superposition](#bonus-dimensionality-by-superposition).
+
 ### "____ is to Germany, what Sushi is to Japan"
 <img src="images/llm/embeddings/space/germany-japan.png" />
 
@@ -488,12 +503,14 @@ The math works so well that if you add up the directions for "Sushi plus Germany
 ####
 What a surprise: with *the right modeling*, we can actually *do math on language*.
 
-That's certainly a discovery that has deeply shaken classical generative linguistics, pioneered by Noam Chomsky. For decades, Chomskyan linguistics has argued that language cannot be learned purely through statistical approximation from exposure to text. The overwhelming opinion now is that yeah, apparently *language can be learned* that way. The proof is in the pudding, so to speak.
+That's certainly a discovery that has shaken classical generative linguistics, pioneered by Noam Chomsky. For decades, Chomskyan linguistics has argued that language cannot be learned purely through statistical approximation from exposure to text. The overwhelming opinion now is that yeah, apparently *language can be learned* that way. The proof is in the pudding, so to speak.
 
 Links:
+- [Noam Chomsky: Why AI Can't Understand Language](https://youtu.be/mgyibPu6n9k) - Practical Wisdom (7:15)
 - [To Understand LLMs, Forget Chomsky](https://medium.com/@acornapocalypse/to-understand-llms-forget-chomsky-b5e015738c9d)
 - ["This CRAZY Man at MIT called Chomsky"](https://youtu.be/aAvtBdtyEOg) - How to AI (2:30)
 - [Chomsky was wrong.They taught me a lie.](https://youtu.be/w9ahdAH5OOA) - languagejones (24:42)
+- [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
 
 ### The LLM is all about "doing math on embeddings"
 <img src="images/llm/overview-embeddings.png" />
@@ -733,6 +750,11 @@ and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` et
 ####
 The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens are added one by one to the context.
 
+Modern inference optimizes this heavily: caching makes each pass much cheaper, and speculative decoding can confirm several tokens in a single pass. But the loop itself is unchanged. The growing context really does go through the LLM again, over and over, until it's done.
+
+Links:
+- [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
+
 ### Tokens are really generated one by one
 That's why output tokens are typically *5 x more expensive* than input tokens.
 <br>
@@ -744,12 +766,14 @@ Each token really is generated by a completely independent pass through the LLM 
 
 However, studies have found that the LLM actually *does latently* plan for the continuation that follows this single token; the pass that produced `"An"` is poised to very likely produce `" L"` and `"LM"` afterwards.
 
-The field of study is called **Interpretability** and the weights that seem involved in such "thoughts about future planning" are dubbed **J-Space**.
+Anthropic demonstrated this by tracing Claude writing poetry: before starting a line, it has already settled on the word it intends to rhyme with, and suppressing that word makes it rhyme differently.
+
+The field of study is called **Interpretability**. A related finding is **J-Space**: a subspace of the model's activations that seems to carry what the model reasons about *deliberately*, as opposed to what it handles automatically.
 
 Links:
 - [Interpretability](https://www.anthropic.com/research/team/interpretability)
+- [Tracing the thoughts of a large language model](https://www.anthropic.com/research/tracing-thoughts-language-model)
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
-- [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
 ### Transformer recap
 - The Transformer does essentially one thing, billions of times: it *nudges embeddings* by adding up directions and dials them a bit up and down
@@ -898,7 +922,7 @@ Claude – Honest advisor
 
 Grok – Radical truth-seeker
 
-Meta AI – Powerful engineer
+Llama – Powerful engineer
 
 Mistral – Efficient European
 
@@ -998,14 +1022,14 @@ Links:
 - OpenAI wants ChatGPT to *follow their spec* — rules written down explicitly
 - Google wants Gemini to *behave correctly* — but via unpublished rules
 - Meta wants Llama *powerful and open* — open weights, few restrictions
-- Mistral wants Vibe *capable, open, and European* —  compliant, not principled
+- Mistral wants its models *capable, open, and European* — compliant, not principled
 - DeepSeek wants its models *helpful and harmless* — as defined by the state
 - xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
 
 ### Models also have variations
 Haiku, Sonnet, and Opus are really three different models.
 
-They run on *different hardware* and their LLM has *different sizes*.
+They may well run on *different hardware* and their LLMs have *different sizes*.
 <br>
 
 <img src="images/llm/training/claude-family.webp">
@@ -1620,9 +1644,7 @@ Based on the training, the LLM decides that the best continuation from the user 
 
 So the LLM's output asks for a "tool_use" of that tool, conjuring up the suitable Python code snippet `print(123442873893 * 98790237342)` from its massive training on Python code.
 
-As an aside: the tool-training is commonly done using a process called *Toolformer*.
-
-In *Toolformer*, Schick et al. had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgment but purely mathematically as "did this make the future more predictable?".
+Tool-training originated in an idea called *Toolformer*. Researchers had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgment but purely mathematically as "did this make the future more predictable?".
 
 Links:
 - [Toolformer: AI learns to use APIs](https://youtu.be/LxZ3gYvbV7I) - AssemblyAI (4:37)
@@ -2642,7 +2664,7 @@ Some say *the best reason* for being polite is simply that:
 - It's good for *you*, even in simulated conversations: positive social behavior releases oxytocin and dopamine, while an impolite demeanor releases cortisol and adrenaline
 
 ### Say no to training, it'll leak your data
-<p class="verdict maybe">No, only if you send your secrets relentlessly</p>
+<p class="verdict no">No, only if you send your secrets relentlessly</p>
 
 - *No words from your chat are actually remembered*
 
@@ -2714,7 +2736,6 @@ Links:
 
 ####
 Links:
-- [Modern language models refute Chomsky’s approach to language](https://ling.auf.net/lingbuzz/007180/current.pdf)
 - [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
 - [AI Pioneer Geoffrey Hinton: AI Is Conscious, Superintelligence is Coming, And We Should Be Worried](https://youtu.be/p7t1Q_p2gZs) - Alex Kantrowitz (54:54)
 - [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw) - The Royal Institution (47:15)
@@ -2783,19 +2804,21 @@ Let's briefly talk about the amount of work that's involved in producing tokens 
 ####
 Let's say we tokenized and fed Harry Potter through the LLM, and had it produce the next expected token. What would that entail?
 
-Specifically for Harry Potter: People have tried that and the resulting stories are incredibly bizarre hybrids. The AI might invent a plot where Harry returns to Hogwarts, but it will subconsciously add in details from the Chamber of Secrets anyway; like renaming the Basilisk to something else but keeping the exact structural cadence of the original sequel.
-
 ### 100,000 context tokens in, 1 token out
 <img src="images/bonus/cost/harry-potter-transformer.png"> 
 
 ### How much math does one "token out" really need?
 <img src="images/bonus/cost/dr-evil-one-million-flops.jpg"> 
 
-### Actually, about 1,200,000,000,000 multiplications
+### Actually, about 1,200,000,000,000 math operations
 <img src="images/bonus/cost/dr-evil-teraflops.jpg"> 
 
 ####
-**FLOP** is short for Floating-Point Operation, i.e. multiplying or adding two numbers
+**FLOP** is short for Floating-Point Operation, i.e. multiplying or adding two numbers.
+
+**FLOPS** (capital S) is short for FLOP/sec, i.e. Floating-Point Operations per Second.
+
+And FLOPs is simply plural of FLOP.
 
 ### Enter: the NVidia B200 GPU
 <img src="images/bonus/cost/nvidia-jensen-b200.webp"> 
@@ -2807,18 +2830,18 @@ Links:
 - [Nvidia B200 GPU Explained: Specs, Performance & Use Cases (2026 Guide)](https://youtu.be/QGk82QWWr4s) - AceCloud (2:57)
 - [This is NVIDIA’s new GPU - Blackwell NVL72 Rack](https://youtu.be/7a0UGHvxrLw) - Linus Tech Tips (12:57)
 
-### 4,500,000,000,000,000 FLOPS/sec
+### 4,500,000,000,000,000 FLOPS
 ####
-The NVidia B200 GPU does 4500 trillion FLOPS/sec.
+The NVidia B200 GPU does 4500 trillion FLOPS.
 
 ### Pedal to the metal
 <div class="cols">
 <img src="images/bonus/cost/nvidia-b200-focus.webp"> 
 <div class="col-7">
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPS to produce **1 token**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,200,000,000,000 FLOPs to produce **1 token**
 
-4,500,000,000,000,000 FLOPS/sec is B200 capacity
+4,500,000,000,000,000 FLOPS is B200 capacity
 <br>
 One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.
 </div>
@@ -3062,11 +3085,11 @@ In 2D this would never really work but that's because the dependencies are too h
 ####
 However, a space in 12288D behaves astoundingly differently than the 2D space.
 
-If we tweak the dimensions *just a tiny bit* then there's "room" for enormously many more dimensions due to superposition.
+If we tweak the dimensions *just a tiny bit* then there's "room" for enormously many more features due to superposition.
 
-If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 dimensions.
+If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 features.
 
-But if we allow for *just a 2-degree tilt/dependency*, like in the first example, then there's room for *34,000,000* dimensions in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of dimensions.
+But if we allow for *just a 2-degree tilt/dependency*, like in the first example, then there's room for *34,000,000* features in that 12288-dimensional space. Allowing a 3-5 degree dependency brings this into the billions of billions of features.
 
 So: if having not absolutely independent characteristics is acceptable, then 12288 numbers can indeed express *a billion billion ...* characteristics.
 

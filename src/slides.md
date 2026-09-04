@@ -58,6 +58,14 @@ Links:
 ####
 Many lightbulb-moments have given me a better fundamental understanding of AI and how to best use it. The context, cost, limitations. It has *demystified* the AI and I wish for others to have that insight too.
 
+For instance, did you know that [every message you send re-sends the entire chat, files and images too](#ai-service-full-chat-always-sent)?<br>
+And that [when you ask the AI why it did something, it may have to make the answer up](#demystifications-why-did-you-do-that)?<br>
+How [a skill is practically just an easy way of pasting something into the chat](#ai-service-hey-bro)?<br>
+Or why [saying "YOU MUST..." is just a suggestion, no guarantee](#llm-transformer-recap)?<br>
+And that [yes, the AI really *is* "just a fancy autocomplete"](#bonus-a-fancy-autocomplete)?
+
+It's all going to be covered here.
+
 ---
 ![bg](images/intro/bread/loaf.jpg)
 ####
@@ -776,6 +784,7 @@ Links:
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
 
 ### Transformer recap
+<!-- anchor llm-transformer-recap -->
 - The Transformer does essentially one thing, billions of times: it *nudges embeddings* by adding up directions and dials them a bit up and down
 
 - It only works because the "directions" that emerged via training *behave generally*<br>For example there is a "feminine" direction, which means that patterns involving "man"/"woman" can generally apply to "uncle"/"aunt" too
@@ -1452,6 +1461,7 @@ Take a moment to consider what the AI agent will send to the AI service now.
 Yes, it's B: the full chat. Your first message, the AI response, plus your second message.
 
 ### The full chat is always, always sent to the AI
+<!-- anchor ai-service-full-chat-always-sent -->
 <img src="images/service/chat/chat-turn-goodnight.png">
 
 ####
@@ -2163,6 +2173,7 @@ Links:
 - [So I tried Matt's skills...](https://youtu.be/0oXOOlqVu5M) - Theo - t3․gg (38:21)
 
 ### Hey bro
+<!-- anchor ai-service-hey-bro -->
 <img src="images/service/system/skills/bro/bro-skill-code.png" />
 
 ####
@@ -2623,6 +2634,7 @@ Links:
 - [Why do AI models hallucinate?](https://youtu.be/005JLRt3gXI) - Claude (5:13)
 
 ### Ask "Why did you do that?" and it will tell you
+<!-- anchor demystifications-why-did-you-do-that -->
 <p class="verdict no">No, don't trust that explanation</p>
 
 - The *reasoning*, chain of thought, is *no longer present* when you see the response.

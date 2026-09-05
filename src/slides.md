@@ -505,7 +505,11 @@ This is explained in the bonus-section [Dimensionality by superposition](#bonus-
 <img src="images/llm/embeddings/space/germany-japan.png" />
 
 ####
-The math works so well that if you add up the directions for "Sushi plus Germany minus Japan" then you land near Bratwurst.
+The math works so well that if you add up the directions for "Sushi + Germany - Japan" then you land near Bratwurst.
+
+(This example really works, but assumes a vocabulary where every full word has its own embedding)
+
+If you wonder how you *concretely* "add the embedding for Sushi to the embedding for Germany and subtract the embedding for Japan", it's actually just as straightforward as you might imagine: you simply *do that math on each of the 12288 numbers* in these three embeddings. Take the first number in Sushi's embedding-vector, add it to the first number in Germany's embedding-vector, and subtract the first number in Japan's embedding-vector, and now you have the first number in the resulting embedding-vector. Do that for all 12288 numbers and you have your result. And that result lands in the neighborhood of the embedding for "Bratwurst".
 
 ### What a surprise!
 ####

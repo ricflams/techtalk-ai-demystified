@@ -350,7 +350,7 @@ Links:
 ### Confused? Okay, stay with me
 <img src="images/llm/embeddings/confused.png">
 
-### Spotify's 80-dimensional music characteristics
+### Spotify's multi-dimensional music characteristics
 <img src="images/llm/embeddings/analogy_spotify.svg" />
 
 ####

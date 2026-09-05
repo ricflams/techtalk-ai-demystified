@@ -49,8 +49,8 @@ There's this feeling that "it can do anything if I only hold it right". That can
 
 Links:
 - [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0) - Theo - t3․gg (32:45)
-- [I almost quit YouTube....](https://youtu.be/dbMXi9q78Tk) - NetworkChuck (23:08)
 - [It was more fun before AI](https://youtu.be/SaHHgzoXceU) - Maximilian Schwarzmüller (12:20)
+- [I almost quit YouTube....](https://youtu.be/dbMXi9q78Tk) - NetworkChuck (23:08)
 
 ---
 ![bg](images/intro/lightbulb.jpeg)

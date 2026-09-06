@@ -1482,13 +1482,13 @@ Links:
 - [Conversation state - OpenAI](https://developers.openai.com/api/docs/guides/conversation-state)
 
 ### Why? Because the LLM needs the full context
-The LLM can only reason about *the context it is given*.<br>It's obvious, yet we often tend to forget and imagine it *somehow* knows "something more"
+The LLM can only reason about *the context it is given*.<br>It seems obvious, yet we often imagine it *somehow* knows "something more" - but no:
 
 It does not, it *cannot*, know or reason about *anything other than* what is in the context.
 
 You want it to know about X, beyond its trained facts? Then X must be *in the context*.
 
-No links, no outside preferences, no memories, including from earlier chats:<br>the context is *ALL* the LLM can respond to.
+No links, no peeking outside, no memory from earlier chats:<br>the context is *ALL* the LLM can respond to.
 
 ### The context after 3 prompts
 <img src="images/service/chat/tokens-turn-3.png">

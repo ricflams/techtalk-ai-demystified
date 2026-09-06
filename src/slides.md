@@ -2057,9 +2057,15 @@ The "stored memories" are in a way the only slightly magical part of the context
 <img src="images/service/system/memory/memory-example.png">
 
 ####
-These are the "most important facts" from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you might expect. Look at the scrollbar: there's no more than a handful of pages of text stored as memory about me after a year of chatting.
+These are the "most important memorized facts" from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you might expect. Look at the scrollbar: there's no more than a handful of pages of memories from over a year of chatting. That's because new facts are constantly being brought in and old facts are tossed away, no longer relevant. AI Agents can use multiple files to hold these "memories".
 
-In terminal AI Agents, there can be multiple files with such "memories".
+A big takeaway here is this:
+
+Yes, these "memories" are kept updated regularly by the agent, they are based on your most recent chats, and they are sent to the AI.
+
+But that means that the AI model only gets the summary of what the agent has stored from your chat history over time: the AI model cannot itself *search through your chat history* to find anything of relevance to what you're talking about now. So if you talk about some long forgotten topic then it's no longer part of the memories, and hence the AI knows nothing about it when you bring it up again.
+
+If you find yourself wondering why the AI seems to know about some things you've talked about, but not other things, then this is the reason why.
 
 ### #4/11: Some context from the agent
 ####

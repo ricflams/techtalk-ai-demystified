@@ -34,12 +34,17 @@ PY
 
 ### 2. YouTube links
 
-Links use `- [exact title](https://youtu.be/ID) - Channel (m:ss)`. Two bugs have appeared here:
-the host `www.youtu.be` (which does not resolve — youtu.be has no `www`), and links missing the
-channel/duration annotation.
+Links use `- [exact title](https://youtu.be/ID) - Channel (m:ss)`. Three bugs have appeared here:
+the host `www.youtu.be` (which does not resolve — youtu.be has no `www`), links missing the
+channel/duration annotation, and a `?si=...` share parameter left on the URL.
+
+**Always strip `?si=...`.** YouTube's share button appends it — a per-share tracking token that
+carries nothing the link needs and leaks how the link was obtained. `https://youtu.be/ID?si=XXXX`
+becomes `https://youtu.be/ID`. Keep `?t=SECONDS` only when linking deliberately into a segment.
 
 ```bash
 echo "malformed host : $(grep -c 'www\.youtu\.be' src/slides.md)   (want 0)"
+echo "si= tracking   : $(grep -c 'youtu\.be/[A-Za-z0-9_-]*?si=' src/slides.md)   (want 0)"
 echo "link lines     : $(grep -c '^- \[.*youtu\.be' src/slides.md)"
 echo "--- lines not matching the annotated format ---"
 grep -n '^- \[.*youtu\.be' src/slides.md \
@@ -49,6 +54,12 @@ grep -n '^- \[.*youtu\.be' src/slides.md \
 
 Channel and playlist links (`youtube.com/@name`, `youtube.com/playlist?list=`) are deliberately
 *not* annotated — they have no single duration.
+
+Strip a stray `si=` across the whole file with:
+
+```bash
+python -c "import io,re; p='src/slides.md'; s=io.open(p,encoding='utf-8',newline='').read(); s2=re.sub(r'(youtu\.be/[A-Za-z0-9_-]+)\?si=[A-Za-z0-9_-]+', r'', s); io.open(p,'w',encoding='utf-8',newline='').write(s2); print('stripped' if s!=s2 else 'nothing to strip')"
+```
 
 ### 3. Link syntax
 
@@ -128,8 +139,10 @@ comm -23 <(find src/images -type f | sed 's|^src/||' | sort) \
          <(grep -o 'images/[A-Za-z0-9._/-]*' src/slides.md | sort -u)
 ```
 
-Unreferenced images ship to GitHub Pages, so a large pile is worth moving to `files/unused-images/`
-rather than leaving under `src/images/`.
+Unreferenced images ship to GitHub Pages, so move them out of `src/images/` to **`files/images/`**
+— the flat scratch pile of source material, which is not deployed. It has no subfolders, so give
+the file a name that still says where it came from: `service/mcp/flow/2-explain.png` becomes
+`mcp-flow-2-explain.png`, not `2-explain.png`.
 
 ### 7. Speaker-note markers
 

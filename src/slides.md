@@ -798,7 +798,7 @@ Links:
 	- No dictionaries of facts
 	- No "if-then-else" code
 
-- There are *no "hard rules"* in the Transformer, only *influencing*<br>*"You MUST"* is still just two single tokens, doing their best to influence the full context
+- There are *no "hard rules"* in the Transformer, only *influencing*:<br>*"You MUST"* is still just two single tokens, doing their best to influence the full context
 
 ####
 Now we can close the loop back to the embeddings section.
@@ -1478,7 +1478,8 @@ Let that sink in: every message you send, resends the full conversation.
 And not just the text messages you've sent and the AI responses you've received, but also for instance all the PDFs and images you've pasted into the chat - plus even more stuff, which we haven't covered yet.
 
 Links:
-- [messages TODO:]()
+- [Context windows - Anthropic](https://platform.claude.com/docs/en/build-with-claude/context-windows)
+- [Conversation state - OpenAI](https://developers.openai.com/api/docs/guides/conversation-state)
 
 ### Why? Because the LLM needs the full context
 The LLM can only reason about *the context it is given*.<br>It's obvious, yet we often tend to forget and imagine it *somehow* knows "something more"
@@ -1550,6 +1551,9 @@ Also, when a *sub-agent* is launched in the background to address some issue, it
 Yes, it can feel hard, I know.
 
 But it's better for you to be deliberately in control than have your long conversation slowly deteriorate because it is being compacted and compacted over and over, so it simply loses the messages you started with.
+
+Links:
+- [Why LLMs get dumb (Context Windows Explained)](https://youtu.be/TeQDr4DkLYo) - NetworkChuck (15:17)
 
 ### Chatting recap
 - The *full chat* is always sent, every time
@@ -1644,6 +1648,9 @@ Using *tools* is how the LLM can seek out new facts and generally, surprisingly 
 
 ####
 The LLM can predict that the best continuation is output that *asks for some tool to be run*. The output from that tool will then be added to the context, practically as if the user had added it themselves.
+
+Links:
+- [LLMs Can Use Tools, Just Like You and I - LLM Function Calling Explained](https://youtu.be/kwvA2Cxntuw) - Gary Explains (7:58)
 
 ### "please calculate 123442873893*98790237342"
 <img src="images/service/tools/python-math-example/request.png" />
@@ -2190,7 +2197,7 @@ Some skills are really simple. Like this one called `bro`.
 It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."
 
 Links:
-- [bro](https://github.com/backnotprop/bro)
+- [The bro skill](https://github.com/backnotprop/bro)
 
 ### Installing the bro skill for terminal agents
 <img src="images/service/system/skills/bro/bro-skill-install.png" />
@@ -2400,6 +2407,7 @@ Four parts to mention:
 
 Links:
 - [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
+- [The Secret Controls for your LLM: Temperature, Top-K, Top-P, etc](https://youtu.be/MkaazQttbpc) - Gary Explains (14:51)
 
 ## Full AI
 <!-- anchor ai-service-full-ai -->
@@ -2659,9 +2667,14 @@ Links:
 <!-- anchor demystifications-why-did-you-do-that -->
 <p class="verdict no">No, don't trust that explanation</p>
 
-- The *reasoning*, the thinking blocks from the Chain of Thought, is *no longer present* in the context when you ask that question afterwards.
+- The explanation is *generated*, not *retrieved*: there is no log of how the response came about, and the thinking blocks may not even be in the context anymore.
 
-- So if you ask "why this?" then the LLM seeks a plausible continuation which has *nothing to do with how it actually arrived* at the response. It simply produces the most likely narrative to support its earlier response: "It must have been done so because ..."
+- So if you ask "why this?" then the LLM produces the most likely narrative to support its earlier response, which may well have *nothing to do with how it actually arrived there*: "It must have been done so because ..."
+
+####
+Links:
+- [Reasoning models don't always say what they think](https://www.anthropic.com/research/reasoning-models-dont-say-think)
+- [On the Biology of a Large Language Model](https://transformer-circuits.pub/2025/attribution-graphs/biology.html#dives-cot)
 
 ### Say "You are an expert xxxx..."
 <p class="verdict maybe">Useful in some ways</p>
@@ -2810,9 +2823,10 @@ Links:
 - [Neural network - 3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 - [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU) - NetworkChuck (33:43)
 
-My *favorite youtube channels* for AI-related content:
+My *four favorite youtube channels* for AI-related content:
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
 - [Welch Labs](https://www.youtube.com/@WelchLabs/videos)
+- [Andrej Karpathy](https://www.youtube.com/playlist?list=PLAqhIrjkxbuW9U8-vZ_s_cjKPT_FqRStI)
 - [AI News & Strategy Daily | Nate B Jones](https://www.youtube.com/@NateBJones)
 
 # Bonus
@@ -3080,7 +3094,10 @@ Mechanically though, it truly is "just" a prediction machine.
 But hey, maybe we humans are also just prediction machines?
 
 Links:
-- [You don't think, you predict!](https://youtu.be/QkqE8UWvFFU)
+- [Scientists Discuss The Science of Perception & AI](https://youtu.be/JuRVkwH9Uq4) - StarTalk (57:05)
+- [How The Brain Makes Predictions | Karl Friston](https://youtu.be/dM3YINvDZsY) - Dr Tevin Naidu (17:34)
+- [How Do Our Brains Perceive the World Around Us? - with Anil Seth](https://youtu.be/EWEwpS8L5Cw) - The Royal Institution (3:50)
+- [You don't think, you predict!](https://youtu.be/QkqE8UWvFFU) - XenoSphere Originals (6:52)
 
 ## Dimensionality by superposition
 <!-- anchor bonus-dimensionality-by-superposition -->

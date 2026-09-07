@@ -666,6 +666,7 @@ If I should put my finger on *the one bright idea* that has made modern AI model
 
 Links:
 - [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
+- [Transformers: The best idea in AI | Andrej Karpathy and Lex Fridman](https://youtu.be/9uw3F6rndnA) - Lex Clips (8:38)
 
 ### Then passed through a neural network
 <img src="images/llm/multiplexer-perceptron.webp">
@@ -1051,7 +1052,8 @@ They may well run on *different hardware* and their LLMs have *different sizes*.
 ####
 For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
 
-
+Links:
+- [Every Claude Model Explained in 7 Minutes](https://youtu.be/BJauPEH_9OU) - Knowing More (7:25)
 
 ### Trained AI model recap
 - You give it a string of tokens, aka the *context*<br>The model produces a response by running that context through *the Transformer*<br>The transformer can *only reason about the context* you give it
@@ -2625,6 +2627,10 @@ Links:
 
 - So *no*, if you have a lot of data it's likely *not all processed* collectively in one context.<br>And that's why parts can be *missed*
 
+####
+Links:
+- [Why LLMs get dumb (Context Windows Explained)](https://youtu.be/TeQDr4DkLYo) - NetworkChuck (15:17)
+
 ### "I told it earlier, but now it has forgotten"
 <p class="verdict yes">Yes, compaction will do that</p>
 
@@ -2650,6 +2656,8 @@ Links:
 ####
 Links:
 - [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
+- [Towards Understanding Sycophancy in Language Models](https://arxiv.org/abs/2310.13548)
+- [Why AI Can't Stop Being a Yes-Man](https://youtu.be/y65pLJJ5wzs) - Parthknowsai (7:43)
 
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
@@ -2716,14 +2724,27 @@ Some say *the best reason* for being polite is simply that:
 
 - It's good for *you*, even in simulated conversations: positive social behavior releases oxytocin and dopamine, while an impolite demeanor releases cortisol and adrenaline
 
-### Say no to training, it'll leak your data
-<p class="verdict no">No, only if you send your secrets relentlessly</p>
+####
+Links:
+- [Mind Your Tone: Investigating How Prompt Politeness Affects LLM Accuracy](https://arxiv.org/abs/2510.04950)
+- [Should We Respect LLMs? A Cross-Lingual Study on the Influence of Prompt Politeness](https://arxiv.org/abs/2402.14531)
 
-- *No words from your chat are actually remembered*
+### Say no to training, it might leak your secrets
+<p class="verdict no">No, training won't leak them as you imagine</p>
 
-- "Use your data for training" means that your chat will be used just like the massive amounts of texts seen during pre-training.
+- *No words from your chat are actually stored* in the AI model
 
-- The model only memorizes *repetitions*. Send your password once? Doesn't stick. Send it 10 times? Then it's *1000x* more likely to stick, due to an effect called *superlinearity*. Still, it takes massively repeated text to influence the model's weights.
+- "Use your data for training" means that your chat will be used to nudge the weights a bit, much like the massive amounts of texts seen during pre-training.
+
+- The model overwhelmingly memorizes *repetitions*. Send your password once? Absurdly unlikely to be retrievable. Send it 10 times? Then it's *1000x* more likely to stick, because memorization scales *superlinearly* with repetitions. Still, it takes massively repeated text to influence the model's weights in any meaningful way.
+
+- The risk of a leak is always present in *any service*, but not really because of *training*: your chat could leak due to hacker attacks, by the AI lab or its staff somehow leaking it, or by you sharing links to a chat.
+
+####
+Links:
+- [Your ChatGPT Chats Leaked on Google? [UPDATE: Issue patched]](https://youtu.be/kXqsf05axaM) - Artturi Reviews (4:23)
+- [AI Privacy Risks: Five People Who Can Read Your Chats](https://youtu.be/I5TkzUdCrSM) - The Humans In The Loop (10:00)
+- [Your ChatGPT Chats Are Public on Google (Be Aware)](https://youtu.be/8iomB2ywzsU) - Kyle Balmer | AI with Kyle (9:44)
 
 ### It must follow "YOU MUST NEVER DO xxx!"
 <p class="verdict maybe">Relative emphasis works, but is no guarantee</p>
@@ -2777,6 +2798,11 @@ Links:
 
 - But they have *very different behaviors and values*
 
+####
+Links:
+- [Claude's Constitution](https://www.anthropic.com/constitution)
+- [How Claude's values vary by model and language](https://www.anthropic.com/research/claude-values-models-languages)
+- [OpenAI Model Spec](https://model-spec.openai.com/)
 
 ### Does it understand?<br>Is the AI sentient?
 <p class="verdict maybe">Maybe - experts disagree</p>

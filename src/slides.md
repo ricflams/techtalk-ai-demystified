@@ -2444,6 +2444,28 @@ The reason is this. As you chat, the typical agents will (using the LLM, of cour
 
 And *this* is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, but not much; and you can see it for yourself, in the settings for web-agents or in files for terminal-agents. When you chat it's *just this brief summary* (or summaries, maybe) that is included - not all the former chats.
 
+### Like a rucksack: what you pack is *all you have*
+The context window is like a rucksack: it's limited, and everything you pack, you pay for.
+So pack lightly, toss unused stuff, and keep ample notes on how to *bring in more help*.
+
+<img src="images/service/system/context-as-rucksack.webp">
+
+####
+The *red* guidebook is the system prompt and memories. You always have to bring that.
+
+In the *green* book you can add notes for how to bring in more help, like skills and MCP servers. It's *much more lightweight* to just include an instruction on how to bring in more help or information than to *actually include it*.
+
+In the *blue* notebook you can put your own notes and preferences. You'll likely update and refine them over time. Then again, maybe you have nothing to add and are happy with just the guidebook.
+
+The pile of *letters* symbolizes the correspondence between you and your penpal, the AI, including all the stuff that you send to each other.
+
+To be clear: the *rucksack size is the context window* and *what you put in is the context*. A bigger rucksack will allow you to bring more stuff on your trip, but you ultimately pay (in sweat or money) for all that you choose to pack into it.
+
+So next up, let's look at some concrete advice on how to pack well, and what to avoid. Like, "don't start your journey by buying a heavy souvenir and then proceed to carry it all day through the desert", or "don't ask your AI penpal to send you some samples of interesting rocks and then keep on carrying them forever".
+
+Links:
+- [LLM Context Windows Explained: Why More Tokens Don't Always Mean Better Answers](https://youtu.be/mIgDGCMU4YM) - Schovia (13:12)
+
 # Context Economy
 <!-- anchor context-economy -->
 ####

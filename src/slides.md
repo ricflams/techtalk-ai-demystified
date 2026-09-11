@@ -2483,8 +2483,7 @@ Remember these three things about the context:
 With that in mind, let's look at how to be *economical* with that context.
 
 ### What you pack into the context is *all the AI will see*
-The context window is like a rucksack: it's limited, and everything you pack, you pay for.
-So pack lightly, omit unused stuff, and keep ample notes on how to *bring in more help*.
+The context window is like a rucksack: it's limited, and everything you pack, you pay for.<br>So pack lightly, omit unused stuff, and include ample notes on how to *bring in more help*.
 
 <img src="images/service/system/context-as-rucksack.webp">
 

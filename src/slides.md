@@ -2699,9 +2699,9 @@ Links:
 
 ####
 Links:
-- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 - [Interpretability](https://www.anthropic.com/research/team/interpretability)
 - [A global workspace in language models (J-space)](https://www.anthropic.com/research/global-workspace)
+- [How might LLMs store facts | Deep Learning Chapter 7](https://youtu.be/9-Jl0dxWQs8) - 3Blue1Brown (22:42)
 
 ### "I included all of ..."<br>"The AI indexed the whole..."<br>"It read all the source code"
 <p class="verdict no">No, it most likely <em>did not</em></p>
@@ -2740,9 +2740,9 @@ Links:
 
 ####
 Links:
-- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
 - [Towards Understanding Sycophancy in Language Models](https://arxiv.org/abs/2310.13548)
 - [Why AI Can't Stop Being a Yes-Man](https://youtu.be/y65pLJJ5wzs) - Parthknowsai (7:43)
+- [Peering into Claude's soul (I can't believe this is real...)](https://youtu.be/ho4pQ6pI8Rg) - Theo - t3․gg (1:12:19)
 
 ### The AI can't help hallucinating
 <p class="verdict yes">True, but it can largely be mitigated</p>
@@ -2896,6 +2896,7 @@ Links:
 
 ####
 Links:
+- [OpenAI Model Spec](https://model-spec.openai.com/)
 - [Claude's Constitution](https://www.anthropic.com/constitution)
 - [How Claude's values vary by model and language](https://www.anthropic.com/research/claude-values-models-languages)
 
@@ -2911,9 +2912,9 @@ Links:
 ####
 Links:
 - [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627)
+- [What Creates Consciousness? | World Science Festival](https://youtu.be/06-iq-0yJNM) - World Science Festival (45:44)
 - [Will AI outsmart human intelligence? - with 'Godfather of AI' Geoffrey Hinton](https://youtu.be/IkdziSLYzHw) - The Royal Institution (47:15)
 - [The future of intelligence | Demis Hassabis (Co-founder and CEO of DeepMind)](https://youtu.be/PqVbypvxDto) - Google DeepMind (56:07)
-- [What Creates Consciousness? | World Science Festival](https://youtu.be/06-iq-0yJNM) - World Science Festival (45:44)
 - [Superintelligence Will Drive Us to Extinction and We Cannot Stop It 🤖 | 🎙️ Roman Yampolskiy](https://youtu.be/zYs9PVrBOUg) - Jon Hernandez AI (1:30:25)
 
 # That's all

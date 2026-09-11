@@ -1217,12 +1217,12 @@ Links:
 - [Why I Switched From Claude To Hermes Agent](https://youtu.be/pNP8pxhLAck) - Sharbel A. (19:03)
 
 
-# The AI Service
+# The AI service
 <!-- anchor ai-service -->
 ####
-Now we know how to "talk to the AI Service": we always interact with it via an agent app.
+Now we know how to "talk to the AI service": we always interact with it via an agent app.
 
-But what functionality does the AI Service actually offer? Besides bringing the brain, the LLM, into play?
+But what functionality does the AI service actually offer? Besides bringing the brain, the LLM, into play?
 
 That's the final piece of the puzzle, and it's much less complicated than the LLM itself. And you'll find that knowing about how the LLM works, knowing about embeddings for instance, will be quite helpful now.
 
@@ -1251,7 +1251,7 @@ The full functionality of the AI service that surrounds the LLM is quite lean.
 
 In principle, at least, because individual AI services may of course have variations.
 
-### All AI Services generally look like this
+### All AI services generally look like this
 <img src="images/service/overview/blank.png">
 
 ####
@@ -1815,7 +1815,7 @@ Links:
 ### An MCP server is "just" a middleman to a service
 - An MCP server *does not itself bring new functionality into the world*.
 
-- It's a middleman, *a standardized protocol*, that enables the AI Service to discover another service that exists somewhere.
+- It's a middleman, *a standardized protocol*, that enables the AI service to discover another service that exists somewhere.
 
 - When somebody says *"You can add an MCP server for Atlassian"*, they're practically saying:<br>*"You can tell the AI about Atlassian's API, aka tools"*.
 
@@ -2420,13 +2420,13 @@ Four parts to mention:
 - In addition to the text context, the request also does send along *some real hard parameters*: typically the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelism in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one chat to another.
 - There are **safety classifiers** for content going in or coming out, that act as hard stops for inappropriate content. So even if you do somehow convince the LLM to produce a recipe for a biochemical weapon that output will suffer a hard veto at the exit.
 - The output usually contains **statistics** for number of tokens consumed and produced, perhaps the cost too, among other things.
-- And finally, **the KV-cache**. The AI Service and LLM know nothing about you, but they do *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
+- And finally, **the KV-cache**. The AI service and LLM know nothing about you, but they do *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
 
 Links:
 - [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
 - [The Secret Controls for your LLM: Temperature, Top-K, Top-P, etc](https://youtu.be/MkaazQttbpc) - Gary Explains (14:51)
 
-### AI Service recap
+### AI service recap
 - All *AI services look alike* and their functionality is quite lean
 	- That's why a third-party agent can swap engines so easily
 
@@ -2451,14 +2451,14 @@ We are now done with all the technical AI parts. There will be no more new tech 
 So, let's take a deep breath of fresh air and remember the major takeaways.
 
 ### The AI agent is what you *interact* with
-<!-- toc-entry AI agent -->
+<!-- toc-entry AI agents -->
 <img src="images/agents/how-agents-use-ai.webp" />
 
 ####
 Using an agent is *how you interact* with the AI. You can pick from a wide variety of agents, as we saw in the section about [AI agents](#ai-agents-copilot-with-gemini).
 
-### AI Services practically all work *like this*
-<!-- toc-entry AI Service -->
+### AI services practically all work *like this*
+<!-- toc-entry AI service -->
 <img src="images/service/overview/full.png">
 
 ####

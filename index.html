@@ -1715,21 +1715,13 @@ Text maps to tokens, each token has an embedding in the model</p>
 <h4 id="_159"></h4>
 <p><strong>MCP</strong> (<strong>Model Context Protocol</strong>) is a standardized way of giving the LLM access to <em>more tools outside the agent or server</em>.</p>
 <p>In principle <em>it works exactly like tools</em> that we've just covered. The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.</p>
-<p>In my experience, MCP servers appear <em>particularly</em> mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. It feels like there's a world of unimaginable possibilities in that phrase, "Just add an MCP server..."</p>
-<p>MCP servers are useful, but also simple. Let's take a particular deep dive to demystify them.</p>
+<p>In my experience, MCP servers appear <em>particularly</em> mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. They only know that it can somehow do - well, just about <em>anything</em>, it seems. You can solve any problem with an MCP server, is the sentiment in the room.</p>
+<p>Sure, MCP servers are useful. But hardly magic. Let's take a particular deep dive to demystify them.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/7j1t3UZA1TY">MCP vs API: Simplifying AI Agent Integration with External Data</a> - IBM Technology (13:10)</li>
 <li><a href="https://youtu.be/GuTcle5edjk">you need to learn MCP RIGHT NOW!! (Model Context Protocol)</a> - NetworkChuck (38:40)</li>
 <li><a href="https://youtu.be/FLpS7OfD5-s">Why MCP really is a big deal | Model Context Protocol with Tim Berglund</a> - Confluent Developer (11:09)</li>
-</ul>
-<h3 id="mcp-servers-give-uniform-access-to-tools"><a class="headerlink" href="#mcp-servers-give-uniform-access-to-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP servers give uniform access to tools</h3>
-<p><img src="images/service/mcp/uniform-mcp-interface.png"></p>
-<h4 id="_160"></h4>
-<p>Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to see what API services are available in many different ways. There's now just one way, the MCP protocol way: ask for tool-names and call a tool.</p>
-<p>Links:</p>
-<ul>
-<li><a href="https://modelcontextprotocol.io/specification/">Model Context Protocol Specification</a></li>
 </ul>
 <h3 id="an-mcp-server-is-just-a-middleman-to-a-service"><a class="headerlink" href="#an-mcp-server-is-just-a-middleman-to-a-service" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>An MCP server is "just" a middleman to a service</h3>
 <ul>
@@ -1743,12 +1735,20 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>When somebody says <em>"You can add an MCP server for Atlassian"</em>, they're practically saying:<br><em>"You can tell the AI about Atlassian's API, aka tools"</em>.</p>
 </li>
 </ul>
-<h4 id="_161"></h4>
+<h4 id="_160"></h4>
 <p>Yes, it's really "just that". A live list of tools and a way to call them.</p>
 <h3 id="example-atlassian-mcp"><a class="headerlink" href="#example-atlassian-mcp" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Atlassian MCP</h3>
 <p><img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png"></p>
-<h4 id="_162"></h4>
+<h4 id="_161"></h4>
 <p>By adding the Atlassian MCP server to my AI agent it now has access to tools, just like Rovo used in the example before.</p>
+<h3 id="mcp-servers-give-uniform-access-to-tools"><a class="headerlink" href="#mcp-servers-give-uniform-access-to-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP servers give uniform access to tools</h3>
+<p><img src="images/service/mcp/uniform-mcp-interface.png"></p>
+<h4 id="_162"></h4>
+<p>Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to see what API services are available in many different ways. There's now just one way, the MCP protocol way: ask for tool-names and call a tool.</p>
+<p>Links:</p>
+<ul>
+<li><a href="https://modelcontextprotocol.io/specification/">Model Context Protocol Specification</a></li>
+</ul>
 <h3 id="an-mcp-tool-call-in-detail"><a class="headerlink" href="#an-mcp-tool-call-in-detail" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>An MCP tool-call in detail</h3>
 <h4 id="_163"></h4>
 <p>Let's take a look at concretely how an MCP service is used.</p>

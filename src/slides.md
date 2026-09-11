@@ -1803,23 +1803,14 @@ Yes, that's right.
 
 In principle *it works exactly like tools* that we've just covered. The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
 
-In my experience, MCP servers appear *particularly* mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. It feels like there's a world of unimaginable possibilities in that phrase, "Just add an MCP server..."
+In my experience, MCP servers appear *particularly* mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. They only know that it can somehow do - well, just about *anything*, it seems. You can solve any problem with an MCP server, is the sentiment in the room.
 
-MCP servers are useful, but also simple. Let's take a particular deep dive to demystify them.
+Sure, MCP servers are useful. But hardly magic. Let's take a particular deep dive to demystify them.
 
 Links:
 - [MCP vs API: Simplifying AI Agent Integration with External Data](https://youtu.be/7j1t3UZA1TY) - IBM Technology (13:10)
 - [you need to learn MCP RIGHT NOW!! (Model Context Protocol)](https://youtu.be/GuTcle5edjk) - NetworkChuck (38:40)
 - [Why MCP really is a big deal | Model Context Protocol with Tim Berglund](https://youtu.be/FLpS7OfD5-s) - Confluent Developer (11:09)
-
-### MCP servers give uniform access to tools
-<img src="images/service/mcp/uniform-mcp-interface.png">
-
-####
-Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to see what API services are available in many different ways. There's now just one way, the MCP protocol way: ask for tool-names and call a tool.
-
-Links:
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
 
 ### An MCP server is "just" a middleman to a service
 - An MCP server *does not itself bring new functionality into the world*.
@@ -1836,6 +1827,15 @@ Yes, it's really "just that". A live list of tools and a way to call them.
 
 ####
 By adding the Atlassian MCP server to my AI agent it now has access to tools, just like Rovo used in the example before.
+
+### MCP servers give uniform access to tools
+<img src="images/service/mcp/uniform-mcp-interface.png">
+
+####
+Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to see what API services are available in many different ways. There's now just one way, the MCP protocol way: ask for tool-names and call a tool.
+
+Links:
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/)
 
 ### An MCP tool-call in detail
 ####

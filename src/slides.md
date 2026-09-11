@@ -1082,7 +1082,7 @@ Links:
 - [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
 
 
-# AI agents
+# AI Agents
 <!-- anchor ai-agents -->
 ####
 Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?
@@ -1217,7 +1217,7 @@ Links:
 - [Why I Switched From Claude To Hermes Agent](https://youtu.be/pNP8pxhLAck) - Sharbel A. (19:03)
 
 
-# The AI service
+# The AI Service
 <!-- anchor ai-service -->
 ####
 Now we know how to "talk to the AI service": we always interact with it via an agent app.
@@ -1784,7 +1784,7 @@ Simply asking "what tools are available?" can be a good way of finding inspirati
 ####
 Rovo does a number of tool calls to figure out that I have three pages in my personal Confluence space.
 
-## MCP servers
+## MCP Servers
 <!-- anchor ai-service-mcp-servers -->
 <img src="images/overview/tools.webp" />
 
@@ -1948,7 +1948,7 @@ But remember: using an MCP server does incur some extra cost in terms of a netwo
 Links:
 - [CLI vs MCP: How AI Agents Choose the Right Tool for the Job](https://youtu.be/g9JIUM0MHgQ) - IBM Technology (14:06)
 
-## System prompt
+## System Prompt
 <!-- anchor ai-service-system-prompt -->
 ####
 Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.
@@ -2451,14 +2451,14 @@ We are now done with all the technical AI parts. There will be no more new tech 
 So, let's take a deep breath of fresh air and remember the major takeaways.
 
 ### The AI agent is what you *interact* with
-<!-- toc-entry AI agents -->
+<!-- toc-entry AI Agents -->
 <img src="images/agents/how-agents-use-ai.webp" />
 
 ####
 Using an agent is *how you interact* with the AI. You can pick from a wide variety of agents, as we saw in the section about [AI agents](#ai-agents-copilot-with-gemini).
 
 ### AI services practically all work *like this*
-<!-- toc-entry AI service -->
+<!-- toc-entry AI Service -->
 <img src="images/service/overview/full.png">
 
 ####
@@ -3114,7 +3114,7 @@ Links:
 - [RAG Explained For Beginners](https://youtu.be/_HQ2H_0Ayy0) - KodeKloud (10:09)
 - [Is RAG Still Needed? Choosing the Best Approach for LLMs](https://youtu.be/UabBYexBD4k) - IBM Technology (11:09)
 
-## Build your own agent
+## Build Your Own Agent
 <!-- anchor bonus-build-your-own-agent -->
 
 ### Build your own agent to have full control
@@ -3141,7 +3141,7 @@ Links:
 - [my-agent](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent)
 
 
-## A fancy autocomplete
+## A Fancy Autocomplete
 <!-- anchor bonus-a-fancy-autocomplete -->
 ####
 I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.
@@ -3222,7 +3222,7 @@ Links:
 - [How Do Our Brains Perceive the World Around Us? - with Anil Seth](https://youtu.be/EWEwpS8L5Cw) - The Royal Institution (3:50)
 - [You don't think, you predict!](https://youtu.be/QkqE8UWvFFU) - XenoSphere Originals (6:52)
 
-## Dimensionality by superposition
+## Dimensionality by Superposition
 <!-- anchor bonus-dimensionality-by-superposition -->
 
 How can "only" 12288 dimensions characterize everything as well as they apparently do?

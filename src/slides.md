@@ -39,6 +39,10 @@ When HTML came out I was like, man, I just want to know all about it.
 
 Same with Java and .NET, with their intriguing bytecode and VM-engines. So interesting.
 
+####
+Links:
+- [The Welch Labs Illustrated Guide to AI](https://www.welchlabs.com/store/illustrated-guide-to-ai)
+
 ---
 ![bg](images/intro/dopamine.webp)
 
@@ -181,7 +185,7 @@ Links:
 ---
 <img src="images/overview/full.webp" />
 
-You, the **human**, use an **AI Agent** to communicate with an **AI Service** that turns your messages into **tokens** and feeds them through an **LLM**. The service and agent can use **tools** and the agent can **remember**.
+You, the **human**, use an **AI agent** to communicate with an **AI service** that turns your messages into **tokens** and feeds them through an **LLM**. The service and agent can use **tools** and the agent can **remember**.
 
 ####
 That's what we'll go through. It's all about **generative text AI**, like Claude, ChatGPT, Gemini, Grok, etc. Not AI for generating images using stable diffusion, nor AI for self-driving cars, nor AI for folding proteins.
@@ -618,26 +622,20 @@ Let's focus on this example:
 
 Find out what should follow `"That which does not kill you only makes you ___"`.
 
-Just choosing the statistically most likely next word to follow `"you"` won't work. We need to look at more context to decide what naturally should follow that `"you"`. Frankly, we probably need to look at *all that comes before* that `"you"` to properly decide on what should follow. That's a tough task for longer sentences.
+Just choosing the statistically most likely next word to follow `"you"` won't work. We need to look at more context to decide what naturally should follow that `"you"`. Frankly, we probably need to look at *all that comes before* that `"you"` to properly decide on what should follow. That's a tough task for longer sentences and before 2017, attempts didn't work very well. But then a short paper with an invention cracked the code.
 
-### Enter: The Transformer, in 2017
-<img src="images/llm/the-transformer.png">
-
-####
-The invention that made all of this possible, is called the **Transformer**.
-
-### "Attention is all you need"
+### "Attention is all you need" gave us the Transformer
 <div class="cols">
 <img src="images/llm/attention-is-all-you-need.webp">
 <img src="images/llm/attention-transformer.png">
 </div>
 
 ####
-The 2017 paper "Attention Is All You Need" by Vaswani et al. is arguably the most consequential piece of computer science research published in the 21st century.
+The 2017 paper *"Attention Is All You Need"* introduced the **Transformer**, the invention that made all of this possible.
 
-Today, the paper sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature.
+The idea of the Transformer architecture is the cornerstone of modern AI. Without it, there is no ChatGPT, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized **foundation models**.
 
-It is the cornerstone of modern AI. Without it, there is no ChatGPT, no Gemini, no Claude, no Stable Diffusion, and no AlphaFold. It transformed AI from an academic field of hyper-specialized, rigid pipelines into a unified era of generalized **foundation models**.
+The paper is arguably the most consequential piece of computer science research published in the 21st century and sits at over 200,000 citations, making it an absolute statistical anomaly in scientific literature. It's also quite short, only 9 pages of actual text, so it's not insurmountable to read through.
 
 Links:
 - [Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
@@ -1084,7 +1082,7 @@ Links:
 - [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
 
 
-# AI Agents
+# AI agents
 <!-- anchor ai-agents -->
 ####
 Now that we've seen how the LLM works, and learned a bit about tokens and embeddings, it's time to take a step up and see how we actually can use the LLM. How do we interact with it, for starters?
@@ -1172,7 +1170,7 @@ Links:
 - [ChatGPT desktop app](https://learn.chatgpt.com/docs/app)
 - [Google Antigravity](https://antigravity.google/)
 
-### An agent is often its own little silo
+### An agent typically is "a little silo of its own"
 <img src="images/agents/skills-example.png" />
 
 ####
@@ -1180,50 +1178,53 @@ Generally the only thing that the AI service knows about you is your name, ident
 
 Everything else is something that the agent provides you: your profile, memory files, skills, mcp servers, etc. And also the agent's behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
 
-That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and each comes with their own capabilities and settings.
+That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and typically don't really share their settings, even though you're logged in as the same user.
 
-And yes, it's maybe a tad unexpected that "claude.ai" is not actually the AI service as such, but in fact just an agent just like Claude Code in the terminal is.
+It's maybe a tad unexpected that "claude.ai" on the web is not actually the AI service itself, but in fact an agent just like Claude Code in the terminal. Two different agents, both using the very same AI service, yet with different skills, different settings, a different UI, and different functions. The AI is the same; the experience is not.
 
-At least that's how it *usually* is today. It's changing slowly, it seems, and that's nice because it's annoying that your settings etc follow the installation, not your profile. It's just not an area that has gotten a lot of attention.
+In fact, much of "the AI experience" really comes from *the agent you choose to use*. And realizing that "the AI agent" and "the AI service" aren't the same thing is key to understanding what people mean when they say, for instance, "I use Copilot with Gemini". What do they mean by that? Are they using Copilot? Or using Gemini? Or both? What's going on?
 
-So now you know why the settings, like Skills, you set online at claude.ai are not available in Claude Code.
-
-### My personal AI-journey
-####
-For perspective, here's how my own use of AI has evolved over time.
-
-### Chat, copy-paste, in-app, now terminal
-<img src="images/agents/evolution.webp" />
+### What does "I use Copilot with Gemini" mean?
+<!-- anchor ai-agents-copilot-with-gemini -->
+<img src="images/agents/how-agents-use-ai.webp" />
 
 ####
-I started chatting just in the browser, of course. And I still do, by the way.
+*"I'm using Gemini. And you?"*<br>
+*"Me too, I'm using Copilot with Gemini"*<br>
+*"Hmmm - okay, what does that actually mean?"*
 
-Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it.
+Think of the AI service as an engine and the agent as the rest of the car.
 
-Then I started working with the AI inside the code editor for true cooperation. It was a relief and performance-boost to have the AI work directly on my files in my folders.
+The engine provides raw power: you press the accelerator and something rotates. It is *the car* that puts that power to use and gives you the driving experience: gears, cruise-control, driving modes, the interior, the stereo. You always *interact with the car*, not the engine.
 
-Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control.
+Many car manufacturers don't even produce their own engines. Toyota puts its 3.5-litre V6 into its own Lexus RX 350, and also sells it to Lotus for the Emira. Lotus adds a supercharger and gets 400 hp out of the engine that gives the Lexus 275 hp. Two very different cars using the same engine, each offering its own driving experience to suit different tastes.
 
-### I still use the browser chat
-<img src="images/agents/ai-tech-talk.png" />
+AI services and AI agents are similar in kind. Every frontier lab ships its own agents that use its own AI service. But there are also a lot of *third-party agents*, made by people who have no AI service of their own, so their agent simply uses *somebody else's AI service*. You get to choose which one and you're also still billed one way or another: by the AI service you choose to use (per token via API or by your subscription), or, if you choose to run the AI on your Mac Mini, in the form of buying hardware and running the AI yourself.
 
-####
-For anything that doesn't involve files I still just chat in the browser.
+The agent is what gives you the practical experience: your chats, memories, skills, settings, tools, commands and UI all live there. Sure, the AI service is vital, and the models do differ, so yes, the engine's quality certainly matters. But the engine you choose is still just one factor of your driving experience.
 
-The AI didn't write this presentation, but I surely sparred a lot with Claude for all the research. My Claude "AI tech talk" project spans 80 chats and I've prompted about 28,000 words which is about the length of Shakespeare's longest play, *Hamlet*. In that spirit, I'll leave it to the bard to comment on my efforts:
+So in *"I use Copilot with Gemini"*, Copilot is the car, and Gemini is the engine it uses.
 
-*There is nothing either good or bad,<br>
-but thinking makes it so.*
+*"But hang on"*, you may think, "isn't it a big job to make one agent deal with OpenAI, Claude, Gemini, and all the rest?" Surprisingly, not really. *All AI services are quite similar*, and as you'll see next, *quite simple in what they can do*, just like an engine.
+
+Exploring the AI service is the final part of the AI fundamentals.
+
+Links:
+- [A very subjective comparison of Claude Code, OpenCode, Cursor & GitHub Copilot](https://youtu.be/dMSZ0WcK1oI) - Maximilian Schwarzmüller (18:30)
+- [Claude Code vs Codex vs Cursor (an honest comparison)](https://youtu.be/JMYspR42HFM) - Theo - t3․gg (37:56)
+- [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU) - NetworkChuck (33:43)
+- [Every Level of Copilot Agents Explained in 13 Minutes](https://youtu.be/QO31VbeWM8M) - David Fortin (13:09)
+- [Why I Switched From Claude To Hermes Agent](https://youtu.be/pNP8pxhLAck) - Sharbel A. (19:03)
 
 
 # The AI Service
 <!-- anchor ai-service -->
 ####
-Now we know how to "talk to the AI Service": via some agent app.
+Now we know how to "talk to the AI Service": we always interact with it via an agent app.
 
-But what functionality does the AI Service actually add to the brain, the LLM?
+But what functionality does the AI Service actually offer? Besides bringing the brain, the LLM, into play?
 
-That's the final piece of the puzzle, and it's much less complicated than the LLM itself. But you'll find that knowing about how the LLM works, knowing about embeddings for instance, will be quite helpful now.
+That's the final piece of the puzzle, and it's much less complicated than the LLM itself. And you'll find that knowing about how the LLM works, knowing about embeddings for instance, will be quite helpful now.
 
 This is the section where we finally unlock the concrete functionality you use daily: chatting, uploading files, having the AI work on that Confluence page using an MCP server, using a skill, etc etc. It all comes together now, and many parts are less mysterious than you might think.
 
@@ -1800,9 +1801,11 @@ Yes, that's right.
 ####
 **MCP** (**Model Context Protocol**) is a standardized way of giving the LLM access to *more tools outside the agent or server*.
 
-In principle *it works exactly like tools* that we've just covered.
+In principle *it works exactly like tools* that we've just covered. The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
 
-The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.
+In my experience, MCP servers appear *particularly* mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. It feels like there's a world of unimaginable possibilities in that phrase, "Just add an MCP server..."
+
+MCP servers are useful, but also simple. Let's take a particular deep dive to demystify them.
 
 Links:
 - [MCP vs API: Simplifying AI Agent Integration with External Data](https://youtu.be/7j1t3UZA1TY) - IBM Technology (13:10)
@@ -1918,7 +1921,7 @@ Links:
 ####
 Under Connectors you can see all the individual tools exposed by the Siteimprove demo MCP server.
 
-Each of the 531 API endpoints is a "tool" with a name.
+Each of the 531 API endpoints is a "tool" with a name. In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.
 
 ### Need to authenticate on the first usage
 <img src="images/service/mcp/siteimprove/authenticate.png">
@@ -1933,14 +1936,6 @@ This page is produced by my demo code, so an MCP server can style it just as it 
 When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool `mcp__claude_ai_Siteimprove_MCP__analytics_content_most_popular_pages` would likely be useful, and asks for it to be called.
 
 In order not to reveal actual page views I blacked out the reported numbers.
-
-### All the included Siteimprove MCP tools
-<img src="images/service/mcp/siteimprove/full-tool-list.png">
-
-####
-Yes, it took 10 screenshots to put this massive list together.
-
-In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.
 
 ### MCP is massively popular
 <img src="images/service/mcp/massive-mcp-server-list.webp">
@@ -1987,6 +1982,9 @@ Remember: in the LLM, *nothing is a hard rule*. It's all just textual instructio
 With enough "super-urgent" persuasion, my user message was prioritized over the system prompt, and GPT4.1 agreed that its name was "Groot".
 
 However, all other models were not at all convinced and saw right through the presumed urgency.
+
+Links:
+- [Why prompt injection is the #1 AI security risk | TQ Tech Talks](https://youtu.be/O0XheeCS3CI) - Accenture (8:59)
 
 ### The system prompt is composed by the agent
 <img src="images/service/system/prompt/maximillian.png">
@@ -2059,15 +2057,21 @@ The "stored memories" are in a way the only slightly magical part of the context
 <img src="images/service/system/memory/memory-example.png">
 
 ####
-These are the "most important memorized facts" from your conversations, kept updated and curated by the agent. Completely visible and less verbose than you might expect. Look at the scrollbar: there's no more than a handful of pages of memories from over a year of chatting. That's because new facts are constantly being brought in and old facts are tossed away, no longer relevant. AI Agents can use multiple files to hold these "memories".
+The AI model's response may well contain something that gives the impression that it somehow knows a lot about you. You talk about buying dog food and it responds by mentioning the name of your dog. What's up?
 
-A big takeaway here is this:
+The reason is this. As you chat, the typical agents will (using the LLM, of course) keep small summarized notes of the most important takeaways from these chats. They're often called *memories*.
 
-Yes, these "memories" are kept updated regularly by the agent, they are based on your most recent chats, and they are sent to the AI.
+This mechanism is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, it does. But quite sparsely. Just look at the scrollbar from my memories: there's no more than a handful of pages of memories from over a year of chatting. That's because new facts are constantly being brought in and old facts were tossed away as they are not relevant enough to keep.
 
-But that means that the AI model only gets the summary of what the agent has stored from your chat history over time: the AI model cannot itself *search through your chat history* to find anything of relevance to what you're talking about now. So if you talk about some long forgotten topic then it's no longer part of the memories, and hence the AI knows nothing about it when you bring it up again.
+AI agents can have multiple such memories from your chats and you can most often see them for yourself, in the agent's settings or files. They're not a secret.
 
-If you find yourself wondering why the AI seems to know about some things you've talked about, but not other things, then this is the reason why.
+So if you find yourself wondering *"How does the AI know about this?"* then these automatic memories from former chats likely hold the answer.
+
+And conversely, if you find yourself wondering *"Why doesn't it know about this anymore?"* then it's likely because that fact was tossed. Your chats remain in the agent, yes, but the AI model cannot by itself *search through your chat history* to find anything of relevance to what you're talking about now - it will only see the memories that the agent has chosen to include, and topics that have been tossed away will never reach the AI anymore.
+
+Your dog's name is the kind of fact that would likely be deemed important to keep. Your search for dog food doesn't carry the same weight and may not even be deemed important enough to store in the memories.
+
+Here's a concrete agent story. [Hermes](https://hermes-agent.nousresearch.com/) says it's "The agent that grows with you" and "The longer it runs, the better it knows you". You might imagine that over time it grows to know a ton about you. But actually, its memory is limited to 1375 characters, ever. So it only ever grows to know what amounts to one page of *Harry Potter* about you, even if you chat for a year.
 
 ### #4/11: Some context from the agent
 ####
@@ -2298,7 +2302,15 @@ Sometimes it's convenient to write some guideline instructions for a set of rela
 ####
 You can write instructions that are included in every chat related to a specific project or work that you're doing.
 
-They go by many names: Projects, Gems, Custom GPTs, Spaces.
+They go by many names: **Project**, **Gem**, **Custom GPT**, or **Space**. I'll just call it a "Project" here.
+
+In this specific Claude Project I give details about switching to full desktop Linux, so I can have a number of chats about this topic that all include this base information. Let's see if 2026 is going to be the year of the Linux Desktop for me.
+
+Some agents, like Claude, also keep automatically updated memories from chats in *just this Project*. So even if you don't feel a need for writing explicit custom instructions in a Project, the agent uses your chats in that Project to create such instructions (memories) automatically over time.
+
+Links:
+- [Is 2026 the year of the Linux Desktop?](https://youtu.be/6y7meR-XDMM) - foci (11:48)
+- [You need to switch to Linux RIGHT NOW!!](https://youtu.be/9SDkU5VDQEQ) - NetworkChuck (33:36)
 
 ### Add general custom instructions
 <img src="images/service/system/customize/all-agents.png">
@@ -2381,9 +2393,6 @@ Let's check it out.
 ### Oh, something &lt;mandatory&gt;, sounds important
 <img src="images/service/system/all/something-mandatory.png">
 
-### A bit on regex formatting and the available tools
-<img src="images/service/system/all/regex-and-tools.webp">
-
 ### MCP tool-names pop in, rather unceremoniously
 <img src="images/service/system/all/mcp-tools.png">
 
@@ -2417,78 +2426,83 @@ Links:
 - [What is Prompt Caching? Optimize LLM Latency with AI Transformers](https://youtu.be/u57EnkQaUTY) - IBM Technology (9:06)
 - [The Secret Controls for your LLM: Temperature, Top-K, Top-P, etc](https://youtu.be/MkaazQttbpc) - Gary Explains (14:51)
 
-## Full AI
-<!-- anchor ai-service-full-ai -->
+### AI Service recap
+- All *AI services look alike* and their functionality is quite lean
+	- That's why a third-party agent can swap engines so easily
 
-### "Now I have the full picture"
+- The AI service *knows nothing about you*, apart from your account-info
+	- The chats, memories, skills, settings - that all lives in the agent
+
+- The *full chat* is sent every time, so the context only ever grows and grows
+	- Until you or the agent choose to *clear* or *compact* it
+
+- The LLM can ask for tools to be run and controls the *agentic loop*
+	- *MCP* is just more tools and *skills* are just inserted text
+
+- The *system prompt* carries more weight
+	- Put important instructions there (e.g. in agent files), not in the chat
+
+
+# AI Takeaways
+<!-- anchor ai-takeaways -->
+####
+We are now done with all the technical AI parts. There will be no more new tech introduced from now on.
+
+So, let's take a deep breath of fresh air and remember the major takeaways.
+
+### The AI agent is what you *interact* with
+<!-- toc-entry AI agent -->
+<img src="images/agents/how-agents-use-ai.webp" />
+
+####
+Using an agent is *how you interact* with the AI. You can pick from a wide variety of agents, as we saw in the section about [AI agents](#ai-agents-copilot-with-gemini).
+
+### AI Services practically all work *like this*
+<!-- toc-entry AI Service -->
 <img src="images/service/overview/full.png">
 
 ####
-Indeed, this is the full overview of how any modern AI Service works, in principle.
+In principle all modern AI services are very similar: they take a context of a full chat and produce a response. And that context is also very similar across AI services; it contains a list of chat messages between you and the AI, tools, system prompt, and some configuration. That's it.
 
-## Full context
-<!-- anchor ai-service-full-context -->
-
-### The full context you send is *this and nothing else*
+### The context is no mystery, it's *exactly this*
+<!-- toc-entry Context -->
 <img src="images/service/system/full-context.png">
 
 ####
-Besides the messages you send and the response from the AI service, the context consists of
+Besides the messages you send and the response from the AI service, the context consists of instructions that *you* somehow have asked to be added, instructions that *the agent* has chosen to add, and *automatically created memories* from your chats that the agent also adds.
 
-- instructions that *you* somehow have asked to be added, and
-- instructions that *the agent* has chosen to add
+Remember these three things about the context:
 
-In your chat, the response may well contain something that gives the impression that the AI model somehow knows a lot about you. You talk about buying dog food and it responds by mentioning the name of your dog. What's up?
+1. The context is *all the AI will see*
+2. You pay for *each token in the context*
+3. *Every* message you send includes the full context
 
-The reason is this. As you chat, the typical agents will (using the LLM, of course) keep a small record of most important facts about you and what you've most recently talked about. That's the *automatically stored memories* we looked at earlier, in part 3 of the system prompt.
+# Context Economy
+<!-- anchor context-economy -->
+####
+With that in mind, let's look at how to be *economical* with that context.
 
-And *this* is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, but not much; and you can see it for yourself, in the settings for web-agents or in files for terminal-agents. When you chat it's *just this brief summary* (or summaries, maybe) that is included - not all the former chats.
-
-### Like a rucksack: what you pack is *all you have*
+### What you pack into the context is *all the AI will see*
 The context window is like a rucksack: it's limited, and everything you pack, you pay for.
-So pack lightly, toss unused stuff, and keep ample notes on how to *bring in more help*.
+So pack lightly, omit unused stuff, and keep ample notes on how to *bring in more help*.
 
 <img src="images/service/system/context-as-rucksack.webp">
 
 ####
-The *red* guidebook is the system prompt and memories. You always have to bring that.
+The *red* guidebook is the system prompt and memories. You always have to bring a guidebook.
 
-In the *green* book you can add notes for how to bring in more help, like skills and MCP servers. It's *much more lightweight* to just include an instruction on how to bring in more help or information than to *actually include it*.
+The *green* book has brief notes for how to bring in more help, like skills and MCP servers. It's *much more lightweight* to just include a short instruction on how to bring in more help or information than to *actually include it*.
 
-In the *blue* notebook you can put your own notes and preferences. You'll likely update and refine them over time. Then again, maybe you have nothing to add and are happy with just the guidebook.
+In the *blue* notebook you put your own notes and preferences. You'll likely update and refine them over time. Then again, maybe you have nothing to add and are happy with just the guidebook.
 
 The pile of *letters* symbolizes the correspondence between you and your penpal, the AI, including all the stuff that you send to each other.
 
 To be clear: the *rucksack size is the context window* and *what you put in is the context*. A bigger rucksack will allow you to bring more stuff on your trip, but you ultimately pay (in sweat or money) for all that you choose to pack into it.
 
-So next up, let's look at some concrete advice on how to pack well, and what to avoid. Like, "don't start your journey by buying a heavy souvenir and then proceed to carry it all day through the desert", or "don't ask your AI penpal to send you some samples of interesting rocks and then keep on carrying them forever".
+Next up let's look at some concrete advice on how to pack well, and what to avoid. Like, "don't start your journey by buying a heavy souvenir and then proceed to carry it all day through the desert", or "don't ask your AI penpal to send you some samples of interesting rocks and then keep on carrying them forever".
 
 Links:
 - [LLM Context Windows Explained: Why More Tokens Don't Always Mean Better Answers](https://youtu.be/mIgDGCMU4YM) - Schovia (13:12)
-
-# Context Economy
-<!-- anchor context-economy -->
-####
-Everything we've looked at is about *putting tokens into a context* with the intent of steering the next prediction toward something useful.
-
-Here is some advice on how to do that *economically*.
-
----
-<img src="images/context/its-the-context-economy-stupid.png">
-
-####
-The context is finite and processing costs you per token.
-
-So not just adding the right things, but also keeping the context lean, is the challenge.
-
-### Advice for your context economy
-- You *pay per token*, either fixed price/token for API, or via *your quota* when using an agent.<br>*Output tokens* are typically *5 times* as expensive as input tokens<br>*Cached tokens cost 10%*, so continue your chat within 5 min (optional 1 hour) to save cost
-
-- System, tools, results, images, docs eat many tokens; don't anguish over *your tiny prompt*
-
-- Pack multiple asks into one; *"Yes, and also..."* and *"Looks fine. And now x and y..."*<br>Save tokens by *being precise* about names of files, what the output should look like, etc
-
-- *Starting a fresh chat* is the universal remedy to save tokens; summarize or compact first.<br>You can also ask the AI to *summarize your chat or results to a file*, then start fresh with that
 
 ### Token spree
 <style scoped>
@@ -2542,16 +2556,29 @@ Now increase the number of turns to 30 and add all token spending sprees one by 
 - Long outputs - quota reached twice
 - Bust cache - quota reached earlier
 - Expensive model - bam!
-- Click on "Combine similar" to better see the contributions
 
-Mitigations:
+Also check out the effect of clear and compact, and click on "Combine similar" to better see the contributions.
 
-- Try clear and compact
+### Tips for sound context economy
+- You *pay per token*, either fixed price/token for API, or via *your quota* when using an agent.<br>*Output tokens* are typically *5 times* as expensive as input tokens<br>*Cached tokens cost 10%*, so continue your chat within 5 min (optional 1 hour) to save cost
+
+- System, tools, results, images, docs eat many tokens; don't anguish over *your tiny prompt*
+
+- Pack multiple asks into one; *"Yes, and also..."* and *"Looks fine. And now x and y..."*<br>Save tokens by *being precise* about names of files, what the output should look like, etc
+
+- If you've "packed something heavy" then don't drag it along forever:<br>Do *compact* or *start a fresh chat* - the universal remedy to save tokens
+
+---
+<img src="images/context/its-the-context-economy-stupid.png">
+
+####
+Context economy really is the name of the game.
+
 
 # 3 x How to ...
 <!-- anchor how-to -->
 ####
-Here's a round of advice on how to speak, hold, and keep up with the AI.
+Let's do a round of advice on how to speak, hold, and keep up with the AI.
 
 ### How to speak to the AI
 - Just *speak plainly*, including small nudging words to avoid steering too coarsely
@@ -2599,11 +2626,19 @@ Links:
 
 
 ### How to keep up with the AI
-Treat it as a tool in your professional toolbox.<br>Buy your *own* good hammer, like a carpenter would
+These are my own opinions on how to keep up.
 
-A monthly subscription of $20 is a cheap investment
+- Treat it as a tool in your professional toolbox:<br>Buy your *own personal* good hammer, like a carpenter would<br>A monthly subscription of $20 is a cheap investment in your career
+
+- Be *playful* and just try things out<br>Nobody's watching and there's no right or wrong<br>Pick a passion project and give it a spin using AI in some way
+
+- Pick one AI agent and *learn it well*<br>But don't stick to just that one AI agent forever
 
 ####
+ Half the fear around AI is the sense that everyone else has figured out the right way and you haven't. There isn't one "right way". Try the terminal, try a skill, try using it on some passion idea you have.
+ 
+ And be prepared to pay for it. Consider it an investment in your professional career.
+
 Links:
 - [Claude Academy](https://claude-academy.com/)
 - [You're falling behind. It's time to catch up.](https://youtu.be/Z9UxjmNF7b0) - Theo - t3․gg (32:45)
@@ -2611,12 +2646,40 @@ Links:
 - [Going Slower Feels Safer, But Your Domain Expertise Won't Save You Anymore. Here's What Will.](https://youtu.be/q6p-_W6_VoM) - AI News & Strategy Daily | Nate B Jones (14:02)
 - [The Truth About Developer Productivity in the AI Age (IT'S A TRAP)](https://youtu.be/kDBeFOscZpc) - Modern Software Engineering (16:14)
 
+### My journey: chat, copy-paste, in-app, now terminal
+<img src="images/guidance/evolution.webp" />
+
+####
+For example, here's how my personal use of AI has evolved over time.
+
+I started chatting just in the browser, of course.
+
+Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it. Oh man, did I copy-paste a lot. I also stayed in the same looong chat forever, and the AI forgot earlier parts at the drop of a hat. Looking back makes me cringe a bit but hey, I was learning.
+
+Then I started working with the AI inside the code editor for true cooperation. It was such a relief and performance-boost to have the AI work directly on my files in my folders. No more copy-paste. Wonderful.
+
+Since late 2025 I'm now exclusively coding by running the AI in a terminal and having an editor open with the files. Much bigger window to engage with the AI in, much better control. It's like inviting the AI to sit next to me at the keyboard.
+
+Most recently I've installed [Hermes](https://hermes-agent.nousresearch.com/) on a headless little Linux PC and am exploring how that experience feels. It's like a new world, speaking via Telegram or Slack to an always-on agent.
+
+### I still web-chat about questions, in various AI agents
+<img src="images/guidance/ai-tech-talk.png" />
+
+####
+For many thngs that doesn't involve files I still just chat in the browser.
+
+The AI didn't write this presentation, but I surely sparred a lot with Claude for all the research. My Claude "AI tech talk" project spans 80 chats and I've prompted about 28,000 words which is about the length of Shakespeare's longest play, *Hamlet*. In that spirit, I'll leave it to the bard to comment on my efforts:
+
+*There is nothing either good or bad,<br>
+but thinking makes it so.*
+
+
 # A Quick Round of Demystifications
 <!-- anchor demystifications -->
 ####
-Now that you have a fuller understanding of all the AI basics, let's run through a quick series of myths and facts and demystify them.
+Now that you have a fuller understanding of all the AI basics, let's conclude by demystifying a quick series of myths and facts.
 
-You can try to see how many of them you can reason correctly about yourself, based on what you know now.
+You can try to see how many of them you can reason about yourself, based on what you know now.
 
 ### We don't know how the AI works
 <p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
@@ -2698,6 +2761,7 @@ Interestingly, deeper reasoning (chain of thought) actually *lowers* the success
 Links:
 - [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
 - [Why do AI models hallucinate?](https://youtu.be/005JLRt3gXI) - Claude (5:13)
+- [LLM Evaluation Explained: Accuracy, Faithfulness, and Hallucinations](https://youtu.be/LM-bmieFw74) - Schovia (12:17)
 
 ### Ask "Why did you do that?" and it will tell you
 <!-- anchor demystifications-why-did-you-do-that -->
@@ -2733,6 +2797,10 @@ Links:
 - "Make no mistakes" does not point out what a mistake is.
 
 - Instead, *describe exactly* how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".
+
+####
+Links:
+- [Make No Mistakes - A Vibe Coded Song](https://youtu.be/7d-2kOpNTpE) - HackerRank (1:19)
 
 ### Saying "please" costs a fortune and is useless
 <p class="verdict no">No, it doesn't and no it isn't</p>
@@ -2779,6 +2847,10 @@ Links:
 
 - However, here's a tip. Remember that *custom instructions* in your settings or agent-files goes into the system prompt, and that the system prompt carries more weight for the LLM. So if you have something particularly important to say, add it to your custom instructions.
 
+####
+Links:
+- [Why won't AI agents just follow the rules?](https://youtu.be/6AuYLbHqirk) - IBM Technology (35:29)
+
 ### Use token-saving skills, like "Caveman"
 <p class="verdict maybe">Be skeptical - can be more useless than useful</p>
 
@@ -2791,6 +2863,7 @@ Links:
 ####
 Links:
 - [Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md)
+- [Caveman Claude Code Is the New Meta (Here's the Science)](https://youtu.be/4FO1Liu-ttk) - Chase AI (10:36)
 
 ### Our own fine-tuned model would be even better
 <p class="verdict no">It's likely not the ideal you imagine</p>
@@ -2811,6 +2884,7 @@ Links:
 - [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
 - [Can humans make AI any better?](https://youtu.be/2hcsmtkSzIw) - Welch Labs (23:39)
 - [Is Fine-Tuning Still Needed? LLMs, RAG, & LoRA](https://youtu.be/-W2JdSl1v48) - IBM Technology (10:52)
+- [RAG vs Fine Tuning: How Enterprise Teams Can Choose](https://youtu.be/jEEnIc--BF0) - Schovia (10:55)
 - [General-purpose large language models outperform specialized clinical AI tools on medical benchmarks](https://www.researchgate.net/publication/406992335_General-purpose_large_language_models_outperform_specialized_clinical_AI_tools_on_medical_benchmarks)
 
 ### All AI models are the same after all
@@ -2824,7 +2898,6 @@ Links:
 Links:
 - [Claude's Constitution](https://www.anthropic.com/constitution)
 - [How Claude's values vary by model and language](https://www.anthropic.com/research/claude-values-models-languages)
-- [OpenAI Model Spec](https://model-spec.openai.com/)
 
 ### Does it understand?<br>Is the AI sentient?
 <p class="verdict maybe">Maybe - experts disagree</p>
@@ -2860,7 +2933,7 @@ Keep your *context lean*
 
 Try *the terminal*, maybe you'll like it
 
-*Re-visit this* at ricflams.github.io/techtalk-ai-demystified/<br>in readable form with *plenty* more notes and links
+*Re-visit this* at [ricflams.github.io/techtalk-ai-demystified](https://ricflams.github.io/techtalk-ai-demystified/)<br>in readable form with *plenty* more notes and links
 
 </div>
 </div>
@@ -2872,12 +2945,8 @@ Enjoy and don't despair 😊
 <img src="images/intro/two-years-behind.png">
 
 ####
-Links:
-- [AI Demystified - this talk](https://github.com/ricflams/techtalk-ai-demystified/)
-- [Neural network - 3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
-- [You've Been Using AI the Hard Way (Use This Instead)](https://youtu.be/MsQACpcuTkU) - NetworkChuck (33:43)
+Here are my *four favorite youtube channels* for AI-related content:
 
-My *four favorite youtube channels* for AI-related content:
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
 - [Welch Labs](https://www.youtube.com/@WelchLabs/videos)
 - [Andrej Karpathy](https://www.youtube.com/playlist?list=PLAqhIrjkxbuW9U8-vZ_s_cjKPT_FqRStI)

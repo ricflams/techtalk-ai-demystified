@@ -1193,3 +1193,33 @@ A former CTO of mine used to say this he took someone's photo, which may sound o
 "If it ain't in the context, the AI can't reason about it"
 
 
+
+
+
+*"I'm using Gemini. And you?"*<br>
+*"Me too, I'm using Copilot with Gemini"*<br>
+*"Hmmm - okay, what does that actually mean?"*
+
+Think of the AI service as an engine and the agent as a car (okay, as "the rest of the car", to be precise).
+
+The *engine* provides raw power in a simple way: you press the accelerator and the engine makes something rotate. That's all it really does, right? It's a mechanical masterpiece, but simple in what it does.
+
+It is *the car* that puts this raw power to good use and gives you a distinct driving experience: cruise-control, gears, stick or automatic, a lamp to show you're low on fuel, driving modes, sporty or practical interior, GPS, stereo, and so on. The car is what *you interact with* - not the engine. The engine quality is just one factor of your driving experience.
+
+Many car manufacturers don't even produce their own engines but instead buy engines from other manufacturers. For instance, Toyota produces a 3.5-litre V6 engine that they put into their own Lexus RX 350 car. They also sell it to Lotus, for the Lotus Emira V6. Lotus bolts a supercharger onto it and gets 400 hp out of the same engine that gives the Lexus 275 hp.
+
+AI services and AI agents are similar in kind. Every frontier lab ships its own agents that use its own AI service. But there are also a lot of *third-party agents* made by fine people that don't run their own data center and therefore rely on their agent being pointed at *some AI*, for which you are billed in some way. Some agents can use an AI you're running on your own hardware, which is another way for you to pay.
+
+The agent is what gives you the AI driving experience. The agent stores your chats, memories, preferences, skills, settings, everything. The agent has tools, clever commands, nice UI. The agents are constantly evolving and improving. The AI service you use is vital, of course, it's completely indispensable, and the AI models are different, yes: but the AI service is still just "the engine", while the agent focuses on "the driving experience". For perspective, Lotus did build their own engines for 30 years but stopped in 2004 to focus on what their buyers actually wanted: an appealing and fast sports car. Toyota focuses on delivering another experience with the same engine, and neither car is the lesser one.
+
+So in *"I use Copilot with Gemini"*, Copilot is the car, and Gemini is the engine it uses.
+
+To be clear, you don't put the AI service *into* the agent the way you drop an engine into a car. It stays in the lab's data center and you pay for using it. But the principle is the point: buying somebody else's engine for your own chassis.
+
+*"But hang on?"*, you may think. "Are these AI services not quite different? Isn't it a rather big job to make an agent deal with OpenAI, Claude, Gemini, and all other sorts of AI services?"
+
+Surprisingly, not really. Sure, there are differences but generally, *all AI services are quite similar*.
+
+And they are also, as you will see next, *quite simple in what they can do*. Just like an engine is simple in what it can do, despite being complicated to make.
+
+That's what we will look at next. That's the final part of the AI fundamentals.

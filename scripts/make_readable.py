@@ -31,6 +31,31 @@ PAGE_TEMPLATE = """<!doctype html>
 <article class="markdown-body">
 {body}
 </article>
+<dialog id="lightbox" aria-label="Enlarged image">
+<img id="lightbox-img" alt="">
+</dialog>
+<script>
+// Click any content image to view it at full size. Skip .logo (inline
+// glyphs, never worth enlarging) and anything already a real link (the
+// tokenspree fallback screenshot, which opens the live game) -- an <img>
+// inside an <a> keeps its own click behavior untouched.
+(function () {{
+  var dialog = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.markdown-body img:not(.logo)').forEach(function (el) {{
+    if (el.closest('a')) return;
+    el.classList.add('zoomable');
+    el.addEventListener('click', function () {{
+      lbImg.src = el.currentSrc || el.src;
+      lbImg.alt = el.alt || '';
+      dialog.showModal();
+    }});
+  }});
+  // A click anywhere in the dialog -- backdrop or the image itself --
+  // closes it; Escape already works for free via showModal().
+  dialog.addEventListener('click', function () {{ dialog.close(); }});
+}})();
+</script>
 </body>
 </html>
 """
@@ -160,6 +185,38 @@ img:not(.logo) {
      light ones, which are the case that actually needs bounding. */
   border: 1px solid #57606a;
   border-radius: 6px;
+}
+/* Applied by the lightbox script to every enlargeable image -- signals the
+   click-to-zoom without needing a hover tooltip. */
+.zoomable { cursor: zoom-in; }
+/* The click-to-zoom overlay. A native <dialog> gives Escape-to-close and
+   focus-trapping for free via showModal(); ::backdrop is the dimming layer
+   behind it. Sized to leave a viewport margin on every side rather than
+   filling it, so the dimmed edge stays visible as a frame. */
+#lightbox {
+  max-width: 92vw;
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  /* Backstop, not the fix: the dialog and the image cap themselves
+     independently below (92 vs 90 vw/vh), which is what actually keeps the
+     image inside the box. This just guarantees no scrollbar can ever leak
+     out if a browser rounds the two a fraction of a pixel apart. */
+  overflow: hidden;
+}
+#lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+#lightbox img {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  cursor: zoom-out;
 }
 /* Contents, sitting just under the title slide. Chapters (h1) go on their own
    lines with no bullets; the sections (h2) inside each run together on one

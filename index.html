@@ -1494,17 +1494,17 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li><a href="https://youtu.be/TeQDr4DkLYo">Why LLMs get dumb (Context Windows Explained)</a> - NetworkChuck (15:17)</li>
 </ul>
 <h3 id="chatting-recap"><a class="headerlink" href="#chatting-recap" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Chatting recap</h3>
-<ul>
-<li>
-<p>The <em>full chat</em> is always sent, every time</p>
-</li>
-<li>
-<p>Keep the context lean - <em>compact</em> or <em>start new chats</em></p>
-</li>
-</ul>
+<p><img src="images/service/chat/human-to-ai-chat.png"></p>
+<h4 id="_140"></h4>
+<p>Intuitively we think of "chatting" as the way two humans would chat. Both take turns saying something and that's how the conversation goes on.</p>
+<p>But chatting to an AI is fundamentally different. Chatting is an illusion. Remember, you give the AI one input (the context) and it gives you one response. So in order to maintain the "illusion of an ongoing conversation", you (the agent on your behalf) must send the full conversation, every time.</p>
+<p>And yes, that also includes files and images that you or the AI has sent. Everything. And the context only ever grows, until you or the AI clear or compact it.</p>
+<p>It's funny, really. Logically it's not hard to understand that the AI can only reason about the context. I've repeated that many times in this presentation and you've nodded along, right? And <em>yet</em> it still somehow comes as a surprise that <em>hey, in order for that to work</em> then we must send the AI the entire context, the full chat, everything in it, every single time.</p>
+<p>This is also why you can so easily change AI service or AI model in the middle of conversation. Because you're not <em>having</em> a conversation with an AI but are instead sending an <em>ongoing</em> conversation to some AI and asking it to continue.</p>
+<p>By the way, you may have noticed the red and green parts of the chat. That's the <em>system prompt</em> and a <em>tool result</em>. We'll get to those in a moment. But first it's time to do some thinking.</p>
 <h2 id="ai-service-thinking"><a class="headerlink" href="#ai-service-thinking" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Thinking</h2>
 <p><img src="images/overview/thinking.png"></p>
-<h4 id="_140"></h4>
+<h4 id="_141"></h4>
 <p>All frontier AI services offer some kind of "extended thinking", or "deep reasoning", or whatever term they have chosen. But what is that actually? What is "thinking"?</p>
 <h3 id="what-could-thinking-mean"><a class="headerlink" href="#what-could-thinking-mean" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>What could "thinking" mean?</h3>
 <ul>
@@ -1518,7 +1518,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>But wait. Is what we do here "thinking"?<br><em>That's a bingo!</em></p>
 </li>
 </ul>
-<h4 id="_141"></h4>
+<h4 id="_142"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/wfOH_6dhzSA">"That's a bingo!" | Inglourious Basterds | CLIP</a> - Boxoffice Movie Scenes (4:53)</li>
@@ -1543,21 +1543,21 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ol>
 <h3 id="example-thinking-blocks-no-wait"><a class="headerlink" href="#example-thinking-blocks-no-wait" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example thinking blocks - "No, wait"</h3>
 <p><img src="images/service/thinking/now-i-understand.png"></p>
-<h4 id="_142"></h4>
+<h4 id="_143"></h4>
 <p>Thinking generally produces a better result and the model can catch itself if it's going down the wrong path.</p>
 <p>However, it can possibly also strengthen a misbelief.</p>
 <h3 id="thinking-typically-improves-the-response"><a class="headerlink" href="#thinking-typically-improves-the-response" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Thinking typically improves the response</h3>
 <p><img src="images/service/thinking/haiku.png"></p>
-<h4 id="_143"></h4>
+<h4 id="_144"></h4>
 <p>Without "Extended thinking", the LLM failed to produce a proper Haiku. The syllable-counting Haiku format is hard for the LLM to produce just one token at a time.</p>
 <h3 id="you-control-the-thinking-effort"><a class="headerlink" href="#you-control-the-thinking-effort" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>You control the thinking effort</h3>
 <p><img src="images/service/thinking/claude-code-enable-thinking.png"></p>
-<h4 id="_144"></h4>
+<h4 id="_145"></h4>
 <p>You can enable thinking in all kinds of manners.</p>
 <p>Nowadays, it's often simply enabled by default, or even automatically controlled.</p>
 <h3 id="saying-ultrathink-has-been-on-off-on"><a class="headerlink" href="#saying-ultrathink-has-been-on-off-on" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Saying "ultrathink" has been on, off, on</h3>
 <p><img src="images/service/thinking/ultrathink.png"></p>
-<h4 id="_145"></h4>
+<h4 id="_146"></h4>
 <p>In early days, this was how Claude Code controlled the thinking: it would simply check if your message contained the word "ultrathink".</p>
 <p>That feature was taken out to be replaced with a "proper" thinking-setting.</p>
 <p>But lo and behold: it was added back in, in Claude Code v2.1.68, so the convenience of just being able to write "ultrathink" was apparently missed.</p>
@@ -1576,12 +1576,12 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p><img src="images/service/thinking/claude-code-thinking.png"></p>
 <h2 id="ai-service-tools"><a class="headerlink" href="#ai-service-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tools</h2>
 <p><img src="images/overview/tools.webp" /></p>
-<h4 id="_146"></h4>
+<h4 id="_147"></h4>
 <p>So far, we've only seen the LLM generate text.</p>
 <p>Using <em>tools</em> is how the LLM can seek out new facts and generally, surprisingly maybe, be <em>in control</em>.</p>
 <h3 id="the-llm-can-ask-to-use-tool-xxx"><a class="headerlink" href="#the-llm-can-ask-to-use-tool-xxx" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The LLM can ask to "use tool xxx"</h3>
 <p><img src="images/service/overview/tools.png" /></p>
-<h4 id="_147"></h4>
+<h4 id="_148"></h4>
 <p>The LLM can predict that the best continuation is output that <em>asks for some tool to be run</em>. The output from that tool will then be added to the context, practically as if the user had added it themselves.</p>
 <p>Links:</p>
 <ul>
@@ -1589,7 +1589,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="please-calculate-12344287389398790237342"><a class="headerlink" href="#please-calculate-12344287389398790237342" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"please calculate 123442873893*98790237342"</h3>
 <p><img src="images/service/tools/python-math-example/request.png" /></p>
-<h4 id="_148"></h4>
+<h4 id="_149"></h4>
 <p>This is what the actual agent-and-service communication would look like:</p>
 <p>You, the user, send this text to the AI: "please calculate 123442873893*98790237342".</p>
 <p>However, the agent <em>also includes info about tools</em> that it makes available, to be added to the context.</p>
@@ -1597,7 +1597,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>In this situation there's a tool called "code_interpreter" with the description "Executes Python code and returns the result", taking a string-argument of Python code. <strong>Python</strong> is a popular programming language that the LLM during training has seen millions of examples of.</p>
 <h3 id="llm-asks-to-use-tool-code_interpreter"><a class="headerlink" href="#llm-asks-to-use-tool-code_interpreter" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>LLM asks to use tool "code_interpreter"</h3>
 <p><img src="images/service/tools/python-math-example/tool-use.png" /></p>
-<h4 id="_149"></h4>
+<h4 id="_150"></h4>
 <p>Based on the training, the LLM decides that the best continuation from the user saying "please calculate 123442873893*98790237342" is to call a suitable tool that can do math. The "code_interpreter" seems like such a suitable tool.</p>
 <p>So the LLM's output asks for a "tool_use" of that tool, conjuring up the suitable Python code snippet <code>print(123442873893 * 98790237342)</code> from its massive training on Python code.</p>
 <p>Tool-training originated in an idea called <em>Toolformer</em>. Researchers had a base LM propose where API calls might go in ordinary text, then actually executed those calls, and kept an insertion only if having the call and result demonstrably helped predict what came next (reduced the model's loss on subsequent tokens). The process is self-supervised: usefulness is not defined by human judgment but purely mathematically as "did this make the future more predictable?".</p>
@@ -1609,22 +1609,22 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="the-tool-is-being-run-on-agent-or-server"><a class="headerlink" href="#the-tool-is-being-run-on-agent-or-server" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The tool is being run (on agent or server)</h3>
 <p><img src="images/service/tools/python-math-example/tool-result.png" /></p>
-<h4 id="_150"></h4>
+<h4 id="_151"></h4>
 <p>If the tool is server-side then the server runs it. Otherwise it goes all the way back to the client. As mentioned, running Python code or fetching webpages is typically done by the server. Reading or creating local files can of course only be done by the agent on the user's computer.</p>
 <p>At any rate, the tool runs, the output is added to the context, and the new context is passed back into the LLM for another pass.</p>
 <h3 id="finally-the-llm-can-respond"><a class="headerlink" href="#finally-the-llm-can-respond" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Finally, the LLM can respond</h3>
 <p><img src="images/service/tools/python-math-example/response.png" /></p>
-<h4 id="_151"></h4>
+<h4 id="_152"></h4>
 <p>With that added context from the tool, the LLM can finally produce a nice and correct answer.</p>
 <h3 id="the-anatomy-of-a-tool-definition"><a class="headerlink" href="#the-anatomy-of-a-tool-definition" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The anatomy of a tool definition</h3>
 <p><img src="images/service/tools/tools-list.webp" /></p>
-<h4 id="_152"></h4>
+<h4 id="_153"></h4>
 <p>Every tool specifies the name of the tool, a description of what the tool does, and details on how to call it.</p>
 <p>The information is so detailed that the LLM can make sane decisions on whether calling the tool would be useful or not. Of course, in order for the LLM to see it, the tool-information will need to actually be part of the context - how else would the LLM know about it?</p>
 <p>So tools can take up a fair chunk of the context.</p>
 <h3 id="tools-the-so-called-agentic-loop"><a class="headerlink" href="#tools-the-so-called-agentic-loop" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tools: the so-called "agentic loop"</h3>
 <p><img src="images/service/tools/the-agentic-loop.png" /></p>
-<h4 id="_153"></h4>
+<h4 id="_154"></h4>
 <p>The introduction of this "tool loop" led to the name, "the agentic loop": an agent using tools until a goal is reached.</p>
 <p>Links:</p>
 <ul>
@@ -1652,7 +1652,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 </div>
 </div>
-<h4 id="_154"></h4>
+<h4 id="_155"></h4>
 <ul>
 <li>
 <p><em>Calling tools</em>: Which tool, with what inputs, and whether to call several in parallel or sequentially. If two tools could both answer a question, the model picks.</p>
@@ -1681,7 +1681,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="example-starting-background-agents"><a class="headerlink" href="#example-starting-background-agents" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: starting background agents</h3>
 <p><img src="images/service/tools/background-worker.png" /></p>
-<h4 id="_155"></h4>
+<h4 id="_156"></h4>
 <p>For example, the agent is not the one making the decision when to actually <em>run</em> another background agent: it is <em>the LLM</em> that makes that decision. The agent simply has to provide a named tool, a mechanism, for running background agents.</p>
 <p>So in a way it's "easy" to write an agent: just provide well-described tools that the LLM can work with: like "ask the user", "delete a file", "start multiple agents", etc. The LLM will then decide to call them.</p>
 <h3 id="the-home-field-advantage"><a class="headerlink" href="#the-home-field-advantage" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The home-field advantage</h3>
@@ -1698,21 +1698,21 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="ask-the-ai-show-me-your-tools-for-pages"><a class="headerlink" href="#ask-the-ai-show-me-your-tools-for-pages" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Ask the AI: "show me your tools for pages"</h3>
 <p><img src="images/service/tools/rovo-ask-what-pages-tools.png" /></p>
-<h4 id="_156"></h4>
+<h4 id="_157"></h4>
 <p>Simply asking "what tools are available?" can be a good way of finding inspiration for how to use that AI.</p>
 <h3 id="how-many-pages-are-in-my-own-space"><a class="headerlink" href="#how-many-pages-are-in-my-own-space" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"How many pages are in my own space?"</h3>
 <p><img src="images/service/tools/rovo-ask-how-many-pages.png" /></p>
-<h4 id="_157"></h4>
+<h4 id="_158"></h4>
 <p>Rovo does a number of tool calls to figure out that I have three pages in my personal Confluence space.</p>
 <h2 id="ai-service-mcp-servers"><a class="headerlink" href="#ai-service-mcp-servers" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP Servers</h2>
 <p><img src="images/overview/tools.webp" /></p>
-<h4 id="_158"></h4>
+<h4 id="_159"></h4>
 <p>Now that you know about the concept of using tools, let's move onto a very popular functionality that is intimately related to tools: MCP servers.</p>
 <p>But hang on, this looks exactly like the highlighting of "tools" from before?</p>
 <p>Yes, that's right.</p>
 <h3 id="mcp-servers-simply-give-you-more-tools"><a class="headerlink" href="#mcp-servers-simply-give-you-more-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP servers simply give you ... more tools</h3>
 <p><img src="images/service/overview/mcp.png"></p>
-<h4 id="_159"></h4>
+<h4 id="_160"></h4>
 <p><strong>MCP</strong> (<strong>Model Context Protocol</strong>) is a standardized way of giving the LLM access to <em>more tools outside the agent or server</em>.</p>
 <p>In principle <em>it works exactly like tools</em> that we've just covered. The only difference is that the "list of tools" isn't baked into the agent or server, but instead fetched live from somewhere: an MCP server. And should the LLM decide to use one of the tools then yes, that same MCP server is what will handle the tool-call.</p>
 <p>In my experience, MCP servers appear <em>particularly</em> mysterious and powerful. Somebody says "Just add an MCP server...", people nod along, yet many don't really know what an MCP server actually is. They only know that it can somehow do - well, just about <em>anything</em>, it seems. You can solve any problem with an MCP server, is the sentiment in the room.</p>
@@ -1735,48 +1735,48 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>When somebody says <em>"You can add an MCP server for Atlassian"</em>, they're practically saying:<br><em>"You can tell the AI about Atlassian's API, aka tools"</em>.</p>
 </li>
 </ul>
-<h4 id="_160"></h4>
+<h4 id="_161"></h4>
 <p>Yes, it's really "just that". A live list of tools and a way to call them.</p>
 <h3 id="example-atlassian-mcp"><a class="headerlink" href="#example-atlassian-mcp" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Atlassian MCP</h3>
 <p><img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png"></p>
-<h4 id="_161"></h4>
+<h4 id="_162"></h4>
 <p>By adding the Atlassian MCP server to my AI agent it now has access to tools, just like Rovo used in the example before.</p>
 <h3 id="mcp-servers-give-uniform-access-to-tools"><a class="headerlink" href="#mcp-servers-give-uniform-access-to-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP servers give uniform access to tools</h3>
 <p><img src="images/service/mcp/uniform-mcp-interface.png"></p>
-<h4 id="_162"></h4>
+<h4 id="_163"></h4>
 <p>Having just one standard for using outside tools is a great advantage. The agent or server does not need to figure out how to see what API services are available in many different ways. There's now just one way, the MCP protocol way: ask for tool-names and call a tool.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://modelcontextprotocol.io/specification/">Model Context Protocol Specification</a></li>
 </ul>
 <h3 id="an-mcp-tool-call-in-detail"><a class="headerlink" href="#an-mcp-tool-call-in-detail" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>An MCP tool-call in detail</h3>
-<h4 id="_163"></h4>
+<h4 id="_164"></h4>
 <p>Let's take a look at concretely how an MCP service is used.</p>
 <h3 id="first-add-the-mcp-server-info-to-the-agent"><a class="headerlink" href="#first-add-the-mcp-server-info-to-the-agent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>First, add the MCP server info to the agent</h3>
 <p><img src="images/service/mcp/flow/1-add-server.png"></p>
 <h3 id="that-info-is-then-present-in-every-chat-you-send"><a class="headerlink" href="#that-info-is-then-present-in-every-chat-you-send" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>That info is then present in <em>every chat</em> you send</h3>
 <p><img src="images/service/mcp/flow/3-request.png"></p>
-<h4 id="_164"></h4>
+<h4 id="_165"></h4>
 <p>The agent, or more likely server, will fetch the list of tools from the MCP servers and cache them.</p>
 <p>Then it will add information about each MCP server tool to the context.</p>
 <p>It <em>used</em> to be that the full information was added to the context, but that simply became too big. So the modern behavior is actually to <em>only add the tool-name</em> which can be maximum 64 characters, and that name is <em>the only guidance</em> the LLM will get about that tool. So you'd better pick descriptive names for your MCP tools.</p>
 <h3 id="the-llm-decides-the-mcp-server-calls"><a class="headerlink" href="#the-llm-decides-the-mcp-server-calls" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The LLM decides, the MCP server calls</h3>
 <p><img src="images/service/mcp/flow/5-tool-use.png"></p>
-<h4 id="_165"></h4>
+<h4 id="_166"></h4>
 <p>The LLM is, as always, the one that decides to ask for a tool to be called.</p>
 <p>When asked to, the AI service will call the tool in the MCP server, which in turn calls the actual service API.</p>
 <p>The MCP server acts on your behalf, authenticated with your personal API key that gives it the same access you would have.</p>
 <p>So for using an MCP server you must always be "a user" on the service behind it, like Github, Figma, Datadog, or Siteimprove.</p>
 <h3 id="the-llm-can-now-respond"><a class="headerlink" href="#the-llm-can-now-respond" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The LLM can now respond</h3>
 <p><img src="images/service/mcp/flow/6-response.png"></p>
-<h4 id="_166"></h4>
+<h4 id="_167"></h4>
 <p>With the tool-result from the service added to the context, the LLM can now compose a proper response.</p>
 <h3 id="example-siteimprove-mcp-demo"><a class="headerlink" href="#example-siteimprove-mcp-demo" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Siteimprove MCP demo</h3>
-<h4 id="_167"></h4>
+<h4 id="_168"></h4>
 <p>"It's simple", I said. Okay, let me show how.</p>
 <h3 id="in-1-hour-a-demo-mcp-server-was-coded-and-live"><a class="headerlink" href="#in-1-hour-a-demo-mcp-server-was-coded-and-live" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>In 1 hour, a demo MCP server was coded and live</h3>
 <p><img src="images/service/mcp/siteimprove/github-source.png"></p>
-<h4 id="_168"></h4>
+<h4 id="_169"></h4>
 <p>This was the first time ever I built an MCP server. I basically told Claude, "here's Siteimprove's public API documentation, please build an MCP server for it and suggest where to deploy it". I ended up deploying it on a free account on <a href="https://www.cloudflare.com/">Cloudflare</a>.</p>
 <p>The hardest part was actually that the tool-names were limited to 64 characters and Siteimprove's API's endpoints often exceeded that, so the names had to be compacted somehow; like renaming "quality_assurance" to just "qa".</p>
 <p>There's nothing secret about this MCP server for Siteimprove's public API. Any Siteimprove-user with an API key can use it, and anybody can build an MCP server just like it since Siteimprove's API is publicly available with each API endpoint fully described.</p>
@@ -1791,14 +1791,14 @@ Text maps to tokens, each token has an embedding in the model</p>
 <img src="images/service/mcp/siteimprove/tool-in-openapi-spec.png">
 <img src="images/service/mcp/siteimprove/tool-in-mcp.png"></p>
 </div>
-<h4 id="_169"></h4>
+<h4 id="_170"></h4>
 <p>Here you can see just how similar an MCP service endpoint description is to an OpenAPI/SwaggerUI description.</p>
 <p>Let's consider one Siteimprove API endpoint, that for <a href="https://api.siteimprove.com/v2/documentation#/Analytics/get_sites__site_id__analytics_content_most_popular_pages">most_popular_pages</a>.</p>
 <p>From left to right we have the user-facing API docs for that endpoint, then the OpenAPI/SwaggerUI spec for the endpoint, and finally the MCP version of that same endpoint now exposed as an MCP tool.</p>
 <p>You can see that the MCP variant looks very much like the existing OpenAPI spec for that endpoint, from which the API documentation is generated.</p>
 <h3 id="add-the-demo-mcp-server-to-claude"><a class="headerlink" href="#add-the-demo-mcp-server-to-claude" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Add the demo MCP server to Claude</h3>
 <p><img src="images/service/mcp/siteimprove/github-readme.png"></p>
-<h4 id="_170"></h4>
+<h4 id="_171"></h4>
 <p>Adding the MCP server to e.g. Claude.ai is easy.</p>
 <p>Links:</p>
 <ul>
@@ -1806,21 +1806,21 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="all-531-endpointstools-now-available-in-claude"><a class="headerlink" href="#all-531-endpointstools-now-available-in-claude" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>All 531 endpoints/tools now available in Claude</h3>
 <p><img src="images/service/mcp/siteimprove/mcp-connector.png"></p>
-<h4 id="_171"></h4>
+<h4 id="_172"></h4>
 <p>Under Connectors you can see all the individual tools exposed by the Siteimprove demo MCP server.</p>
 <p>Each of the 531 API endpoints is a "tool" with a name. In reality, a massive API such as Siteimprove's would likely be better off by being divvied into chunks of functionality. That's a common pattern for really big APIs.</p>
 <h3 id="need-to-authenticate-on-the-first-usage"><a class="headerlink" href="#need-to-authenticate-on-the-first-usage" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Need to authenticate on the first usage</h3>
 <p><img src="images/service/mcp/siteimprove/authenticate.png"></p>
-<h4 id="_172"></h4>
+<h4 id="_173"></h4>
 <p>This page is produced by my demo code, so an MCP server can style it just as it pleases.</p>
 <h3 id="claude-can-now-call-siteimprove-mcp-tools"><a class="headerlink" href="#claude-can-now-call-siteimprove-mcp-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Claude can now call Siteimprove MCP tools</h3>
 <p><img src="images/service/mcp/siteimprove/chat.png"></p>
-<h4 id="_173"></h4>
+<h4 id="_174"></h4>
 <p>When I mention "most popular pages on siteimprove.com", the LLM correctly picks up that the tool <code>mcp__claude_ai_Siteimprove_MCP__analytics_content_most_popular_pages</code> would likely be useful, and asks for it to be called.</p>
 <p>In order not to reveal actual page views I blacked out the reported numbers.</p>
 <h3 id="mcp-is-massively-popular"><a class="headerlink" href="#mcp-is-massively-popular" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>MCP is massively popular</h3>
 <p><img src="images/service/mcp/massive-mcp-server-list.webp"></p>
-<h4 id="_174"></h4>
+<h4 id="_175"></h4>
 <p>MCP servers are massively popular. You can find MCP servers for all the major SaaS companies and also for a ton of other things.</p>
 <p>But remember: using an MCP server does incur some extra cost in terms of a network call. For example, your local Claude Code CLI agent can use MCP to (have the LLM) interact with Github: search code, check commits, etc. But hang on: if you're already working on a local repo on your disk then won't it be cheaper to simply have the agent use <code>git</code> on the commandline to work on local files? Oh yes, indeed it will. So while MCP gives you the <em>ability</em> to reach out to all kinds of online services, it can surely be <em>preferable</em> to "go local" using CLI-tools if that's an option.</p>
 <p>Links:</p>
@@ -1828,7 +1828,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li><a href="https://youtu.be/g9JIUM0MHgQ">CLI vs MCP: How AI Agents Choose the Right Tool for the Job</a> - IBM Technology (14:06)</li>
 </ul>
 <h2 id="ai-service-system-prompt"><a class="headerlink" href="#ai-service-system-prompt" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>System Prompt</h2>
-<h4 id="_175"></h4>
+<h4 id="_176"></h4>
 <p>Files, chatting, thinking, tools - just one major thing remains. And it's rather big: the system prompt.</p>
 <h3 id="final-piece-of-the-context"><a class="headerlink" href="#final-piece-of-the-context" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Final piece of the context</h3>
 <p><img src="images/service/overview/chat-system.png"></p>
@@ -1846,14 +1846,14 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="the-system-prompt-is-obeyed-more"><a class="headerlink" href="#the-system-prompt-is-obeyed-more" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The system prompt is obeyed more</h3>
 <p><img src="images/service/system/prompt/training.png"></p>
-<h4 id="_176"></h4>
+<h4 id="_177"></h4>
 <p>Through training, the LLM has learned that in case of a conflict between "system" instructions and "user" instructions, it should pay more heed to the system instructions. After all, the system instructions during training embody the desired behavior and values of the model so the lab model makers will of course make sure that the system instructions are crafted to express the desired behavior.</p>
 <p>This bias towards obeying the system-instructions is therefore baked into the LLM's weights and hence predictions.</p>
 <p>But it is just that: a bias, a trained preference to lean towards, in particular in case of conflicting instructions.</p>
 <p>Remember: in the LLM, <em>nothing is a hard rule</em>. It's all just textual instructions that carry more or less weight.</p>
 <h3 id="convincing-copilotgpt41-to-change-its-name"><a class="headerlink" href="#convincing-copilotgpt41-to-change-its-name" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Convincing Copilot/GPT4.1 to change its name</h3>
 <p><img src="images/service/system/prompt/i-am-groot.png"></p>
-<h4 id="_177"></h4>
+<h4 id="_178"></h4>
 <p>With enough "super-urgent" persuasion, my user message was prioritized over the system prompt, and GPT4.1 agreed that its name was "Groot".</p>
 <p>However, all other models were not at all convinced and saw right through the presumed urgency.</p>
 <p>Links:</p>
@@ -1862,11 +1862,11 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="the-system-prompt-is-composed-by-the-agent"><a class="headerlink" href="#the-system-prompt-is-composed-by-the-agent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The system prompt is composed by the agent</h3>
 <p><img src="images/service/system/prompt/maximillian.png"></p>
-<h4 id="_178"></h4>
+<h4 id="_179"></h4>
 <p>The system prompt is entirely constructed by the agent. That's why you get quite different system prompts and behavior depending on what agent you use. So if you build your own agent then you can construct your own system prompt entirely.</p>
 <h3 id="the-full-context"><a class="headerlink" href="#the-full-context" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The full context</h3>
 <p><img src="images/service/system/layer-of-instructions.png"></p>
-<h4 id="_179"></h4>
+<h4 id="_180"></h4>
 <p>This figure illustrates two things:</p>
 <ul>
 <li>the relationship between your chat, the system prompt, and the LLM</li>
@@ -1883,7 +1883,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>So when you find yourself wondering "How does it know that...?" or "Why doesn't it know that...?" then this gives you the answer: it knows about <em>just these parts</em> and they really aren't a secret in any way.</p>
 <p>It's a lot, but let's very briefly go through the 11 parts. And again, remember: all of this is included into every chat.</p>
 <h3 id="111-the-agent-system-prompt"><a class="headerlink" href="#111-the-agent-system-prompt" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#1/11: The agent system prompt</h3>
-<h4 id="_180"></h4>
+<h4 id="_181"></h4>
 <p>The <em>agent system prompt</em> holds instructions that the agent (chatgpt.com, VS Code, Claude, Copilot, etc) wants included into every chat you have with the AI service.</p>
 <p>It brings information about the agent's name, purpose, behavior, etc.</p>
 <p>Generally, agents don't give you any way to see their system prompt.</p>
@@ -1893,30 +1893,30 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="claudes-agent-system-prompts-are-public"><a class="headerlink" href="#claudes-agent-system-prompts-are-public" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Claude's agent system prompts are public</h3>
 <p><img src="images/service/system/prompt/claude-prompts.png"></p>
-<h4 id="_181"></h4>
+<h4 id="_182"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://platform.claude.com/docs/en/release-notes/system-prompts">Claude System Prompts</a></li>
 </ul>
 <h3 id="the-copilot-in-word-agent-prompt"><a class="headerlink" href="#the-copilot-in-word-agent-prompt" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The "Copilot in Word" agent prompt</h3>
 <p><img src="images/service/system/prompt/leaks-copiot-in-microsoft-word.png"></p>
-<h4 id="_182"></h4>
+<h4 id="_183"></h4>
 <p>When you use Copilot in Microsoft Word, this is the system prompt.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://github.com/asgeirtj/system_prompts_leaks/blob/main/Microsoft/copilot-in-microsoft-word.md">system_prompts_leaks/Microsoft/copilot-in-microsoft-word.md</a></li>
 </ul>
 <h3 id="211-system-information"><a class="headerlink" href="#211-system-information" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#2/11: System information</h3>
-<h4 id="_183"></h4>
+<h4 id="_184"></h4>
 <p>The agent adds all kinds of information about your environment: the date, operating system, working folder, possibly your location, etc.</p>
 <h3 id="date-location-os-etc"><a class="headerlink" href="#date-location-os-etc" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Date, location, OS, etc</h3>
 <p><img src="images/service/system/system-info/today.png"></p>
 <h3 id="311-automatically-stored-memories"><a class="headerlink" href="#311-automatically-stored-memories" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#3/11: Automatically stored memories</h3>
-<h4 id="_184"></h4>
+<h4 id="_185"></h4>
 <p>The "stored memories" are in a way the only slightly magical part of the context because they are entirely constructed and maintained by the agent itself, not by you.</p>
 <h3 id="selected-information-from-your-chats"><a class="headerlink" href="#selected-information-from-your-chats" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Selected information from your chats</h3>
 <p><img src="images/service/system/memory/memory-example.png"></p>
-<h4 id="_185"></h4>
+<h4 id="_186"></h4>
 <p>The AI model's response may well contain something that gives the impression that it somehow knows a lot about you. You talk about buying dog food and it responds by mentioning the name of your dog. What's up?</p>
 <p>The reason is this. As you chat, the typical agents will (using the LLM, of course) keep small summarized notes of the most important takeaways from these chats. They're often called <em>memories</em>.</p>
 <p>This mechanism is what gives you the spooky impression that "oh, it knows and learns from my chats". Yes, it does. But quite sparsely. Just look at the scrollbar from my memories: there's no more than a handful of pages of memories from over a year of chatting. That's because new facts are constantly being brought in and old facts were tossed away as they are not relevant enough to keep.</p>
@@ -1926,57 +1926,57 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>Your dog's name is the kind of fact that would likely be deemed important to keep. Your search for dog food doesn't carry the same weight and may not even be deemed important enough to store in the memories.</p>
 <p>Here's a concrete agent story. <a href="https://hermes-agent.nousresearch.com/">Hermes</a> says it's "The agent that grows with you" and "The longer it runs, the better it knows you". You might imagine that over time it grows to know a ton about you. But actually, its memory is limited to 1375 characters, ever. So it only ever grows to know what amounts to one page of <em>Harry Potter</em> about you, even if you chat for a year.</p>
 <h3 id="411-some-context-from-the-agent"><a class="headerlink" href="#411-some-context-from-the-agent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#4/11: Some context from the agent</h3>
-<h4 id="_186"></h4>
+<h4 id="_187"></h4>
 <p>Each agent also includes information about what you're working on right now: the selected file, for instance.</p>
 <h3 id="example-rovo-includes-the-current-page"><a class="headerlink" href="#example-rovo-includes-the-current-page" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Rovo includes the current page</h3>
 <p><img src="images/service/system/agent-context/rovo-context.png"></p>
-<h4 id="_187"></h4>
+<h4 id="_188"></h4>
 <p>For example, Rovo includes by default the current Confluence page in the context.</p>
 <h3 id="example-visual-studio"><a class="headerlink" href="#example-visual-studio" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Visual Studio</h3>
 <p><img src="images/service/system/agent-context/visual-studio.png"></p>
-<h4 id="_188"></h4>
+<h4 id="_189"></h4>
 <p>Visual Studio includes a lot of information about the current code solution: paths, file content, possibly the selected text, project type, etc.</p>
 <h3 id="511-your-preferences"><a class="headerlink" href="#511-your-preferences" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#5/11: Your preferences</h3>
-<h4 id="_189"></h4>
+<h4 id="_190"></h4>
 <p>All agents let you configure some preferences one way or another. If those preferences have to do with the way the LLM generates text, as opposed to e.g. a color theme for the agent, then they practically always end up as text instructions in system prompts. It really does stress that <em>"it's all just text to the LLM"</em>.</p>
 <h3 id="example-chatgpt-can-be-friendly-or-pragmatic"><a class="headerlink" href="#example-chatgpt-can-be-friendly-or-pragmatic" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: ChatGPT can be "friendly" or "pragmatic"</h3>
 <p><img src="images/service/system/preferences/chatgpp-personality.png"></p>
-<h4 id="_190"></h4>
+<h4 id="_191"></h4>
 <p>The ChatGPT personality is implemented as two different sets of instructions.</p>
 <h3 id="example-language"><a class="headerlink" href="#example-language" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Language</h3>
 <p><img src="images/service/system/preferences/language/claude-ai-language.png"></p>
-<h4 id="_191"></h4>
+<h4 id="_192"></h4>
 <p>Does the AI service have a set of languages it can instruct the LLM to respond in? Actually no.</p>
 <h3 id="respond-in-japanese-english-dansk"><a class="headerlink" href="#respond-in-japanese-english-dansk" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Respond in Japanese, English, Dansk, ...</h3>
 <p><img src="images/service/system/preferences/language/claude-code-set-language.png"></p>
-<h4 id="_192"></h4>
+<h4 id="_193"></h4>
 <p>You can simply ask the AI service to respond in any language you so desire.</p>
 <h3 id="respond-in-klingon"><a class="headerlink" href="#respond-in-klingon" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Respond in Klingon</h3>
 <p><img src="images/service/system/preferences/language/klingon.png"></p>
-<h4 id="_193"></h4>
+<h4 id="_194"></h4>
 <p>Even made-up languages, like Klingon. There's no fixed set of languages.</p>
 <p>But if the AI service and LLM itself are completely language-agnostic then how does the AI agent "set the language" then?</p>
 <h3 id="its-all-just-instructions-even-the-language-preference"><a class="headerlink" href="#its-all-just-instructions-even-the-language-preference" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>It's all just instructions, even the language preference</h3>
 <p><img src="images/service/system/preferences/language/language-in-the-prompt.png"></p>
-<h4 id="_194"></h4>
+<h4 id="_195"></h4>
 <p>The language is not set using some hidden command. Just text.</p>
 <h3 id="modes-are-also-just-text-instructions"><a class="headerlink" href="#modes-are-also-just-text-instructions" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"Modes" are also just text instructions</h3>
 <p><img src="images/service/system/preferences/modes/enter-plan-mode.png"></p>
 <p><img src="images/service/system/preferences/modes/exited-plan-mode.png"></p>
-<h4 id="_195"></h4>
+<h4 id="_196"></h4>
 <p>Modes can also be implemented as instructions that tell the LLM to plan or do, for instance.</p>
 <p>Nowadays, each mode-change typically results in <em>adding a system message</em> instead of changing the base system prompt so the prompt is better cached on the server - more on this later. So a conversation can have many sequential instructions to "enter mode x" and "exit mode x".</p>
 <h3 id="611-agent-tools"><a class="headerlink" href="#611-agent-tools" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#6/11: Agent tools</h3>
-<h4 id="_196"></h4>
+<h4 id="_197"></h4>
 <p>We already covered the functionality of tools.</p>
 <p>In order for the LLM to be able to ask to use a tool it must know that the tool exists and what it does. That info goes into the system prompt.</p>
 <h3 id="all-tool-names-are-included"><a class="headerlink" href="#all-tool-names-are-included" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>All tool names are included</h3>
 <p><img src="images/service/tools/tools-list.webp" /></p>
-<h4 id="_197"></h4>
+<h4 id="_198"></h4>
 <p>It's quite possible that <em>only the tool's description</em> may be included in the context to save tokens, and that the LLM will have to express an interest in using the tool for the agent (or server) to feed in the full tool definition. That's part of the game of minimizing the up-front cost of tools.</p>
 <h3 id="711-skills"><a class="headerlink" href="#711-skills" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#7/11: Skills</h3>
 <!-- toc-entry Skills -->
-<h4 id="_198"></h4>
+<h4 id="_199"></h4>
 <p>Hey, aren't skills a big deal?</p>
 <p>Well, yes they are. But they belong here and are actually very simple.</p>
 <h3 id="a-skill-is-some-expertise-loaded-when-you-need-it"><a class="headerlink" href="#a-skill-is-some-expertise-loaded-when-you-need-it" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>A skill is some expertise, loaded when you need it</h3>
@@ -1994,7 +1994,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 </li>
 </ul>
-<h4 id="_199"></h4>
+<h4 id="_200"></h4>
 <p><strong>Agent Skills</strong> is an open standard, made by Anthropic and widely supported by agents</p>
 <p>Links:</p>
 <ul>
@@ -2009,7 +2009,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p><img src="images/service/system/skills/skill-anatomy.jpg" /></p>
 <h3 id="example-using-matt-pococks-grilling-skill"><a class="headerlink" href="#example-using-matt-pococks-grilling-skill" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: Using Matt Pocock's "grilling" skill</h3>
 <p><img src="images/service/system/skills/skill-parts.webp" /></p>
-<h4 id="_200"></h4>
+<h4 id="_201"></h4>
 <p>The <code>SKILL.md</code> file has just two required fields, name and description, and a markdown body.</p>
 <p>The name and description are always included in the system prompt.<br>
 (Actually, this seems to be a bug, since skills marked <code>disable-model-invocation: true</code> should not be included).</p>
@@ -2026,7 +2026,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="ai-service-hey-bro"><a class="headerlink" href="#ai-service-hey-bro" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Hey bro</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-code.png" /></p>
-<h4 id="_201"></h4>
+<h4 id="_202"></h4>
 <p>Some skills are really simple. Like this one called <code>bro</code>.</p>
 <p>It literally just writes this message into the context: "Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."</p>
 <p>Links:</p>
@@ -2035,30 +2035,30 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="installing-the-bro-skill-for-terminal-agents"><a class="headerlink" href="#installing-the-bro-skill-for-terminal-agents" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Installing the bro skill for terminal agents</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-install.png" /></p>
-<h4 id="_202"></h4>
+<h4 id="_203"></h4>
 <p>I can install the <code>bro</code> skill in my terminal agent like so.</p>
 <h3 id="bro-in-action"><a class="headerlink" href="#bro-in-action" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Bro in action</h3>
 <p><img src="images/service/system/skills/bro/bro-skill-in-action.png" /></p>
-<h4 id="_203"></h4>
+<h4 id="_204"></h4>
 <p>Thanks, bro.</p>
 <h3 id="installing-skills"><a class="headerlink" href="#installing-skills" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Installing skills</h3>
-<h4 id="_204"></h4>
+<h4 id="_205"></h4>
 <p>There are many ways to install skills. Let's just look at some examples.</p>
 <h3 id="several-ways-for-terminalcli-agents"><a class="headerlink" href="#several-ways-for-terminalcli-agents" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Several ways for terminal/CLI agents</h3>
 <p><img src="images/service/system/skills/install/cli.png" /></p>
-<h4 id="_205"></h4>
+<h4 id="_206"></h4>
 <p>The skill repo usually tells you what the options are.</p>
 <h3 id="claudeai-from-anthropic-or-your-organization"><a class="headerlink" href="#claudeai-from-anthropic-or-your-organization" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Claude.ai: from Anthropic or your organization</h3>
 <p><img src="images/service/system/skills/install/claude-ai-browse.png" /></p>
-<h4 id="_206"></h4>
+<h4 id="_207"></h4>
 <p>On claude.ai you can install skills from Anthropic or from your organization, if you're a member of one.</p>
 <h3 id="claudeai-upload-a-skill-zip-file"><a class="headerlink" href="#claudeai-upload-a-skill-zip-file" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Claude.ai: upload a skill zip-file</h3>
 <p><img src="images/service/system/skills/install/claude-ai-upload.png" /></p>
-<h4 id="_207"></h4>
+<h4 id="_208"></h4>
 <p>The old-school, manual way: get the skill as a zip and upload it.</p>
 <h3 id="chatgpt-calls-them-plugins"><a class="headerlink" href="#chatgpt-calls-them-plugins" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>ChatGPT calls them plugins</h3>
 <p><img src="images/service/system/skills/install/chatgpt-grilling.png" /></p>
-<h4 id="_208"></h4>
+<h4 id="_209"></h4>
 <p>Matt Pocock's skills are also available in ChatGPT.</p>
 <h3 id="skills-recap"><a class="headerlink" href="#skills-recap" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Skills recap</h3>
 <ul>
@@ -2072,17 +2072,17 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>Like text-expansion: write <code>/bro</code> and bro's text is written out</p>
 </li>
 </ul>
-<h4 id="_209"></h4>
+<h4 id="_210"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/UNzCG3lw6O0">Building Great Agent Skills: The Missing Manual</a> - AI Engineer (20:43)</li>
 </ul>
 <h3 id="811-mcp-servers"><a class="headerlink" href="#811-mcp-servers" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#8/11: MCP servers</h3>
-<h4 id="_210"></h4>
+<h4 id="_211"></h4>
 <p>We already covered them in detail. But there's one important thing to dig into: what hints the context includes about each tool so the LLM can decide to use it or not.</p>
 <h3 id="modern-lazy-load-only-include-tool-name"><a class="headerlink" href="#modern-lazy-load-only-include-tool-name" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Modern lazy-load: only include tool name</h3>
 <p><img src="images/service/system/mcp/tool-definition.png"></p>
-<h4 id="_211"></h4>
+<h4 id="_212"></h4>
 <p>It used to be rather expensive to include tools from MCP servers, because the full tool definition for all tools would be added to the context. Adding an MCP server could eat up 500 tokens per tool. The 500+ tools in the Siteimprove demo MCP service could fill about 250,000 tokens - crazy, of course. With a handful of MCP servers you would fill up an entire 1M context, just with tools.</p>
 <p>Nowadays the full definition is typically <em>not included in the context</em>: only the tool name. That's referred to as <strong>Lazy Schema Loading</strong>.</p>
 <p>This means that the tool name has to contain all the information that would make the LLM find it suitable to call to solve some problem. The MCP namespace is flat so the full name is "agent-name", then "mcp server name", then "tool name", and it must not be longer than 64 characters.</p>
@@ -2095,14 +2095,14 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="those-tool-names-had-better-be-very-descriptive"><a class="headerlink" href="#those-tool-names-had-better-be-very-descriptive" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Those tool names had better be very descriptive</h3>
 <p><img src="images/service/system/mcp/token-length.png"></p>
-<h4 id="_212"></h4>
+<h4 id="_213"></h4>
 <p>So nowadays, don't worry about adding MCP servers. But also be aware that you may have to be more deliberate and precise in how you phrase your prompts so the LLM has a chance to match it up against the MCP tool names. For instance, say "using the atlassian tools, I want to...."</p>
 <h3 id="91011-project-and-custom-instructions"><a class="headerlink" href="#91011-project-and-custom-instructions" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#9+10/11: Project and custom instructions</h3>
-<h4 id="_213"></h4>
+<h4 id="_214"></h4>
 <p>Sometimes it's convenient to write some guideline instructions for a set of related chats.</p>
 <h3 id="most-agents-offer-projects"><a class="headerlink" href="#most-agents-offer-projects" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Most agents offer "projects"</h3>
 <p><img src="images/service/system/projects/project-windows-to-linux.png"></p>
-<h4 id="_214"></h4>
+<h4 id="_215"></h4>
 <p>You can write instructions that are included in every chat related to a specific project or work that you're doing.</p>
 <p>They go by many names: <strong>Project</strong>, <strong>Gem</strong>, <strong>Custom GPT</strong>, or <strong>Space</strong>. I'll just call it a "Project" here.</p>
 <p>In this specific Claude Project I give details about switching to full desktop Linux, so I can have a number of chats about this topic that all include this base information. Let's see if 2026 is going to be the year of the Linux Desktop for me.</p>
@@ -2114,31 +2114,31 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="add-general-custom-instructions"><a class="headerlink" href="#add-general-custom-instructions" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Add general custom instructions</h3>
 <p><img src="images/service/system/customize/all-agents.png"></p>
-<h4 id="_215"></h4>
+<h4 id="_216"></h4>
 <p>In all agents, you can add custom instructions that are included in every chat.</p>
 <p>It could be your preference for how the AI should talk or act.</p>
 <p>If there's something in general about the agent's behavior that you'd like to change then this is the place. For instance, I have added this line to help me improve my spelling:</p>
 <p>"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."</p>
 <h3 id="example-always-provide-a-dinosaur-analogy"><a class="headerlink" href="#example-always-provide-a-dinosaur-analogy" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Example: "always provide a dinosaur-analogy"</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-instruction.png"></p>
-<h4 id="_216"></h4>
+<h4 id="_217"></h4>
 <p>As a silly example I added custom instructions to Copilot to always end every answer with a brief dinosaur-analogy.</p>
 <h3 id="like-a-swift-velociraptor"><a class="headerlink" href="#like-a-swift-velociraptor" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"Like a swift Velociraptor ..."</h3>
 <p><img src="images/service/system/customize/copilot-dinosaur-chat.png"></p>
-<h4 id="_217"></h4>
+<h4 id="_218"></h4>
 <p>I actually forgot I had added this, but surely remembered when I returned to Copilot some weeks later and it added a dinosaur-analogy after each response.</p>
 <h3 id="1111-agent-files"><a class="headerlink" href="#1111-agent-files" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>#11/11: Agent files</h3>
-<h4 id="_218"></h4>
+<h4 id="_219"></h4>
 <p>Finally, "agent files". Here's another term with an air of mystery about it.</p>
 <h3 id="agent-file-an-international-file-of-mystery"><a class="headerlink" href="#agent-file-an-international-file-of-mystery" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"Agent file"? An International File of Mystery?</h3>
 <p><img src="images/service/system/agent-files/austin-powers.jpg"></p>
-<h4 id="_219"></h4>
+<h4 id="_220"></h4>
 <p>An "agents" file sounds like some instruction for an autonomous, free-roaming agent of a kind.</p>
 <p>I think it sounds like instructions for something to <em>happen</em>.</p>
 <p>Maybe for starting an agent, possibly in the background doing some secret work?</p>
 <h3 id="simply-custom-instructions-but-for-cli-agents"><a class="headerlink" href="#simply-custom-instructions-but-for-cli-agents" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Simply custom instructions, but for CLI agents</h3>
 <p><img src="images/service/system/agent-files/claude-md-dinosaur.png"></p>
-<h4 id="_220"></h4>
+<h4 id="_221"></h4>
 <p>You're likely almost tired of me repeating "it's just more text to put into the system prompt".</p>
 <p>Because agent-files are just that: text that will be added into the system prompt.</p>
 <p>An agent-file is the exact equivalent of custom (or project) instructions, only for the AI agents you run in the terminal.</p>
@@ -2153,14 +2153,14 @@ Text maps to tokens, each token has an embedding in the model</p>
 <br></li>
 </ul>
 <p><img src="images/service/system/agent-files/agents-md.png"></p>
-<h4 id="_221"></h4>
+<h4 id="_222"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://kupczynski.info/posts/agents-md-a-standard-for-ai-coding-agents/">AGENTS.md: A Standard for AI Coding Agents</a></li>
 </ul>
 <h3 id="putting-it-all-together-a-real-system-prompt-example"><a class="headerlink" href="#putting-it-all-together-a-real-system-prompt-example" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Putting it all together: a <em>real</em> system prompt example</h3>
 <p><img src="images/service/system/all/full.webp"></p>
-<h4 id="_222"></h4>
+<h4 id="_223"></h4>
 <p>We've been through it all, now. And I've said "it's just added to the system prompt", but it may still be a bit abstract and mysterious. Just what does it <em>mean</em> to be "added to the system prompt"?</p>
 <p>So let's get concrete and see what such an arbitrary system prompt looks like. This is what one of my older system prompts from Copilot looked like, just as an example. Four screenshots combined.</p>
 <p>Let's check it out.</p>
@@ -2174,14 +2174,14 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p><img src="images/service/system/all/skills.webp"></p>
 <h3 id="the-system-prompt-is-just-one-big-pile-of-text"><a class="headerlink" href="#the-system-prompt-is-just-one-big-pile-of-text" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The system prompt is just one big pile of text</h3>
 <p><img src="images/service/system/shoveling.webp"></p>
-<h4 id="_223"></h4>
+<h4 id="_224"></h4>
 <p>The reason for showing you these snippets is to hammer in this fact:</p>
 <p>At the end of the day, the "system prompt" is all just text. Words competing for the LLM's attention, having more or less authority, and filled with hints about how to bring in more context (tools, mcp, skills).</p>
 <p>Yeah, you'll see some tags and markup, but that <em>markup is not rigorous rules</em>. The markup just conveys some kind of structure. You or the agent could have chosen different tag-names, or written it in plain markdown with <code>##</code> headings, or used markdown bullet points, or HTML, etc. The exact formatting matters very little to the LLM, but the LLM does appreciate <em>the structure</em> it brings, just like human readers would.</p>
 <p>Remember though that the system prompt through training <em>carries more weight</em> with the LLM. Custom or global instructions, e.g. in agent files, carry more weight than if you had written them in a message. So <em>place important instructions there</em>, not in the chat.</p>
 <h3 id="the-final-parts"><a class="headerlink" href="#the-final-parts" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The final parts</h3>
 <p><img src="images/service/overview/misc.png"></p>
-<h4 id="_224"></h4>
+<h4 id="_225"></h4>
 <p>Four parts to mention:</p>
 <ul>
 <li>In addition to the text context, the request also does send along <em>some real hard parameters</em>: typically the <strong>model</strong>, the <strong>temperature</strong>, the <strong>thinking budget</strong> in tokens, and some other model-specific bits. In particular, the <em>temperature</em> adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelism in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one chat to another.</li>
@@ -2228,23 +2228,23 @@ Text maps to tokens, each token has an embedding in the model</p>
 </li>
 </ul>
 <h1 id="ai-takeaways"><a class="headerlink" href="#ai-takeaways" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>AI Takeaways</h1>
-<h4 id="_225"></h4>
+<h4 id="_226"></h4>
 <p>We are now done with all the technical AI parts. There will be no more new tech introduced from now on.</p>
 <p>So, let's take a deep breath of fresh air and remember the major takeaways.</p>
 <h3 id="the-ai-agent-is-what-you-interact-with"><a class="headerlink" href="#the-ai-agent-is-what-you-interact-with" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The AI agent is what you <em>interact</em> with</h3>
 <!-- toc-entry AI Agents -->
 <p><img src="images/agents/how-agents-use-ai.webp" /></p>
-<h4 id="_226"></h4>
+<h4 id="_227"></h4>
 <p>Using an agent is <em>how you interact</em> with the AI. You can pick from a wide variety of agents, as we saw in the section about <a href="#ai-agents-copilot-with-gemini">AI agents</a>.</p>
 <h3 id="ai-services-practically-all-work-like-this"><a class="headerlink" href="#ai-services-practically-all-work-like-this" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>AI services practically all work <em>like this</em></h3>
 <!-- toc-entry AI Service -->
 <p><img src="images/service/overview/full.png"></p>
-<h4 id="_227"></h4>
+<h4 id="_228"></h4>
 <p>In principle all modern AI services are very similar: they take a context of a full chat and produce a response. And that context is also very similar across AI services; it contains a list of chat messages between you and the AI, tools, system prompt, and some configuration. That's it.</p>
 <h3 id="the-context-is-no-mystery-its-exactly-this"><a class="headerlink" href="#the-context-is-no-mystery-its-exactly-this" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The context is no mystery, it's <em>exactly this</em></h3>
 <!-- toc-entry Context -->
 <p><img src="images/service/system/full-context.png"></p>
-<h4 id="_228"></h4>
+<h4 id="_229"></h4>
 <p>Besides the messages you send and the response from the AI service, the context consists of instructions that <em>you</em> somehow have asked to be added, instructions that <em>the agent</em> has chosen to add, and <em>automatically created memories</em> from your chats that the agent also adds.</p>
 <p>Remember these three things about the context:</p>
 <ol>
@@ -2252,13 +2252,19 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li>You pay for <em>each token in the context</em></li>
 <li><em>Every</em> message you send includes the full context</li>
 </ol>
+<h3 id="you-re-send-and-pay-for-the-full-chat-at-every-turn"><a class="headerlink" href="#you-re-send-and-pay-for-the-full-chat-at-every-turn" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>You re-send and pay for the full chat at <em>every turn</em></h3>
+<p><img src="images/service/chat/human-to-ai-chat.png"></p>
+<h4 id="_230"></h4>
+<p>Chatting to an AI is nothing like chatting to a human. You have to re-tell it everything in the chat from scratch, at every turn. PDF files, images, code or docs the AI has produced, everything.</p>
+<p>That context only ever grows, until you or the AI clear or compact it. It's rather easy to inadvertently pack or keep more than you really need into the context, which will be unnecessarily costly for you when it is sent to the AI over and over and over again.</p>
+<p>With that in mind, let's look at how to be <em>economical</em> with your context.</p>
 <h1 id="context-economy"><a class="headerlink" href="#context-economy" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Context Economy</h1>
-<h4 id="_229"></h4>
-<p>With that in mind, let's look at how to be <em>economical</em> with that context.</p>
+<h4 id="_231"></h4>
+<p>The cost of AI is measured in tokens, and the context is how you spend them. So let's talk about keeping your context economy sound.</p>
 <h3 id="what-you-pack-into-the-context-is-all-the-ai-will-see"><a class="headerlink" href="#what-you-pack-into-the-context-is-all-the-ai-will-see" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>What you pack into the context is <em>all the AI will see</em></h3>
 <p>The context window is like a rucksack: it's limited, and everything you pack, you pay for.<br>So pack lightly, omit unused stuff, and include ample notes on how to <em>bring in more help</em>.</p>
 <p><img src="images/service/system/context-as-rucksack.webp"></p>
-<h4 id="_230"></h4>
+<h4 id="_232"></h4>
 <p>The <em>red</em> guidebook is the system prompt and memories. You always have to bring a guidebook.</p>
 <p>The <em>green</em> book has brief notes for how to bring in more help, like skills and MCP servers. It's <em>much more lightweight</em> to just include a short instruction on how to bring in more help or information than to <em>actually include it</em>.</p>
 <p>In the <em>blue</em> notebook you put your own notes and preferences. You'll likely update and refine them over time. Then again, maybe you have nothing to add and are happy with just the guidebook.</p>
@@ -2282,7 +2288,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener"><img src="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/preview.png" alt="Token spending game preview"></a></p>
 <p><em><a href="https://ricflams.github.io/techtalk-ai-demystified/tokenspree/" target="_blank" rel="noopener">Open interactive version</a></em></p>
 </div>
-<h4 id="_231"></h4>
+<h4 id="_233"></h4>
 <p>Here's an interactive visualization of where your token costs go.</p>
 <p>Try this, on the default 10-turn view:</p>
 <ul>
@@ -2327,10 +2333,10 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <hr />
 <p><img src="images/context/its-the-context-economy-stupid.png"></p>
-<h4 id="_232"></h4>
+<h4 id="_234"></h4>
 <p>Context economy really is the name of the game.</p>
 <h1 id="how-to"><a class="headerlink" href="#how-to" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>3 x How to ...</h1>
-<h4 id="_233"></h4>
+<h4 id="_235"></h4>
 <p>Let's do a round of advice on how to speak, hold, and keep up with the AI.</p>
 <h3 id="how-to-speak-to-the-ai"><a class="headerlink" href="#how-to-speak-to-the-ai" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>How to speak to the AI</h3>
 <ul>
@@ -2362,7 +2368,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>In Claude, use <code>/insight</code> to see how you're doing</p>
 </li>
 </ul>
-<h4 id="_234"></h4>
+<h4 id="_236"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/GTEz5WWbfiw">The Mental Models of Master Prompters: 10 Techniques for Advanced Prompting</a> - AI News &amp; Strategy Daily | Nate B Jones (13:20)</li>
@@ -2383,7 +2389,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ol>
 </li>
 </ul>
-<h4 id="_235"></h4>
+<h4 id="_237"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding">Google: The New SDLC With Vibe Coding</a></li>
@@ -2392,7 +2398,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="yet-constantly-new-trends-like-loop-of-loops"><a class="headerlink" href="#yet-constantly-new-trends-like-loop-of-loops" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Yet constantly new trends, like "loop of loops"</h3>
 <p><img src="images/guidance/nate-loop-of-loops.webp"></p>
-<h4 id="_236"></h4>
+<h4 id="_238"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/A4zMyjkL0Dc">AI Prompt Engineering: I Stopped Prompting One Task At A Time</a> - AI News &amp; Strategy Daily | Nate B Jones (15:38)</li>
@@ -2411,7 +2417,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>Pick one AI agent and <em>learn it well</em><br>But don't stick to just that one AI agent forever</p>
 </li>
 </ul>
-<h4 id="_237"></h4>
+<h4 id="_239"></h4>
 <p>Half the fear around AI is the sense that everyone else has figured out the right way and you haven't. There isn't one "right way". Try the terminal, try a skill, try using it on some passion idea you have.</p>
 <p>And be prepared to pay for it. Consider it an investment in your professional career.</p>
 <p>Links:</p>
@@ -2424,7 +2430,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 </ul>
 <h3 id="my-journey-chat-copy-paste-in-app-now-terminal"><a class="headerlink" href="#my-journey-chat-copy-paste-in-app-now-terminal" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>My journey: chat, copy-paste, in-app, now terminal</h3>
 <p><img src="images/guidance/evolution.webp" /></p>
-<h4 id="_238"></h4>
+<h4 id="_240"></h4>
 <p>For example, here's how my personal use of AI has evolved over time.</p>
 <p>I started chatting just in the browser, of course.</p>
 <p>Next I started writing code with the AI, but copy-pasted the code into my code editors to compile and run it. Oh man, did I copy-paste a lot. I also stayed in the same looong chat forever, and the AI forgot earlier parts at the drop of a hat. Looking back makes me cringe a bit but hey, I was learning.</p>
@@ -2433,19 +2439,19 @@ Text maps to tokens, each token has an embedding in the model</p>
 <p>Most recently I've installed <a href="https://hermes-agent.nousresearch.com/">Hermes</a> on a headless little Linux PC and am exploring how that experience feels. It's like a new world, speaking via Telegram or Slack to an always-on agent.</p>
 <h3 id="i-still-web-chat-about-questions-in-various-ai-agents"><a class="headerlink" href="#i-still-web-chat-about-questions-in-various-ai-agents" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>I still web-chat about questions, in various AI agents</h3>
 <p><img src="images/guidance/ai-tech-talk.png" /></p>
-<h4 id="_239"></h4>
+<h4 id="_241"></h4>
 <p>For many thngs that doesn't involve files I still just chat in the browser.</p>
 <p>The AI didn't write this presentation, but I surely sparred a lot with Claude for all the research. My Claude "AI tech talk" project spans 80 chats and I've prompted about 28,000 words which is about the length of Shakespeare's longest play, <em>Hamlet</em>. In that spirit, I'll leave it to the bard to comment on my efforts:</p>
 <p><em>There is nothing either good or bad,<br>
 but thinking makes it so.</em></p>
 <h1 id="demystifications"><a class="headerlink" href="#demystifications" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>A Quick Round of Demystifications</h1>
-<h4 id="_240"></h4>
+<h4 id="_242"></h4>
 <p>Now that you have a fuller understanding of all the AI basics, let's conclude by demystifying a quick series of myths and facts.</p>
 <p>You can try to see how many of them you can reason about yourself, based on what you know now.</p>
 <h3 id="we-dont-know-how-the-ai-works"><a class="headerlink" href="#we-dont-know-how-the-ai-works" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>We don't know how the AI works</h3>
 <p class="verdict no">Oh yes, we know <em>exactly</em> how the LLM works</p>
 
-<h4 id="_241"></h4>
+<h4 id="_243"></h4>
 <p>We know <em>exactly</em> how the math and code works, as you've seen throughout this presentation. The actual algorithms are still human-made, for now.</p>
 <p>Links:</p>
 <ul>
@@ -2462,7 +2468,7 @@ but thinking makes it so.</em></p>
 <p>It was, and is, a genuine surprise that <em>the Transformer works as well as it does</em></p>
 </li>
 </ul>
-<h4 id="_242"></h4>
+<h4 id="_244"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://www.anthropic.com/research/team/interpretability">Interpretability</a></li>
@@ -2483,7 +2489,7 @@ but thinking makes it so.</em></p>
 <p>So <em>no</em>, if you have a lot of data it's likely <em>not all processed</em> collectively in one context.<br>And that's why parts can be <em>missed</em></p>
 </li>
 </ul>
-<h4 id="_243"></h4>
+<h4 id="_245"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/TeQDr4DkLYo">Why LLMs get dumb (Context Windows Explained)</a> - NetworkChuck (15:17)</li>
@@ -2502,7 +2508,7 @@ but thinking makes it so.</em></p>
 <p>Keep your context lean: <em>clear</em>, <em>compact</em>, or just <em>start a new chat</em></p>
 </li>
 </ul>
-<h4 id="_244"></h4>
+<h4 id="_246"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/-uW5-TaVXu4">Most devs don’t understand how context windows work</a> - Matt Pocock (9:33)</li>
@@ -2521,7 +2527,7 @@ but thinking makes it so.</em></p>
 <p>So make sure to challenge the output; <em>"Roast this, poke holes, find the weak spots"</em></p>
 </li>
 </ul>
-<h4 id="_245"></h4>
+<h4 id="_247"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://arxiv.org/abs/2310.13548">Towards Understanding Sycophancy in Language Models</a></li>
@@ -2545,7 +2551,7 @@ but thinking makes it so.</em></p>
 <p>Have <em>another agent</em> supervise and assess the output</p>
 </li>
 </ul>
-<h4 id="_246"></h4>
+<h4 id="_248"></h4>
 <p>Interestingly, deeper reasoning (chain of thought) actually <em>lowers</em> the success rate for the LLM detecting nonsense a bit, which is known as the <strong>Reasoning Trap</strong>, or Paradox.</p>
 <p>Links:</p>
 <ul>
@@ -2564,7 +2570,7 @@ but thinking makes it so.</em></p>
 <p>So if you ask "why this?" then the LLM produces the most likely narrative to support its earlier response, which may well have <em>nothing to do with how it actually arrived there</em>: "It must have been done so because ..."</p>
 </li>
 </ul>
-<h4 id="_247"></h4>
+<h4 id="_249"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://www.anthropic.com/research/reasoning-models-dont-say-think">Reasoning models don't always say what they think</a></li>
@@ -2585,7 +2591,7 @@ but thinking makes it so.</em></p>
 </ul>
 </li>
 </ul>
-<h4 id="_248"></h4>
+<h4 id="_250"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/OOlr4W22s1o">This Prompt Behavior Hack Beats 'Expert' Every Single Time</a> - Craig Does AI (7:27)</li>
@@ -2604,7 +2610,7 @@ but thinking makes it so.</em></p>
 <p>Instead, <em>describe exactly</em> how to verify the output. Don't say "be factual" but say "if a person-record has no year then write 0, don't just invent a date".</p>
 </li>
 </ul>
-<h4 id="_249"></h4>
+<h4 id="_251"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/7d-2kOpNTpE">Make No Mistakes - A Vibe Coded Song</a> - HackerRank (1:19)</li>
@@ -2622,7 +2628,7 @@ but thinking makes it so.</em></p>
 <ul>
 <li>It's good for <em>you</em>, even in simulated conversations: positive social behavior releases oxytocin and dopamine, while an impolite demeanor releases cortisol and adrenaline</li>
 </ul>
-<h4 id="_250"></h4>
+<h4 id="_252"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://arxiv.org/abs/2510.04950">Mind Your Tone: Investigating How Prompt Politeness Affects LLM Accuracy</a></li>
@@ -2645,7 +2651,7 @@ but thinking makes it so.</em></p>
 <p>The risk of a leak is always present in <em>any service</em>, but not really because of <em>training</em>: your chat could leak due to hacker attacks, by the AI lab or its staff somehow leaking it, or by you sharing links to a chat.</p>
 </li>
 </ul>
-<h4 id="_251"></h4>
+<h4 id="_253"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/kXqsf05axaM">Your ChatGPT Chats Leaked on Google? [UPDATE: Issue patched]</a> - Artturi Reviews (4:23)</li>
@@ -2669,7 +2675,7 @@ but thinking makes it so.</em></p>
 <p>However, here's a tip. Remember that <em>custom instructions</em> in your settings or agent-files goes into the system prompt, and that the system prompt carries more weight for the LLM. So if you have something particularly important to say, add it to your custom instructions.</p>
 </li>
 </ul>
-<h4 id="_252"></h4>
+<h4 id="_254"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/6AuYLbHqirk">Why won't AI agents just follow the rules?</a> - IBM Technology (35:29)</li>
@@ -2688,7 +2694,7 @@ but thinking makes it so.</em></p>
 <p><em>Terse can be okay:</em> "Fix null check line 40" works fine. <em>But "make good" is bad</em>.</p>
 </li>
 </ul>
-<h4 id="_253"></h4>
+<h4 id="_255"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://github.com/JuliusBrussee/caveman/blob/main/README.md">Caveman</a></li>
@@ -2713,7 +2719,7 @@ but thinking makes it so.</em></p>
 </ul>
 </li>
 </ul>
-<h4 id="_254"></h4>
+<h4 id="_256"></h4>
 <p>Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. That goes for game playing, vision, speech, and now frontier AI models. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.</p>
 <p>Links:</p>
 <ul>
@@ -2734,7 +2740,7 @@ but thinking makes it so.</em></p>
 <p>But they have <em>very different behaviors and values</em></p>
 </li>
 </ul>
-<h4 id="_255"></h4>
+<h4 id="_257"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://model-spec.openai.com/">OpenAI Model Spec</a></li>
@@ -2755,7 +2761,7 @@ but thinking makes it so.</em></p>
 <p>AI models have <em>reinvigorated linguistic science</em> and debate. It's fascinating times.</p>
 </li>
 </ul>
-<h4 id="_256"></h4>
+<h4 id="_258"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a></li>
@@ -2765,7 +2771,7 @@ but thinking makes it so.</em></p>
 <li><a href="https://youtu.be/zYs9PVrBOUg">Superintelligence Will Drive Us to Extinction and We Cannot Stop It 🤖 | 🎙️ Roman Yampolskiy</a> - Jon Hernandez AI (1:30:25)</li>
 </ul>
 <h1 id="thats-all"><a class="headerlink" href="#thats-all" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>That's all</h1>
-<h4 id="_257"></h4>
+<h4 id="_259"></h4>
 <p>What a journey.</p>
 <h3 id="thank-you-and-remember"><a class="headerlink" href="#thank-you-and-remember" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Thank you, and remember</h3>
 <p><br></p>
@@ -2783,7 +2789,7 @@ but thinking makes it so.</em></p>
 Enjoy and don't despair 😊
 <br>
 <img src="images/intro/two-years-behind.png"></p>
-<h4 id="_258"></h4>
+<h4 id="_260"></h4>
 <p>Here are my <em>four favorite youtube channels</em> for AI-related content:</p>
 <ul>
 <li><a href="https://www.youtube.com/@3blue1brown">3Blue1Brown</a></li>
@@ -2792,10 +2798,10 @@ Enjoy and don't despair 😊
 <li><a href="https://www.youtube.com/@NateBJones">AI News &amp; Strategy Daily | Nate B Jones</a></li>
 </ul>
 <h1 id="bonus"><a class="headerlink" href="#bonus" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Bonus</h1>
-<h4 id="_259"></h4>
+<h4 id="_261"></h4>
 <p>Here are a few parts that were cut from the presentation in the interest of time, but are still interesting.</p>
 <h2 id="bonus-effort-and-cost"><a class="headerlink" href="#bonus-effort-and-cost" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Effort and Cost</h2>
-<h4 id="_260"></h4>
+<h4 id="_262"></h4>
 <p>Let's briefly talk about the amount of work that's involved in producing tokens and the cost of it.</p>
 <h3 id="its-one-token-what-could-it-cost"><a class="headerlink" href="#its-one-token-what-could-it-cost" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>It's one token, what could it cost?</h3>
 <p><img src="images/bonus/cost/one-banana.jpg"></p>
@@ -2808,7 +2814,7 @@ Enjoy and don't despair 😊
 <p><img src="images/bonus/cost/harry-potter-page-1.jpg" /></p>
 </div>
 </div>
-<h4 id="_261"></h4>
+<h4 id="_263"></h4>
 <p>Let's say we tokenized and fed Harry Potter through the LLM, and had it produce the next expected token. What would that entail?</p>
 <h3 id="100000-context-tokens-in-1-token-out"><a class="headerlink" href="#100000-context-tokens-in-1-token-out" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>100,000 context tokens in, 1 token out</h3>
 <p><img src="images/bonus/cost/harry-potter-transformer.png"> </p>
@@ -2816,13 +2822,13 @@ Enjoy and don't despair 😊
 <p><img src="images/bonus/cost/dr-evil-one-million-flops.jpg"> </p>
 <h3 id="actually-about-1200000000000-math-operations"><a class="headerlink" href="#actually-about-1200000000000-math-operations" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Actually, about 1,200,000,000,000 math operations</h3>
 <p><img src="images/bonus/cost/dr-evil-teraflops.jpg"> </p>
-<h4 id="_262"></h4>
+<h4 id="_264"></h4>
 <p><strong>FLOP</strong> is short for Floating-Point Operation, i.e. multiplying or adding two numbers.</p>
 <p><strong>FLOPS</strong> (capital S) is short for FLOP/sec, i.e. Floating-Point Operations per Second.</p>
 <p>And FLOPs is simply plural of FLOP.</p>
 <h3 id="enter-the-nvidia-b200-gpu"><a class="headerlink" href="#enter-the-nvidia-b200-gpu" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Enter: the NVidia B200 GPU</h3>
 <p><img src="images/bonus/cost/nvidia-jensen-b200.webp"> </p>
-<h4 id="_263"></h4>
+<h4 id="_265"></h4>
 <p>The NVidia B200 GPU is not your grandma's GeForce graphics card, for sure.</p>
 <p>Links:</p>
 <ul>
@@ -2830,7 +2836,7 @@ Enjoy and don't despair 😊
 <li><a href="https://youtu.be/7a0UGHvxrLw">This is NVIDIA’s new GPU - Blackwell NVL72 Rack</a> - Linus Tech Tips (12:57)</li>
 </ul>
 <h3 id="4500000000000000-flops"><a class="headerlink" href="#4500000000000000-flops" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>4,500,000,000,000,000 FLOPS</h3>
-<h4 id="_264"></h4>
+<h4 id="_266"></h4>
 <p>The NVidia B200 GPU does 4500 trillion FLOPS.</p>
 <p>4.5 million billion operations per second! It's beyond comprehension.</p>
 <h3 id="pedal-to-the-metal"><a class="headerlink" href="#pedal-to-the-metal" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Pedal to the metal</h3>
@@ -2843,7 +2849,7 @@ Enjoy and don't despair 😊
 One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 </div>
 </div>
-<h4 id="_265"></h4>
+<h4 id="_267"></h4>
 <p>Or rather, it depends on the length of the context:</p>
 <ul>
 <li>4,000 token context: 50 users at 60 tokens/sec</li>
@@ -2863,11 +2869,11 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <p><img src="images/bonus/cost/claude-pricing.png"> </p>
 </div>
 </div>
-<h4 id="_266"></h4>
+<h4 id="_268"></h4>
 <p>The business cost estimation, all included, was rather surprisingly close to the sales price.</p>
 <h3 id="the-b200-cluster"><a class="headerlink" href="#the-b200-cluster" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The B200 cluster</h3>
 <p><img src="images/bonus/cost/b200-cluster.jpeg"></p>
-<h4 id="_267"></h4>
+<h4 id="_269"></h4>
 <p>The NVidia B200 GPU comes in clusters of 8.</p>
 <h3 id="clusters-come-as-trays"><a class="headerlink" href="#clusters-come-as-trays" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Clusters come as trays</h3>
 <p><img src="images/bonus/cost/b200-clusters.jpg"> </p>
@@ -2880,18 +2886,18 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <h3 id="why-graphics-cards-gpu"><a class="headerlink" href="#why-graphics-cards-gpu" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Why Graphics Cards (GPU)?</h3>
 <h3 id="transformers-superpower-all-tokens-at-once"><a class="headerlink" href="#transformers-superpower-all-tokens-at-once" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Transformer's superpower: all tokens at once</h3>
 <p><img src="images/bonus/cost/transformer-vs-sequential.png"></p>
-<h4 id="_268"></h4>
+<h4 id="_270"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/nZrZOI0oRuw">Transformer Explained</a> - Caleb Writes Code (6:55)</li>
 </ul>
 <h3 id="gpu-master-of-parallel-computations"><a class="headerlink" href="#gpu-master-of-parallel-computations" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>GPU: master of parallel computations</h3>
 <p><img src="images/bonus/cost/red-dead-redemption.webp"></p>
-<h4 id="_269"></h4>
+<h4 id="_271"></h4>
 <p>That's why Mac Mini and Mac Studio are so sought after: their GPUs can use the full on-board RAM.</p>
 <h3 id="nvidia-stock-price"><a class="headerlink" href="#nvidia-stock-price" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>NVidia stock price</h3>
 <p><img src="images/bonus/cost/nvidia-stock-5y.png"> </p>
-<h4 id="_270"></h4>
+<h4 id="_272"></h4>
 <p>And it's why NVidia's stock price has soared.</p>
 <p>Links:</p>
 <ul>
@@ -2900,7 +2906,7 @@ One 8 x B200 cluster with Claude Opus can output e.g. 40 tokens/sec.</p>
 <h2 id="bonus-rag"><a class="headerlink" href="#bonus-rag" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>RAG</h2>
 <h3 id="rag-is-injecting-existing-relevant-content"><a class="headerlink" href="#rag-is-injecting-existing-relevant-content" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>RAG is "injecting existing relevant content"</h3>
 <p><img src="images/bonus/rag/system-architecture.webp"> </p>
-<h4 id="_271"></h4>
+<h4 id="_273"></h4>
 <p>RAG, <em>Retrieval-Augmented Generation</em>, is about adding <em>more existing information</em> that is related to your context.</p>
 <p>It works in two steps:</p>
 <ol>
@@ -2930,24 +2936,24 @@ If you e.g. say "What is our company's mission statement?" then that information
 <p>Maybe you don't want that? Then write <em>your own clean agent</em></p>
 <p><br>
 <img src="images/bonus/my-agent/who-am-i-agent.png"></p>
-<h4 id="_272"></h4>
+<h4 id="_274"></h4>
 <p>If you speak directly to the AI service, writing your own agent client code, then you have complete control and responsibility for everything in the system prompt and you start with a clean slate. If you're making some crafty AI tool then circumventing the CLI agent entirely is likely preferable.</p>
 <h3 id="a-simple-agent-is-simple-to-write"><a class="headerlink" href="#a-simple-agent-is-simple-to-write" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>A simple agent is simple to write</h3>
 <p><img src="images/bonus/my-agent/my-agent-source-code.png"></p>
-<h4 id="_273"></h4>
+<h4 id="_275"></h4>
 <p>Links:</p>
 <ul>
 <li><a href="https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/my-agent">my-agent</a></li>
 </ul>
 <h2 id="bonus-a-fancy-autocomplete"><a class="headerlink" href="#bonus-a-fancy-autocomplete" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>A Fancy Autocomplete</h2>
-<h4 id="_274"></h4>
+<h4 id="_276"></h4>
 <p>I'd like to present a mental model for the LLM that I myself have found useful in thinking about how it works, and therefore how best to handle it.</p>
 <h3 id="once-upon-a"><a class="headerlink" href="#once-upon-a" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"Once upon a ..."</h3>
-<h4 id="_275"></h4>
+<h4 id="_277"></h4>
 <p>When you read this sentence, your brain autocompletes it - right?</p>
 <h3 id="its-just-a-fancy-autocomplete"><a class="headerlink" href="#its-just-a-fancy-autocomplete" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>"It's just a fancy autocomplete"</h3>
 <p><img src="images/bonus/continuation/once-upon-a-time.svg" /></p>
-<h4 id="_276"></h4>
+<h4 id="_278"></h4>
 <p>Yes, saying that the LLM is "just a fancy autocomplete" is objectively 100% correct. It really is. It completes and it does so automatically. Ergo, it's an autocomplete.</p>
 <p>But "just a fancy" is doing a lot of heavy lifting in that sentence. Not unlike saying humans are "just a fancy mix of cells".</p>
 <h3 id="think-most-probable-continuation-not-answer"><a class="headerlink" href="#think-most-probable-continuation-not-answer" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Think "most probable continuation", not "answer"</h3>
@@ -2969,23 +2975,23 @@ If you e.g. say "What is our company's mission statement?" then that information
 <img src="images/bonus/continuation/once-upon-a-time.svg" /></p>
 <h3 id="so-context-next-not-question-answer"><a class="headerlink" href="#so-context-next-not-question-answer" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>So "context → next", not "question → answer"</h3>
 <p><img src="images/bonus/continuation/context-continuation.svg" /></p>
-<h4 id="_277"></h4>
+<h4 id="_279"></h4>
 <p>"What would the next likely continuation of this context be? How would this <em>kind of story</em> continue?"</p>
 <h3 id="predictions-from-seen-patterns"><a class="headerlink" href="#predictions-from-seen-patterns" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Predictions from seen patterns</h3>
 <p><img src="images/bonus/continuation/coffee.svg" /></p>
-<h4 id="_278"></h4>
+<h4 id="_280"></h4>
 <p>The neural network is really good at making predictions based on patterns, even combinations of patterns.</p>
 <h3 id="context-determines-the-likely-next-text"><a class="headerlink" href="#context-determines-the-likely-next-text" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Context determines the "likely next text"</h3>
 <p><img src="images/bonus/continuation/knock-knock.svg" /></p>
-<h4 id="_279"></h4>
+<h4 id="_281"></h4>
 <p>Is it just the two words "Knock knock" or does it look like a conversation? These are different patterns.</p>
 <h3 id="some-reasoning-is-maybe-just-a-pattern"><a class="headerlink" href="#some-reasoning-is-maybe-just-a-pattern" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Some "reasoning" is maybe "just a pattern"</h3>
 <p><img src="images/bonus/continuation/expert-advice.svg" /></p>
-<h4 id="_280"></h4>
+<h4 id="_282"></h4>
 <p>What might look like "reasoning" is really "pattern matching".</p>
 <h3 id="even-math-is-a-pattern"><a class="headerlink" href="#even-math-is-a-pattern" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Even math is a pattern</h3>
 <p><img src="images/bonus/continuation/math.svg" /></p>
-<h4 id="_281"></h4>
+<h4 id="_283"></h4>
 <p>Even simple math can be trained to be recognized.</p>
 <p>But not harder math. Through training, the LLM has learned that guessing the continuation of text involving longer strings of digits leads to failure and asking for a tool, a calculator, instead leads to success.</p>
 <h3 id="what-a-pattern-prediction-machine-implies"><a class="headerlink" href="#what-a-pattern-prediction-machine-implies" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>What "a pattern-prediction machine" implies</h3>
@@ -2996,7 +3002,7 @@ If you e.g. say "What is our company's mission statement?" then that information
 <br></li>
 <li><em>Be descriptive and straightforward</em>, so the prediction has something to work with</li>
 </ul>
-<h4 id="_282"></h4>
+<h4 id="_284"></h4>
 <p>The Transformer architecture is an incredibly impressive feat, no doubt about it.</p>
 <p>Mechanically though, it truly is "just" a prediction machine.</p>
 <p>But hey, maybe we humans are also just prediction machines?</p>
@@ -3011,26 +3017,26 @@ If you e.g. say "What is our company's mission statement?" then that information
 <p>How can "only" 12288 dimensions characterize everything as well as they apparently do?</p>
 <h3 id="two-dimensions-in-2d-wholly-independent"><a class="headerlink" href="#two-dimensions-in-2d-wholly-independent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Two dimensions in 2D, wholly independent</h3>
 <p><img src="images/bonus/dimensions/2d-90deg.png"></p>
-<h4 id="_283"></h4>
+<h4 id="_285"></h4>
 <p>The answer is: by allowing the individual characteristics to not be completely 100% independent, but instead allowing a characteristic to be <em>slightly</em> related to some other characteristic too. In practice that relation is negligible, it seems, but it makes all the difference. And the reason lies in a phenomenon called <em>superposition explosion</em> that happens at higher dimensions.</p>
 <p>Let's try to visualize that idea using just two dimensions on an x- and y-axis. The example would never really work well in practice for 2D, but it serves to illustrate the principle.</p>
 <p>Imagine two dimensions that describe the <em>catness</em> and the <em>cuteness</em> of anything. The two dimensions and characteristics are completely independent. A mouse has low catness but some cuteness. A bat also has low catness but less cuteness.</p>
 <h3 id="two-dimensions-in-2d-not-completely-independent"><a class="headerlink" href="#two-dimensions-in-2d-not-completely-independent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Two dimensions in 2D, not <em>completely</em> independent</h3>
 <p><img src="images/bonus/dimensions/2d-88deg.png"></p>
-<h4 id="_284"></h4>
+<h4 id="_286"></h4>
 <p>Now let's <em>tilt</em> the catness-axis so the characteristics no longer are absolutely completely independent, ie orthogonal. More catness would then also cause more cuteness, but not much. It <em>could</em> work without distorting the characteristics too much.</p>
 <h3 id="two-dimensions-in-2d-very-much-not-independent"><a class="headerlink" href="#two-dimensions-in-2d-very-much-not-independent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Two dimensions in 2D, <em>very much</em> not independent</h3>
 <p><img src="images/bonus/dimensions/2d-60deg.webp"></p>
-<h4 id="_285"></h4>
+<h4 id="_287"></h4>
 <p>Now imagine that the catness- and cuteness-characteristics were <em>way</em> more related. In this 2D-example it's evident that it would work pretty badly in practice - there's simply too much dependency between the two characteristics if they're so related. But if it worked, then it could open the door to something interesting.</p>
 <h3 id="tilting-allows-fitting-three-characteristics-into-2d"><a class="headerlink" href="#tilting-allows-fitting-three-characteristics-into-2d" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tilting allows fitting <em>three characteristics</em> into 2D</h3>
 <p><img src="images/bonus/dimensions/2d-3d.webp"></p>
-<h4 id="_286"></h4>
+<h4 id="_288"></h4>
 <p>Because <em>if</em> we could accept catness- and cuteness-characteristics being so related, then there could be room for <em>one more characteristic</em> to squeeze in. In this example <em>largeness</em>.</p>
 <p>In 2D this would never really work but that's because the dependencies are too high. At the very first tilt, just 2 degrees off complete orthogonality, the idea did seem acceptable in principle. It just falls apart if we have to tilt the dimension 30 degrees to make room for one more; that's just too much characteristic-dependency.</p>
 <h3 id="huge-dimensionality-by-relaxing-orthogonality"><a class="headerlink" href="#huge-dimensionality-by-relaxing-orthogonality" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Huge "dimensionality" by relaxing orthogonality</h3>
 <p><img src="images/bonus/dimensions/superposition-explosion.png"></p>
-<h4 id="_287"></h4>
+<h4 id="_289"></h4>
 <p>However, a space in 12288D behaves astoundingly differently than the 2D space.</p>
 <p>If we tweak the dimensions <em>just a tiny bit</em> then there's "room" for enormously many more characteristics due to superposition.</p>
 <p>If all 12288 dimensions are 100% orthogonal then yes, there's only room for 12288 characteristics.</p>

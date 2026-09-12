@@ -2489,6 +2489,7 @@ Remember these three things about the context:
 3. *Every* message you send includes the full context
 
 ### You re-send and pay for the full chat at *every turn*
+<!-- toc-entry Chat -->
 <img src="images/service/chat/human-to-ai-chat.png">
 
 ####

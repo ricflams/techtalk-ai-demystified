@@ -1559,9 +1559,20 @@ Links:
 - [Why LLMs get dumb (Context Windows Explained)](https://youtu.be/TeQDr4DkLYo) - NetworkChuck (15:17)
 
 ### Chatting recap
-- The *full chat* is always sent, every time
+<img src="images/service/chat/human-to-ai-chat.png">
 
-- Keep the context lean - *compact* or *start new chats*
+####
+Intuitively we think of "chatting" as the way two humans would chat. Both take turns saying something and that's how the conversation goes on.
+
+But chatting to an AI is fundamentally different. Chatting is an illusion. Remember, you give the AI one input (the context) and it gives you one response. So in order to maintain the "illusion of an ongoing conversation", you (the agent on your behalf) must send the full conversation, every time.
+
+And yes, that also includes files and images that you or the AI has sent. Everything. And the context only ever grows, until you or the AI clear or compact it.
+
+It's funny, really. Logically it's not hard to understand that the AI can only reason about the context. I've repeated that many times in this presentation and you've nodded along, right? And *yet* it still somehow comes as a surprise that *hey, in order for that to work* then we must send the AI the entire context, the full chat, everything in it, every single time.
+
+This is also why you can so easily change AI service or AI model in the middle of conversation. Because you're not *having* a conversation with an AI but are instead sending an *ongoing* conversation to some AI and asking it to continue.
+
+By the way, you may have noticed the red and green parts of the chat. That's the *system prompt* and a *tool result*. We'll get to those in a moment. But first it's time to do some thinking.
 
 ## Thinking
 <!-- anchor ai-service-thinking -->
@@ -2477,10 +2488,20 @@ Remember these three things about the context:
 2. You pay for *each token in the context*
 3. *Every* message you send includes the full context
 
+### You re-send and pay for the full chat at *every turn*
+<img src="images/service/chat/human-to-ai-chat.png">
+
+####
+Chatting to an AI is nothing like chatting to a human. You have to re-tell it everything in the chat from scratch, at every turn. PDF files, images, code or docs the AI has produced, everything.
+
+That context only ever grows, until you or the AI clear or compact it. It's rather easy to inadvertently pack or keep more than you really need into the context, which will be unnecessarily costly for you when it is sent to the AI over and over and over again.
+
+With that in mind, let's look at how to be *economical* with your context.
+
 # Context Economy
 <!-- anchor context-economy -->
 ####
-With that in mind, let's look at how to be *economical* with that context.
+The cost of AI is measured in tokens, and the context is how you spend them. So let's talk about keeping your context economy sound.
 
 ### What you pack into the context is *all the AI will see*
 The context window is like a rucksack: it's limited, and everything you pack, you pay for.<br>So pack lightly, omit unused stuff, and include ample notes on how to *bring in more help*.

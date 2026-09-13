@@ -7,7 +7,7 @@ We all use AI. But it's still a bit mysterious.
 Words like *tokens*, *context*, *MCP servers*, *thinking*, and *agent files* get tossed around daily. But do you really know what they are?
 
 This presentation aim to explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
-
+Do 
 There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily.
 
 ---

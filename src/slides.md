@@ -382,7 +382,7 @@ An **embedding** is a list of numbers (also called a **vector** or **tensor**) t
 
 The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" here has 20 dimensions. The more dimensions, the more nuances can be captured.
 
-Each number is called the **weight** of that dimension. A kitten is very playful (weight=9) and not very wet (weight=1).
+Each number is called the **weight** of that dimension. A kitten is very playful (weight 9) and not very wet (weight 1).
 
 An embedding can express any *word* you know. Any *feeling* you can have. Any *possible concept*, for example *a curious yet mildly confused audience*.
 </div>
@@ -395,10 +395,12 @@ Links:
 ### 1 token's meaning is represented by 1 embedding
 <img src="images/llm/embeddings/vocabulary-gpt-3.png" />
 
-ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding
+ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding. A bit more than the kitten-example's 20 dimensions.
 
 ####
-In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept, for example the token "amplification" or "gazed". It may sound a bit crazy that it could even be possible to somehow characterize anything with such shared aspects but yes, that's what's happening.
+In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept. For example the token "amplification" or "gazed".
+
+It may sound a bit crazy that it could even be possible to somehow characterize everything that way, but it turns out it is possible. And those numbers, where do they come from? They come from something called *training*, and we'll get to that later.
 
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck) - ML & AI: Foundations & Methods (32:41)
@@ -566,11 +568,11 @@ It's time to concretely dive into just how the LLM aka Transformer works.
 Here's our example again, with the corresponding embedding for each token. Remember, each of these lists of 12288 numbers, the *weights*, represents the *core meaning* of that single token. The meaning of "Please", the meaning of "tell", the meaning of "me", and so on. Those weights are constructed during the LLM's training which we'll cover later.
 
 ### Putting the example through the LLM
-The **context** is the input given to the LLM - here, the embeddings of *10 tokens*
+The **context** is the input given to the LLM - here, the embeddings of *10 tokens*.
 
-The **context window** is the longest input possible, typically *200,000-1,000,000 tokens*
+The **context window** is the longest input possible, typically *200,000-1,000,000 tokens*.
 
-The LLM generates the next token, called **inference**, by running the embeddings through a giant **neural network**
+The LLM generates the next token, called **inference**, by running the embeddings through a giant **neural network**.
 <br>
 
 <img src="images/llm/what-is-an-llm-example.png">
@@ -704,7 +706,7 @@ Compare the final expected embedding to the embeddings of *all tokens in the voc
 Then, it's "simply" a matter of finding out what tokens are most similar to the desired meaning.
 
 Is it `"dancing?"` No.<br>
-Is it `"sw developer"`? No.<br>
+Is it `"kitten"`? No.<br>
 Is it `"stranger"`? That one's pretty close.<br>
 Is it `"stronger"`? Yes, that's the closest known token.
 
@@ -720,6 +722,8 @@ Links:
 
 
 ### Back to "Please tell me: what is an LLM?"
+####
+Let's go back to the example we started out with.
 
 ### For this context, the LLM will produce token "An"
 <img src="images/llm/what-is-an-llm-example.png">
@@ -728,32 +732,34 @@ Links:
 <img src="images/llm/next-token-until-stop.png">
 
 ####
-Keep on adding the produced token to the context and go another round through the LLM, until the LLM emits a special "end of my turn"-token.
+The LLM produces a full response like so:
+
+The context goes through the LLM and out comes 1 token, as we just saw. That single token is then *appended* to the context and the entire one-token-bigger context is then fed through the LLM again. It goes around like so until the LLM emits a special *"end of my turn"*-token.
 
 Let's flesh out the first couple of output-tokens just to be completely clear about what's happening here.
 
-What the LLM is *actually getting* is a tad more elaborate than just the question. The context looks more like a real conversation. After the user's message, there's actually also an "end of my turn"-token, but I've omitted that here for simplicity.
+What the LLM is *actually getting* is a tad more elaborate than just the question. The context looks more like a real conversation. And after the user's message, there's actually also an *"end of my turn"*-token, but I've omitted that here for simplicity. So, first this context is passed to the LLM:
 
 ```
 user: Please tell me: what is an LLM?
 assistant:
 ```
 
-The first round produces `"An"`. Then `"An"` is added to the context, which now reads
+After going through the Transformer's 96 attention layers, the LLM ends up outputting token `"An"`. That's not the end-token so it is added to the context, which is then fed back into the LLM. This means we're now asking the LLM to predict the next token for *this* context:
 
 ```
 user: Please tell me: what is an LLM?
 assistant: An
 ```
 
-That context is now passed through the Transformer's 96 attention-layers, this time producing token `" L"`, which is then added to the context
+This time the output is token `" L"`. Still not the end-token, so it's added to the context, which is fed back into the LLM, meaning we're now asking the LLM to predict the next token for *this* context:
 
 ```
 user: Please tell me: what is an LLM?
 assistant: An L
 ```
 
-and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` etc. Over and over, token by token, until the most likely next token for the LLM to choose is the special "end of my turn"-token.
+The LLM predicts `"LM"`. Then `","`, then `" or"` etc. And so it goes, over and over, token by token, until the most likely next token for the LLM to choose is the special *"end of my turn"*-token.
 
 ### 85 roundtrips for 85 tokens
 <img src="images/llm/final-output-full-tokenized.png">
@@ -761,7 +767,9 @@ and fed through the LLM once more, producing `"LM"`, then `","`, then `" or"` et
 ####
 The 85 produced output-tokens each require a full pass of the growing context through the LLM, where the LLM's own produced tokens are added one by one to the context.
 
-Modern inference optimizes this heavily: caching makes each pass much cheaper, and speculative decoding can confirm several tokens in a single pass. But the loop itself is unchanged. The growing context really does go through the LLM again, over and over, until it's done.
+The sheer amount of math it takes is mindblowing. For a human with a calculator, that could do one calculation per second, it would take 30,000 years to produce one single token.
+
+Modern LLMs do have a number of optimization-tricks up their sleeve: for example, caching makes each pass much cheaper, and speculative decoding can confirm several tokens in a single pass. But the loop itself is unchanged. The growing context really does go through the LLM again, over and over, until it's done.
 
 Links:
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
@@ -868,7 +876,7 @@ Finally, rather unceremoniously: this is how both the model's weights and the em
 
 It works like this, in principle:
 
-1. A well-known sentence minus the last token is passed through the full model network, all 96 or so layers.
+1. A training sentence minus its last token is passed through the full model network, all 96 layers.
 2. The last token is expected as the output; here "stronger"
 3. All the paths that produced that token get dialed up a notch and all others dialed a bit down - all back through those 96 layers, all the way back to the embedding itself
 4. Now simply repeat this a gazillion times with the entire training corpus.
@@ -962,7 +970,7 @@ Links:
 <img src="images/llm/training/reinforcement-training-trend.png">
 
 ####
-Frontier labs almost universally outsource the bulk of RLHF annotation to external companies. One of the main players, Outlier, has now 900,000+ contractors globally working as AI trainers.
+Frontier labs almost universally outsource the bulk of human RLHF-training to external companies. One of the main players, Outlier, has now 900,000+ contractors globally working as AI trainers. You could go apply to become an AI trainer yourself, especially if you've got some special skills.
 
 Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.
 
@@ -1040,25 +1048,16 @@ Links:
 - xAI wants Grok to *tell the truth* — no censorship, no moralizing, no wokeness
 
 ### Models also have variations
-Haiku, Sonnet, and Opus are really three different models.
+For example, Claude's Haiku, Sonnet, and Opus are three different models.
 
-They may well run on *different hardware* and their LLMs have *different sizes*.
+Their LLMs have *different sizes*, and their training, speed, cost, and strengths are different.
 <br>
 
-<img src="images/llm/training/claude-family.webp">
+<img src="images/llm/training/claude-family.png">
 
 ####
-For example, the Claude family are physically three different models: different size, training, speed, cost, strengths.
-
 Links:
 - [Every Claude Model Explained in 7 Minutes](https://youtu.be/BJauPEH_9OU) - Knowing More (7:25)
-
-### Trained AI model recap
-- You give it a string of tokens, aka the *context*<br>The model produces a response by running that context through *the Transformer*<br>The transformer can *only reason about the context* you give it
-
-- AI models have been *post-trained differently* for different desired behaviors
-
-- It's *all just math*, fixed at the time of training; no dictionaries or web-browsing
 
 ### Let's revisit what Claude itself said
 <img src="images/llm/claude-please-tell-me.png">
@@ -1080,6 +1079,9 @@ Links:
 - [Github repo for nanoGPT](https://github.com/karpathy/nanoGPT)
 - [Deep Dive into LLMs like ChatGPT](https://youtu.be/7xTGNNLPyMI) - Andrej Karpathy (3:31:23)
 - [Hands-On-Large-Language-Models](https://github.com/handsOnLLM/Hands-On-Large-Language-Models)
+
+### Training recap
+- AI models roughly know the same *facts*, but their *behaviors* differ due to post-training
 
 
 # AI Agents
@@ -1199,7 +1201,7 @@ The engine provides raw power: you press the accelerator and something rotates. 
 
 Many car manufacturers don't even produce their own engines. Toyota puts its 3.5-litre V6 into its own Lexus RX 350, and also sells it to Lotus for the Emira. Lotus adds a supercharger and gets 400 hp out of the engine that gives the Lexus 275 hp. Two very different cars using the same engine, each offering its own driving experience to suit different tastes.
 
-AI services and AI agents are similar in kind. Every frontier lab ships its own agents that use its own AI service. But there are also a lot of *third-party agents*, made by people who have no AI service of their own, so their agent simply uses *somebody else's AI service*. You get to choose which one and you're also still billed one way or another: by the AI service you choose to use (per token via API or by your subscription), or, if you choose to run the AI on your Mac Mini, in the form of buying hardware and running the AI yourself.
+AI services and AI agents are similar in kind. Every frontier lab ships its own agents that use its own AI service. But there are also a lot of *third-party agents*, made by people who have no AI service of their own, so their agent simply uses *somebody else's AI service*. You get to choose which one and you're also still billed one way or another: by the AI service you choose to use (per token via API or by your subscription), or, if you choose to install and run an AI locally on your Mac Mini, in the form of buying hardware and running that AI yourself.
 
 The agent is what gives you the practical experience: your chats, memories, skills, settings, tools, commands and UI all live there. Sure, the AI service is vital, and the models do differ, so yes, the engine's quality certainly matters. But the engine you choose is still just one factor of your driving experience.
 
@@ -1339,13 +1341,13 @@ The usefulness and power of embeddings, not least **multimodal embeddings**, mig
 <img src="images/service/files/multimodal/multimodal-embeddings.svg">
 
 ####
-Some labs train their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings. That kind of training is very expensive, which is why this is a very recent functionality (from spring, 2026).
+Some labs train their models on text, images, video, and audio together, to form a "unified embedding space" where for example the word "kitten", images of kittens, and sounds of kittens all are comparable embeddings. That kind of training is quite expensive, which is why this is a very recent functionality (from spring, 2026).
 
-When the embedding space has been trained and established, the embedding for some new object is cheap to calculate. The effort is in the order of an LLM producing one token, which is close to what's actually happening. You calculate it once and then you can store it (it's just numbers) in a database. From then on you can do easy and cheap similarity-matches for the embeddings.
+Once the unified embedding space has been trained and established, an embedding for something (text, image, etc) is cheap to calculate. The effort is in the order of an LLM producing one token, which is close to what's actually happening. You calculate the embedding-vector once and then you can store it (it's just numbers) in a database. From then on you can do easy and cheap similarity-matches for the embeddings.
 
 (Of course, they should also store a reference to the thing they are an embedding of.)
 
-The similarity-match is also called **cosine similarity**. And you will want to store the embeddings in a specialized database called a **vector database** that is optimal for that exact similarity-matching.
+The similarity-match is also called **cosine similarity**. And you will want to store the embeddings in a specialized database called a **vector database** that is optimal for that kind of similarity-matching.
 
 Links:
 - [Unleash the power of vector search and multimodal embeddings in BigQuery](https://youtu.be/B-0dZGJDtJw) - Google Cloud Tech (40:59)
@@ -1355,7 +1357,7 @@ Links:
 <img src="images/service/files/multimodal/gemini-2-similarities.webp">
 
 ####
-Cosine similarity will show how similar two embeddings are.
+Cosine similarity will show how similar two multimodal embeddings are; not only between two texts or two images, but also between a text and an image, or video and audio, etc. It's a really powerful tool.
 
 ### A world of ideas for comparing any two things
 <img src="images/service/files/multimodal/ideas.png">
@@ -1414,12 +1416,12 @@ Think about it: Is it reasonable to think that you, on your computer with some t
 ####
 I ran a rigorous experiment where I examined how Claude, Gemini, and ChatGPT dealt with 10 PDFs of varying sizes and content. They all understood the PDFs really well, but their approach was very surprising.
 
-### Convert PDF to markdown? Yes and no.
+### So, convert PDF to markdown? It depends on the AI
 - *ChatGPT* converts PDFs to markdown just like local tools, with near-identical size;<br>so *no*, don't convert to markdown yourself; let ChatGPT do it
 
 - *Gemini* renders PDFs as images at a flat rate of 258 tokens/page, cheaper than markdown;<br>so *no*, keep as PDF for cheaper and better understanding of the PDF
 
-- *Claude* also renders PDFs as images but uses 2-6x more tokens than markdown;<br>so *yes*, convert if you want to save tokens<br>but *no*, don't convert if you want the best understanding of the rendered PDF
+- *Claude* also renders PDFs as images but uses 2-6x more tokens than markdown;<br>so *yes*, convert if you really want to save tokens<br>but *no*, don't convert if instead you want the best understanding of the rendered PDF
 
 ####
 Google's Gemini behavior was a surprise. It's even a very deliberate decision by Google, based on actual research.
@@ -1672,19 +1674,19 @@ Links:
 ####
 This is what the actual agent-and-service communication would look like:
 
-You, the user, send this text to the AI: "please calculate 123442873893*98790237342".
+You, the user, send this text to the AI: `"please calculate 123442873893*98790237342"`.
 
 However, the agent *also includes info about tools* that it makes available, to be added to the context.
 
 And breaking with all we've seen so far, the server can actually *also add some tools* to the context for the LLM to run. For instance, Anthropic's AI server has a Linux environment with Python interpreters and can fetch web-pages without having to delegate that effort back to the agent.
 
-In this situation there's a tool called "code_interpreter" with the description "Executes Python code and returns the result", taking a string-argument of Python code. **Python** is a popular programming language that the LLM during training has seen millions of examples of.
+In this situation there's a tool called `"code_interpreter"` with the description "Executes Python code and returns the result", taking a string-argument of Python code. **Python** is a popular programming language that the LLM during training has seen millions of examples of.
 
 ### LLM asks to use tool "code_interpreter"
 <img src="images/service/tools/python-math-example/tool-use.png" />
 
 ####
-Based on the training, the LLM decides that the best continuation from the user saying "please calculate 123442873893*98790237342" is to call a suitable tool that can do math. The "code_interpreter" seems like such a suitable tool.
+Based on the training, the LLM decides that the best continuation from the user saying `"please calculate 123442873893*98790237342"` is to call a suitable tool that can do math. The `"code_interpreter"` seems like such a suitable tool.
 
 So the LLM's output asks for a "tool_use" of that tool, conjuring up the suitable Python code snippet `print(123442873893 * 98790237342)` from its massive training on Python code.
 
@@ -1699,7 +1701,7 @@ Links:
 <img src="images/service/tools/python-math-example/tool-result.png" />
 
 ####
-If the tool is server-side then the server runs it. Otherwise it goes all the way back to the client. As mentioned, running Python code or fetching webpages is typically done by the server. Reading or creating local files can of course only be done by the agent on the user's computer.
+If the tool is server-side then the server runs it. Otherwise it goes all the way back to the agent. As mentioned, running Python code or fetching webpages is typically done by the server. Reading or creating local files can of course only be done by the agent on the user's computer.
 
 At any rate, the tool runs, the output is added to the context, and the new context is passed back into the LLM for another pass.
 
@@ -1731,7 +1733,7 @@ Links:
 ### The LLM is in control - via tools
 *However*, tools can be much more than just doing math, file, or web operations.
 
-Practically every *decision* in the interaction you have with the agent and AI service, is actually *conjured up by the LLM*. The agent and service are predominantly simply *carrying out the LLM's bidding* about practically everything:
+Practically every *decision* in the interaction you have with the agent and AI service, is actually *conjured up by the LLM*. The agent and service are predominantly simply *carrying out the LLM's bidding* about practically everything, which is rather surprising and amazing when you think about it:
 <br>
 
 <div class="cols">
@@ -1777,11 +1779,11 @@ For example, the agent is not the one making the decision when to actually *run*
 So in a way it's "easy" to write an agent: just provide well-described tools that the LLM can work with: like "ask the user", "delete a file", "start multiple agents", etc. The LLM will then decide to call them.
 
 ### The home-field advantage
-- Models are trained on their own lab's tools.
+Models are trained on their own lab's tools.
 
-- When Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalize, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
+So when Claude runs inside Copilot, the tools Copilot hands it don't match what Claude was trained on. Claude can generalize, but the fine-tuned judgment of when and how to use each primitive doesn't transfer perfectly. The agentic loop works the best when a model interacts with its buddy: the agent it's been trained with.
 
-- That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
+That's why running *Claude Opus in Claude Code* can feel more smooth than running Opus inside *Copilot, Cursor, Perplexity,* or *OpenCode*. It's just a better fit.
 
 ### Ask the AI: "show me your tools for pages"
 <img src="images/service/tools/rovo-ask-what-pages-tools.png" />
@@ -1837,7 +1839,7 @@ Yes, it's really "just that". A live list of tools and a way to call them.
 <img src="images/service/mcp/atlassian-mcp-ask-how-many-pages.png">
 
 ####
-By adding the Atlassian MCP server to my AI agent it now has access to tools, just like Rovo used in the example before.
+By adding the Atlassian MCP server to my AI agent it now has access to tools, just like the tools that Rovo used in the example before.
 
 ### MCP servers give uniform access to tools
 <img src="images/service/mcp/uniform-mcp-interface.png">
@@ -1861,7 +1863,7 @@ Let's take a look at concretely how an MCP service is used.
 ####
 The agent, or more likely server, will fetch the list of tools from the MCP servers and cache them.
 
-Then it will add information about each MCP server tool to the context.
+Then it will add information about each MCP server tool to the context. There could be just a handful of tools or there could be hundreds of tools.
 
 It *used* to be that the full information was added to the context, but that simply became too big. So the modern behavior is actually to *only add the tool-name* which can be maximum 64 characters, and that name is *the only guidance* the LLM will get about that tool. So you'd better pick descriptive names for your MCP tools.
 
@@ -1886,6 +1888,11 @@ With the tool-result from the service added to the context, the LLM can now comp
 ### Example: Siteimprove MCP demo
 ####
 "It's simple", I said. Okay, let me show how.
+
+I'll use an example from **Siteimprove**, because that's where I work. Very briefly, Siteimprove offers a service to analyze and find problems on websites. "And there's no end to problems on websites", as I usually add with a smile when I explain what we do.
+
+Links:
+- [Agentic Content Intelligence - Siteimprove](https://www.siteimprove.com/)
 
 ### In 1 hour, a demo MCP server was coded and live
 <img src="images/service/mcp/siteimprove/github-source.png">
@@ -1986,13 +1993,19 @@ But it is just that: a bias, a trained preference to lean towards, in particular
 
 Remember: in the LLM, *nothing is a hard rule*. It's all just textual instructions that carry more or less weight.
 
-### Convincing Copilot/GPT4.1 to change its name
+### Convincing GPT-4.1 to change its name
 <img src="images/service/system/prompt/i-am-groot.png">
 
 ####
-With enough "super-urgent" persuasion, my user message was prioritized over the system prompt, and GPT4.1 agreed that its name was "Groot".
+Here I am chatting with GPT-4.1 in Visual Studio Code. Microsoft has literally written in the system prompt that the name of the AI is "GitHub Copilot". Can I persuade it otherwise with sufficiently convincing conflicting instructions?
+
+Yes, I could. With enough "super-urgent" persuasion, my user message was prioritized over the system prompt, and GPT-4.1 agreed that its name was "Groot".
 
 However, all other models were not at all convinced and saw right through the presumed urgency.
+
+<img src="images/service/system/prompt/gemini-not-fooled.png">
+
+Remember: it's all just text, nudging each other in the Transformer, no hard rules. I managed here to overrule an old GPT's system prompt. Newer AI models are much more resilient, but in principle it is impossible to guarantee that the system prompt always wins.
 
 Links:
 - [Why prompt injection is the #1 AI security risk | TQ Tech Talks](https://youtu.be/O0XheeCS3CI) - Accenture (8:59)
@@ -2017,7 +2030,7 @@ The context consists of your prompts and the AI's responses, and the system prom
 I've grouped the bits that agents put into the system prompt into three parts:
 
 - *Red* are parts the agents invisibly add, some of which you can control; your preferred language, for example
-- *Green* is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-call you can try out"
+- *Green* is tools, which in the context typically is *a hint* of how to bring tools or more context into play: "hey LLM, if you need something related to Siteimprove pages then here's an MCP-tool you can try out"
 - *Blue* are prompts, text instructions, that you write yourself and ask the agent to include in every chat
 
 You pay by token and the context has a limited size. The context comes at a cost and agents are therefore quite careful not to include just anything. An agent will *not include* earlier chats, browser history, your Facebook profile, emails, some super-secretly stored information, etc. Not unless you explicitly (or implicitly via a tool) ask for it - many agents will let you search your chat history, if you ask to.
@@ -2110,6 +2123,9 @@ All agents let you configure some preferences one way or another. If those prefe
 ####
 The ChatGPT personality is implemented as two different sets of instructions.
 
+Links:
+- [github.com/openai/codex/tree/main/codex-rs/core/templates/personalities](https://github.com/openai/codex/tree/main/codex-rs/core/templates/personalities)
+
 ### Example: Language
 <img src="images/service/system/preferences/language/claude-ai-language.png">
 
@@ -2128,7 +2144,7 @@ You can simply ask the AI service to respond in any language you so desire.
 ####
 Even made-up languages, like Klingon. There's no fixed set of languages.
 
-But if the AI service and LLM itself are completely language-agnostic then how does the AI agent "set the language" then?
+But if the AI service and LLM itself are completely language-agnostic, how does the AI agent "set the language" then?
 
 ### It's all just instructions, even the language preference
 <img src="images/service/system/preferences/language/language-in-the-prompt.png">
@@ -2234,6 +2250,8 @@ I can install the `bro` skill in my terminal agent like so.
 ####
 Thanks, bro.
 
+I enjoy this example because the `bro` skill really does work, right? The LLM's most recent response does become easier to understand. And yet, what it does is simply literally write *"Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another."* to the LLM in the chat, just like you could have done yourself. There's no magic going on.
+
 ### Installing skills
 ####
 There are many ways to install skills. Let's just look at some examples.
@@ -2317,7 +2335,7 @@ They go by many names: **Project**, **Gem**, **Custom GPT**, or **Space**. I'll 
 
 In this specific Claude Project I give details about switching to full desktop Linux, so I can have a number of chats about this topic that all include this base information. Let's see if 2026 is going to be the year of the Linux Desktop for me.
 
-Some agents, like Claude, also keep automatically updated memories from chats in *just this Project*. So even if you don't feel a need for writing explicit custom instructions in a Project, the agent uses your chats in that Project to create such instructions (memories) automatically over time.
+Some agents, like Claude, also keep automatically updated memories from chats in each individual Project. So even if you don't feel a need for writing explicit custom instructions in a Project, the agent builds up memories automatically over time from your chats in just that Project, and that alone can be a good reason to create a Project when you think you'll likely have several chats about a certain topic.
 
 Links:
 - [Is 2026 the year of the Linux Desktop?](https://youtu.be/6y7meR-XDMM) - foci (11:48)
@@ -2329,11 +2347,9 @@ Links:
 ####
 In all agents, you can add custom instructions that are included in every chat.
 
-It could be your preference for how the AI should talk or act.
+It could be your preference for how the AI should talk or act ("please avoid em-dashes") or some fact, like the name of your dog. If there's anything in general about the agent's behavior you'd like to change, this is the place. For instance, I have added this line to help me improve my spelling:
 
-If there's something in general about the agent's behavior that you'd like to change then this is the place. For instance, I have added this line to help me improve my spelling:
-
-"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."
+*"Silently ignore casual typos; gently flag systemic spelling blind spots as an aside."*
 
 
 ### Example: "always provide a dinosaur-analogy"
@@ -2428,7 +2444,7 @@ Remember though that the system prompt through training *carries more weight* wi
 ####
 Four parts to mention:
 
-- In addition to the text context, the request also does send along *some real hard parameters*: typically the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the hardware-parallelism in the GPU's matrix-calculations can vary and lead to minute floating-point-differences from one chat to another.
+- In addition to the text context, the request also does send along *some real hard parameters*: typically the **model**, the **temperature**, the **thinking budget** in tokens, and some other model-specific bits. In particular, the *temperature* adjusts the sampling of the next produced token: at temperature 0 the LLM will always pick the most probable next word. In practice that leads to a weirdly clinical and un-appealing output. Higher temperature simply means increased likelihood of choosing some of the less probable next tokens. Note though, that even for temperature 0 the LLM simply cannot guarantee it will produce the same output from the same input twice, because the GPU's matrix-calculations are scheduled indeterministically in parallel, and that will invariably produce slightly different rounding-behaviors in the floating-point-calculations from one chat to another.
 - There are **safety classifiers** for content going in or coming out, that act as hard stops for inappropriate content. So even if you do somehow convince the LLM to produce a recipe for a biochemical weapon that output will suffer a hard veto at the exit.
 - The output usually contains **statistics** for number of tokens consumed and produced, perhaps the cost too, among other things.
 - And finally, **the KV-cache**. The AI service and LLM know nothing about you, but they do *cache* the calculations for a brief while. Nowadays it seems that 5 minutes is the common caching time. You simply *pay less* for the cached part, typically only 10%. So if you chat continuously and don't take more than 5 minute breaks then you'll save a lot of money. Wait 6 minutes and the cost is about 10x as high because the entire context has to be re-processed. In relation to that, the agent can set up to four explicit *cache markers*.
@@ -2482,20 +2498,16 @@ In principle all modern AI services are very similar: they take a context of a f
 ####
 Besides the messages you send and the response from the AI service, the context consists of instructions that *you* somehow have asked to be added, instructions that *the agent* has chosen to add, and *automatically created memories* from your chats that the agent also adds.
 
-Remember these three things about the context:
-
-1. The context is *all the AI will see*
-2. You pay for *each token in the context*
-3. *Every* message you send includes the full context
+Apart from the system prompt, which is usually not shown, it's all right there for you to see, somewhere in the UI or in some files. No mysteries.
 
 ### You re-send and pay for the full chat at *every turn*
 <!-- toc-entry Chat -->
 <img src="images/service/chat/human-to-ai-chat.png">
 
 ####
-Chatting to an AI is nothing like chatting to a human. You have to re-tell it everything in the chat from scratch, at every turn. PDF files, images, code or docs the AI has produced, everything.
+Chatting to an AI is nothing like chatting to a human. Chatting is *an illusion*: you have to re-tell the AI everything in the chat from scratch, at every turn. PDF files, images, code or docs the AI has produced, everything.
 
-That context only ever grows, until you or the AI clear or compact it. It's rather easy to inadvertently pack or keep more than you really need into the context, which will be unnecessarily costly for you when it is sent to the AI over and over and over again.
+You pay for *each token in the context* and that context only ever grows, until you or the AI clear or compact it. It's unfortunately rather easy to inadvertently pack or keep more than you really need into the context, which will be unnecessarily costly for you when you send it to the AI over and over and over again.
 
 With that in mind, let's look at how to be *economical* with your context.
 
@@ -2510,7 +2522,7 @@ The context window is like a rucksack: it's limited, and everything you pack, yo
 <img src="images/service/system/context-as-rucksack.webp">
 
 ####
-The *red* guidebook is the system prompt and memories. You always have to bring a guidebook.
+The *red* guidebook symbolizes the system prompt and memories. You always have to bring a guidebook.
 
 The *green* book has brief notes for how to bring in more help, like skills and MCP servers. It's *much more lightweight* to just include a short instruction on how to bring in more help or information than to *actually include it*.
 
@@ -2564,10 +2576,10 @@ Now let's spend some tokens. Try each spending spree, one by one, disabling each
 - Add some MCP servers - they're actually not that expensive nowadays
 - Upload a big document - your chat carries that doc in every turn
 - Helpful IDE/tools - sends, for example, the selected document, and includes tool results
-- Think harder - produces and consumes a lot of tokens, but at least they don't compound
+- Think harder - produces and consumes a lot of tokens, but at least they (usually) don't compound
 - Long outputs - producing code or documents is expensive
 - Bust the cache - it's expensive to be Away From Keyboard, or change the model
-- Expensive model - then everything gets N times more costly
+- Expensive model - oh, then everything gets N times more costly
 
 Now increase the number of turns to 30 and add all token spending sprees one by one without disabling them again:
 
@@ -2603,7 +2615,7 @@ Let's do a round of advice on how to speak, hold, and keep up with the AI.
 
 ### How to speak to the AI
 - Just *speak plainly*, including small nudging words to avoid steering too coarsely
-	- "I would mildly prefer xxx, but not if yyy"
+	- "I would mildly prefer xxx, unless it makes yyy way too complicated"
 
 - Be *precise* about *the goal you want*
 	- Don't say "it's green" or "it should not be green" - say "it should be red"
@@ -2777,7 +2789,7 @@ Links:
 - Have *another agent* supervise and assess the output
 
 ####
-Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense a bit, which is known as the **Reasoning Trap**, or Paradox.
+Interestingly, deeper reasoning (chain of thought) actually *lowers* the success rate for the LLM detecting nonsense a bit, which is known as the **Reasoning Trap**.
 
 Links:
 - [The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination](https://arxiv.org/html/2510.22977v1)
@@ -2790,7 +2802,7 @@ Links:
 
 - The explanation is *generated*, not *retrieved*: there is no log of how the response came about, and the thinking blocks may not even be in the context anymore.
 
-- So if you ask "why this?" then the LLM produces the most likely narrative to support its earlier response, which may well have *nothing to do with how it actually arrived there*: "It must have been done so because ..."
+- So if you ask "why this?" then the LLM produces the most likely narrative to support its earlier response, which may well have *nothing to do with how it actually arrived there*:<br>"It must have been done so because ..."
 
 ####
 Links:
@@ -2798,11 +2810,12 @@ Links:
 - [On the Biology of a Large Language Model](https://transformer-circuits.pub/2025/attribution-graphs/biology.html#dives-cot)
 
 ### Say "You are an expert xxxx..."
-<p class="verdict maybe">Useful in some ways</p>
+<p class="verdict no">No, not needed to give a <em>better</em> answer</p>
 
-- No need to say this to *bring in competence* in an area; training has done that
+- No need to say this to *bring in competence* in an area
+	- The AI can't conjure up more expertise than it already has
 
-- But useful for asking for *a perspective*:
+- It can be useful to ask for *a perspective* instead
 	- "you are a skeptical reviewer whose job is to find the flaw"
 	- "explain as if to a junior dev who knows HTTP but not OAuth"
 
@@ -2899,7 +2912,7 @@ Links:
 	- *skills and tools*
 
 ####
-Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. That goes for game playing, vision, speech, and now frontier AI models. Sutton's conclusion was uncomfortable: stop adding in rules of your own, just scale and generalize instead.
+Rich Sutton's acclaimed 2019 essay "The Bitter Lesson" argued that throughout AI history, generic methods that leverage compute (search, learning) have repeatedly beaten clever methods that encode human knowledge. That goes for game playing, vision, speech, self-driving cars, and now frontier AI models. Sutton's conclusion was: stop trying to add clever rules of your own, just scale and generalize instead.
 
 Links:
 - [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
@@ -2977,7 +2990,7 @@ Here are my *four favorite youtube channels* for AI-related content:
 # Bonus
 <!-- anchor bonus -->
 ####
-Here are a few parts that were cut from the presentation in the interest of time, but are still interesting.
+Some topics were cut from the presentation in the interest of time, but are still interesting.
 
 ## Effort and Cost
 <!-- anchor bonus-effort-and-cost -->
@@ -3120,17 +3133,19 @@ RAG, *Retrieval-Augmented Generation*, is about adding *more existing informatio
 
 It works in two steps:
 
-1. Your company has a vector-database into which are added reasonably-sized chunks of documents along with the embedding of each chunk.
-<br>
-2. Instead of using an ordinary agent, like Claude.ai or Claude Code, your company has constructed a special agent for this purpose. When you speak to it, it will calculate the embedding of your message (or the last few messages) and then compare it to the embeddings of all the stored document-chunks.
-<br>
-If you e.g. say "What is our company's mission statement?" then that information would normally have to be in the context for the LLM to reason about (unless your company's mission statement is publicly known to the LLM during training, which is unlikely). But now, the special agent will calculate the embedding for that question, compare it to the embeddings of all the [document-chunk, embedding] pairs in the database, and then add to the context the chunks that seem relevant - and *that* is how the information is given to the LLM.
+Your company must have a vector database into which are added reasonably-sized chunks of documents along with the embedding of each chunk.
+
+Then, instead of using an ordinary agent, like Claude.ai or Claude Code, your company must construct a special agent for this purpose. When you speak via that agent, it will calculate the embedding of your message (or the last few messages) and compare it to the embeddings of all the stored document-chunks and include any relevant chunks.
+
+If you e.g. say "What is our company's mission statement?" then that information will have to be in the context for the LLM to reason about (unless your company's mission statement is publicly known to the LLM during training, which is unlikely). With RAG, your special agent will calculate the embedding for that question, compare it to the embeddings of all the `{embedding,chunk}`-pairs in the database, and then add to the context the chunks that seem relevant - and *that* is how the information is given to the LLM.
+
+You *could* theoretically use any AI agent and service for this and add an MCP server for calling back into your document-database. But it would have to do so *for every message*, because it would have no way of knowing beforehand whether there was something interesting to add. So in practice using MCP for adding RAG is very suboptimal.
 
 The takeaways are:
 
 - RAG can assist in adding domain-specific knowledge automatically into the context, as an alternative to e.g. fine-tuning
 <br>
-- In reality this requires a fully dedicated agent, not ChatGPT, Claude, etc. You have to bake this document-lookup into an agent yourself.
+- In reality this requires a fully dedicated agent, not ChatGPT, Claude Code, etc. You have to bake this document-lookup into an agent yourself.
 
 Links:
 - [RAG Explained For Beginners](https://youtu.be/_HQ2H_0Ayy0) - KodeKloud (10:09)
@@ -3249,23 +3264,23 @@ Links:
 
 How can "only" 12288 dimensions characterize everything as well as they apparently do?
 
-### Two dimensions in 2D, wholly independent
+### Two characteristics in 2D, wholly independent
 <img src="images/bonus/dimensions/2d-90deg.png">
 
 ####
-The answer is: by allowing the individual characteristics to not be completely 100% independent, but instead allowing a characteristic to be *slightly* related to some other characteristic too. In practice that relation is negligible, it seems, but it makes all the difference. And the reason lies in a phenomenon called *superposition explosion* that happens at higher dimensions.
+The answer is: by allowing the individual characteristics to not be completely 100% independent, but instead allowing a characteristic to be *slightly* related to some other characteristic too. In practice that relation is negligible, it seems, but it makes all the difference. And the reason lies in a phenomenon called *superposition* that practically explodes in higher dimensions.
 
 Let's try to visualize that idea using just two dimensions on an x- and y-axis. The example would never really work well in practice for 2D, but it serves to illustrate the principle.
 
 Imagine two dimensions that describe the *catness* and the *cuteness* of anything. The two dimensions and characteristics are completely independent. A mouse has low catness but some cuteness. A bat also has low catness but less cuteness.
 
-### Two dimensions in 2D, not *completely* independent
+### Two characteristics in 2D, not *completely* independent
 <img src="images/bonus/dimensions/2d-88deg.png">
 
 ####
 Now let's *tilt* the catness-axis so the characteristics no longer are absolutely completely independent, ie orthogonal. More catness would then also cause more cuteness, but not much. It *could* work without distorting the characteristics too much.
 
-### Two dimensions in 2D, *very much* not independent
+### Two characteristics in 2D, *very much* not independent
 <img src="images/bonus/dimensions/2d-60deg.webp">
 
 ####

@@ -167,7 +167,7 @@ Links:
 ####
 About that: if you're thinking "hang on, that can't be right" or "I don't get it!" then do feel free to raise your hand and ask questions.
 
-Afterwards go revisit the slides at your own pace. They are on GitHub in a nice, readable format, with lots of links to related materials. (In fact, that readable format is what you're reading *right now*)
+Afterwards go revisit the slides at your own pace. They are on GitHub in a nice, readable format, with lots of links to related materials. (In fact, that readable format is what you're reading *right now*). You can click on any image to make it bigger and you can get a link to any section for sharing or bookmarking.
 
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 

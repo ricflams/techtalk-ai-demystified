@@ -1053,7 +1053,7 @@ For example, Claude's Haiku, Sonnet, and Opus are three different models.
 Their LLMs have *different sizes*, and their training, speed, cost, and strengths are different.
 <br>
 
-<img src="images/llm/training/claude-family.png">
+<img src="images/llm/training/claude-family.webp">
 
 ####
 Links:

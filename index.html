@@ -171,15 +171,6 @@ img:not(.logo) {
   margin: 0.5rem 0 1rem;
   line-height: 1.8;
 }
-/* Quieter than a page h2 -- it labels the block without competing with the
-   deck title just above it. */
-.toc-title {
-  font-size: 1.15em;
-  font-weight: 600;
-  margin: 0 0 0.5em;
-  padding: 0;
-  border: none;
-}
 /* padding-left on an inline span indents the line it starts, which is what a
    run of sections needs -- and if it wraps, the continuation lines sit flush,
    keeping a long run visually subordinate to its chapter. */
@@ -294,19 +285,14 @@ iframe.game { display: none; }
 <p>Richard Flamsholt</p>
 <p>August 2026</p>
 <h4 id="_1"></h4>
+<p><img src="images/intro/title.png"></p>
 <p>We all use AI. But it's still a bit mysterious.</p>
 <p><em>"How does it know that...?"</em> or <em>"Why doesn't it know that...?"</em></p>
 <p>Words like <em>tokens</em>, <em>context</em>, <em>MCP servers</em>, <em>thinking</em>, and <em>agent files</em> get tossed around daily. But do you really know what they are?</p>
 <p>This presentation will explain and <strong>demystify AI</strong>. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.</p>
 <p>There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.</p>
-<p>Links:</p>
-<ul>
-<li><a href="https://ricflams.github.io/techtalk-ai-demystified/presentation.html">View as slideshow (without these speaker notes)</a></li>
-<li><a href="https://github.com/ricflams/techtalk-ai-demystified/">Source on GitHub</a></li>
-</ul>
-<hr />
+<h3>Jump straight to...</h3>
 <nav class="toc">
-<h2 class="toc-title">Jump straight to&hellip;</h2>
 <a href="#keep-it-simple">"Keep it simple"</a><br>
 <a href="#llm">The LLM</a><br>
 <span class="toc-sections"><a href="#llm-tokens">Tokens</a><span class="toc-sep">&bull;</span><a href="#llm-embeddings">Embeddings</a><span class="toc-sep">&bull;</span><a href="#llm-transformer">The Transformer</a><span class="toc-sep">&bull;</span><a href="#llm-training">Training</a></span><br>
@@ -322,6 +308,8 @@ iframe.game { display: none; }
 <a href="#bonus">Bonus</a><br>
 <span class="toc-sections"><a href="#bonus-effort-and-cost">Effort and Cost</a><span class="toc-sep">&bull;</span><a href="#bonus-rag">RAG</a><span class="toc-sep">&bull;</span><a href="#bonus-build-your-own-agent">Build Your Own Agent</a><span class="toc-sep">&bull;</span><a href="#bonus-a-fancy-autocomplete">A Fancy Autocomplete</a><span class="toc-sep">&bull;</span><a href="#bonus-dimensionality-by-superposition">Dimensionality by Superposition</a></span>
 </nav>
+<p>Links: <a href="https://github.com/ricflams/techtalk-ai-demystified">source</a> and <a href="https://ricflams.github.io/techtalk-ai-demystified/presentation.html">slideshow</a></p>
+<hr />
 <p><img alt="" src="images/intro/books.jpg" /></p>
 <h4 id="_2"></h4>
 <p>Over time, some landmark tech has particularly triggered my brain.</p>
@@ -426,16 +414,14 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <p>And ask me or other colleagues if you've got questions. I'd be happy to elaborate on <em>everything</em> I'm presenting here today.</p>
 <p>Links:</p>
 <ul>
+<li><a href="https://github.com/ricflams/techtalk-ai-demystified">github.com/ricflams/techtalk-ai-demystified</a></li>
 <li><a href="https://youtu.be/I0VoesfTTnA">Marp: Ditch PowerPoint and embrace Markdown for creating slides</a> - Infralovers GmbH (9:33)</li>
 </ul>
 <hr />
 <p><img alt="" src="images/intro/one-hour.jpg" /></p>
 <h4 id="_18"></h4>
 <p>I've really strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so it will be information-packed and move fast.</p>
-<p>Links:</p>
-<ul>
-<li><a href="https://youtu.be/0xS68sl2D70">Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains</a> - Perimeter Institute for Theoretical Physics (1:15:10)</li>
-</ul>
+<p>And <em>now</em>, let's begin. We begin with the full overview.</p>
 <hr />
 <p><img src="images/overview/full.webp" /></p>
 <p>You, the <strong>human</strong>, use an <strong>AI agent</strong> to communicate with an <strong>AI service</strong> that turns your messages into <strong>tokens</strong> and feeds them through an <strong>LLM</strong>. The service and agent can use <strong>tools</strong> and the agent can <strong>remember</strong>.</p>
@@ -445,7 +431,6 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <ul>
 <li><a href="https://youtu.be/P_fHJIYENdI">AlphaFold - The Most Useful Thing AI Has Ever Done</a> - Veritasium (24:51)</li>
 <li><a href="https://youtu.be/XpIMuCeEtSk">A quest for a cure: AI drug design | Isomorphic Labs</a> - Google DeepMind (47:08)</li>
-<li><a href="https://youtu.be/aBUniZHgCnE">Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)</a> - Alliance for Responsible Citizenship (14:34)</li>
 </ul>
 <h1 id="llm"><a class="headerlink" href="#llm" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The LLM</h1>
 <h4 id="_20"></h4>
@@ -2418,6 +2403,7 @@ Text maps to tokens, each token has an embedding in the model</p>
 <li><a href="https://youtu.be/lJiDBRh96oU">What Skills Do Developers NEED To Have In An AI Future?</a> - Modern Software Engineering (24:29)</li>
 <li><a href="https://youtu.be/q6p-_W6_VoM">Going Slower Feels Safer, But Your Domain Expertise Won't Save You Anymore. Here's What Will.</a> - AI News &amp; Strategy Daily | Nate B Jones (14:02)</li>
 <li><a href="https://youtu.be/kDBeFOscZpc">The Truth About Developer Productivity in the AI Age (IT'S A TRAP)</a> - Modern Software Engineering (16:14)</li>
+<li><a href="https://youtu.be/0xS68sl2D70">Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains</a> - Perimeter Institute for Theoretical Physics (1:15:10)</li>
 </ul>
 <h3 id="my-journey-chat-copy-paste-in-app-now-terminal"><a class="headerlink" href="#my-journey-chat-copy-paste-in-app-now-terminal" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>My journey: chat, copy-paste, in-app, now terminal</h3>
 <p><img src="images/guidance/evolution.webp" /></p>

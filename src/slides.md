@@ -237,12 +237,12 @@ First let's focus on tokens.
 ### Tokens go in, tokens come out
 <img src="images/llm/overview-tokens.png">
 
-### A token is
-- A token is practically **a word**, like `"hello"`
+### What is a token?
+- A **token** is practically *a word*, like `"hello"`
 
-- It is the **chunk of text** the LLM works on
+- It is the *chunk of text* the LLM works on
 
-- Therefore, it's what you ultimately **pay for**
+- Therefore, it's what you ultimately *pay for*
 
 ### ChatGPT 3.5's token vocabulary
 <img src="images/llm/tokens/vocabulary-full.png">
@@ -289,11 +289,13 @@ The first four words are common and each have their own token, but unsurprisingl
 ####
 In Danish, "I FART" means "In motion". Tourists are amused.
 
+But what does "fart" look like for the AI? Does it understand it as English or Danish?
+
 ### I fart poetry
 <img src="images/llm/tokens/elevator-i-fart.png">
 
 ####
-As you can see, the four letters `"fart"` are always the same token. The tokens are not aware of languages at all.
+In the AI, tokens are not tied to any particular language. As you can see, the four letters `"fart"` are always the same token value. There's not an English and a Danish fart-token.
 
 (Okay, it's really five letters because the leading *(space)* is part of the token)
 
@@ -356,9 +358,9 @@ Links:
 <img src="images/llm/embeddings/analogy_spotify.svg" />
 
 ####
-Imagine assigning a number to characteristics of music. Both "Lose Yourself" and "Baby Shark" score high on "tempo", but vastly differently on "defiant outsider energy".
+Imagine assigning a number to characteristics of music. You could then find songs similar to your favorites, or explore genres you like. For example both "Lose Yourself" and "Baby Shark" would score high on "tempo", but pretty differently on that "defiant outsider energy" characteristic you like so much.
 
-In fact, Spotify really does characterize music using dimensions like that.
+In fact, Spotify really does characterize music using a set of numbers like that. The exact count is unknown, but it's estimated to be from 40 to 200.
 
 Links:
 - [Recommending music on Spotify with deep learning](https://sander.ai/2014/08/05/spotify-cnns)
@@ -378,9 +380,9 @@ That's essentially what the purpose of an embedding is, to the AI.
 <img src="images/llm/embeddings/20d-kitten.png" />
 <div class="col-8">
 
-An **embedding** is a list of numbers (also called a **vector** or **tensor**) that *somehow* characterizes *something*. Sometimes called "features", as each value in the vector encodes some semantic trait of the thing.
+An **embedding** is a list of numbers (also called a **vector** or **tensor**) that *somehow* characterizes *something*. Each number represents how much of that certain characteristic the thing has.
 
-The number of nuances, characteristics, we decide to use is called the embedding's **dimension**. The embedding for "kitten" here has 20 dimensions. The more dimensions, the more nuances can be captured.
+The number of characteristics (aka nuance, feature, trait, ...) used is called the embedding's **dimension**. This example's embedding has 20 dimensions. The more dimensions, the more nuances can of course be captured.
 
 Each number is called the **weight** of that dimension. A kitten is very playful (weight 9) and not very wet (weight 1).
 
@@ -395,23 +397,25 @@ Links:
 ### 1 token's meaning is represented by 1 embedding
 <img src="images/llm/embeddings/vocabulary-gpt-3.png" />
 
-ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding. A bit more than the kitten-example's 20 dimensions.
+ChatGPT 3 has *50257 tokens*, each described by a *12288-dimensional* embedding.
 
 ####
-In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept. For example the token "amplification" or "gazed".
-
-It may sound a bit crazy that it could even be possible to somehow characterize everything that way, but it turns out it is possible. And those numbers, where do they come from? They come from something called *training*, and we'll get to that later.
+That's quite a bit more than the kitten-example's 20 dimensions.
 
 Links:
 - [Why LLMs Live In 12,288 Dimensions](https://youtu.be/XIDyLFDqlck) - ML & AI: Foundations & Methods (32:41)
 
-### More examples
+### Yes, characteristics of *everything*
 <img src="images/llm/embeddings/three-embeddings.svg" />
 
 ####
-Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only make mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
+*"But how can it even be possible to somehow characterize everything with a set of numbers? And where do those 12288 numbers for each and every thing come from?"*
 
-There's a research field called **mechanistic interpretability** that tries to decompose these representations into interpretable directions. It's possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.
+Both are very reasonable questions. It *does* sound preposterous. But due to [surprising mathematical properties of high dimensions](#bonus-dimensionality-by-superposition) and [clever training for creating the numbers](#llm-training-backpropagation), it turns out that yes, *it is possible* to characterize everything in this manner. If you're skeptical then just ask ChatGPT about it - and the fact that you'll get a coherent response is proof that this crazy scheme somehow works.
+
+But while we know *that* it works, we frankly don't know what the 12288 dimensions or their numbers *mean*. They don't map to existing human concepts, like "playful" or "wet". The values are nudged into existence from training and only make mathematical sense to the LLM. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.
+
+There's a research field called **mechanistic interpretability** that tries to figure out how we can understand these dimensions, e.g. to find out where "facts" like "playfulness" live.
 
 Links:
 - [Scaling Monosemanticity and Feature Steering](https://learnmechinterp.com/topics/scaling-monosemanticity/)
@@ -611,7 +615,7 @@ You feed the network some numbers, the numbers go through a number of steps wher
 ####
 The thing is that if you adjust those small "weights" appropriately then you can shape the output to actually match an expected outcome. A sufficiently large network could for example after billions of calculations produce a number that represents "Paris" if we feed it numbers that represent the sequence "The capital of France is".
 
-And that is in fact what the LLM does, because clever **training** has created such a vast network with all the little weights adjusted just right. We'll get to training later on.
+And that is in fact what the LLM does, because clever **training** has created such a vast network with all the little weights adjusted optimally for all possible inputs. That's hard, by the way. We'll get to training later.
 
 Links:
 - [But what is a neural network? | Deep learning chapter 1](https://youtu.be/aircAruvnKk) - 3Blue1Brown (18:40)
@@ -656,13 +660,13 @@ Links:
 <img src="images/llm/attention-head.png">
 
 ####
-Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embeddings, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens each in their own way.
+Every embedding gets influenced by every other embedding before it. They all "absorb" the meaning of all those other embeddings.
 
 For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of *a million times a million* calculations.
 
 This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are. This is where we "Add Sushi to Germany", so to speak.
 
-If I should put my finger on *the one bright idea* that has made modern AI models possible, then it's this part right here: **the attention layer is the most groundbreaking idea**.
+If I should put my finger on *the one bright idea* that has made modern AI models possible, then it's this part right here: the attention layer is the most groundbreaking idea.
 
 Links:
 - [Attention in transformers, step-by-step | Deep Learning Chapter 6](https://youtu.be/eMlx5fFNoYc) - 3Blue1Brown (26:09)
@@ -775,7 +779,7 @@ Links:
 - [Inside DeepSeek's DSpark](https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference)
 
 ### Tokens are really generated one by one
-That's why output tokens are typically *5 x more expensive* than input tokens.
+That's why output tokens are typically *5 x more expensive* than input tokens: it takes a lot of effort to produce just one single token.
 <br>
 
 <img src="images/llm/tokenized-output.png">
@@ -785,9 +789,9 @@ Each token really is generated by a completely independent pass through the LLM 
 
 However, studies have found that the LLM actually *does latently* plan for the continuation that follows this single token; the pass that produced `"An"` is poised to very likely produce `" L"` and `"LM"` afterwards.
 
-Anthropic demonstrated this by tracing Claude writing poetry: before starting a line, it has already settled on the word it intends to rhyme with, and suppressing that word makes it rhyme differently.
+Anthropic demonstrated this by tracing Claude writing poetry: before starting a line, it has already settled on the word it intends to rhyme with. If Anthropic then suppressed that word, Claude would start the rhyme in a different manner.
 
-The field of study is called **Interpretability**. A related finding is **J-Space**: a subspace of the model's activations that seems to carry what the model reasons about *deliberately*, as opposed to what it handles automatically.
+The field of study is called **Interpretability**. One discovery is dubbed **J-Space**, dealing with the finding that even though a Transformer is just doing math across billions of neural-network nodes spread over 96 layers, concepts do seem to "live" in their own specific spot somewhere in those layers. The concept of "kitten" lights up one particular area more than others, while "spider" lights up a different one. *"Of course"*, you may think, but the math for "kitten-ness" could just as well have been smeared across all layers instead. It turns out that's not what happens, and that's pretty interesting.
 
 Links:
 - [Interpretability](https://www.anthropic.com/research/team/interpretability)
@@ -844,7 +848,6 @@ And honestly? It worked.
 <img src="images/llm/training/training.png">
 
 ####
-
 Pre-training is where the model learns about language. Looking at vast amounts of text, it learns to predict the next token — nothing more. The result is a powerful but raw capability: it knows how language works, how facts relate, how arguments are structured. It has no personality, no values, no sense of what a "good" response looks like.
 
 Post-training is where the model learns what an appropriate response is. This is where values, tone, refusal behaviors, and personality get baked in.
@@ -855,36 +858,40 @@ Post-training is where the model learns what an appropriate response is. This is
 ####
 The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.
 
-### Model and embeddings are born via training
-<div class="cols">
-<img class="col-2" src="images/llm/training/training-example.png">
-<div>
-
-**Backpropagation**:
-
-1. Run tokens through the network like at inference time
-2. Paths to the expected token are rewarded, other paths are punished
-3. Adjust all network weights, back to the embeddings
-4. Causal masking trains on all sub-strings, too
-5. Train on a gazillion texts
-
-</div>
-</div>
+### *Training* is how the model and embeddings are born
+<!-- anchor llm-training-backpropagation -->
+<img src="images/llm/training/training-example.png">
 
 ####
-Finally, rather unceremoniously: this is how both the model's weights and the embeddings get their values: by training immensely to find the right balance where all training texts produce the expected next token.
+Finally, we've come to explain how the model's neural-network weights and each embedding's 12288 values come into existence.
 
-It works like this, in principle:
+It happens through **training** on "all sentences in the world" and an algorithm called **backpropagation**.
 
-1. A training sentence minus its last token is passed through the full model network, all 96 layers.
-2. The last token is expected as the output; here "stronger"
-3. All the paths that produced that token get dialed up a notch and all others dialed a bit down - all back through those 96 layers, all the way back to the embedding itself
-4. Now simply repeat this a gazillion times with the entire training corpus.
-5. Eventually the network and embeddings, which were initially random, end up with values that generally produce the "likely next token" for all those trained sentences.
+Let's go through it. It's a surprisingly simple idea.
 
-That's how the AI model and the embeddings are born.
+Initially an untrained model's billions of neural-network weights and each embedding's 12288 numbers just start out random. The embeddings don't mean anything and the network can't predict anything correctly. Then we start training it like so.
 
-And it's amazing that it works, and that it ends up producing embeddings that have a notion of "gender" and "sadness" etc.
+Pick a training sentence. Let's say `"that which does not kill you only makes you stronger"`.
+
+The full sentence *except the last token* is passed through the full model network, all 96 layers. After billions of math-operations, the Transformer finally produces (say) 100,000 numbers, one number for each token in the vocabulary. Each of the 100,000 numbers represents the predicted probability for that particular token for this particular input. For an untrained model, these numbers will of course just be complete rubbish and random because all the little weights start out random.
+
+*But then:*
+
+For this training sentence, we know *exactly* what the expected next token should be: it should be `"stronger"`. This means that for this sentence we want token `"stronger"` to be *more* probable and all other 99,999 tokens to be *less* probable - right?
+
+So we do this:
+
+All the little weights that lead to "stronger" are dialed up a small bit: yes, we want *these paths* to produce higher numbers so token `"stronger"` is more probable. Every little number on the way back that produced "stronger" gets a nudge up, all the way back through all the 96 layers, including the embedding-numbers themselves for tokens `"that"`, `"which"`, etc.
+
+Likewise, all the 99,999 paths that produced any other token get dialed down a bit. No, we don't want `"aardvark"`, `"abacus"`, and `"dancing"` to be likely tokens to follow in this sentence.
+
+That's a lot of math just for one sentence. Luckily, in practice this will actually train all "sub-strings" too, so the model also learns from this training sentence that the more likely token to follow "that" is "which", the more likely token to follow "that which" is "does", and so on.
+
+Now, repeat that a gazillion times for the entire training corpus, and the network-weights and embeddings will end up with values that generally produce a suitable "likely next token" for *all* those trained sentences.
+
+That's where the embeddings' 12288 numbers come from: the numbers we *end up with* from training just happen to work well in predicting all those training-sentences, together. And that's why we don't know what dimension 2033 actually is or what the number actually means: it's not "playful-ness" but just some number that makes the probabilities work out optimally.
+
+What still blows my mind is how that relatively simple process can produce a prediction-machine that can construct sentences that are practically indistinguishable from human thinking.
 
 ### Backpropagation math is ...ok, let's move on...
 <img src="images/llm/training/backpropagation.png">

@@ -15,6 +15,8 @@ Richard Flamsholt
 August 2026
 
 ####
+<img src="images/intro/title.png">
+
 We all use AI. But it's still a bit mysterious.
 
 *"How does it know that...?"* or *"Why doesn't it know that...?"*
@@ -24,10 +26,9 @@ Words like *tokens*, *context*, *MCP servers*, *thinking*, and *agent files* get
 This presentation will explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
 
 There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.
-
-Links:
-- [View as slideshow (without these speaker notes)](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
-- [Source on GitHub](https://github.com/ricflams/techtalk-ai-demystified/)
+<h3>Jump straight to...</h3>
+<!-- toc-here -->
+Links: [source](https://github.com/ricflams/techtalk-ai-demystified) and [slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
 
 ---
 ![bg](images/intro/books.jpg)
@@ -172,6 +173,7 @@ Afterwards go revisit the slides at your own pace. They are on GitHub in a nice,
 And ask me or other colleagues if you've got questions. I'd be happy to elaborate on *everything* I'm presenting here today.
 
 Links:
+- [github.com/ricflams/techtalk-ai-demystified](https://github.com/ricflams/techtalk-ai-demystified)
 - [Marp: Ditch PowerPoint and embrace Markdown for creating slides](https://youtu.be/I0VoesfTTnA) - Infralovers GmbH (9:33)
 
 ---
@@ -179,8 +181,7 @@ Links:
 ####
 I've really strived to make the presentation deep and useful but also entertaining and surprising. Be prepared to stay alert, because there's a lot to cover in only one hour so it will be information-packed and move fast.
 
-Links:
-- [Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains](https://youtu.be/0xS68sl2D70) - Perimeter Institute for Theoretical Physics (1:15:10)
+And *now*, let's begin. We begin with the full overview.
 
 ---
 <img src="images/overview/full.webp" />
@@ -193,7 +194,6 @@ That's what we'll go through. It's all about **generative text AI**, like Claude
 Links:
 - [AlphaFold - The Most Useful Thing AI Has Ever Done](https://youtu.be/P_fHJIYENdI) - Veritasium (24:51)
 - [A quest for a cure: AI drug design | Isomorphic Labs](https://youtu.be/XpIMuCeEtSk) - Google DeepMind (47:08)
-- [Anthropic's Chloe Lubinski explains how AI works (in 14 minutes)](https://youtu.be/aBUniZHgCnE) - Alliance for Responsible Citizenship (14:34)
 
 # The LLM
 <!-- anchor llm -->
@@ -2695,6 +2695,7 @@ Links:
 - [What Skills Do Developers NEED To Have In An AI Future?](https://youtu.be/lJiDBRh96oU) - Modern Software Engineering (24:29)
 - [Going Slower Feels Safer, But Your Domain Expertise Won't Save You Anymore. Here's What Will.](https://youtu.be/q6p-_W6_VoM) - AI News & Strategy Daily | Nate B Jones (14:02)
 - [The Truth About Developer Productivity in the AI Age (IT'S A TRAP)](https://youtu.be/kDBeFOscZpc) - Modern Software Engineering (16:14)
+- [Veritasium: What Everyone Gets Wrong About AI and Learning – Derek Muller Explains](https://youtu.be/0xS68sl2D70) - Perimeter Institute for Theoretical Physics (1:15:10)
 
 ### My journey: chat, copy-paste, in-app, now terminal
 <img src="images/guidance/evolution.webp" />

@@ -226,15 +226,6 @@ img:not(.logo) {
   margin: 0.5rem 0 1rem;
   line-height: 1.8;
 }
-/* Quieter than a page h2 -- it labels the block without competing with the
-   deck title just above it. */
-.toc-title {
-  font-size: 1.15em;
-  font-weight: 600;
-  margin: 0 0 0.5em;
-  padding: 0;
-  border: none;
-}
 /* padding-left on an inline span indents the line it starts, which is what a
    run of sections needs -- and if it wraps, the continuation lines sit flush,
    keeping a long run visually subordinate to its chapter. */
@@ -462,24 +453,27 @@ def build_toc(body: str) -> str:
                          + '<span class="toc-sep">&bull;</span>'.join(links)
                          + '</span>')
     return ('<nav class="toc">\n'
-            '<h2 class="toc-title">Jump straight to&hellip;</h2>\n'
             + '<br>\n'.join(lines)
             + '\n</nav>')
 
 
 def insert_toc(body: str) -> str:
-    """Place the contents just after the title slide.
+    """Place the contents at the `<!-- toc-here -->` marker in slides.md.
 
-    The first `<hr>` is the slide break closing the title slide, so the
-    contents lands between the title and the first chapter.
+    Raises if there's a contents block to show but no marker to place it
+    at -- a silent fallback would let the marker get deleted by accident
+    without anyone noticing the contents moved or disappeared.
     """
     toc = build_toc(body)
     if not toc:
         return body
-    first_break = re.search(r'<hr\s*/?>', body)
-    if not first_break:
-        return body
-    return body[:first_break.end()] + '\n' + toc + body[first_break.end():]
+    marker = re.search(r'<!--\s*toc-here\s*-->', body)
+    if not marker:
+        raise ValueError(
+            'No <!-- toc-here --> marker found in slides.md, but there is '
+            'a contents block to place. Add the marker where the contents '
+            'should go.')
+    return body[:marker.start()] + toc + body[marker.end():]
 
 
 # GitHub's own anchor glyph (Octicon "link", 16px grid).
@@ -498,9 +492,9 @@ def add_headerlinks(body: str) -> str:
     """Prepend a GitHub-style `#`-link to every h1/h2/h3 that carries an id.
 
     Runs after `insert_toc`, so the contents block (which parses bare
-    `<hN id="...">`) never sees this markup, and the injected `<nav>`'s own
-    `<h2 class="toc-title">` -- which has no id -- is skipped. Styling lives
-    in STYLE under `.headerlink`.
+    `<hN id="...">`) never sees this markup. The injected `<nav>` itself
+    carries no heading, so nothing in it needs skipping. Styling lives in
+    STYLE under `.headerlink`.
     """
     def decorate(m: re.Match) -> str:
         level, attrs, inner = m.group(1), m.group(2), m.group(3)

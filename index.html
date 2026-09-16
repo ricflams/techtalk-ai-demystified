@@ -473,16 +473,16 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <p>First let's focus on tokens.</p>
 <h3 id="tokens-go-in-tokens-come-out"><a class="headerlink" href="#tokens-go-in-tokens-come-out" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tokens go in, tokens come out</h3>
 <p><img src="images/llm/overview-tokens.png"></p>
-<h3 id="a-token-is"><a class="headerlink" href="#a-token-is" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>A token is</h3>
+<h3 id="what-is-a-token"><a class="headerlink" href="#what-is-a-token" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>What is a token?</h3>
 <ul>
 <li>
-<p>A token is practically <strong>a word</strong>, like <code>"hello"</code></p>
+<p>A <strong>token</strong> is practically <em>a word</em>, like <code>"hello"</code></p>
 </li>
 <li>
-<p>It is the <strong>chunk of text</strong> the LLM works on</p>
+<p>It is the <em>chunk of text</em> the LLM works on</p>
 </li>
 <li>
-<p>Therefore, it's what you ultimately <strong>pay for</strong></p>
+<p>Therefore, it's what you ultimately <em>pay for</em></p>
 </li>
 </ul>
 <h3 id="chatgpt-35s-token-vocabulary"><a class="headerlink" href="#chatgpt-35s-token-vocabulary" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>ChatGPT 3.5's token vocabulary</h3>
@@ -518,10 +518,11 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <p><img src="images/llm/tokens/elevator-sign.jpg"></p>
 <h4 id="_29"></h4>
 <p>In Danish, "I FART" means "In motion". Tourists are amused.</p>
+<p>But what does "fart" look like for the AI? Does it understand it as English or Danish?</p>
 <h3 id="i-fart-poetry"><a class="headerlink" href="#i-fart-poetry" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>I fart poetry</h3>
 <p><img src="images/llm/tokens/elevator-i-fart.png"></p>
 <h4 id="_30"></h4>
-<p>As you can see, the four letters <code>"fart"</code> are always the same token. The tokens are not aware of languages at all.</p>
+<p>In the AI, tokens are not tied to any particular language. As you can see, the four letters <code>"fart"</code> are always the same token value. There's not an English and a Danish fart-token.</p>
 <p>(Okay, it's really five letters because the leading <em>(space)</em> is part of the token)</p>
 <h3 id="english-words-are-most-economical"><a class="headerlink" href="#english-words-are-most-economical" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>English words are most economical</h3>
 <p><img src="images/llm/tokens/five-sentences.png"></p>
@@ -570,8 +571,8 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <h3 id="spotifys-multi-dimensional-music-characteristics"><a class="headerlink" href="#spotifys-multi-dimensional-music-characteristics" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Spotify's multi-dimensional music characteristics</h3>
 <p><img src="images/llm/embeddings/analogy_spotify.svg" /></p>
 <h4 id="_36"></h4>
-<p>Imagine assigning a number to characteristics of music. Both "Lose Yourself" and "Baby Shark" score high on "tempo", but vastly differently on "defiant outsider energy".</p>
-<p>In fact, Spotify really does characterize music using dimensions like that.</p>
+<p>Imagine assigning a number to characteristics of music. You could then find songs similar to your favorites, or explore genres you like. For example both "Lose Yourself" and "Baby Shark" would score high on "tempo", but pretty differently on that "defiant outsider energy" characteristic you like so much.</p>
+<p>In fact, Spotify really does characterize music using a set of numbers like that. The exact count is unknown, but it's estimated to be from 40 to 200.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://sander.ai/2014/08/05/spotify-cnns">Recommending music on Spotify with deep learning</a></li>
@@ -586,8 +587,8 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 <div class="cols">
 <p><img src="images/llm/embeddings/20d-kitten.png" /></p>
 <div class="col-8">
-<p>An <strong>embedding</strong> is a list of numbers (also called a <strong>vector</strong> or <strong>tensor</strong>) that <em>somehow</em> characterizes <em>something</em>. Sometimes called "features", as each value in the vector encodes some semantic trait of the thing.</p>
-<p>The number of nuances, characteristics, we decide to use is called the embedding's <strong>dimension</strong>. The embedding for "kitten" here has 20 dimensions. The more dimensions, the more nuances can be captured.</p>
+<p>An <strong>embedding</strong> is a list of numbers (also called a <strong>vector</strong> or <strong>tensor</strong>) that <em>somehow</em> characterizes <em>something</em>. Each number represents how much of that certain characteristic the thing has.</p>
+<p>The number of characteristics (aka nuance, feature, trait, ...) used is called the embedding's <strong>dimension</strong>. This example's embedding has 20 dimensions. The more dimensions, the more nuances can of course be captured.</p>
 <p>Each number is called the <strong>weight</strong> of that dimension. A kitten is very playful (weight 9) and not very wet (weight 1).</p>
 <p>An embedding can express any <em>word</em> you know. Any <em>feeling</em> you can have. Any <em>possible concept</em>, for example <em>a curious yet mildly confused audience</em>.</p>
 </div>
@@ -599,19 +600,20 @@ And that <a href="#bonus-a-fancy-autocomplete">yes, the AI really <em>is</em> "j
 </ul>
 <h3 id="1-tokens-meaning-is-represented-by-1-embedding"><a class="headerlink" href="#1-tokens-meaning-is-represented-by-1-embedding" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>1 token's meaning is represented by 1 embedding</h3>
 <p><img src="images/llm/embeddings/vocabulary-gpt-3.png" /></p>
-<p>ChatGPT 3 has <em>50257 tokens</em>, each described by a <em>12288-dimensional</em> embedding. A bit more than the kitten-example's 20 dimensions.</p>
+<p>ChatGPT 3 has <em>50257 tokens</em>, each described by a <em>12288-dimensional</em> embedding.</p>
 <h4 id="_39"></h4>
-<p>In the AI, an embedding is a large set of numbers, for example 12288 numbers in ChatGPT 3, that characterizes a single concept. For example the token "amplification" or "gazed".</p>
-<p>It may sound a bit crazy that it could even be possible to somehow characterize everything that way, but it turns out it is possible. And those numbers, where do they come from? They come from something called <em>training</em>, and we'll get to that later.</p>
+<p>That's quite a bit more than the kitten-example's 20 dimensions.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/XIDyLFDqlck">Why LLMs Live In 12,288 Dimensions</a> - ML &amp; AI: Foundations &amp; Methods (32:41)</li>
 </ul>
-<h3 id="more-examples"><a class="headerlink" href="#more-examples" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>More examples</h3>
+<h3 id="yes-characteristics-of-everything"><a class="headerlink" href="#yes-characteristics-of-everything" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Yes, characteristics of <em>everything</em></h3>
 <p><img src="images/llm/embeddings/three-embeddings.svg" /></p>
 <h4 id="_40"></h4>
-<p>Frankly we simply don't know what the dimensions or numbers mean. They don't map crisply to existing human concepts but only make mathematical sense. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.</p>
-<p>There's a research field called <strong>mechanistic interpretability</strong> that tries to decompose these representations into interpretable directions. It's possible to extract interpretable features, but understanding how features compose to produce behavior is still largely unsolved.</p>
+<p><em>"But how can it even be possible to somehow characterize everything with a set of numbers? And where do those 12288 numbers for each and every thing come from?"</em></p>
+<p>Both are very reasonable questions. It <em>does</em> sound preposterous. But due to <a href="#bonus-dimensionality-by-superposition">surprising mathematical properties of high dimensions</a> and <a href="#llm-training-backpropagation">clever training for creating the numbers</a>, it turns out that yes, <em>it is possible</em> to characterize everything in this manner. If you're skeptical then just ask ChatGPT about it - and the fact that you'll get a coherent response is proof that this crazy scheme somehow works.</p>
+<p>But while we know <em>that</em> it works, we frankly don't know what the 12288 dimensions or their numbers <em>mean</em>. They don't map to existing human concepts, like "playful" or "wet". The values are nudged into existence from training and only make mathematical sense to the LLM. Dimension number 7 of "Please" might contribute a little to politeness, a little to interactivity, a little to something related to food, and a little to some abstract concept that doesn't map to any word in English.</p>
+<p>There's a research field called <strong>mechanistic interpretability</strong> that tries to figure out how we can understand these dimensions, e.g. to find out where "facts" like "playfulness" live.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://learnmechinterp.com/topics/scaling-monosemanticity/">Scaling Monosemanticity and Feature Steering</a></li>
@@ -761,7 +763,7 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <p><img src="images/llm/neural-network-paris.webp"></p>
 <h4 id="_62"></h4>
 <p>The thing is that if you adjust those small "weights" appropriately then you can shape the output to actually match an expected outcome. A sufficiently large network could for example after billions of calculations produce a number that represents "Paris" if we feed it numbers that represent the sequence "The capital of France is".</p>
-<p>And that is in fact what the LLM does, because clever <strong>training</strong> has created such a vast network with all the little weights adjusted just right. We'll get to training later on.</p>
+<p>And that is in fact what the LLM does, because clever <strong>training</strong> has created such a vast network with all the little weights adjusted optimally for all possible inputs. That's hard, by the way. We'll get to training later.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/aircAruvnKk">But what is a neural network? | Deep learning chapter 1</a> - 3Blue1Brown (18:40)</li>
@@ -797,10 +799,10 @@ For instance, find a <em>synonym</em> by simply finding the closest embeddings t
 <h3 id="first-all-embeddings-pay-attention-to-each-other"><a class="headerlink" href="#first-all-embeddings-pay-attention-to-each-other" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>First, all embeddings "pay attention" to each other</h3>
 <p><img src="images/llm/attention-head.png"></p>
 <h4 id="_66"></h4>
-<p>Every embedding gets influenced by every embedding token before it. They "absorb" the meaning of all those other embeddings, influenced also by the position. The first "you" and the second "you" come from the same token, yes, but by virtue of their position they don't carry the same meaning, i.e. they don't start out as the same embedding-values, and they therefore influence the other tokens each in their own way.</p>
+<p>Every embedding gets influenced by every other embedding before it. They all "absorb" the meaning of all those other embeddings.</p>
 <p>For a full 1M context this means that a million embeddings each pay attention to all other embeddings before it. That's in the order of <em>a million times a million</em> calculations.</p>
 <p>This is the part that most directly leverages the fact that we can "do math on language" by concretely doing arithmetic on the directions that the embeddings really are. This is where we "Add Sushi to Germany", so to speak.</p>
-<p>If I should put my finger on <em>the one bright idea</em> that has made modern AI models possible, then it's this part right here: <strong>the attention layer is the most groundbreaking idea</strong>.</p>
+<p>If I should put my finger on <em>the one bright idea</em> that has made modern AI models possible, then it's this part right here: the attention layer is the most groundbreaking idea.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://youtu.be/eMlx5fFNoYc">Attention in transformers, step-by-step | Deep Learning Chapter 6</a> - 3Blue1Brown (26:09)</li>
@@ -880,14 +882,14 @@ assistant: An L
 <li><a href="https://deepseek.ai/blog/inside-deepseek-dspark-lossless-inference">Inside DeepSeek's DSpark</a></li>
 </ul>
 <h3 id="tokens-are-really-generated-one-by-one"><a class="headerlink" href="#tokens-are-really-generated-one-by-one" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Tokens are really generated one by one</h3>
-<p>That's why output tokens are typically <em>5 x more expensive</em> than input tokens.
+<p>That's why output tokens are typically <em>5 x more expensive</em> than input tokens: it takes a lot of effort to produce just one single token.
 <br></p>
 <p><img src="images/llm/tokenized-output.png"></p>
 <h4 id="_76"></h4>
 <p>Each token really is generated by a completely independent pass through the LLM that chooses the most likely next word to come after the context.</p>
 <p>However, studies have found that the LLM actually <em>does latently</em> plan for the continuation that follows this single token; the pass that produced <code>"An"</code> is poised to very likely produce <code>" L"</code> and <code>"LM"</code> afterwards.</p>
-<p>Anthropic demonstrated this by tracing Claude writing poetry: before starting a line, it has already settled on the word it intends to rhyme with, and suppressing that word makes it rhyme differently.</p>
-<p>The field of study is called <strong>Interpretability</strong>. A related finding is <strong>J-Space</strong>: a subspace of the model's activations that seems to carry what the model reasons about <em>deliberately</em>, as opposed to what it handles automatically.</p>
+<p>Anthropic demonstrated this by tracing Claude writing poetry: before starting a line, it has already settled on the word it intends to rhyme with. If Anthropic then suppressed that word, Claude would start the rhyme in a different manner.</p>
+<p>The field of study is called <strong>Interpretability</strong>. One discovery is dubbed <strong>J-Space</strong>, dealing with the finding that even though a Transformer is just doing math across billions of neural-network nodes spread over 96 layers, concepts do seem to "live" in their own specific spot somewhere in those layers. The concept of "kitten" lights up one particular area more than others, while "spider" lights up a different one. <em>"Of course"</em>, you may think, but the math for "kitten-ness" could just as well have been smeared across all layers instead. It turns out that's not what happens, and that's pretty interesting.</p>
 <p>Links:</p>
 <ul>
 <li><a href="https://www.anthropic.com/research/team/interpretability">Interpretability</a></li>
@@ -945,32 +947,24 @@ assistant: An L
 <p><img src="images/llm/training/training-corpus.png"></p>
 <h4 id="_81"></h4>
 <p>The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.</p>
-<h3 id="model-and-embeddings-are-born-via-training"><a class="headerlink" href="#model-and-embeddings-are-born-via-training" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Model and embeddings are born via training</h3>
-<div class="cols">
-<p><img class="col-2" src="images/llm/training/training-example.png"></p>
-<div>
-<p><strong>Backpropagation</strong>:</p>
-<ol>
-<li>Run tokens through the network like at inference time</li>
-<li>Paths to the expected token are rewarded, other paths are punished</li>
-<li>Adjust all network weights, back to the embeddings</li>
-<li>Causal masking trains on all sub-strings, too</li>
-<li>Train on a gazillion texts</li>
-</ol>
-</div>
-</div>
+<h3 id="llm-training-backpropagation"><a class="headerlink" href="#llm-training-backpropagation" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a><em>Training</em> is how the model and embeddings are born</h3>
+<p><img src="images/llm/training/training-example.png"></p>
 <h4 id="_82"></h4>
-<p>Finally, rather unceremoniously: this is how both the model's weights and the embeddings get their values: by training immensely to find the right balance where all training texts produce the expected next token.</p>
-<p>It works like this, in principle:</p>
-<ol>
-<li>A training sentence minus its last token is passed through the full model network, all 96 layers.</li>
-<li>The last token is expected as the output; here "stronger"</li>
-<li>All the paths that produced that token get dialed up a notch and all others dialed a bit down - all back through those 96 layers, all the way back to the embedding itself</li>
-<li>Now simply repeat this a gazillion times with the entire training corpus.</li>
-<li>Eventually the network and embeddings, which were initially random, end up with values that generally produce the "likely next token" for all those trained sentences.</li>
-</ol>
-<p>That's how the AI model and the embeddings are born.</p>
-<p>And it's amazing that it works, and that it ends up producing embeddings that have a notion of "gender" and "sadness" etc.</p>
+<p>Finally, we've come to explain how the model's neural-network weights and each embedding's 12288 values come into existence.</p>
+<p>It happens through <strong>training</strong> on "all sentences in the world" and an algorithm called <strong>backpropagation</strong>.</p>
+<p>Let's go through it. It's a surprisingly simple idea.</p>
+<p>Initially an untrained model's billions of neural-network weights and each embedding's 12288 numbers just start out random. The embeddings don't mean anything and the network can't predict anything correctly. Then we start training it like so.</p>
+<p>Pick a training sentence. Let's say <code>"that which does not kill you only makes you stronger"</code>.</p>
+<p>The full sentence <em>except the last token</em> is passed through the full model network, all 96 layers. After billions of math-operations, the Transformer finally produces (say) 100,000 numbers, one number for each token in the vocabulary. Each of the 100,000 numbers represents the predicted probability for that particular token for this particular input. For an untrained model, these numbers will of course just be complete rubbish and random because all the little weights start out random.</p>
+<p><em>But then:</em></p>
+<p>For this training sentence, we know <em>exactly</em> what the expected next token should be: it should be <code>"stronger"</code>. This means that for this sentence we want token <code>"stronger"</code> to be <em>more</em> probable and all other 99,999 tokens to be <em>less</em> probable - right?</p>
+<p>So we do this:</p>
+<p>All the little weights that lead to "stronger" are dialed up a small bit: yes, we want <em>these paths</em> to produce higher numbers so token <code>"stronger"</code> is more probable. Every little number on the way back that produced "stronger" gets a nudge up, all the way back through all the 96 layers, including the embedding-numbers themselves for tokens <code>"that"</code>, <code>"which"</code>, etc.</p>
+<p>Likewise, all the 99,999 paths that produced any other token get dialed down a bit. No, we don't want <code>"aardvark"</code>, <code>"abacus"</code>, and <code>"dancing"</code> to be likely tokens to follow in this sentence.</p>
+<p>That's a lot of math just for one sentence. Luckily, in practice this will actually train all "sub-strings" too, so the model also learns from this training sentence that the more likely token to follow "that" is "which", the more likely token to follow "that which" is "does", and so on.</p>
+<p>Now, repeat that a gazillion times for the entire training corpus, and the network-weights and embeddings will end up with values that generally produce a suitable "likely next token" for <em>all</em> those trained sentences.</p>
+<p>That's where the embeddings' 12288 numbers come from: the numbers we <em>end up with</em> from training just happen to work well in predicting all those training-sentences, together. And that's why we don't know what dimension 2033 actually is or what the number actually means: it's not "playful-ness" but just some number that makes the probabilities work out optimally.</p>
+<p>What still blows my mind is how that relatively simple process can produce a prediction-machine that can construct sentences that are practically indistinguishable from human thinking.</p>
 <h3 id="backpropagation-math-is-ok-lets-move-on"><a class="headerlink" href="#backpropagation-math-is-ok-lets-move-on" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Backpropagation math is ...ok, let's move on...</h3>
 <p><img src="images/llm/training/backpropagation.png"></p>
 <h4 id="_83"></h4>

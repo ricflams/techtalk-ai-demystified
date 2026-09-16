@@ -834,38 +834,30 @@ We've seen how the LLM using pure math can produce "the likely next token".
 
 But how has it learned that? So far, the embeddings are just 12288 mysterious numbers pulled from thin air.
 
-Let's explore that by starting with this question: Are all AI models actually the same?
-
-### Are AI models "really all the same?"
-<img src="images/llm/training/chatgpt-lingo.png">
-
-####
-Admittedly I coached ChatGPT into dialing up its "chatgpt-ness" to the max before asking this question.
-
-And honestly? It worked.
-
-### How models are trained
+### AI models are trained in two steps
 <img src="images/llm/training/training.png">
 
 ####
-Pre-training is where the model learns about language. Looking at vast amounts of text, it learns to predict the next token — nothing more. The result is a powerful but raw capability: it knows how language works, how facts relate, how arguments are structured. It has no personality, no values, no sense of what a "good" response looks like.
+**Pre-training** is where the model learns about language. By looking at vast amounts of text, it learns to predict the next token. But that's just it: statistical prediction. It knows very well how language works, it knows a ton of facts, and it knows how conversations and arguments are structured. But it has no personality, values, or sense of what a *good* response looks like. It just knows what the *most likely* response looks like. The outcome is called a **GPT**, a *Generative Pre-Trained Transformer*.
 
-Post-training is where the model learns what an appropriate response is. This is where values, tone, refusal behaviors, and personality get baked in.
+**Post-training** is where the model learns what a *good, appropriate* response is. A response that is in line with how the AI lab wants it to respond. This is where values, tone, judgement, and personality get baked in. The outcome is the actual **Foundation Model** (aka **FM**) that you're using.
 
-### Pre-training on "all sentences in the world"
+In a confusing twist, researchers historically have used the term "foundation model" for the pre-trained base model, but nowadays "foundation model" is typically used for "the AI lab's model", meaning the post-trained model.
+
+**Fine-tuning** is taking training a step further by training on material in a specific domain, like medicine or your company's information. Fine-tuning is not all that common, so I'll skip it.
+
+### "All sentences in the world"
 <img src="images/llm/training/training-corpus.png">
 
 ####
-The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index.
+The training material is pretty commonplace for all frontier models nowadays. It's in the order of 1-5% of Google's index. It's all this text, refined a bit to weed out noise and garbage.
 
-### *Training* is how the model and embeddings are born
+### The model is built via backpropagation
 <!-- anchor llm-training-backpropagation -->
 <img src="images/llm/training/training-example.png">
 
 ####
-Finally, we've come to explain how the model's neural-network weights and each embedding's 12288 values come into existence.
-
-It happens through **training** on "all sentences in the world" and an algorithm called **backpropagation**.
+Now finally, here's how the model's neural-network weights and each embedding's 12288 values come into existence: by training on "all sentences in the world" and using an algorithm called **backpropagation**.
 
 Let's go through it. It's a surprisingly simple idea.
 
@@ -932,6 +924,7 @@ Once the training is completed, the embeddings and weights are frozen, never to 
 ### *Pre-trained* models are just autocomplete
 <img src="images/llm/training/pre-training.png">
 
+####
 After pre-training, the LLM is really just a statistical prediction-machine. It's great at figuring out the likelihood of what tokens should follow next based on all the trained sentences. But it has no judgment, no pushback, no idea of what a desired outcome looks like.
 
 ### *Post-training* is what shapes the model
@@ -1040,7 +1033,13 @@ Links:
 - [OpenAI Model Spec](https://model-spec.openai.com/)
 - [Our AI Principles](https://ai.google/principles/) - Gemini
 
-### Are models different?<br>Yes, indeed
+### Are AI models "all the same"? No, they're different
+<img src="images/llm/training/chatgpt-lingo.png">
+
+####
+Admittedly I coached ChatGPT into dialing up its "chatgpt-ness" to the max before asking this question.
+
+And honestly? It worked.
 
 ### Same facts, different values and behaviors
 <img src="images/llm/training/model-behavior.svg">

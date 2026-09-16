@@ -26,8 +26,12 @@ Words like *tokens*, *context*, *MCP servers*, *thinking*, and *agent files* get
 This presentation will explain and **demystify AI**. It's for everybody who uses AI, not just developers, because becoming more familiar with the terms and fundamental principles will make you better equipped overall to work with AI.
 
 There's a lot to cover so be ready to pay attention. I'll do my part by covering only what's most useful, interesting, and surprising about the AI you use daily. Also, I've included links to videos and explanations that I've found really useful myself.
+
 <h3>Jump straight to...</h3>
+
 <!-- toc-here -->
+
+####
 Links: [source](https://github.com/ricflams/techtalk-ai-demystified) and [slideshow](https://ricflams.github.io/techtalk-ai-demystified/presentation.html)
 
 ---

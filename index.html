@@ -1156,10 +1156,21 @@ assistant: An L
 <h3 id="the-parts-and-their-many-confusing-names"><a class="headerlink" href="#the-parts-and-their-many-confusing-names" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>The parts and their many confusing names</h3>
 <p><img src="images/agents/parts/roles.png" /></p>
 <h4 id="_102"></h4>
-<p>You may be thinking: "But oh no, I'm just using Copilot in Word or chatgpt.com in my browser - not an agent".</p>
-<p>Well, yes you are. Those are both agents. An agent is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's an agent baked into some other app, like Outlook. The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".</p>
-<p>It's <em>not</em> an autonomous self-running James Bond-like entity. Well, except unfortunately those do exist and they're also called "agents", which is mighty confusing.</p>
-<p>"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, Grok, etc) are LLMs.</p>
+<p>You may be thinking: <em>"But oh no, I'm just using Copilot in Word or chatgpt.com in my browser - not an agent"</em>.</p>
+<p>Well, <em>yes you are</em>. Those are both agents. An <strong>AI agent</strong> is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's code baked into another app, like Outlook.</p>
+<p>So your agent is <em>not</em> some autonomously acting "agent", like Agent Smith from The Matrix. Your agent is just the app or website you use for talking to the AI.</p>
+<p>However: That agent can start and control any number of <strong>background agents</strong> (aka <strong>sub-agents</strong>) to attend to some parts of the task you're working on. Since you don't interact with them yourself directly they are in a way really self-running agents. Yes, the term "agent" is a bit confusing. Remember: <em>you</em> are interacting with one agent, despite that it may spawn other agents.</p>
+<p>Other tricky naming bits are:</p>
+<ul>
+<li>The agent is also sometimes called the <strong>AI client</strong> or the <strong>AI harness</strong>. To the AI-service it may present itself as "the assistant".</li>
+<li><strong>LLM</strong> and <strong>AI model</strong> are synonymous when we're talking about generative text AI; all the AI models that are used for generating text (Claude, Gemini, Grok, etc) are LLMs.</li>
+<li>How you speak to the AI also goes by many names, for example <strong>prompt</strong> and <strong>instruction</strong>. There's no technical distinction between "prompt" and "instruction", though. What you choose to call it depends on the situation. For example, is your manager giving you instructions, orders, requests, or directions? It's all just synonyms for your manager asking you to do something, and which word you choose depends on the situation, or even your mood. Likewise, sometimes you say "I gave the AI instructions to...", sometimes "I prompted the AI to...", or "I asked the AI to...". Same-same.</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="https://youtu.be/pF6PzjYsjCI">Matrix - Neo vs Smith clones</a> - Pillenium (6:35)</li>
+<li><a href="https://youtu.be/_JbDZ2Rj2SA">Anthropic CEO tells CNN how AI 'agent swarms' could threaten humanity</a> - CNN (8:07)</li>
+</ul>
 <h3 id="agents-come-in-many-shapes"><a class="headerlink" href="#agents-come-in-many-shapes" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>Agents come in many shapes</h3>
 <p><img src="images/agents/agents/web-vs-cli.png" /></p>
 <h3 id="geminigooglecom-on-the-web-is-an-agent"><a class="headerlink" href="#geminigooglecom-on-the-web-is-an-agent" aria-label="Permalink to this section"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0Z"></path></svg></a>gemini.google.com on the web is an agent</h3>

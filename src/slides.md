@@ -1927,7 +1927,7 @@ The hardest part was actually that the tool-names were limited to 64 characters 
 There's nothing secret about this MCP server for Siteimprove's public API. Any Siteimprove-user with an API key can use it, and anybody can build an MCP server just like it since Siteimprove's API is publicly available with each API endpoint fully described.
 
 Links:
-- [Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp)
+- [Siteimprove MCP demo source](https://github.com/ricflams/techtalk-ai-demystified/tree/main/demo/siteimprove-mcp#connect-to-claudeai)
 - [Siteimprove MCP demo, live tool list](https://siteimprove-mcp.ricflams.workers.dev/show_me_what_you_got)
 
 ### Siteimprove API doc, OpenAPI doc, and MCP doc

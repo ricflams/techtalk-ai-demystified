@@ -1141,13 +1141,23 @@ Links:
 <img src="images/agents/parts/roles.png" />
 
 ####
-You may be thinking: "But oh no, I'm just using Copilot in Word or chatgpt.com in my browser - not an agent".
+You may be thinking: *"But oh no, I'm just using Copilot in Word or chatgpt.com in my browser - not an agent"*.
 
-Well, yes you are. Those are both agents. An agent is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's an agent baked into some other app, like Outlook. The agent is also sometimes called "AI client" or "AI harness". To the AI-service it may present itself as "the assistant".
+Well, *yes you are*. Those are both agents. An **AI agent** is simply the tool you use to talk to the AI service with. It's a program, an app, a website, or it's code baked into another app, like Outlook.
 
-It's *not* an autonomous self-running James Bond-like entity. Well, except unfortunately those do exist and they're also called "agents", which is mighty confusing.
+So your agent is *not* some autonomously acting "agent", like Agent Smith from The Matrix. Your agent is just the app or website you use for talking to the AI.
 
-"LLM" and "AI model" are synonymous when we're talking about generative text AI; all AI models used for generating text (ChatGPT, Claude, Gemini, Grok, etc) are LLMs.
+However: That agent can start and control any number of **background agents** (aka **sub-agents**) to attend to some parts of the task you're working on. Since you don't interact with them yourself directly they are in a way really self-running agents. Yes, the term "agent" is a bit confusing. Remember: *you* are interacting with one agent, despite that it may spawn other agents.
+
+Other tricky naming bits are:
+
+- The agent is also sometimes called the **AI client** or the **AI harness**. To the AI-service it may present itself as "the assistant".
+- **LLM** and **AI model** are synonymous when we're talking about generative text AI; all the AI models that are used for generating text (Claude, Gemini, Grok, etc) are LLMs.
+- How you speak to the AI also goes by many names, for example **prompt** and **instruction**. There's no technical distinction between "prompt" and "instruction", though. What you choose to call it depends on the situation. For example, is your manager giving you instructions, orders, requests, or directions? It's all just synonyms for your manager asking you to do something, and which word you choose depends on the situation, or even your mood. Likewise, sometimes you say "I gave the AI instructions to...", sometimes "I prompted the AI to...", or "I asked the AI to...". Same-same.
+
+Links:
+- [Matrix - Neo vs Smith clones](https://youtu.be/pF6PzjYsjCI) - Pillenium (6:35)
+- [Anthropic CEO tells CNN how AI 'agent swarms' could threaten humanity](https://youtu.be/_JbDZ2Rj2SA) - CNN (8:07)
 
 ### Agents come in many shapes
 <img src="images/agents/agents/web-vs-cli.png" />

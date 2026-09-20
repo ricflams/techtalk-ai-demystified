@@ -820,7 +820,7 @@ Now we can close the loop back to the embeddings section.
 
 Back then, the "gender-direction" might have looked like a fun curiosity. Now you can see that it is actually the thing this whole architecture hinges on.
 
-Consider what the Transformer does. In attention, every embedding *absorbs* the ones around it; that's directions being added. In the network layers that follow, the embedding gets pushed further still; that's more directions being added. 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. It's the meanings of "Sushi" plus "Germany" minus "Japan", billions of times.
+Think about what the Transformer does. During attention, every embedding *absorbs* the embeddings around it, which is "directions being added". In the network layers that follow, the embedding gets pushed some more, which again is more "directions being added". 96 rounds of doing one thing, over and over: *nudge this embedding a bit that way*. It's the meanings of "Sushi" plus "Germany" minus "Japan", billions of times.
 
 And that's why the surprising aspect of being able to "do math" on language matters. Without that ability, all that nudging would be pointless because a direction learned for one word would mean nothing for any other. The learnings would not have *generalized*, which is the entire point we're after. That "meanings" turned out to be something we can "do math on" is the key to the Transformer's success, and hence to all the generative text AI models we have today.
 
@@ -867,9 +867,9 @@ Let's go through it. It's a surprisingly simple idea.
 
 Initially an untrained model's billions of neural-network weights and each embedding's 12288 numbers just start out random. The embeddings don't mean anything and the network can't predict anything correctly. Then we start training it like so.
 
-Pick a training sentence. Let's say `"that which does not kill you only makes you stronger"`.
+Pick a training sentence. Let's say `"that which does not kill you only makes you stronger"`. To keep it simple, let's just assume every word is one token.
 
-The full sentence *except the last token* is passed through the full model network, all 96 layers. After billions of math-operations, the Transformer finally produces (say) 100,000 numbers, one number for each token in the vocabulary. Each of the 100,000 numbers represents the predicted probability for that particular token for this particular input. For an untrained model, these numbers will of course just be complete rubbish and random because all the little weights start out random.
+The full sentence *except the last token* is passed through the full model network, all 96 layers. After billions of math-operations, the Transformer's final layer produces (say) 100,000 numbers, one number for each token in the vocabulary. Each of the 100,000 numbers represents the predicted probability for that particular token for this particular input. For an untrained model, these numbers will of course just be complete rubbish and random because all the little weights start out random.
 
 *But then:*
 
@@ -972,13 +972,15 @@ Links:
 - [Why You Cannot See a Watermark in AI Text](https://youtu.be/Cmi-1QSaptA) - No Hype AI (17:52)
 
 ### Reinforcement Learning by Feedback
-**RLHF** - Reinforcement Learning from *Human Feedback* (declining)<br>
-**RLAIF** - Reinforcement Learning from *AI Feedback* (growing)
+**RLHF** is Reinforcement Learning from *Human Feedback* (declining in use)<br>
+**RLAIF** is Reinforcement Learning from *AI Feedback* (growing in use)
 <br>
 
 <img src="images/llm/training/reinforcement-training-trend.png">
 
 ####
+Post-training by choosing the most appropriate of two responses is called **Reinforcement Learning**, because the training "reinforces" the model's preference for certain values and behaviors. Somebody has to look at those two responses and judge which of A or B is the most appropriate response, most in line with the AI lab's values for this model. That choice can be made either by *Human Feedback* or *AI Feedback* (RLHF or RLAIF), meaning either by a human choosing A or B or an AI doing it. AI is gradually taking over this task from humans.
+
 Frontier labs almost universally outsource the bulk of human RLHF-training to external companies. One of the main players, Outlier, has now 900,000+ contractors globally working as AI trainers. You could go apply to become an AI trainer yourself, especially if you've got some special skills.
 
 Each major frontier AI lab spends approximately $1 billion per year on human-generated training data, according to a 2025 Time Magazine investigation.
@@ -1002,7 +1004,7 @@ Links:
 <img src="images/llm/training/claudes-constitution-helpfulness.png">
 
 ####
-Claude's constitution defines a priority ordering that the model should strive to follow. Claude should be:
+For example, Claude's constitution defines a priority ordering that the model should strive to follow. Claude should be:
 
 - Broadly safe (supporting human oversight)
 - Broadly ethical (good values, honesty)
@@ -1013,7 +1015,7 @@ Claude's constitution defines a priority ordering that the model should strive t
 <img src="images/llm/training/claudes-constitution-sychophant.png">
 
 ####
-For example, Claude has been explicitly trained not to "foster excessive engagement".
+Claude has also been explicitly trained not to "foster excessive engagement".
 
 So the postulate that "It just wants to please you" doesn't line up with Claude's stated objectives.
 
@@ -1175,7 +1177,7 @@ Links:
 <img src="images/agents/agents/antigravity.png" />
 
 ####
-CLI means Command Line Interface, i.e. in a text-based terminal.
+**CLI** means Command Line Interface, i.e. in a text-based terminal.
 
 Terminal-based agents works surprisingly well: you can adjust the color-theme, resize the window, adjust the font-size by a scroll of the mouse-button, add documents and images into the chat by simple drag-and-drop, etc. It's pretty neat, and not least also the most powerful way to control the AI.
 
@@ -1205,7 +1207,7 @@ Generally the only thing that the AI service knows about you is your name, ident
 
 Everything else is something that the agent provides you: your profile, memory files, skills, mcp servers, etc. And also the agent's behavior: system prompt, tone, modes, language, etc. It all lives in the agent.
 
-That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and typically don't really share their settings, even though you're logged in as the same user.
+That explains why you, say, can't see skills that you've added online at claude.ai when using Claude Code in the terminal. Or even see the same skills when using Claude Code in Linux and Windows. They are simply different agents and typically don't really share their settings (as of now), even though you're logged in as the same user.
 
 It's maybe a tad unexpected that "claude.ai" on the web is not actually the AI service itself, but in fact an agent just like Claude Code in the terminal. Two different agents, both using the very same AI service, yet with different skills, different settings, a different UI, and different functions. The AI is the same; the experience is not.
 
@@ -2308,7 +2310,7 @@ Matt Pocock's skills are also available in ChatGPT.
 ### Skills recap
 - It's "just" snippets of text that you or the LLM can ask to *add to the chat*
 
-- Useful, sure, but has no special abilities
+- That's of course useful, but the *skill-instructions themselves* have no special powers
 
 - Like text-expansion: write `/bro` and bro's text is written out
 
